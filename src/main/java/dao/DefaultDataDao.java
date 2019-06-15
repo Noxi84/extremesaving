@@ -1,6 +1,6 @@
 package dao;
 
-import constant.FinanceConstants;
+import constant.ExtremeSavingConstants;
 import model.AccountModel;
 import model.CategoryModel;
 import model.DataModel;
@@ -42,13 +42,13 @@ public class DefaultDataDao implements DataDao {
             throw new IllegalStateException("Category with id " + dataCsv.getCategory() + " does not exist.");
         }
 
-        SimpleDateFormat sf = new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT);
+        SimpleDateFormat sf = new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT);
 
         DataModel dataModel = new DataModel();
         try {
             dataModel.setDate(sf.parse(dataCsv.getDate()));
         } catch (ParseException e) {
-            throw new IllegalStateException("Date " + dataCsv.getDate() + " is invalid. Required format is '" + FinanceConstants.DATA_CSV_DATE_FORMAT + "'.");
+            throw new IllegalStateException("Date " + dataCsv.getDate() + " is invalid. Required format is '" + ExtremeSavingConstants.DATA_CSV_DATE_FORMAT + "'.");
         }
         dataModel.setCategory(categoryModel.get());
         dataModel.setAccount(accountModel.get());

@@ -4,7 +4,7 @@
 //import com.itextpdf.layout.element.Image;
 //import com.itextpdf.layout.element.Paragraph;
 //import com.itextpdf.text.*;
-//import constant.FinanceConstants;
+//import constant.ExtremeSavingConstants;
 //import dto.CategoryDto;
 //import dto.TotalsDto;
 //import model.DataModel;
@@ -18,8 +18,8 @@
 //import java.util.List;
 //import java.util.stream.Collectors;
 //
-//import static constant.FinanceConstants.MONTHLY_BAR_CHART_IMAGE_FILE;
-//import static constant.FinanceConstants.MONTHLY_METER_CHART_IMAGE_FILE;
+//import static constant.ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE;
+//import static constant.ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE;
 //
 //public class MonthReportGenerator {
 //
@@ -52,14 +52,14 @@
 //            DataModel dataModel = sortedItems.get(sortedItems.size() - i - 1);
 //
 //            if (dataModel.getValue().compareTo(BigDecimal.ZERO) > 0) {
-//                document.add(new Paragraph(new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
+//                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
 //        document.add(new Paragraph("The five most expensive items this month are ...", f));
 //        for (int i = 0; i < Math.min(5, sortedItems.size() - 1); i++) {
 //            DataModel dataModel = sortedItems.get(i);
 //            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
-//                document.add(new Paragraph(new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
+//                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
 //    }

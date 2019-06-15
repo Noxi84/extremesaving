@@ -3,7 +3,7 @@ package pdf;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
-import constant.FinanceConstants;
+import constant.ExtremeSavingConstants;
 import dto.TotalsDto;
 import pdf.page.MonthReportGenerator;
 import pdf.page.PredictionsReportGenerator;
@@ -27,7 +27,7 @@ public class DefaultPdfGenerator implements PdfGenerator {
         Document document = new Document();
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(new File(FinanceConstants.PDF_FILE_NAME)));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(ExtremeSavingConstants.PDF_FILE_NAME)));
             document.open();
 
             summaryReportGenerator.addSummaryReport(totalsDto, document);

@@ -3,7 +3,7 @@
 //import com.itextpdf.text.*;
 //import com.itextpdf.text.pdf.PdfPCell;
 //import com.itextpdf.text.pdf.PdfPTable;
-//import constant.FinanceConstants;
+//import constant.ExtremeSavingConstants;
 //import dto.AccountDto;
 //import dto.CategoryDto;
 //import dto.TotalsDto;
@@ -16,7 +16,7 @@
 //import java.util.*;
 //import java.util.stream.Collectors;
 //
-//import static constant.FinanceConstants.OVERALL_LINE_CHART_IMAGE_FILE;
+//import static constant.ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE;
 //
 //public class SummaryReportGenerator {
 //
@@ -27,7 +27,7 @@
 //
 //        document.add(getParagraph("Summary"));
 //        document.add(new Paragraph("The account with the highest current balance is xxx with a total value of xxxx EUR and the account with the lowest value is xxxx with a total value of xxx EUR.", f));
-//        document.add(new Paragraph("There are " + totalsDto.getTotalResults().getNumberOfIncomes() + " income items " + "and " + totalsDto.getTotalResults().getNumberOfExpenses() + " expense items since " + new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(totalsDto.getTotalResults().getFirstDate()) + ". The last item was added on " + new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(totalsDto.getTotalResults().getLastDate()) + ".", f));
+//        document.add(new Paragraph("There are " + totalsDto.getTotalResults().getNumberOfIncomes() + " income items " + "and " + totalsDto.getTotalResults().getNumberOfExpenses() + " expense items since " + new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(totalsDto.getTotalResults().getFirstDate()) + ". The last item was added on " + new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(totalsDto.getTotalResults().getLastDate()) + ".", f));
 //        document.add(Image.getInstance(OVERALL_LINE_CHART_IMAGE_FILE));
 //
 //        document.add(getParagraph("Accounts"));
@@ -74,14 +74,14 @@
 //            DataModel dataModel = sortedItems.get(sortedItems.size() - i - 1);
 //
 //            if (dataModel.getValue().compareTo(BigDecimal.ZERO) > 0) {
-//                document.add(new Paragraph(new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
+//                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
 //        document.add(new Paragraph("The five most expensive items overall are ...<list>", f));
 //        for (int i = 0; i < Math.min(5, sortedItems.size() - 1); i++) {
 //            DataModel dataModel = sortedItems.get(i);
 //            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
-//                document.add(new Paragraph(new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
+//                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
 //    }

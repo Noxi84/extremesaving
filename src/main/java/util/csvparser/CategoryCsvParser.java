@@ -1,18 +1,18 @@
 package util.csvparser;
 
-import constant.FinanceConstants;
+import constant.ExtremeSavingConstants;
 import util.csvparser.data.CategoryCsv;
 
 public class CategoryCsvParser extends AbstractCsvParser<CategoryCsv> {
 
     @Override
     protected String getCsvFile() {
-        return FinanceConstants.CATEGORY_CSV;
+        return ExtremeSavingConstants.CATEGORY_CSV;
     }
 
     @Override
     protected String getCsvSplitBy() {
-        return FinanceConstants.CSV_SPLIT_BY;
+        return ExtremeSavingConstants.CSV_SPLIT_BY;
     }
 
     @Override

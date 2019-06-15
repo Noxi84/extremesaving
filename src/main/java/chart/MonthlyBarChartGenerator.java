@@ -14,7 +14,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-import static constant.FinanceConstants.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static constant.ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE;
 
 public class MonthlyBarChartGenerator implements ChartGenerator {
 

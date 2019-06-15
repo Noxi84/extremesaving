@@ -1,6 +1,6 @@
 package constant;
 
-public class FinanceConstants {
+public class ExtremeSavingConstants {
 
     public static final String DATA_CSV = "/home/kris/Dropbox/extremesaving/data.csv";
     public static final String DATA_CSV_DATE_FORMAT = "d/M/yyyy";

@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static constant.FinanceConstants.MONTHLY_METER_CHART_IMAGE_FILE;
+import static constant.ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE;
 
 public class MonthlyMeterChartGenerator implements ChartGenerator {
 

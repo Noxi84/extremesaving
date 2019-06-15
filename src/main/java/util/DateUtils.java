@@ -1,6 +1,6 @@
 package util;
 
-import constant.FinanceConstants;
+import constant.ExtremeSavingConstants;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ public final class DateUtils {
     }
 
     public static String formatDate(Date date) {
-        return new SimpleDateFormat(FinanceConstants.DATA_CSV_DATE_FORMAT).format(date);
+        return new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(date);
     }
 
     public static boolean equalDates(Date d1, Date d2) {

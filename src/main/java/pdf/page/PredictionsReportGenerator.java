@@ -6,7 +6,7 @@
 //
 //import java.io.IOException;
 //
-//import static constant.FinanceConstants.OVERALL_LINE_CHART_IMAGE_FILE;
+//import static constant.ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE;
 //
 //public class PredictionsReportGenerator {
 //
