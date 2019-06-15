@@ -1,5 +1,6 @@
 package chart;
 
+import constant.ExtremeSavingConstants;
 import dto.TotalsDto;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -11,8 +12,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
-
-import static constant.ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE;
 
 public class OverallLineChartGenerator implements ChartGenerator {
 
@@ -31,7 +30,7 @@ public class OverallLineChartGenerator implements ChartGenerator {
         byte[] byteArray = bas.toByteArray();
         InputStream in = new ByteArrayInputStream(byteArray);
         BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(OVERALL_LINE_CHART_IMAGE_FILE);
+        File outputfile = new File(ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE);
         ImageIO.write(image, "png", outputfile);
     }
 

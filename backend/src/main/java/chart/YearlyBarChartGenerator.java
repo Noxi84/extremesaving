@@ -1,5 +1,6 @@
 package chart;
 
+import constant.ExtremeSavingConstants;
 import dto.ResultDto;
 import dto.TotalsDto;
 import org.jfree.chart.ChartFactory;
@@ -13,8 +14,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
-
-import static constant.ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class YearlyBarChartGenerator implements ChartGenerator {
 
@@ -32,7 +31,7 @@ public class YearlyBarChartGenerator implements ChartGenerator {
         byte[] byteArray = bas.toByteArray();
         InputStream in = new ByteArrayInputStream(byteArray);
         BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(YEARLY_BAR_CHART_IMAGE_FILE);
+        File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
         ImageIO.write(image, "png", outputfile);
     }
 

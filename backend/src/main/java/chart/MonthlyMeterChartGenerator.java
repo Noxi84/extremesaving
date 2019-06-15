@@ -1,5 +1,6 @@
 package chart;
 
+import constant.ExtremeSavingConstants;
 import dto.ResultDto;
 import dto.TotalsDto;
 import org.jfree.chart.JFreeChart;
@@ -21,8 +22,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static constant.ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE;
-
 public class MonthlyMeterChartGenerator implements ChartGenerator {
 
     @Override
@@ -39,7 +38,7 @@ public class MonthlyMeterChartGenerator implements ChartGenerator {
         byte[] byteArray = bas.toByteArray();
         InputStream in = new ByteArrayInputStream(byteArray);
         BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(MONTHLY_METER_CHART_IMAGE_FILE);
+        File outputfile = new File(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE);
         ImageIO.write(image, "png", outputfile);
     }
 

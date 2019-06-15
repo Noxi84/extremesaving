@@ -1,9 +1,5 @@
 //package pdf.page;
 //
-//import com.itextpdf.layout.Document;
-//import com.itextpdf.layout.element.Image;
-//import com.itextpdf.layout.element.Paragraph;
-//import com.itextpdf.text.*;
 //import constant.ExtremeSavingConstants;
 //import dto.CategoryDto;
 //import dto.TotalsDto;
@@ -14,8 +10,8 @@
 //import java.io.IOException;
 //import java.math.BigDecimal;
 //import java.text.SimpleDateFormat;
-//import java.util.*;
 //import java.util.List;
+//import java.util.*;
 //import java.util.stream.Collectors;
 //
 //import static constant.ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE;
@@ -31,9 +27,9 @@
 //        document.newPage();
 //        document.add(getParagraph("Month report"));
 //        document.add(new Paragraph("The month with highest income this year is xxx and the month highest expense this year is xxx", f));
-//        document.add(Image.getInstance(MONTHLY_BAR_CHART_IMAGE_FILE));
+//        document.add(Image.getInstance(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE));
 //        document.add(new Paragraph("Your saving rate for " + new SimpleDateFormat("MMMM yyyy").format(new Date()) + " is:", f));
-//        document.add(Image.getInstance(MONTHLY_METER_CHART_IMAGE_FILE));
+//        document.add(Image.getInstance(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE));
 //
 //        document.add(getParagraph("Categories"));
 //        document.add(new Paragraph("This month's highest income category is xxx and the highest expense category is xxx", f));
