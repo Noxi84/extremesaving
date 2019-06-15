@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+        >
+    <!--Database-->
+
+    <bean id="astDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="${ast.db.url}"/>
+        <property name="username" value="${ast.db.username}"/>
+        <property name="password" value="${ast.db.password}"/>
+    </bean>
+
+    <bean id="astTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="astDataSource"/>
+    </bean>
+
+    <bean name="astJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="astDataSource"/>
+    </bean>
+
+    <bean id="dioContentDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="${diocontent.db.url}"/>
+        <property name="username" value="${diocontent.db.username}"/>
+        <property name="password" value="${diocontent.db.password}"/>
+    </bean>
+
+    <bean name="dioContentJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg ref="dioContentDataSource"/>
+    </bean>
+
+</beans>
+

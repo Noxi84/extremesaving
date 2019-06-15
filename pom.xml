@@ -15,10 +15,8 @@
 
     <properties>
         <jdk.version>11</jdk.version>
-        <junit.version>4.11</junit.version>
-        <log4j.version>1.2.17</log4j.version>
+        <spring.version>5.1.0.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.springframework.version>3.0.2.RELEASE</org.springframework.version>
     </properties>
 
 
@@ -47,17 +45,34 @@
         </profile>
     </profiles>
 
+
     <build>
         <plugins>
+            <!-- Jetty -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.11.v20150529</version>
 
-            <!-- download source code in Eclipse, best practice -->
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/extremesaving</contextPath>
+                        <defaultsDescriptor>backend/src/main/resources/webapp/WEB-INF/spring-servlet.xml</defaultsDescriptor>
+                    </webApp>
+                    <jettyXml>backend/src/main/resources/jetty.xml</jettyXml>
+                </configuration>
+
+            </plugin>
+
+            <!-- Download source code in Eclipse, best practice -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
+                <version>2.10</version>
                 <configuration>
                     <downloadSources>true</downloadSources>
-                    <downloadJavadocs>false</downloadJavadocs>
+                    <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
 
@@ -65,52 +80,26 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
                 </configuration>
             </plugin>
 
-            <!-- Make this jar executable -->
+            <!-- Default is too old, update to latest to run the latest Spring 5 + jUnit 5 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/log4j.properties</exclude>
-                    </excludes>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>Main</mainClass>
-                            <classpathPrefix>dependency-jars/</classpathPrefix>
-                        </manifest>
-                    </archive>
-                </configuration>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
             </plugin>
 
-            <!-- Copy project dependency -->
+            <!-- Default 2.2 is too old, update to latest -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.5.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <!-- exclude junit, we need runtime dependency only -->
-                            <includeScope>runtime</includeScope>
-                            <outputDirectory>${project.build.directory}/dependency-jars/</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
             </plugin>
-
         </plugins>
     </build>
 
@@ -118,13 +107,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
+            <version>1.2.17</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
