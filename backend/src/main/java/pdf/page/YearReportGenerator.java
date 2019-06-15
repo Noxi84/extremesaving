@@ -1,27 +1,18 @@
 package pdf.page;
 
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import constant.ExtremeSavingConstants;
 import dto.CategoryDto;
 import dto.TotalsDto;
 import model.DataModel;
 import util.DateUtils;
 
-import java.awt.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
-
-import static constant.ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class YearReportGenerator {
 

@@ -14,12 +14,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.*;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
 import java.util.stream.Collectors;
-
-import static constant.ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE;
 
 public class SummaryReportGenerator {
 
