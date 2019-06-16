@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:component-scan base-package="extremesaving.frontend.controller" />
+	<context:component-scan base-package="extremesaving" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

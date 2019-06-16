@@ -10,6 +10,7 @@ import org.jfree.chart.plot.MeterPlot;
 import org.jfree.data.Range;
 import org.jfree.data.general.DefaultValueDataset;
 import extremesaving.util.DateUtils;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
+@Component("monthlyMeterChartGenerator")
 public class MonthlyMeterChartGenerator implements ChartGenerator {
 
     @Override

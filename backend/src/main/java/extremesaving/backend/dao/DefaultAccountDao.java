@@ -3,11 +3,13 @@ package extremesaving.backend.dao;
 import extremesaving.backend.model.AccountModel;
 import extremesaving.util.csvparser.AccountCsvParser;
 import extremesaving.util.csvparser.data.AccountCsv;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component("defaultAccountDao")
 public class DefaultAccountDao implements AccountDao {
 
     private AccountCsvParser accountCsvParser = new AccountCsvParser();

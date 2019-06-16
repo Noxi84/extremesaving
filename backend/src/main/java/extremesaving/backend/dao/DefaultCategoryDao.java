@@ -3,11 +3,13 @@ package extremesaving.backend.dao;
 import extremesaving.backend.model.CategoryModel;
 import extremesaving.util.csvparser.CategoryCsvParser;
 import extremesaving.util.csvparser.data.CategoryCsv;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component("defaultCategoryDao")
 public class DefaultCategoryDao implements CategoryDao {
 
     private CategoryCsvParser categoryCsvParser = new CategoryCsvParser();

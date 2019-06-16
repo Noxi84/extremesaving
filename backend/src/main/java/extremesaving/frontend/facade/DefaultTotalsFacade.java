@@ -8,16 +8,26 @@ import extremesaving.frontend.dto.TotalsDto;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
 import extremesaving.backend.service.DefaultCalculationService;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component("defaultTotalsFacade")
 public class DefaultTotalsFacade implements TotalsFacade {
 
-    private static AccountFacade accountFacade = new DefaultAccountFacade();
-    private static CategoryFacade categoryFacade = new DefaultCategoryFacade();
-    private static CalculationService calculationService = new DefaultCalculationService();
-    private DataDao dataDao = new DefaultDataDao();
+    @Resource(name = "defaultAccountFacade")
+    private AccountFacade accountFacade;
+
+    @Resource(name = "defaultCategoryFacade")
+    private CategoryFacade categoryFacade;
+
+    @Resource(name = "defaultCalculationService")
+    private CalculationService calculationService ;
+
+    @Resource(name = "defaultDataDao")
+    private DataDao dataDao ;
 
     @Override
     public TotalsDto getTotals() {

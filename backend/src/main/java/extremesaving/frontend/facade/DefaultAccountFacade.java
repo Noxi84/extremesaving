@@ -2,26 +2,30 @@ package extremesaving.frontend.facade;
 
 import extremesaving.backend.dao.AccountDao;
 import extremesaving.backend.dao.DataDao;
-import extremesaving.backend.dao.DefaultAccountDao;
-import extremesaving.backend.dao.DefaultDataDao;
-import extremesaving.frontend.dto.AccountDto;
 import extremesaving.backend.model.AccountModel;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
-import extremesaving.backend.service.DefaultCalculationService;
+import extremesaving.frontend.dto.AccountDto;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component("defaultAccountFacade")
 public class DefaultAccountFacade implements AccountFacade {
 
-    private static AccountDao accountDao = new DefaultAccountDao();
-    private static CalculationService calculationService = new DefaultCalculationService();
+    @Resource(name = "defaultAccountDao")
+    private AccountDao accountDao;
 
-    private static DataDao dataDao = new DefaultDataDao();
+    @Resource(name = "defaultCalculationService")
+    private CalculationService calculationService;
+
+    @Resource(name = "defaultDataDao")
+    private DataDao dataDao;
 
     @Override
     public List<AccountDto> getAccounts() {

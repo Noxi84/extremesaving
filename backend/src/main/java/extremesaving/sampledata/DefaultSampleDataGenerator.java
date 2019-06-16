@@ -1,12 +1,14 @@
 package extremesaving.sampledata;
 
 import extremesaving.constant.ExtremeSavingConstants;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+@Component("defaultSampleDataGenerator")
 public class DefaultSampleDataGenerator implements SampleDataGenerator {
 
     private static final String START_DATE = "5/6/2014";

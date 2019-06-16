@@ -9,12 +9,14 @@ import extremesaving.backend.pdf.page.MonthReportGenerator;
 import extremesaving.backend.pdf.page.PredictionsReportGenerator;
 import extremesaving.backend.pdf.page.SummaryReportGenerator;
 import extremesaving.backend.pdf.page.YearReportGenerator;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+@Component("defaultPdfGenerator")
 public class DefaultPdfGenerator implements PdfGenerator {
 
     private SummaryReportGenerator summaryReportGenerator = new SummaryReportGenerator();

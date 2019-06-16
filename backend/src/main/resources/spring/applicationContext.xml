@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
     <mvc:annotation-driven/>
-    <context:component-scan base-package="extremesaving.frontend"/>
+    <context:component-scan base-package="extremesaving"/>
 <!--    <mvc:default-servlet-handler/>-->
 
 <!--    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">-->

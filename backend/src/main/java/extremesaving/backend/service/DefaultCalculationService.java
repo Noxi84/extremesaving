@@ -5,12 +5,14 @@ import extremesaving.backend.model.AccountModel;
 import extremesaving.backend.model.CategoryModel;
 import extremesaving.backend.model.DataModel;
 import extremesaving.util.DateUtils;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Component("defaultCalculationService")
 public class DefaultCalculationService implements CalculationService {
 
     @Override

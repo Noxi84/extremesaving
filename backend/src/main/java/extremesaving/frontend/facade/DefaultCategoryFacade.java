@@ -2,25 +2,30 @@ package extremesaving.frontend.facade;
 
 import extremesaving.backend.dao.CategoryDao;
 import extremesaving.backend.dao.DataDao;
-import extremesaving.backend.dao.DefaultCategoryDao;
-import extremesaving.backend.dao.DefaultDataDao;
-import extremesaving.frontend.dto.CategoryDto;
 import extremesaving.backend.model.CategoryModel;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
-import extremesaving.backend.service.DefaultCalculationService;
+import extremesaving.frontend.dto.CategoryDto;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component("defaultCategoryFacade")
 public class DefaultCategoryFacade implements CategoryFacade {
 
-    private static DataDao dataDao = new DefaultDataDao();
-    private static CategoryDao categoryDao = new DefaultCategoryDao();
-    private static CalculationService calculationService = new DefaultCalculationService();
+    @Resource(name = "defaultDataDao")
+    private DataDao dataDao;
+
+    @Resource(name = "defaultCategoryDao")
+    private CategoryDao categoryDao;
+
+    @Resource(name = "defaultCalculationService")
+    private CalculationService calculationService;
 
     @Override
     public List<CategoryDto> getCategories() {

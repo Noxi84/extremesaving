@@ -7,6 +7,7 @@ import extremesaving.backend.model.DataModel;
 import extremesaving.util.csvparser.DataCsvParser;
 import extremesaving.util.csvparser.data.CsvModel;
 import extremesaving.util.csvparser.data.DataCsv;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component("defaultDataDao")
 public class DefaultDataDao implements DataDao {
 
     private DataCsvParser dataCsvParser = new DataCsvParser();

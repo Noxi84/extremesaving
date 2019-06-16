@@ -8,6 +8,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -15,6 +16,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
+@Component("monthlyBarChartGenerator")
 public class MonthlyBarChartGenerator implements ChartGenerator {
 
     @Override
