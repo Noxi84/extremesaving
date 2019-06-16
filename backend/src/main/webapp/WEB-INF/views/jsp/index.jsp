@@ -125,14 +125,14 @@
                     <table>
                         <tr>
                             <td>
-                                Current Balance: € 15 256.00<br>
+                                Current Balance: &euro; 15 256.00<br>
                                 Most profitable category: Work<br>
                                 Most expensive category: Appartment
                             </td>
 
                             <td>
-                                Best month: € 2 000 (June 2019)<br>
-                                Worst month: € 50 (May 2017)<br>
+                                Best month: &euro; 2 000 (June 2019)<br>
+                                Worst month: &euro; 50 (May 2017)<br>
                             </td>
                         </tr>
                     </table>
@@ -155,7 +155,7 @@
                 </td>
 
                 <td>
-                    € 1 000
+                    &euro; 1 000
                 </td>
             </tr>
             <tr class="details">
@@ -164,7 +164,7 @@
                 </td>
 
                 <td>
-                    € 14 952.53
+                    &euro; 14 952.53
                 </td>
             </tr>
 
@@ -184,7 +184,7 @@
                 </td>
 
                 <td>
-                    € -300.00
+                    &euro; -300.00
                 </td>
             </tr>
 
@@ -194,7 +194,7 @@
                 </td>
 
                 <td>
-                    € 2 075.00
+                    &euro; 2 075.00
                 </td>
             </tr>
 
@@ -231,7 +231,7 @@
                 </td>
 
                 <td>
-                    € 300.00
+                    &euro; 300.00
                 </td>
             </tr>
 
@@ -241,7 +241,7 @@
                 </td>
 
                 <td>
-                    € 2 075.00
+                    &euro; 2 075.00
                 </td>
             </tr>
 
@@ -279,7 +279,7 @@
                 </td>
 
                 <td>
-                    € 300.00
+                    &euro; 300.00
                 </td>
             </tr>
 
@@ -289,7 +289,7 @@
                 </td>
 
                 <td>
-                    € 2 075.00
+                    &euro; 2 075.00
                 </td>
             </tr>
 
