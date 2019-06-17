@@ -1,6 +1,6 @@
 package extremesaving.frontend.facade;
 
-import extremesaving.frontend.dto.TotalsDto;
+import extremesaving.backend.dto.TotalsDto;
 
 public interface TotalsFacade {
 

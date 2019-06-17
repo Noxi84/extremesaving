@@ -46,64 +46,9 @@
         </profile>
     </profiles>
 
-
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
-            <!--            &lt;!&ndash; Jetty &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.eclipse.jetty</groupId>-->
-            <!--                <artifactId>jetty-maven-plugin</artifactId>-->
-            <!--                <version>9.2.11.v20150529</version>-->
-
-            <!--                <configuration>-->
-            <!--                    <scanIntervalSeconds>10</scanIntervalSeconds>-->
-            <!--                    <webApp>-->
-            <!--                        <contextPath>/extremesaving</contextPath>-->
-            <!--                        <defaultsDescriptor>backend/src/main/resources/webapp/WEB-INF/spring-servlet.xml</defaultsDescriptor>-->
-            <!--                    </webApp>-->
-            <!--                    <jettyXml>backend/src/main/resources/jetty.xml</jettyXml>-->
-            <!--                </configuration>-->
-
-            <!--            </plugin>-->
-
-            <!--            &lt;!&ndash; Download source code in Eclipse, best practice &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-eclipse-plugin</artifactId>-->
-            <!--                <version>2.10</version>-->
-            <!--                <configuration>-->
-            <!--                    <downloadSources>true</downloadSources>-->
-            <!--                    <downloadJavadocs>true</downloadJavadocs>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
-
-            <!--            &lt;!&ndash; Set a compiler level &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-compiler-plugin</artifactId>-->
-            <!--                <version>3.8.1</version>-->
-            <!--                <configuration>-->
-            <!--                    <source>${jdk.version}</source>-->
-            <!--                    <target>${jdk.version}</target>-->
-            <!--                </configuration>-->
-            <!--            </plugin>-->
-
-            <!--            &lt;!&ndash; Default is too old, update to latest to run the latest Spring 5 + jUnit 5 &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-surefire-plugin</artifactId>-->
-            <!--                <version>3.0.0-M3</version>-->
-            <!--            </plugin>-->
-
-            <!--            &lt;!&ndash; Default 2.2 is too old, update to latest &ndash;&gt;-->
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-war-plugin</artifactId>-->
-            <!--                <version>3.2.3</version>-->
-            <!--            </plugin>-->
-
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
@@ -113,19 +58,17 @@
                 </configuration>
             </plugin>
 
-<!--            &lt;!&ndash; Jetty &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.eclipse.jetty</groupId>-->
-<!--                <artifactId>jetty-maven-plugin</artifactId>-->
-<!--                <version>9.2.11.v20150529</version>-->
-<!--                <configuration>-->
-<!--                    <scanIntervalSeconds>10</scanIntervalSeconds>-->
-<!--                    <webApp>-->
-<!--                        <contextPath>/</contextPath>-->
-<!--                    </webApp>-->
-<!--                    <jettyXml>backend/src/main/resources/jetty.xml</jettyXml>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <wtpversion>2.0</wtpversion>
+                    <wtpContextName>extremesaving</wtpContextName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -147,40 +90,13 @@
             <version>3.9</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework/spring-webmvc &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-webmvc</artifactId>-->
-<!--            <version>5.1.0.RELEASE</version>-->
-<!--        </dependency>-->
+        <!-- spring-context which provides core functionality -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-<!--        &lt;!&ndash; JSTL Dependency &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet.jsp.jstl</groupId>-->
-<!--            <artifactId>javax.servlet.jsp.jstl-api</artifactId>-->
-<!--            <version>1.2.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>taglibs</groupId>-->
-<!--            <artifactId>standard</artifactId>-->
-<!--            <version>1.1.2</version>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; Servlet Dependency &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet</groupId>-->
-<!--            <artifactId>javax.servlet-api</artifactId>-->
-<!--            <version>3.1.0</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; JSP Dependency &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>javax.servlet.jsp</groupId>-->
-<!--            <artifactId>javax.servlet.jsp-api</artifactId>-->
-<!--            <version>2.3.1</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
 </project>

@@ -1,8 +1,8 @@
 package extremesaving.backend.pdf.page;
 
 import com.itextpdf.text.*;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.TotalsDto;
 
 import java.io.IOException;
 

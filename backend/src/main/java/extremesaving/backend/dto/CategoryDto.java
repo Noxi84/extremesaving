@@ -1,4 +1,4 @@
-package extremesaving.frontend.dto;
+package extremesaving.backend.dto;
 
 import java.math.BigDecimal;
 import java.util.Objects;

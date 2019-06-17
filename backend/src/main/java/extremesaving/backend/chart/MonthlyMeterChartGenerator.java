@@ -1,21 +1,25 @@
 package extremesaving.backend.chart;
 
+import extremesaving.backend.dto.ResultDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.ResultDto;
-import extremesaving.frontend.dto.TotalsDto;
+import extremesaving.util.DateUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.DialShape;
 import org.jfree.chart.plot.MeterInterval;
 import org.jfree.chart.plot.MeterPlot;
 import org.jfree.data.Range;
 import org.jfree.data.general.DefaultValueDataset;
-import extremesaving.util.DateUtils;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;

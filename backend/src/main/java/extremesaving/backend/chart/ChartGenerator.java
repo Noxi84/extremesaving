@@ -1,6 +1,7 @@
 package extremesaving.backend.chart;
 
-import extremesaving.frontend.dto.TotalsDto;
+
+import extremesaving.backend.dto.TotalsDto;
 
 import java.io.IOException;
 

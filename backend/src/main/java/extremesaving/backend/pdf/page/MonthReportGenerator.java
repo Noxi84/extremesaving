@@ -1,9 +1,9 @@
 package extremesaving.backend.pdf.page;
 
 import com.itextpdf.text.*;
+import extremesaving.backend.dto.CategoryDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.CategoryDto;
-import extremesaving.frontend.dto.TotalsDto;
 import extremesaving.backend.model.DataModel;
 import extremesaving.util.DateUtils;
 

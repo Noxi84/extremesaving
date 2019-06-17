@@ -5,7 +5,7 @@ import extremesaving.backend.dao.DataDao;
 import extremesaving.backend.model.CategoryModel;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
-import extremesaving.frontend.dto.CategoryDto;
+import extremesaving.backend.dto.CategoryDto;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

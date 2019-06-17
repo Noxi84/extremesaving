@@ -1,6 +1,6 @@
 package extremesaving.frontend.facade;
 
-import extremesaving.frontend.dto.CategoryDto;
+import extremesaving.backend.dto.CategoryDto;
 
 import java.util.List;
 

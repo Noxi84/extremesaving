@@ -5,7 +5,7 @@ import extremesaving.backend.dao.DataDao;
 import extremesaving.backend.model.AccountModel;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
-import extremesaving.frontend.dto.AccountDto;
+import extremesaving.backend.dto.AccountDto;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

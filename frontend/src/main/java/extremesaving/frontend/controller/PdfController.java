@@ -2,7 +2,7 @@ package extremesaving.frontend.controller;
 
 import extremesaving.backend.chart.ChartGenerator;
 import extremesaving.backend.pdf.PdfGenerator;
-import extremesaving.frontend.dto.TotalsDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.frontend.facade.TotalsFacade;
 import extremesaving.sampledata.SampleDataGenerator;
 import org.springframework.stereotype.Controller;

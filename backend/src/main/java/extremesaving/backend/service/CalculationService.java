@@ -1,6 +1,6 @@
 package extremesaving.backend.service;
 
-import extremesaving.frontend.dto.ResultDto;
+import extremesaving.backend.dto.ResultDto;
 import extremesaving.backend.model.AccountModel;
 import extremesaving.backend.model.CategoryModel;
 import extremesaving.backend.model.DataModel;

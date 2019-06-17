@@ -1,7 +1,7 @@
 package extremesaving.backend.chart;
 
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.TotalsDto;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;

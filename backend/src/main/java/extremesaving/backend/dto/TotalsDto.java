@@ -1,4 +1,4 @@
-package extremesaving.frontend.dto;
+package extremesaving.backend.dto;
 
 import extremesaving.backend.model.DataModel;
 

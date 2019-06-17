@@ -1,13 +1,11 @@
 package extremesaving.frontend.facade;
 
 import extremesaving.backend.dao.DataDao;
-import extremesaving.backend.dao.DefaultDataDao;
-import extremesaving.frontend.dto.AccountDto;
-import extremesaving.frontend.dto.CategoryDto;
-import extremesaving.frontend.dto.TotalsDto;
+import extremesaving.backend.dto.AccountDto;
+import extremesaving.backend.dto.CategoryDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.backend.model.DataModel;
 import extremesaving.backend.service.CalculationService;
-import extremesaving.backend.service.DefaultCalculationService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

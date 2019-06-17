@@ -1,19 +1,27 @@
 package extremesaving.backend.pdf.page;
 
-import com.itextpdf.text.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.AccountDto;
-import extremesaving.frontend.dto.CategoryDto;
-import extremesaving.frontend.dto.TotalsDto;
+import extremesaving.backend.dto.AccountDto;
+import extremesaving.backend.dto.CategoryDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.backend.model.DataModel;
+import extremesaving.constant.ExtremeSavingConstants;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.*;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SummaryReportGenerator {

@@ -1,8 +1,8 @@
 package extremesaving.backend.chart;
 
+import extremesaving.backend.dto.ResultDto;
+import extremesaving.backend.dto.TotalsDto;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.frontend.dto.ResultDto;
-import extremesaving.frontend.dto.TotalsDto;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -12,7 +12,11 @@ import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Calendar;
 

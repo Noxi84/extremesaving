@@ -1,6 +1,6 @@
 package extremesaving.frontend.facade;
 
-import extremesaving.frontend.dto.AccountDto;
+import extremesaving.backend.dto.AccountDto;
 
 import java.util.List;
 
