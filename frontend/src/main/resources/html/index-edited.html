@@ -227,7 +227,7 @@
 
             <tr class="item">
                 <td>
-                    Mama
+                    Other
                 </td>
 
                 <td>
@@ -275,7 +275,7 @@
 
             <tr class="item">
                 <td>
-                    Mama
+                    Other
                 </td>
 
                 <td>

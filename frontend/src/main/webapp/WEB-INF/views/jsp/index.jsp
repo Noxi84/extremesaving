@@ -4,316 +4,255 @@
     <meta charset="utf-8">
     <title>A simple, clean, and responsive HTML invoice template</title>
 
-    <style>
-    .invoice-box {
-        max-width: 800px;
-        margin: auto;
-        padding: 30px;
-        border: 1px solid #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-        font-size: 16px;
-        line-height: 24px;
-        font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-        color: #555;
-    }
-
-    .invoice-box table {
-        width: 100%;
-        line-height: inherit;
-        text-align: left;
-    }
-
-    .invoice-box table td {
-        padding: 5px;
-        vertical-align: top;
-    }
-
-    .invoice-box table tr td:nth-child(2) {
-        text-align: right;
-    }
-
-    .invoice-box table tr.top table td {
-        padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.top table td.title {
-        font-size: 45px;
-        line-height: 45px;
-        color: #333;
-    }
-
-    .invoice-box table tr.information table td {
-        padding-bottom: 40px;
-    }
-
-    .invoice-box table tr.heading td {
-        background: #eee;
-        border-bottom: 1px solid #ddd;
-        font-weight: bold;
-    }
-
-    .invoice-box table tr.details td {
-        padding-bottom: 20px;
-    }
-
-    .invoice-box table tr.item td{
-        border-bottom: 1px solid #eee;
-    }
-
-    .invoice-box table tr.item.last td {
-        border-bottom: none;
-    }
-
-    .invoice-box table tr.total td:nth-child(2) {
-        border-top: 2px solid #eee;
-        font-weight: bold;
-    }
-
-    @media only screen and (max-width: 600px) {
-        .invoice-box table tr.top table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-
-        .invoice-box table tr.information table td {
-            width: 100%;
-            display: block;
-            text-align: center;
-        }
-    }
-
-    /** RTL **/
-    .rtl {
-        direction: rtl;
-        font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-    }
-
-    .rtl table {
-        text-align: right;
-    }
-
-    .rtl table tr td:nth-child(2) {
-        text-align: left;
-    }
-    </style>
+    <script src="js/chartjs_2.8.0.js"><!-- empty --></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 <body>
-    <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
-                            </td>
+<div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+        <tr class="top">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td class="title">
+                            <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
+                        </td>
 
-                            <td>
-                                Last Update: June 14, 2019<br>
-                                Last item added: June 14, 2019<br>
-                                Total items: 32 <br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                        <td>
+                            Last Update: June 14, 2019<br>
+                            Last item added: June 14, 2019<br>
+                            Total items: 32 <br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                Current Balance: &euro; 15 256.00<br>
-                                Most profitable category: Work<br>
-                                Most expensive category: Appartment
-                            </td>
+        <tr class="information">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>
+                            Current Balance: &euro; 15 256.00<br>
+                            Most profitable category: Work<br>
+                            Most expensive category: Appartment
+                        </td>
 
-                            <td>
-                                Best month: &euro; 2 000 (June 2019)<br>
-                                Worst month: &euro; 50 (May 2017)<br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                        <td>
+                            Best month: &euro; 2 000 (June 2019)<br>
+                            Worst month: &euro; 50 (May 2017)<br>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
-            <tr class="heading">
-                <td>
-                    Account
-                </td>
+        <tr>
+            <td>
+                <canvas id="myChart"><!-- empty --></canvas>
+            </td>
+        </tr>
 
-                <td>
-                    Current amount
-                </td>
-            </tr>
+        <tr class="heading">
+            <td>
+                Account
+            </td>
 
-            <tr class="details">
-                <td>
-                    Argenta Zichtrekening
-                </td>
+            <td>
+                Current amount
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 1 000
-                </td>
-            </tr>
-            <tr class="details">
-                <td>
-                    Argenta Spaarrekening
-                </td>
+        <tr class="details">
+            <td>
+                Argenta Zichtrekening
+            </td>
 
-                <td>
-                    &euro; 14 952.53
-                </td>
-            </tr>
+            <td>
+                &euro; 1 000
+            </td>
+        </tr>
+        <tr class="details">
+            <td>
+                Argenta Spaarrekening
+            </td>
 
-            <tr class="heading">
-                <td>
-                    Category
-                </td>
+            <td>
+                &euro; 14 952.53
+            </td>
+        </tr>
 
-                <td>
-                    Result
-                </td>
-            </tr>
+        <tr class="heading">
+            <td>
+                Category
+            </td>
 
-            <tr class="item">
-                <td>
-                    Lening
-                </td>
+            <td>
+                Result
+            </td>
+        </tr>
 
-                <td>
-                    &euro; -300.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Lening
+            </td>
 
-            <tr class="item">
-                <td>
-                    Werk
-                </td>
+            <td>
+                &euro; -300.00
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 2 075.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Werk
+            </td>
 
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
+            <td>
+                &euro; 2 075.00
+            </td>
+        </tr>
 
-                <td>
-                    $10.00
-                </td>
-            </tr>
+        <tr class="item last">
+            <td>
+                Domain name (1 year)
+            </td>
 
-            <tr class="total">
-                <td></td>
+            <td>
+                $10.00
+            </td>
+        </tr>
 
-                <td>
-                   Total: $385.00
-                </td>
-            </tr>
-            <tr class="heading">
-                <td>
-                    The five most profitable items are
-                </td>
+        <tr class="total">
+            <td></td>
 
-                <td>
-                    Result
-                </td>
-            </tr>
+            <td>
+                Total: $385.00
+            </td>
+        </tr>
+        <tr class="heading">
+            <td>
+                The five most profitable items are
+            </td>
 
-            <tr class="item">
-                <td>
-                    Other
-                </td>
+            <td>
+                Result
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 300.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Other
+            </td>
 
-            <tr class="item">
-                <td>
-                    Werk
-                </td>
+            <td>
+                &euro; 300.00
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 2 075.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Werk
+            </td>
 
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
+            <td>
+                &euro; 2 075.00
+            </td>
+        </tr>
 
-                <td>
-                    $10.00
-                </td>
-            </tr>
+        <tr class="item last">
+            <td>
+                Domain name (1 year)
+            </td>
 
-            <tr class="total">
-                <td></td>
+            <td>
+                $10.00
+            </td>
+        </tr>
 
-                <td>
-                    Total: $385.00
-                </td>
-            </tr>
+        <tr class="total">
+            <td></td>
 
-            <tr class="heading">
-                <td>
-                    The five most expensive items are
-                </td>
+            <td>
+                Total: $385.00
+            </td>
+        </tr>
 
-                <td>
-                    Result
-                </td>
-            </tr>
+        <tr class="heading">
+            <td>
+                The five most expensive items are
+            </td>
 
-            <tr class="item">
-                <td>
-                    Other
-                </td>
+            <td>
+                Result
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 300.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Other
+            </td>
 
-            <tr class="item">
-                <td>
-                    Werk
-                </td>
+            <td>
+                &euro; 300.00
+            </td>
+        </tr>
 
-                <td>
-                    &euro; 2 075.00
-                </td>
-            </tr>
+        <tr class="item">
+            <td>
+                Werk
+            </td>
 
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
+            <td>
+                &euro; 2 075.00
+            </td>
+        </tr>
 
-                <td>
-                    $10.00
-                </td>
-            </tr>
+        <tr class="item last">
+            <td>
+                Domain name (1 year)
+            </td>
 
-            <tr class="total">
-                <td></td>
+            <td>
+                $10.00
+            </td>
+        </tr>
 
-                <td>
-                    Total: $385.00
-                </td>
-            </tr>
-        </table>
+        <tr class="total">
+            <td></td>
+
+            <td>
+                Total: $385.00
+            </td>
+        </tr>
+    </table>
 
 
-        </table>
-    </div>
+    </table>
+
+
+</div>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
 </body>
 </html>
