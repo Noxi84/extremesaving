@@ -231,6 +231,9 @@
 
     </table>
 
+    <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+
+
     <div class="doughnut-chart-container">
         <canvas id="doughnut-chartcanvas-1"></canvas>
     </div>
@@ -317,5 +320,38 @@
     });
 
 </script>
+
+<script>
+    new Chart(document.getElementById("bar-chart-grouped"), {
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April"],
+            datasets: [
+                {
+                    label: "Incomes",
+                    backgroundColor: "#3e95cd",
+                    data: [133,221,783,2478]
+                }, {
+                    label: "Expenses",
+                    backgroundColor: "#8e5ea2",
+                    data: [408,547,675,734]
+                }, {
+                    label: "Result",
+                    backgroundColor: "#8e5ea2",
+                    data: [308,247,175,534]
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Monthly result for 2019'
+            }
+        }
+    });
+
+
+</script>
+
 </body>
 </html>
