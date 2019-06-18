@@ -225,12 +225,15 @@
                 Total: $385.00
             </td>
         </tr>
-    </table>
-
 
     </table>
 
 
+    </table>
+
+    <div class="doughnut-chart-container">
+        <canvas id="doughnut-chartcanvas-1"></canvas>
+    </div>
 </div>
 
 <script>
@@ -253,6 +256,66 @@
         // Configuration options go here
         options: {}
     });
+</script>
+
+
+<script>
+    //get the doughnut chart canvas
+    var ctx1 = document.getElementById("doughnut-chartcanvas-1");
+
+    //doughnut chart data
+    var data1 = {
+        labels: ["Cash", "Pensioensparen", "Argenta zichtrekening", "Argenta spaarrekening", "Maaltijdcheques"],
+        datasets: [
+            {
+                label: "TeamA Score",
+                data: [350, 2600, 872, 15500, 80],
+                backgroundColor: [
+                    "#DEB887",
+                    "#A9A9A9",
+                    "#DC143C",
+                    "#F4A460",
+                    "#2E8B57"
+                ],
+                borderColor: [
+                    "#CDA776",
+                    "#989898",
+                    "#CB252B",
+                    "#E39371",
+                    "#1D7A46"
+                ],
+                borderWidth: [1, 1, 1, 1, 1]
+            }
+        ]
+    };
+
+    //options
+    var options = {
+        responsive: true,
+        title: {
+            display: true,
+            position: "top",
+            text: "Doughnut Chart",
+            fontSize: 18,
+            fontColor: "#111"
+        },
+        legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+                fontColor: "#333",
+                fontSize: 16
+            }
+        }
+    };
+
+    //create Chart class object
+    var chart1 = new Chart(ctx1, {
+        type: "doughnut",
+        data: data1,
+        options: options
+    });
+
 </script>
 </body>
 </html>
