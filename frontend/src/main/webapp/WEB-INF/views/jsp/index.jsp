@@ -237,6 +237,9 @@
     <div class="doughnut-chart-container">
         <canvas id="doughnut-chartcanvas-1"></canvas>
     </div>
+
+    <canvas id="radar-chart" width="800" height="600"></canvas>
+
 </div>
 
 <script>
@@ -350,6 +353,51 @@
         }
     });
 
+
+</script>
+
+<script>
+    new Chart(document.getElementById("radar-chart"), {
+        type: 'radar',
+        data: {
+            labels: ["January", "February", "March", "April", "May"],
+            datasets: [
+                {
+                    label: "Incomes",
+                    fill: true,
+                    backgroundColor: "rgba(179,181,198,0.2)",
+                    borderColor: "rgba(179,181,198,1)",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "rgba(179,181,198,1)",
+                    data: [8.77,55.61,21.69,6.62,6.82]
+                }, {
+                    label: "Expenses",
+                    fill: true,
+                    backgroundColor: "rgba(255,99,132,0.2)",
+                    borderColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    data: [25.48,54.16,7.61,8.06,4.45]
+                }, {
+                    label: "Result",
+                    fill: true,
+                    backgroundColor: "rgba(255,99,132,0.2)",
+                    borderColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    pointBackgroundColor: "rgba(255,99,132,1)",
+                    pointBorderColor: "#fff",
+                    data: [27.48,24.16,12.61,16.06,8.45]
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Distribution in % of world population'
+            }
+        }
+    });
 
 </script>
 
