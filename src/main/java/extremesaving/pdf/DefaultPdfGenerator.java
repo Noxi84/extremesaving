@@ -1,22 +1,17 @@
 package extremesaving.pdf;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.TotalsDto;
 import extremesaving.pdf.page.MonthReportGenerator;
 import extremesaving.pdf.page.PredictionsReportGenerator;
 import extremesaving.pdf.page.SummaryReportGenerator;
 import extremesaving.pdf.page.YearReportGenerator;
-import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
-@Component("defaultPdfGenerator")
 public class DefaultPdfGenerator implements PdfGenerator {
 
     private SummaryReportGenerator summaryReportGenerator = new SummaryReportGenerator();
@@ -25,27 +20,15 @@ public class DefaultPdfGenerator implements PdfGenerator {
     private PredictionsReportGenerator predictionsReportGenerator = new PredictionsReportGenerator();
 
     @Override
-    public void generatePdf(TotalsDto totalsDto) {
-        Document document = new Document();
-
+    public void generatePdf() {
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(new File(ExtremeSavingConstants.PDF_FILE_NAME)));
-            document.open();
-
-            summaryReportGenerator.addSummaryReport(totalsDto, document);
-            monthReportGenerator.addMonthReport(totalsDto, document);
-            yearReportGenerator.addYearReport(totalsDto, document);
-            predictionsReportGenerator.addPredictionsReport(totalsDto, document);
-
+            PdfWriter writer = new PdfWriter(ExtremeSavingConstants.PDF_FILE_NAME);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+            document.add(new Paragraph("Hello World!"));
             document.close();
-
-            System.out.println("Done");
-
-        } catch (FileNotFoundException | DocumentException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }

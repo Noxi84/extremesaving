@@ -1,24 +1,8 @@
 package extremesaving.pdf.page;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.AccountDto;
-import extremesaving.dto.CategoryDto;
-import extremesaving.dto.TotalsDto;
-import extremesaving.model.DataModel;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class SummaryReportGenerator {
 
-    public void addSummaryReport(TotalsDto totalsDto, Document document) throws DocumentException, IOException {
+//    public void addSummaryReport(TotalsDto totalsDto, Document document) throws DocumentException, IOException {
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
 //        f.setSize(8);
@@ -82,12 +66,12 @@ public class SummaryReportGenerator {
 //                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
-    }
-
-    private Paragraph getParagraph(String categories) {
-        Paragraph categoriesParagraph = new Paragraph();
-        categoriesParagraph.add(categories);
-        categoriesParagraph.setAlignment(Element.ALIGN_LEFT);
-        return categoriesParagraph;
-    }
+//    }
+//
+//    private Paragraph getParagraph(String categories) {
+//        Paragraph categoriesParagraph = new Paragraph();
+//        categoriesParagraph.add(categories);
+//        categoriesParagraph.setAlignment(Element.ALIGN_LEFT);
+//        return categoriesParagraph;
+//    }
 }

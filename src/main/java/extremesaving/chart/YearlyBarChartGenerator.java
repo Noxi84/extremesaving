@@ -16,25 +16,24 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-@Component("yearlyBarChartGenerator")
 public class YearlyBarChartGenerator implements ChartGenerator {
 
     @Override
-    public void generateChartPng(TotalsDto totalsDto) throws IOException {
-        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(totalsDto), PlotOrientation.VERTICAL, false, false, false);
-        BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
-        ByteArrayOutputStream bas = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(objBufferedImage, "png", bas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] byteArray = bas.toByteArray();
-        InputStream in = new ByteArrayInputStream(byteArray);
-        BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
-        ImageIO.write(image, "png", outputfile);
+    public void generateChartPng()  {
+//        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(totalsDto), PlotOrientation.VERTICAL, false, false, false);
+//        BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
+//        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+//        try {
+//            ImageIO.write(objBufferedImage, "png", bas);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        byte[] byteArray = bas.toByteArray();
+//        InputStream in = new ByteArrayInputStream(byteArray);
+//        BufferedImage image = ImageIO.read(in);
+//        File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
+//        ImageIO.write(image, "png", outputfile);
     }
 
     private static CategoryDataset createDataset(TotalsDto totalsDto) {

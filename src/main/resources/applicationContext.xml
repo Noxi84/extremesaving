@@ -21,6 +21,10 @@
     <!--Service-->
     <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
     </bean>
+    <bean id="chartDataService" class="extremesaving.service.ChartDataServiceImpl">
+        <property name="dataDao" ref="dataDao"/>
+        <property name="calculationService" ref="calculationService"/>
+    </bean>
 
     <bean id="accountService" class="extremesaving.service.AccountServiceImpl">
         <property name="dataDao" ref="dataDao"/>
@@ -34,7 +38,9 @@
     <bean id="pdfGenerator" class="extremesaving.pdf.DefaultPdfGenerator"/>
 
     <!--Chart-->
-    <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator"/>
+    <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator">
+        <property name="chartDataService" ref="chartDataService"/>
+    </bean>
     <bean id="yearlyBarChartGenerator" class="extremesaving.chart.YearlyBarChartGenerator"/>
     <bean id="overallLineChartGenerator" class="extremesaving.chart.OverallLineChartGenerator"/>
     <bean id="monthlyMeterChartGenerator" class="extremesaving.chart.MonthlyMeterChartGenerator"/>

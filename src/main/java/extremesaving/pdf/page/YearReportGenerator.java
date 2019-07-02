@@ -1,22 +1,8 @@
 package extremesaving.pdf.page;
 
-import com.itextpdf.text.*;
-import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.CategoryDto;
-import extremesaving.dto.TotalsDto;
-import extremesaving.model.DataModel;
-import extremesaving.util.DateUtils;
-
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class YearReportGenerator {
 
-    public void addYearReport(TotalsDto totalsDto, Document document) throws DocumentException, IOException {
+//    public void addYearReport(TotalsDto totalsDto, Document document) throws DocumentException, IOException {
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
 //        f.setSize(8);
@@ -52,12 +38,12 @@ public class YearReportGenerator {
 //                document.add(new Paragraph(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(dataModel.getDate()) + " - " + dataModel.getCategory().getName() + " - " + dataModel.getValue() + " - " + dataModel.getDescription(), f));
 //            }
 //        }
-    }
-
-    private Paragraph getParagraph(String categories) {
-        Paragraph categoriesParagraph = new Paragraph();
-        categoriesParagraph.add(categories);
-        categoriesParagraph.setAlignment(Element.ALIGN_LEFT);
-        return categoriesParagraph;
-    }
+//    }
+//
+//    private Paragraph getParagraph(String categories) {
+//        Paragraph categoriesParagraph = new Paragraph();
+//        categoriesParagraph.add(categories);
+//        categoriesParagraph.setAlignment(Element.ALIGN_LEFT);
+//        return categoriesParagraph;
+//    }
 }

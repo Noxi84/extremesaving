@@ -2,42 +2,51 @@ package extremesaving.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.ResultDto;
-import extremesaving.dto.TotalsDto;
+import extremesaving.service.ChartDataService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Map;
 
-@Component("monthlyBarChartGenerator")
 public class MonthlyBarChartGenerator implements ChartGenerator {
 
+    private ChartDataService chartDataService;
+
     @Override
-    public void generateChartPng(TotalsDto totalsDto) throws IOException {
-        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(totalsDto), PlotOrientation.VERTICAL, false, false, false);
-        BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
-        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+    public void generateChartPng() {
         try {
-            ImageIO.write(objBufferedImage, "png", bas);
+            Map<Integer, ResultDto> monthlyResults = chartDataService.getMonthlyResults();
+
+
+            JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(monthlyResults), PlotOrientation.VERTICAL, false, false, false);
+            BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
+            ByteArrayOutputStream bas = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(objBufferedImage, "png", bas);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            byte[] byteArray = bas.toByteArray();
+            InputStream in = new ByteArrayInputStream(byteArray);
+            BufferedImage image = ImageIO.read(in);
+            File outputfile = new File(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE);
+            ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        byte[] byteArray = bas.toByteArray();
-        InputStream in = new ByteArrayInputStream(byteArray);
-        BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE);
-        ImageIO.write(image, "png", outputfile);
     }
 
-    private static CategoryDataset createDataset(TotalsDto totalsDto) {
+    private static CategoryDataset createDataset(Map<Integer, ResultDto> monthlyResults) {
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
@@ -55,18 +64,18 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
         final String december = "Dec";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        ResultDto januaryResults = totalsDto.getMonthlyResults().get(Calendar.JANUARY);
-        ResultDto februaryResults = totalsDto.getMonthlyResults().get(Calendar.FEBRUARY);
-        ResultDto marchResults = totalsDto.getMonthlyResults().get(Calendar.MARCH);
-        ResultDto aprilResults = totalsDto.getMonthlyResults().get(Calendar.APRIL);
-        ResultDto mayResults = totalsDto.getMonthlyResults().get(Calendar.MAY);
-        ResultDto juneResults = totalsDto.getMonthlyResults().get(Calendar.JUNE);
-        ResultDto julyResults = totalsDto.getMonthlyResults().get(Calendar.JULY);
-        ResultDto augustResults = totalsDto.getMonthlyResults().get(Calendar.AUGUST);
-        ResultDto septemberResults = totalsDto.getMonthlyResults().get(Calendar.SEPTEMBER);
-        ResultDto octoberResults = totalsDto.getMonthlyResults().get(Calendar.OCTOBER);
-        ResultDto novemberResults = totalsDto.getMonthlyResults().get(Calendar.NOVEMBER);
-        ResultDto decemberResults = totalsDto.getMonthlyResults().get(Calendar.DECEMBER);
+        ResultDto januaryResults = monthlyResults.get(Calendar.JANUARY);
+        ResultDto februaryResults = monthlyResults.get(Calendar.FEBRUARY);
+        ResultDto marchResults = monthlyResults.get(Calendar.MARCH);
+        ResultDto aprilResults = monthlyResults.get(Calendar.APRIL);
+        ResultDto mayResults = monthlyResults.get(Calendar.MAY);
+        ResultDto juneResults = monthlyResults.get(Calendar.JUNE);
+        ResultDto julyResults = monthlyResults.get(Calendar.JULY);
+        ResultDto augustResults = monthlyResults.get(Calendar.AUGUST);
+        ResultDto septemberResults = monthlyResults.get(Calendar.SEPTEMBER);
+        ResultDto octoberResults = monthlyResults.get(Calendar.OCTOBER);
+        ResultDto novemberResults = monthlyResults.get(Calendar.NOVEMBER);
+        ResultDto decemberResults = monthlyResults.get(Calendar.DECEMBER);
 
         dataset.addValue(januaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, january);
         dataset.addValue(februaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, february);
@@ -108,5 +117,9 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
         dataset.addValue(decemberResults.getIncomes(), incomes, december);
 
         return dataset;
+    }
+
+    public void setChartDataService(ChartDataService chartDataService) {
+        this.chartDataService = chartDataService;
     }
 }

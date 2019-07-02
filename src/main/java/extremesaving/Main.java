@@ -2,6 +2,7 @@ package extremesaving;
 
 import extremesaving.chart.ChartGenerator;
 import extremesaving.dto.AccountDto;
+import extremesaving.dto.ResultDto;
 import extremesaving.facade.TotalsFacade;
 import extremesaving.pdf.PdfGenerator;
 import extremesaving.service.AccountService;
@@ -10,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -35,12 +37,14 @@ public class Main {
             System.out.println(accountDto.getName() + " : " + accountDto.getTotalResults().getResult());
         }
 
+
+
 //        TotalsDto totalsDto = totalsFacade.getTotals();
-//        monthlyBarChartGenerator.generateChartPng(totalsDto);
+        monthlyBarChartGenerator.generateChartPng();
 //        yearlyBarChartGenerator.generateChartPng(totalsDto);
 //        overallLineChartGenerator.generateChartPng(totalsDto);
 //        monthlyMeterChartGenerator.generateChartPng(totalsDto);
-//        pdfGenerator.generatePdf(totalsDto);
+        pdfGenerator.generatePdf();
     }
 
     public void setAccountService(AccountService accountService) {

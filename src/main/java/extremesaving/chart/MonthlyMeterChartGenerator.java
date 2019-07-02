@@ -10,7 +10,6 @@ import org.jfree.chart.plot.MeterInterval;
 import org.jfree.chart.plot.MeterPlot;
 import org.jfree.data.Range;
 import org.jfree.data.general.DefaultValueDataset;
-import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,25 +22,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-@Component("monthlyMeterChartGenerator")
 public class MonthlyMeterChartGenerator implements ChartGenerator {
 
     @Override
-    public void generateChartPng(TotalsDto totalsDto) throws IOException {
-        JFreeChart barChart = createChart(totalsDto);
-        BufferedImage objBufferedImage = barChart.createBufferedImage(220, 136);
-        ByteArrayOutputStream bas = new ByteArrayOutputStream();
-        try {
-            ImageIO.write(objBufferedImage, "png", bas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        byte[] byteArray = bas.toByteArray();
-        InputStream in = new ByteArrayInputStream(byteArray);
-        BufferedImage image = ImageIO.read(in);
-        File outputfile = new File(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE);
-        ImageIO.write(image, "png", outputfile);
+    public void generateChartPng()  {
+//        JFreeChart barChart = createChart(totalsDto);
+//        BufferedImage objBufferedImage = barChart.createBufferedImage(220, 136);
+//        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+//        try {
+//            ImageIO.write(objBufferedImage, "png", bas);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        byte[] byteArray = bas.toByteArray();
+//        InputStream in = new ByteArrayInputStream(byteArray);
+//        BufferedImage image = ImageIO.read(in);
+//        File outputfile = new File(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE);
+//        ImageIO.write(image, "png", outputfile);
     }
 
     private JFreeChart createChart(TotalsDto totalsDto) {
