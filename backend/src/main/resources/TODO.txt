@@ -1,2 +1,0 @@
-- De meter in het maandreport moet een vaste start/average/eind-waarde hebben voor de gehele maand. Deze moet in het begin van de maand berekend worden. Pas als de volgende maand ingaat mag deze wijzigen.
-- Generator maken die voor de komende 5 jaar data in de CSV's zet voor de bestaande categorien.
