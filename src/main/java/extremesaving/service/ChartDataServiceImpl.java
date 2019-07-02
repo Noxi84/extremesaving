@@ -19,7 +19,10 @@ public class ChartDataServiceImpl implements ChartDataService {
     @Override
     public Map<String, BigDecimal> getAccountResults() {
         Map<String, BigDecimal> results = new HashMap<>();
-        List<AccountDto> accounts = accountService.getAccounts();
+        List<AccountDto> accounts = accountService.getAccounts().stream()
+                .filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
+                .collect(Collectors.toList());
+
         for (AccountDto accountDto : accounts) {
             results.put(accountDto.getName(), accountDto.getTotalResults().getResult());
         }
