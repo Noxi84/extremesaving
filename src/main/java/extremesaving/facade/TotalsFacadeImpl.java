@@ -26,8 +26,6 @@ public class TotalsFacadeImpl implements TotalsFacade {
 //        totalsDto.setNoTransferResults(calculationService.getResults(nonTransferDataModels));
 //        totalsDto.setAccountDtoList(accountFacade.getAccounts());
 //        totalsDto.setCategoryDtoList(categoryFacade.getCategories());
-//        totalsDto.setMonthlyResults(calculationService.getMonthlyResults(dataModels));
-//        totalsDto.setYearlyResults(calculationService.getYearlyResults(dataModels));
 //        totalsDto.setYearlyNonTransferResults(calculationService.getYearlyResults(nonTransferDataModels));
 //        totalsDto.setYearPredictions(calculationService.getYearPredictions(dataModels));
 //

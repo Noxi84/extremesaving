@@ -99,39 +99,6 @@ public class CalculationServiceImpl implements CalculationService {
 
 
     @Override
-    public Map<Integer, ResultDto> getYearlyResults(Collection<DataModel> dataModels) {
-        Calendar calendar = Calendar.getInstance();
-        Map<Integer, ResultDto> yearlyResults = new HashMap<>();
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 11, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 10, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 9, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 8, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 7, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 6, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 5, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 4, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 3, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 2, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 1, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR), new ResultDto());
-
-        for (DataModel dataModel : dataModels) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(dataModel.getDate());
-
-            ResultDto resultDtoForThisYear = yearlyResults.get(cal.get(Calendar.YEAR));
-            resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataModel.getValue()));
-
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
-                resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataModel.getValue()));
-            } else {
-                resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataModel.getValue()));
-            }
-        }
-        return yearlyResults;
-    }
-
-    @Override
     public Map<Integer, BigDecimal> getYearPredictions(Collection<DataModel> dataModels) {
         Map<Integer, BigDecimal> yearPredictions = new HashMap<>();
 

@@ -41,7 +41,9 @@
     <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="yearlyBarChartGenerator" class="extremesaving.chart.YearlyBarChartGenerator"/>
+    <bean id="yearlyBarChartGenerator" class="extremesaving.chart.YearlyBarChartGenerator">
+        <property name="chartDataService" ref="chartDataService"/>
+    </bean>
     <bean id="overallLineChartGenerator" class="extremesaving.chart.OverallLineChartGenerator"/>
     <bean id="monthlyMeterChartGenerator" class="extremesaving.chart.MonthlyMeterChartGenerator"/>
 

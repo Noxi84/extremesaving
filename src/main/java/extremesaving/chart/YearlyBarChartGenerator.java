@@ -2,41 +2,49 @@ package extremesaving.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.ResultDto;
-import extremesaving.dto.TotalsDto;
+import extremesaving.service.ChartDataService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Map;
 
 public class YearlyBarChartGenerator implements ChartGenerator {
 
+    private ChartDataService chartDataService;
+
     @Override
-    public void generateChartPng()  {
-//        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(totalsDto), PlotOrientation.VERTICAL, false, false, false);
-//        BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
-//        ByteArrayOutputStream bas = new ByteArrayOutputStream();
-//        try {
-//            ImageIO.write(objBufferedImage, "png", bas);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        byte[] byteArray = bas.toByteArray();
-//        InputStream in = new ByteArrayInputStream(byteArray);
-//        BufferedImage image = ImageIO.read(in);
-//        File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
-//        ImageIO.write(image, "png", outputfile);
+    public void generateChartPng() {
+        try {
+            Map<Integer, ResultDto> yearlyResults = chartDataService.getYearlyResults();
+
+            JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(yearlyResults), PlotOrientation.VERTICAL, false, false, false);
+            BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
+            ByteArrayOutputStream bas = new ByteArrayOutputStream();
+            try {
+                ImageIO.write(objBufferedImage, "png", bas);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            byte[] byteArray = bas.toByteArray();
+            InputStream in = new ByteArrayInputStream(byteArray);
+            BufferedImage image = ImageIO.read(in);
+            File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
+            ImageIO.write(image, "png", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private static CategoryDataset createDataset(TotalsDto totalsDto) {
+    private static CategoryDataset createDataset(Map<Integer, ResultDto> yearlyResults) {
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
@@ -55,15 +63,15 @@ public class YearlyBarChartGenerator implements ChartGenerator {
         final String year9 = String.valueOf(currentYear - 8);
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        ResultDto year9Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year9));
-        ResultDto year8Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year8));
-        ResultDto year7Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year7));
-        ResultDto year6Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year6));
-        ResultDto year5Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year5));
-        ResultDto year4Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year4));
-        ResultDto year3Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year3));
-        ResultDto year2Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year2));
-        ResultDto year1Results = totalsDto.getYearlyNonTransferResults().get(Integer.valueOf(year1));
+        ResultDto year9Results = yearlyResults.get(Integer.valueOf(year9));
+        ResultDto year8Results = yearlyResults.get(Integer.valueOf(year8));
+        ResultDto year7Results = yearlyResults.get(Integer.valueOf(year7));
+        ResultDto year6Results = yearlyResults.get(Integer.valueOf(year6));
+        ResultDto year5Results = yearlyResults.get(Integer.valueOf(year5));
+        ResultDto year4Results = yearlyResults.get(Integer.valueOf(year4));
+        ResultDto year3Results = yearlyResults.get(Integer.valueOf(year3));
+        ResultDto year2Results = yearlyResults.get(Integer.valueOf(year2));
+        ResultDto year1Results = yearlyResults.get(Integer.valueOf(year1));
 
         dataset.addValue(year9Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year9);
         dataset.addValue(year8Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year8);
@@ -96,5 +104,9 @@ public class YearlyBarChartGenerator implements ChartGenerator {
         dataset.addValue(year1Results.getIncomes(), incomes, year1);
 
         return dataset;
+    }
+
+    public void setChartDataService(ChartDataService chartDataService) {
+        this.chartDataService = chartDataService;
     }
 }

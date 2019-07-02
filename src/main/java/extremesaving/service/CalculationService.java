@@ -17,7 +17,5 @@ public interface CalculationService {
 
 //    Map<AccountModel, BigDecimal> getAcountResults(Collection<DataModel> dataModels);
 
-    Map<Integer, ResultDto> getYearlyResults(Collection<DataModel> dataModels);
-
     Map<Integer, BigDecimal> getYearPredictions(Collection<DataModel> dataModels);
 }

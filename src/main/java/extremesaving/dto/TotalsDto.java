@@ -10,8 +10,6 @@ public class TotalsDto {
     private Set<DataModel> data = new HashSet<>();
     private List<AccountDto> accountDtoList = new ArrayList<>();
     private List<CategoryDto> categoryDtoList = new ArrayList<>();
-    private Map<Integer, ResultDto> monthlyResults;
-    private Map<Integer, ResultDto> yearlyResults;
     private Map<Integer, ResultDto> yearlyNonTransferResults;
     private Map<Integer, BigDecimal> yearPredictions;
     private ResultDto totalResults;
@@ -54,21 +52,6 @@ public class TotalsDto {
         this.categoryDtoList = categoryDtoList;
     }
 
-    public Map<Integer, ResultDto> getMonthlyResults() {
-        return monthlyResults;
-    }
-
-    public void setMonthlyResults(Map<Integer, ResultDto> monthlyResults) {
-        this.monthlyResults = monthlyResults;
-    }
-
-    public Map<Integer, ResultDto> getYearlyResults() {
-        return yearlyResults;
-    }
-
-    public void setYearlyResults(Map<Integer, ResultDto> yearlyResults) {
-        this.yearlyResults = yearlyResults;
-    }
 
     public Map<Integer, ResultDto> getYearlyNonTransferResults() {
         return yearlyNonTransferResults;
