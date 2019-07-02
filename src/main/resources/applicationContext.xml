@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Main-->
+    <bean id="main" class="extremesaving.Main">
+        <property name="accountService" ref="accountService"/>
+        <property name="totalsFacade" ref="totalsFacade"/>
+        <property name="pdfGenerator" ref="pdfGenerator"/>
+        <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
+        <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
+        <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
+        <property name="monthlyMeterChartGenerator" ref="monthlyMeterChartGenerator"/>
+    </bean>
+
+    <!--Facade-->
+    <bean id="totalsFacade" class="extremesaving.facade.TotalsFacadeImpl">
+        <property name="calculationService" ref="calculationService"/>
+    </bean>
+
+    <!--Service-->
+    <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
+    </bean>
+
+    <bean id="accountService" class="extremesaving.service.AccountServiceImpl">
+        <property name="dataDao" ref="dataDao"/>
+        <property name="calculationService" ref="calculationService"/>
+    </bean>
+
+    <!--Dao-->
+    <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
+
+    <!--Pdf-->
+    <bean id="pdfGenerator" class="extremesaving.pdf.DefaultPdfGenerator"/>
+
+    <!--Chart-->
+    <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator"/>
+    <bean id="yearlyBarChartGenerator" class="extremesaving.chart.YearlyBarChartGenerator"/>
+    <bean id="overallLineChartGenerator" class="extremesaving.chart.OverallLineChartGenerator"/>
+    <bean id="monthlyMeterChartGenerator" class="extremesaving.chart.MonthlyMeterChartGenerator"/>
+
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="async" class="org.apache.log4j.AsyncAppender">
+        <param name="LocationInfo" value="true"/>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${loglocation}"/>
+        <param name="MaxBackupIndex" value="10"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - [%X{username}] %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="be.persgroep.red">
+        <level value="DEBUG"/>
+    </logger>
+
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="async"/>
+    </root>
+
+</log4j:configuration>
