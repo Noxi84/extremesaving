@@ -1,20 +1,19 @@
 package extremesaving;
 
 import extremesaving.chart.ChartGenerator;
-import extremesaving.dto.AccountDto;
 import extremesaving.facade.TotalsFacade;
 import extremesaving.pdf.PdfGenerator;
 import extremesaving.service.AccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
-
 public class Main {
 
     private AccountService accountService;
     private TotalsFacade totalsFacade;
     private PdfGenerator pdfGenerator;
+
+    private ChartGenerator accountPieChartGenerator;
     private ChartGenerator monthlyBarChartGenerator;
     private ChartGenerator yearlyBarChartGenerator;
     private ChartGenerator overallLineChartGenerator;
@@ -27,15 +26,8 @@ public class Main {
     }
 
     private void start() {
-
-        List<AccountDto> accounts = accountService.getAccounts();
-
-        for (AccountDto accountDto : accounts) {
-            System.out.println(accountDto.getName() + " : " + accountDto.getTotalResults().getResult());
-        }
-
-
 //        TotalsDto totalsDto = totalsFacade.getTotals();
+        accountPieChartGenerator.generateChartPng();
         monthlyBarChartGenerator.generateChartPng();
         yearlyBarChartGenerator.generateChartPng();
 //        overallLineChartGenerator.generateChartPng(totalsDto);
@@ -53,6 +45,10 @@ public class Main {
 
     public void setPdfGenerator(PdfGenerator pdfGenerator) {
         this.pdfGenerator = pdfGenerator;
+    }
+
+    public void setAccountPieChartGenerator(ChartGenerator accountPieChartGenerator) {
+        this.accountPieChartGenerator = accountPieChartGenerator;
     }
 
     public void setMonthlyBarChartGenerator(ChartGenerator monthlyBarChartGenerator) {

@@ -1,6 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dao.DataDao;
+import extremesaving.dto.AccountDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
@@ -13,6 +14,17 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     private DataDao dataDao;
     private CalculationService calculationService;
+    private AccountService accountService;
+
+    @Override
+    public Map<String, BigDecimal> getAccountResults() {
+        Map<String, BigDecimal> results = new HashMap<>();
+        List<AccountDto> accounts = accountService.getAccounts();
+        for (AccountDto accountDto : accounts) {
+            results.put(accountDto.getName(), accountDto.getTotalResults().getResult());
+        }
+        return results;
+    }
 
     @Override
     public Map<Integer, ResultDto> getMonthlyResults() {
@@ -96,5 +108,9 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setCalculationService(CalculationService calculationService) {
         this.calculationService = calculationService;
+    }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
     }
 }

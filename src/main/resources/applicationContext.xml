@@ -7,6 +7,7 @@
         <property name="accountService" ref="accountService"/>
         <property name="totalsFacade" ref="totalsFacade"/>
         <property name="pdfGenerator" ref="pdfGenerator"/>
+        <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
         <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
         <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
         <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
@@ -24,6 +25,7 @@
     <bean id="chartDataService" class="extremesaving.service.ChartDataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
         <property name="calculationService" ref="calculationService"/>
+        <property name="accountService" ref="accountService"/>
     </bean>
 
     <bean id="accountService" class="extremesaving.service.AccountServiceImpl">
@@ -35,9 +37,23 @@
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfGenerator" class="extremesaving.pdf.DefaultPdfGenerator"/>
+    <bean id="pdfPageSummaryGenerator" class="extremesaving.pdf.page.PdfPageSummaryGenerator">
+        <property name="accountService" ref="accountService"/>
+    </bean>
+    <bean id="pdfPageMonthGenerator" class="extremesaving.pdf.page.PdfPageMonthGenerator">
+    </bean>
+    <bean id="pdfPageYearGenerator" class="extremesaving.pdf.page.PdfPageYearGenerator">
+    </bean>
+    <bean id="pdfGenerator" class="extremesaving.pdf.DefaultPdfGenerator">
+        <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
+        <property name="pdfPageMonthGenerator" ref="pdfPageMonthGenerator"/>
+        <property name="pdfPageYearGenerator" ref="pdfPageYearGenerator"/>
+    </bean>
 
     <!--Chart-->
+    <bean id="accountPieChartGenerator" class="extremesaving.chart.AccountPieChartGenerator">
+        <property name="chartDataService" ref="chartDataService"/>
+    </bean>
     <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>

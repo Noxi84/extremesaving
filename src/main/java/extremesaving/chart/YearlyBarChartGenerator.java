@@ -28,12 +28,7 @@ public class YearlyBarChartGenerator implements ChartGenerator {
             JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(yearlyResults), PlotOrientation.VERTICAL, false, false, false);
             BufferedImage objBufferedImage = barChart.createBufferedImage(500, 309);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            try {
-                ImageIO.write(objBufferedImage, "png", bas);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
+            ImageIO.write(objBufferedImage, "png", bas);
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
