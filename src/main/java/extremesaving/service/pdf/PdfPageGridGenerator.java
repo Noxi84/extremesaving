@@ -21,7 +21,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     }
 
     private Table getProfitableCategorySection(Document document) {
-        Paragraph summaryTitle = new Paragraph("The five most profitable categories are: ");
+        Paragraph summaryTitle = new Paragraph("Most profitable categories");
         summaryTitle.setBold();
         document.add(summaryTitle);
 
@@ -41,7 +41,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
 
         Cell cell2 = new Cell();
         cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This month");
+        Paragraph cell2Title = getItemParagraph("This year");
         cell2Title.setBold();
         cell2.add(cell2Title);
         cell2.add(getItemParagraph("Werk: € 18 900.00"));
@@ -52,7 +52,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
 
         Cell cell3 = new Cell();
         cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This year");
+        Paragraph cell3Title = getItemParagraph("This month");
         cell3Title.setBold();
         cell3.add(cell3Title);
         cell3.add(getItemParagraph("Werk: € 18 900.00"));
@@ -68,7 +68,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     }
 
     private Table getExpensiveCategorySection(Document document) {
-        Paragraph summaryTitle = new Paragraph("The five most expensive categories are: ");
+        Paragraph summaryTitle = new Paragraph("Most expensive categories");
         summaryTitle.setBold();
         document.add(summaryTitle);
 
@@ -115,7 +115,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     }
 
     private Table getProfitableItemsSection(Document document) {
-        Paragraph summaryTitle = new Paragraph("The five most profitable items are: ");
+        Paragraph summaryTitle = new Paragraph("Most profitable items");
         summaryTitle.setBold();
         document.add(summaryTitle);
 
@@ -127,33 +127,33 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         Paragraph cell1Title = getItemParagraph("Overall");
         cell1Title.setBold();
         cell1.add(cell1Title);
-        cell1.add(getItemParagraph("Werk: Loon € 18 900.00"));
-        cell1.add(getItemParagraph("Voeding: Waterbron € 18 900.00"));
-        cell1.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell1.add(getItemParagraph("2dehands: Verkoop Pioneer set € 18 900.00"));
-        cell1.add(getItemParagraph("..."));
+        cell1.add(getItemParagraph("[Werk] Loon: € 18 900.00"));
+        cell1.add(getItemParagraph("[Voeding] Waterbron € 18 900.00"));
+        cell1.add(getItemParagraph("[Speelgoed & electronica] € 18 900.00"));
+        cell1.add(getItemParagraph("[2dehands] Verkoop Pioneer set € 18 900.00"));
+        cell1.add(getItemParagraph("[...] ..."));
 
         Cell cell2 = new Cell();
         cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This month");
+        Paragraph cell2Title = getItemParagraph("This year");
         cell2Title.setBold();
         cell2.add(cell2Title);
-        cell2.add(getItemParagraph("Werk: Loon € 18 900.00"));
-        cell2.add(getItemParagraph("Voeding: Waterbron € 18 900.00"));
-        cell2.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell2.add(getItemParagraph("2dehands: Verkoop Pioneer set € 18 900.00"));
-        cell2.add(getItemParagraph("..."));
+        cell2.add(getItemParagraph("[Werk] Loon € 18 900.00"));
+        cell2.add(getItemParagraph("[Voeding] Waterbron € 18 900.00"));
+        cell2.add(getItemParagraph("[Speelgoed & electronica] € 18 900.00"));
+        cell2.add(getItemParagraph("[2dehands] Verkoop Pioneer set € 18 900.00"));
+        cell2.add(getItemParagraph("[...] ..."));
 
         Cell cell3 = new Cell();
         cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This year");
+        Paragraph cell3Title = getItemParagraph("This month");
         cell3Title.setBold();
         cell3.add(cell3Title);
-        cell3.add(getItemParagraph("Werk: Loon € 18 900.00"));
-        cell3.add(getItemParagraph("Voeding: Waterbron € 18 900.00"));
-        cell3.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell3.add(getItemParagraph("2dehands: Verkoop Pioneer set € 18 900.00"));
-        cell3.add(getItemParagraph("..."));
+        cell3.add(getItemParagraph("[Werk] Loon (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[Voeding] Waterbron (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[Speelgoed & electronica] (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[2dehands] Verkoop Pioneer set (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[...] ..."));
 
         table.addCell(cell1);
         table.addCell(cell2);
@@ -162,7 +162,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     }
 
     private Table getExpensiveItemsSection(Document document) {
-        Paragraph summaryTitle = new Paragraph("The five most expensive items are: ");
+        Paragraph summaryTitle = new Paragraph("Most expensive items");
         summaryTitle.setBold();
         document.add(summaryTitle);
 
@@ -174,33 +174,33 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         Paragraph cell1Title = getItemParagraph("Overall");
         cell1Title.setBold();
         cell1.add(cell1Title);
-        cell1.add(getItemParagraph("Werk: € 18 900.00"));
-        cell1.add(getItemParagraph("Mama: € 18 900.00"));
-        cell1.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell1.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell1.add(getItemParagraph("..."));
+        cell1.add(getItemParagraph("[Werk] ... (€ 18 900.00)"));
+        cell1.add(getItemParagraph("[Mama] ... (€ 18 900.00)"));
+        cell1.add(getItemParagraph("[Speelgoed & electronica] ... (€ 18 900.00)"));
+        cell1.add(getItemParagraph("[2dehands] ... (€ 18 900.00)"));
+        cell1.add(getItemParagraph("[...] ..."));
 
         Cell cell2 = new Cell();
         cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This month");
+        Paragraph cell2Title = getItemParagraph("This year");
         cell2Title.setBold();
         cell2.add(cell2Title);
-        cell2.add(getItemParagraph("Werk: € 18 900.00"));
-        cell2.add(getItemParagraph("Mama: € 18 900.00"));
-        cell2.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell2.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell2.add(getItemParagraph("..."));
+        cell2.add(getItemParagraph("[Werk] ... € 18 900.00"));
+        cell2.add(getItemParagraph("[Mama] ... € 18 900.00"));
+        cell2.add(getItemParagraph("[Speelgoed & electronica] ... € 18 900.00"));
+        cell2.add(getItemParagraph("[2dehands] € 18 900.00"));
+        cell2.add(getItemParagraph("[...] ..."));
 
         Cell cell3 = new Cell();
         cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This year");
+        Paragraph cell3Title = getItemParagraph("This month");
         cell3Title.setBold();
         cell3.add(cell3Title);
-        cell3.add(getItemParagraph("Werk: € 18 900.00"));
-        cell3.add(getItemParagraph("Mama: € 18 900.00"));
-        cell3.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell3.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell3.add(getItemParagraph("..."));
+        cell3.add(getItemParagraph("[Werk] ... (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[Mama] ... (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[Speelgoed & electronica] ... (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[2dehands] ... (€ 18 900.00)"));
+        cell3.add(getItemParagraph("[...] ..."));
 
         table.addCell(cell1);
         table.addCell(cell2);

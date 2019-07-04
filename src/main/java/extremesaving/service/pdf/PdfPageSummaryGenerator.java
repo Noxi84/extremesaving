@@ -31,15 +31,16 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
             Paragraph summaryTitle = new Paragraph("Summary");
             summaryTitle.setBold();
             balanceCell.add(summaryTitle);
-            balanceCell.add(getItemParagraph("Total balance: € 115 230.59"));
             balanceCell.add(getItemParagraph("Last update: 10 february 1984"));
             balanceCell.add(getItemParagraph("Last item added: 10 february 1984"));
+            balanceCell.add(getItemParagraph("\n"));
+            balanceCell.add(getItemParagraph("Total balance: € 115 230.59"));
             balanceCell.add(getItemParagraph("Total items: 75"));
-            balanceCell.add(getItemParagraph("Best month: january 2019: xxxx EURO"));
-            balanceCell.add(getItemParagraph("Worst month: july 2019: xxxx EURO"));
-            balanceCell.add(getItemParagraph(" "));
-            balanceCell.add(getItemParagraph("Best year: january 2019: xxxx EURO"));
-            balanceCell.add(getItemParagraph("Worst year: july 2019: xxxx EURO"));
+            balanceCell.add(getItemParagraph("\n"));
+            balanceCell.add(getItemParagraph("Best month: january 2019 (€ 3 956.41)"));
+            balanceCell.add(getItemParagraph("Worst month: july 2019 (€ 3 956.40)"));
+            balanceCell.add(getItemParagraph("Best year: 2019 (20 000.85)"));
+            balanceCell.add(getItemParagraph("Worst year: 2019  (€ 35 000.45)"));
 
             Cell accountsCell = new Cell();
             accountsCell.setBorder(Border.NO_BORDER);
