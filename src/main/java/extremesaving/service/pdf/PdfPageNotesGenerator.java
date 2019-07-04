@@ -1,11 +1,28 @@
 package extremesaving.service.pdf;
 
-public class PredictionsReportGenerator {
+import com.itextpdf.layout.Document;
+
+public class PdfPageNotesGenerator implements PdfPageGenerator {
+
+    @Override
+    public void generate(Document document) {
+
+    }
 
 //    public void addPredictionsReport(TotalsDto totalsDto, Document document) throws DocumentException, IOException {
 //        Font f = new Font();
 //        f.setStyle(Font.BOLD);
 //        f.setSize(8);
+
+
+//   document.add(new Paragraph("Your saving rate for " + new SimpleDateFormat("MMMM yyyy").format(new Date()) + " is:"));
+//
+//        document.add(new Paragraph("The month with highest income this year is xxx and the month highest expense this year is xxx"));
+//
+//        document.add(new Paragraph("Your best year is xxxx with a result of xxxx EURO and your worst year is with a result of xxxx EURO"));
+//    //        document.add(Image.getInstance(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE));
+
+    //        document.add(Image.getInstance(ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE));
 //
 //        document.newPage();
 //        document.add(getParagraph("Predictions"));

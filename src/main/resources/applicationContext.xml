@@ -41,14 +41,17 @@
     <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryGenerator">
         <property name="accountService" ref="accountService"/>
     </bean>
-    <bean id="pdfPageMonthGenerator" class="extremesaving.service.pdf.PdfPageMonthGenerator">
+    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
     </bean>
-    <bean id="pdfPageYearGenerator" class="extremesaving.service.pdf.PdfPageYearGenerator">
+    <bean id="pdfPageGridGenerator" class="extremesaving.service.pdf.PdfPageGridGenerator">
+    </bean>
+    <bean id="pdfPageNotesGenerator" class="extremesaving.service.pdf.PdfPageNotesGenerator">
     </bean>
     <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
-        <property name="pdfPageMonthGenerator" ref="pdfPageMonthGenerator"/>
-        <property name="pdfPageYearGenerator" ref="pdfPageYearGenerator"/>
+        <property name="pdfPageMonthYearGenerator" ref="pdfPageMonthYearGenerator"/>
+        <property name="pdfPageGridGenerator" ref="pdfPageGridGenerator"/>
+        <property name="pdfPageNotesGenerator" ref="pdfPageNotesGenerator"/>
     </bean>
 
     <!--Chart-->

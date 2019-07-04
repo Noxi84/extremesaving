@@ -10,7 +10,7 @@ import extremesaving.constant.ExtremeSavingConstants;
 
 import java.net.MalformedURLException;
 
-public class PdfPageMonthGenerator implements PdfPageGenerator {
+public class PdfPageMonthYearGenerator implements PdfPageGenerator {
 
     @Override
     public void generate(Document document) {

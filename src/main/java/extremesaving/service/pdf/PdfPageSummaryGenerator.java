@@ -55,12 +55,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
             table.addCell(chartCell);
             table.addCell(accountsCell);
 
-            //        document.add(Image.getInstance(ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE));
-
             document.add(table);
-
-
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

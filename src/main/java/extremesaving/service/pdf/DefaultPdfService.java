@@ -11,9 +11,9 @@ import java.io.FileNotFoundException;
 public class DefaultPdfService implements PdfService {
 
     private PdfPageGenerator pdfPageSummaryGenerator;
-    private PdfPageGenerator pdfPageMonthGenerator;
-    private PdfPageGenerator pdfPageYearGenerator;
-    private PredictionsReportGenerator predictionsReportGenerator;
+    private PdfPageGenerator pdfPageMonthYearGenerator;
+    private PdfPageGenerator pdfPageGridGenerator;
+    private PdfPageGenerator pdfPageNotesGenerator;
 
     @Override
     public void generatePdf() {
@@ -25,8 +25,10 @@ public class DefaultPdfService implements PdfService {
             document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
 
             pdfPageSummaryGenerator.generate(document);
-            pdfPageMonthGenerator.generate(document);
-            pdfPageYearGenerator.generate(document);
+            pdfPageMonthYearGenerator.generate(document);
+            pdfPageGridGenerator.generate(document);
+            pdfPageNotesGenerator.generate(document);
+
             document.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -37,11 +39,15 @@ public class DefaultPdfService implements PdfService {
         this.pdfPageSummaryGenerator = pdfPageSummaryGenerator;
     }
 
-    public void setPdfPageMonthGenerator(PdfPageGenerator pdfPageMonthGenerator) {
-        this.pdfPageMonthGenerator = pdfPageMonthGenerator;
+    public void setPdfPageMonthYearGenerator(PdfPageGenerator pdfPageMonthYearGenerator) {
+        this.pdfPageMonthYearGenerator = pdfPageMonthYearGenerator;
     }
 
-    public void setPdfPageYearGenerator(PdfPageGenerator pdfPageYearGenerator) {
-        this.pdfPageYearGenerator = pdfPageYearGenerator;
+    public void setPdfPageGridGenerator(PdfPageGenerator pdfPageGridGenerator) {
+        this.pdfPageGridGenerator = pdfPageGridGenerator;
+    }
+
+    public void setPdfPageNotesGenerator(PdfPageGenerator pdfPageNotesGenerator) {
+        this.pdfPageNotesGenerator = pdfPageNotesGenerator;
     }
 }
