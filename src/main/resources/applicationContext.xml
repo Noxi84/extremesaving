@@ -26,6 +26,7 @@
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="categoryService" class="extremesaving.service.CategoryServiceImpl">
+        <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="chartService" class="extremesaving.service.chart.ChartServiceImpl">
         <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
@@ -46,6 +47,7 @@
     <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
     </bean>
     <bean id="pdfPageGridGenerator" class="extremesaving.service.pdf.PdfPageGridGenerator">
+        <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">

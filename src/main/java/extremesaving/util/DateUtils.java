@@ -48,6 +48,10 @@ public final class DateUtils {
         return cal.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
     }
 
+    public static boolean equalYearAndMonths(Date d1, Date d2) {
+      return equalMonths(d1, d2) && equalYears(d1, d2);
+    }
+
     public static boolean equalYears(Date d1, Date d2) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(d1);

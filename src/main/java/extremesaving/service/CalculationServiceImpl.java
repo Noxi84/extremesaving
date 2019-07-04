@@ -63,39 +63,7 @@ public class CalculationServiceImpl implements CalculationService {
         }
     }
 
-//    @Override
-//    public Map<CategoryModel, BigDecimal> getCategoryResults(Collection<DataModel> dataModels) {
-//        Map<CategoryModel, BigDecimal> categoryResults = new HashMap<>();
-//
-//        for (DataModel dataModel : dataModels) {
-//            if (!dataModel.getCategory().isTransfer()) {
-//                Calendar cal = Calendar.getInstance();
-//                cal.setTime(dataModel.getDate());
-//                BigDecimal categoryResultAmount = categoryResults.get(dataModel.getCategory());
-//                if (categoryResultAmount == null) {
-//                    categoryResultAmount = BigDecimal.ZERO;
-//                }
-//                categoryResultAmount = categoryResultAmount.add(dataModel.getValue());
-//                categoryResults.put(dataModel.getCategory(), categoryResultAmount);
-//            }
-//        }
-//
-//        return categoryResults;
-//    }
-//
-//    @Override
-//    public Map<AccountModel, BigDecimal> getAcountResults(Collection<DataModel> dataModels) {
-//        Map<AccountModel, BigDecimal> accountResults = new HashMap<>();
-//        for (DataModel dataModel : dataModels) {
-//            BigDecimal accountResultAmount = accountResults.get(dataModel.getAccount());
-//            if (accountResultAmount == null) {
-//                accountResultAmount = BigDecimal.ZERO;
-//            }
-//            accountResultAmount = accountResultAmount.add(dataModel.getValue());
-//            accountResults.put(dataModel.getAccount(), accountResultAmount);
-//        }
-//        return accountResults;
-//    }
+
 
 
     @Override

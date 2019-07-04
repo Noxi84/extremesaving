@@ -13,7 +13,6 @@ import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
 import extremesaving.service.AccountService;
 import extremesaving.service.DataService;
-import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
 import java.net.MalformedURLException;
@@ -42,45 +41,73 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     }
 
     private Cell getBalanceCell() {
-
-
         Cell balanceCell = new Cell();
         balanceCell.setBorder(Border.NO_BORDER);
+        balanceCell.setTextAlignment(TextAlignment.CENTER);
         Paragraph summaryTitle = new Paragraph("Summary");
         summaryTitle.setBold();
         balanceCell.add(summaryTitle);
 
-        Table alignmentTable1 = new Table(2);
-        Cell alignmentTableLeft1 = new Cell();
-        alignmentTableLeft1.setBorder(Border.NO_BORDER);
+        Table alignmentTable = new Table(3);
 
-        SimpleDateFormat sf = new SimpleDateFormat("MMM d yyyy");
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
 
-        Cell alignmentTableRight1 = new Cell();
-        alignmentTableRight1.setBorder(Border.NO_BORDER);
-        alignmentTableLeft1.add(getItemParagraph("Last update"));
-        alignmentTableRight1.add(getItemParagraph(": " + sf.format(new Date())));
-        alignmentTableLeft1.add(getItemParagraph("Last item added"));
-        alignmentTableRight1.add(getItemParagraph(": " + sf.format(dataService.getLastItemAdded())));
-        alignmentTableLeft1.add(getItemParagraph("\n"));
-        alignmentTableRight1.add(getItemParagraph("\n"));
-        alignmentTableLeft1.add(getItemParagraph("Total balance"));
-        alignmentTableRight1.add(getItemParagraph(": " + NumberUtils.formatNumber(dataService.getTotalBalance(), true)));
-        alignmentTableLeft1.add(getItemParagraph("Total items"));
-        alignmentTableRight1.add(getItemParagraph(": " + dataService.getTotalItems()));
-        alignmentTableLeft1.add(getItemParagraph("\n"));
-        alignmentTableRight1.add(getItemParagraph("\n"));
-        alignmentTableLeft1.add(getItemParagraph("Best month"));
-        alignmentTableRight1.add(getItemParagraph(": January 2019 (€ 3 956.41)"));
-        alignmentTableLeft1.add(getItemParagraph("Worst month"));
-        alignmentTableRight1.add(getItemParagraph(": July 2019 (€ 3 956.40)"));
-        alignmentTableLeft1.add(getItemParagraph("Best year"));
-        alignmentTableRight1.add(getItemParagraph(": 2019 (€ 20 000.85)"));
-        alignmentTableLeft1.add(getItemParagraph("Worst year"));
-        alignmentTableRight1.add(getItemParagraph(": 2019 (€ 35 000.45)"));
-        alignmentTable1.addCell(alignmentTableLeft1);
-        alignmentTable1.addCell(alignmentTableRight1);
-        balanceCell.add(alignmentTable1);
+        Cell alignmentTableCenter = new Cell();
+        alignmentTableCenter.setBorder(Border.NO_BORDER);
+        alignmentTableCenter.setTextAlignment(TextAlignment.CENTER);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+
+        SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
+        alignmentTableLeft.add(getItemParagraph("Last update"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(sf.format(new Date())));
+
+        alignmentTableLeft.add(getItemParagraph("Last item added"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph( sf.format(dataService.getLastItemAdded())));
+
+        alignmentTableLeft.add(getItemParagraph("\n"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("\n"));
+
+        alignmentTableLeft.add(getItemParagraph("Total balance"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph( NumberUtils.formatNumber(dataService.getTotalBalance(), true)));
+
+        alignmentTableLeft.add(getItemParagraph("Total items"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
+
+        alignmentTableLeft.add(getItemParagraph("\n"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("\n"));
+
+        alignmentTableLeft.add(getItemParagraph("Best month"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("January 2019 (€ 3 956.41)"));
+
+        alignmentTableLeft.add(getItemParagraph("Worst month"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("July 2019 (€ 3 956.40)"));
+
+        alignmentTableLeft.add(getItemParagraph("Best year"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("2019 (€ 20 000.85)"));
+
+        alignmentTableLeft.add(getItemParagraph("Worst year"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph("2019 (€ 35 000.45)"));
+
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableCenter);
+        alignmentTable.addCell(alignmentTableRight);
+
+        balanceCell.add(alignmentTable);
         return balanceCell;
     }
 
@@ -97,6 +124,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     private Cell getAccountsCell() {
         Cell accountsCell = new Cell();
         accountsCell.setBorder(Border.NO_BORDER);
+        accountsCell.setTextAlignment(TextAlignment.CENTER);
         Paragraph accountsTitle = new Paragraph("Accounts");
         accountsTitle.setBold();
         accountsCell.add(accountsTitle);
