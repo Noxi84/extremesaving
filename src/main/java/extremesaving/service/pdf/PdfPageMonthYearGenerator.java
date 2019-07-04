@@ -22,15 +22,15 @@ public class PdfPageMonthYearGenerator implements PdfPageGenerator {
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE));
-            monthlyBarChartImage.setWidth(350);
-            monthlyBarChartImage.setHeight(216);
+            monthlyBarChartImage.setWidth(380);
+            monthlyBarChartImage.setHeight(285);
             chartCell1.add(monthlyBarChartImage);
 
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE));
-            yearlyBarChartImage.setWidth(350);
-            yearlyBarChartImage.setHeight(216);
+            yearlyBarChartImage.setWidth(380);
+            yearlyBarChartImage.setHeight(285);
             chartCell2.add(yearlyBarChartImage);
 
             table.addCell(chartCell1);

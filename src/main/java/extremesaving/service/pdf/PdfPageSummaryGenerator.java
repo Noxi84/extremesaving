@@ -72,7 +72,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableRight.add(getItemParagraph( sf.format(dataService.getLastItemAdded())));
 
         alignmentTableLeft.add(getItemParagraph("\n"));
-        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));
 
         alignmentTableLeft.add(getItemParagraph("Total balance"));
@@ -84,7 +84,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
 
         alignmentTableLeft.add(getItemParagraph("\n"));
-        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));
 
         alignmentTableLeft.add(getItemParagraph("Best month"));

@@ -26,9 +26,9 @@ public class AccountPieChartGenerator implements ChartGenerator {
                 dataSet.setValue(account.getKey(), account.getValue());
             }
 
-            JFreeChart chart = ChartFactory.createPieChart("Accounts", dataSet, true, true, false);
+            JFreeChart chart = ChartFactory.createPieChart("Accounts", dataSet, true, false, false);
             chart.setTitle("");
-            BufferedImage objBufferedImage = chart.createBufferedImage(500, 309);
+            BufferedImage objBufferedImage = chart.createBufferedImage(550, 300);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
             ImageIO.write(objBufferedImage, "png", bas);
             byte[] byteArray = bas.toByteArray();
@@ -40,11 +40,6 @@ public class AccountPieChartGenerator implements ChartGenerator {
             e.printStackTrace();
         }
     }
-
-//    private DefaultCategoryDataset createDataset(TotalsDto totalsDto) {
-
-//    }
-
 
     public void setChartDataService(ChartDataService chartDataService) {
         this.chartDataService = chartDataService;
