@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageGridGenerator implements PdfPageGenerator {
+public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
 
     private DataService dataService;
     private CategoryService categoryService;
@@ -28,14 +28,8 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     @Override
     public void generate(Document document) {
         document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
         document.add(getCategorySection(document, true));
         document.add(getCategorySection(document, false));
-
-        document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
-        document.add(getItemsSection(document, "Most profitable items"));
-        document.add(getItemsSection(document, "Most expensive items"));
     }
 
     private Table getCategorySection(Document document, boolean isProfit) {
@@ -108,60 +102,6 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         cell.add(alignmentTable);
 
         return cell;
-    }
-
-    private Table getItemsSection(Document document, String title) {
-        Paragraph summaryTitle = new Paragraph(title);
-        summaryTitle.setBold();
-        document.add(summaryTitle);
-
-        Table table = new Table(3);
-        table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(getItemCell("Overall"));
-        table.addCell(getItemCell("This year"));
-        table.addCell(getItemCell("This month"));
-        return table;
-    }
-
-    private Cell getItemCell(String title) {
-        Cell cell1 = new Cell();
-        cell1.setWidth(UnitValue.createPercentValue(33));
-        cell1.setBorder(Border.NO_BORDER);
-        Paragraph cell1Title = getItemParagraph(title);
-        cell1Title.setBold();
-        cell1.add(cell1Title);
-
-        Table alignmentTable1 = new Table(2);
-        Cell alignmentTableLeft1 = new Cell();
-        alignmentTableLeft1.setBorder(Border.NO_BORDER);
-        alignmentTableLeft1.setWidth(300);
-
-        Cell alignmentTableRight1 = new Cell();
-        alignmentTableRight1.setBorder(Border.NO_BORDER);
-        alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight1.setWidth(100);
-
-        alignmentTableLeft1.add(getItemParagraph("1/1/2018 Loon"));
-        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
-
-        alignmentTableLeft1.add(getItemParagraph("2/5/2019 Maandelijkse bijdage"));
-        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
-
-        alignmentTableLeft1.add(getItemParagraph("9/5/2019 Bandcamp"));
-        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
-
-        alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
-        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
-
-        alignmentTableLeft1.add(getItemParagraph("..."));
-        alignmentTableRight1.add(getItemParagraph("€ 1.20"));
-
-        alignmentTable1.addCell(alignmentTableLeft1);
-        alignmentTable1.addCell(alignmentTableRight1);
-
-        cell1.add(alignmentTable1);
-
-        return cell1;
     }
 
     private Paragraph getItemParagraph(String text) {

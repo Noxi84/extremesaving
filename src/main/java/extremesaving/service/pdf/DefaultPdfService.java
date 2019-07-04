@@ -12,7 +12,8 @@ public class DefaultPdfService implements PdfService {
 
     private PdfPageGenerator pdfPageSummaryGenerator;
     private PdfPageGenerator pdfPageMonthYearGenerator;
-    private PdfPageGenerator pdfPageGridGenerator;
+    private PdfPageGenerator pdfPageCategoryGridGenerator;
+    private PdfPageGenerator pdfPageItemGridGenerator;
     private PdfPageGenerator pdfPagePredictionsGenerator;
 
     @Override
@@ -26,7 +27,8 @@ public class DefaultPdfService implements PdfService {
 
             pdfPageSummaryGenerator.generate(document);
             pdfPageMonthYearGenerator.generate(document);
-            pdfPageGridGenerator.generate(document);
+            pdfPageCategoryGridGenerator.generate(document);
+            pdfPageItemGridGenerator.generate(document);
             pdfPagePredictionsGenerator.generate(document);
 
             document.close();
@@ -43,8 +45,12 @@ public class DefaultPdfService implements PdfService {
         this.pdfPageMonthYearGenerator = pdfPageMonthYearGenerator;
     }
 
-    public void setPdfPageGridGenerator(PdfPageGenerator pdfPageGridGenerator) {
-        this.pdfPageGridGenerator = pdfPageGridGenerator;
+    public void setPdfPageCategoryGridGenerator(PdfPageGenerator pdfPageCategoryGridGenerator) {
+        this.pdfPageCategoryGridGenerator = pdfPageCategoryGridGenerator;
+    }
+
+    public void setPdfPageItemGridGenerator(PdfPageGenerator pdfPageItemGridGenerator) {
+        this.pdfPageItemGridGenerator = pdfPageItemGridGenerator;
     }
 
     public void setPdfPagePredictionsGenerator(PdfPageGenerator pdfPagePredictionsGenerator) {

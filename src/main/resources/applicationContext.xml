@@ -46,7 +46,11 @@
     </bean>
     <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
     </bean>
-    <bean id="pdfPageGridGenerator" class="extremesaving.service.pdf.PdfPageGridGenerator">
+    <bean id="pdfPageCategoryGridGenerator" class="extremesaving.service.pdf.PdfPageCategoryGridGenerator">
+        <property name="dataService" ref="dataService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
+    <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridGenerator">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
@@ -55,7 +59,8 @@
     <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
         <property name="pdfPageMonthYearGenerator" ref="pdfPageMonthYearGenerator"/>
-        <property name="pdfPageGridGenerator" ref="pdfPageGridGenerator"/>
+        <property name="pdfPageCategoryGridGenerator" ref="pdfPageCategoryGridGenerator"/>
+        <property name="pdfPageItemGridGenerator" ref="pdfPageItemGridGenerator"/>
         <property name="pdfPagePredictionsGenerator" ref="pdfPagePredictionsGenerator"/>
     </bean>
 
