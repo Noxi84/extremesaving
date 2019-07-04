@@ -67,8 +67,30 @@ public class PdfPageItemGridGenerator implements PdfPageGenerator {
         alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
         alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
 
-        alignmentTableLeft1.add(getItemParagraph("..."));
-        alignmentTableRight1.add(getItemParagraph("€ 1.20"));
+        alignmentTableLeft1.add(getItemParagraph("1/1/2018 Loon"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("2/5/2019 Maandelijkse bijdage"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("9/5/2019 Bandcamp"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("2/5/2019 Maandelijkse bijdage"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
+        alignmentTableLeft1.add(getItemParagraph("9/5/2019 Bandcamp"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
+
 
         alignmentTable1.addCell(alignmentTableLeft1);
         alignmentTable1.addCell(alignmentTableRight1);
