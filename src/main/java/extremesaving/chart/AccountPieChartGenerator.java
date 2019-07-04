@@ -27,7 +27,7 @@ public class AccountPieChartGenerator implements ChartGenerator {
             }
 
             JFreeChart chart = ChartFactory.createPieChart("Accounts", dataSet, true, true, false);
-
+            chart.setTitle("");
             BufferedImage objBufferedImage = chart.createBufferedImage(500, 309);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
             ImageIO.write(objBufferedImage, "png", bas);

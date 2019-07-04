@@ -1,5 +1,6 @@
 package extremesaving.pdf;
 
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -9,7 +10,7 @@ import extremesaving.pdf.page.PredictionsReportGenerator;
 
 import java.io.FileNotFoundException;
 
-public class DefaultPdfGenerator implements PdfGenerator {
+public class DefaultPdfService implements PdfService {
 
     private PdfPageGenerator pdfPageSummaryGenerator;
     private PdfPageGenerator pdfPageMonthGenerator;
@@ -22,7 +23,9 @@ public class DefaultPdfGenerator implements PdfGenerator {
             PdfWriter writer = new PdfWriter(ExtremeSavingConstants.PDF_FILE_NAME);
             PdfDocument pdf = new PdfDocument(writer);
 
-            Document document = new Document(pdf);
+            Document document = new Document(pdf, PageSize.A4);
+            document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
+
             pdfPageSummaryGenerator.generate(document);
             pdfPageMonthGenerator.generate(document);
             pdfPageYearGenerator.generate(document);

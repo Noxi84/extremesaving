@@ -2,11 +2,15 @@ package extremesaving.pdf.page;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
 import extremesaving.service.AccountService;
+import extremesaving.util.NumberUtils;
 
 import java.net.MalformedURLException;
 import java.util.List;
@@ -18,33 +22,51 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     @Override
     public void generate(Document document) {
         try {
-            document.add(new Paragraph("Accounts"));
+            Table table = new Table(3);
 
+            Cell balanceCell = new Cell();
+            balanceCell.setBorder(Border.NO_BORDER);
+            balanceCell.add(new Paragraph("Total balance: € 115 230.59"));
+            balanceCell.add(new Paragraph("Last update: 10 february 1984"));
+            balanceCell.add(new Paragraph("Last item added: 10 february 1984"));
+            balanceCell.add(new Paragraph("Total items: 75"));
+
+            Cell accountsCell = new Cell();
+            accountsCell.setBorder(Border.NO_BORDER);
+            Paragraph accountsTitle = new Paragraph("Accounts");
+            accountsTitle.setBold();
+            accountsCell.add(accountsTitle);
             List<AccountDto> accounts = accountService.getAccounts();
-
             for (AccountDto accountDto : accounts) {
-                document.add(new Paragraph(accountDto.getName() + " : " + accountDto.getTotalResults().getResult()));
+                accountsCell.add(new Paragraph(accountDto.getName() + " : " + NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
             }
 
-            document.add(new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE)));
+            Cell chartCell = new Cell();
+            chartCell.setBorder(Border.NO_BORDER);
+            Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
+            accountPieImage.setWidth(350);
+            accountPieImage.setHeight(216);
+            chartCell.add(accountPieImage);
 
-            document.add(new Paragraph("Last update: xx"));
-            document.add(new Paragraph("Last item added: xx"));
-            document.add(new Paragraph("Total items: xx "));
+            table.addCell(balanceCell);
+            table.addCell(chartCell);
+            table.addCell(accountsCell);
 
             //        document.add(Image.getInstance(ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE));
 
-            document.add(new Paragraph("The five most profitable categories overall are: "));
-            document.add(new Paragraph("..."));
+            document.add(table);
 
-            document.add(new Paragraph("The five most expensive categories overall are: "));
-            document.add(new Paragraph("..."));
-
-            document.add(new Paragraph("The five most profitable items overall are: "));
-            document.add(new Paragraph("..."));
-
-            document.add(new Paragraph("The five most expensive items overall are: "));
-            document.add(new Paragraph("..."));
+//            document.add(new Paragraph("The five most profitable categories overall are: "));
+//            document.add(new Paragraph("..."));
+//
+//            document.add(new Paragraph("The five most expensive categories overall are: "));
+//            document.add(new Paragraph("..."));
+//
+//            document.add(new Paragraph("The five most profitable items overall are: "));
+//            document.add(new Paragraph("..."));
+//
+//            document.add(new Paragraph("The five most expensive items overall are: "));
+//            document.add(new Paragraph("..."));
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

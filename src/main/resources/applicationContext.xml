@@ -6,12 +6,8 @@
     <bean id="main" class="extremesaving.Main">
         <property name="accountService" ref="accountService"/>
         <property name="totalsFacade" ref="totalsFacade"/>
-        <property name="pdfGenerator" ref="pdfGenerator"/>
-        <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
-        <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
-        <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
-        <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
-        <property name="monthlyMeterChartGenerator" ref="monthlyMeterChartGenerator"/>
+        <property name="pdfService" ref="pdfService"/>
+        <property name="chartService" ref="chartService"/>
     </bean>
 
     <!--Facade-->
@@ -32,6 +28,13 @@
         <property name="dataDao" ref="dataDao"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
+    <bean id="chartService" class="extremesaving.service.ChartDataServiceImpl">
+        <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
+        <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
+        <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
+        <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
+        <property name="monthlyMeterChartGenerator" ref="monthlyMeterChartGenerator"/>
+    </bean>
 
     <!--Dao-->
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
@@ -44,7 +47,7 @@
     </bean>
     <bean id="pdfPageYearGenerator" class="extremesaving.pdf.page.PdfPageYearGenerator">
     </bean>
-    <bean id="pdfGenerator" class="extremesaving.pdf.DefaultPdfGenerator">
+    <bean id="pdfService" class="extremesaving.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
         <property name="pdfPageMonthGenerator" ref="pdfPageMonthGenerator"/>
         <property name="pdfPageYearGenerator" ref="pdfPageYearGenerator"/>

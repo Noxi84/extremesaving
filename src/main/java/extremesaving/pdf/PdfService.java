@@ -1,6 +1,6 @@
 package extremesaving.pdf;
 
-public interface PdfGenerator {
+public interface PdfService {
 
     void generatePdf();
 }
