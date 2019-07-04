@@ -8,11 +8,6 @@
         <property name="chartService" ref="chartService"/>
     </bean>
 
-    <!--Facade-->
-    <bean id="totalsFacade" class="extremesaving.facade.TotalsFacadeImpl">
-        <property name="calculationService" ref="calculationService"/>
-    </bean>
-
     <!--Service-->
     <bean id="dataService" class="extremesaving.service.DataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
@@ -21,14 +16,16 @@
     <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
     </bean>
     <bean id="chartDataService" class="extremesaving.service.ChartDataServiceImpl">
-        <property name="dataDao" ref="dataDao"/>
+        <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="accountService" ref="accountService"/>
     </bean>
 
     <bean id="accountService" class="extremesaving.service.AccountServiceImpl">
-        <property name="dataDao" ref="dataDao"/>
+        <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
+    </bean>
+    <bean id="categoryService" class="extremesaving.service.CategoryServiceImpl">
     </bean>
     <bean id="chartService" class="extremesaving.service.chart.ChartServiceImpl">
         <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
@@ -49,6 +46,7 @@
     <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
     </bean>
     <bean id="pdfPageGridGenerator" class="extremesaving.service.pdf.PdfPageGridGenerator">
+        <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">
     </bean>

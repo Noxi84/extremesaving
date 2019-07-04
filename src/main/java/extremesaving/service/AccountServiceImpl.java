@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class AccountServiceImpl implements AccountService {
 
-    private DataDao dataDao;
+    private DataService dataService;
     private CalculationService calculationService;
 
     @Override
     public List<AccountDto> getAccounts() {
-        List<DataModel> dataModels = dataDao.findAll();
+        List<DataModel> dataModels = dataService.findAll();
 
         List<String> accounts = new ArrayList<>(dataModels.stream().map(dataModel -> dataModel.getAccount()).collect(Collectors.toSet()));
         Collections.sort(accounts);
@@ -32,8 +32,8 @@ public class AccountServiceImpl implements AccountService {
         return accountDtos;
     }
 
-    public void setDataDao(DataDao dataDao) {
-        this.dataDao = dataDao;
+    public void setDataService(DataService dataService) {
+        this.dataService = dataService;
     }
 
     public void setCalculationService(CalculationService calculationService) {

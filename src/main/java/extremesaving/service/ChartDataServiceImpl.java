@@ -4,9 +4,6 @@ import extremesaving.dao.DataDao;
 import extremesaving.dto.AccountDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
-import extremesaving.service.chart.AccountPieChartGenerator;
-import extremesaving.service.chart.MonthlyBarChartGenerator;
-import extremesaving.service.chart.YearlyBarChartGenerator;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
@@ -15,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
 
-    private DataDao dataDao;
+    private DataService dataService;
     private CalculationService calculationService;
     private AccountService accountService;
 
@@ -34,7 +31,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Integer, ResultDto> getMonthlyResults() {
-        List<DataModel> dataModels = dataDao.findAll().stream()
+        List<DataModel> dataModels = dataService.findAll().stream()
                 .filter(dataModel -> !dataModel.isTransfer())
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
@@ -72,7 +69,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Integer, ResultDto> getYearlyResults() {
-        List<DataModel> dataModels = dataDao.findAll().stream()
+        List<DataModel> dataModels = dataService.findAll().stream()
                 .filter(dataModel -> !dataModel.isTransfer())
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
@@ -108,8 +105,8 @@ public class ChartDataServiceImpl implements ChartDataService {
         return yearlyResults;
     }
 
-    public void setDataDao(DataDao dataDao) {
-        this.dataDao = dataDao;
+    public void setDataService(DataService dataService) {
+        this.dataService = dataService;
     }
 
     public void setCalculationService(CalculationService calculationService) {

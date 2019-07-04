@@ -9,8 +9,11 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import extremesaving.service.CategoryService;
 
 public class PdfPageGridGenerator implements PdfPageGenerator {
+
+    private CategoryService categoryService;
 
     @Override
     public void generate(Document document) {
@@ -133,5 +136,9 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(10);
         return paragraph;
+    }
+
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 }
