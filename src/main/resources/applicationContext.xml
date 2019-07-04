@@ -14,6 +14,10 @@
     </bean>
 
     <!--Service-->
+    <bean id="dataService" class="extremesaving.service.DataServiceImpl">
+        <property name="dataDao" ref="dataDao"/>
+        <property name="calculationService" ref="calculationService"/>
+    </bean>
     <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
     </bean>
     <bean id="chartDataService" class="extremesaving.service.ChartDataServiceImpl">
@@ -40,6 +44,7 @@
     <!--Pdf-->
     <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryGenerator">
         <property name="accountService" ref="accountService"/>
+        <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
     </bean>

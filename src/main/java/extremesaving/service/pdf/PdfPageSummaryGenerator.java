@@ -12,14 +12,19 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
 import extremesaving.service.AccountService;
+import extremesaving.service.DataService;
+import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
     private AccountService accountService;
+    private DataService dataService;
 
     @Override
     public void generate(Document document) {
@@ -37,6 +42,8 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     }
 
     private Cell getBalanceCell() {
+
+
         Cell balanceCell = new Cell();
         balanceCell.setBorder(Border.NO_BORDER);
         Paragraph summaryTitle = new Paragraph("Summary");
@@ -47,18 +54,20 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         Cell alignmentTableLeft1 = new Cell();
         alignmentTableLeft1.setBorder(Border.NO_BORDER);
 
+        SimpleDateFormat sf = new SimpleDateFormat("MMM d yyyy");
+
         Cell alignmentTableRight1 = new Cell();
         alignmentTableRight1.setBorder(Border.NO_BORDER);
         alignmentTableLeft1.add(getItemParagraph("Last update"));
-        alignmentTableRight1.add(getItemParagraph(": 10 february 1984"));
+        alignmentTableRight1.add(getItemParagraph(": " + sf.format(new Date())));
         alignmentTableLeft1.add(getItemParagraph("Last item added"));
-        alignmentTableRight1.add(getItemParagraph(": 10 february 1984"));
+        alignmentTableRight1.add(getItemParagraph(": " + sf.format(dataService.getLastItemAdded())));
         alignmentTableLeft1.add(getItemParagraph("\n"));
         alignmentTableRight1.add(getItemParagraph("\n"));
         alignmentTableLeft1.add(getItemParagraph("Total balance"));
-        alignmentTableRight1.add(getItemParagraph(": € 115 230.59"));
+        alignmentTableRight1.add(getItemParagraph(": " + NumberUtils.formatNumber(dataService.getTotalBalance(), true)));
         alignmentTableLeft1.add(getItemParagraph("Total items"));
-        alignmentTableRight1.add(getItemParagraph(": 75"));
+        alignmentTableRight1.add(getItemParagraph(": " + dataService.getTotalItems()));
         alignmentTableLeft1.add(getItemParagraph("\n"));
         alignmentTableRight1.add(getItemParagraph("\n"));
         alignmentTableLeft1.add(getItemParagraph("Best month"));
@@ -128,5 +137,9 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
     public void setAccountService(AccountService accountService) {
         this.accountService = accountService;
+    }
+
+    public void setDataService(DataService dataService) {
+        this.dataService = dataService;
     }
 }
