@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
@@ -25,48 +26,98 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         try {
             Table table = new Table(3);
             table.setWidth(UnitValue.createPercentValue(100));
-
-            Cell balanceCell = new Cell();
-            balanceCell.setBorder(Border.NO_BORDER);
-            Paragraph summaryTitle = new Paragraph("Summary");
-            summaryTitle.setBold();
-            balanceCell.add(summaryTitle);
-            balanceCell.add(getItemParagraph("Last update: 10 february 1984"));
-            balanceCell.add(getItemParagraph("Last item added: 10 february 1984"));
-            balanceCell.add(getItemParagraph("\n"));
-            balanceCell.add(getItemParagraph("Total balance: € 115 230.59"));
-            balanceCell.add(getItemParagraph("Total items: 75"));
-            balanceCell.add(getItemParagraph("\n"));
-            balanceCell.add(getItemParagraph("Best month: january 2019 (€ 3 956.41)"));
-            balanceCell.add(getItemParagraph("Worst month: july 2019 (€ 3 956.40)"));
-            balanceCell.add(getItemParagraph("Best year: 2019 (20 000.85)"));
-            balanceCell.add(getItemParagraph("Worst year: 2019  (€ 35 000.45)"));
-
-            Cell accountsCell = new Cell();
-            accountsCell.setBorder(Border.NO_BORDER);
-            Paragraph accountsTitle = getItemParagraph("Accounts");
-            accountsTitle.setBold();
-            accountsCell.add(accountsTitle);
-            List<AccountDto> accounts = accountService.getAccounts();
-            for (AccountDto accountDto : accounts) {
-                accountsCell.add(getItemParagraph(accountDto.getName() + " : " + NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
-            }
-
-            Cell chartCell = new Cell();
-            chartCell.setBorder(Border.NO_BORDER);
-            Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
-            accountPieImage.setWidth(350);
-            accountPieImage.setHeight(216);
-            chartCell.add(accountPieImage);
-
-            table.addCell(balanceCell);
-            table.addCell(chartCell);
-            table.addCell(accountsCell);
+            table.addCell(getBalanceCell());
+            table.addCell(getChartCell());
+            table.addCell(getAccountsCell());
 
             document.add(table);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Cell getBalanceCell() {
+        Cell balanceCell = new Cell();
+        balanceCell.setBorder(Border.NO_BORDER);
+        Paragraph summaryTitle = new Paragraph("Summary");
+        summaryTitle.setBold();
+        balanceCell.add(summaryTitle);
+
+        Table alignmentTable1 = new Table(2);
+        Cell alignmentTableLeft1 = new Cell();
+        alignmentTableLeft1.setBorder(Border.NO_BORDER);
+
+        Cell alignmentTableRight1 = new Cell();
+        alignmentTableRight1.setBorder(Border.NO_BORDER);
+        alignmentTableLeft1.add(getItemParagraph("Last update"));
+        alignmentTableRight1.add(getItemParagraph(": 10 february 1984"));
+        alignmentTableLeft1.add(getItemParagraph("Last item added"));
+        alignmentTableRight1.add(getItemParagraph(": 10 february 1984"));
+        alignmentTableLeft1.add(getItemParagraph("\n"));
+        alignmentTableRight1.add(getItemParagraph("\n"));
+        alignmentTableLeft1.add(getItemParagraph("Total balance"));
+        alignmentTableRight1.add(getItemParagraph(": € 115 230.59"));
+        alignmentTableLeft1.add(getItemParagraph("Total items"));
+        alignmentTableRight1.add(getItemParagraph(": 75"));
+        alignmentTableLeft1.add(getItemParagraph("\n"));
+        alignmentTableRight1.add(getItemParagraph("\n"));
+        alignmentTableLeft1.add(getItemParagraph("Best month"));
+        alignmentTableRight1.add(getItemParagraph(": January 2019 (€ 3 956.41)"));
+        alignmentTableLeft1.add(getItemParagraph("Worst month"));
+        alignmentTableRight1.add(getItemParagraph(": July 2019 (€ 3 956.40)"));
+        alignmentTableLeft1.add(getItemParagraph("Best year"));
+        alignmentTableRight1.add(getItemParagraph(": 2019 (€ 20 000.85)"));
+        alignmentTableLeft1.add(getItemParagraph("Worst year"));
+        alignmentTableRight1.add(getItemParagraph(": 2019 (€ 35 000.45)"));
+        alignmentTable1.addCell(alignmentTableLeft1);
+        alignmentTable1.addCell(alignmentTableRight1);
+        balanceCell.add(alignmentTable1);
+        return balanceCell;
+    }
+
+    private Cell getChartCell() throws MalformedURLException {
+        Cell chartCell = new Cell();
+        chartCell.setBorder(Border.NO_BORDER);
+        Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
+        accountPieImage.setWidth(350);
+        accountPieImage.setHeight(216);
+        chartCell.add(accountPieImage);
+        return chartCell;
+    }
+
+    private Cell getAccountsCell() {
+        Cell accountsCell = new Cell();
+        accountsCell.setBorder(Border.NO_BORDER);
+        Paragraph accountsTitle = new Paragraph("Accounts");
+        accountsTitle.setBold();
+        accountsCell.add(accountsTitle);
+
+        Table alignmentTable = new Table(3);
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setTextAlignment(TextAlignment.RIGHT);
+
+        Cell alignmentTableCenter = new Cell();
+        alignmentTableCenter.setWidth(10);
+        alignmentTableCenter.setBorder(Border.NO_BORDER);
+        alignmentTableCenter.setTextAlignment(TextAlignment.LEFT);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+
+        List<AccountDto> accounts = accountService.getAccounts();
+        for (AccountDto accountDto : accounts) {
+            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(getItemParagraph(" : "));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+        }
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableCenter);
+        alignmentTable.addCell(alignmentTableRight);
+        accountsCell.add(alignmentTable);
+
+        return accountsCell;
     }
 
     private Paragraph getItemParagraph(String text) {

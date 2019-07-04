@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 
 public class PdfPageGridGenerator implements PdfPageGenerator {
@@ -14,198 +15,118 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
     @Override
     public void generate(Document document) {
         document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-        document.add(getProfitableCategorySection(document));
-        document.add(getExpensiveCategorySection((document)));
-        document.add(getProfitableItemsSection((document)));
-        document.add(getExpensiveItemsSection((document)));
+        document.add(getCategorySection(document, "Most profitable categories"));
+        document.add(getCategorySection(document, "Most expensive categories"));
+        document.add(getItemsSection(document, "Most profitable items"));
+        document.add(getItemsSection(document, "Most expensive items"));
     }
 
-    private Table getProfitableCategorySection(Document document) {
-        Paragraph summaryTitle = new Paragraph("Most profitable categories");
+    private Table getCategorySection(Document document, String title) {
+        Paragraph summaryTitle = new Paragraph(title);
         summaryTitle.setBold();
         document.add(summaryTitle);
 
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-
-        Cell cell1 = new Cell();
-        cell1.setBorder(Border.NO_BORDER);
-        Paragraph cell1Title = getItemParagraph("Overall");
-        cell1Title.setBold();
-        cell1.add(cell1Title);
-        cell1.add(getItemParagraph("Werk: € 18 900.00"));
-        cell1.add(getItemParagraph("Mama: € 18 900.00"));
-        cell1.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell1.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell1.add(getItemParagraph("..."));
-
-        Cell cell2 = new Cell();
-        cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This year");
-        cell2Title.setBold();
-        cell2.add(cell2Title);
-        cell2.add(getItemParagraph("Werk: € 18 900.00"));
-        cell2.add(getItemParagraph("Mama: € 18 900.00"));
-        cell2.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell2.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell2.add(getItemParagraph("..."));
-
-        Cell cell3 = new Cell();
-        cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This month");
-        cell3Title.setBold();
-        cell3.add(cell3Title);
-        cell3.add(getItemParagraph("Werk: € 18 900.00"));
-        cell3.add(getItemParagraph("Mama: € 18 900.00"));
-        cell3.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell3.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell3.add(getItemParagraph("..."));
-
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        table.addCell(getCategoryCell("Overall"));
+        table.addCell(getCategoryCell("This year"));
+        table.addCell(getCategoryCell("This month"));
         return table;
     }
 
-    private Table getExpensiveCategorySection(Document document) {
-        Paragraph summaryTitle = new Paragraph("Most expensive categories");
+    private Cell getCategoryCell(String title) {
+        Cell cell = new Cell();
+        cell.setBorder(Border.NO_BORDER);
+
+        Paragraph cellTitle = getItemParagraph(title);
+        cellTitle.setBold();
+        cell.add(cellTitle);
+
+        Table alignmentTable = new Table(2);
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setWidth(300);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight.setWidth(100);
+
+        alignmentTableLeft.add(getItemParagraph("Werk"));
+        alignmentTableRight.add(getItemParagraph("€ 10.00"));
+
+        alignmentTableLeft.add(getItemParagraph("Mama"));
+        alignmentTableRight.add(getItemParagraph("€ 100.00"));
+
+        alignmentTableLeft.add(getItemParagraph("Speelgoed & electronica"));
+        alignmentTableRight.add(getItemParagraph("€ 1900.00"));
+
+        alignmentTableLeft.add(getItemParagraph("2dehands"));
+        alignmentTableRight.add(getItemParagraph("€ 18900.00"));
+
+        alignmentTableLeft.add(getItemParagraph("2dehands"));
+        alignmentTableRight.add(getItemParagraph("€ 18900.00"));
+
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableRight);
+
+        cell.add(alignmentTable);
+
+        return cell;
+    }
+
+    private Table getItemsSection(Document document, String title) {
+        Paragraph summaryTitle = new Paragraph(title);
         summaryTitle.setBold();
         document.add(summaryTitle);
 
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-
-        Cell cell1 = new Cell();
-        cell1.setBorder(Border.NO_BORDER);
-        Paragraph cell1Title = getItemParagraph("Overall");
-        cell1Title.setBold();
-        cell1.add(cell1Title);
-        cell1.add(getItemParagraph("Werk: € 18 900.00"));
-        cell1.add(getItemParagraph("Mama: € 18 900.00"));
-        cell1.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell1.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell1.add(getItemParagraph("..."));
-
-        Cell cell2 = new Cell();
-        cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This month");
-        cell2Title.setBold();
-        cell2.add(cell2Title);
-        cell2.add(getItemParagraph("Werk: € 18 900.00"));
-        cell2.add(getItemParagraph("Mama: € 18 900.00"));
-        cell2.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell2.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell2.add(getItemParagraph("..."));
-
-        Cell cell3 = new Cell();
-        cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This year");
-        cell3Title.setBold();
-        cell3.add(cell3Title);
-        cell3.add(getItemParagraph("Werk: € 18 900.00"));
-        cell3.add(getItemParagraph("Mama: € 18 900.00"));
-        cell3.add(getItemParagraph("Speelgoed & electronica: € 18 900.00"));
-        cell3.add(getItemParagraph("2dehands: € 18 900.00"));
-        cell3.add(getItemParagraph("..."));
-
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
+        table.addCell(getItemCell("Overall"));
+        table.addCell(getItemCell("This year"));
+        table.addCell(getItemCell("This month"));
         return table;
     }
 
-    private Table getProfitableItemsSection(Document document) {
-        Paragraph summaryTitle = new Paragraph("Most profitable items");
-        summaryTitle.setBold();
-        document.add(summaryTitle);
-
-        Table table = new Table(3);
-        table.setWidth(UnitValue.createPercentValue(100));
-
+    private Cell getItemCell(String title) {
         Cell cell1 = new Cell();
+        cell1.setWidth(UnitValue.createPercentValue(33));
         cell1.setBorder(Border.NO_BORDER);
-        Paragraph cell1Title = getItemParagraph("Overall");
+        Paragraph cell1Title = getItemParagraph(title);
         cell1Title.setBold();
         cell1.add(cell1Title);
-        cell1.add(getItemParagraph("[Werk] Loon: € 18 900.00"));
-        cell1.add(getItemParagraph("[Voeding] Waterbron € 18 900.00"));
-        cell1.add(getItemParagraph("[Speelgoed & electronica] € 18 900.00"));
-        cell1.add(getItemParagraph("[2dehands] Verkoop Pioneer set € 18 900.00"));
-        cell1.add(getItemParagraph("[...] ..."));
 
-        Cell cell2 = new Cell();
-        cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This year");
-        cell2Title.setBold();
-        cell2.add(cell2Title);
-        cell2.add(getItemParagraph("[Werk] Loon € 18 900.00"));
-        cell2.add(getItemParagraph("[Voeding] Waterbron € 18 900.00"));
-        cell2.add(getItemParagraph("[Speelgoed & electronica] € 18 900.00"));
-        cell2.add(getItemParagraph("[2dehands] Verkoop Pioneer set € 18 900.00"));
-        cell2.add(getItemParagraph("[...] ..."));
+        Table alignmentTable1 = new Table(2);
+        Cell alignmentTableLeft1 = new Cell();
+        alignmentTableLeft1.setBorder(Border.NO_BORDER);
+        alignmentTableLeft1.setWidth(300);
 
-        Cell cell3 = new Cell();
-        cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This month");
-        cell3Title.setBold();
-        cell3.add(cell3Title);
-        cell3.add(getItemParagraph("[Werk] Loon (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[Voeding] Waterbron (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[Speelgoed & electronica] (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[2dehands] Verkoop Pioneer set (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[...] ..."));
+        Cell alignmentTableRight1 = new Cell();
+        alignmentTableRight1.setBorder(Border.NO_BORDER);
+        alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight1.setWidth(100);
 
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
-        return table;
-    }
+        alignmentTableLeft1.add(getItemParagraph("1/1/2018 Loon"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
 
-    private Table getExpensiveItemsSection(Document document) {
-        Paragraph summaryTitle = new Paragraph("Most expensive items");
-        summaryTitle.setBold();
-        document.add(summaryTitle);
+        alignmentTableLeft1.add(getItemParagraph("2/5/2019 Maandelijkse bijdage"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
 
-        Table table = new Table(3);
-        table.setWidth(UnitValue.createPercentValue(100));
+        alignmentTableLeft1.add(getItemParagraph("9/5/2019 Bandcamp"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
 
-        Cell cell1 = new Cell();
-        cell1.setBorder(Border.NO_BORDER);
-        Paragraph cell1Title = getItemParagraph("Overall");
-        cell1Title.setBold();
-        cell1.add(cell1Title);
-        cell1.add(getItemParagraph("[Werk] ... (€ 18 900.00)"));
-        cell1.add(getItemParagraph("[Mama] ... (€ 18 900.00)"));
-        cell1.add(getItemParagraph("[Speelgoed & electronica] ... (€ 18 900.00)"));
-        cell1.add(getItemParagraph("[2dehands] ... (€ 18 900.00)"));
-        cell1.add(getItemParagraph("[...] ..."));
+        alignmentTableLeft1.add(getItemParagraph("12/7/2019 Verkoop pioneer set"));
+        alignmentTableRight1.add(getItemParagraph("€ 18 900.00"));
 
-        Cell cell2 = new Cell();
-        cell2.setBorder(Border.NO_BORDER);
-        Paragraph cell2Title = getItemParagraph("This year");
-        cell2Title.setBold();
-        cell2.add(cell2Title);
-        cell2.add(getItemParagraph("[Werk] ... € 18 900.00"));
-        cell2.add(getItemParagraph("[Mama] ... € 18 900.00"));
-        cell2.add(getItemParagraph("[Speelgoed & electronica] ... € 18 900.00"));
-        cell2.add(getItemParagraph("[2dehands] € 18 900.00"));
-        cell2.add(getItemParagraph("[...] ..."));
+        alignmentTableLeft1.add(getItemParagraph("..."));
+        alignmentTableRight1.add(getItemParagraph("€ 1.20"));
 
-        Cell cell3 = new Cell();
-        cell3.setBorder(Border.NO_BORDER);
-        Paragraph cell3Title = getItemParagraph("This month");
-        cell3Title.setBold();
-        cell3.add(cell3Title);
-        cell3.add(getItemParagraph("[Werk] ... (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[Mama] ... (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[Speelgoed & electronica] ... (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[2dehands] ... (€ 18 900.00)"));
-        cell3.add(getItemParagraph("[...] ..."));
+        alignmentTable1.addCell(alignmentTableLeft1);
+        alignmentTable1.addCell(alignmentTableRight1);
 
-        table.addCell(cell1);
-        table.addCell(cell2);
-        table.addCell(cell3);
-        return table;
+        cell1.add(alignmentTable1);
+
+        return cell1;
     }
 
     private Paragraph getItemParagraph(String text) {

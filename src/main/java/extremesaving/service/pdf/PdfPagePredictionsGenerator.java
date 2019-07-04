@@ -29,7 +29,7 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
             Image monthlyMeterChart = new Image(ImageDataFactory.create(ExtremeSavingConstants.OVERALL_LINE_CHART_IMAGE_FILE));
             monthlyMeterChart.setWidth(800);
-            monthlyMeterChart.setHeight(340);
+            monthlyMeterChart.setHeight(335);
             document.add(monthlyMeterChart);
 
         } catch (MalformedURLException e) {
@@ -52,10 +52,8 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
         Cell cell2 = new Cell();
         cell2.setBorder(Border.NO_BORDER);
         cell2.add(getItemParagraph("Your saving rate for " + new SimpleDateFormat("MMMM yyyy").format(new Date()) + " is: € 1785.30 EURO"));
-        cell2.add(getItemParagraph("\n"));
-        cell2.add(getItemParagraph("If you reduce category [random expense category] expenses with 20% you will save xxx EUR after 5 years."));
-        cell2.add(getItemParagraph("If you increase category [random income category] incomes  with 20% you will save xxx EUR after 5 years."));
-        cell2.add(getItemParagraph("\n"));
+        cell2.add(getItemParagraph("If you reduce category [random expense category] expenses with [random between 1%,2%,3%,4%,5%,10%,15%20%,25%] you should save about € 5 000.00 after [random between 5,10,15,20] years."));
+        cell2.add(getItemParagraph("If you increase category [random income category] incomes  with [random between 1%,2%,3%,4%,5%,10%,15%20%,25%] you should save € 5 000.00 EUR after 5,10,15,20] years."));
         cell2.add(getItemParagraph("With a current total budget of xxxx EURO, an average income of xxxxx EURO per day and, an average expense of xxxx EURO per day and an inflation of 3% :"));
         cell2.add(getItemParagraph("You can live financially free, without any income for x years, x months and days. On 1 january 2024 you should have about xxxx EURO."));
 
