@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
 import extremesaving.service.AccountService;
@@ -23,25 +24,31 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     public void generate(Document document) {
         try {
             Table table = new Table(3);
+            table.setWidth(UnitValue.createPercentValue(100));
 
             Cell balanceCell = new Cell();
             balanceCell.setBorder(Border.NO_BORDER);
             Paragraph summaryTitle = new Paragraph("Summary");
             summaryTitle.setBold();
             balanceCell.add(summaryTitle);
-            balanceCell.add(new Paragraph("Total balance: € 115 230.59"));
-            balanceCell.add(new Paragraph("Last update: 10 february 1984"));
-            balanceCell.add(new Paragraph("Last item added: 10 february 1984"));
-            balanceCell.add(new Paragraph("Total items: 75"));
+            balanceCell.add(getItemParagraph("Total balance: € 115 230.59"));
+            balanceCell.add(getItemParagraph("Last update: 10 february 1984"));
+            balanceCell.add(getItemParagraph("Last item added: 10 february 1984"));
+            balanceCell.add(getItemParagraph("Total items: 75"));
+            balanceCell.add(getItemParagraph("Best month: january 2019: xxxx EURO"));
+            balanceCell.add(getItemParagraph("Worst month: july 2019: xxxx EURO"));
+            balanceCell.add(getItemParagraph(" "));
+            balanceCell.add(getItemParagraph("Best year: january 2019: xxxx EURO"));
+            balanceCell.add(getItemParagraph("Worst year: july 2019: xxxx EURO"));
 
             Cell accountsCell = new Cell();
             accountsCell.setBorder(Border.NO_BORDER);
-            Paragraph accountsTitle = new Paragraph("Accounts");
+            Paragraph accountsTitle = getItemParagraph("Accounts");
             accountsTitle.setBold();
             accountsCell.add(accountsTitle);
             List<AccountDto> accounts = accountService.getAccounts();
             for (AccountDto accountDto : accounts) {
-                accountsCell.add(new Paragraph(accountDto.getName() + " : " + NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+                accountsCell.add(getItemParagraph(accountDto.getName() + " : " + NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
             }
 
             Cell chartCell = new Cell();
@@ -59,6 +66,12 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Paragraph getItemParagraph(String text) {
+        Paragraph paragraph = new Paragraph(text);
+        paragraph.setFontSize(10);
+        return paragraph;
     }
 
     public void setAccountService(AccountService accountService) {

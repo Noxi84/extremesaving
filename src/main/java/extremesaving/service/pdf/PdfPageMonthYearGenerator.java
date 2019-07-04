@@ -6,6 +6,7 @@ import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 
 import java.net.MalformedURLException;
@@ -16,6 +17,7 @@ public class PdfPageMonthYearGenerator implements PdfPageGenerator {
     public void generate(Document document) {
         try {
             Table table = new Table(2);
+            table.setWidth(UnitValue.createPercentValue(100));
 
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);

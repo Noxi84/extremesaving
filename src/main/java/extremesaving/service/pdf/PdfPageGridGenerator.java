@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.property.UnitValue;
 
 public class PdfPageGridGenerator implements PdfPageGenerator {
 
@@ -25,6 +26,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         document.add(summaryTitle);
 
         Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
 
         Cell cell1 = new Cell();
         cell1.setBorder(Border.NO_BORDER);
@@ -71,6 +73,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         document.add(summaryTitle);
 
         Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
 
         Cell cell1 = new Cell();
         cell1.setBorder(Border.NO_BORDER);
@@ -117,6 +120,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         document.add(summaryTitle);
 
         Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
 
         Cell cell1 = new Cell();
         cell1.setBorder(Border.NO_BORDER);
@@ -163,6 +167,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         document.add(summaryTitle);
 
         Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
 
         Cell cell1 = new Cell();
         cell1.setBorder(Border.NO_BORDER);
@@ -205,7 +210,7 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
 
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(9);
+        paragraph.setFontSize(10);
         return paragraph;
     }
 }
