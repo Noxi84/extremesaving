@@ -13,7 +13,7 @@ public class DefaultPdfService implements PdfService {
     private PdfPageGenerator pdfPageSummaryGenerator;
     private PdfPageGenerator pdfPageMonthYearGenerator;
     private PdfPageGenerator pdfPageGridGenerator;
-    private PdfPageGenerator pdfPageNotesGenerator;
+    private PdfPageGenerator pdfPagePredictionsGenerator;
 
     @Override
     public void generatePdf() {
@@ -27,7 +27,7 @@ public class DefaultPdfService implements PdfService {
             pdfPageSummaryGenerator.generate(document);
             pdfPageMonthYearGenerator.generate(document);
             pdfPageGridGenerator.generate(document);
-            pdfPageNotesGenerator.generate(document);
+            pdfPagePredictionsGenerator.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {
@@ -47,7 +47,7 @@ public class DefaultPdfService implements PdfService {
         this.pdfPageGridGenerator = pdfPageGridGenerator;
     }
 
-    public void setPdfPageNotesGenerator(PdfPageGenerator pdfPageNotesGenerator) {
-        this.pdfPageNotesGenerator = pdfPageNotesGenerator;
+    public void setPdfPagePredictionsGenerator(PdfPageGenerator pdfPagePredictionsGenerator) {
+        this.pdfPagePredictionsGenerator = pdfPagePredictionsGenerator;
     }
 }

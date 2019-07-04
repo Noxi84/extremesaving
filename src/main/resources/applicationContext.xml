@@ -45,13 +45,13 @@
     </bean>
     <bean id="pdfPageGridGenerator" class="extremesaving.service.pdf.PdfPageGridGenerator">
     </bean>
-    <bean id="pdfPageNotesGenerator" class="extremesaving.service.pdf.PdfPageNotesGenerator">
+    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">
     </bean>
     <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
         <property name="pdfPageMonthYearGenerator" ref="pdfPageMonthYearGenerator"/>
         <property name="pdfPageGridGenerator" ref="pdfPageGridGenerator"/>
-        <property name="pdfPageNotesGenerator" ref="pdfPageNotesGenerator"/>
+        <property name="pdfPagePredictionsGenerator" ref="pdfPagePredictionsGenerator"/>
     </bean>
 
     <!--Chart-->

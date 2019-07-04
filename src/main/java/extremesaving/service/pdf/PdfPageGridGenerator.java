@@ -19,12 +19,6 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         document.add(getExpensiveItemsSection((document)));
     }
 
-    private Paragraph getItemParagraph(String text) {
-        Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(9);
-        return paragraph;
-    }
-
     private Table getProfitableCategorySection(Document document) {
         Paragraph summaryTitle = new Paragraph("The five most profitable categories are: ");
         summaryTitle.setBold();
@@ -207,5 +201,11 @@ public class PdfPageGridGenerator implements PdfPageGenerator {
         table.addCell(cell2);
         table.addCell(cell3);
         return table;
+    }
+
+    private Paragraph getItemParagraph(String text) {
+        Paragraph paragraph = new Paragraph(text);
+        paragraph.setFontSize(9);
+        return paragraph;
     }
 }
