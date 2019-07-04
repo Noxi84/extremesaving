@@ -26,6 +26,9 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
             Cell balanceCell = new Cell();
             balanceCell.setBorder(Border.NO_BORDER);
+            Paragraph summaryTitle = new Paragraph("Summary");
+            summaryTitle.setBold();
+            balanceCell.add(summaryTitle);
             balanceCell.add(new Paragraph("Total balance: € 115 230.59"));
             balanceCell.add(new Paragraph("Last update: 10 february 1984"));
             balanceCell.add(new Paragraph("Last item added: 10 february 1984"));
@@ -56,17 +59,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
             document.add(table);
 
-//            document.add(new Paragraph("The five most profitable categories overall are: "));
-//            document.add(new Paragraph("..."));
-//
-//            document.add(new Paragraph("The five most expensive categories overall are: "));
-//            document.add(new Paragraph("..."));
-//
-//            document.add(new Paragraph("The five most profitable items overall are: "));
-//            document.add(new Paragraph("..."));
-//
-//            document.add(new Paragraph("The five most expensive items overall are: "));
-//            document.add(new Paragraph("..."));
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

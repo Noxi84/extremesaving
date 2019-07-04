@@ -2,42 +2,39 @@ package extremesaving.service.pdf;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.borders.Border;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.element.Table;
 import extremesaving.constant.ExtremeSavingConstants;
 
 import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PdfPageMonthGenerator implements PdfPageGenerator {
 
     @Override
     public void generate(Document document) {
         try {
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-            document.add(new Paragraph("Month report"));
+            Table table = new Table(2);
 
-            document.add(new Image(ImageDataFactory.create(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE)));
+            Cell chartCell1 = new Cell();
+            chartCell1.setBorder(Border.NO_BORDER);
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE));
+            monthlyBarChartImage.setWidth(350);
+            monthlyBarChartImage.setHeight(216);
+            chartCell1.add(monthlyBarChartImage);
 
-            document.add(new Paragraph("Your saving rate for " + new SimpleDateFormat("MMMM yyyy").format(new Date()) + " is:"));
-            //        document.add(Image.getInstance(ExtremeSavingConstants.MONTHLY_METER_CHART_IMAGE_FILE));
+            Cell chartCell2 = new Cell();
+            chartCell2.setBorder(Border.NO_BORDER);
+            Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE));
+            yearlyBarChartImage.setWidth(350);
+            yearlyBarChartImage.setHeight(216);
+            chartCell2.add(yearlyBarChartImage);
 
-            document.add(new Paragraph("The month with highest income this year is xxx and the month highest expense this year is xxx"));
+            table.addCell(chartCell1);
+            table.addCell(chartCell2);
 
-            document.add(new Paragraph("The five most profitable categories this month are: "));
-            document.add(new Paragraph("..."));
-
-            document.add(new Paragraph("The five most expensive categories this month are: "));
-            document.add(new Paragraph("..."));
-
-            document.add(new Paragraph("The five most profitable items this month are: "));
-            document.add(new Paragraph("..."));
-
-            document.add(new Paragraph("The five most expensive items this month are: "));
-            document.add(new Paragraph("..."));
+            document.add(table);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
