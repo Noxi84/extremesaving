@@ -1,4 +1,4 @@
-package extremesaving.pdf.page;
+package extremesaving.service.pdf;
 
 public class PredictionsReportGenerator {
 

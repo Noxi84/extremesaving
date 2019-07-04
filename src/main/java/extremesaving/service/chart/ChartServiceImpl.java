@@ -1,7 +1,5 @@
 package extremesaving.service.chart;
 
-import extremesaving.chart.ChartGenerator;
-
 public class ChartServiceImpl implements ChartService {
 
     private ChartGenerator accountPieChartGenerator;
@@ -17,5 +15,25 @@ public class ChartServiceImpl implements ChartService {
         yearlyBarChartGenerator.generateChartPng();
 //        overallLineChartGenerator.generateChartPng(totalsDto);
 //        monthlyMeterChartGenerator.generateChartPng(totalsDto);
+    }
+
+    public void setAccountPieChartGenerator(ChartGenerator accountPieChartGenerator) {
+        this.accountPieChartGenerator = accountPieChartGenerator;
+    }
+
+    public void setMonthlyBarChartGenerator(ChartGenerator monthlyBarChartGenerator) {
+        this.monthlyBarChartGenerator = monthlyBarChartGenerator;
+    }
+
+    public void setYearlyBarChartGenerator(ChartGenerator yearlyBarChartGenerator) {
+        this.yearlyBarChartGenerator = yearlyBarChartGenerator;
+    }
+
+    public void setOverallLineChartGenerator(ChartGenerator overallLineChartGenerator) {
+        this.overallLineChartGenerator = overallLineChartGenerator;
+    }
+
+    public void setMonthlyMeterChartGenerator(ChartGenerator monthlyMeterChartGenerator) {
+        this.monthlyMeterChartGenerator = monthlyMeterChartGenerator;
     }
 }

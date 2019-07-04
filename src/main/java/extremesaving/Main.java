@@ -1,6 +1,6 @@
 package extremesaving;
 
-import extremesaving.pdf.PdfService;
+import extremesaving.service.pdf.PdfService;
 import extremesaving.service.chart.ChartService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

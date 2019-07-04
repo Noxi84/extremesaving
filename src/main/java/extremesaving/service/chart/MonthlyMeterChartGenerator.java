@@ -1,26 +1,4 @@
-package extremesaving.chart;
-
-import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.ResultDto;
-import extremesaving.dto.TotalsDto;
-import extremesaving.util.DateUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.DialShape;
-import org.jfree.chart.plot.MeterInterval;
-import org.jfree.chart.plot.MeterPlot;
-import org.jfree.data.Range;
-import org.jfree.data.general.DefaultValueDataset;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Map;
+package extremesaving.service.chart;
 
 public class MonthlyMeterChartGenerator implements ChartGenerator {
 

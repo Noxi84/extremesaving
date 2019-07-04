@@ -1,4 +1,4 @@
-package extremesaving.chart;
+package extremesaving.service.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.service.ChartDataService;

@@ -1,4 +1,4 @@
-package extremesaving.chart;
+package extremesaving.service.chart;
 
 
 public interface ChartGenerator {

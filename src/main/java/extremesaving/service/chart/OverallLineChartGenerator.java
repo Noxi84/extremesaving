@@ -1,17 +1,4 @@
-package extremesaving.chart;
-
-import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.TotalsDto;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.math.BigDecimal;
-import java.util.Calendar;
+package extremesaving.service.chart;
 
 public class OverallLineChartGenerator implements ChartGenerator {
 

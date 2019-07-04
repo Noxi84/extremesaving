@@ -4,8 +4,6 @@
 <beans>
     <!--Main-->
     <bean id="main" class="extremesaving.Main">
-        <property name="accountService" ref="accountService"/>
-        <property name="totalsFacade" ref="totalsFacade"/>
         <property name="pdfService" ref="pdfService"/>
         <property name="chartService" ref="chartService"/>
     </bean>
@@ -28,7 +26,7 @@
         <property name="dataDao" ref="dataDao"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="chartService" class="extremesaving.service.ChartDataServiceImpl">
+    <bean id="chartService" class="extremesaving.service.chart.ChartServiceImpl">
         <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
         <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
         <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
@@ -40,30 +38,30 @@
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfPageSummaryGenerator" class="extremesaving.pdf.page.PdfPageSummaryGenerator">
+    <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryGenerator">
         <property name="accountService" ref="accountService"/>
     </bean>
-    <bean id="pdfPageMonthGenerator" class="extremesaving.pdf.page.PdfPageMonthGenerator">
+    <bean id="pdfPageMonthGenerator" class="extremesaving.service.pdf.PdfPageMonthGenerator">
     </bean>
-    <bean id="pdfPageYearGenerator" class="extremesaving.pdf.page.PdfPageYearGenerator">
+    <bean id="pdfPageYearGenerator" class="extremesaving.service.pdf.PdfPageYearGenerator">
     </bean>
-    <bean id="pdfService" class="extremesaving.pdf.DefaultPdfService">
+    <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
         <property name="pdfPageMonthGenerator" ref="pdfPageMonthGenerator"/>
         <property name="pdfPageYearGenerator" ref="pdfPageYearGenerator"/>
     </bean>
 
     <!--Chart-->
-    <bean id="accountPieChartGenerator" class="extremesaving.chart.AccountPieChartGenerator">
+    <bean id="accountPieChartGenerator" class="extremesaving.service.chart.AccountPieChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="monthlyBarChartGenerator" class="extremesaving.chart.MonthlyBarChartGenerator">
+    <bean id="monthlyBarChartGenerator" class="extremesaving.service.chart.MonthlyBarChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="yearlyBarChartGenerator" class="extremesaving.chart.YearlyBarChartGenerator">
+    <bean id="yearlyBarChartGenerator" class="extremesaving.service.chart.YearlyBarChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="overallLineChartGenerator" class="extremesaving.chart.OverallLineChartGenerator"/>
-    <bean id="monthlyMeterChartGenerator" class="extremesaving.chart.MonthlyMeterChartGenerator"/>
+    <bean id="overallLineChartGenerator" class="extremesaving.service.chart.OverallLineChartGenerator"/>
+    <bean id="monthlyMeterChartGenerator" class="extremesaving.service.chart.MonthlyMeterChartGenerator"/>
 
 </beans>

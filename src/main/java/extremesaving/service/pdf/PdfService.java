@@ -1,4 +1,4 @@
-package extremesaving.pdf;
+package extremesaving.service.pdf;
 
 public interface PdfService {
 
