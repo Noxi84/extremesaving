@@ -1,7 +1,6 @@
 package extremesaving.service;
 
 import extremesaving.dao.DataDao;
-import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
@@ -111,13 +110,23 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public List<CategoryDto> getMostProfitableItems(Collection<DataModel> dataModels) {
-        return null;
+    public List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels) {
+        List<DataModel> filteredDataModels = dataModels.stream()
+                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) < 0)
+                .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                .collect(Collectors.toList());
+        return filteredDataModels;
     }
 
     @Override
-    public List<CategoryDto> getMostExpensiveItems(Collection<DataModel> dataModels) {
-        return null;
+    public List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels) {
+        List<DataModel> filteredDataModels = dataModels.stream()
+                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0)
+                .sorted(Comparator.comparing(DataModel::getValue))
+                .collect(Collectors.toList());
+        return filteredDataModels;
     }
 
     @Override

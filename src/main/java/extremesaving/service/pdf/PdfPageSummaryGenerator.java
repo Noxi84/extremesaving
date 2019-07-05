@@ -73,7 +73,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
         alignmentTableLeft.add(getItemParagraph("Last item added"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph( sf.format(dataService.getLastItemAdded())));
+        alignmentTableRight.add(getItemParagraph(sf.format(dataService.getLastItemAdded())));
 
         alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph("\n"));
@@ -81,7 +81,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
         alignmentTableLeft.add(getItemParagraph("Total balance"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph( NumberUtils.formatNumber(dataService.getTotalBalance(), true)));
+        alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance())));
 
         alignmentTableLeft.add(getItemParagraph("Total items"));
         alignmentTableCenter.add(getItemParagraph(":"));
@@ -159,21 +159,21 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList())) {
             alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
             alignmentTableCenter.add(getItemParagraph(" : "));
-            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
         // Add zero accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
             alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
             alignmentTableCenter.add(getItemParagraph(" : "));
-            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
         // Add negative accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
             alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
             alignmentTableCenter.add(getItemParagraph(" : "));
-            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
         alignmentTable.addCell(alignmentTableLeft);
@@ -186,7 +186,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(10);
+        paragraph.setFontSize(9);
         return paragraph;
     }
 

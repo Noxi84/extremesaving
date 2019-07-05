@@ -12,7 +12,7 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.CategoryDto;
 import extremesaving.service.CategoryService;
 import extremesaving.service.DataService;
-import extremesaving.service.pdf.enums.CategorySectionEnum;
+import extremesaving.service.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
@@ -30,18 +30,18 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
     @Override
     public void generate(Document document) {
         document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-        document.add(getCategorySection(document, CategorySectionEnum.PROFITS));
-        document.add(getCategorySection(document, CategorySectionEnum.EXPENSES));
-        document.add(getCategorySection(document, CategorySectionEnum.RESULT));
+        document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
+        document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
+        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
     }
 
-    private Table getCategorySection(Document document, CategorySectionEnum categorySection) {
+    private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         String title = "";
-        if (CategorySectionEnum.PROFITS.equals(categorySection)) {
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
             title = "Most profitable categories";
-        } else if (CategorySectionEnum.EXPENSES.equals(categorySection)) {
+        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
             title = "Most expensive categories";
-        } else if (CategorySectionEnum.RESULT.equals(categorySection)) {
+        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
             title = "Result";
         }
         Paragraph summaryTitle = new Paragraph(title);
@@ -55,31 +55,31 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         List<CategoryDto> yearResults = new ArrayList<>();
         List<CategoryDto> monthResults = new ArrayList<>();
 
-        if (CategorySectionEnum.PROFITS.equals(categorySection)) {
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
             overallResults = categoryService.getMostProfitableCategories(dataService.findAll());
             yearResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
             monthResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-        } else if (CategorySectionEnum.EXPENSES.equals(categorySection)) {
+        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
             overallResults = categoryService.getMostExpensiveCategories(dataService.findAll());
             yearResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
             monthResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-        } else if (CategorySectionEnum.RESULT.equals(categorySection)) {
+        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
             overallResults = categoryService.getCategories(dataService.findAll());
             yearResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
             monthResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         }
 
-        table.addCell(getCategoryCell("Overall", overallResults, categorySection));
-        table.addCell(getCategoryCell("This year", yearResults, categorySection));
-        table.addCell(getCategoryCell("This month", monthResults, categorySection));
+        table.addCell(getCategoryCell("Overall", overallResults, pdfGridTypeEnum));
+        table.addCell(getCategoryCell("This year", yearResults, pdfGridTypeEnum));
+        table.addCell(getCategoryCell("This month", monthResults, pdfGridTypeEnum));
         return table;
     }
 
-    private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, CategorySectionEnum categorySectionEnum) {
+    private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTypeEnum pdfGridEnum) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
 
-        if (CategorySectionEnum.PROFITS.equals(categorySectionEnum) || CategorySectionEnum.EXPENSES.equals(categorySectionEnum)) {
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridEnum)) {
             Paragraph cellTitle = getItemParagraph(title);
             cellTitle.setBold();
             cell.add(cellTitle);
@@ -99,10 +99,10 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         alignmentTableRight.setWidth(100);
 
         // Add categoryDtos
-        if (CategorySectionEnum.PROFITS.equals(categorySectionEnum) || CategorySectionEnum.EXPENSES.equals(categorySectionEnum)) {
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridEnum)) {
             for (CategoryDto categoryDto : categoryDtos) {
                 alignmentTableLeft.add(getItemParagraph(categoryDto.getName()));
-                alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(categoryDto.getNonTransferResults().getResult(), true)));
+                alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(categoryDto.getNonTransferResults().getResult())));
             }
         }
 
@@ -111,7 +111,7 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         totalTitle.setBold();
         alignmentTableLeft.add(totalTitle);
         BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        Paragraph totalAmountParagraph = getItemParagraph(NumberUtils.formatNumber(totalAmount, true));
+        Paragraph totalAmountParagraph = getItemParagraph(NumberUtils.formatNumber(totalAmount));
         totalAmountParagraph.setBold();
         alignmentTableRight.add(totalAmountParagraph);
 
@@ -126,7 +126,7 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
 
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(10);
+        paragraph.setFontSize(9);
         return paragraph;
     }
 

@@ -1,6 +1,6 @@
 package extremesaving.service.pdf.enums;
 
-public enum CategorySectionEnum {
+public enum PdfGridTypeEnum {
 
     PROFITS, EXPENSES, RESULT;
 }

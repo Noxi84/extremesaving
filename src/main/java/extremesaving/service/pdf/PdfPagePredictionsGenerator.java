@@ -87,7 +87,7 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(10);
+        paragraph.setFontSize(9);
         return paragraph;
     }
 }
