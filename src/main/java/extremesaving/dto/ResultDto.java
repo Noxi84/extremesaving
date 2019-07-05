@@ -153,22 +153,4 @@ public class ResultDto {
     public void setAverageDailyResult(BigDecimal averageDailyResult) {
         this.averageDailyResult = averageDailyResult;
     }
-
-    @Override
-    public String toString() {
-        return "ResultDto{" +
-                "data=" + data +
-                ", incomes=" + incomes +
-                ", expenses=" + expenses +
-                ", result=" + result +
-                ", numberOfIncomes=" + numberOfIncomes +
-                ", numberOfExpenses=" + numberOfExpenses +
-                ", numberOfItems=" + numberOfItems +
-                ", highestIncome=" + highestIncome +
-                ", highestExpense=" + highestExpense +
-                ", firstDate=" + firstDate +
-                ", lastDate=" + lastDate +
-                ", daysSinceLastUpdate=" + daysSinceLastUpdate +
-                '}';
-    }
 }

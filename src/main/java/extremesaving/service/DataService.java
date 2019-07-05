@@ -1,6 +1,6 @@
 package extremesaving.service;
 
-import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 import extremesaving.model.DataModel;
 
 import java.math.BigDecimal;
@@ -27,9 +27,9 @@ public interface DataService {
 
     Date getWorstYear();
 
-    Map<Integer, ResultDto> getMonthlyResults(Collection<DataModel> dataModels);
+    Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataModel> dataModels);
 
-    Map<Integer, ResultDto> getYearlyResults(Collection<DataModel> dataModels);
+    Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels);
 
     List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels);
 

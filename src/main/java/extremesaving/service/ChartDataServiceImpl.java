@@ -1,7 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.AccountDto;
-import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
@@ -29,21 +29,17 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Integer, ResultDto> getMonthlyResults() {
+    public Map<Integer, MiniResultDto> getMonthlyResults() {
         List<DataModel> dataModels = dataService.findAll().stream()
-                .filter(dataModel -> !dataModel.isTransfer())
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
         return dataService.getMonthlyResults(dataModels);
     }
 
     @Override
-    public Map<Integer, ResultDto> getYearlyResults() {
-        List<DataModel> dataModels = dataService.findAll().stream()
-                .filter(dataModel -> !dataModel.isTransfer())
-                .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
-                .collect(Collectors.toList());
-        Map<Integer, ResultDto> yearlyResults = dataService.getYearlyResults(dataModels);
+    public Map<Integer, MiniResultDto> getYearlyResults() {
+        List<DataModel> dataModels = dataService.findAll();
+        Map<Integer, MiniResultDto> yearlyResults = dataService.getYearlyResults(dataModels);
 
         Calendar calendar = Calendar.getInstance();
         addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 11);
@@ -82,9 +78,9 @@ public class ChartDataServiceImpl implements ChartDataService {
         return yearPredictions;
     }
 
-    private void addResultDtoIfEmpty(Map<Integer, ResultDto> results, Integer key) {
+    private void addResultDtoIfEmpty(Map<Integer, MiniResultDto> results, Integer key) {
         if (results.get(key) == null) {
-            results.put(key, new ResultDto());
+            results.put(key, new MiniResultDto());
         }
     }
 

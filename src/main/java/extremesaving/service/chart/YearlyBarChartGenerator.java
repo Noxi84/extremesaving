@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -23,7 +23,7 @@ public class YearlyBarChartGenerator implements ChartGenerator {
     @Override
     public void generateChartPng() {
         try {
-            Map<Integer, ResultDto> yearlyResults = chartDataService.getYearlyResults();
+            Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
 
             JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(yearlyResults), PlotOrientation.VERTICAL, true, false, false);
             BufferedImage objBufferedImage = barChart.createBufferedImage(600, 370);
@@ -39,7 +39,7 @@ public class YearlyBarChartGenerator implements ChartGenerator {
         }
     }
 
-    private static CategoryDataset createDataset(Map<Integer, ResultDto> yearlyResults) {
+    private static CategoryDataset createDataset(Map<Integer, MiniResultDto> yearlyResults) {
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
@@ -58,15 +58,15 @@ public class YearlyBarChartGenerator implements ChartGenerator {
         final String year9 = String.valueOf(currentYear - 8);
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        ResultDto year9Results = yearlyResults.get(Integer.valueOf(year9));
-        ResultDto year8Results = yearlyResults.get(Integer.valueOf(year8));
-        ResultDto year7Results = yearlyResults.get(Integer.valueOf(year7));
-        ResultDto year6Results = yearlyResults.get(Integer.valueOf(year6));
-        ResultDto year5Results = yearlyResults.get(Integer.valueOf(year5));
-        ResultDto year4Results = yearlyResults.get(Integer.valueOf(year4));
-        ResultDto year3Results = yearlyResults.get(Integer.valueOf(year3));
-        ResultDto year2Results = yearlyResults.get(Integer.valueOf(year2));
-        ResultDto year1Results = yearlyResults.get(Integer.valueOf(year1));
+        MiniResultDto year9Results = yearlyResults.get(Integer.valueOf(year9));
+        MiniResultDto year8Results = yearlyResults.get(Integer.valueOf(year8));
+        MiniResultDto year7Results = yearlyResults.get(Integer.valueOf(year7));
+        MiniResultDto year6Results = yearlyResults.get(Integer.valueOf(year6));
+        MiniResultDto year5Results = yearlyResults.get(Integer.valueOf(year5));
+        MiniResultDto year4Results = yearlyResults.get(Integer.valueOf(year4));
+        MiniResultDto year3Results = yearlyResults.get(Integer.valueOf(year3));
+        MiniResultDto year2Results = yearlyResults.get(Integer.valueOf(year2));
+        MiniResultDto year1Results = yearlyResults.get(Integer.valueOf(year1));
 
         dataset.addValue(year9Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year9);
         dataset.addValue(year8Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year8);

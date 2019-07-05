@@ -14,4 +14,8 @@ public final class NumberUtils {
     public static String roundOffTo2DecPlaces(BigDecimal val) {
         return String.format("%.2f", val);
     }
+
+    public static String formatPercentage(BigDecimal val) {
+        return roundOffTo2DecPlaces(val) + "%";
+    }
 }

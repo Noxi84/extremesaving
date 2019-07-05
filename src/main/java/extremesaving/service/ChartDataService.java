@@ -1,6 +1,6 @@
 package extremesaving.service;
 
-import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -9,9 +9,9 @@ public interface ChartDataService {
 
     Map<String, BigDecimal> getAccountResults();
 
-    Map<Integer, ResultDto> getMonthlyResults();
+    Map<Integer, MiniResultDto> getMonthlyResults();
 
-    Map<Integer, ResultDto> getYearlyResults();
+    Map<Integer, MiniResultDto> getYearlyResults();
 
     Map<Integer, BigDecimal> getYearPredictions();
 }

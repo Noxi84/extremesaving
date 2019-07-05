@@ -68,19 +68,19 @@ public final class DateUtils {
 
         StringBuilder result = new StringBuilder();
         if (years > 0) {
-            result.append(years).append(" years");
+            result.append(years).append(years == 1 ? " year" : " years");
         }
         if (months > 0) {
             if (StringUtils.isNotBlank(result)) {
                 result.append(", ");
             }
-            result.append(months).append(" months");
+            result.append(months).append(months == 1 ? " month" : " months");
         }
         if (days > 0) {
             if (StringUtils.isNotBlank(result)) {
                 result.append(", ");
             }
-            result.append(days).append(" days");
+            result.append(days).append(days == 1 ? " day" : " days");
         }
         return result.toString();
     }

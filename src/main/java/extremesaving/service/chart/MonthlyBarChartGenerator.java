@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -23,7 +23,7 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
     @Override
     public void generateChartPng() {
         try {
-            Map<Integer, ResultDto> monthlyResults = chartDataService.getMonthlyResults();
+            Map<Integer, MiniResultDto> monthlyResults = chartDataService.getMonthlyResults();
 
             JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(monthlyResults), PlotOrientation.VERTICAL, true, false, false);
             BufferedImage objBufferedImage = barChart.createBufferedImage(600, 370);
@@ -39,7 +39,7 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
         }
     }
 
-    private static CategoryDataset createDataset(Map<Integer, ResultDto> monthlyResults) {
+    private static CategoryDataset createDataset(Map<Integer, MiniResultDto> monthlyResults) {
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
@@ -57,18 +57,18 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
         final String december = "Dec";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        ResultDto januaryResults = monthlyResults.get(Calendar.JANUARY);
-        ResultDto februaryResults = monthlyResults.get(Calendar.FEBRUARY);
-        ResultDto marchResults = monthlyResults.get(Calendar.MARCH);
-        ResultDto aprilResults = monthlyResults.get(Calendar.APRIL);
-        ResultDto mayResults = monthlyResults.get(Calendar.MAY);
-        ResultDto juneResults = monthlyResults.get(Calendar.JUNE);
-        ResultDto julyResults = monthlyResults.get(Calendar.JULY);
-        ResultDto augustResults = monthlyResults.get(Calendar.AUGUST);
-        ResultDto septemberResults = monthlyResults.get(Calendar.SEPTEMBER);
-        ResultDto octoberResults = monthlyResults.get(Calendar.OCTOBER);
-        ResultDto novemberResults = monthlyResults.get(Calendar.NOVEMBER);
-        ResultDto decemberResults = monthlyResults.get(Calendar.DECEMBER);
+        MiniResultDto januaryResults = monthlyResults.get(Calendar.JANUARY);
+        MiniResultDto februaryResults = monthlyResults.get(Calendar.FEBRUARY);
+        MiniResultDto marchResults = monthlyResults.get(Calendar.MARCH);
+        MiniResultDto aprilResults = monthlyResults.get(Calendar.APRIL);
+        MiniResultDto mayResults = monthlyResults.get(Calendar.MAY);
+        MiniResultDto juneResults = monthlyResults.get(Calendar.JUNE);
+        MiniResultDto julyResults = monthlyResults.get(Calendar.JULY);
+        MiniResultDto augustResults = monthlyResults.get(Calendar.AUGUST);
+        MiniResultDto septemberResults = monthlyResults.get(Calendar.SEPTEMBER);
+        MiniResultDto octoberResults = monthlyResults.get(Calendar.OCTOBER);
+        MiniResultDto novemberResults = monthlyResults.get(Calendar.NOVEMBER);
+        MiniResultDto decemberResults = monthlyResults.get(Calendar.DECEMBER);
 
         dataset.addValue(januaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, january);
         dataset.addValue(februaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, february);

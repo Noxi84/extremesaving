@@ -2,6 +2,7 @@ package extremesaving.service;
 
 import extremesaving.dao.DataDao;
 import extremesaving.dto.ResultDto;
+import extremesaving.dto.MiniResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
@@ -40,12 +41,12 @@ public class DataServiceImpl implements DataService {
         return resultDto.getResult();
     }
 
-    private Integer getResult(Map<Integer, ResultDto> results, boolean reverse) {
+    private Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
         Integer highestMonth = null;
-        ResultDto highestResultDto = null;
+        MiniResultDto highestResultDto = null;
 
-        Map<Integer, ResultDto> monthResults = results;
-        for (Map.Entry<Integer, ResultDto> resultEntry : monthResults.entrySet()) {
+        Map<Integer, MiniResultDto> monthResults = results;
+        for (Map.Entry<Integer, MiniResultDto> resultEntry : monthResults.entrySet()) {
 
             if (highestMonth == null || (!reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) > 0) || (reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) < 0)) {
                 highestMonth = resultEntry.getKey();
@@ -57,7 +58,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public Date getBestMonth() {
-        Map<Integer, ResultDto> monthResults = getMonthlyResults(findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, false));
@@ -70,7 +71,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public Date getWorstMonth() {
-        Map<Integer, ResultDto> monthResults = getMonthlyResults(findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, true));
@@ -83,7 +84,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public Date getBestYear() {
-        Map<Integer, ResultDto> yearlyResults = getYearlyResults(findAll());
+        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
@@ -97,7 +98,7 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public Date getWorstYear() {
-        Map<Integer, ResultDto> yearlyResults = getYearlyResults(findAll());
+        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
@@ -130,20 +131,20 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public Map<Integer, ResultDto> getMonthlyResults(Collection<DataModel> dataModels) {
-        Map<Integer, ResultDto> monthlyResults = new HashMap<>();
-        monthlyResults.put(Calendar.JANUARY, new ResultDto());
-        monthlyResults.put(Calendar.FEBRUARY, new ResultDto());
-        monthlyResults.put(Calendar.MARCH, new ResultDto());
-        monthlyResults.put(Calendar.APRIL, new ResultDto());
-        monthlyResults.put(Calendar.MAY, new ResultDto());
-        monthlyResults.put(Calendar.JUNE, new ResultDto());
-        monthlyResults.put(Calendar.JULY, new ResultDto());
-        monthlyResults.put(Calendar.AUGUST, new ResultDto());
-        monthlyResults.put(Calendar.SEPTEMBER, new ResultDto());
-        monthlyResults.put(Calendar.OCTOBER, new ResultDto());
-        monthlyResults.put(Calendar.NOVEMBER, new ResultDto());
-        monthlyResults.put(Calendar.DECEMBER, new ResultDto());
+    public Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataModel> dataModels) {
+        Map<Integer, MiniResultDto> monthlyResults = new HashMap<>();
+        monthlyResults.put(Calendar.JANUARY, new MiniResultDto());
+        monthlyResults.put(Calendar.FEBRUARY, new MiniResultDto());
+        monthlyResults.put(Calendar.MARCH, new MiniResultDto());
+        monthlyResults.put(Calendar.APRIL, new MiniResultDto());
+        monthlyResults.put(Calendar.MAY, new MiniResultDto());
+        monthlyResults.put(Calendar.JUNE, new MiniResultDto());
+        monthlyResults.put(Calendar.JULY, new MiniResultDto());
+        monthlyResults.put(Calendar.AUGUST, new MiniResultDto());
+        monthlyResults.put(Calendar.SEPTEMBER, new MiniResultDto());
+        monthlyResults.put(Calendar.OCTOBER, new MiniResultDto());
+        monthlyResults.put(Calendar.NOVEMBER, new MiniResultDto());
+        monthlyResults.put(Calendar.DECEMBER, new MiniResultDto());
 
         List<DataModel> filteredDataModels = dataModels.stream()
                 .filter(dataModel -> !dataModel.isTransfer())
@@ -154,7 +155,7 @@ public class DataServiceImpl implements DataService {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataModel.getDate());
 
-            ResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
+            MiniResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
             resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataModel.getValue()));
 
             if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
@@ -168,23 +169,21 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public Map<Integer, ResultDto> getYearlyResults(Collection<DataModel> dataModels) {
-        Calendar calendar = Calendar.getInstance();
-        Map<Integer, ResultDto> yearlyResults = new HashMap<>();
+    public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels) {
+        Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
 
         List<DataModel> filteredDataModels = dataModels.stream()
                 .filter(dataModel -> !dataModel.isTransfer())
-                .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
 
         for (DataModel dataModel : filteredDataModels) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataModel.getDate());
+            int year = cal.get(Calendar.YEAR);
 
-            ResultDto resultDtoForThisYear = yearlyResults.get(cal.get(Calendar.YEAR));
+            MiniResultDto resultDtoForThisYear = yearlyResults.get(year);
             if (resultDtoForThisYear == null) {
-                resultDtoForThisYear = new ResultDto();
-                yearlyResults.put(cal.get(Calendar.YEAR), resultDtoForThisYear);
+                resultDtoForThisYear = new MiniResultDto();
             }
             resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataModel.getValue()));
 
@@ -193,6 +192,7 @@ public class DataServiceImpl implements DataService {
             } else {
                 resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataModel.getValue()));
             }
+            yearlyResults.put(year, resultDtoForThisYear);
         }
         return yearlyResults;
     }
