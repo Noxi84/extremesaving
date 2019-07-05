@@ -5,6 +5,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.ResultDto;
@@ -73,13 +74,6 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
                     .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyExpense()))
                     .append(" per day and an inflation of 3% :");
             text.append("\n");
-            text.append("You could live financially free, without any income for ")
-                    .append(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()))
-                    .append(". On ")
-                    .append(DateUtils.formatDate(predictionEndDate.getTime()))
-                    .append(" you should have about ")
-                    .append(NumberUtils.formatNumber(predictionAmount))
-                    .append(".");
 
             document.add(getItemParagraph(text.toString()));
             document.add(getItemParagraph("\n"));
@@ -89,16 +83,22 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
+            chartCell1.setTextAlignment(TextAlignment.CENTER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.HISTORY_LINE_CHART_IMAGE_FILE));
             monthlyBarChartImage.setWidth(380);
             monthlyBarChartImage.setHeight(285);
+            chartCell1.add(getItemParagraph("You could live financially free, without any income for..."));
+            chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
             chartCell1.add(monthlyBarChartImage);
 
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
+            chartCell2.setTextAlignment(TextAlignment.CENTER);
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
             yearlyBarChartImage.setWidth(380);
             yearlyBarChartImage.setHeight(285);
+            chartCell2.add(getItemParagraph( "If you keep up your average daily result, you should have about..."));
+            chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
             chartCell2.add(yearlyBarChartImage);
 
             table.addCell(chartCell1);
@@ -112,8 +112,15 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
     }
 
     private Paragraph getItemParagraph(String text) {
+        return getItemParagraph(text, false);
+    }
+
+    private Paragraph getItemParagraph(String text, boolean bold) {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(9);
+        if (bold) {
+            paragraph.setBold();
+        }
         return paragraph;
     }
 
