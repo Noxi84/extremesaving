@@ -115,15 +115,17 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         totalAmountParagraph.setBold();
         alignmentTableRight.add(totalAmountParagraph);
 
-        // Add saving ratio
-        Paragraph savingRatioTitle = getItemParagraph("Saving ratio");
-        savingRatioTitle.setBold();
-        alignmentTableLeft.add(savingRatioTitle);
-        BigDecimal savingRatio = BigDecimal.valueOf(33.50);
+        if (PdfGridTypeEnum.RESULT.equals(pdfGridEnum)) {
+            // Add saving ratio
+            Paragraph savingRatioTitle = getItemParagraph("Saving ratio");
+            savingRatioTitle.setBold();
+            alignmentTableLeft.add(savingRatioTitle);
+            BigDecimal savingRatio = BigDecimal.valueOf(33.50);
 
-        Paragraph savingRatioParagraph = getItemParagraph(NumberUtils.formatPercentage(savingRatio));
-        savingRatioParagraph.setBold();
-        alignmentTableRight.add(savingRatioParagraph);
+            Paragraph savingRatioParagraph = getItemParagraph(NumberUtils.formatPercentage(savingRatio));
+            savingRatioParagraph.setBold();
+            alignmentTableRight.add(savingRatioParagraph);
+        }
 
         // Add left and right cell
         alignmentTable.addCell(alignmentTableLeft);
