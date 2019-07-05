@@ -75,17 +75,21 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableCenter.add(getItemParagraph(":"));
         alignmentTableRight.add(getItemParagraph(sf.format(dataService.getLastItemAdded())));
 
+        alignmentTableLeft.add(getItemParagraph("Total items"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
+
         alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));
 
-        alignmentTableLeft.add(getItemParagraph("Total balance"));
+        alignmentTableLeft.add(getItemParagraph("Total incomes"));
         alignmentTableCenter.add(getItemParagraph(":"));
         alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance())));
 
-        alignmentTableLeft.add(getItemParagraph("Total items"));
+        alignmentTableLeft.add(getItemParagraph("Total expenses"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
+        alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance())));
 
         alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph("\n"));
@@ -176,6 +180,10 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
             alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
+        alignmentTableLeft.add(getItemParagraph("Total result", true));
+        alignmentTableCenter.add(getItemParagraph(":", true));
+        alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
+
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
@@ -184,10 +192,17 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         return accountsCell;
     }
 
-    private Paragraph getItemParagraph(String text) {
+    private Paragraph getItemParagraph(String text, boolean bold) {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(9);
+        if (bold) {
+            paragraph.setBold();
+        }
         return paragraph;
+    }
+
+    private Paragraph getItemParagraph(String text) {
+        return getItemParagraph(text, false);
     }
 
     public void setAccountService(AccountService accountService) {

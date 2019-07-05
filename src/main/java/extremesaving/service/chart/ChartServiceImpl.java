@@ -6,7 +6,6 @@ public class ChartServiceImpl implements ChartService {
     private ChartGenerator monthlyBarChartGenerator;
     private ChartGenerator yearlyBarChartGenerator;
     private ChartGenerator overallLineChartGenerator;
-    private ChartGenerator monthlyMeterChartGenerator;
 
     @Override
     public void generateCharts() {
@@ -14,7 +13,6 @@ public class ChartServiceImpl implements ChartService {
         monthlyBarChartGenerator.generateChartPng();
         yearlyBarChartGenerator.generateChartPng();
 //        overallLineChartGenerator.generateChartPng(totalsDto);
-//        monthlyMeterChartGenerator.generateChartPng(totalsDto);
     }
 
     public void setAccountPieChartGenerator(ChartGenerator accountPieChartGenerator) {
@@ -33,7 +31,4 @@ public class ChartServiceImpl implements ChartService {
         this.overallLineChartGenerator = overallLineChartGenerator;
     }
 
-    public void setMonthlyMeterChartGenerator(ChartGenerator monthlyMeterChartGenerator) {
-        this.monthlyMeterChartGenerator = monthlyMeterChartGenerator;
-    }
 }

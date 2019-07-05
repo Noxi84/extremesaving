@@ -34,7 +34,6 @@
         <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
         <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
         <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
-        <property name="monthlyMeterChartGenerator" ref="monthlyMeterChartGenerator"/>
     </bean>
 
     <!--Dao-->
@@ -75,6 +74,5 @@
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
     <bean id="overallLineChartGenerator" class="extremesaving.service.chart.OverallLineChartGenerator"/>
-    <bean id="monthlyMeterChartGenerator" class="extremesaving.service.chart.MonthlyMeterChartGenerator"/>
 
 </beans>

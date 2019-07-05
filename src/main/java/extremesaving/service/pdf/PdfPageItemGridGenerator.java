@@ -84,7 +84,7 @@ public class PdfPageItemGridGenerator implements PdfPageGenerator {
         alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight1.setWidth(100);
 
-        int maxCount = 15;
+        int maxCount = 16;
         int counter = 0;
         for (DataModel dataModel : results) {
             counter++;
