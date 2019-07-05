@@ -1,6 +1,5 @@
 package extremesaving.service;
 
-import extremesaving.dao.DataDao;
 import extremesaving.dto.AccountDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
@@ -35,36 +34,7 @@ public class ChartDataServiceImpl implements ChartDataService {
                 .filter(dataModel -> !dataModel.isTransfer())
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
-
-        Map<Integer, ResultDto> monthlyResults = new HashMap<>();
-        monthlyResults.put(Calendar.JANUARY, new ResultDto());
-        monthlyResults.put(Calendar.FEBRUARY, new ResultDto());
-        monthlyResults.put(Calendar.MARCH, new ResultDto());
-        monthlyResults.put(Calendar.APRIL, new ResultDto());
-        monthlyResults.put(Calendar.MAY, new ResultDto());
-        monthlyResults.put(Calendar.JUNE, new ResultDto());
-        monthlyResults.put(Calendar.JULY, new ResultDto());
-        monthlyResults.put(Calendar.AUGUST, new ResultDto());
-        monthlyResults.put(Calendar.SEPTEMBER, new ResultDto());
-        monthlyResults.put(Calendar.OCTOBER, new ResultDto());
-        monthlyResults.put(Calendar.NOVEMBER, new ResultDto());
-        monthlyResults.put(Calendar.DECEMBER, new ResultDto());
-
-        for (DataModel dataModel : dataModels) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(dataModel.getDate());
-
-            ResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
-            resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataModel.getValue()));
-
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
-                resultDtoForThisMonth.setExpenses(resultDtoForThisMonth.getExpenses().add(dataModel.getValue()));
-            } else {
-                resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataModel.getValue()));
-            }
-        }
-
-        return monthlyResults;
+        return dataService.getMonthlyResults(dataModels);
     }
 
     @Override
@@ -73,36 +43,29 @@ public class ChartDataServiceImpl implements ChartDataService {
                 .filter(dataModel -> !dataModel.isTransfer())
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
+        Map<Integer, ResultDto> yearlyResults = dataService.getYearlyResults(dataModels);
 
         Calendar calendar = Calendar.getInstance();
-        Map<Integer, ResultDto> yearlyResults = new HashMap<>();
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 11, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 10, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 9, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 8, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 7, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 6, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 5, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 4, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 3, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 2, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR) - 1, new ResultDto());
-        yearlyResults.put(calendar.get(Calendar.YEAR), new ResultDto());
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 11);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 10);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 9);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 8);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 7);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 6);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 5);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 4);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 3);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 2);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 1);
+        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR));
 
-        for (DataModel dataModel : dataModels) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(dataModel.getDate());
-
-            ResultDto resultDtoForThisYear = yearlyResults.get(cal.get(Calendar.YEAR));
-            resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataModel.getValue()));
-
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
-                resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataModel.getValue()));
-            } else {
-                resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataModel.getValue()));
-            }
-        }
         return yearlyResults;
+    }
+
+    private void addResultDtoIfEmpty(Map<Integer, ResultDto> results, Integer key) {
+        if (results.get(key) == null) {
+            results.put(key, new ResultDto());
+        }
     }
 
     public void setDataService(DataService dataService) {

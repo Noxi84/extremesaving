@@ -15,7 +15,6 @@ import extremesaving.service.DataService;
 public class PdfPageItemGridGenerator implements PdfPageGenerator {
 
     private DataService dataService;
-    private CategoryService categoryService;
 
     @Override
     public void generate(Document document) {
@@ -108,9 +107,5 @@ public class PdfPageItemGridGenerator implements PdfPageGenerator {
 
     public void setDataService(DataService dataService) {
         this.dataService = dataService;
-    }
-
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
     }
 }

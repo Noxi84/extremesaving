@@ -26,6 +26,7 @@
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="categoryService" class="extremesaving.service.CategoryServiceImpl">
+        <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="chartService" class="extremesaving.service.chart.ChartServiceImpl">
@@ -52,7 +53,6 @@
     </bean>
     <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridGenerator">
         <property name="dataService" ref="dataService"/>
-        <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">
     </bean>

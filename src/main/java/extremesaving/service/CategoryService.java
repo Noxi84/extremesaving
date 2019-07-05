@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface CategoryService {
 
+    List<CategoryDto> getCategories(Collection<DataModel> dataModels);
+
     List<CategoryDto> getMostProfitableCategories(Collection<DataModel> dataModels);
 
     List<CategoryDto> getMostExpensiveCategories(Collection<DataModel> dataModels);

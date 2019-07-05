@@ -15,10 +15,14 @@ import extremesaving.service.AccountService;
 import extremesaving.service.DataService;
 import extremesaving.util.NumberUtils;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PdfPageSummaryGenerator implements PdfPageGenerator {
 
@@ -87,21 +91,24 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));
 
+        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
+
         alignmentTableLeft.add(getItemParagraph("Best month"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph("January 2019 (€ 3 956.41)"));
+        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
 
         alignmentTableLeft.add(getItemParagraph("Worst month"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph("July 2019 (€ 3 956.40)"));
+        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
 
+        SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
         alignmentTableLeft.add(getItemParagraph("Best year"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph("2019 (€ 20 000.85)"));
+        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
 
         alignmentTableLeft.add(getItemParagraph("Worst year"));
         alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph("2019 (€ 35 000.45)"));
+        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -116,7 +123,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         chartCell.setBorder(Border.NO_BORDER);
         Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
         accountPieImage.setWidth(350);
-        accountPieImage.setHeight(216);
+        accountPieImage.setHeight(200);
         chartCell.add(accountPieImage);
         return chartCell;
     }
@@ -144,11 +151,31 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
 
         List<AccountDto> accounts = accountService.getAccounts();
-        for (AccountDto accountDto : accounts) {
+
+        // Sort by name
+        Collections.sort(accounts, Comparator.comparing(AccountDto::getName));
+
+        // Add positive accounts
+        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList())) {
             alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
             alignmentTableCenter.add(getItemParagraph(" : "));
             alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
         }
+
+        // Add zero accounts
+        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
+            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(getItemParagraph(" : "));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+        }
+
+        // Add negative accounts
+        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
+            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(getItemParagraph(" : "));
+            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult(), true)));
+        }
+
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
