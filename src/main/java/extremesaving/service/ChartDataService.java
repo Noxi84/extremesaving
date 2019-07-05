@@ -12,4 +12,6 @@ public interface ChartDataService {
     Map<Integer, ResultDto> getMonthlyResults();
 
     Map<Integer, ResultDto> getYearlyResults();
+
+    Map<Integer, BigDecimal> getYearPredictions();
 }

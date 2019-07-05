@@ -7,10 +7,25 @@ import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
+import extremesaving.dto.ResultDto;
+import extremesaving.model.DataModel;
+import extremesaving.service.CalculationService;
+import extremesaving.service.DataService;
+import extremesaving.service.PredictionService;
+import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
 
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
+import java.util.Calendar;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class PdfPagePredictionsGenerator implements PdfPageGenerator {
+
+    private DataService dataService;
+    private CalculationService calculationService;
+    private PredictionService predictionService;
 
     @Override
     public void generate(Document document) {
@@ -21,11 +36,52 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             title.setBold();
             document.add(title);
 
-            document.add(getItemParagraph("If you reduce category [random expense category] expenses with [random between 1%,2%,3%,4%,5%,10%,15%20%,25%] you should save about € 5 000.00 in [random between 5,10,15,20] years."));
-            document.add(getItemParagraph("If you increase category [random income category] incomes  with [random between 1%,2%,3%,4%,5%,10%,15%20%,25%] you should save € 5 000.00 EUR in 5,10,15,20] years."));
-            document.add(getItemParagraph("With a current total budget of xxxx EURO, an average income of xxxxx EURO per day and, an average expense of xxxx EURO per day and an inflation of 3% :"));
-            document.add(getItemParagraph("You could live financially free, without any income for x years, x months and days. On 1 january 2024 you should have about xxxx EURO."));
+            List<DataModel> dataModels = dataService.findAll();
+            ResultDto resultDto = calculationService.getResults(dataModels);
+            ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList()));
 
+            int predictionNumberOfDays = 5 * 365;
+            Calendar predictionEndDate = Calendar.getInstance();
+            predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
+            predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
+            predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
+            BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
+
+            StringBuilder text = new StringBuilder();
+            text.append("If you reduce category ")
+                    .append("[random expense category]")
+                    .append(" expenses with ")
+                    .append("[random between 1%,2%,3%,4%,5%,10%,15%20%,25%]")
+                    .append(" you should save about ")
+                    .append("€ 5 000.00")
+                    .append(" in ")
+                    .append("[random between 5,10,15,20] ")
+                    .append("years.");
+            text.append("If you increase category ")
+                    .append("[random income category]")
+                    .append(" incomes  with ")
+                    .append("[random between 1%,2%,3%,4%,5%,10%,15%20%,25%] ")
+                    .append("you should save ")
+                    .append("€ 5 000.00 EUR")
+                    .append(" in 5,10,15,20] years.");
+            text.append("\n");
+            text.append("With a current total budget of ")
+                    .append(NumberUtils.formatNumber(resultDto.getResult()))
+                    .append(", an average income of ")
+                    .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyIncome()))
+                    .append(" per day and, an average expense of ")
+                    .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyExpense()))
+                    .append(" per day and an inflation of 3% :");
+            text.append("\n");
+            text.append("You could live financially free, without any income for ")
+                    .append(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()))
+                    .append(". On ")
+                    .append(DateUtils.formatDate(predictionEndDate.getTime()))
+                    .append(" you should have about ")
+                    .append(NumberUtils.formatNumber(predictionAmount))
+                    .append(".");
+
+            document.add(getItemParagraph(text.toString()));
             document.add(getItemParagraph("\n"));
 
             Table table = new Table(2);
@@ -59,5 +115,17 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(9);
         return paragraph;
+    }
+
+    public void setDataService(DataService dataService) {
+        this.dataService = dataService;
+    }
+
+    public void setCalculationService(CalculationService calculationService) {
+        this.calculationService = calculationService;
+    }
+
+    public void setPredictionService(PredictionService predictionService) {
+        this.predictionService = predictionService;
     }
 }

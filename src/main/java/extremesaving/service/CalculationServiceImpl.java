@@ -6,8 +6,9 @@ import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
 
 public class CalculationServiceImpl implements CalculationService {
 
@@ -49,40 +50,29 @@ public class CalculationServiceImpl implements CalculationService {
 
         resultDto.setAverageDailyIncome(calculateAverageDaily(resultDto, CalculationEnum.INCOME));
         resultDto.setAverageDailyExpense(calculateAverageDaily(resultDto, CalculationEnum.EXPENSE));
+        resultDto.setAverageDailyResult(calculateAverageDaily(resultDto, CalculationEnum.RESULT));
 
         return resultDto;
     }
 
-    @Override
-    public BigDecimal calculateAverageDaily(ResultDto resultDto, CalculationEnum calculationEnum) {
+    protected BigDecimal calculateAverageDaily(ResultDto resultDto, CalculationEnum calculationEnum) {
         try {
-            BigDecimal amount = CalculationEnum.INCOME.equals(calculationEnum) ? resultDto.getIncomes() : resultDto.getExpenses();
-            return amount.divide(BigDecimal.valueOf(resultDto.getDaysSinceLastUpdate()), RoundingMode.HALF_DOWN);
+            if (resultDto.getFirstDate() != null) {
+                BigDecimal amount = null;
+                if (CalculationEnum.INCOME.equals(calculationEnum)) {
+                    amount = resultDto.getIncomes();
+                } else if (CalculationEnum.EXPENSE.equals(calculationEnum)) {
+                    amount = resultDto.getExpenses();
+                } else if (CalculationEnum.RESULT.equals(calculationEnum)) {
+                    amount = resultDto.getResult();
+                }
+
+                long daysBetween = DateUtils.daysBetween(new Date(), resultDto.getFirstDate());
+                return amount.divide(BigDecimal.valueOf(daysBetween), RoundingMode.HALF_DOWN);
+            }
+            return BigDecimal.ZERO;
         } catch (ArithmeticException ex) {
             return null;
         }
-    }
-
-
-
-
-    @Override
-    public Map<Integer, BigDecimal> getYearPredictions(Collection<DataModel> dataModels) {
-        Map<Integer, BigDecimal> yearPredictions = new HashMap<>();
-
-//        ResultDto resultDto = getResults(dataModels.stream().filter(dataModel -> !dataModel.getCategory().isTransfer()).collect(Collectors.toSet()));
-        ResultDto resultDto = getResults(dataModels.stream().collect(Collectors.toSet()));
-        BigDecimal avgDailyIncome = calculateAverageDaily(resultDto, CalculationEnum.INCOME);
-        BigDecimal avgDailyExpense = calculateAverageDaily(resultDto, CalculationEnum.EXPENSE);
-
-        for (int yearCounter = 1; yearCounter < 21; yearCounter++) {
-            int year = yearCounter + Calendar.getInstance().get(Calendar.YEAR);
-            Calendar futureYear = Calendar.getInstance();
-            futureYear.add(Calendar.YEAR, yearCounter);
-            long totalDaysUntilFutureYear = DateUtils.daysBetween(futureYear.getTime(), new Date());
-            BigDecimal futureYearResult = avgDailyIncome.multiply(BigDecimal.valueOf(totalDaysUntilFutureYear)).add(avgDailyExpense.multiply(BigDecimal.valueOf((totalDaysUntilFutureYear))));
-            yearPredictions.put(year, resultDto.getResult().add(futureYearResult));
-        }
-        return yearPredictions;
     }
 }

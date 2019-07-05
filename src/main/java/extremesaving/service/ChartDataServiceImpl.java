@@ -62,6 +62,26 @@ public class ChartDataServiceImpl implements ChartDataService {
         return yearlyResults;
     }
 
+    @Override
+    public Map<Integer, BigDecimal> getYearPredictions() {
+        Map<Integer, BigDecimal> yearPredictions = new HashMap<>();
+
+//        ResultDto resultDto = getResults(dataModels.stream().filter(dataModel -> !dataModel.getCategory().isTransfer()).collect(Collectors.toSet()));
+//        ResultDto resultDto = calculationService.getResults(dataModels.stream().collect(Collectors.toSet()));
+//        BigDecimal avgDailyIncome = calculationService.calculateAverageDaily(resultDto, CalculationEnum.INCOME);
+//        BigDecimal avgDailyExpense = calculationService.calculateAverageDaily(resultDto, CalculationEnum.EXPENSE);
+
+//        for (int yearCounter = 1; yearCounter < 21; yearCounter++) {
+//            int year = yearCounter + Calendar.getInstance().get(Calendar.YEAR);
+//            Calendar futureYear = Calendar.getInstance();
+//            futureYear.add(Calendar.YEAR, yearCounter);
+//            long totalDaysUntilFutureYear = DateUtils.daysBetween(futureYear.getTime(), new Date());
+//            BigDecimal futureYearResult = avgDailyIncome.multiply(BigDecimal.valueOf(totalDaysUntilFutureYear)).add(avgDailyExpense.multiply(BigDecimal.valueOf((totalDaysUntilFutureYear))));
+//            yearPredictions.put(year, resultDto.getResult().add(futureYearResult));
+//        }
+        return yearPredictions;
+    }
+
     private void addResultDtoIfEmpty(Map<Integer, ResultDto> results, Integer key) {
         if (results.get(key) == null) {
             results.put(key, new ResultDto());

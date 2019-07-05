@@ -36,6 +36,11 @@
         <property name="historyLineChartGenerator" ref="historyLineChartGenerator"/>
         <property name="futureLineChartGenerator" ref="futureLineChartGenerator"/>
     </bean>
+    <bean id="predictionService" class="extremesaving.service.PredictionServiceImpl">
+        <property name="dataService" ref="dataService"/>
+        <property name="calculationService" ref="calculationService"/>
+        <property name="categoryService" ref="categoryService"/>
+    </bean>
 
     <!--Dao-->
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
@@ -45,8 +50,8 @@
         <property name="accountService" ref="accountService"/>
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator">
-    </bean>
+    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator"/>
+
     <bean id="pdfPageCategoryGridGenerator" class="extremesaving.service.pdf.PdfPageCategoryGridGenerator">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
@@ -55,6 +60,9 @@
         <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">
+        <property name="dataService" ref="dataService"/>
+        <property name="calculationService" ref="calculationService"/>
+        <property name="predictionService" ref="predictionService"/>
     </bean>
     <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>

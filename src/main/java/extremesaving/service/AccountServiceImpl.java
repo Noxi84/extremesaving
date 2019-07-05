@@ -1,6 +1,5 @@
 package extremesaving.service;
 
-import extremesaving.dao.DataDao;
 import extremesaving.dto.AccountDto;
 import extremesaving.model.DataModel;
 

@@ -8,10 +8,9 @@ public class ExtremeSavingConstants {
 
     public static final String PDF_FILE_NAME = "/home/kris/Dropbox/extremesaving/report.pdf";
 
-    public static final String ACCOUNT_PIE_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/account_piechart.png";
-    public static final String MONTHLY_BAR_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/month_barchart.png";
-    public static final String MONTHLY_METER_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/month_meterchart.png";
-    public static final String HISTORY_LINE_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/history-linechart.png";
-    public static final String FUTURE_LINE_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/future-linechart.png";
-    public static final String YEARLY_BAR_CHART_IMAGE_FILE = "/home/kris/Dropbox/extremesaving/year-barchart.png";
+    public static final String ACCOUNT_PIE_CHART_IMAGE_FILE = "/tmp/account_piechart.png";
+    public static final String MONTHLY_BAR_CHART_IMAGE_FILE = "/tmp/month_barchart.png";
+    public static final String HISTORY_LINE_CHART_IMAGE_FILE = "/tmp/history-linechart.png";
+    public static final String FUTURE_LINE_CHART_IMAGE_FILE = "/tmp/future-linechart.png";
+    public static final String YEARLY_BAR_CHART_IMAGE_FILE = "/tmp/year-barchart.png";
 }

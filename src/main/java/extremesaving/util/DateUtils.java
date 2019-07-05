@@ -1,6 +1,7 @@
 package extremesaving.util;
 
 import extremesaving.constant.ExtremeSavingConstants;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -49,7 +50,7 @@ public final class DateUtils {
     }
 
     public static boolean equalYearAndMonths(Date d1, Date d2) {
-      return equalMonths(d1, d2) && equalYears(d1, d2);
+        return equalMonths(d1, d2) && equalYears(d1, d2);
     }
 
     public static boolean equalYears(Date d1, Date d2) {
@@ -58,5 +59,29 @@ public final class DateUtils {
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(d2);
         return cal.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+    }
+
+    public static String formatSurvivalDays(Long survivalDays) {
+        long years = survivalDays / 365;
+        long months = (survivalDays - (years * 365)) / 30;
+        long days = (survivalDays - (years * 365)) - (months * 30);
+
+        StringBuilder result = new StringBuilder();
+        if (years > 0) {
+            result.append(years).append(" years");
+        }
+        if (months > 0) {
+            if (StringUtils.isNotBlank(result)) {
+                result.append(", ");
+            }
+            result.append(months).append(" months");
+        }
+        if (days > 0) {
+            if (StringUtils.isNotBlank(result)) {
+                result.append(", ");
+            }
+            result.append(days).append(" days");
+        }
+        return result.toString();
     }
 }
