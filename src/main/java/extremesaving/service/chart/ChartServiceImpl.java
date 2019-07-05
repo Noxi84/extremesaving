@@ -5,14 +5,16 @@ public class ChartServiceImpl implements ChartService {
     private ChartGenerator accountPieChartGenerator;
     private ChartGenerator monthlyBarChartGenerator;
     private ChartGenerator yearlyBarChartGenerator;
-    private ChartGenerator overallLineChartGenerator;
+    private ChartGenerator historyLineChartGenerator;
+    private ChartGenerator futureLineChartGenerator;
 
     @Override
     public void generateCharts() {
         accountPieChartGenerator.generateChartPng();
         monthlyBarChartGenerator.generateChartPng();
         yearlyBarChartGenerator.generateChartPng();
-//        overallLineChartGenerator.generateChartPng(totalsDto);
+        historyLineChartGenerator.generateChartPng();
+        futureLineChartGenerator.generateChartPng();
     }
 
     public void setAccountPieChartGenerator(ChartGenerator accountPieChartGenerator) {
@@ -27,8 +29,11 @@ public class ChartServiceImpl implements ChartService {
         this.yearlyBarChartGenerator = yearlyBarChartGenerator;
     }
 
-    public void setOverallLineChartGenerator(ChartGenerator overallLineChartGenerator) {
-        this.overallLineChartGenerator = overallLineChartGenerator;
+    public void setHistoryLineChartGenerator(ChartGenerator historyLineChartGenerator) {
+        this.historyLineChartGenerator = historyLineChartGenerator;
     }
 
+    public void setFutureLineChartGenerator(ChartGenerator futureLineChartGenerator) {
+        this.futureLineChartGenerator = futureLineChartGenerator;
+    }
 }

@@ -33,7 +33,8 @@
         <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
         <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
         <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
-        <property name="overallLineChartGenerator" ref="overallLineChartGenerator"/>
+        <property name="historyLineChartGenerator" ref="historyLineChartGenerator"/>
+        <property name="futureLineChartGenerator" ref="futureLineChartGenerator"/>
     </bean>
 
     <!--Dao-->
@@ -73,6 +74,11 @@
     <bean id="yearlyBarChartGenerator" class="extremesaving.service.chart.YearlyBarChartGenerator">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="overallLineChartGenerator" class="extremesaving.service.chart.OverallLineChartGenerator"/>
+    <bean id="historyLineChartGenerator" class="extremesaving.service.chart.HistoryLineChartGenerator">
+        <property name="chartDataService" ref="chartDataService"/>
+    </bean>
+    <bean id="futureLineChartGenerator" class="extremesaving.service.chart.FutureLineChartGenerator">
+        <property name="chartDataService" ref="chartDataService"/>
+    </bean>
 
 </beans>
