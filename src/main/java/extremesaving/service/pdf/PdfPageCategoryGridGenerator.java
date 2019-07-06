@@ -12,11 +12,13 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.CategoryDto;
 import extremesaving.service.CategoryService;
 import extremesaving.service.DataService;
+import extremesaving.service.pdf.enums.PdfGridTimeEnum;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,13 +71,13 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
             monthResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         }
 
-        table.addCell(getCategoryCell("Overall", overallResults, pdfGridTypeEnum));
-        table.addCell(getCategoryCell("This year", yearResults, pdfGridTypeEnum));
-        table.addCell(getCategoryCell("This month", monthResults, pdfGridTypeEnum));
+        table.addCell(getCategoryCell("Overall", overallResults, PdfGridTimeEnum.OVERALL, pdfGridTypeEnum));
+        table.addCell(getCategoryCell("This year", yearResults, PdfGridTimeEnum.YEAR, pdfGridTypeEnum));
+        table.addCell(getCategoryCell("This month", monthResults, PdfGridTimeEnum.MONTH, pdfGridTypeEnum));
         return table;
     }
 
-    private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTypeEnum pdfGridEnum) {
+    private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTypeEnum, PdfGridTypeEnum pdfGridEnum) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
 
@@ -120,7 +122,31 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
             Paragraph savingRatioTitle = getItemParagraph("Saving ratio");
             savingRatioTitle.setBold();
             alignmentTableLeft.add(savingRatioTitle);
-            BigDecimal savingRatio = BigDecimal.valueOf(33.50);
+
+            List<CategoryDto> profitResults = new ArrayList<>();
+            List<CategoryDto> profitExpenses = new ArrayList<>();
+
+            if (pdfGridTypeEnum.equals(PdfGridTimeEnum.OVERALL)) {
+                profitResults = categoryService.getMostProfitableCategories(dataService.findAll());
+                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll());
+            }
+            if (pdfGridTypeEnum.equals(PdfGridTimeEnum.YEAR)) {
+                profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            }
+            if (pdfGridTypeEnum.equals(PdfGridTimeEnum.MONTH)) {
+                profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            }
+
+            BigDecimal savingRatio = BigDecimal.ZERO;
+            BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal expensesAmount = profitExpenses.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
+
+            if (profitAmount.compareTo(expensesAmountReversed) > 0) {
+                savingRatio = expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+            }
 
             Paragraph savingRatioParagraph = getItemParagraph(NumberUtils.formatPercentage(savingRatio));
             savingRatioParagraph.setBold();
