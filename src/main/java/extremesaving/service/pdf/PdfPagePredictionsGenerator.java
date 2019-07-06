@@ -8,9 +8,11 @@ import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
+import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.service.CalculationService;
+import extremesaving.service.CategoryService;
 import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
 import extremesaving.util.DateUtils;
@@ -18,6 +20,7 @@ import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +30,7 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
     private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
+    private CategoryService categoryService;
 
     @Override
     public void generate(Document document) {
@@ -46,29 +50,50 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
             Paragraph titleParagraph = new Paragraph("Tip of the day");
             titleParagraph.setBold();
+            titleParagraph.setTextAlignment(TextAlignment.CENTER);
             document.add(titleParagraph);
-            document.add(getItemParagraph("You get to be more creative!: When you have set limits on how much you can spend you’ll be more creative about how you go out and have fun.  Instead of an expensive dinner and movie out, why not a bike ride and a picnic at the park!"));
+            Paragraph tipOfTheDay = getItemParagraph("You get to be more creative!: When you have set limits on how much you can spend you’ll be more creative about how you go out and have fun.\nInstead of an expensive dinner and movie out, why not a bike ride and a picnic at the park!");
+            tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
+            document.add(tipOfTheDay);
+
+            List<CategoryDto> categoryDtos = categoryService.getCategories(dataModels);
+            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonTransferResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList());
+            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonTransferResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
+            CategoryDto expensiveCategoryDto = expensiveCategoryDtos.get(NumberUtils.getRandom(0, expensiveCategoryDtos.size() - 1));
+            CategoryDto profitableCategoryDto = profitableCategoryDtos.get(NumberUtils.getRandom(0, profitableCategoryDtos.size() - 1));
+
+            List<BigDecimal> categoryPercentages = Arrays.asList(BigDecimal.ONE, BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4), BigDecimal.valueOf(5), BigDecimal.valueOf(10), BigDecimal.valueOf(15), BigDecimal.valueOf(20), BigDecimal.valueOf(25));
+            BigDecimal expensiveCategoryPercentage = categoryPercentages.get(NumberUtils.getRandom(0, categoryPercentages.size() - 1));
+            BigDecimal profitableCategoryPercentage = categoryPercentages.get(NumberUtils.getRandom(0, categoryPercentages.size() - 1));
+
+            List<Integer> years = Arrays.asList(1, 1, 2, 3, 4, 5, 10, 15, 20);
+            Integer mostProfitableCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
+            Integer mostExpensiveCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
 
             StringBuilder text = new StringBuilder();
-            text.append("If you reduce category ")
-                    .append("[random expense category]")
-                    .append(" expenses with ")
-                    .append("[random between 1%,2%,3%,25%]")
+            text.append("If you reduce category expenses '")
+                    .append(expensiveCategoryDto.getName())
+                    .append("' with ")
+                    .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
                     .append(" you should save about ")
                     .append("€ 5 000.00")
                     .append(" in ")
-                    .append("[random between 5,10,15,20] ")
-                    .append("years.")
+                    .append(mostExpensiveCategoryYears)
+                    .append(" years.")
                     .append("\n");
-            text.append("If you increase category ")
-                    .append("[random income category]")
-                    .append(" incomes  with ")
-                    .append("[random between 1%,2%,3%,25%] ")
-                    .append("you should save ")
+            text.append("If you increase category incomes '")
+                    .append(profitableCategoryDto.getName())
+                    .append("' with ")
+                    .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
+                    .append(" you should save about ")
                     .append("€ 5 000.00 EUR")
-                    .append(" in 5,10,15,20] years.");
+                    .append(" in ")
+                    .append(mostProfitableCategoryYears)
+                    .append(" years.");
 
-            document.add(getItemParagraph(text.toString()));
+            Paragraph categoryParagraph = getItemParagraph(text.toString());
+            categoryParagraph.setTextAlignment(TextAlignment.CENTER);
+            document.add(categoryParagraph);
             document.add(getItemParagraph("\n"));
 
             Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
@@ -140,5 +165,9 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
     public void setPredictionService(PredictionService predictionService) {
         this.predictionService = predictionService;
+    }
+
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 }

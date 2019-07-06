@@ -2,14 +2,19 @@ package extremesaving.service.chart;
 
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.service.ChartDataService;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYSplineRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+
+import static com.itextpdf.kernel.pdf.PdfName.Title;
 
 public class FutureLineChartGenerator implements ChartGenerator {
 
@@ -18,12 +23,14 @@ public class FutureLineChartGenerator implements ChartGenerator {
     @Override
     public void generateChartPng() {
         try {
-            JFreeChart lineChart = ChartFactory.createLineChart(
-                    "title ...",
-                    "Years", "Number of Schools",
-                    createDataset(),
-                    PlotOrientation.VERTICAL,
-                    true, true, false);
+//            JFreeChart lineChart = ChartFactory.createLineChart(
+//                    "title ...",
+//                    "Years", "Number of Schools",
+//                    createDataset(),
+//                    PlotOrientation.VERTICAL,
+//                    true, true, false);
+
+            JFreeChart lineChart = lala();
 
             BufferedImage objBufferedImage = lineChart.createBufferedImage(760, 600);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
@@ -57,6 +64,22 @@ public class FutureLineChartGenerator implements ChartGenerator {
         dataset.addValue(300, "Result", "2019");
         return dataset;
     }
+
+    private JFreeChart lala() {
+        XYSeries series = new XYSeries(Title);
+        for (int i = 0; i <= 10; i++) {
+            series.add(i, Math.pow(2, i));
+        }
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+        NumberAxis domain = new NumberAxis("x");
+        NumberAxis range = new NumberAxis("f(x)");
+        XYSplineRenderer r = new XYSplineRenderer(3);
+        XYPlot xyplot = new XYPlot(dataset, domain, range, r);
+        JFreeChart chart = new JFreeChart(xyplot);
+        return chart;
+    }
+
 
     public void setChartDataService(ChartDataService chartDataService) {
         this.chartDataService = chartDataService;

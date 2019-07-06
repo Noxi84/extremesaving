@@ -1,6 +1,7 @@
 package extremesaving.util;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 public final class NumberUtils {
 
@@ -17,5 +18,9 @@ public final class NumberUtils {
 
     public static String formatPercentage(BigDecimal val) {
         return roundOffTo2DecPlaces(val) + "%";
+    }
+
+    public static int getRandom(int min, int max) {
+        return new Random().nextInt(max - min + 1) + min;
     }
 }
