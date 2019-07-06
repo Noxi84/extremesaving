@@ -4,6 +4,7 @@ public class ExtremeSavingConstants {
 
     public static final String DATA_CSV = "/home/kris/Dropbox/extremesaving/data.csv";
     public static final String DATA_CSV_DATE_FORMAT = "d/M/yyyy";
+    public static final String DATA_CSV_DATE_FORMAT2 = "d-M-yyyy";
     public static final String CSV_SPLIT_BY = ",";
 
     public static final String PDF_FILE_NAME = "/home/kris/Dropbox/extremesaving/report.pdf";

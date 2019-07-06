@@ -91,7 +91,7 @@ public class PdfPageItemGridGenerator implements PdfPageGenerator {
             if (counter >= maxCount) {
                 break;
             }
-            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(dataModel.getDate()) + " " + StringUtils.abbreviate(dataModel.getDescription(), 30)));
+            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(dataModel.getDate()) + " " + StringUtils.abbreviate(dataModel.getDescription(), 23)));
             alignmentTableRight1.add(getItemParagraph(NumberUtils.formatNumber(dataModel.getValue())));
         }
 

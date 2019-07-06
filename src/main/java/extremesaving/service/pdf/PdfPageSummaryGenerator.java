@@ -78,19 +78,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableLeft.add(getItemParagraph("Total items"));
         alignmentTableCenter.add(getItemParagraph(":"));
         alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
-
-        alignmentTableLeft.add(getItemParagraph("\n"));
-        alignmentTableCenter.add(getItemParagraph("\n"));
-        alignmentTableRight.add(getItemParagraph("\n"));
-
-        alignmentTableLeft.add(getItemParagraph("Total incomes"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance())));
-
-        alignmentTableLeft.add(getItemParagraph("Total expenses"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance())));
-
+        
         alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));

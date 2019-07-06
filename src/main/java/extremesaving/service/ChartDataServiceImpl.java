@@ -33,13 +33,25 @@ public class ChartDataServiceImpl implements ChartDataService {
         List<DataModel> dataModels = dataService.findAll().stream()
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
-        return dataService.getMonthlyResults(dataModels);
+        Map<Integer, MiniResultDto> results = dataService.getMonthlyResults(dataModels);
+        for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
+            if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
+                result.getValue().setResult(BigDecimal.ZERO);
+            }
+        }
+        return results;
     }
 
     @Override
     public Map<Integer, MiniResultDto> getYearlyResults() {
         List<DataModel> dataModels = dataService.findAll();
+
         Map<Integer, MiniResultDto> yearlyResults = dataService.getYearlyResults(dataModels);
+        for (Map.Entry<Integer, MiniResultDto> result : yearlyResults.entrySet()) {
+            if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
+                result.getValue().setResult(BigDecimal.ZERO);
+            }
+        }
 
         Calendar calendar = Calendar.getInstance();
         addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 11);

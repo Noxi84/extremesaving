@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataDaoImpl implements DataDao {
@@ -66,12 +67,21 @@ public class DataDaoImpl implements DataDao {
         String category = lineSplit[3];
         String description = lineSplit.length >= 5 ? lineSplit[4] : "";
 
+        Date dateResult = null;
         try {
-            dataModel.setDate(new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).parse(date));
+            dateResult = new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).parse(date);
         } catch (ParseException e) {
+            // Ignore
+        }
+        try {
+            dateResult = new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT2).parse(date);
+        } catch (ParseException e) {
+            // Ignore
+        }
+        if (dateResult == null) {
             throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + ExtremeSavingConstants.DATA_CSV_DATE_FORMAT + "'.");
         }
-
+        dataModel.setDate(dateResult);
         dataModel.setAccount(account);
         dataModel.setValue((new BigDecimal(value)));
         dataModel.setCategory(category);
