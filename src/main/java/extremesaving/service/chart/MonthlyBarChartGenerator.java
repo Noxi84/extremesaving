@@ -26,7 +26,7 @@ public class MonthlyBarChartGenerator implements ChartGenerator {
             Map<Integer, MiniResultDto> monthlyResults = chartDataService.getMonthlyResults();
 
             JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(monthlyResults), PlotOrientation.VERTICAL, true, false, false);
-            BufferedImage objBufferedImage = barChart.createBufferedImage(600, 370);
+            BufferedImage objBufferedImage = barChart.createBufferedImage(760, 600);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
             ImageIO.write(objBufferedImage, "png", bas);
             byte[] byteArray = bas.toByteArray();
