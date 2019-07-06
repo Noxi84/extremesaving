@@ -33,10 +33,6 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
         try {
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            Paragraph title = new Paragraph("Prediction report");
-            title.setBold();
-            document.add(title);
-
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
             ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList()));
@@ -48,14 +44,16 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
             BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
 
-            document.add(getItemParagraph("Tip of the day", true));
-            document.add(getItemParagraph("Do you really need a fridge? Having no fridge makes you really conscious of what you need & what you really don’t..& what a great way to live I say. Is the convenience REAL, or just habitual? Remember that this was one of the selling points drummed into us to get us to buy fridges. Keep in mind that lettuces, broccoli, cauliflower, and herbs (basically anything with a stem) will store incredibly well if the end of the stem is placed in water (just the tip of the stem should be submerged). You can also create a cool space in the basement to store your food."));
+            Paragraph titleParagraph = new Paragraph("Tip of the day");
+            titleParagraph.setBold();
+            document.add(titleParagraph);
+            document.add(getItemParagraph("You get to be more creative!: When you have set limits on how much you can spend you’ll be more creative about how you go out and have fun.  Instead of an expensive dinner and movie out, why not a bike ride and a picnic at the park!"));
 
             StringBuilder text = new StringBuilder();
             text.append("If you reduce category ")
                     .append("[random expense category]")
                     .append(" expenses with ")
-                    .append("[random between 1%,2%,3%,4%,5%,10%,15%20%,25%]")
+                    .append("[random between 1%,2%,3%,25%]")
                     .append(" you should save about ")
                     .append("€ 5 000.00")
                     .append(" in ")
@@ -65,12 +63,13 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             text.append("If you increase category ")
                     .append("[random income category]")
                     .append(" incomes  with ")
-                    .append("[random between 1%,2%,3%,4%,5%,10%,15%20%,25%] ")
+                    .append("[random between 1%,2%,3%,25%] ")
                     .append("you should save ")
                     .append("€ 5 000.00 EUR")
                     .append(" in 5,10,15,20] years.");
 
             document.add(getItemParagraph(text.toString()));
+            document.add(getItemParagraph("\n"));
 
             Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
                     .append(NumberUtils.formatNumber(resultDto.getResult()))
