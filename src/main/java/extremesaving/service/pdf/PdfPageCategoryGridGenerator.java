@@ -144,7 +144,9 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
             BigDecimal expensesAmount = profitExpenses.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
             BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
 
-            if (profitAmount.compareTo(expensesAmountReversed) > 0) {
+            if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
+                savingRatio = BigDecimal.valueOf(100);
+            } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
                 savingRatio = expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
             }
 

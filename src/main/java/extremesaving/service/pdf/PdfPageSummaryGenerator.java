@@ -7,6 +7,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
@@ -47,16 +48,20 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     private Cell getBalanceCell() {
         Cell balanceCell = new Cell();
         balanceCell.setBorder(Border.NO_BORDER);
+        balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
+        balanceCell.setWidth(400);
         Paragraph summaryTitle = new Paragraph("Summary");
         summaryTitle.setBold();
         balanceCell.add(summaryTitle);
+        balanceCell.add(getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
 
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
         alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
+        alignmentTableLeft.setPaddingLeft(30);
 
         Cell alignmentTableCenter = new Cell();
         alignmentTableCenter.setBorder(Border.NO_BORDER);
@@ -78,7 +83,7 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
         alignmentTableLeft.add(getItemParagraph("Total items"));
         alignmentTableCenter.add(getItemParagraph(":"));
         alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
-        
+
         alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph("\n"));
@@ -113,6 +118,8 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     private Cell getChartCell() throws MalformedURLException {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
+        chartCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        chartCell.setTextAlignment(TextAlignment.CENTER.CENTER);
         Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
         accountPieImage.setWidth(350);
         accountPieImage.setHeight(200);
@@ -123,10 +130,13 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
     private Cell getAccountsCell() {
         Cell accountsCell = new Cell();
         accountsCell.setBorder(Border.NO_BORDER);
+        accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
+        accountsCell.setWidth(400);
         Paragraph accountsTitle = new Paragraph("Accounts");
         accountsTitle.setBold();
         accountsCell.add(accountsTitle);
+        accountsCell.add(getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
         Cell alignmentTableLeft = new Cell();
@@ -167,9 +177,13 @@ public class PdfPageSummaryGenerator implements PdfPageGenerator {
             alignmentTableCenter.add(getItemParagraph(" : "));
             alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
-
+        alignmentTableLeft.add(getItemParagraph("\n"));
         alignmentTableLeft.add(getItemParagraph("Total result", true));
+
+        alignmentTableCenter.add(getItemParagraph("\n"));
         alignmentTableCenter.add(getItemParagraph(":", true));
+
+        alignmentTableRight.add(getItemParagraph("\n"));
         alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
 
         alignmentTable.addCell(alignmentTableLeft);
