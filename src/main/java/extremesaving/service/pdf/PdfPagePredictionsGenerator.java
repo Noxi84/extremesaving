@@ -48,6 +48,9 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
             BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
 
+            document.add(getItemParagraph("Tip of the day", true));
+            document.add(getItemParagraph("Do you really need a fridge? Having no fridge makes you really conscious of what you need & what you really don’t..& what a great way to live I say. Is the convenience REAL, or just habitual? Remember that this was one of the selling points drummed into us to get us to buy fridges. Keep in mind that lettuces, broccoli, cauliflower, and herbs (basically anything with a stem) will store incredibly well if the end of the stem is placed in water (just the tip of the stem should be submerged). You can also create a cool space in the basement to store your food."));
+
             StringBuilder text = new StringBuilder();
             text.append("If you reduce category ")
                     .append("[random expense category]")
@@ -57,7 +60,8 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
                     .append("€ 5 000.00")
                     .append(" in ")
                     .append("[random between 5,10,15,20] ")
-                    .append("years.");
+                    .append("years.")
+                    .append("\n");
             text.append("If you increase category ")
                     .append("[random income category]")
                     .append(" incomes  with ")
@@ -65,18 +69,19 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
                     .append("you should save ")
                     .append("€ 5 000.00 EUR")
                     .append(" in 5,10,15,20] years.");
-            text.append("\n");
-            text.append("With a current total budget of ")
+
+            document.add(getItemParagraph(text.toString()));
+
+            Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
                     .append(NumberUtils.formatNumber(resultDto.getResult()))
                     .append(", an average income of ")
                     .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyIncome()))
                     .append(" per day and, an average expense of ")
                     .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyExpense()))
-                    .append(" per day and an inflation of 3% :");
-            text.append("\n");
-
-            document.add(getItemParagraph(text.toString()));
-            document.add(getItemParagraph("\n"));
+                    .append(" per day and an inflation of 3% :").toString());
+            itemParagraph.setTextAlignment(TextAlignment.CENTER);
+            itemParagraph.setBold();
+            document.add(itemParagraph);
 
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
@@ -86,9 +91,10 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             chartCell1.setTextAlignment(TextAlignment.CENTER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.HISTORY_LINE_CHART_IMAGE_FILE));
             monthlyBarChartImage.setWidth(380);
-            monthlyBarChartImage.setHeight(285);
+            monthlyBarChartImage.setHeight(300);
             chartCell1.add(getItemParagraph("You could live financially free, without any income for..."));
             chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+            chartCell1.add(getItemParagraph("\n"));
             chartCell1.add(monthlyBarChartImage);
 
             Cell chartCell2 = new Cell();
@@ -96,9 +102,10 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             chartCell2.setTextAlignment(TextAlignment.CENTER);
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
             yearlyBarChartImage.setWidth(380);
-            yearlyBarChartImage.setHeight(285);
-            chartCell2.add(getItemParagraph( "If you keep up your average daily result, you should have about..."));
+            yearlyBarChartImage.setHeight(300);
+            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about..."));
             chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
+            chartCell2.add(getItemParagraph("\n"));
             chartCell2.add(yearlyBarChartImage);
 
             table.addCell(chartCell1);

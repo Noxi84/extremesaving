@@ -37,7 +37,7 @@ public class HistoryLineChartGenerator implements ChartGenerator {
 
             JFreeChart lineChart = lala();
 
-            BufferedImage objBufferedImage = lineChart.createBufferedImage(600, 370);
+            BufferedImage objBufferedImage = lineChart.createBufferedImage(760, 600);
             ByteArrayOutputStream bas = new ByteArrayOutputStream();
             ImageIO.write(objBufferedImage, "png", bas);
             byte[] byteArray = bas.toByteArray();
