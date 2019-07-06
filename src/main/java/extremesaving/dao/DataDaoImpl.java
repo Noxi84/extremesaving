@@ -83,7 +83,15 @@ public class DataDaoImpl implements DataDao {
         }
         dataModel.setDate(dateResult);
         dataModel.setAccount(account);
-        dataModel.setValue((new BigDecimal(value)));
+        try {
+            BigDecimal newValue = new BigDecimal(value);
+            dataModel.setValue(newValue);
+        } catch (Exception ex) {
+            System.out.println("Unable to parse " + value + " for date " + dateResult + " and description " + description);
+            ex.printStackTrace();
+            throw ex;
+        }
+
         dataModel.setCategory(category);
         dataModel.setDescription(description);
 
