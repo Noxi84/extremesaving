@@ -1,5 +1,6 @@
 package extremesaving.service;
 
+import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
@@ -8,14 +9,43 @@ import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PredictionServiceImpl implements PredictionService {
 
     private DataService dataService;
     private CalculationService calculationService;
     private CategoryService categoryService;
+
+    @Override
+    public CategoryDto getRandomExpensiveCategory() {
+        List<CategoryDto> categoryDtos = categoryService.getCategories(dataService.findAll());
+        Calendar lastYear = Calendar.getInstance();
+        List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream()
+                .filter(categoryDto -> !categoryDto.equals("Transfer"))
+                .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0)
+                .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
+                .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
+                .collect(Collectors.toList());
+        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 10)));
+    }
+
+    @Override
+    public CategoryDto getRandomProfitCategory() {
+        List<CategoryDto> categoryDtos = categoryService.getCategories(dataService.findAll());
+        Calendar lastYear = Calendar.getInstance();
+        lastYear.add(Calendar.YEAR, -1);
+        List<CategoryDto> profitableCategoryDtos = categoryDtos.stream()
+                .filter(categoryDto -> !categoryDto.equals("Transfer"))
+                .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
+                .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
+                .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
+                .collect(Collectors.toList());
+        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 10)));
+    }
 
     @Override
     public Long getSurvivalDays() {

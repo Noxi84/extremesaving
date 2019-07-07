@@ -23,7 +23,6 @@ import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
@@ -48,19 +47,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
             document.add(tipOfTheDay);
 
-            List<CategoryDto> categoryDtos = categoryService.getCategories(dataModels);
-            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream()
-                    .filter(categoryDto -> !categoryDto.equals("Transfer"))
-                    .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0)
-                    .collect(Collectors.toList());
-            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream()
-                    .filter(categoryDto -> !categoryDto.equals("Transfer"))
-                    .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
-                    .collect(Collectors.toList());
-
-            // TODO KRIS: sort expensiveCategoryDtos + profitableCategoryDtos by lastItemAdded date + take random of last 10 category-results
-            CategoryDto expensiveCategoryDto = expensiveCategoryDtos.get(NumberUtils.getRandom(0, expensiveCategoryDtos.size() - 1));
-            CategoryDto profitableCategoryDto = profitableCategoryDtos.get(NumberUtils.getRandom(0, profitableCategoryDtos.size() - 1));
+            CategoryDto expensiveCategoryDto = predictionService.getRandomExpensiveCategory();
+            CategoryDto profitableCategoryDto = predictionService.getRandomProfitCategory();
 
             List<BigDecimal> categoryPercentages = Arrays.asList(BigDecimal.ONE, BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4), BigDecimal.valueOf(5), BigDecimal.valueOf(10), BigDecimal.valueOf(15), BigDecimal.valueOf(20), BigDecimal.valueOf(25));
             BigDecimal expensiveCategoryPercentage = categoryPercentages.get(NumberUtils.getRandom(0, categoryPercentages.size() - 1));
