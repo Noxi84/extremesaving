@@ -1,15 +1,14 @@
 package extremesaving;
 
-import extremesaving.service.pdf.PdfService;
-import extremesaving.service.chart.ChartService;
+import extremesaving.facade.ChartFacade;
+import extremesaving.facade.PdfFacade;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 
-    private PdfService pdfService;
-    private ChartService chartService;
-
+    private PdfFacade pdfFacade;
+    private ChartFacade chartFacade;
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/applicationContext*.xml");
@@ -18,15 +17,15 @@ public class Main {
     }
 
     private void start() {
-        chartService.generateCharts();
-        pdfService.generatePdf();
+        chartFacade.generateCharts();
+        pdfFacade.generatePdf();
     }
 
-    public void setPdfService(PdfService pdfService) {
-        this.pdfService = pdfService;
+    public void setPdfFacade(PdfFacade pdfFacade) {
+        this.pdfFacade = pdfFacade;
     }
 
-    public void setChartService(ChartService chartService) {
-        this.chartService = chartService;
+    public void setChartFacade(ChartFacade chartFacade) {
+        this.chartFacade = chartFacade;
     }
 }

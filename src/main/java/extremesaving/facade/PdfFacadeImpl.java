@@ -1,14 +1,15 @@
-package extremesaving.service.pdf;
+package extremesaving.facade;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import extremesaving.constant.ExtremeSavingConstants;
+import extremesaving.service.pdf.PdfPageGenerator;
 
 import java.io.FileNotFoundException;
 
-public class DefaultPdfService implements PdfService {
+public class PdfFacadeImpl implements PdfFacade {
 
     private PdfPageGenerator pdfPageSummaryGenerator;
     private PdfPageGenerator pdfPageMonthYearGenerator;

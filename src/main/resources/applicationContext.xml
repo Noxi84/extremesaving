@@ -4,8 +4,8 @@
 <beans>
     <!--Main-->
     <bean id="main" class="extremesaving.Main">
-        <property name="pdfService" ref="pdfService"/>
-        <property name="chartService" ref="chartService"/>
+        <property name="pdfFacade" ref="pdfFacade"/>
+        <property name="chartFacade" ref="chartFacade"/>
     </bean>
 
     <!--Service-->
@@ -29,7 +29,7 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="chartService" class="extremesaving.service.chart.ChartServiceImpl">
+    <bean id="chartFacade" class="extremesaving.facade.ChartFacadeImpl">
         <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
         <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
         <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
@@ -65,7 +65,7 @@
         <property name="predictionService" ref="predictionService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
-    <bean id="pdfService" class="extremesaving.service.pdf.DefaultPdfService">
+    <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
         <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
         <property name="pdfPageMonthYearGenerator" ref="pdfPageMonthYearGenerator"/>
         <property name="pdfPageCategoryGridGenerator" ref="pdfPageCategoryGridGenerator"/>

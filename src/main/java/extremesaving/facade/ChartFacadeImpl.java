@@ -1,6 +1,8 @@
-package extremesaving.service.chart;
+package extremesaving.facade;
 
-public class ChartServiceImpl implements ChartService {
+import extremesaving.service.chart.ChartGenerator;
+
+public class ChartFacadeImpl implements ChartFacade {
 
     private ChartGenerator accountPieChartGenerator;
     private ChartGenerator monthlyBarChartGenerator;
