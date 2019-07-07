@@ -21,11 +21,10 @@ import extremesaving.util.NumberUtils;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPagePredictionsService implements PdfPageService {
+public class PdfPageTipOfTheDayService implements PdfPageService {
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -68,8 +67,8 @@ public class PdfPagePredictionsService implements PdfPageService {
                     .append("' with ")
                     .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
                     .append(" you should save about ")
-                    .append("€ 5 000.00")
-                    .append(" in ")
+                    .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
+                    .append(" extra in ")
                     .append(mostExpensiveCategoryYears)
                     .append(" years.")
                     .append("\n");
@@ -78,8 +77,8 @@ public class PdfPagePredictionsService implements PdfPageService {
                     .append("' with ")
                     .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
                     .append(" you should save about ")
-                    .append("€ 5 000.00 EUR")
-                    .append(" in ")
+                    .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
+                    .append(" extra in ")
                     .append(mostProfitableCategoryYears)
                     .append(" years.");
 

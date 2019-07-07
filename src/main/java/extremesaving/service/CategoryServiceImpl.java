@@ -1,7 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.CategoryDto;
-import extremesaving.model.DataHideEnum;
+import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 
 import java.math.BigDecimal;
@@ -65,6 +65,21 @@ public class CategoryServiceImpl implements CategoryService {
         }
         Collections.sort(categoryDtos, Comparator.comparing(o -> o.getTotalResults().getResult()));
         return categoryDtos;
+    }
+
+    @Override
+    public BigDecimal calculateSavings(String categoryName, BigDecimal percentage, long numberOfDays) {
+        Set<DataModel> categoryData = dataService.findAll().stream()
+                .filter(dataModel -> dataModel.getCategory().equals(categoryName))
+                .collect(Collectors.toSet());
+        ResultDto resultDto = calculationService.getResults(categoryData);
+        BigDecimal averageDailyResult = resultDto.getAverageDailyResult();
+        BigDecimal averageDailyPredictionResult = averageDailyResult.multiply(percentage).divide(BigDecimal.valueOf(100));
+        BigDecimal predictionResult = averageDailyPredictionResult.multiply(BigDecimal.valueOf(numberOfDays));
+        if (predictionResult.compareTo(BigDecimal.ZERO) < 0) {
+            return predictionResult.multiply(BigDecimal.valueOf(-1));
+        }
+        return predictionResult;
     }
 
     public void setDataService(DataService dataService) {

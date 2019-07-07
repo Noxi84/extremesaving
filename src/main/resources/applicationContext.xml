@@ -61,7 +61,7 @@
     <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridService">
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsService">
+    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPageTipOfTheDayService">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
