@@ -25,12 +25,11 @@ public class PredictionServiceImpl implements PredictionService {
         List<CategoryDto> categoryDtos = categoryService.getCategories(dataService.findAll());
         Calendar lastYear = Calendar.getInstance();
         List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream()
-                .filter(categoryDto -> !categoryDto.equals("Transfer"))
                 .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0)
                 .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
                 .collect(Collectors.toList());
-        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 10)));
+        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 5)));
     }
 
     @Override
@@ -39,12 +38,11 @@ public class PredictionServiceImpl implements PredictionService {
         Calendar lastYear = Calendar.getInstance();
         lastYear.add(Calendar.YEAR, -1);
         List<CategoryDto> profitableCategoryDtos = categoryDtos.stream()
-                .filter(categoryDto -> !categoryDto.equals("Transfer"))
                 .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
                 .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
                 .collect(Collectors.toList());
-        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 10)));
+        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 5)));
     }
 
     @Override
