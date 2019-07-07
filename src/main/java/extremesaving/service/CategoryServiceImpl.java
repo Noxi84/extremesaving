@@ -39,12 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
             categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList())));
-            if (BigDecimal.ZERO.compareTo(categoryDto.getNonTransferResults().getResult()) < 0) {
+            if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) < 0) {
                 categoryDtos.add(categoryDto);
             }
         }
 
-        Collections.sort(categoryDtos, (o1, o2) -> o2.getNonTransferResults().getResult().compareTo(o1.getNonTransferResults().getResult()));
+        Collections.sort(categoryDtos, (o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()));
         return categoryDtos;
     }
 
@@ -58,11 +58,11 @@ public class CategoryServiceImpl implements CategoryService {
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
             categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList())));
-            if (BigDecimal.ZERO.compareTo(categoryDto.getNonTransferResults().getResult()) > 0) {
+            if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) > 0) {
                 categoryDtos.add(categoryDto);
             }
         }
-        Collections.sort(categoryDtos, Comparator.comparing(o -> o.getNonTransferResults().getResult()));
+        Collections.sort(categoryDtos, Comparator.comparing(o -> o.getTotalResults().getResult()));
         return categoryDtos;
     }
 

@@ -104,7 +104,7 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridEnum)) {
             for (CategoryDto categoryDto : categoryDtos) {
                 alignmentTableLeft.add(getItemParagraph(categoryDto.getName()));
-                alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(categoryDto.getNonTransferResults().getResult())));
+                alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult())));
             }
         }
 
@@ -112,7 +112,7 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
         Paragraph totalTitle = getItemParagraph("Total");
         totalTitle.setBold();
         alignmentTableLeft.add(totalTitle);
-        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
         Paragraph totalAmountParagraph = getItemParagraph(NumberUtils.formatNumber(totalAmount));
         totalAmountParagraph.setBold();
         alignmentTableRight.add(totalAmountParagraph);
@@ -124,24 +124,24 @@ public class PdfPageCategoryGridGenerator implements PdfPageGenerator {
             alignmentTableLeft.add(savingRatioTitle);
 
             List<CategoryDto> profitResults = new ArrayList<>();
-            List<CategoryDto> profitExpenses = new ArrayList<>();
+            List<CategoryDto> expensesResults = new ArrayList<>();
 
             if (pdfGridTypeEnum.equals(PdfGridTimeEnum.OVERALL)) {
                 profitResults = categoryService.getMostProfitableCategories(dataService.findAll());
-                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll());
+                expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll());
             }
             if (pdfGridTypeEnum.equals(PdfGridTimeEnum.YEAR)) {
                 profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+                expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
             }
             if (pdfGridTypeEnum.equals(PdfGridTimeEnum.MONTH)) {
                 profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-                profitExpenses = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+                expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
             }
 
             BigDecimal savingRatio = BigDecimal.ZERO;
-            BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-            BigDecimal expensesAmount = profitExpenses.stream().map(categoryDto -> categoryDto.getNonTransferResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal expensesAmount = expensesResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
             BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
 
             if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
