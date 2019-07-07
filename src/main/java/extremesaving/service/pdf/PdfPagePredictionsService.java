@@ -58,8 +58,8 @@ public class PdfPagePredictionsService implements PdfPageService {
             document.add(tipOfTheDay);
 
             List<CategoryDto> categoryDtos = categoryService.getCategories(dataModels);
-            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonTransferResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList());
-            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonTransferResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
+            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList());
+            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
             CategoryDto expensiveCategoryDto = expensiveCategoryDtos.get(NumberUtils.getRandom(0, expensiveCategoryDtos.size() - 1));
             CategoryDto profitableCategoryDto = profitableCategoryDtos.get(NumberUtils.getRandom(0, profitableCategoryDtos.size() - 1));
 

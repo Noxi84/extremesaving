@@ -26,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
             AccountDto accountDto = new AccountDto();
             accountDto.setName(account);
             accountDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getAccount().equals(account)).collect(Collectors.toList())));
-            accountDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getAccount().equals(account)).filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ACCOUNTS)).collect(Collectors.toList())));
+            accountDto.setNonHiddenResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getAccount().equals(account)).filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ACCOUNTS)).collect(Collectors.toList())));
             accountDtos.add(accountDto);
         }
         return accountDtos;

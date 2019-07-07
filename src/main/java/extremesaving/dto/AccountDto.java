@@ -4,7 +4,7 @@ public class AccountDto {
 
     private String name;
     private ResultDto totalResults;
-    private ResultDto nonTransferResults;
+    private ResultDto nonHiddenResults;
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class AccountDto {
         this.totalResults = totalResults;
     }
 
-    public ResultDto getNonTransferResults() {
-        return nonTransferResults;
+    public ResultDto getNonHiddenResults() {
+        return nonHiddenResults;
     }
 
-    public void setNonTransferResults(ResultDto nonTransferResults) {
-        this.nonTransferResults = nonTransferResults;
+    public void setNonHiddenResults(ResultDto nonHiddenResults) {
+        this.nonHiddenResults = nonHiddenResults;
     }
 }
