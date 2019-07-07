@@ -21,6 +21,7 @@ import extremesaving.util.NumberUtils;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +51,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             List<CategoryDto> categoryDtos = categoryService.getCategories(dataModels);
             List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList());
             List<CategoryDto> profitableCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
+
+            // TODO KRIS: sort expensiveCategoryDtos + profitableCategoryDtos by lastItemAdded date + take random of last 10 category-results
             CategoryDto expensiveCategoryDto = expensiveCategoryDtos.get(NumberUtils.getRandom(0, expensiveCategoryDtos.size() - 1));
             CategoryDto profitableCategoryDto = profitableCategoryDtos.get(NumberUtils.getRandom(0, profitableCategoryDtos.size() - 1));
 
@@ -115,30 +118,39 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
             chartCell2.setTextAlignment(TextAlignment.CENTER);
-            Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
-            yearlyBarChartImage.setWidth(380);
-            yearlyBarChartImage.setHeight(300);
 
+            if (NumberUtils.getRandom(0, 1) == 1 && resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+                // Prediction goal 1:
+                List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
+                BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
+                chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
+                chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
 
-            // TODO: select 1 of the 2 prediction goals and display only 1 random + show different chart data depending on goal-prediction choice
-            // Prediction goal 1:
-            List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
-            BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
-            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
-            chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+                chartCell2.add(getItemParagraph("\n"));
 
-            // Prediction goal 2:
-//            int predictionNumberOfDays = 5 * 365;
-//            Calendar predictionEndDate = Calendar.getInstance();
-//            predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
-//            predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
-//            predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
-//            BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
-//            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about ..."));
-//            chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
+                // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE
+                Image futureLineChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.GOAL_LINE_CHART_IMAGE_FILE));
+                futureLineChartImage.setWidth(380);
+                futureLineChartImage.setHeight(300);
+                chartCell2.add(futureLineChartImage);
+            } else {
+                // Prediction goal 2:
+                int predictionNumberOfDays = 5 * 365;
+                Calendar predictionEndDate = Calendar.getInstance();
+                predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
+                predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
+                predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
+                BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
+                chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about ..."));
+                chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
 
-            chartCell2.add(getItemParagraph("\n"));
-            chartCell2.add(yearlyBarChartImage);
+                chartCell2.add(getItemParagraph("\n"));
+
+                Image futureLineChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
+                futureLineChartImage.setWidth(380);
+                futureLineChartImage.setHeight(300);
+                chartCell2.add(futureLineChartImage);
+            }
 
             table.addCell(chartCell1);
             table.addCell(chartCell2);

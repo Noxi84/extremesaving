@@ -14,5 +14,6 @@ public class ExtremeSavingConstants {
     public static final String MONTHLY_BAR_CHART_IMAGE_FILE = "/tmp/month_barchart.png";
     public static final String HISTORY_LINE_CHART_IMAGE_FILE = "/tmp/history-linechart.png";
     public static final String FUTURE_LINE_CHART_IMAGE_FILE = "/tmp/future-linechart.png";
+    public static final String GOAL_LINE_CHART_IMAGE_FILE = "/tmp/future-linechart.png";
     public static final String YEARLY_BAR_CHART_IMAGE_FILE = "/tmp/year-barchart.png";
 }

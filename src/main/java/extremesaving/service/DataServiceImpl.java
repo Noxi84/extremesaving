@@ -4,7 +4,6 @@ import extremesaving.dao.DataDao;
 import extremesaving.dao.TipOfTheDayDao;
 import extremesaving.dto.ResultDto;
 import extremesaving.dto.MiniResultDto;
-import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
@@ -117,7 +116,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels) {
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ITEMSGRID_CATEGORIES))
+                .filter(dataModel -> !dataModel.getCategory().equals("Transfer"))
                 .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) < 0)
                 .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
                 .collect(Collectors.toList());
@@ -127,7 +126,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels) {
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ITEMSGRID_CATEGORIES))
+                .filter(dataModel -> !dataModel.getCategory().equals("Transfer"))
                 .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0)
                 .sorted(Comparator.comparing(DataModel::getValue))
                 .collect(Collectors.toList());
