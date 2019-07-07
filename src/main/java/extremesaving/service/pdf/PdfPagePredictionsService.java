@@ -53,7 +53,7 @@ public class PdfPagePredictionsService implements PdfPageService {
             titleParagraph.setBold();
             titleParagraph.setTextAlignment(TextAlignment.CENTER);
             document.add(titleParagraph);
-            Paragraph tipOfTheDay = getItemParagraph("You get to be more creative!: When you have set limits on how much you can spend you’ll be more creative about how you go out and have fun.\nInstead of an expensive dinner and movie out, why not a bike ride and a picnic at the park!");
+            Paragraph tipOfTheDay = getItemParagraph(predictionService.getTipOfTheDay());
             tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
             document.add(tipOfTheDay);
 

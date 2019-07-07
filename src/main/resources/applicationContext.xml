@@ -11,6 +11,7 @@
     <!--Service-->
     <bean id="dataService" class="extremesaving.service.DataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
+        <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
@@ -44,6 +45,7 @@
 
     <!--Dao-->
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
+    <bean id="tipOfTheDayDao" class="extremesaving.dao.TipOfTheDayDaoImpl"/>
 
     <!--Pdf-->
     <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryService">

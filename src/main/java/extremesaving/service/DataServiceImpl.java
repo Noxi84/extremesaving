@@ -1,10 +1,12 @@
 package extremesaving.service;
 
 import extremesaving.dao.DataDao;
+import extremesaving.dao.TipOfTheDayDao;
 import extremesaving.dto.ResultDto;
 import extremesaving.dto.MiniResultDto;
 import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
+import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class DataServiceImpl implements DataService {
 
     private DataDao dataDao;
+    private TipOfTheDayDao tipOfTheDayDao;
     private CalculationService calculationService;
 
     @Override
@@ -198,8 +201,17 @@ public class DataServiceImpl implements DataService {
         return yearlyResults;
     }
 
+    @Override
+    public List<TipOfTheDayModel> getTipOfTheDays() {
+        return tipOfTheDayDao.findAll();
+    }
+
     public void setDataDao(DataDao dataDao) {
         this.dataDao = dataDao;
+    }
+
+    public void setTipOfTheDayDao(TipOfTheDayDao tipOfTheDayDao) {
+        this.tipOfTheDayDao = tipOfTheDayDao;
     }
 
     public void setCalculationService(CalculationService calculationService) {

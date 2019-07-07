@@ -8,4 +8,6 @@ public interface PredictionService {
     Long getSurvivalDays();
 
     BigDecimal getPredictionAmount(Date endDate);
+
+    String getTipOfTheDay();
 }

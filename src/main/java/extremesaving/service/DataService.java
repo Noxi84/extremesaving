@@ -2,6 +2,7 @@ package extremesaving.service;
 
 import extremesaving.dto.MiniResultDto;
 import extremesaving.model.DataModel;
+import extremesaving.model.TipOfTheDayModel;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -34,4 +35,6 @@ public interface DataService {
     List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels);
 
     List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels);
+
+    List<TipOfTheDayModel> getTipOfTheDays();
 }

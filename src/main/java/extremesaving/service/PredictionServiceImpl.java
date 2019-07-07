@@ -3,7 +3,9 @@ package extremesaving.service;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
+import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -50,6 +52,12 @@ public class PredictionServiceImpl implements PredictionService {
             amount = amount.add(nonTransferResultDto.getAverageDailyResult());
         }
         return amount;
+    }
+
+    @Override
+    public String getTipOfTheDay() {
+        List<TipOfTheDayModel> tipOfTheDayModels = dataService.getTipOfTheDays();
+        return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
     }
 
     public void setDataService(DataService dataService) {

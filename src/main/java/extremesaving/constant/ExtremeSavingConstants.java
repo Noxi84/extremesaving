@@ -3,6 +3,7 @@ package extremesaving.constant;
 public class ExtremeSavingConstants {
 
     public static final String DATA_CSV = "/home/kris/Dropbox/extremesaving/data.csv";
+    public static final String TIPOFTHEDAY_CSV = "/home/kris/projects/extremesaving/src/main/resources/tips.csv";
     public static final String DATA_CSV_DATE_FORMAT = "d/M/yyyy";
     public static final String DATA_CSV_DATE_FORMAT2 = "d-M-yyyy";
     public static final String CSV_SPLIT_BY = ",";
