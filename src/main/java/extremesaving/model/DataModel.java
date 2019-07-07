@@ -52,6 +52,7 @@ public class DataModel {
     }
 
     public boolean isTransfer() {
-        return category.equalsIgnoreCase("Transfer");
+        return false;
+//        return category.equalsIgnoreCase("Transfer");
     }
 }

@@ -127,8 +127,19 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
             yearlyBarChartImage.setWidth(380);
             yearlyBarChartImage.setHeight(300);
-            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about..."));
-            chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
+
+
+            // TODO: select 1 of the 2 prediction goals and display only 1 random + show different chart data depending on goal-prediction choice
+            // Prediction goal 1:
+            List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
+            BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
+            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about." + NumberUtils.formatNumber(goalAmount) + " in... "));
+            chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+
+            // Prediction goal 2:
+//            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about ..."));
+//            chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
+
             chartCell2.add(getItemParagraph("\n"));
             chartCell2.add(yearlyBarChartImage);
 
