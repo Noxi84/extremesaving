@@ -77,14 +77,12 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
                     .append(" extra in ")
                     .append(mostProfitableCategoryYears)
-                    .append(" years.")
-                    .append("\n");
-            text.append("There are 45 items with category 'Appartement' and description 'Lening' with a total of € -123456 of expenses.");
+                    .append(" years.");
 
             Paragraph categoryParagraph = getItemParagraph(text.toString());
             categoryParagraph.setTextAlignment(TextAlignment.CENTER);
             document.add(categoryParagraph);
-//            document.add(getItemParagraph("\n"));
+            document.add(getItemParagraph("\n"));
 
             Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
                     .append(NumberUtils.formatNumber(resultDto.getResult()))

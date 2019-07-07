@@ -83,6 +83,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridEnum)) {
             Paragraph cellTitle = getItemParagraph(title);
+            cellTitle.setTextAlignment(TextAlignment.CENTER);
             cellTitle.setBold();
             cell.add(cellTitle);
         }

@@ -68,12 +68,13 @@ public class PdfPageItemGridService implements PdfPageService {
     }
 
     private Cell getItemCell(String title, List<ResultDto> results) {
-        Cell cell1 = new Cell();
-        cell1.setWidth(UnitValue.createPercentValue(33));
-        cell1.setBorder(Border.NO_BORDER);
+        Cell cell = new Cell();
+        cell.setWidth(UnitValue.createPercentValue(33));
+        cell.setBorder(Border.NO_BORDER);
         Paragraph cell1Title = getItemParagraph(title);
+        cell1Title.setTextAlignment(TextAlignment.CENTER);
         cell1Title.setBold();
-        cell1.add(cell1Title);
+        cell.add(cell1Title);
 
         Table alignmentTable1 = new Table(2);
         Cell alignmentTableLeft1 = new Cell();
@@ -99,9 +100,9 @@ public class PdfPageItemGridService implements PdfPageService {
         alignmentTable1.addCell(alignmentTableLeft1);
         alignmentTable1.addCell(alignmentTableRight1);
 
-        cell1.add(alignmentTable1);
+        cell.add(alignmentTable1);
 
-        return cell1;
+        return cell;
     }
 
     private Paragraph getItemParagraph(String text) {
