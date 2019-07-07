@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PredictionServiceImpl implements PredictionService {
 
@@ -42,7 +41,6 @@ public class PredictionServiceImpl implements PredictionService {
 
         ResultDto resultDto = calculationService.getResults(dataModels);
         BigDecimal amount = resultDto.getResult();
-//        BigDecimal inflation = nonTransferResultDto.getAverageDailyResult().multiply(BigDecimal.valueOf(3)).divide(BigDecimal.valueOf(100));
         Calendar cal = Calendar.getInstance();
         for (long i = 0; i < numberOfDays; i++) {
             cal.add(Calendar.DAY_OF_MONTH, 1);

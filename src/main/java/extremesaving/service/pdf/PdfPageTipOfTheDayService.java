@@ -49,8 +49,14 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             document.add(tipOfTheDay);
 
             List<CategoryDto> categoryDtos = categoryService.getCategories(dataModels);
-            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList());
-            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream().filter(categoryDto -> categoryDto.getNonHiddenResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
+            List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream()
+                    .filter(categoryDto -> !categoryDto.equals("Transfer"))
+                    .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0)
+                    .collect(Collectors.toList());
+            List<CategoryDto> profitableCategoryDtos = categoryDtos.stream()
+                    .filter(categoryDto -> !categoryDto.equals("Transfer"))
+                    .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
+                    .collect(Collectors.toList());
 
             // TODO KRIS: sort expensiveCategoryDtos + profitableCategoryDtos by lastItemAdded date + take random of last 10 category-results
             CategoryDto expensiveCategoryDto = expensiveCategoryDtos.get(NumberUtils.getRandom(0, expensiveCategoryDtos.size() - 1));
@@ -65,30 +71,32 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Integer mostExpensiveCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
 
             StringBuilder text = new StringBuilder();
-            text.append("If you reduce category expenses '")
+            text.append("Reducing expenses '")
                     .append(expensiveCategoryDto.getName())
                     .append("' with ")
                     .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
-                    .append(" you should save about ")
+                    .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
                     .append(" extra in ")
                     .append(mostExpensiveCategoryYears)
                     .append(" years.")
                     .append("\n");
-            text.append("If you increase category incomes '")
+            text.append("Increasing incomes '")
                     .append(profitableCategoryDto.getName())
                     .append("' with ")
                     .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
-                    .append(" you should save about ")
+                    .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
                     .append(" extra in ")
                     .append(mostProfitableCategoryYears)
-                    .append(" years.");
+                    .append(" years.")
+                    .append("\n");
+            text.append("There are 45 items with category 'Appartement' and description 'Lening' with a total of € -123456 of expenses.");
 
             Paragraph categoryParagraph = getItemParagraph(text.toString());
             categoryParagraph.setTextAlignment(TextAlignment.CENTER);
             document.add(categoryParagraph);
-            document.add(getItemParagraph("\n"));
+//            document.add(getItemParagraph("\n"));
 
             Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
                     .append(NumberUtils.formatNumber(resultDto.getResult()))
@@ -96,7 +104,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(NumberUtils.formatNumber(resultDto.getAverageDailyIncome()))
                     .append(" per day and, an average expense of ")
                     .append(NumberUtils.formatNumber(resultDto.getAverageDailyExpense()))
-                    .append(" per day and an inflation of 3% :").toString());
+                    .append(" per day :").toString());
             itemParagraph.setTextAlignment(TextAlignment.CENTER);
             itemParagraph.setBold();
             document.add(itemParagraph);
@@ -110,7 +118,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.HISTORY_LINE_CHART_IMAGE_FILE));
             monthlyBarChartImage.setWidth(380);
             monthlyBarChartImage.setHeight(300);
-            chartCell1.add(getItemParagraph("You could live financially free, without any income for..."));
+            chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
             chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
             chartCell1.add(getItemParagraph("\n"));
             chartCell1.add(monthlyBarChartImage);
