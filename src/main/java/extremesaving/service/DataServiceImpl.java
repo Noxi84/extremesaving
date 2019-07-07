@@ -3,6 +3,7 @@ package extremesaving.service;
 import extremesaving.dao.DataDao;
 import extremesaving.dto.ResultDto;
 import extremesaving.dto.MiniResultDto;
+import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
@@ -113,7 +114,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels) {
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ITEMSGRID_CATEGORIES))
                 .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) < 0)
                 .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
                 .collect(Collectors.toList());
@@ -123,7 +124,7 @@ public class DataServiceImpl implements DataService {
     @Override
     public List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels) {
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_ITEMSGRID_CATEGORIES))
                 .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0)
                 .sorted(Comparator.comparing(DataModel::getValue))
                 .collect(Collectors.toList());
@@ -147,7 +148,7 @@ public class DataServiceImpl implements DataService {
         monthlyResults.put(Calendar.DECEMBER, new MiniResultDto());
 
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_MONTHCHART_CATEGORIES))
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
 
@@ -173,7 +174,7 @@ public class DataServiceImpl implements DataService {
         Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
 
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.isTransfer())
+                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_YEARCHART_CATEGORIES))
                 .collect(Collectors.toList());
 
         for (DataModel dataModel : filteredDataModels) {

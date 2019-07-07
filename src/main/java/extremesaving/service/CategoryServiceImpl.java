@@ -1,6 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.CategoryDto;
+import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 
 import java.math.BigDecimal;
@@ -21,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
-            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList())));
+            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_CATEGORYGRID_CATEGORIES)).collect(Collectors.toList())));
             categoryDtos.add(categoryDto);
         }
 
@@ -38,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
-            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList())));
+            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_CATEGORYGRID_CATEGORIES)).collect(Collectors.toList())));
             if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) < 0) {
                 categoryDtos.add(categoryDto);
             }
@@ -57,7 +58,7 @@ public class CategoryServiceImpl implements CategoryService {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
-            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList())));
+            categoryDto.setNonTransferResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_CATEGORYGRID_CATEGORIES)).collect(Collectors.toList())));
             if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) > 0) {
                 categoryDtos.add(categoryDto);
             }

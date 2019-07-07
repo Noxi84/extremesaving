@@ -10,6 +10,7 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
+import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 import extremesaving.service.CalculationService;
 import extremesaving.service.CategoryService;
@@ -39,7 +40,7 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
 
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
-            ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList()));
+            ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES)).collect(Collectors.toList()));
 
             int predictionNumberOfDays = 5 * 365;
             Calendar predictionEndDate = Calendar.getInstance();

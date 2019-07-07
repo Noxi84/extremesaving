@@ -1,6 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.ResultDto;
+import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
@@ -20,7 +21,7 @@ public class PredictionServiceImpl implements PredictionService {
     public Long getSurvivalDays() {
         List<DataModel> dataModels = dataService.findAll();
         ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList()));
+        ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES)).collect(Collectors.toList()));
 
         BigDecimal amountLeft = resultDto.getResult();
 
@@ -40,7 +41,7 @@ public class PredictionServiceImpl implements PredictionService {
         long numberOfDays = DateUtils.daysBetween(endDate, new Date());
 
         ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.isTransfer()).collect(Collectors.toList()));
+        ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES)).collect(Collectors.toList()));
         BigDecimal amount = resultDto.getResult();
 //        BigDecimal inflation = nonTransferResultDto.getAverageDailyResult().multiply(BigDecimal.valueOf(3)).divide(BigDecimal.valueOf(100));
         Calendar cal = Calendar.getInstance();

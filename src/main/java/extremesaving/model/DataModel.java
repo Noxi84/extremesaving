@@ -2,6 +2,7 @@ package extremesaving.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Map;
 
 public class DataModel {
 
@@ -10,6 +11,7 @@ public class DataModel {
     private String account;
     private String category;
     private String description;
+    private Map<DataHideEnum, Boolean> hide;
 
     public Date getDate() {
         return date;
@@ -51,8 +53,11 @@ public class DataModel {
         this.description = description;
     }
 
-    public boolean isTransfer() {
-        return false;
-//        return category.equalsIgnoreCase("Transfer");
+    public Map<DataHideEnum, Boolean> getHide() {
+        return hide;
+    }
+
+    public void setHide(Map<DataHideEnum, Boolean> hide) {
+        this.hide = hide;
     }
 }

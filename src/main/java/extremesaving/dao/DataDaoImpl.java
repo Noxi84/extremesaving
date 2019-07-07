@@ -1,6 +1,7 @@
 package extremesaving.dao;
 
 import extremesaving.constant.ExtremeSavingConstants;
+import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 
 import java.io.BufferedReader;
@@ -10,9 +11,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
+import static extremesaving.model.DataHideEnum.*;
 
 public class DataDaoImpl implements DataDao {
 
@@ -94,7 +95,25 @@ public class DataDaoImpl implements DataDao {
 
         dataModel.setCategory(category);
         dataModel.setDescription(description);
+        dataModel.setHide(getHideValue(dataModel));
 
         return dataModel;
+    }
+
+    private Map<DataHideEnum, Boolean> getHideValue(DataModel dataModel) {
+        Map<DataHideEnum, Boolean> result = new HashMap<>();
+//        boolean isHide = dataModel.getCategory().equals("Transfer");
+        boolean isHide = false;
+        // TODO: define correct hide status based on value from settings.ini and given dataModel
+
+        result.put(HIDE_SUMMARY_WORSTBEST_MONTHYEAR, isHide);
+        result.put(HIDE_SUMMARY_WORST_BEST_YEAR, isHide);
+        result.put(HIDE_ACCOUNTS, isHide);
+        result.put(HIDE_MONTHCHART_CATEGORIES, isHide);
+        result.put(HIDE_YEARCHART_CATEGORIES, isHide);
+        result.put(HIDE_CATEGORYGRID_CATEGORIES, isHide);
+        result.put(HIDE_ITEMSGRID_CATEGORIES, isHide);
+        result.put(HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES, isHide);
+        return result;
     }
 }

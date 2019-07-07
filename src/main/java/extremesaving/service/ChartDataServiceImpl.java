@@ -74,7 +74,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Integer, BigDecimal> getYearPredictions() {
         Map<Integer, BigDecimal> yearPredictions = new HashMap<>();
 
-//        ResultDto resultDto = getResults(dataModels.stream().filter(dataModel -> !dataModel.getCategory().isTransfer()).collect(Collectors.toSet()));
+//        ResultDto resultDto = getResults(dataModels.stream().filter(dataModel -> !dataModel.getCategory().getHide()).collect(Collectors.toSet()));
 //        ResultDto resultDto = calculationService.getResults(dataModels.stream().collect(Collectors.toSet()));
 //        BigDecimal avgDailyIncome = calculationService.calculateAverageDaily(resultDto, CalculationEnum.INCOME);
 //        BigDecimal avgDailyExpense = calculationService.calculateAverageDaily(resultDto, CalculationEnum.EXPENSE);
