@@ -151,7 +151,6 @@ public class DataServiceImpl implements DataService {
         monthlyResults.put(Calendar.DECEMBER, new MiniResultDto());
 
         List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_MONTHCHART_CATEGORIES))
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .collect(Collectors.toList());
 
@@ -176,11 +175,7 @@ public class DataServiceImpl implements DataService {
     public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels) {
         Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
 
-        List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_YEARCHART_CATEGORIES))
-                .collect(Collectors.toList());
-
-        for (DataModel dataModel : filteredDataModels) {
+        for (DataModel dataModel : dataModels) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataModel.getDate());
             int year = cal.get(Calendar.YEAR);

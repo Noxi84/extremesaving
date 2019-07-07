@@ -4,7 +4,6 @@ public class AccountDto {
 
     private String name;
     private ResultDto totalResults;
-    private ResultDto nonHiddenResults;
 
     public String getName() {
         return name;
@@ -20,13 +19,5 @@ public class AccountDto {
 
     public void setTotalResults(ResultDto totalResults) {
         this.totalResults = totalResults;
-    }
-
-    public ResultDto getNonHiddenResults() {
-        return nonHiddenResults;
-    }
-
-    public void setNonHiddenResults(ResultDto nonHiddenResults) {
-        this.nonHiddenResults = nonHiddenResults;
     }
 }

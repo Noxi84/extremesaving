@@ -35,8 +35,7 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
                     continue;
                 }
 
-                String[] lineSplit = line.split(ExtremeSavingConstants.CSV_SPLIT_BY);
-                TipOfTheDayModel dataModel = handeLines(lineSplit);
+                TipOfTheDayModel dataModel = handeLines(line);
                 dataModels.add(dataModel);
             }
         } catch (FileNotFoundException e) {
@@ -55,10 +54,9 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
         return dataModels;
     }
 
-    private TipOfTheDayModel handeLines(String[] lineSplit) {
+    private TipOfTheDayModel handeLines(String line) {
         TipOfTheDayModel dataModel = new TipOfTheDayModel();
-        String text = lineSplit[0];
-        dataModel.setText(text);
+        dataModel.setText(line);
         return dataModel;
     }
 }

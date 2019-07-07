@@ -10,7 +10,6 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataHideEnum;
 import extremesaving.model.DataModel;
 import extremesaving.service.CalculationService;
 import extremesaving.service.CategoryService;
@@ -40,14 +39,6 @@ public class PdfPagePredictionsService implements PdfPageService {
 
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
-            ResultDto nonTransferResultDto = calculationService.getResults(dataModels.stream().filter(dataModel -> !dataModel.getHide().get(DataHideEnum.HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES)).collect(Collectors.toList()));
-
-            int predictionNumberOfDays = 5 * 365;
-            Calendar predictionEndDate = Calendar.getInstance();
-            predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
-            predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
-            predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
-            BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
 
             Paragraph titleParagraph = new Paragraph("Tip of the day");
             titleParagraph.setBold();
@@ -100,9 +91,9 @@ public class PdfPagePredictionsService implements PdfPageService {
             Paragraph itemParagraph = getItemParagraph(new StringBuilder().append("With a current total budget of ")
                     .append(NumberUtils.formatNumber(resultDto.getResult()))
                     .append(", an average income of ")
-                    .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyIncome()))
+                    .append(NumberUtils.formatNumber(resultDto.getAverageDailyIncome()))
                     .append(" per day and, an average expense of ")
-                    .append(NumberUtils.formatNumber(nonTransferResultDto.getAverageDailyExpense()))
+                    .append(NumberUtils.formatNumber(resultDto.getAverageDailyExpense()))
                     .append(" per day and an inflation of 3% :").toString());
             itemParagraph.setTextAlignment(TextAlignment.CENTER);
             itemParagraph.setBold();
@@ -138,6 +129,12 @@ public class PdfPagePredictionsService implements PdfPageService {
             chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
 
             // Prediction goal 2:
+//            int predictionNumberOfDays = 5 * 365;
+//            Calendar predictionEndDate = Calendar.getInstance();
+//            predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
+//            predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
+//            predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
+//            BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
 //            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about ..."));
 //            chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
 

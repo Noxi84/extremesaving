@@ -105,12 +105,6 @@ public class DataDaoImpl implements DataDao {
 
         // TODO: define correct hide status based on value from settings.ini and given dataModel
 
-        result.put(HIDE_SUMMARY_WORSTBEST_MONTHYEAR, false);
-        result.put(HIDE_SUMMARY_WORST_BEST_YEAR, false);
-        result.put(HIDE_ACCOUNTS, dataModel.getAccount().equals("Paypal") || dataModel.getAccount().equals("Binck bank"));
-        result.put(HIDE_MONTHCHART_CATEGORIES, false);
-        result.put(HIDE_YEARCHART_CATEGORIES, false);
-        result.put(HIDE_CATEGORYGRID_CATEGORIES, dataModel.getCategory().equals("Transfer"));
         result.put(HIDE_ITEMSGRID_CATEGORIES, dataModel.getCategory().equals("Transfer"));
         result.put(HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES, dataModel.getCategory().equals("Transfer"));
         return result;
