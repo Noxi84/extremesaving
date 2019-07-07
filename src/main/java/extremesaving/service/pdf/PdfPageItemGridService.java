@@ -9,6 +9,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.service.DataService;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
@@ -44,9 +45,9 @@ public class PdfPageItemGridService implements PdfPageService {
         summaryTitle.setBold();
         document.add(summaryTitle);
 
-        List<DataModel> overallResults = new ArrayList<>();
-        List<DataModel> yearResults = new ArrayList<>();
-        List<DataModel> monthResults = new ArrayList<>();
+        List<ResultDto> overallResults = new ArrayList<>();
+        List<ResultDto> yearResults = new ArrayList<>();
+        List<ResultDto> monthResults = new ArrayList<>();
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
             overallResults = dataService.getMostProfitableItems(dataService.findAll());
@@ -66,7 +67,7 @@ public class PdfPageItemGridService implements PdfPageService {
         return table;
     }
 
-    private Cell getItemCell(String title, List<DataModel> results) {
+    private Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell1 = new Cell();
         cell1.setWidth(UnitValue.createPercentValue(33));
         cell1.setBorder(Border.NO_BORDER);
@@ -86,13 +87,13 @@ public class PdfPageItemGridService implements PdfPageService {
 
         int maxCount = 16;
         int counter = 0;
-        for (DataModel dataModel : results) {
+        for (ResultDto resultDto : results) {
             counter++;
             if (counter >= maxCount) {
                 break;
             }
-            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(dataModel.getDate()) + " " + StringUtils.abbreviate(dataModel.getDescription(), 23)));
-            alignmentTableRight1.add(getItemParagraph(NumberUtils.formatNumber(dataModel.getValue())));
+            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), 23)));
+            alignmentTableRight1.add(getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
         alignmentTable1.addCell(alignmentTableLeft1);

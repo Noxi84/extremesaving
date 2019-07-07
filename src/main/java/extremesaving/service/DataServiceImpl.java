@@ -2,11 +2,12 @@ package extremesaving.service;
 
 import extremesaving.dao.DataDao;
 import extremesaving.dao.TipOfTheDayDao;
-import extremesaving.dto.ResultDto;
 import extremesaving.dto.MiniResultDto;
+import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -114,23 +115,44 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels) {
-        List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getCategory().equals("Transfer"))
-                .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) < 0)
-                .sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+    public List<ResultDto> getMostProfitableItems(Collection<DataModel> dataModels) {
+        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
+        return categoryDescriptionGrouped.stream()
+                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) < 0)
+                .sorted((o1, o2) -> o2.getResult().compareTo(o1.getResult()))
                 .collect(Collectors.toList());
-        return filteredDataModels;
     }
 
     @Override
-    public List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels) {
-        List<DataModel> filteredDataModels = dataModels.stream()
-                .filter(dataModel -> !dataModel.getCategory().equals("Transfer"))
-                .filter(dataModel -> BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0)
-                .sorted(Comparator.comparing(DataModel::getValue))
+    public List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels) {
+        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
+        return categoryDescriptionGrouped.stream()
+                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) >0)
+                .sorted(Comparator.comparing(ResultDto::getResult))
                 .collect(Collectors.toList());
-        return filteredDataModels;
+    }
+
+    private List<ResultDto> createCategoryDescriptionMap(Collection<DataModel> filteredDataModels) {
+        // Group datamodels for each category + description
+        Map<String, List<DataModel>> categoryDescriptionModels = new HashMap<>();
+        for (DataModel dataModel : filteredDataModels) {
+            if (StringUtils.isNotBlank(dataModel.getDescription())) {
+                String categoryDescription = dataModel.getCategory() + "_" + dataModel.getDescription();
+                List<DataModel> dataModelsForCategoryDescription = categoryDescriptionModels.get(categoryDescription);
+                if (dataModelsForCategoryDescription == null) {
+                    dataModelsForCategoryDescription = new ArrayList<>();
+                }
+                dataModelsForCategoryDescription.add(dataModel);
+                categoryDescriptionModels.put(categoryDescription, dataModelsForCategoryDescription);
+            }
+        }
+
+        // Create ResultDto map
+        List<ResultDto> results = new ArrayList<>();
+        for (Map.Entry<String, List<DataModel>> categoryDescriptionEntry : categoryDescriptionModels.entrySet()) {
+            results.add(calculationService.getResults(categoryDescriptionEntry.getValue()));
+        }
+        return results;
     }
 
     @Override

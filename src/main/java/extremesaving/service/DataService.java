@@ -1,6 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.MiniResultDto;
+import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 
@@ -32,9 +33,9 @@ public interface DataService {
 
     Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels);
 
-    List<DataModel> getMostProfitableItems(Collection<DataModel> dataModels);
+    List<ResultDto> getMostProfitableItems(Collection<DataModel> dataModels);
 
-    List<DataModel> getMostExpensiveItems(Collection<DataModel> dataModels);
+    List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels);
 
     List<TipOfTheDayModel> getTipOfTheDays();
 }
