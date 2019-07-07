@@ -2,7 +2,7 @@ package extremesaving.service.pdf;
 
 import com.itextpdf.layout.Document;
 
-public interface PdfPageGenerator {
+public interface PdfPageService {
 
     void generate(Document document);
 }

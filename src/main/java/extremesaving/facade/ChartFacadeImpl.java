@@ -1,41 +1,41 @@
 package extremesaving.facade;
 
-import extremesaving.service.chart.ChartGenerator;
+import extremesaving.service.chart.ChartService;
 
 public class ChartFacadeImpl implements ChartFacade {
 
-    private ChartGenerator accountPieChartGenerator;
-    private ChartGenerator monthlyBarChartGenerator;
-    private ChartGenerator yearlyBarChartGenerator;
-    private ChartGenerator historyLineChartGenerator;
-    private ChartGenerator futureLineChartGenerator;
+    private ChartService accountPieChartService;
+    private ChartService monthlyBarChartService;
+    private ChartService yearlyBarChartService;
+    private ChartService historyLineChartService;
+    private ChartService futureLineChartService;
 
     @Override
     public void generateCharts() {
-        accountPieChartGenerator.generateChartPng();
-        monthlyBarChartGenerator.generateChartPng();
-        yearlyBarChartGenerator.generateChartPng();
-        historyLineChartGenerator.generateChartPng();
-        futureLineChartGenerator.generateChartPng();
+        accountPieChartService.generateChartPng();
+        monthlyBarChartService.generateChartPng();
+        yearlyBarChartService.generateChartPng();
+        historyLineChartService.generateChartPng();
+        futureLineChartService.generateChartPng();
     }
 
-    public void setAccountPieChartGenerator(ChartGenerator accountPieChartGenerator) {
-        this.accountPieChartGenerator = accountPieChartGenerator;
+    public void setAccountPieChartService(ChartService accountPieChartService) {
+        this.accountPieChartService = accountPieChartService;
     }
 
-    public void setMonthlyBarChartGenerator(ChartGenerator monthlyBarChartGenerator) {
-        this.monthlyBarChartGenerator = monthlyBarChartGenerator;
+    public void setMonthlyBarChartService(ChartService monthlyBarChartService) {
+        this.monthlyBarChartService = monthlyBarChartService;
     }
 
-    public void setYearlyBarChartGenerator(ChartGenerator yearlyBarChartGenerator) {
-        this.yearlyBarChartGenerator = yearlyBarChartGenerator;
+    public void setYearlyBarChartService(ChartService yearlyBarChartService) {
+        this.yearlyBarChartService = yearlyBarChartService;
     }
 
-    public void setHistoryLineChartGenerator(ChartGenerator historyLineChartGenerator) {
-        this.historyLineChartGenerator = historyLineChartGenerator;
+    public void setHistoryLineChartService(ChartService historyLineChartService) {
+        this.historyLineChartService = historyLineChartService;
     }
 
-    public void setFutureLineChartGenerator(ChartGenerator futureLineChartGenerator) {
-        this.futureLineChartGenerator = futureLineChartGenerator;
+    public void setFutureLineChartService(ChartService futureLineChartService) {
+        this.futureLineChartService = futureLineChartService;
     }
 }

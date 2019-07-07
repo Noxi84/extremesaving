@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-public class YearlyBarChartGenerator implements ChartGenerator {
+public class YearlyBarChartService implements ChartService {
 
     private ChartDataService chartDataService;
 

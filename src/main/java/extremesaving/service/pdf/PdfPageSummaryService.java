@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageSummaryGenerator implements PdfPageGenerator {
+public class PdfPageSummaryService implements PdfPageService {
 
     private AccountService accountService;
     private DataService dataService;

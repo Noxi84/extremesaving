@@ -5,17 +5,17 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import extremesaving.constant.ExtremeSavingConstants;
-import extremesaving.service.pdf.PdfPageGenerator;
+import extremesaving.service.pdf.PdfPageService;
 
 import java.io.FileNotFoundException;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageGenerator pdfPageSummaryGenerator;
-    private PdfPageGenerator pdfPageMonthYearGenerator;
-    private PdfPageGenerator pdfPageCategoryGridGenerator;
-    private PdfPageGenerator pdfPageItemGridGenerator;
-    private PdfPageGenerator pdfPagePredictionsGenerator;
+    private PdfPageService pdfPageSummaryGenerator;
+    private PdfPageService pdfPageMonthYearGenerator;
+    private PdfPageService pdfPageCategoryGridGenerator;
+    private PdfPageService pdfPageItemGridGenerator;
+    private PdfPageService pdfPagePredictionsGenerator;
 
     @Override
     public void generatePdf() {
@@ -38,23 +38,23 @@ public class PdfFacadeImpl implements PdfFacade {
         }
     }
 
-    public void setPdfPageSummaryGenerator(PdfPageGenerator pdfPageSummaryGenerator) {
+    public void setPdfPageSummaryGenerator(PdfPageService pdfPageSummaryGenerator) {
         this.pdfPageSummaryGenerator = pdfPageSummaryGenerator;
     }
 
-    public void setPdfPageMonthYearGenerator(PdfPageGenerator pdfPageMonthYearGenerator) {
+    public void setPdfPageMonthYearGenerator(PdfPageService pdfPageMonthYearGenerator) {
         this.pdfPageMonthYearGenerator = pdfPageMonthYearGenerator;
     }
 
-    public void setPdfPageCategoryGridGenerator(PdfPageGenerator pdfPageCategoryGridGenerator) {
+    public void setPdfPageCategoryGridGenerator(PdfPageService pdfPageCategoryGridGenerator) {
         this.pdfPageCategoryGridGenerator = pdfPageCategoryGridGenerator;
     }
 
-    public void setPdfPageItemGridGenerator(PdfPageGenerator pdfPageItemGridGenerator) {
+    public void setPdfPageItemGridGenerator(PdfPageService pdfPageItemGridGenerator) {
         this.pdfPageItemGridGenerator = pdfPageItemGridGenerator;
     }
 
-    public void setPdfPagePredictionsGenerator(PdfPageGenerator pdfPagePredictionsGenerator) {
+    public void setPdfPagePredictionsGenerator(PdfPageService pdfPagePredictionsGenerator) {
         this.pdfPagePredictionsGenerator = pdfPagePredictionsGenerator;
     }
 }

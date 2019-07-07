@@ -13,10 +13,13 @@ import org.jfree.data.xy.XYSeriesCollection;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Random;
 
 import static com.itextpdf.kernel.pdf.PdfName.Title;
 
-public class FutureLineChartGenerator implements ChartGenerator {
+public class HistoryLineChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
@@ -38,31 +41,11 @@ public class FutureLineChartGenerator implements ChartGenerator {
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE);
+            File outputfile = new File(ExtremeSavingConstants.HISTORY_LINE_CHART_IMAGE_FILE);
             ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private DefaultCategoryDataset createDataset() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(Math.random(), "Incomes", "2016");
-        dataset.addValue(240, "Expenses", "2016");
-        dataset.addValue(300, "Result", "2016");
-
-        dataset.addValue(120, "Incomes", "2017");
-        dataset.addValue(240, "Expenses", "2017");
-        dataset.addValue(300, "Result", "2017");
-
-        dataset.addValue(120, "Incomes", "2018");
-        dataset.addValue(240, "Expenses", "2018");
-        dataset.addValue(300, "Result", "2018");
-
-        dataset.addValue(120, "Incomes", "2019");
-        dataset.addValue(240, "Expenses", "2019");
-        dataset.addValue(300, "Result", "2019");
-        return dataset;
     }
 
     private JFreeChart lala() {
@@ -80,6 +63,29 @@ public class FutureLineChartGenerator implements ChartGenerator {
         return chart;
     }
 
+    private DefaultCategoryDataset createDataset() {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/YYYY");
+
+        for (int i = 0; i < 9000; i++) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+
+            Random r = new Random();
+            int low = 6000;
+            int high = 30000;
+            int result = r.nextInt(high - low) + low;
+
+            dataset.addValue(result, "Incomes", sf.format(cal.getTime()));
+            dataset.addValue(result, "Expenses", sf.format(cal.getTime()));
+            dataset.addValue(result, "Result", sf.format(cal.getTime()));
+        }
+
+
+        return dataset;
+    }
 
     public void setChartDataService(ChartDataService chartDataService) {
         this.chartDataService = chartDataService;

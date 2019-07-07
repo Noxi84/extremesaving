@@ -11,7 +11,7 @@ import extremesaving.constant.ExtremeSavingConstants;
 
 import java.net.MalformedURLException;
 
-public class PdfPageMonthYearGenerator implements PdfPageGenerator {
+public class PdfPageMonthYearService implements PdfPageService {
 
     @Override
     public void generate(Document document) {

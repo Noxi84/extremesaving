@@ -12,7 +12,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.Map;
 
-public class AccountPieChartGenerator implements ChartGenerator {
+public class AccountPieChartService implements ChartService {
 
     private ChartDataService chartDataService;
 

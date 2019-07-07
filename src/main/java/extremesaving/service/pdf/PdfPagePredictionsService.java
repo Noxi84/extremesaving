@@ -26,7 +26,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPagePredictionsGenerator implements PdfPageGenerator {
+public class PdfPagePredictionsService implements PdfPageService {
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -134,7 +134,7 @@ public class PdfPagePredictionsGenerator implements PdfPageGenerator {
             // Prediction goal 1:
             List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
             BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
-            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about." + NumberUtils.formatNumber(goalAmount) + " in... "));
+            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
             chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
 
             // Prediction goal 2:

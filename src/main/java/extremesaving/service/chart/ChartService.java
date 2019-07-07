@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
 
-public interface ChartGenerator {
+public interface ChartService {
 
     void generateChartPng();
 }

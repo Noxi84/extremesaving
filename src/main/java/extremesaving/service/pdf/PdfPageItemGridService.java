@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageItemGridGenerator implements PdfPageGenerator {
+public class PdfPageItemGridService implements PdfPageService {
 
     private DataService dataService;
 

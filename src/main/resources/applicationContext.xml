@@ -30,11 +30,11 @@
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="chartFacade" class="extremesaving.facade.ChartFacadeImpl">
-        <property name="accountPieChartGenerator" ref="accountPieChartGenerator"/>
-        <property name="monthlyBarChartGenerator" ref="monthlyBarChartGenerator"/>
-        <property name="yearlyBarChartGenerator" ref="yearlyBarChartGenerator"/>
-        <property name="historyLineChartGenerator" ref="historyLineChartGenerator"/>
-        <property name="futureLineChartGenerator" ref="futureLineChartGenerator"/>
+        <property name="accountPieChartService" ref="accountPieChartService"/>
+        <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
+        <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
+        <property name="historyLineChartService" ref="historyLineChartService"/>
+        <property name="futureLineChartService" ref="futureLineChartService"/>
     </bean>
     <bean id="predictionService" class="extremesaving.service.PredictionServiceImpl">
         <property name="dataService" ref="dataService"/>
@@ -46,20 +46,20 @@
     <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryGenerator">
+    <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryService">
         <property name="accountService" ref="accountService"/>
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearGenerator"/>
+    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearService"/>
 
-    <bean id="pdfPageCategoryGridGenerator" class="extremesaving.service.pdf.PdfPageCategoryGridGenerator">
+    <bean id="pdfPageCategoryGridGenerator" class="extremesaving.service.pdf.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
-    <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridGenerator">
+    <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridService">
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsGenerator">
+    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPagePredictionsService">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
@@ -74,19 +74,19 @@
     </bean>
 
     <!--Chart-->
-    <bean id="accountPieChartGenerator" class="extremesaving.service.chart.AccountPieChartGenerator">
+    <bean id="accountPieChartService" class="extremesaving.service.chart.AccountPieChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="monthlyBarChartGenerator" class="extremesaving.service.chart.MonthlyBarChartGenerator">
+    <bean id="monthlyBarChartService" class="extremesaving.service.chart.MonthlyBarChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="yearlyBarChartGenerator" class="extremesaving.service.chart.YearlyBarChartGenerator">
+    <bean id="yearlyBarChartService" class="extremesaving.service.chart.YearlyBarChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="historyLineChartGenerator" class="extremesaving.service.chart.HistoryLineChartGenerator">
+    <bean id="historyLineChartService" class="extremesaving.service.chart.HistoryLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="futureLineChartGenerator" class="extremesaving.service.chart.FutureLineChartGenerator">
+    <bean id="futureLineChartService" class="extremesaving.service.chart.FutureLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
 

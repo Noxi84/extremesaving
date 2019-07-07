@@ -9,7 +9,7 @@ public enum DataHideEnum {
     HIDE_YEARCHART_CATEGORIES("yearChart.categories.hide"),
     HIDE_CATEGORYGRID_CATEGORIES("categoryGrid.categories.hide"),
     HIDE_ITEMSGRID_CATEGORIES("itemsGrid.categories.hide"),
-    HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES("tipOfTheDay.reduceincreastcategories.hide");
+    HIDE_TIPOFTHEDAY_REDUCEINCREASE_CATEGORIES("tipOfTheDay.reduceincrease.categories.hide");
 
 private String key;
 
