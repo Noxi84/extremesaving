@@ -66,8 +66,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
                     .append(" extra in ")
-                    .append(mostExpensiveCategoryYears)
-                    .append(" ").append(DateUtils.formatSurvivalDays(Long.valueOf(mostProfitableCategoryYears) * 365)).append(".")
+                    .append(DateUtils.formatSurvivalDays(Long.valueOf(mostProfitableCategoryYears) * 365))
+                    .append(".")
                     .append("\n");
             text.append("Increasing incomes '")
                     .append(profitableCategoryDto.getName())
@@ -76,8 +76,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
                     .append(" extra in ")
-                    .append(mostProfitableCategoryYears)
-                    .append(" ").append(DateUtils.formatSurvivalDays(Long.valueOf(mostExpensiveCategoryYears) * 365)).append(".");
+                    .append(DateUtils.formatSurvivalDays(Long.valueOf(mostExpensiveCategoryYears) * 365))
+                    .append(".");
 
             Paragraph categoryParagraph = getItemParagraph(text.toString());
             categoryParagraph.setTextAlignment(TextAlignment.CENTER);
