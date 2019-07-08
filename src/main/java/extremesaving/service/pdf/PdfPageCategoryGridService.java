@@ -147,8 +147,10 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
             if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
                 savingRatio = BigDecimal.valueOf(100);
+            }else  if (profitAmount.compareTo(expensesAmountReversed) < 0) {
+                savingRatio = BigDecimal.ZERO;
             } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
-                savingRatio = expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+                savingRatio = BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
             }
 
             Paragraph savingRatioParagraph = getItemParagraph(NumberUtils.formatPercentage(savingRatio));
