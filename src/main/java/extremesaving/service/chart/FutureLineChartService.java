@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.service.ChartDataService;
+import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 import static com.itextpdf.kernel.pdf.PdfName.Title;
+import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;
 
 public class FutureLineChartService implements ChartService {
 
@@ -38,7 +39,7 @@ public class FutureLineChartService implements ChartService {
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE);
+            File outputfile = new File(PropertiesValueHolder.getInstance().getPropValue(FUTURE_LINE_CHART_IMAGE_FILE));
             ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();

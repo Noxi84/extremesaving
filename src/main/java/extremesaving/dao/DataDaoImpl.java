@@ -1,7 +1,7 @@
 package extremesaving.dao;
 
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.model.DataModel;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static extremesaving.util.PropertyValueENum.*;
 
 public class DataDaoImpl implements DataDao {
 
@@ -33,13 +35,13 @@ public class DataDaoImpl implements DataDao {
 
         try {
 
-            br = new BufferedReader(new FileReader(ExtremeSavingConstants.DATA_CSV));
+            br = new BufferedReader(new FileReader(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV)));
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("#")) {
                     continue;
                 }
 
-                String[] lineSplit = line.split(ExtremeSavingConstants.CSV_SPLIT_BY);
+                String[] lineSplit = line.split(PropertiesValueHolder.getInstance().getPropValue(CSV_SPLIT_BY));
                 DataModel dataModel = handeLines(lineSplit);
                 dataModels.add(dataModel);
             }
@@ -70,17 +72,17 @@ public class DataDaoImpl implements DataDao {
 
             Date dateResult = null;
             try {
-                dateResult = new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).parse(date);
+                dateResult = new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT1)).parse(date);
             } catch (ParseException e) {
                 // Ignore
             }
             try {
-                dateResult = new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT2).parse(date);
+                dateResult = new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT2)).parse(date);
             } catch (ParseException e) {
                 // Ignore
             }
             if (dateResult == null) {
-                throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + ExtremeSavingConstants.DATA_CSV_DATE_FORMAT + "'.");
+                throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT1) + "'.");
             }
             dataModel.setDate(dateResult);
             dataModel.setAccount(account);

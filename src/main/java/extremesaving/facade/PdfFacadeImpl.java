@@ -4,10 +4,12 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.service.pdf.PdfPageService;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;
+
+import static extremesaving.util.PropertyValueENum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
@@ -20,7 +22,7 @@ public class PdfFacadeImpl implements PdfFacade {
     @Override
     public void generatePdf() {
         try {
-            PdfWriter writer = new PdfWriter(ExtremeSavingConstants.PDF_FILE_NAME);
+            PdfWriter writer = new PdfWriter(PropertiesValueHolder.getInstance().getPropValue(PDF_FILE_NAME));
             PdfDocument pdf = new PdfDocument(writer);
 
             Document document = new Document(pdf, PageSize.A4);

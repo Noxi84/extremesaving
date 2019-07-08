@@ -10,11 +10,11 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.AccountDto;
 import extremesaving.service.AccountService;
 import extremesaving.service.DataService;
 import extremesaving.util.NumberUtils;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
@@ -24,6 +24,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static extremesaving.util.PropertyValueENum.ACCOUNT_PIE_CHART_IMAGE_FILE;
 
 public class PdfPageSummaryService implements PdfPageService {
 
@@ -120,7 +122,7 @@ public class PdfPageSummaryService implements PdfPageService {
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         chartCell.setTextAlignment(TextAlignment.CENTER.CENTER);
-        Image accountPieImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE));
+        Image accountPieImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(ACCOUNT_PIE_CHART_IMAGE_FILE)));
         accountPieImage.setWidth(350);
         accountPieImage.setHeight(200);
         chartCell.add(accountPieImage);

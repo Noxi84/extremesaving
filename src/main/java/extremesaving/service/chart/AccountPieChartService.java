@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.service.ChartDataService;
+import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
@@ -11,6 +11,8 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Map;
+
+import static extremesaving.util.PropertyValueENum.ACCOUNT_PIE_CHART_IMAGE_FILE;
 
 public class AccountPieChartService implements ChartService {
 
@@ -34,7 +36,7 @@ public class AccountPieChartService implements ChartService {
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(ExtremeSavingConstants.ACCOUNT_PIE_CHART_IMAGE_FILE);
+            File outputfile = new File(PropertiesValueHolder.getInstance().getPropValue(ACCOUNT_PIE_CHART_IMAGE_FILE));
             ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();

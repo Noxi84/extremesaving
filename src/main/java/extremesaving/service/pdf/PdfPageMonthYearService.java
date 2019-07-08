@@ -7,9 +7,12 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.constant.ExtremeSavingConstants;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.net.MalformedURLException;
+
+import static extremesaving.util.PropertyValueENum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageMonthYearService implements PdfPageService {
 
@@ -21,14 +24,14 @@ public class PdfPageMonthYearService implements PdfPageService {
 
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
-            Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.MONTHLY_BAR_CHART_IMAGE_FILE));
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(380);
             monthlyBarChartImage.setHeight(300);
             chartCell1.add(monthlyBarChartImage);
 
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
-            Image yearlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE));
+            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
             yearlyBarChartImage.setWidth(380);
             yearlyBarChartImage.setHeight(300);
             chartCell2.add(yearlyBarChartImage);

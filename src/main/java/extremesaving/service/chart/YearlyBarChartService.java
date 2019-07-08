@@ -1,8 +1,8 @@
 package extremesaving.service.chart;
 
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
+import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -15,6 +15,8 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
+
+import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class YearlyBarChartService implements ChartService {
 
@@ -32,7 +34,7 @@ public class YearlyBarChartService implements ChartService {
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(ExtremeSavingConstants.YEARLY_BAR_CHART_IMAGE_FILE);
+            File outputfile = new File(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE));
             ImageIO.write(image, "png", outputfile);
         } catch (IOException e) {
             e.printStackTrace();

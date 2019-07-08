@@ -20,8 +20,14 @@ public class PropertiesValueHolder {
         return instance;
     }
 
-    public String getPropValue(String property) throws IOException {
-        return getPropValues().get(property);
+    public String getPropValue(PropertyValueENum propertyValueENum){
+        try {
+            return getPropValues().get(propertyValueENum.getValue());
+        } catch (Exception ex) {
+            System.out.println("Error retrieving property " + propertyValueENum.getValue() + " from config.properties");
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public Map<String, String> getPropValues() throws IOException {

@@ -7,7 +7,6 @@ import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.constant.ExtremeSavingConstants;
 import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
@@ -17,12 +16,16 @@ import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+
+import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
@@ -101,7 +104,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
             chartCell1.setTextAlignment(TextAlignment.CENTER);
-            Image monthlyBarChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.HISTORY_LINE_CHART_IMAGE_FILE));
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(380);
             monthlyBarChartImage.setHeight(300);
             chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
@@ -123,10 +126,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 chartCell2.add(getItemParagraph("\n"));
 
                 // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE
-                Image futureLineChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.GOAL_LINE_CHART_IMAGE_FILE));
-                futureLineChartImage.setWidth(380);
-                futureLineChartImage.setHeight(300);
-                chartCell2.add(futureLineChartImage);
+//                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+//                futureLineChartImage.setWidth(380);
+//                futureLineChartImage.setHeight(300);
+//                chartCell2.add(futureLineChartImage);
             } else {
                 // Prediction goal 2:
                 int predictionNumberOfDays = 5 * 365;
@@ -140,7 +143,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
                 chartCell2.add(getItemParagraph("\n"));
 
-                Image futureLineChartImage = new Image(ImageDataFactory.create(ExtremeSavingConstants.FUTURE_LINE_CHART_IMAGE_FILE));
+                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(FUTURE_LINE_CHART_IMAGE_FILE)));
                 futureLineChartImage.setWidth(380);
                 futureLineChartImage.setHeight(300);
                 chartCell2.add(futureLineChartImage);

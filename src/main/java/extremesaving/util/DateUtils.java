@@ -1,6 +1,5 @@
 package extremesaving.util;
 
-import extremesaving.constant.ExtremeSavingConstants;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +32,7 @@ public final class DateUtils {
     }
 
     public static String formatDate(Date date) {
-        return new SimpleDateFormat(ExtremeSavingConstants.DATA_CSV_DATE_FORMAT).format(date);
+        return new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_DATE_FORMAT1)).format(date);
     }
 
     public static boolean equalDates(Date d1, Date d2) {
