@@ -57,11 +57,11 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             CategoryDto expensiveCategoryDto = predictionService.getRandomExpensiveCategory();
             CategoryDto profitableCategoryDto = predictionService.getRandomProfitCategory();
 
-            List<BigDecimal> categoryPercentages = Arrays.asList(BigDecimal.ONE, BigDecimal.valueOf(2), BigDecimal.valueOf(3), BigDecimal.valueOf(4), BigDecimal.valueOf(5), BigDecimal.valueOf(10), BigDecimal.valueOf(15), BigDecimal.valueOf(20), BigDecimal.valueOf(25));
+            List<BigDecimal> categoryPercentages = Arrays.asList(BigDecimal.valueOf(5), BigDecimal.valueOf(10), BigDecimal.valueOf(15), BigDecimal.valueOf(20), BigDecimal.valueOf(25));
             BigDecimal expensiveCategoryPercentage = categoryPercentages.get(NumberUtils.getRandom(0, categoryPercentages.size() - 1));
             BigDecimal profitableCategoryPercentage = categoryPercentages.get(NumberUtils.getRandom(0, categoryPercentages.size() - 1));
 
-            List<Integer> years = Arrays.asList(1, 1, 2, 3, 4, 5, 10, 15, 20);
+            List<Integer> years = Arrays.asList(1, 2, 3, 4, 5, 10, 15, 20);
             Integer mostProfitableCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
             Integer mostExpensiveCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
 
