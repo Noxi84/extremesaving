@@ -3,11 +3,7 @@ package extremesaving.service.pdf;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -25,10 +21,8 @@ import extremesaving.util.PropertiesValueHolder;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
-import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_IMAGE_FILE;
 
