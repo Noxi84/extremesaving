@@ -71,13 +71,17 @@ public final class DateUtils {
         }
         if (months > 0) {
             if (StringUtils.isNotBlank(result)) {
-                result.append(", ");
+                if (days > 0) {
+                    result.append(", ");
+                } else {
+                    result.append(" and ");
+                }
             }
             result.append(months).append(months == 1 ? " month" : " months");
         }
         if (days > 0) {
             if (StringUtils.isNotBlank(result)) {
-                result.append(", ");
+                result.append(" and ");
             }
             result.append(days).append(days == 1 ? " day" : " days");
         }

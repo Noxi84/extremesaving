@@ -9,7 +9,14 @@ public final class NumberUtils {
     }
 
     public static String formatNumber(BigDecimal val) {
-        return "€ " + roundOffTo2DecPlaces(val);
+        return formatNumber(val, true);
+    }
+
+    public static String formatNumber(BigDecimal val, boolean decimals) {
+        if (decimals) {
+            return "€ " + roundOffTo2DecPlaces(val);
+        }
+        return "€ " + val.intValue();
     }
 
     public static String roundOffTo2DecPlaces(BigDecimal val) {

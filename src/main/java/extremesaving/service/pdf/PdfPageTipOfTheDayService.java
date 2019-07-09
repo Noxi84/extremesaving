@@ -135,7 +135,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             // Prediction goal 1 (higher priority if possible)
             BigDecimal goalAmount = predictionService.getNextGoal();
-            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
+            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount, false) + " in... "));
             chartCell2.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
             chartCell2.add(getItemParagraph("\n"));
 
