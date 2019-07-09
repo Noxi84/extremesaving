@@ -5,6 +5,7 @@ public enum PropertyValueENum {
     TIPOFTHEDAY_CSV_LOCATION("tipOfTheDay.csv.location"),
 
     DATA_CSV("data.csv.location"),
+    DATA_CSV_SKIP_LINES("data.csv.skipLines"),
     DATA_CSV_DATE_FORMAT1("data.csv.dateFormat1"),
     DATA_CSV_DATE_FORMAT2("data.csv.dateFormat2"),
     DATA_CSV_COLUMN_DATE("data.csv.column.date"),
