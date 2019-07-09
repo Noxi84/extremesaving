@@ -2,22 +2,15 @@ package extremesaving;
 
 import extremesaving.facade.ChartFacade;
 import extremesaving.facade.PdfFacade;
-import extremesaving.util.PropertiesValueHolder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.io.IOException;
 
 public class Main {
 
     private PdfFacade pdfFacade;
     private ChartFacade chartFacade;
 
-    public static void main(String[] args) throws IOException {
-        PropertiesValueHolder.getInstance().getPropValues();
-        System.out.println("o");
-
-
+    public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/applicationContext*.xml");
         Main p = context.getBean(Main.class);
         p.start();

@@ -12,7 +12,11 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import static com.itextpdf.kernel.pdf.PdfName.Title;
 import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;

@@ -3,7 +3,6 @@ package extremesaving.util;
 public enum PropertyValueENum {
 
     TIPOFTHEDAY_CSV_LOCATION("tipOfTheDay.csv.location"),
-    TIPOFTHEDAY_CSV_SPLIT_BY("tipOfTheDay.csv.splitBy"),
 
     DATA_CSV("data.csv.location"),
     DATA_CSV_DATE_FORMAT1("data.csv.dateFormat1"),

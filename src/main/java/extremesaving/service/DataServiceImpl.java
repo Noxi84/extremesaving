@@ -10,7 +10,14 @@ import extremesaving.util.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DataServiceImpl implements DataService {
@@ -127,7 +134,7 @@ public class DataServiceImpl implements DataService {
     public List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels) {
         List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
         return categoryDescriptionGrouped.stream()
-                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) >0)
+                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) > 0)
                 .sorted(Comparator.comparing(ResultDto::getResult))
                 .collect(Collectors.toList());
     }

@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-
 public class PropertiesValueHolder {
 
     private static PropertiesValueHolder instance;
@@ -20,7 +19,7 @@ public class PropertiesValueHolder {
         return instance;
     }
 
-    public String getPropValue(PropertyValueENum propertyValueENum){
+    public String getPropValue(PropertyValueENum propertyValueENum) {
         try {
             return getPropValues().get(propertyValueENum.getValue());
         } catch (Exception ex) {

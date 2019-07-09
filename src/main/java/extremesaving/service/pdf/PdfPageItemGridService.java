@@ -10,7 +10,6 @@ import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
 import extremesaving.service.DataService;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
