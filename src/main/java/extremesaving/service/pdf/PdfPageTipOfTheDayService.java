@@ -106,52 +106,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
 
-            Cell chartCell1 = new Cell();
-            chartCell1.setBorder(Border.NO_BORDER);
-            chartCell1.setTextAlignment(TextAlignment.CENTER);
-            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
-            monthlyBarChartImage.setWidth(380);
-            monthlyBarChartImage.setHeight(300);
-            chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
-            chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
-            chartCell1.add(getItemParagraph("\n"));
-            chartCell1.add(monthlyBarChartImage);
-
-            Cell chartCell2 = new Cell();
-            chartCell2.setBorder(Border.NO_BORDER);
-            chartCell2.setTextAlignment(TextAlignment.CENTER);
-
-            if (NumberUtils.getRandom(0, 1) == 1 && resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-                // Prediction goal 1:
-                List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
-                BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
-                chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
-                chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
-                chartCell2.add(getItemParagraph("\n"));
-
-                // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE
-                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-                futureLineChartImage.setWidth(380);
-                futureLineChartImage.setHeight(300);
-                chartCell2.add(futureLineChartImage);
-            } else {
-                // Prediction goal 2:
-                int predictionNumberOfDays = 5 * 365;
-                Calendar predictionEndDate = Calendar.getInstance();
-                predictionEndDate.add(Calendar.DAY_OF_MONTH, predictionNumberOfDays);
-                predictionEndDate.set(Calendar.DAY_OF_MONTH, 1);
-                predictionEndDate.set(Calendar.MONTH, Calendar.JANUARY);
-                BigDecimal predictionAmount = predictionService.getPredictionAmount(predictionEndDate.getTime());
-                chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about ..."));
-                chartCell2.add(getItemParagraph(NumberUtils.formatNumber(predictionAmount) + " on " + DateUtils.formatDate(predictionEndDate.getTime()), true));
-
-                chartCell2.add(getItemParagraph("\n"));
-
-                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(FUTURE_LINE_CHART_IMAGE_FILE)));
-                futureLineChartImage.setWidth(380);
-                futureLineChartImage.setHeight(300);
-                chartCell2.add(futureLineChartImage);
-            }
+            Cell chartCell1 = getChartcell1(resultDto);
+            Cell chartCell2 = getChartCell2();
 
             table.addCell(chartCell1);
             table.addCell(chartCell2);
@@ -161,6 +117,43 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Cell getChartCell2() throws MalformedURLException {
+        Cell chartCell1 = new Cell();
+        chartCell1.setBorder(Border.NO_BORDER);
+        chartCell1.setTextAlignment(TextAlignment.CENTER);
+        Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
+        monthlyBarChartImage.setWidth(380);
+        monthlyBarChartImage.setHeight(300);
+        chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
+        chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+        chartCell1.add(getItemParagraph("\n"));
+        chartCell1.add(monthlyBarChartImage);
+        return chartCell1;
+    }
+
+    private Cell getChartcell1(ResultDto resultDto) throws MalformedURLException {
+        Cell chartCell2 = new Cell();
+        chartCell2.setBorder(Border.NO_BORDER);
+        chartCell2.setTextAlignment(TextAlignment.CENTER);
+
+        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+            // Prediction goal 1 (higher priority if possible)
+            List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
+            BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
+            // TODO create incremental goal selector: starting from 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 20000, 50000, 75000, 100000, 150000, 200000, 250000, 300000, 350000, 500000, 1000000, 10000000, 10000000000
+            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
+            chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+            chartCell2.add(getItemParagraph("\n"));
+
+            // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE based on goal
+            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            futureLineChartImage.setWidth(380);
+            futureLineChartImage.setHeight(300);
+            chartCell2.add(futureLineChartImage);
+        }
+        return chartCell2;
     }
 
     private Paragraph getItemParagraph(String text) {

@@ -7,12 +7,7 @@ import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
@@ -126,8 +121,12 @@ public class ChartDataServiceImpl implements ChartDataService {
         ResultDto resultDto = calculationService.getResults(dataModels);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(Calendar.DAY_OF_MONTH, 1);
+        endDate.set(Calendar.MONTH, Calendar.JANUARY);
+        endDate.add(Calendar.YEAR, 5);
 
-        for (int dayCounter = 1; dayCounter < 21 * 365; dayCounter++) {
+        while (cal.getTime().before(endDate.getTime())) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             currentValue = currentValue.add(resultDto.getAverageDailyResult());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
@@ -135,7 +134,8 @@ public class ChartDataServiceImpl implements ChartDataService {
             } else {
                 break;
             }
-        }
+        } 
+
         return predictions;
     }
 
