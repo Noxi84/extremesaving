@@ -3,6 +3,7 @@ package extremesaving.service;
 import extremesaving.dto.MiniResultDto;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Map;
 
 public interface ChartDataService {
@@ -13,5 +14,7 @@ public interface ChartDataService {
 
     Map<Integer, MiniResultDto> getYearlyResults();
 
-    Map<Integer, BigDecimal> getYearPredictions();
+    Map<Date, BigDecimal> getHistoryLineResults();
+
+    Map<Date, BigDecimal> getFutureLineResults();
 }

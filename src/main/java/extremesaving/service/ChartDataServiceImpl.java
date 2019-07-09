@@ -2,6 +2,7 @@ package extremesaving.service;
 
 import extremesaving.dto.AccountDto;
 import extremesaving.dto.MiniResultDto;
+import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
@@ -75,23 +77,66 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Integer, BigDecimal> getYearPredictions() {
-        Map<Integer, BigDecimal> yearPredictions = new HashMap<>();
+    public Map<Date, BigDecimal> getHistoryLineResults() {
+        Map<Date, BigDecimal> predictions = new HashMap<>();
 
-//        ResultDto resultDto = getResults(dataModels.stream().filter(dataModel -> !dataModel.getCategory().getHide()).collect(Collectors.toSet()));
-//        ResultDto resultDto = calculationService.getResults(dataModels.stream().collect(Collectors.toSet()));
-//        BigDecimal avgDailyIncome = calculationService.calculateAverageDaily(resultDto, CalculationEnum.INCOME);
-//        BigDecimal avgDailyExpense = calculationService.calculateAverageDaily(resultDto, CalculationEnum.EXPENSE);
+        List<DataModel> dataModels = dataService.findAll();
 
-//        for (int yearCounter = 1; yearCounter < 21; yearCounter++) {
-//            int year = yearCounter + Calendar.getInstance().get(Calendar.YEAR);
-//            Calendar futureYear = Calendar.getInstance();
-//            futureYear.add(Calendar.YEAR, yearCounter);
-//            long totalDaysUntilFutureYear = DateUtils.daysBetween(futureYear.getTime(), new Date());
-//            BigDecimal futureYearResult = avgDailyIncome.multiply(BigDecimal.valueOf(totalDaysUntilFutureYear)).add(avgDailyExpense.multiply(BigDecimal.valueOf((totalDaysUntilFutureYear))));
-//            yearPredictions.put(year, resultDto.getResult().add(futureYearResult));
-//        }
-        return yearPredictions;
+        // Add existing results
+        for (DataModel existingDataModel : dataModels) {
+            Set<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> DateUtils.equalDates(dataModel.getDate(), existingDataModel.getDate()) || dataModel.getDate().before(existingDataModel.getDate())).collect(Collectors.toSet());
+            ResultDto resultDto = calculationService.getResults(filteredDataModels);
+            predictions.put(existingDataModel.getDate(), resultDto.getResult());
+        }
+
+
+        // Add future results
+        ResultDto resultDto = calculationService.getResults(dataModels);
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+        // TODO KRIS: add inflation 3% ?
+
+        for (int dayCounter = 1; dayCounter < 21 * 365; dayCounter++) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            currentValue = currentValue.add(resultDto.getAverageDailyExpense());
+            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                predictions.put(cal.getTime(), currentValue);
+            } else {
+                break;
+            }
+        }
+        return predictions;
+    }
+
+    @Override
+    public Map<Date, BigDecimal> getFutureLineResults() {
+        Map<Date, BigDecimal> predictions = new HashMap<>();
+
+        List<DataModel> dataModels = dataService.findAll();
+
+        // Add existing results
+        for (DataModel existingDataModel : dataModels) {
+            Set<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> DateUtils.equalDates(dataModel.getDate(), existingDataModel.getDate()) || dataModel.getDate().before(existingDataModel.getDate())).collect(Collectors.toSet());
+            ResultDto resultDto = calculationService.getResults(filteredDataModels);
+            predictions.put(existingDataModel.getDate(), resultDto.getResult());
+        }
+
+
+        // Add future results
+        ResultDto resultDto = calculationService.getResults(dataModels);
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+
+        for (int dayCounter = 1; dayCounter < 21 * 365; dayCounter++) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            currentValue = currentValue.add(resultDto.getAverageDailyResult());
+            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                predictions.put(cal.getTime(), currentValue);
+            } else {
+                break;
+            }
+        }
+        return predictions;
     }
 
     private void addResultDtoIfEmpty(Map<Integer, MiniResultDto> results, Integer key) {

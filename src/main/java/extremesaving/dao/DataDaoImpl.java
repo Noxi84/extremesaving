@@ -124,6 +124,7 @@ public class DataDaoImpl implements DataDao {
         }
         return dataModels;
     }
+
     private DataModel handeLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
         try {
             DataModel dataModel = new DataModel();
