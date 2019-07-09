@@ -29,7 +29,7 @@ public class PredictionServiceImpl implements PredictionService {
                 .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
                 .collect(Collectors.toList());
-        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 5)));
+        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 3)));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PredictionServiceImpl implements PredictionService {
                 .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
                 .collect(Collectors.toList());
-        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 5)));
+        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 3)));
     }
 
     @Override

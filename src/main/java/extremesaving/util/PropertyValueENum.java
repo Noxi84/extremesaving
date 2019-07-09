@@ -5,14 +5,14 @@ public enum PropertyValueENum {
     TIPOFTHEDAY_CSV_LOCATION("tipOfTheDay.csv.location"),
 
     DATA_CSV_FOLDER("data.csv.dataFolder"),
-    DATA_CSV_SKIP_LINES("data.csv.skipLines"),
     DATA_CSV_DATE_FORMAT1("data.csv.dateFormat1"),
     DATA_CSV_DATE_FORMAT2("data.csv.dateFormat2"),
-    DATA_CSV_COLUMN_DATE("data.csv.column.date"),
-    DATA_CSV_COLUMN_VALUE("data.csv.column.value"),
-    DATA_CSV_COLUMN_ACCOUNT("data.csv.column.account"),
-    DATA_CSV_COLUMN_CATEGORY("data.csv.column.category"),
-    DATA_CSV_COLUMN_DESCRIPTION("data.csv.column.description"),
+
+    DATA_CSV_HEADER_DATE("data.csv.header.date"),
+    DATA_CSV_HEADER_VALUE("data.csv.header.value"),
+    DATA_CSV_HEADER_ACCOUNT("data.csv.header.account"),
+    DATA_CSV_HEADER_CATEGORY("data.csv.header.category"),
+    DATA_CSV_HEADER_DESCRIPTION("data.csv.header.description"),
 
     CSV_SPLIT_BY("data.csv.splitBy"),
     PDF_FILE_NAME("pdf.location"),
