@@ -11,16 +11,16 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import static com.itextpdf.kernel.pdf.PdfName.Title;
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;
 
-public class FutureLineChartService implements ChartService {
+public class GoalLineChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
     public void generateChartPng() {
         JFreeChart chart = new JFreeChart(createDataset());
-        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), 760, 600);
+        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(FUTURE_LINE_CHART_IMAGE_FILE), 760, 600);
     }
 
     private XYPlot createDataset() {

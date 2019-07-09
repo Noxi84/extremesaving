@@ -1,25 +1,14 @@
 package extremesaving.service.chart;
 
 import extremesaving.service.ChartDataService;
+import extremesaving.util.ChartUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYSplineRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Random;
 
 import static com.itextpdf.kernel.pdf.PdfName.Title;
 import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_IMAGE_FILE;
@@ -30,30 +19,11 @@ public class HistoryLineChartService implements ChartService {
 
     @Override
     public void generateChartPng() {
-        try {
-//            JFreeChart lineChart = ChartFactory.createLineChart(
-//                    "title ...",
-//                    "Years", "Number of Schools",
-//                    createDataset(),
-//                    PlotOrientation.VERTICAL,
-//                    true, true, false);
-
-            JFreeChart lineChart = lala();
-
-            BufferedImage objBufferedImage = lineChart.createBufferedImage(760, 600);
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            ImageIO.write(objBufferedImage, "png", bas);
-            byte[] byteArray = bas.toByteArray();
-            InputStream in = new ByteArrayInputStream(byteArray);
-            BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE));
-            ImageIO.write(image, "png", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JFreeChart chart = new JFreeChart(createDataset());
+        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE), 760, 600);
     }
 
-    private JFreeChart lala() {
+    private XYPlot createDataset() {
         XYSeries series = new XYSeries(Title);
         for (int i = 0; i <= 10; i++) {
             series.add(i, Math.pow(2, i));
@@ -64,32 +34,8 @@ public class HistoryLineChartService implements ChartService {
         NumberAxis range = new NumberAxis("f(x)");
         XYSplineRenderer r = new XYSplineRenderer(3);
         XYPlot xyplot = new XYPlot(dataset, domain, range, r);
-        JFreeChart chart = new JFreeChart(xyplot);
-        return chart;
-    }
 
-    private DefaultCategoryDataset createDataset() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sf = new SimpleDateFormat("dd/MM/YYYY");
-
-        for (int i = 0; i < 9000; i++) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-
-            Random r = new Random();
-            int low = 6000;
-            int high = 30000;
-            int result = r.nextInt(high - low) + low;
-
-            dataset.addValue(result, "Incomes", sf.format(cal.getTime()));
-            dataset.addValue(result, "Expenses", sf.format(cal.getTime()));
-            dataset.addValue(result, "Result", sf.format(cal.getTime()));
-        }
-
-
-        return dataset;
+        return xyplot;
     }
 
     public void setChartDataService(ChartDataService chartDataService) {

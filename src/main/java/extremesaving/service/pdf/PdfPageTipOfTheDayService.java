@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.FUTURE_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
@@ -126,14 +127,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
                 chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
                 chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
-
                 chartCell2.add(getItemParagraph("\n"));
 
                 // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE
-//                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-//                futureLineChartImage.setWidth(380);
-//                futureLineChartImage.setHeight(300);
-//                chartCell2.add(futureLineChartImage);
+                Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+                futureLineChartImage.setWidth(380);
+                futureLineChartImage.setHeight(300);
+                chartCell2.add(futureLineChartImage);
             } else {
                 // Prediction goal 2:
                 int predictionNumberOfDays = 5 * 365;

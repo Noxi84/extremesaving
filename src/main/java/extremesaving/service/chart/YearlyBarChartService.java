@@ -2,6 +2,7 @@ package extremesaving.service.chart;
 
 import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
+import extremesaving.util.ChartUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -9,13 +10,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
@@ -28,24 +22,13 @@ public class YearlyBarChartService implements ChartService {
 
     @Override
     public void generateChartPng() {
-        try {
-            Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
-
-            JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(yearlyResults), PlotOrientation.VERTICAL, true, false, false);
-            BufferedImage objBufferedImage = barChart.createBufferedImage(760, 600);
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            ImageIO.write(objBufferedImage, "png", bas);
-            byte[] byteArray = bas.toByteArray();
-            InputStream in = new ByteArrayInputStream(byteArray);
-            BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE));
-            ImageIO.write(image, "png", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, true, false, false);
+        ChartUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE), 760, 600);
     }
 
-    private static CategoryDataset createDataset(Map<Integer, MiniResultDto> yearlyResults) {
+    private CategoryDataset createDataset() {
+        Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
+
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
