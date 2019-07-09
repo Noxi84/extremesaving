@@ -107,7 +107,7 @@ public class DataDaoImpl implements DataDao {
 
             // Account
             if (StringUtils.isBlank(account)) {
-                throw new IllegalStateException("Account is empty.");
+                account = "...";
             }
             dataModel.setAccount(account);
 
@@ -124,8 +124,7 @@ public class DataDaoImpl implements DataDao {
 
             // Category
             if (StringUtils.isBlank(category)) {
-//                throw new IllegalStateException("Category is empty.");
-                return null;
+                category = "...";
             }
             dataModel.setCategory(category);
 
