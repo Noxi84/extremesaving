@@ -6,6 +6,7 @@ import extremesaving.util.PropertyValueENum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,9 +18,9 @@ import java.util.Date;
 import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.CSV_SPLIT_BY;
-import static extremesaving.util.PropertyValueENum.DATA_CSV;
 import static extremesaving.util.PropertyValueENum.DATA_CSV_DATE_FORMAT1;
 import static extremesaving.util.PropertyValueENum.DATA_CSV_DATE_FORMAT2;
+import static extremesaving.util.PropertyValueENum.DATA_CSV_FOLDER;
 
 public class DataDaoImpl implements DataDao {
 
@@ -28,18 +29,30 @@ public class DataDaoImpl implements DataDao {
     @Override
     public List<DataModel> findAll() {
         if (results == null) {
-            results = getResultFromCSV();
+            File f = new File(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_FOLDER));
+            if (f.isFile()) {
+                results = getResultFromCSV(f.getAbsolutePath());
+            } else if (f.isDirectory()) {
+                results = new ArrayList<>();
+                for (File file : f.listFiles()) {
+                    results.addAll(getResultFromCSV(file.getAbsolutePath()));
+                }
+
+
+            } else if (!f.exists()) {
+                System.out.println(f.getAbsolutePath() + " could not be found.");
+            }
         }
         return results;
     }
 
-    private List<DataModel> getResultFromCSV() {
+    private List<DataModel> getResultFromCSV(String csvFile) {
         BufferedReader br = null;
         String line = "";
         List<DataModel> dataModels = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV)));
+            br = new BufferedReader(new FileReader(csvFile));
             int lineCounter = 0;
             Integer skipLines = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_SKIP_LINES));
             while ((line = br.readLine()) != null) {
