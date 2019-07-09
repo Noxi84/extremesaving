@@ -13,6 +13,10 @@ public interface PredictionService {
 
     Long getSurvivalDays();
 
+    BigDecimal getNextGoal();
+
+    Long getGoalTime(BigDecimal goal);
+
     BigDecimal getPredictionAmount(Date endDate);
 
     String getTipOfTheDay();

@@ -8,10 +8,7 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PredictionServiceImpl implements PredictionService {
@@ -58,6 +55,55 @@ public class PredictionServiceImpl implements PredictionService {
         while (BigDecimal.ZERO.compareTo(amountLeft) <= 0) {
             dayCounter++;
             amountLeft = amountLeft.add(avgDailyExpenseWithInflation);
+        }
+        return dayCounter - 1;
+    }
+
+    @Override
+    public BigDecimal getNextGoal() {
+        List<BigDecimal> goalAmounts = Arrays.asList(
+                BigDecimal.valueOf(25),
+                BigDecimal.valueOf(50),
+                BigDecimal.valueOf(100),
+                BigDecimal.valueOf(250),
+                BigDecimal.valueOf(500),
+                BigDecimal.valueOf(1000),
+                BigDecimal.valueOf(2500),
+                BigDecimal.valueOf(5000),
+                BigDecimal.valueOf(10000),
+                BigDecimal.valueOf(25000),
+                BigDecimal.valueOf(50000),
+                BigDecimal.valueOf(100000),
+                BigDecimal.valueOf(150000),
+                BigDecimal.valueOf(200000),
+                BigDecimal.valueOf(250000),
+                BigDecimal.valueOf(300000),
+                BigDecimal.valueOf(350000),
+                BigDecimal.valueOf(400000),
+                BigDecimal.valueOf(450000),
+                BigDecimal.valueOf(500000),
+                BigDecimal.valueOf(100000000));
+
+        ResultDto resultDto = calculationService.getResults(dataService.findAll());
+        for (BigDecimal goalAmount : goalAmounts) {
+            if (resultDto.getResult().compareTo(goalAmount) < 0) {
+                return goalAmount;
+            }
+        }
+        return BigDecimal.valueOf(1000000000);
+    }
+
+    @Override
+    public Long getGoalTime(BigDecimal goal) {
+        List<DataModel> dataModels = dataService.findAll();
+        ResultDto resultDto = calculationService.getResults(dataModels);
+
+        BigDecimal amount = resultDto.getResult();
+
+        long dayCounter = 0;
+        while (goal.compareTo(amount) >= 0) {
+            dayCounter++;
+            amount = amount.add(resultDto.getAverageDailyResult());
         }
         return dayCounter - 1;
     }

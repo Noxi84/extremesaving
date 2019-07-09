@@ -60,10 +60,10 @@ public final class DateUtils {
         return cal.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
     }
 
-    public static String formatSurvivalDays(Long survivalDays) {
-        long years = survivalDays / 365;
-        long months = (survivalDays - (years * 365)) / 30;
-        long days = (survivalDays - (years * 365)) - (months * 30);
+    public static String formatTimeLeft(Long numberOfDays) {
+        long years = numberOfDays / 365;
+        long months = (numberOfDays - (years * 365)) / 30;
+        long days = (numberOfDays - (years * 365)) - (months * 30);
 
         StringBuilder result = new StringBuilder();
         if (years > 0) {

@@ -68,7 +68,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
                     .append(" extra in ")
-                    .append(DateUtils.formatSurvivalDays(Long.valueOf(mostProfitableCategoryYears) * 365))
+                    .append(DateUtils.formatTimeLeft(Long.valueOf(mostProfitableCategoryYears) * 365))
                     .append(".")
                     .append("\n");
             text.append("Increasing incomes '")
@@ -78,7 +78,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                     .append(" should save you about ")
                     .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
                     .append(" extra in ")
-                    .append(DateUtils.formatSurvivalDays(Long.valueOf(mostExpensiveCategoryYears) * 365))
+                    .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
                     .append(".");
 
             Paragraph categoryParagraph = getItemParagraph(text.toString());
@@ -121,7 +121,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         monthlyBarChartImage.setWidth(380);
         monthlyBarChartImage.setHeight(300);
         chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
-        chartCell1.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+        chartCell1.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true));
         chartCell1.add(getItemParagraph("\n"));
         chartCell1.add(monthlyBarChartImage);
         return chartCell1;
@@ -134,11 +134,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             // Prediction goal 1 (higher priority if possible)
-            List<BigDecimal> goalAmounts = Arrays.asList(BigDecimal.valueOf(250000), BigDecimal.valueOf(50000), BigDecimal.valueOf(75000), BigDecimal.valueOf(100000));
-            BigDecimal goalAmount = goalAmounts.get(NumberUtils.getRandom(0, goalAmounts.size() - 1));
-            // TODO create incremental goal selector: starting from 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 20000, 50000, 75000, 100000, 150000, 200000, 250000, 300000, 350000, 500000, 1000000, 10000000, 10000000000
+            BigDecimal goalAmount = predictionService.getNextGoal();
             chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount) + " in... "));
-            chartCell2.add(getItemParagraph(DateUtils.formatSurvivalDays(predictionService.getSurvivalDays()), true));
+            chartCell2.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
             chartCell2.add(getItemParagraph("\n"));
 
             // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE based on goal
