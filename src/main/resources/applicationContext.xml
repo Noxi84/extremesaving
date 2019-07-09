@@ -20,6 +20,7 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="accountService" ref="accountService"/>
+        <property name="predictionService" ref="predictionService"/>
     </bean>
 
     <bean id="accountService" class="extremesaving.service.AccountServiceImpl">

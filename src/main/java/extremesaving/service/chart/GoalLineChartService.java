@@ -31,13 +31,14 @@ public class GoalLineChartService implements ChartService {
 
         TimeSeries series1 = new TimeSeries("");
 
-        Map<Date, BigDecimal> historyLineResults = chartDataService.getFutureLineResults();
+        Map<Date, BigDecimal> goalLineResults = chartDataService.getGoalLineResults();
 
-        for (Map.Entry<Date, BigDecimal> result : historyLineResults.entrySet()) {
+        for (Map.Entry<Date, BigDecimal> result : goalLineResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
             series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
         }
+
         dataset.addSeries(series1);
 
         return dataset;

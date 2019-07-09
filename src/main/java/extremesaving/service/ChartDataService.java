@@ -16,5 +16,5 @@ public interface ChartDataService {
 
     Map<Date, BigDecimal> getHistoryLineResults();
 
-    Map<Date, BigDecimal> getFutureLineResults();
+    Map<Date, BigDecimal> getGoalLineResults();
 }

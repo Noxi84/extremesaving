@@ -5,16 +5,20 @@ import extremesaving.dto.MiniResultDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 
 public class ChartDataServiceImpl implements ChartDataService {
 
     private DataService dataService;
     private CalculationService calculationService;
     private AccountService accountService;
+    private PredictionService predictionService;
 
     @Override
     public Map<String, BigDecimal> getAccountResults() {
@@ -84,16 +88,18 @@ public class ChartDataServiceImpl implements ChartDataService {
             predictions.put(existingDataModel.getDate(), resultDto.getResult());
         }
 
-
         // Add future results
         ResultDto resultDto = calculationService.getResults(dataModels);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
-        // TODO KRIS: add inflation 3% ?
+
+        BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
+        BigDecimal inflation = resultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
+        BigDecimal avgDailyExpenseWithInflation = resultDto.getAverageDailyExpense().add(inflation);
 
         for (int dayCounter = 1; dayCounter < 21 * 365; dayCounter++) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(resultDto.getAverageDailyExpense());
+            currentValue = currentValue.add(avgDailyExpenseWithInflation);
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 predictions.put(cal.getTime(), currentValue);
             } else {
@@ -104,7 +110,8 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Date, BigDecimal> getFutureLineResults() {
+    public Map<Date, BigDecimal> getGoalLineResults() {
+
         Map<Date, BigDecimal> predictions = new HashMap<>();
 
         List<DataModel> dataModels = dataService.findAll();
@@ -121,12 +128,9 @@ public class ChartDataServiceImpl implements ChartDataService {
         ResultDto resultDto = calculationService.getResults(dataModels);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
-        Calendar endDate = Calendar.getInstance();
-        endDate.set(Calendar.DAY_OF_MONTH, 1);
-        endDate.set(Calendar.MONTH, Calendar.JANUARY);
-        endDate.add(Calendar.YEAR, 5);
 
-        while (cal.getTime().before(endDate.getTime())) {
+        BigDecimal goal = predictionService.getNextGoal();
+        while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             currentValue = currentValue.add(resultDto.getAverageDailyResult());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
@@ -134,7 +138,8 @@ public class ChartDataServiceImpl implements ChartDataService {
             } else {
                 break;
             }
-        } 
+        }
+
 
         return predictions;
     }
@@ -155,5 +160,9 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setAccountService(AccountService accountService) {
         this.accountService = accountService;
+    }
+
+    public void setPredictionService(PredictionService predictionService) {
+        this.predictionService = predictionService;
     }
 }

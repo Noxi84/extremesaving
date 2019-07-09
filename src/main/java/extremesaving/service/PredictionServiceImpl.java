@@ -6,10 +6,15 @@ import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
+import extremesaving.util.PropertiesValueHolder;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
+import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_GOALS;
 
 public class PredictionServiceImpl implements PredictionService {
 
@@ -49,7 +54,8 @@ public class PredictionServiceImpl implements PredictionService {
 
         BigDecimal amountLeft = resultDto.getResult();
 
-        BigDecimal inflation = resultDto.getAverageDailyExpense().multiply(BigDecimal.valueOf(3)).divide(BigDecimal.valueOf(100));
+        BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
+        BigDecimal inflation = resultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
         BigDecimal avgDailyExpenseWithInflation = resultDto.getAverageDailyExpense().add(inflation);
         long dayCounter = 0;
         while (BigDecimal.ZERO.compareTo(amountLeft) <= 0) {
@@ -61,28 +67,12 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public BigDecimal getNextGoal() {
-        List<BigDecimal> goalAmounts = Arrays.asList(
-                BigDecimal.valueOf(25),
-                BigDecimal.valueOf(50),
-                BigDecimal.valueOf(100),
-                BigDecimal.valueOf(250),
-                BigDecimal.valueOf(500),
-                BigDecimal.valueOf(1000),
-                BigDecimal.valueOf(2500),
-                BigDecimal.valueOf(5000),
-                BigDecimal.valueOf(10000),
-                BigDecimal.valueOf(25000),
-                BigDecimal.valueOf(50000),
-                BigDecimal.valueOf(100000),
-                BigDecimal.valueOf(150000),
-                BigDecimal.valueOf(200000),
-                BigDecimal.valueOf(250000),
-                BigDecimal.valueOf(300000),
-                BigDecimal.valueOf(350000),
-                BigDecimal.valueOf(400000),
-                BigDecimal.valueOf(450000),
-                BigDecimal.valueOf(500000),
-                BigDecimal.valueOf(100000000));
+        String goalsList = PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_GOALS);
+        String[] goals = StringUtils.split(goalsList, ",");
+        List<BigDecimal> goalAmounts = new ArrayList<>();
+        for (String goal : goals) {
+            goalAmounts.add(new BigDecimal(goal));
+        }
 
         ResultDto resultDto = calculationService.getResults(dataService.findAll());
         for (BigDecimal goalAmount : goalAmounts) {

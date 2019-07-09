@@ -21,7 +21,10 @@ public enum PropertyValueENum {
     MONTHLY_BAR_CHART_IMAGE_FILE("chart.monthlyBar.location"),
     HISTORY_LINE_CHART_IMAGE_FILE("chart.historyLine.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
-    YEARLY_BAR_CHART_IMAGE_FILE("chart.yearlyBar.location");
+    YEARLY_BAR_CHART_IMAGE_FILE("chart.yearlyBar.location"),
+
+    HISTORY_LINE_CHART_GOALS("chart.historyLine.goals"),
+    GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage");
 
     private String value;
 
