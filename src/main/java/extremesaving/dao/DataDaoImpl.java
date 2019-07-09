@@ -2,6 +2,8 @@ package extremesaving.dao;
 
 import extremesaving.model.DataModel;
 import extremesaving.util.PropertiesValueHolder;
+import extremesaving.util.PropertyValueENum;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -67,11 +69,17 @@ public class DataDaoImpl implements DataDao {
     private DataModel handeLines(String[] lineSplit) {
         try {
             DataModel dataModel = new DataModel();
-            String date = lineSplit[0];
-            String account = lineSplit[1];
-            String value = lineSplit[2];
-            String category = lineSplit[3];
-            String description = lineSplit.length >= 5 ? lineSplit[4] : "";
+            int dateColumn = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_COLUMN_DATE));
+            int accountColumn = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_COLUMN_ACCOUNT));
+            int valueColumn = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_COLUMN_VALUE));
+            int categoryColumn = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_COLUMN_CATEGORY));
+            int descriptionColumn = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_COLUMN_DESCRIPTION));
+
+            String date = lineSplit.length > dateColumn ? lineSplit[dateColumn] : "";
+            String account = lineSplit.length > accountColumn ? lineSplit[accountColumn] : "";
+            String value = lineSplit.length > valueColumn ? lineSplit[valueColumn] : "";
+            String category = lineSplit.length > categoryColumn ? lineSplit[categoryColumn] : "";
+            String description = lineSplit.length > descriptionColumn ? lineSplit[descriptionColumn] : "";
 
             Date dateResult = null;
             try {
@@ -88,6 +96,9 @@ public class DataDaoImpl implements DataDao {
                 throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT1) + "'.");
             }
             dataModel.setDate(dateResult);
+            if (StringUtils.isBlank(account)) {
+                throw new IllegalStateException("Account is empty.");
+            }
             dataModel.setAccount(account);
             try {
                 BigDecimal newValue = new BigDecimal(value);
@@ -98,12 +109,20 @@ public class DataDaoImpl implements DataDao {
                 throw ex;
             }
 
+            if (StringUtils.isBlank(category)) {
+                throw new IllegalStateException("Category is empty.");
+            }
             dataModel.setCategory(category);
             dataModel.setDescription(description);
 
             return dataModel;
         } catch (Exception ex) {
-            System.out.println("Unable to process line " + lineSplit[0] + " " + lineSplit[1] + " " + lineSplit[2]);
+            StringBuilder line = new StringBuilder();
+            for (String field : lineSplit) {
+                line.append(field).append(' ');
+            }
+
+            System.out.println("Unable to process line " + line.toString());
             throw ex;
         }
     }
