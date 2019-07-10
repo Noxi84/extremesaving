@@ -23,6 +23,16 @@ public enum PropertyValueENum {
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
     YEARLY_BAR_CHART_IMAGE_FILE("chart.yearlyBar.location"),
 
+    SAVING_RATE_ICON1("savingRate.icon1"),
+    SAVING_RATE_ICON2("savingRate.icon2"),
+    SAVING_RATE_ICON3("savingRate.icon3"),
+    SAVING_RATE_ICON4("savingRate.icon4"),
+    SAVING_RATE_ICON5("savingRate.icon5"),
+    SAVING_RATE_ICON6("savingRate.icon6"),
+    SAVING_RATE_ICON7("savingRate.icon7"),
+    SAVING_RATE_ICON8("savingRate.icon8"),
+    SAVING_RATE_ICON9("savingRate.icon9"),
+
     HISTORY_LINE_CHART_GOALS("chart.historyLine.goals"),
     GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage");
 
