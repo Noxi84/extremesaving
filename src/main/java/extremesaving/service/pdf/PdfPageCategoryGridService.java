@@ -34,9 +34,9 @@ public class PdfPageCategoryGridService implements PdfPageService {
     @Override
     public void generate(Document document) {
         document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
         document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
         document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
-        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
     }
 
     private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
