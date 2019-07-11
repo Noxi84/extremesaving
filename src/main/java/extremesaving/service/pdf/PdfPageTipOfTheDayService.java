@@ -120,7 +120,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
         monthlyBarChartImage.setWidth(380);
         monthlyBarChartImage.setHeight(300);
-        chartCell1.add(getItemParagraph("With 3% inflation you could live financially free, without any income for..."));
+        chartCell1.add(getItemParagraph("With 3% inflation and no more incomes you will run out of money in..."));
         chartCell1.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true));
         chartCell1.add(getItemParagraph("\n"));
         chartCell1.add(monthlyBarChartImage);
@@ -135,11 +135,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             // Prediction goal 1 (higher priority if possible)
             BigDecimal goalAmount = predictionService.getNextGoal();
-            chartCell2.add(getItemParagraph("If you keep up your average daily result, you should have about " + NumberUtils.formatNumber(goalAmount, false) + " in... "));
-            chartCell2.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
+            chartCell2.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(goalAmount, false)));
+            chartCell2.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
             chartCell2.add(getItemParagraph("\n"));
 
-            // TODO KRIS: calculate GOAL_LINE_CHART_IMAGE_FILE based on goal
             Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
             futureLineChartImage.setWidth(380);
             futureLineChartImage.setHeight(300);
