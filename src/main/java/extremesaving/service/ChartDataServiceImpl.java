@@ -123,7 +123,6 @@ public class ChartDataServiceImpl implements ChartDataService {
             predictions.put(existingDataModel.getDate(), resultDto.getResult());
         }
 
-
         // Add future results
         ResultDto resultDto = calculationService.getResults(dataModels);
         BigDecimal currentValue = resultDto.getResult();
@@ -139,7 +138,6 @@ public class ChartDataServiceImpl implements ChartDataService {
                 break;
             }
         }
-
 
         return predictions;
     }
