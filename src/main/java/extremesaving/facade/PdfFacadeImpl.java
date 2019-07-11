@@ -13,11 +13,11 @@ import static extremesaving.util.PropertyValueENum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageService pdfPageSummaryGenerator;
-    private PdfPageService pdfPageMonthYearGenerator;
-    private PdfPageService pdfPageCategoryGridGenerator;
-    private PdfPageService pdfPageItemGridGenerator;
-    private PdfPageService pdfPagePredictionsGenerator;
+    private PdfPageService pdfPageSummaryService;
+    private PdfPageService pdfPageMonthYearService;
+    private PdfPageService pdfPageCategoryGridService;
+    private PdfPageService pdfPageItemGridService;
+    private PdfPageService pdfPagePredictionsService;
 
     @Override
     public void generatePdf() {
@@ -28,11 +28,11 @@ public class PdfFacadeImpl implements PdfFacade {
             Document document = new Document(pdf, PageSize.A4);
             document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
 
-            pdfPageSummaryGenerator.generate(document);
-            pdfPageMonthYearGenerator.generate(document);
-            pdfPageCategoryGridGenerator.generate(document);
-            pdfPageItemGridGenerator.generate(document);
-            pdfPagePredictionsGenerator.generate(document);
+            pdfPageSummaryService.generate(document);
+            pdfPageMonthYearService.generate(document);
+            pdfPageCategoryGridService.generate(document);
+            pdfPageItemGridService.generate(document);
+            pdfPagePredictionsService.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {
@@ -40,23 +40,23 @@ public class PdfFacadeImpl implements PdfFacade {
         }
     }
 
-    public void setPdfPageSummaryGenerator(PdfPageService pdfPageSummaryGenerator) {
-        this.pdfPageSummaryGenerator = pdfPageSummaryGenerator;
+    public void setPdfPageSummaryService(PdfPageService pdfPageSummaryService) {
+        this.pdfPageSummaryService = pdfPageSummaryService;
     }
 
-    public void setPdfPageMonthYearGenerator(PdfPageService pdfPageMonthYearGenerator) {
-        this.pdfPageMonthYearGenerator = pdfPageMonthYearGenerator;
+    public void setPdfPageMonthYearService(PdfPageService pdfPageMonthYearService) {
+        this.pdfPageMonthYearService = pdfPageMonthYearService;
     }
 
-    public void setPdfPageCategoryGridGenerator(PdfPageService pdfPageCategoryGridGenerator) {
-        this.pdfPageCategoryGridGenerator = pdfPageCategoryGridGenerator;
+    public void setPdfPageCategoryGridService(PdfPageService pdfPageCategoryGridService) {
+        this.pdfPageCategoryGridService = pdfPageCategoryGridService;
     }
 
-    public void setPdfPageItemGridGenerator(PdfPageService pdfPageItemGridGenerator) {
-        this.pdfPageItemGridGenerator = pdfPageItemGridGenerator;
+    public void setPdfPageItemGridService(PdfPageService pdfPageItemGridService) {
+        this.pdfPageItemGridService = pdfPageItemGridService;
     }
 
-    public void setPdfPagePredictionsGenerator(PdfPageService pdfPagePredictionsGenerator) {
-        this.pdfPagePredictionsGenerator = pdfPagePredictionsGenerator;
+    public void setPdfPagePredictionsService(PdfPageService pdfPagePredictionsService) {
+        this.pdfPagePredictionsService = pdfPagePredictionsService;
     }
 }

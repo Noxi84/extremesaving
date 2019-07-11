@@ -49,31 +49,31 @@
     <bean id="tipOfTheDayDao" class="extremesaving.dao.TipOfTheDayDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfPageSummaryGenerator" class="extremesaving.service.pdf.PdfPageSummaryService">
+    <bean id="pdfPageSummaryService" class="extremesaving.service.pdf.PdfPageSummaryService">
         <property name="accountService" ref="accountService"/>
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPageMonthYearGenerator" class="extremesaving.service.pdf.PdfPageMonthYearService"/>
+    <bean id="pdfPageMonthYearService" class="extremesaving.service.pdf.PdfPageMonthYearService"/>
 
-    <bean id="pdfPageCategoryGridGenerator" class="extremesaving.service.pdf.PdfPageCategoryGridService">
+    <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
-    <bean id="pdfPageItemGridGenerator" class="extremesaving.service.pdf.PdfPageItemGridService">
+    <bean id="pdfPageItemGridService" class="extremesaving.service.pdf.PdfPageItemGridService">
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPagePredictionsGenerator" class="extremesaving.service.pdf.PdfPageTipOfTheDayService">
+    <bean id="pdfPagePredictionsService" class="extremesaving.service.pdf.PdfPageTipOfTheDayService">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
-        <property name="pdfPageSummaryGenerator" ref="pdfPageSummaryGenerator"/>
-        <property name="pdfPageMonthYearGenerator" ref="pdfPageMonthYearGenerator"/>
-        <property name="pdfPageCategoryGridGenerator" ref="pdfPageCategoryGridGenerator"/>
-        <property name="pdfPageItemGridGenerator" ref="pdfPageItemGridGenerator"/>
-        <property name="pdfPagePredictionsGenerator" ref="pdfPagePredictionsGenerator"/>
+        <property name="pdfPageSummaryService" ref="pdfPageSummaryService"/>
+        <property name="pdfPageMonthYearService" ref="pdfPageMonthYearService"/>
+        <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
+        <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
+        <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
     </bean>
 
     <!--Chart-->
