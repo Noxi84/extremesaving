@@ -58,13 +58,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
             document.add(table);
 
-            document.add(getCategoryPredictionParagraph());
+            document.add(getCategoryPredictionTable());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    private Paragraph getCategoryPredictionParagraph() {
+    private Table getCategoryPredictionTable() {
         CategoryDto expensiveCategoryDto = predictionService.getRandomExpensiveCategory();
         CategoryDto profitableCategoryDto = predictionService.getRandomProfitCategory();
 
@@ -76,8 +76,23 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Integer mostProfitableCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
         Integer mostExpensiveCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
 
-        StringBuilder text = new StringBuilder();
-        text.append("Reduce expenses '")
+        StringBuilder textLeft = new StringBuilder();
+        textLeft.append("Increase incomes '")
+                .append(profitableCategoryDto.getName())
+                .append("' with ")
+                .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
+                .append(" to save ")
+                .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
+                .append(" in ")
+                .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
+                .append(".")
+                .append("\n");
+        textLeft.append("Reduce expenses ... with 20% to speed up 20 days.")
+                .append("\n");
+        textLeft.append("Increase reoccurring incomes: 'Werk' occurred 52 times in the past 5 years with €....");
+
+        StringBuilder textRight = new StringBuilder();
+        textRight.append("Reduce expenses '")
                 .append(expensiveCategoryDto.getName())
                 .append("' with ")
                 .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
@@ -87,20 +102,24 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 .append(DateUtils.formatTimeLeft(Long.valueOf(mostProfitableCategoryYears) * 365))
                 .append(".")
                 .append("\n");
-        text.append("Increase incomes '")
-                .append(profitableCategoryDto.getName())
-                .append("' with ")
-                .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
-                .append(" to save ")
-                .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
-                .append(" in ")
-                .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
-                .append(".");
-        text.append("Get rid of repeating occurring expenses. Item 'LUMINUS' occurred 52 times in the past 5 years.");
+        textRight.append("Reduce expenses ... with 20% to survive 20 days more days.")
+                .append("\n");
+        textRight.append("Eliminate reoccurring expenses: 'LUMINUS' occurred 52 times in the past 5 years with € ....");
 
-        Paragraph categoryParagraph = getItemParagraph(text.toString());
-        categoryParagraph.setTextAlignment(TextAlignment.CENTER);
-        return categoryParagraph;
+        Table table = new Table(2);
+        table.setWidth(UnitValue.createPercentValue(100));
+        Cell chartCell1 = new Cell();
+        chartCell1.setBorder(Border.NO_BORDER);
+        chartCell1.add(getItemParagraph(textLeft.toString()));
+        chartCell1.setWidth(UnitValue.createPercentValue(50));
+        Cell chartCell2 = new Cell();
+        chartCell2.setBorder(Border.NO_BORDER);
+        chartCell2.add(getItemParagraph(textRight.toString()));
+        chartCell2.setWidth(UnitValue.createPercentValue(50));
+        table.addCell(chartCell1);
+        table.addCell(chartCell2);
+
+        return table;
     }
 
     private Cell getChartCell2(ResultDto resultDto) throws MalformedURLException {
