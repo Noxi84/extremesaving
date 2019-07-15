@@ -6,14 +6,24 @@ import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.*;
 
 public class CalculationServiceImpl implements CalculationService {
 
+    private static Map<Integer, ResultDto> calculationCash = new HashMap<>();
+
     @Override
     public ResultDto getResults(Collection<DataModel> dataModels) {
+        int hashCode = Objects.hash(dataModels.toArray());
+        ResultDto result = calculationCash.get(hashCode);
+        if (result == null) {
+            result = getResultDto(dataModels);
+            calculationCash.put(hashCode, result);
+        }
+        return result;
+    }
+
+    protected ResultDto getResultDto(Collection<DataModel> dataModels) {
         ResultDto resultDto = new ResultDto();
         resultDto.setData(new HashSet<>(dataModels));
 

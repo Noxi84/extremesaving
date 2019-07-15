@@ -111,7 +111,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Date, BigDecimal> getGoalLineResults() {
-
         Map<Date, BigDecimal> predictions = new HashMap<>();
 
         List<DataModel> dataModels = dataService.findAll();
