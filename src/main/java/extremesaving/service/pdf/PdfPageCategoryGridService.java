@@ -1,6 +1,9 @@
 package extremesaving.service.pdf;
 
+import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
@@ -18,6 +21,7 @@ import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
 import extremesaving.util.PropertyValueENum;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
@@ -40,17 +44,13 @@ public class PdfPageCategoryGridService implements PdfPageService {
     }
 
     private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
-        String title = "";
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            title = "Most profitable categories";
+            document.add(getTitleParagraph("Most profitable categories"));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            title = "Most expensive categories";
+            document.add(getTitleParagraph("Most expensive categories"));
         } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            title = "Result";
+            document.add(getTitleParagraph("Result"));
         }
-        Paragraph summaryTitle = new Paragraph(title);
-        summaryTitle.setBold();
-        document.add(summaryTitle);
 
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
@@ -77,6 +77,18 @@ public class PdfPageCategoryGridService implements PdfPageService {
         table.addCell(getCategoryCell("This year", yearResults, PdfGridTimeEnum.YEAR, pdfGridTypeEnum));
         table.addCell(getCategoryCell("This month", monthResults, PdfGridTimeEnum.MONTH, pdfGridTypeEnum));
         return table;
+    }
+
+    private Paragraph getTitleParagraph(String title) {
+        Paragraph summaryTitle = new Paragraph(title);
+        summaryTitle.setBold();
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            summaryTitle.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return summaryTitle;
     }
 
     private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTimeEnum, PdfGridTypeEnum pdfGridTypeEnum) {
@@ -248,6 +260,12 @@ public class PdfPageCategoryGridService implements PdfPageService {
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(9);
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            paragraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return paragraph;
     }
 

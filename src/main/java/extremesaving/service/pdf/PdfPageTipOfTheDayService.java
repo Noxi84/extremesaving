@@ -1,6 +1,9 @@
 package extremesaving.service.pdf;
 
+import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
@@ -18,6 +21,7 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.util.Arrays;
@@ -41,10 +45,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
 
-            Paragraph titleParagraph = new Paragraph("Tip of the day");
-            titleParagraph.setBold();
-            titleParagraph.setTextAlignment(TextAlignment.CENTER);
-            document.add(titleParagraph);
+            document.add(getTitleParagraph());
             Paragraph tipOfTheDay = getItemParagraph(predictionService.getTipOfTheDay());
             tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
             document.add(tipOfTheDay);
@@ -62,6 +63,47 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Paragraph getTitleParagraph() {
+        Paragraph titleParagraph = new Paragraph("Tip of the day");
+        titleParagraph.setBold();
+        titleParagraph.setTextAlignment(TextAlignment.CENTER);
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            titleParagraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return titleParagraph;
+    }
+
+    private Cell getChartcell1(ResultDto resultDto) throws MalformedURLException {
+        Cell chartCell = new Cell();
+        chartCell.setBorder(Border.NO_BORDER);
+        chartCell.setTextAlignment(TextAlignment.CENTER);
+
+        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal goalAmount = predictionService.getNextGoal();
+            chartCell.add(getItemParagraph("Your previous goal was: ... reached on 1 february 2019"));
+            chartCell.add(getItemParagraph("Reached goal 1 february 2019"));
+            chartCell.add(getItemParagraph("\n"));
+            chartCell.add(getItemParagraph("Your current goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
+            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
+            chartCell.add(getItemParagraph("\n"));
+            chartCell.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
+            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
+            chartCell.add(getItemParagraph("\n"));
+            chartCell.add(getItemParagraph("Average daily result: " + NumberUtils.formatNumber(resultDto.getAverageDailyResult())));
+            chartCell.add(getItemParagraph("Reduce expenses ... with 20% to speed up 20 days."));
+//            chartCell.add(getItemParagraph("\n"));
+
+            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            futureLineChartImage.setWidth(380);
+            futureLineChartImage.setHeight(300);
+            chartCell.add(futureLineChartImage);
+        }
+        return chartCell;
     }
 
     private Table getCategoryPredictionTable() {
@@ -87,8 +129,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
                 .append(".")
                 .append("\n");
-        textLeft.append("Reduce expenses ... with 20% to speed up 20 days.")
-                .append("\n");
         textLeft.append("Increase reoccurring incomes: 'Werk' occurred 52 times in the past 5 years with €....");
 
         StringBuilder textRight = new StringBuilder();
@@ -101,8 +141,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 .append(" in ")
                 .append(DateUtils.formatTimeLeft(Long.valueOf(mostProfitableCategoryYears) * 365))
                 .append(".")
-                .append("\n");
-        textRight.append("Reduce expenses ... with 20% to survive 20 days more days.")
                 .append("\n");
         textRight.append("Eliminate reoccurring expenses: 'LUMINUS' occurred 52 times in the past 5 years with € ....");
 
@@ -124,26 +162,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return table;
     }
 
-    private Cell getChartcell1(ResultDto resultDto) throws MalformedURLException {
-        Cell chartCell = new Cell();
-        chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setTextAlignment(TextAlignment.CENTER);
-
-        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal goalAmount = predictionService.getNextGoal();
-            chartCell.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
-            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
-            chartCell.add(getItemParagraph("Average daily result: " + NumberUtils.formatNumber(resultDto.getAverageDailyResult())));
-            chartCell.add(getItemParagraph("\n"));
-
-            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-            futureLineChartImage.setWidth(380);
-            futureLineChartImage.setHeight(300);
-            chartCell.add(futureLineChartImage);
-        }
-        return chartCell;
-    }
-
     private Cell getChartCell2(ResultDto resultDto) throws MalformedURLException {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
@@ -154,6 +172,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.add(getItemParagraph("Without income and 3% inflation you will run out of money in..."));
         chartCell.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true));
         chartCell.add(getItemParagraph("Average daily expense: " + NumberUtils.formatNumber(resultDto.getAverageDailyExpense())));
+        chartCell.add(getItemParagraph("\n"));
+        chartCell.add(getItemParagraph("Reduce expenses ... with 20% to survive 20 days more days."));
         chartCell.add(getItemParagraph("\n"));
         chartCell.add(monthlyBarChartImage);
         return chartCell;
@@ -168,6 +188,12 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         paragraph.setFontSize(9);
         if (bold) {
             paragraph.setBold();
+        }
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            paragraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return paragraph;
     }

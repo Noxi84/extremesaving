@@ -1,6 +1,9 @@
 package extremesaving.service.pdf;
 
+import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -16,6 +19,7 @@ import extremesaving.service.DataService;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
@@ -52,10 +56,8 @@ public class PdfPageSummaryService implements PdfPageService {
         balanceCell.setBorder(Border.NO_BORDER);
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
-        balanceCell.setWidth(400);
-        Paragraph summaryTitle = new Paragraph("Summary");
-        summaryTitle.setBold();
-        balanceCell.add(summaryTitle);
+        balanceCell.setWidth(450);
+        balanceCell.add(getTitleParagraph("Summary"));
         balanceCell.add(getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
@@ -117,6 +119,18 @@ public class PdfPageSummaryService implements PdfPageService {
         return balanceCell;
     }
 
+    private Paragraph getTitleParagraph(String summary) {
+        Paragraph summaryTitle = new Paragraph(summary);
+        summaryTitle.setBold();
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            summaryTitle.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return summaryTitle;
+    }
+
     private Cell getChartCell() throws MalformedURLException {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
@@ -135,9 +149,7 @@ public class PdfPageSummaryService implements PdfPageService {
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
         accountsCell.setWidth(400);
-        Paragraph accountsTitle = new Paragraph("Accounts");
-        accountsTitle.setBold();
-        accountsCell.add(accountsTitle);
+        accountsCell.add(getTitleParagraph("Accounts"));
         accountsCell.add(getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
@@ -201,6 +213,12 @@ public class PdfPageSummaryService implements PdfPageService {
         paragraph.setFontSize(9);
         if (bold) {
             paragraph.setBold();
+        }
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            paragraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return paragraph;
     }

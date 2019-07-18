@@ -1,5 +1,8 @@
 package extremesaving.service.pdf;
 
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.AreaBreak;
@@ -16,6 +19,7 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,9 +44,7 @@ public class PdfPageItemGridService implements PdfPageService {
             title = "Most expensive items";
         }
 
-        Paragraph summaryTitle = new Paragraph(title);
-        summaryTitle.setBold();
-        document.add(summaryTitle);
+        document.add(getTitleParagraph(title));
 
         List<ResultDto> overallResults = new ArrayList<>();
         List<ResultDto> yearResults = new ArrayList<>();
@@ -64,6 +66,18 @@ public class PdfPageItemGridService implements PdfPageService {
         table.addCell(getItemCell("This year", yearResults));
         table.addCell(getItemCell("This month", monthResults));
         return table;
+    }
+
+    private Paragraph getTitleParagraph(String title) {
+        Paragraph summaryTitle = new Paragraph(title);
+        summaryTitle.setBold();
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            summaryTitle.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return summaryTitle;
     }
 
     private Cell getItemCell(String title, List<ResultDto> results) {
@@ -92,7 +106,7 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= maxCount) {
                 break;
             }
-            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), 23)));
+            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), 21)));
             alignmentTableRight1.add(getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
@@ -107,6 +121,12 @@ public class PdfPageItemGridService implements PdfPageService {
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(9);
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            paragraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return paragraph;
     }
 

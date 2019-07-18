@@ -17,8 +17,11 @@ public class Main {
     }
 
     private void start() {
+        System.out.println("Generating charts...");
         chartFacade.generateCharts();
+        System.out.println("Generating pdf...");
         pdfFacade.generatePdf();
+        System.out.println("Done.");
     }
 
     public void setPdfFacade(PdfFacade pdfFacade) {
