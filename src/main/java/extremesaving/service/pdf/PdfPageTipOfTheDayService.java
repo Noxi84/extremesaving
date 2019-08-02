@@ -51,7 +51,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
-            table.addCell(getChartcell1(resultDto));
+            table.addCell(getChartCell1(resultDto));
             table.addCell(getChartCell2(resultDto));
 
             document.add(table);
@@ -79,7 +79,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return titleParagraph;
     }
 
-    private Cell getChartcell1(ResultDto resultDto) {
+    private Cell getChartCell1(ResultDto resultDto) {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
