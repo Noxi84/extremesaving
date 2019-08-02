@@ -6,7 +6,11 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
@@ -93,7 +97,6 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
     private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTimeEnum, PdfGridTypeEnum pdfGridTypeEnum) {
         Cell cell = new Cell();
-//        cell.setBorder(Border.NO_BORDER);
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
             Paragraph cellTitle = getItemParagraph(title);
@@ -133,9 +136,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         alignmentTableRight.add(totalAmountParagraph);
 
         if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-
             addSavingRatio(alignmentTableLeft, alignmentTableRight, pdfGridTimeEnum);
-
         }
 
         // Add left and right cell

@@ -7,7 +7,6 @@ public class ChartFacadeImpl implements ChartFacade {
     private ChartService accountPieChartService;
     private ChartService monthlyBarChartService;
     private ChartService yearlyBarChartService;
-    private ChartService historyLineChartService;
     private ChartService goalLineChartService;
 
     @Override
@@ -16,7 +15,6 @@ public class ChartFacadeImpl implements ChartFacade {
         monthlyBarChartService.generateChartPng();
         yearlyBarChartService.generateChartPng();
         goalLineChartService.generateChartPng();
-//        historyLineChartService.generateChartPng();
     }
 
     public void setAccountPieChartService(ChartService accountPieChartService) {
@@ -29,10 +27,6 @@ public class ChartFacadeImpl implements ChartFacade {
 
     public void setYearlyBarChartService(ChartService yearlyBarChartService) {
         this.yearlyBarChartService = yearlyBarChartService;
-    }
-
-    public void setHistoryLineChartService(ChartService historyLineChartService) {
-        this.historyLineChartService = historyLineChartService;
     }
 
     public void setGoalLineChartService(ChartService goalLineChartService) {

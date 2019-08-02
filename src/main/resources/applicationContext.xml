@@ -35,13 +35,11 @@
         <property name="accountPieChartService" ref="accountPieChartService"/>
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
         <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
-        <property name="historyLineChartService" ref="historyLineChartService"/>
         <property name="goalLineChartService" ref="goalLineChartService"/>
     </bean>
     <bean id="predictionService" class="extremesaving.service.PredictionServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
-        <property name="categoryService" ref="categoryService"/>
     </bean>
 
     <!--Dao-->
@@ -66,7 +64,6 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
-        <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
         <property name="pdfPageSummaryService" ref="pdfPageSummaryService"/>
@@ -84,9 +81,6 @@
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
     <bean id="yearlyBarChartService" class="extremesaving.service.chart.YearlyBarChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="historyLineChartService" class="extremesaving.service.chart.HistoryLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
     <bean id="goalLineChartService" class="extremesaving.service.chart.GoalLineChartService">

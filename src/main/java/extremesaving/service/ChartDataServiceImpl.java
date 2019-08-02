@@ -5,13 +5,15 @@ import extremesaving.dto.MiniResultDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
-import extremesaving.util.PropertiesValueHolder;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
-
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 
 public class ChartDataServiceImpl implements ChartDataService {
 
@@ -73,40 +75,6 @@ public class ChartDataServiceImpl implements ChartDataService {
         addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR));
 
         return yearlyResults;
-    }
-
-    @Override
-    public Map<Date, BigDecimal> getHistoryLineResults() {
-        Map<Date, BigDecimal> predictions = new HashMap<>();
-
-        List<DataModel> dataModels = dataService.findAll();
-
-        // Add existing results
-        for (DataModel existingDataModel : dataModels) {
-            Set<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> DateUtils.equalDates(dataModel.getDate(), existingDataModel.getDate()) || dataModel.getDate().before(existingDataModel.getDate())).collect(Collectors.toSet());
-            ResultDto resultDto = calculationService.getResults(filteredDataModels);
-            predictions.put(existingDataModel.getDate(), resultDto.getResult());
-        }
-
-        // Add future results
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        BigDecimal currentValue = resultDto.getResult();
-        Calendar cal = Calendar.getInstance();
-
-        BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
-        BigDecimal inflation = resultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
-        BigDecimal avgDailyExpenseWithInflation = resultDto.getAverageDailyExpense().add(inflation);
-
-        for (int dayCounter = 1; dayCounter < 21 * 365; dayCounter++) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(avgDailyExpenseWithInflation);
-            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                predictions.put(cal.getTime(), currentValue);
-            } else {
-                break;
-            }
-        }
-        return predictions;
     }
 
     @Override

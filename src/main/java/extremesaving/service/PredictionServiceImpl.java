@@ -1,17 +1,15 @@
 package extremesaving.service;
 
-import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
-import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_GOALS;
@@ -20,32 +18,6 @@ public class PredictionServiceImpl implements PredictionService {
 
     private DataService dataService;
     private CalculationService calculationService;
-    private CategoryService categoryService;
-
-    @Override
-    public CategoryDto getRandomExpensiveCategory() {
-        List<CategoryDto> categoryDtos = categoryService.getCategories(dataService.findAll());
-        Calendar lastYear = Calendar.getInstance();
-        List<CategoryDto> expensiveCategoryDtos = categoryDtos.stream()
-                .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0)
-                .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
-                .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
-                .collect(Collectors.toList());
-        return expensiveCategoryDtos.get(NumberUtils.getRandom(0, Math.min(expensiveCategoryDtos.size() - 1, 3)));
-    }
-
-    @Override
-    public CategoryDto getRandomProfitCategory() {
-        List<CategoryDto> categoryDtos = categoryService.getCategories(dataService.findAll());
-        Calendar lastYear = Calendar.getInstance();
-        lastYear.add(Calendar.YEAR, -1);
-        List<CategoryDto> profitableCategoryDtos = categoryDtos.stream()
-                .filter(categoryDto -> categoryDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
-                .filter(categoryDto -> DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), new Date()) || DateUtils.equalYears(categoryDto.getTotalResults().getLastDate(), lastYear.getTime()))
-                .sorted(Comparator.comparing(o -> o.getTotalResults().getLastDate()))
-                .collect(Collectors.toList());
-        return profitableCategoryDtos.get(NumberUtils.getRandom(0, Math.min(profitableCategoryDtos.size() - 1, 3)));
-    }
 
     @Override
     public Long getSurvivalDays() {
@@ -99,21 +71,6 @@ public class PredictionServiceImpl implements PredictionService {
     }
 
     @Override
-    public BigDecimal getPredictionAmount(Date endDate) {
-        List<DataModel> dataModels = dataService.findAll();
-        long numberOfDays = DateUtils.daysBetween(endDate, new Date());
-
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        BigDecimal amount = resultDto.getResult();
-        Calendar cal = Calendar.getInstance();
-        for (long i = 0; i < numberOfDays; i++) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            amount = amount.add(resultDto.getAverageDailyResult());
-        }
-        return amount;
-    }
-
-    @Override
     public String getTipOfTheDay() {
         List<TipOfTheDayModel> tipOfTheDayModels = dataService.getTipOfTheDays();
         return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
@@ -125,9 +82,5 @@ public class PredictionServiceImpl implements PredictionService {
 
     public void setCalculationService(CalculationService calculationService) {
         this.calculationService = calculationService;
-    }
-
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
     }
 }

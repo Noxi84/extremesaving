@@ -83,7 +83,7 @@ public class PdfPageItemGridService implements PdfPageService {
     private Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(33));
-//        cell.setBorder(Border.NO_BORDER);
+
         Paragraph cell1Title = getItemParagraph(title);
         cell1Title.setTextAlignment(TextAlignment.CENTER);
         cell1Title.setBold();
@@ -99,7 +99,7 @@ public class PdfPageItemGridService implements PdfPageService {
         alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight1.setWidth(100);
 
-        int maxCount = 16;
+        int maxCount = 20;
         int counter = 0;
         for (ResultDto resultDto : results) {
             counter++;

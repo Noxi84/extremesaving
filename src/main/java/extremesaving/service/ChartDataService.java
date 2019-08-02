@@ -14,7 +14,5 @@ public interface ChartDataService {
 
     Map<Integer, MiniResultDto> getYearlyResults();
 
-    Map<Date, BigDecimal> getHistoryLineResults();
-
     Map<Date, BigDecimal> getGoalLineResults();
 }
