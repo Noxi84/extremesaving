@@ -6,7 +6,11 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -52,14 +56,17 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
-            Cell chartCell1 = getChartcell1(resultDto);
-            Cell chartCell2 = getChartCell2(resultDto);
-            table.addCell(chartCell1);
-            table.addCell(chartCell2);
+            table.addCell(getChartcell1(resultDto));
+            table.addCell(getChartCell2(resultDto));
 
             document.add(table);
 
-            document.add(getCategoryPredictionTable());
+            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            futureLineChartImage.setWidth(760);
+            futureLineChartImage.setHeight(300);
+            document.add(futureLineChartImage);
+
+//            document.add(getCategoryPredictionTable());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -95,13 +102,12 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
             chartCell.add(getItemParagraph("\n"));
             chartCell.add(getItemParagraph("Average daily result: " + NumberUtils.formatNumber(resultDto.getAverageDailyResult())));
-            chartCell.add(getItemParagraph("Reduce expenses ... with 20% to speed up 20 days."));
-//            chartCell.add(getItemParagraph("\n"));
+//            chartCell.add(getItemParagraph("Reduce expenses ... with 20% to speed up 20 days."));
 
-            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-            futureLineChartImage.setWidth(380);
-            futureLineChartImage.setHeight(300);
-            chartCell.add(futureLineChartImage);
+//            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+//            futureLineChartImage.setWidth(380);
+//            futureLineChartImage.setHeight(300);
+//            chartCell.add(futureLineChartImage);
         }
         return chartCell;
     }
@@ -118,43 +124,43 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Integer mostProfitableCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
         Integer mostExpensiveCategoryYears = years.get(NumberUtils.getRandom(0, years.size() - 1));
 
-        StringBuilder textLeft = new StringBuilder();
-        textLeft.append("Increase incomes '")
-                .append(profitableCategoryDto.getName())
-                .append("' with ")
-                .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
-                .append(" to save ")
-                .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
-                .append(" in ")
-                .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
-                .append(".")
-                .append("\n");
-        textLeft.append("Increase reoccurring incomes: 'Werk' occurred 52 times in the past 5 years with €....");
-
-        StringBuilder textRight = new StringBuilder();
-        textRight.append("Reduce expenses '")
-                .append(expensiveCategoryDto.getName())
-                .append("' with ")
-                .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
-                .append(" to save ")
-                .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
-                .append(" in ")
-                .append(DateUtils.formatTimeLeft(Long.valueOf(mostProfitableCategoryYears) * 365))
-                .append(".")
-                .append("\n");
-        textRight.append("Eliminate reoccurring expenses: 'LUMINUS' occurred 52 times in the past 5 years with € ....");
+//        StringBuilder textLeft = new StringBuilder();
+//        textLeft.append("Increase incomes '")
+//                .append(profitableCategoryDto.getName())
+//                .append("' with ")
+//                .append(NumberUtils.formatPercentage(profitableCategoryPercentage))
+//                .append(" to save ")
+//                .append(NumberUtils.formatNumber(categoryService.calculateSavings(profitableCategoryDto.getName(), profitableCategoryPercentage, mostProfitableCategoryYears * 365)))
+//                .append(" in ")
+//                .append(DateUtils.formatTimeLeft(Long.valueOf(mostExpensiveCategoryYears) * 365))
+//                .append(".")
+//                .append("\n");
+//        textLeft.append("Increase reoccurring incomes: 'Werk' occurred 52 times in the past 5 years with €....");
+//
+//        StringBuilder textRight = new StringBuilder();
+//        textRight.append("Reduce expenses '")
+//                .append(expensiveCategoryDto.getName())
+//                .append("' with ")
+//                .append(NumberUtils.formatPercentage(expensiveCategoryPercentage))
+//                .append(" to save ")
+//                .append(NumberUtils.formatNumber(categoryService.calculateSavings(expensiveCategoryDto.getName(), expensiveCategoryPercentage, mostExpensiveCategoryYears * 365)))
+//                .append(" in ")
+//                .append(DateUtils.formatTimeLeft(Long.valueOf(mostProfitableCategoryYears) * 365))
+//                .append(".")
+//                .append("\n");
+//        textRight.append("Eliminate reoccurring expenses: 'LUMINUS' occurred 52 times in the past 5 years with € ....");
 
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
         Cell chartCell1 = new Cell();
         chartCell1.setBorder(Border.NO_BORDER);
         chartCell1.setTextAlignment(TextAlignment.CENTER);
-        chartCell1.add(getItemParagraph(textLeft.toString()));
+//        chartCell1.add(getItemParagraph(textLeft.toString()));
         chartCell1.setWidth(UnitValue.createPercentValue(50));
         Cell chartCell2 = new Cell();
         chartCell2.setBorder(Border.NO_BORDER);
         chartCell2.setTextAlignment(TextAlignment.CENTER);
-        chartCell2.add(getItemParagraph(textRight.toString()));
+//        chartCell2.add(getItemParagraph(textRight.toString()));
         chartCell2.setWidth(UnitValue.createPercentValue(50));
         table.addCell(chartCell1);
         table.addCell(chartCell2);
@@ -166,16 +172,16 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
-        Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
-        monthlyBarChartImage.setWidth(380);
-        monthlyBarChartImage.setHeight(300);
+//        Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_IMAGE_FILE)));
+//        monthlyBarChartImage.setWidth(380);
+//        monthlyBarChartImage.setHeight(300);
         chartCell.add(getItemParagraph("Without income and 3% inflation you will run out of money in..."));
         chartCell.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true));
         chartCell.add(getItemParagraph("Average daily expense: " + NumberUtils.formatNumber(resultDto.getAverageDailyExpense())));
-        chartCell.add(getItemParagraph("\n"));
-        chartCell.add(getItemParagraph("Reduce expenses ... with 20% to survive 20 days more days."));
-        chartCell.add(getItemParagraph("\n"));
-        chartCell.add(monthlyBarChartImage);
+//        chartCell.add(getItemParagraph("\n"));
+//        chartCell.add(getItemParagraph("Reduce expenses ... with 20% to survive 20 days more days."));
+//        chartCell.add(getItemParagraph("\n"));
+//        chartCell.add(monthlyBarChartImage);
         return chartCell;
     }
 

@@ -15,8 +15,8 @@ public class ChartFacadeImpl implements ChartFacade {
         accountPieChartService.generateChartPng();
         monthlyBarChartService.generateChartPng();
         yearlyBarChartService.generateChartPng();
-        historyLineChartService.generateChartPng();
         goalLineChartService.generateChartPng();
+//        historyLineChartService.generateChartPng();
     }
 
     public void setAccountPieChartService(ChartService accountPieChartService) {

@@ -23,7 +23,7 @@ public class GoalLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), 760, 600);
+        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), 1520, 600);
     }
 
     private TimeSeriesCollection createDataset() {
