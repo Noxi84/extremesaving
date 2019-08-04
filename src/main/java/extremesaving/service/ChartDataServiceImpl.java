@@ -7,12 +7,7 @@ import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
@@ -37,9 +32,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
-        List<DataModel> dataModels = dataService.findAll().stream()
-                .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
-                .collect(Collectors.toList());
+        List<DataModel> dataModels = dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date())).collect(Collectors.toList());
         Map<Integer, MiniResultDto> results = dataService.getMonthlyResults(dataModels);
         for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {

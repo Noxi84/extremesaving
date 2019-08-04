@@ -10,14 +10,7 @@ import extremesaving.util.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DataServiceImpl implements DataService {
@@ -180,6 +173,7 @@ public class DataServiceImpl implements DataService {
 
         List<DataModel> filteredDataModels = dataModels.stream()
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
+                .filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("..."))
                 .collect(Collectors.toList());
 
         for (DataModel dataModel : filteredDataModels) {
@@ -202,8 +196,9 @@ public class DataServiceImpl implements DataService {
     @Override
     public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels) {
         Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
+        List<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("...")).collect(Collectors.toList());
 
-        for (DataModel dataModel : dataModels) {
+        for (DataModel dataModel : filteredDataModels) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataModel.getDate());
             int year = cal.get(Calendar.YEAR);

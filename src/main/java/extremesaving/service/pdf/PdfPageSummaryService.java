@@ -178,12 +178,12 @@ public class PdfPageSummaryService implements PdfPageService {
             alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
-        // Add zero accounts
-        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
-            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
-            alignmentTableCenter.add(getItemParagraph(" : "));
-            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
-        }
+//        // Add zero accounts
+//        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
+//            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
+//            alignmentTableCenter.add(getItemParagraph(" : "));
+//            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+//        }
 
         // Add negative accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
