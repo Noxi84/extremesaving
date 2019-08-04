@@ -102,7 +102,7 @@ public class DataDaoImpl implements DataDao {
                 if (lineCounter > 0) {
                     String[] lineSplit = splitCsvLine(line);
 
-                    DataModel dataModel = handeLines(lineSplit, dateColumn, account, value, category, description);
+                    DataModel dataModel = handleLines(lineSplit, dateColumn, account, value, category, description);
                     if (dataModel != null) {
                         dataModels.add(dataModel);
                     }
@@ -125,7 +125,7 @@ public class DataDaoImpl implements DataDao {
         return dataModels;
     }
 
-    private DataModel handeLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
+    private DataModel handleLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
         try {
             DataModel dataModel = new DataModel();
 
