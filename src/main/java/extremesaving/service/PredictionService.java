@@ -6,6 +6,8 @@ public interface PredictionService {
 
     Long getSurvivalDays();
 
+    BigDecimal getPreviousGoal();
+
     BigDecimal getNextGoal();
 
     Long getGoalTime(BigDecimal goal);

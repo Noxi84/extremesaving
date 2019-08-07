@@ -38,6 +38,20 @@ public class PredictionServiceImpl implements PredictionService {
     }
 
     @Override
+    public BigDecimal getPreviousGoal() {
+        String goalsList = PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_GOALS);
+        String[] goals = StringUtils.split(goalsList, ",");
+        List<BigDecimal> goalAmounts = new ArrayList<>();
+        for (String goal : goals) {
+            goalAmounts.add(new BigDecimal(goal));
+        }
+
+        BigDecimal nextGoal = getNextGoal();
+        int nextGoalIndex = goalAmounts.indexOf(nextGoal);
+        return goalAmounts.get(nextGoalIndex-1);
+    }
+
+    @Override
     public BigDecimal getNextGoal() {
         String goalsList = PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_GOALS);
         String[] goals = StringUtils.split(goalsList, ",");

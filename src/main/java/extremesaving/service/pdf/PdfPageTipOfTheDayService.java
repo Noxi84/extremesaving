@@ -6,11 +6,7 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -49,6 +45,15 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
             document.add(tipOfTheDay);
 
+            Paragraph survival = getItemParagraph("Without income and 3% inflation you will run out of money in... ");
+            survival.setTextAlignment(TextAlignment.CENTER);
+
+            Paragraph survival2 = getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true);
+            survival2.setTextAlignment(TextAlignment.CENTER);
+
+            document.add(survival);
+            document.add(survival2);
+
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
             table.addCell(getChartCell1(resultDto));
@@ -85,12 +90,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setTextAlignment(TextAlignment.CENTER);
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal goalAmount = predictionService.getNextGoal();
-            chartCell.add(getItemParagraph("Your previous goal was: € 12000"));
+            BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
+            chartCell.add(getItemParagraph("Your previous goal was: " + NumberUtils.formatNumber(previousGoalAmount, false)));
             chartCell.add(getItemParagraph("Reached goal on 1 february 2019", true));
             chartCell.add(getItemParagraph("\n"));
-            chartCell.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
-            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
         }
         return chartCell;
     }
@@ -99,11 +102,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
-        chartCell.add(getItemParagraph("Without income and 3% inflation you will run out of money in..."));
-        chartCell.add(getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true));
-        chartCell.add(getItemParagraph("\n"));
-        chartCell.add(getItemParagraph("Average daily expense: " + NumberUtils.formatNumber(resultDto.getAverageDailyExpense())));
-        chartCell.add(getItemParagraph("Average daily result: " + NumberUtils.formatNumber(resultDto.getAverageDailyResult())));
+
+        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+            BigDecimal goalAmount = predictionService.getNextGoal();
+            chartCell.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
+            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
+            chartCell.add(getItemParagraph("\n"));
+        }
         return chartCell;
     }
 
