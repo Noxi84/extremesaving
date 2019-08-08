@@ -22,6 +22,8 @@ import extremesaving.util.PropertiesValueHolder;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
@@ -91,8 +93,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
+            Date goalReachedDate = predictionService.getGoalReachedDate(previousGoalAmount);
             chartCell.add(getItemParagraph("Your previous goal was: " + NumberUtils.formatNumber(previousGoalAmount, false)));
-            chartCell.add(getItemParagraph("Reached goal on 1 february 2019", true));
+            chartCell.add(getItemParagraph("Reached goal on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate), true));
             chartCell.add(getItemParagraph("\n"));
         }
         return chartCell;

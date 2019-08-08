@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
@@ -48,7 +49,7 @@ public class PredictionServiceImpl implements PredictionService {
 
         BigDecimal nextGoal = getNextGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(nextGoalIndex-1);
+        return goalAmounts.get(nextGoalIndex - 1);
     }
 
     @Override
@@ -75,13 +76,35 @@ public class PredictionServiceImpl implements PredictionService {
         ResultDto resultDto = calculationService.getResults(dataModels);
 
         BigDecimal amount = resultDto.getResult();
-
-        long dayCounter = 0;
-        while (goal.compareTo(amount) >= 0) {
-            dayCounter++;
-            amount = amount.add(resultDto.getAverageDailyResult());
+        if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
+            long dayCounter = 0;
+            while (goal.compareTo(amount) >= 0) {
+                dayCounter++;
+                amount = amount.add(resultDto.getAverageDailyResult());
+            }
+            return dayCounter - 1;
         }
-        return dayCounter - 1;
+        return 1L;
+    }
+
+    @Override
+    public Date getGoalReachedDate(BigDecimal goal) {
+        List<DataModel> dataModels = dataService.findAll();
+        ResultDto resultDto = calculationService.getResults(dataModels);
+
+        BigDecimal amount = resultDto.getResult();
+        if (goal.compareTo(amount) < 0) {
+            Date lastDate = null;
+            for (int i = dataModels.size() - 1; i > 0; i--) {
+                DataModel dataModel = dataModels.get(i);
+                amount = amount.subtract(dataModel.getValue());
+                lastDate = dataModel.getDate();
+                if (amount.compareTo(goal) <= 0) {
+                    return lastDate;
+                }
+            }
+        }
+        return null;
     }
 
     @Override

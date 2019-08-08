@@ -32,7 +32,10 @@ public final class DateUtils {
     }
 
     public static String formatDate(Date date) {
-        return new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_DATE_FORMAT1)).format(date);
+        if (date != null) {
+            return new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_DATE_FORMAT1)).format(date);
+        }
+        return "";
     }
 
     public static boolean equalDates(Date d1, Date d2) {

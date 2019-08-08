@@ -21,7 +21,9 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public List<DataModel> findAll() {
-        return dataDao.findAll();
+        List<DataModel> dataModels = dataDao.findAll();
+        Collections.sort(dataModels, Comparator.comparing(DataModel::getDate));
+        return dataModels;
     }
 
     @Override

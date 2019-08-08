@@ -1,6 +1,7 @@
 package extremesaving.service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public interface PredictionService {
 
@@ -11,6 +12,8 @@ public interface PredictionService {
     BigDecimal getNextGoal();
 
     Long getGoalTime(BigDecimal goal);
+
+    Date getGoalReachedDate(BigDecimal goal);
 
     String getTipOfTheDay();
 }
