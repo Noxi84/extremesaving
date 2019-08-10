@@ -56,7 +56,7 @@ public class PdfPageSummaryService implements PdfPageService {
         balanceCell.setBorder(Border.NO_BORDER);
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
-        balanceCell.setWidth(450);
+        balanceCell.setWidth(500);
         balanceCell.add(getTitleParagraph("Summary"));
         balanceCell.add(getItemParagraph("\n"));
 
@@ -65,7 +65,7 @@ public class PdfPageSummaryService implements PdfPageService {
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
         alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
-        alignmentTableLeft.setPaddingLeft(30);
+        alignmentTableLeft.setPaddingLeft(20);
 
         Cell alignmentTableCenter = new Cell();
         alignmentTableCenter.setBorder(Border.NO_BORDER);
@@ -165,6 +165,7 @@ public class PdfPageSummaryService implements PdfPageService {
         Cell alignmentTableRight = new Cell();
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight.setPaddingRight(20);
 
         List<AccountDto> accounts = accountService.getAccounts();
 
