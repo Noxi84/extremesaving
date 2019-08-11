@@ -31,13 +31,6 @@ public final class DateUtils {
         return age.getMonths();
     }
 
-    public static String formatDate(Date date) {
-        if (date != null) {
-            return new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_DATE_FORMAT1)).format(date);
-        }
-        return "";
-    }
-
     public static boolean equalDates(Date d1, Date d2) {
         SimpleDateFormat sf = new SimpleDateFormat("DD/MM/YYYY");
         return sf.format(d1).equals(sf.format(d2));

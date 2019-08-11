@@ -17,6 +17,7 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 22;
-    private static final int TEXT_MAX_CHARACTERS = 26;
+    private static final int TEXT_MAX_CHARACTERS = 24;
 
     private DataService dataService;
 
@@ -93,7 +94,7 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft1.add(ChartUtils.getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+            alignmentTableLeft1.add(ChartUtils.getItemParagraph(new SimpleDateFormat("dd/MM/yyyy").format(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
             alignmentTableRight1.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
