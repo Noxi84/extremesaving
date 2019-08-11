@@ -23,7 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueENum.ACCOUNT_PIE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.*;
 
 public class PdfPageSummaryService implements PdfPageService {
 
@@ -37,11 +37,40 @@ public class PdfPageSummaryService implements PdfPageService {
             table.setWidth(UnitValue.createPercentValue(100));
             table.addCell(getAccountsCell());
             table.addCell(getChartCell());
+            table.addCell(getMonthYearTable());
 
             document.add(table);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Table getMonthYearTable() {
+        try {
+            Table table = new Table(2);
+            table.setWidth(UnitValue.createPercentValue(100));
+
+            Cell chartCell1 = new Cell();
+            chartCell1.setBorder(Border.NO_BORDER);
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
+            monthlyBarChartImage.setWidth(380);
+            monthlyBarChartImage.setHeight(300);
+            chartCell1.add(monthlyBarChartImage);
+
+            Cell chartCell2 = new Cell();
+            chartCell2.setBorder(Border.NO_BORDER);
+            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
+            yearlyBarChartImage.setWidth(380);
+            yearlyBarChartImage.setHeight(300);
+            chartCell2.add(yearlyBarChartImage);
+
+            table.addCell(chartCell1);
+            table.addCell(chartCell2);
+            return table;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private Cell getChartCell() throws MalformedURLException {

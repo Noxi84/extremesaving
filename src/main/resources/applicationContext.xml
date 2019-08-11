@@ -51,8 +51,6 @@
         <property name="accountService" ref="accountService"/>
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPageMonthYearService" class="extremesaving.service.pdf.PdfPageMonthYearService"/>
-
     <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
@@ -67,7 +65,6 @@
     </bean>
     <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
         <property name="pdfPageSummaryService" ref="pdfPageSummaryService"/>
-        <property name="pdfPageMonthYearService" ref="pdfPageMonthYearService"/>
         <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
         <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
         <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>

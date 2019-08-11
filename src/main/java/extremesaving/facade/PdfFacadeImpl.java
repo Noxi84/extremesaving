@@ -14,7 +14,6 @@ import static extremesaving.util.PropertyValueENum.PDF_FILE_NAME;
 public class PdfFacadeImpl implements PdfFacade {
 
     private PdfPageService pdfPageSummaryService;
-    private PdfPageService pdfPageMonthYearService;
     private PdfPageService pdfPageCategoryGridService;
     private PdfPageService pdfPageItemGridService;
     private PdfPageService pdfPagePredictionsService;
@@ -29,7 +28,6 @@ public class PdfFacadeImpl implements PdfFacade {
             document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
 
             pdfPageSummaryService.generate(document);
-            pdfPageMonthYearService.generate(document);
             pdfPageCategoryGridService.generate(document);
             pdfPageItemGridService.generate(document);
             pdfPagePredictionsService.generate(document);
@@ -42,10 +40,6 @@ public class PdfFacadeImpl implements PdfFacade {
 
     public void setPdfPageSummaryService(PdfPageService pdfPageSummaryService) {
         this.pdfPageSummaryService = pdfPageSummaryService;
-    }
-
-    public void setPdfPageMonthYearService(PdfPageService pdfPageMonthYearService) {
-        this.pdfPageMonthYearService = pdfPageMonthYearService;
     }
 
     public void setPdfPageCategoryGridService(PdfPageService pdfPageCategoryGridService) {
