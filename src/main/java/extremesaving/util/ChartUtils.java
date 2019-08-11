@@ -1,5 +1,10 @@
 package extremesaving.util;
 
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import org.jfree.chart.JFreeChart;
 
 import javax.imageio.ImageIO;
@@ -28,5 +33,37 @@ public final class ChartUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Paragraph getItemParagraph(String text) {
+        return getItemParagraph(text, false);
+    }
+
+    public static Paragraph getItemParagraph(String text, boolean bold) {
+        Paragraph paragraph = new Paragraph(text);
+        paragraph.setFontSize(8);
+        if (bold) {
+            paragraph.setBold();
+        }
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            paragraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return paragraph;
+    }
+
+    public static Paragraph getTitleParagraph(String text) {
+        Paragraph titleParagraph = new Paragraph(text);
+        titleParagraph.setBold();
+        titleParagraph.setTextAlignment(TextAlignment.CENTER);
+        try {
+            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
+            titleParagraph.setFont(regular);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return titleParagraph;
     }
 }

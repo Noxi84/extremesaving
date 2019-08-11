@@ -1,8 +1,5 @@
 package extremesaving.service.pdf;
 
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.AreaBreak;
@@ -15,11 +12,11 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
 import extremesaving.service.DataService;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
+import extremesaving.util.ChartUtils;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +44,7 @@ public class PdfPageItemGridService implements PdfPageService {
             title = "Most expensive items";
         }
 
-        document.add(getTitleParagraph(title));
+        document.add(ChartUtils.getTitleParagraph(title));
 
         List<ResultDto> overallResults = new ArrayList<>();
         List<ResultDto> yearResults = new ArrayList<>();
@@ -71,23 +68,11 @@ public class PdfPageItemGridService implements PdfPageService {
         return table;
     }
 
-    private Paragraph getTitleParagraph(String title) {
-        Paragraph summaryTitle = new Paragraph(title);
-        summaryTitle.setBold();
-        try {
-            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
-            summaryTitle.setFont(regular);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return summaryTitle;
-    }
-
     private Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(33));
 
-        Paragraph cell1Title = getItemParagraph(title);
+        Paragraph cell1Title = ChartUtils.getItemParagraph(title);
         cell1Title.setTextAlignment(TextAlignment.CENTER);
         cell1Title.setBold();
         cell.add(cell1Title);
@@ -108,8 +93,8 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft1.add(getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
-            alignmentTableRight1.add(getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
+            alignmentTableLeft1.add(ChartUtils.getItemParagraph(DateUtils.formatDate(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+            alignmentTableRight1.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
         alignmentTable1.addCell(alignmentTableLeft1);
@@ -118,18 +103,6 @@ public class PdfPageItemGridService implements PdfPageService {
         cell.add(alignmentTable1);
 
         return cell;
-    }
-
-    private Paragraph getItemParagraph(String text) {
-        Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(8);
-        try {
-            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
-            paragraph.setFont(regular);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return paragraph;
     }
 
     public void setDataService(DataService dataService) {

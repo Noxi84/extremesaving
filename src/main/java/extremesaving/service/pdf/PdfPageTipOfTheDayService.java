@@ -16,6 +16,7 @@ import extremesaving.model.DataModel;
 import extremesaving.service.CalculationService;
 import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
+import extremesaving.util.ChartUtils;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
@@ -71,8 +72,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
         balanceCell.setWidth(500);
-        balanceCell.add(getTitleParagraph("Statistics"));
-        balanceCell.add(getItemParagraph("\n"));
+        balanceCell.add(ChartUtils.getTitleParagraph("Statistics"));
+        balanceCell.add(ChartUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
 
@@ -90,40 +91,40 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
 
         SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
-        alignmentTableLeft.add(getItemParagraph("Last update"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(sf.format(new Date())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Last update"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(sf.format(new Date())));
 
-        alignmentTableLeft.add(getItemParagraph("Last item added"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(sf.format(dataService.getLastItemAdded())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Last item added"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(sf.format(dataService.getLastItemAdded())));
 
-        alignmentTableLeft.add(getItemParagraph("Total items"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Total items"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(String.valueOf(dataService.getTotalItems())));
 
-        alignmentTableLeft.add(getItemParagraph("\n"));
-        alignmentTableCenter.add(getItemParagraph("\n"));
-        alignmentTableRight.add(getItemParagraph("\n"));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph("\n"));
 
         SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
 
-        alignmentTableLeft.add(getItemParagraph("Best month"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Best month"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
 
-        alignmentTableLeft.add(getItemParagraph("Worst month"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Worst month"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
 
         SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
-        alignmentTableLeft.add(getItemParagraph("Best year"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Best year"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
 
-        alignmentTableLeft.add(getItemParagraph("Worst year"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Worst year"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -139,8 +140,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setTextAlignment(TextAlignment.CENTER);
         chartCell.setWidth(UnitValue.createPercentValue(33));
 
-        chartCell.add(getTitleParagraph("Goals & Awards"));
-        chartCell.add(getItemParagraph("\n"));
+        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards"));
+        chartCell.add(ChartUtils.getItemParagraph("\n"));
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
@@ -149,69 +150,37 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 BigDecimal goalAmount = predictionService.getCurrentGoal();
 
                 BigDecimal goalPercentage = resultDto.getResult().divide(goalAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
-                chartCell.add(getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
-                chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
-                chartCell.add(getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
-                chartCell.add(getItemParagraph("\n"));
+                chartCell.add(ChartUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
+                chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
+                chartCell.add(ChartUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
+                chartCell.add(ChartUtils.getItemParagraph("\n"));
             }
 
-            chartCell.add(getItemParagraph("Survive 3 years without incomes.", true));
-            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
-            chartCell.add(getItemParagraph("\n"));
+            chartCell.add(ChartUtils.getItemParagraph("Survive 3 years without incomes.", true));
+            chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
+            chartCell.add(ChartUtils.getItemParagraph("\n"));
 
-            chartCell.add(getItemParagraph("Spend less than € 6000 this year.", true));
-            chartCell.add(getItemParagraph("Current expenses: € 5692 "));
-            chartCell.add(getItemParagraph("\n"));
+            chartCell.add(ChartUtils.getItemParagraph("Spend less than € 6000 this year.", true));
+            chartCell.add(ChartUtils.getItemParagraph("Current expenses: € 5692 "));
+            chartCell.add(ChartUtils.getItemParagraph("\n"));
         }
         return chartCell;
     }
 
-    private Cell getChartCell2() throws MalformedURLException {
+    private Cell getChartCell2() {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setWidth(UnitValue.createPercentValue(33));
 
-        chartCell.add(getTitleParagraph("Tip of the day"));
-        chartCell.add(getItemParagraph("\n"));
-        Paragraph tipOfTheDay = getItemParagraph(predictionService.getTipOfTheDay());
+        chartCell.add(ChartUtils.getTitleParagraph("Tip of the day"));
+        chartCell.add(ChartUtils.getItemParagraph("\n"));
+        Paragraph tipOfTheDay = ChartUtils.getItemParagraph(predictionService.getTipOfTheDay());
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
 
         chartCell.add(tipOfTheDay);
-        chartCell.add(getItemParagraph("\n"));
+        chartCell.add(ChartUtils.getItemParagraph("\n"));
 
         return chartCell;
-    }
-
-    private Paragraph getTitleParagraph(String text) {
-        Paragraph titleParagraph = new Paragraph(text);
-        titleParagraph.setBold();
-        titleParagraph.setTextAlignment(TextAlignment.CENTER);
-        try {
-            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
-            titleParagraph.setFont(regular);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return titleParagraph;
-    }
-
-    private Paragraph getItemParagraph(String text) {
-        return getItemParagraph(text, false);
-    }
-
-    private Paragraph getItemParagraph(String text, boolean bold) {
-        Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(8);
-        if (bold) {
-            paragraph.setBold();
-        }
-        try {
-            PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
-            paragraph.setFont(regular);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return paragraph;
     }
 
     public void setDataService(DataService dataService) {
