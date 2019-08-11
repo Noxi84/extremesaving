@@ -85,13 +85,14 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future results
         ResultDto resultDto = calculationService.getResults(dataModels);
+        ResultDto resultDtoWithoutOutliners = calculationService.getResults(calculationService.removeOutliners(dataModels));
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
         BigDecimal goal = predictionService.getNextGoal();
         while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(resultDto.getAverageDailyResult());
+            currentValue = currentValue.add(resultDtoWithoutOutliners.getAverageDailyResult());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 predictions.put(cal.getTime(), currentValue);
             } else {

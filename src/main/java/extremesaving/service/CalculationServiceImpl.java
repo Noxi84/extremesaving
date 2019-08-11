@@ -3,10 +3,12 @@ package extremesaving.service;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CalculationServiceImpl implements CalculationService {
 
@@ -33,7 +35,7 @@ public class CalculationServiceImpl implements CalculationService {
             if (resultDto.getHighestResult().compareTo(dataModel.getValue()) > 0) {
                 resultDto.setHighestResult(dataModel.getValue());
             }
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
+            if (NumberUtils.isExpense(dataModel.getValue())) {
                 resultDto.setNumberOfExpenses(resultDto.getNumberOfExpenses() + 1);
                 resultDto.setExpenses(resultDto.getExpenses().add(dataModel.getValue()));
                 if (resultDto.getHighestExpense().compareTo(dataModel.getValue()) > 0) {
@@ -84,5 +86,38 @@ public class CalculationServiceImpl implements CalculationService {
         } catch (ArithmeticException ex) {
             return null;
         }
+    }
+
+    @Override
+    public List<DataModel> removeOutliners(Collection<DataModel> dataModels) {
+        List<DataModel> expenses = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isExpense(dataModel.getValue())).collect(Collectors.toList()));
+        List<DataModel> incomes = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isIncome(dataModel.getValue())).collect(Collectors.toList()));
+        return dataModels.stream().filter(dataModel -> expenses.contains(dataModel) || incomes.contains(dataModel)).collect(Collectors.toList());
+    }
+
+    private List<DataModel> filterOutliners(Collection<DataModel> dataModels) {
+        List<DataModel> sortedDataModels = dataModels.stream()
+                .sorted(Comparator.comparing(DataModel::getValue))
+                .collect(Collectors.toList());
+        if (sortedDataModels.size() > 0) {
+            int meridianIndex = sortedDataModels.size() / 2;
+            int outlineValue = (sortedDataModels.size() - meridianIndex) / 7;
+            int belowOutlineIndex = outlineValue;
+            int aboveOutlineIndex = sortedDataModels.size() - outlineValue;
+
+            BigDecimal belowOutlineValue = sortedDataModels.get(belowOutlineIndex).getValue();
+            BigDecimal aboveOutlineValue = sortedDataModels.get(aboveOutlineIndex).getValue();
+
+            List<DataModel> results = new ArrayList<>();
+            for (DataModel dataModel : dataModels) {
+                if ((belowOutlineValue.compareTo(dataModel.getValue()) <= 0) && aboveOutlineValue.compareTo(dataModel.getValue()) >= 0) {
+                    results.add(dataModel);
+                } else {
+                    //System.out.println("Removing outliner: " + dataModel.getDate() + " " + dataModel.getCategory() + " " + dataModel.getDescription() + " " + dataModel.getAccount() + " " + dataModel.getValue() + " (min: " + belowOutlineValue + ", max: " + aboveOutlineValue + ")");
+                }
+            }
+            return results;
+        }
+        return dataModels.stream().collect(Collectors.toList());
     }
 }

@@ -47,7 +47,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
             document.add(tipOfTheDay);
 
-            Paragraph survival = getItemParagraph("Without income and 3% inflation you will run out of money in... ");
+            Paragraph survival = getItemParagraph("Without income the estimation you will run out of money is... ");
             survival.setTextAlignment(TextAlignment.CENTER);
 
             Paragraph survival2 = getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true);

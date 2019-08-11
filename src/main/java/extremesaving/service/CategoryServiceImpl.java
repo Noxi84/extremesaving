@@ -3,6 +3,7 @@ package extremesaving.service;
 import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
+import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
-            if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) < 0) {
+            if (NumberUtils.isIncome(categoryDto.getTotalResults().getResult())) {
                 categoryDtos.add(categoryDto);
             }
         }
@@ -61,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
             categoryDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getCategory().equals(category)).collect(Collectors.toList())));
-            if (BigDecimal.ZERO.compareTo(categoryDto.getTotalResults().getResult()) > 0) {
+            if (NumberUtils.isExpense(categoryDto.getTotalResults().getResult())) {
                 categoryDtos.add(categoryDto);
             }
         }

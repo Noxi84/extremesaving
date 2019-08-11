@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -22,14 +23,17 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public Long getSurvivalDays() {
-        List<DataModel> dataModels = dataService.findAll();
+        Collection<DataModel> dataModels = dataService.findAll();
+        Collection<DataModel> dataModelsWithoutOutliners = calculationService.removeOutliners(dataModels);
         ResultDto resultDto = calculationService.getResults(dataModels);
+        ResultDto resultDtoWithoutOutliners = calculationService.getResults(dataModelsWithoutOutliners);
 
         BigDecimal amountLeft = resultDto.getResult();
 
         BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
-        BigDecimal inflation = resultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
-        BigDecimal avgDailyExpenseWithInflation = resultDto.getAverageDailyExpense().add(inflation);
+        BigDecimal inflation = resultDtoWithoutOutliners.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
+        BigDecimal avgDailyExpenseWithInflation = resultDtoWithoutOutliners.getAverageDailyExpense().add(inflation);
+
         long dayCounter = 0;
         while (BigDecimal.ZERO.compareTo(amountLeft) <= 0) {
             dayCounter++;
@@ -74,13 +78,14 @@ public class PredictionServiceImpl implements PredictionService {
     public Long getGoalTime(BigDecimal goal) {
         List<DataModel> dataModels = dataService.findAll();
         ResultDto resultDto = calculationService.getResults(dataModels);
+        ResultDto resultDtoWithoutOutliners = calculationService.getResults(calculationService.removeOutliners(dataModels));
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
             long dayCounter = 0;
             while (goal.compareTo(amount) >= 0) {
                 dayCounter++;
-                amount = amount.add(resultDto.getAverageDailyResult());
+                amount = amount.add(resultDtoWithoutOutliners.getAverageDailyResult());
             }
             return dayCounter - 1;
         }

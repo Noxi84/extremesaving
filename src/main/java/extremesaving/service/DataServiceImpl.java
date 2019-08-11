@@ -7,6 +7,7 @@ import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -120,7 +121,7 @@ public class DataServiceImpl implements DataService {
     public List<ResultDto> getMostProfitableItems(Collection<DataModel> dataModels) {
         List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
         return categoryDescriptionGrouped.stream()
-                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) < 0)
+                .filter(resultDto -> NumberUtils.isIncome(resultDto.getResult()))
                 .sorted((o1, o2) -> o2.getResult().compareTo(o1.getResult()))
                 .collect(Collectors.toList());
     }
@@ -129,7 +130,7 @@ public class DataServiceImpl implements DataService {
     public List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels) {
         List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
         return categoryDescriptionGrouped.stream()
-                .filter(resultDto -> BigDecimal.ZERO.compareTo(resultDto.getResult()) > 0)
+                .filter(resultDto -> NumberUtils.isExpense(resultDto.getResult()))
                 .sorted(Comparator.comparing(ResultDto::getResult))
                 .collect(Collectors.toList());
     }
@@ -185,7 +186,7 @@ public class DataServiceImpl implements DataService {
             MiniResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
             resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataModel.getValue()));
 
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
+            if (NumberUtils.isExpense(dataModel.getValue())) {
                 resultDtoForThisMonth.setExpenses(resultDtoForThisMonth.getExpenses().add(dataModel.getValue()));
             } else {
                 resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataModel.getValue()));
@@ -211,7 +212,7 @@ public class DataServiceImpl implements DataService {
             }
             resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataModel.getValue()));
 
-            if (BigDecimal.ZERO.compareTo(dataModel.getValue()) > 0) {
+            if (NumberUtils.isExpense(dataModel.getValue())) {
                 resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataModel.getValue()));
             } else {
                 resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataModel.getValue()));
