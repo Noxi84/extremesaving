@@ -27,11 +27,14 @@ import static extremesaving.util.PropertyValueENum.*;
 
 public class PdfPageSummaryService implements PdfPageService {
 
-    public static float BARCHART_WIDTH = 550;
-    public static float BARCHART_HEIGHT = 255;
+    public static float MONTHCHART_WIDTH = 550;
+    public static float MONTHCHART_HEIGHT = 240;
+
+    public static float YEARCHART_WIDTH = 550;
+    public static float YEARCHART_HEIGHT = 255;
 
     public static float ACCOUNTCHART_WIDTH = 200;
-    public static float ACCOUNTCHART_HEIGHT = 245;
+    public static float ACCOUNTCHART_HEIGHT = 225;
 
     private AccountService accountService;
     private DataService dataService;
@@ -57,8 +60,8 @@ public class PdfPageSummaryService implements PdfPageService {
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
-            monthlyBarChartImage.setWidth(BARCHART_WIDTH);
-            monthlyBarChartImage.setHeight(BARCHART_HEIGHT);
+            monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
+            monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
             chartCell1.add(monthlyBarChartImage);
             return chartCell1;
         } catch (Exception ex) {
@@ -72,8 +75,8 @@ public class PdfPageSummaryService implements PdfPageService {
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
-            yearlyBarChartImage.setWidth(BARCHART_WIDTH);
-            yearlyBarChartImage.setHeight(BARCHART_HEIGHT);
+            yearlyBarChartImage.setWidth(YEARCHART_WIDTH);
+            yearlyBarChartImage.setHeight(YEARCHART_HEIGHT);
             chartCell2.add(yearlyBarChartImage);
             return chartCell2;
         } catch (MalformedURLException e) {
@@ -93,6 +96,7 @@ public class PdfPageSummaryService implements PdfPageService {
         accountPieImage.setWidth(ACCOUNTCHART_WIDTH);
         accountPieImage.setHeight(ACCOUNTCHART_HEIGHT);
         chartCell.add(accountPieImage);
+        chartCell.add(ChartUtils.getItemParagraph("\n"));
         chartCell.add(ChartUtils.getItemParagraph("\n"));
         return chartCell;
     }

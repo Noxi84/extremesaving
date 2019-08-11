@@ -24,7 +24,7 @@ public class MonthlyBarChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
-        ChartUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE), (int) PdfPageSummaryService.BARCHART_WIDTH * 2, (int) PdfPageSummaryService.BARCHART_HEIGHT * 2);
+        ChartUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE), (int) PdfPageSummaryService.MONTHCHART_WIDTH * 2, (int) PdfPageSummaryService.MONTHCHART_HEIGHT * 2);
     }
 
     private CategoryDataset createDataset() {

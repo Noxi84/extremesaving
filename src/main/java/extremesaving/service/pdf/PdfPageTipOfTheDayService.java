@@ -1,9 +1,6 @@
 package extremesaving.service.pdf;
 
-import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
@@ -21,7 +18,6 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PropertiesValueHolder;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
@@ -33,7 +29,7 @@ import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
-    public static float CHART_WIDTH = 760;
+    public static float CHART_WIDTH = 770;
     public static float CHART_HEIGHT = 370;
 
     private DataService dataService;
@@ -51,8 +47,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Table table = new Table(3);
             table.setWidth(UnitValue.createPercentValue(100));
             table.addCell(getBalanceCell());
-            table.addCell(getChartCell2());
-            table.addCell(getChartCell1(resultDto));
+            table.addCell(getGoalAndAwardsCell(resultDto));
+            table.addCell(getTipOfTheDayCell());
 
             document.add(table);
 
@@ -67,7 +63,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     private Cell getBalanceCell() {
         Cell balanceCell = new Cell();
-        balanceCell.setWidth(UnitValue.createPercentValue(33));
+        balanceCell.setWidth(UnitValue.createPercentValue(25));
         balanceCell.setBorder(Border.NO_BORDER);
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
@@ -134,11 +130,11 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return balanceCell;
     }
 
-    private Cell getChartCell1(ResultDto resultDto) {
+    private Cell getGoalAndAwardsCell(ResultDto resultDto) {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
-        chartCell.setWidth(UnitValue.createPercentValue(33));
+        chartCell.setWidth(UnitValue.createPercentValue(40));
 
         chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
         chartCell.add(ChartUtils.getItemParagraph("\n"));
@@ -167,10 +163,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return chartCell;
     }
 
-    private Cell getChartCell2() {
+    private Cell getTipOfTheDayCell() {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setWidth(UnitValue.createPercentValue(33));
+        chartCell.setWidth(UnitValue.createPercentValue(35));
 
         chartCell.add(ChartUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
         chartCell.add(ChartUtils.getItemParagraph("\n"));
