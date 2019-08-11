@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
-import static extremesaving.util.PropertyValueENum.HISTORY_LINE_CHART_GOALS;
+import static extremesaving.util.PropertyValueENum.CHART_GOALS_SAVINGS;
 
 public class PredictionServiceImpl implements PredictionService {
 
@@ -44,21 +44,21 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public BigDecimal getPreviousGoal() {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_GOALS);
+        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
         String[] goals = StringUtils.split(goalsList, ",");
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
         }
 
-        BigDecimal nextGoal = getNextGoal();
+        BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
         return goalAmounts.get(nextGoalIndex - 1);
     }
 
     @Override
-    public BigDecimal getNextGoal() {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(HISTORY_LINE_CHART_GOALS);
+    public BigDecimal getCurrentGoal() {
+        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
         String[] goals = StringUtils.split(goalsList, ",");
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
@@ -72,6 +72,20 @@ public class PredictionServiceImpl implements PredictionService {
             }
         }
         return BigDecimal.valueOf(1000000000);
+    }
+
+    @Override
+    public BigDecimal getNextGoal() {
+        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
+        String[] goals = StringUtils.split(goalsList, ",");
+        List<BigDecimal> goalAmounts = new ArrayList<>();
+        for (String goal : goals) {
+            goalAmounts.add(new BigDecimal(goal));
+        }
+
+        BigDecimal nextGoal = getCurrentGoal();
+        int nextGoalIndex = goalAmounts.indexOf(nextGoal);
+        return goalAmounts.get(nextGoalIndex + 1);
     }
 
     @Override

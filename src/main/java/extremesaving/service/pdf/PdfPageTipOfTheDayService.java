@@ -21,6 +21,7 @@ import extremesaving.util.PropertiesValueHolder;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +30,9 @@ import java.util.List;
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
+
+    public static float CHART_WIDTH = 760;
+    public static float CHART_HEIGHT = 390;
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -42,39 +46,73 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
 
-            document.add(getTitleParagraph());
-            Paragraph tipOfTheDay = getItemParagraph(predictionService.getTipOfTheDay());
-            tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
-            document.add(tipOfTheDay);
-
-            Paragraph survival = getItemParagraph("Without income the estimation you will run out of money is... ");
-            survival.setTextAlignment(TextAlignment.CENTER);
-
-            Paragraph survival2 = getItemParagraph(DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), true);
-            survival2.setTextAlignment(TextAlignment.CENTER);
-
-            document.add(survival);
-            document.add(survival2);
-
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
+            table.addCell(getChartCell2());
             table.addCell(getChartCell1(resultDto));
-            table.addCell(getChartCell2(resultDto));
 
             document.add(table);
 
             Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-            futureLineChartImage.setWidth(760);
-            futureLineChartImage.setHeight(380);
+            futureLineChartImage.setWidth(CHART_WIDTH);
+            futureLineChartImage.setHeight(CHART_HEIGHT);
             document.add(futureLineChartImage);
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    private Paragraph getTitleParagraph() {
-        Paragraph titleParagraph = new Paragraph("Tip of the day");
+    private Cell getChartCell1(ResultDto resultDto) {
+        Cell chartCell = new Cell();
+        chartCell.setBorder(Border.NO_BORDER);
+        chartCell.setTextAlignment(TextAlignment.CENTER);
+        chartCell.setWidth(UnitValue.createPercentValue(50));
+
+        chartCell.add(getTitleParagraph("Goals & Awards"));
+        chartCell.add(getItemParagraph("\n"));
+
+        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+            if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
+                BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
+                Date goalReachedDate = predictionService.getGoalReachedDate(previousGoalAmount);
+                BigDecimal goalAmount = predictionService.getCurrentGoal();
+
+                BigDecimal goalPercentage = resultDto.getResult().divide(goalAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+                chartCell.add(getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
+                chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
+                chartCell.add(getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
+                chartCell.add(getItemParagraph("\n"));
+            }
+
+            chartCell.add(getItemParagraph("Survive 3 years without incomes.", true));
+            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
+            chartCell.add(getItemParagraph("\n"));
+
+            chartCell.add(getItemParagraph("Spend less than € 6000 this year.", true));
+            chartCell.add(getItemParagraph("Current expenses: € 5692 "));
+            chartCell.add(getItemParagraph("\n"));
+        }
+        return chartCell;
+    }
+
+    private Cell getChartCell2() throws MalformedURLException {
+        Cell chartCell = new Cell();
+        chartCell.setBorder(Border.NO_BORDER);
+        chartCell.setWidth(UnitValue.createPercentValue(50));
+
+        chartCell.add(getTitleParagraph("Tip of the day"));
+        chartCell.add(getItemParagraph("\n"));
+        Paragraph tipOfTheDay = getItemParagraph(predictionService.getTipOfTheDay());
+        tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
+
+        chartCell.add(tipOfTheDay);
+        chartCell.add(getItemParagraph("\n"));
+
+        return chartCell;
+    }
+
+    private Paragraph getTitleParagraph(String text) {
+        Paragraph titleParagraph = new Paragraph(text);
         titleParagraph.setBold();
         titleParagraph.setTextAlignment(TextAlignment.CENTER);
         try {
@@ -86,42 +124,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return titleParagraph;
     }
 
-    private Cell getChartCell1(ResultDto resultDto) {
-        Cell chartCell = new Cell();
-        chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setTextAlignment(TextAlignment.CENTER);
-
-        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
-            Date goalReachedDate = predictionService.getGoalReachedDate(previousGoalAmount);
-            chartCell.add(getItemParagraph("Your previous goal was: " + NumberUtils.formatNumber(previousGoalAmount, false)));
-            chartCell.add(getItemParagraph("Reached goal on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate), true));
-            chartCell.add(getItemParagraph("\n"));
-        }
-        return chartCell;
-    }
-
-    private Cell getChartCell2(ResultDto resultDto) {
-        Cell chartCell = new Cell();
-        chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setTextAlignment(TextAlignment.CENTER);
-
-        if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal goalAmount = predictionService.getNextGoal();
-            chartCell.add(getItemParagraph("Your next goal is: " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false)));
-            chartCell.add(getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), true));
-            chartCell.add(getItemParagraph("\n"));
-        }
-        return chartCell;
-    }
-
     private Paragraph getItemParagraph(String text) {
         return getItemParagraph(text, false);
     }
 
     private Paragraph getItemParagraph(String text, boolean bold) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(9);
+        paragraph.setFontSize(8);
         if (bold) {
             paragraph.setBold();
         }

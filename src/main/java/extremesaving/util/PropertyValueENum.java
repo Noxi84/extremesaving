@@ -19,7 +19,6 @@ public enum PropertyValueENum {
 
     ACCOUNT_PIE_CHART_IMAGE_FILE("chart.accountPie.location"),
     MONTHLY_BAR_CHART_IMAGE_FILE("chart.monthlyBar.location"),
-    HISTORY_LINE_CHART_IMAGE_FILE("chart.historyLine.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
     YEARLY_BAR_CHART_IMAGE_FILE("chart.yearlyBar.location"),
 
@@ -33,7 +32,8 @@ public enum PropertyValueENum {
     SAVING_RATE_ICON8("savingRate.icon8"),
     SAVING_RATE_ICON9("savingRate.icon9"),
 
-    HISTORY_LINE_CHART_GOALS("chart.historyLine.goals"),
+    CHART_GOALS_SURVIVAL("chart.goals.survival"),
+    CHART_GOALS_SAVINGS("chart.goals.savings"),
     GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage");
 
     private String value;

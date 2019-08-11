@@ -211,7 +211,7 @@ public class PdfPageSummaryService implements PdfPageService {
 
     private Paragraph getItemParagraph(String text, boolean bold) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(9);
+        paragraph.setFontSize(8);
         if (bold) {
             paragraph.setBold();
         }

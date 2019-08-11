@@ -9,6 +9,8 @@ public interface PredictionService {
 
     BigDecimal getPreviousGoal();
 
+    BigDecimal getCurrentGoal();
+
     BigDecimal getNextGoal();
 
     Long getGoalTime(BigDecimal goal);

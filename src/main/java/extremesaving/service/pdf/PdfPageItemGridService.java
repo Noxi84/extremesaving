@@ -120,7 +120,7 @@ public class PdfPageItemGridService implements PdfPageService {
 
     private Paragraph getItemParagraph(String text) {
         Paragraph paragraph = new Paragraph(text);
-        paragraph.setFontSize(9);
+        paragraph.setFontSize(8);
         try {
             PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
             paragraph.setFont(regular);
