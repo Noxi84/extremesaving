@@ -33,6 +33,7 @@ public enum PropertyValueENum {
     SAVING_RATE_ICON9("savingRate.icon9"),
 
     CHART_GOALS_SURVIVAL("chart.goals.survival"),
+    CHART_GOALS_YEAR_SPENDINGS("chart.goals.yearSpendings"),
     CHART_GOALS_SAVINGS("chart.goals.savings"),
     GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage");
 
