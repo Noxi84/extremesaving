@@ -8,6 +8,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
@@ -32,7 +33,7 @@ import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public static float CHART_WIDTH = 760;
-    public static float CHART_HEIGHT = 390;
+    public static float CHART_HEIGHT = 370;
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -46,8 +47,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
 
-            Table table = new Table(2);
+            Table table = new Table(3);
             table.setWidth(UnitValue.createPercentValue(100));
+            table.addCell(getBalanceCell());
             table.addCell(getChartCell2());
             table.addCell(getChartCell1(resultDto));
 
@@ -62,11 +64,80 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         }
     }
 
+    private Cell getBalanceCell() {
+        Cell balanceCell = new Cell();
+        balanceCell.setWidth(UnitValue.createPercentValue(33));
+        balanceCell.setBorder(Border.NO_BORDER);
+        balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        balanceCell.setTextAlignment(TextAlignment.CENTER);
+        balanceCell.setWidth(500);
+        balanceCell.add(getTitleParagraph("Statistics"));
+        balanceCell.add(getItemParagraph("\n"));
+
+        Table alignmentTable = new Table(3);
+
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
+        alignmentTableLeft.setPaddingLeft(20);
+
+        Cell alignmentTableCenter = new Cell();
+        alignmentTableCenter.setBorder(Border.NO_BORDER);
+        alignmentTableCenter.setTextAlignment(TextAlignment.CENTER);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+
+        SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
+        alignmentTableLeft.add(getItemParagraph("Last update"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(sf.format(new Date())));
+
+        alignmentTableLeft.add(getItemParagraph("Last item added"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(sf.format(dataService.getLastItemAdded())));
+
+        alignmentTableLeft.add(getItemParagraph("Total items"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
+
+        alignmentTableLeft.add(getItemParagraph("\n"));
+        alignmentTableCenter.add(getItemParagraph("\n"));
+        alignmentTableRight.add(getItemParagraph("\n"));
+
+        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
+
+        alignmentTableLeft.add(getItemParagraph("Best month"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+
+        alignmentTableLeft.add(getItemParagraph("Worst month"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+
+        SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
+        alignmentTableLeft.add(getItemParagraph("Best year"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
+
+        alignmentTableLeft.add(getItemParagraph("Worst year"));
+        alignmentTableCenter.add(getItemParagraph(":"));
+        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
+
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableCenter);
+        alignmentTable.addCell(alignmentTableRight);
+
+        balanceCell.add(alignmentTable);
+        return balanceCell;
+    }
+
     private Cell getChartCell1(ResultDto resultDto) {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
-        chartCell.setWidth(UnitValue.createPercentValue(50));
+        chartCell.setWidth(UnitValue.createPercentValue(33));
 
         chartCell.add(getTitleParagraph("Goals & Awards"));
         chartCell.add(getItemParagraph("\n"));
@@ -98,7 +169,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     private Cell getChartCell2() throws MalformedURLException {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setWidth(UnitValue.createPercentValue(50));
+        chartCell.setWidth(UnitValue.createPercentValue(33));
 
         chartCell.add(getTitleParagraph("Tip of the day"));
         chartCell.add(getItemParagraph("\n"));

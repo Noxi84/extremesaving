@@ -22,10 +22,8 @@ import extremesaving.util.PropertiesValueHolder;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,9 +37,8 @@ public class PdfPageSummaryService implements PdfPageService {
     @Override
     public void generate(Document document) {
         try {
-            Table table = new Table(3);
+            Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
-            table.addCell(getBalanceCell());
             table.addCell(getChartCell());
             table.addCell(getAccountsCell());
 
@@ -49,74 +46,6 @@ public class PdfPageSummaryService implements PdfPageService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-    }
-
-    private Cell getBalanceCell() {
-        Cell balanceCell = new Cell();
-        balanceCell.setBorder(Border.NO_BORDER);
-        balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        balanceCell.setTextAlignment(TextAlignment.CENTER);
-        balanceCell.setWidth(500);
-        balanceCell.add(getTitleParagraph("Summary"));
-        balanceCell.add(getItemParagraph("\n"));
-
-        Table alignmentTable = new Table(3);
-
-        Cell alignmentTableLeft = new Cell();
-        alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
-        alignmentTableLeft.setPaddingLeft(20);
-
-        Cell alignmentTableCenter = new Cell();
-        alignmentTableCenter.setBorder(Border.NO_BORDER);
-        alignmentTableCenter.setTextAlignment(TextAlignment.CENTER);
-
-        Cell alignmentTableRight = new Cell();
-        alignmentTableRight.setBorder(Border.NO_BORDER);
-        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-
-        SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
-        alignmentTableLeft.add(getItemParagraph("Last update"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(sf.format(new Date())));
-
-        alignmentTableLeft.add(getItemParagraph("Last item added"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(sf.format(dataService.getLastItemAdded())));
-
-        alignmentTableLeft.add(getItemParagraph("Total items"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(String.valueOf(dataService.getTotalItems())));
-
-        alignmentTableLeft.add(getItemParagraph("\n"));
-        alignmentTableCenter.add(getItemParagraph("\n"));
-        alignmentTableRight.add(getItemParagraph("\n"));
-
-        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
-
-        alignmentTableLeft.add(getItemParagraph("Best month"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
-
-        alignmentTableLeft.add(getItemParagraph("Worst month"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
-
-        SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
-        alignmentTableLeft.add(getItemParagraph("Best year"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
-
-        alignmentTableLeft.add(getItemParagraph("Worst year"));
-        alignmentTableCenter.add(getItemParagraph(":"));
-        alignmentTableRight.add(getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
-
-        alignmentTable.addCell(alignmentTableLeft);
-        alignmentTable.addCell(alignmentTableCenter);
-        alignmentTable.addCell(alignmentTableRight);
-
-        balanceCell.add(alignmentTable);
-        return balanceCell;
     }
 
     private Paragraph getTitleParagraph(String summary) {
