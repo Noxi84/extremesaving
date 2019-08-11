@@ -27,6 +27,12 @@ import static extremesaving.util.PropertyValueENum.*;
 
 public class PdfPageSummaryService implements PdfPageService {
 
+    public static float BARCHART_WIDTH = 550;
+    public static float BARCHART_HEIGHT = 255;
+
+    public static float ACCOUNTCHART_WIDTH = 200;
+    public static float ACCOUNTCHART_HEIGHT = 245;
+
     private AccountService accountService;
     private DataService dataService;
 
@@ -35,9 +41,10 @@ public class PdfPageSummaryService implements PdfPageService {
         try {
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
+            table.addCell(getAccountChartCell());
+            table.addCell(getMonthChartCell());
             table.addCell(getAccountsCell());
-            table.addCell(getChartCell());
-            table.addCell(getMonthYearTable());
+            table.addCell(getYearChartCell());
 
             document.add(table);
         } catch (MalformedURLException e) {
@@ -45,43 +52,48 @@ public class PdfPageSummaryService implements PdfPageService {
         }
     }
 
-    public Table getMonthYearTable() {
+    public Cell getMonthChartCell() {
         try {
-            Table table = new Table(2);
-            table.setWidth(UnitValue.createPercentValue(100));
-
             Cell chartCell1 = new Cell();
             chartCell1.setBorder(Border.NO_BORDER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
-            monthlyBarChartImage.setWidth(380);
-            monthlyBarChartImage.setHeight(300);
+            monthlyBarChartImage.setWidth(BARCHART_WIDTH);
+            monthlyBarChartImage.setHeight(BARCHART_HEIGHT);
             chartCell1.add(monthlyBarChartImage);
+            return chartCell1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 
+    public Cell getYearChartCell() {
+        try {
             Cell chartCell2 = new Cell();
             chartCell2.setBorder(Border.NO_BORDER);
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
-            yearlyBarChartImage.setWidth(380);
-            yearlyBarChartImage.setHeight(300);
+            yearlyBarChartImage.setWidth(BARCHART_WIDTH);
+            yearlyBarChartImage.setHeight(BARCHART_HEIGHT);
             chartCell2.add(yearlyBarChartImage);
-
-            table.addCell(chartCell1);
-            table.addCell(chartCell2);
-            return table;
+            return chartCell2;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private Cell getChartCell() throws MalformedURLException {
+    private Cell getAccountChartCell() throws MalformedURLException {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        chartCell.setTextAlignment(TextAlignment.CENTER.CENTER);
+        chartCell.setTextAlignment(TextAlignment.CENTER);
+        chartCell.setWidth(300);
+
         Image accountPieImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(ACCOUNT_PIE_CHART_IMAGE_FILE)));
-        accountPieImage.setWidth(350);
-        accountPieImage.setHeight(200);
+        accountPieImage.setWidth(ACCOUNTCHART_WIDTH);
+        accountPieImage.setHeight(ACCOUNTCHART_HEIGHT);
         chartCell.add(accountPieImage);
+        chartCell.add(ChartUtils.getItemParagraph("\n"));
         return chartCell;
     }
 
@@ -90,7 +102,7 @@ public class PdfPageSummaryService implements PdfPageService {
         accountsCell.setBorder(Border.NO_BORDER);
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
-        accountsCell.setWidth(400);
+        accountsCell.setWidth(300);
         accountsCell.add(ChartUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
         accountsCell.add(ChartUtils.getItemParagraph("\n"));
 

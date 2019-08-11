@@ -1,6 +1,7 @@
 package extremesaving.service.chart;
 
 import extremesaving.service.ChartDataService;
+import extremesaving.service.pdf.PdfPageSummaryService;
 import extremesaving.util.ChartUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
@@ -18,9 +19,9 @@ public class AccountPieChartService implements ChartService {
 
     @Override
     public void generateChartPng() {
-        JFreeChart chart = ChartFactory.createPieChart("Accounts", createDataSet(), true, false, false);
+        JFreeChart chart = ChartFactory.createPieChart("Accounts", createDataSet(), false, false, false);
         chart.setTitle("");
-        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(ACCOUNT_PIE_CHART_IMAGE_FILE), 550, 300);
+        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(ACCOUNT_PIE_CHART_IMAGE_FILE), (int) PdfPageSummaryService.ACCOUNTCHART_WIDTH * 2, (int) PdfPageSummaryService.ACCOUNTCHART_HEIGHT * 2);
     }
 
     private DefaultPieDataset createDataSet() {
