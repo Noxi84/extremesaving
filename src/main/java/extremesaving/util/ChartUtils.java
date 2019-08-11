@@ -54,10 +54,10 @@ public final class ChartUtils {
         return paragraph;
     }
 
-    public static Paragraph getTitleParagraph(String text) {
+    public static Paragraph getTitleParagraph(String text, TextAlignment textAlignment) {
         Paragraph titleParagraph = new Paragraph(text);
         titleParagraph.setBold();
-        titleParagraph.setTextAlignment(TextAlignment.CENTER);
+        titleParagraph.setTextAlignment(textAlignment);
         try {
             PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
             titleParagraph.setFont(regular);

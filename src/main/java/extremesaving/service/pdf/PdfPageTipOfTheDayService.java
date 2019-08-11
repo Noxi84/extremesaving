@@ -72,7 +72,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
         balanceCell.setWidth(500);
-        balanceCell.add(ChartUtils.getTitleParagraph("Statistics"));
+        balanceCell.add(ChartUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
         balanceCell.add(ChartUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
@@ -140,7 +140,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setTextAlignment(TextAlignment.CENTER);
         chartCell.setWidth(UnitValue.createPercentValue(33));
 
-        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards"));
+        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
         chartCell.add(ChartUtils.getItemParagraph("\n"));
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
@@ -172,7 +172,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setWidth(UnitValue.createPercentValue(33));
 
-        chartCell.add(ChartUtils.getTitleParagraph("Tip of the day"));
+        chartCell.add(ChartUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
         chartCell.add(ChartUtils.getItemParagraph("\n"));
         Paragraph tipOfTheDay = ChartUtils.getItemParagraph(predictionService.getTipOfTheDay());
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);

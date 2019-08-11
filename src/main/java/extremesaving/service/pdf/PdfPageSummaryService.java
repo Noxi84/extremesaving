@@ -91,7 +91,7 @@ public class PdfPageSummaryService implements PdfPageService {
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
         accountsCell.setWidth(400);
-        accountsCell.add(ChartUtils.getTitleParagraph("Accounts"));
+        accountsCell.add(ChartUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
         accountsCell.add(ChartUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);

@@ -44,7 +44,7 @@ public class PdfPageItemGridService implements PdfPageService {
             title = "Most expensive items";
         }
 
-        document.add(ChartUtils.getTitleParagraph(title));
+        document.add(ChartUtils.getTitleParagraph(title, TextAlignment.LEFT));
 
         List<ResultDto> overallResults = new ArrayList<>();
         List<ResultDto> yearResults = new ArrayList<>();

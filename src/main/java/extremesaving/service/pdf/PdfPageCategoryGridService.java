@@ -46,11 +46,11 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
     private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            document.add(ChartUtils.getTitleParagraph("Most profitable categories"));
+            document.add(ChartUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            document.add(ChartUtils.getTitleParagraph("Most expensive categories"));
+            document.add(ChartUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
         } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            document.add(ChartUtils.getTitleParagraph("Result"));
+            document.add(ChartUtils.getTitleParagraph("Result", TextAlignment.LEFT));
         }
 
         Table table = new Table(3);
