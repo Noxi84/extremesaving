@@ -32,7 +32,7 @@ import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public static float CHART_WIDTH = 525;
-    public static float CHART_HEIGHT = 400;
+    public static float CHART_HEIGHT = 350;
 
     private DataService dataService;
     private CalculationService calculationService;

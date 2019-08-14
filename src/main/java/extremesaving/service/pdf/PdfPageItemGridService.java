@@ -25,8 +25,8 @@ import java.util.stream.Collectors;
 
 public class PdfPageItemGridService implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 22;
-    private static final int TEXT_MAX_CHARACTERS = 10;
+    private static final int DISPLAY_MAX_ITEMS = 30;
+    private static final int TEXT_MAX_CHARACTERS = 14;
 
     private DataService dataService;
 
@@ -94,7 +94,7 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft1.add(PdfUtils.getItemParagraph(new SimpleDateFormat("dd/MM/yyyy").format(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+            alignmentTableLeft1.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
             alignmentTableRight1.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 

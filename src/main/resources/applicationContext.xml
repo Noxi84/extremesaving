@@ -55,6 +55,7 @@
     </bean>
     <bean id="pdfPageMonthService" class="extremesaving.service.pdf.PdfPageMonthService">
         <property name="dataService" ref="dataService"/>
+        <property name="categoryService" ref="categoryService"/>
     </bean>
     <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
