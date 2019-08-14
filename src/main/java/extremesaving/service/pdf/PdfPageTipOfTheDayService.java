@@ -31,8 +31,8 @@ import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
-    public static float CHART_WIDTH = 550;
-    public static float CHART_HEIGHT = 240;
+    public static float CHART_WIDTH = 525;
+    public static float CHART_HEIGHT = 400;
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -58,6 +58,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             futureLineChartImage.setHeight(CHART_HEIGHT);
             document.add(futureLineChartImage);
 
+            document.add(PdfUtils.getItemParagraph("\n"));
+
             Table table2 = new Table(2);
             table2.setWidth(UnitValue.createPercentValue(100));
             table2.addCell(getStatisticsCell());
@@ -73,9 +75,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         accountsCell.setBorder(Border.NO_BORDER);
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
-        accountsCell.setWidth(300);
-        accountsCell.add(ChartUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
-        accountsCell.add(ChartUtils.getItemParagraph("\n"));
+        accountsCell.setWidth(UnitValue.createPercentValue(50));
+        accountsCell.add(PdfUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
+        accountsCell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
         Cell alignmentTableLeft = new Cell();
@@ -99,9 +101,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         // Add positive accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList())) {
-            alignmentTableLeft.add(ChartUtils.getItemParagraph(accountDto.getName()));
-            alignmentTableCenter.add(ChartUtils.getItemParagraph(" : "));
-            alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+            alignmentTableLeft.add(PdfUtils.getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(PdfUtils.getItemParagraph(" : "));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
 //        // Add zero accounts
@@ -113,18 +115,18 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         // Add negative accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
-            alignmentTableLeft.add(ChartUtils.getItemParagraph(accountDto.getName()));
-            alignmentTableCenter.add(ChartUtils.getItemParagraph(" : "));
-            alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+            alignmentTableLeft.add(PdfUtils.getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(PdfUtils.getItemParagraph(" : "));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("\n"));
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Total result", true));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total result", true));
 
-        alignmentTableCenter.add(ChartUtils.getItemParagraph("\n"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":", true));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
 
-        alignmentTableRight.add(ChartUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -141,8 +143,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         balanceCell.setTextAlignment(TextAlignment.CENTER);
         balanceCell.setWidth(500);
-        balanceCell.add(ChartUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
-        balanceCell.add(ChartUtils.getItemParagraph("\n"));
+        balanceCell.add(PdfUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
+        balanceCell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
 
@@ -160,40 +162,40 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
 
         SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Last update"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(sf.format(new Date())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Last update"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(new Date())));
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Last item added"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(sf.format(dataService.getLastItemAdded())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Last item added"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(dataService.getLastItemAdded())));
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Total items"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(String.valueOf(dataService.getTotalItems())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(String.valueOf(dataService.getTotalItems())));
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("\n"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
 
         SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Best month"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Worst month"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
 
         SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Best year"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best year"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
 
-        alignmentTableLeft.add(ChartUtils.getItemParagraph("Worst year"));
-        alignmentTableCenter.add(ChartUtils.getItemParagraph(":"));
-        alignmentTableRight.add(ChartUtils.getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst year"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -207,7 +209,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
-        chartCell.setWidth(UnitValue.createPercentValue(40));
+        chartCell.setWidth(UnitValue.createPercentValue(50));
 
 //        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
 //        chartCell.add(ChartUtils.getItemParagraph("\n"));
@@ -220,10 +222,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
                 BigDecimal goalPercentage = resultDto.getResult().divide(goalAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
                 chartCell.add(getGoalTropheeImage(goalAmount));
-                chartCell.add(ChartUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
-                chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
-                chartCell.add(ChartUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
-                chartCell.add(ChartUtils.getItemParagraph("\n"));
+                chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
+                chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
+                chartCell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
+                chartCell.add(PdfUtils.getItemParagraph("\n"));
             }
 
 //            chartCell.add(ChartUtils.getItemParagraph("Survive 3 years without incomes.", true));
@@ -294,13 +296,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setWidth(UnitValue.createPercentValue(35));
 
-        chartCell.add(ChartUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
-        chartCell.add(ChartUtils.getItemParagraph("\n"));
-        Paragraph tipOfTheDay = ChartUtils.getItemParagraph(predictionService.getTipOfTheDay());
+        chartCell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
+        chartCell.add(PdfUtils.getItemParagraph("\n"));
+        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(predictionService.getTipOfTheDay());
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
 
         chartCell.add(tipOfTheDay);
-        chartCell.add(ChartUtils.getItemParagraph("\n"));
+        chartCell.add(PdfUtils.getItemParagraph("\n"));
 
         return chartCell;
     }

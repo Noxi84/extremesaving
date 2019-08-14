@@ -2,7 +2,7 @@ package extremesaving.service.chart;
 
 import extremesaving.service.ChartDataService;
 import extremesaving.service.pdf.PdfPageTipOfTheDayService;
-import extremesaving.util.ChartUtils;
+import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -24,7 +24,7 @@ public class GoalLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        ChartUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.CHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.CHART_HEIGHT * 2);
     }
 
     private TimeSeriesCollection createDataset() {

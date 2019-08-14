@@ -15,9 +15,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public final class ChartUtils {
+public final class PdfUtils {
 
-    private ChartUtils() {
+    private PdfUtils() {
     }
 
     public static void writeChartPng(JFreeChart chart, String file, int width, int height) {

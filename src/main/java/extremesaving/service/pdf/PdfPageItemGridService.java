@@ -12,7 +12,7 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
 import extremesaving.service.DataService;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
-import extremesaving.util.ChartUtils;
+import extremesaving.util.PdfUtils;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 22;
-    private static final int TEXT_MAX_CHARACTERS = 15;
+    private static final int TEXT_MAX_CHARACTERS = 10;
 
     private DataService dataService;
 
@@ -45,7 +45,7 @@ public class PdfPageItemGridService implements PdfPageService {
             title = "Most expensive items";
         }
 
-        document.add(ChartUtils.getTitleParagraph(title, TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph(title, TextAlignment.LEFT));
 
         List<ResultDto> overallResults = new ArrayList<>();
         List<ResultDto> yearResults = new ArrayList<>();
@@ -73,7 +73,7 @@ public class PdfPageItemGridService implements PdfPageService {
         Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(33));
 
-        Paragraph cell1Title = ChartUtils.getItemParagraph(title);
+        Paragraph cell1Title = PdfUtils.getItemParagraph(title);
         cell1Title.setTextAlignment(TextAlignment.CENTER);
         cell1Title.setBold();
         cell.add(cell1Title);
@@ -94,8 +94,8 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft1.add(ChartUtils.getItemParagraph(new SimpleDateFormat("dd/MM/yyyy").format(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
-            alignmentTableRight1.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
+            alignmentTableLeft1.add(PdfUtils.getItemParagraph(new SimpleDateFormat("dd/MM/yyyy").format(resultDto.getLastDate()) + " " + StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+            alignmentTableRight1.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
         alignmentTable1.addCell(alignmentTableLeft1);

@@ -47,7 +47,13 @@
     <bean id="tipOfTheDayDao" class="extremesaving.dao.TipOfTheDayDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfPageSummaryService" class="extremesaving.service.pdf.PdfPageSummaryService">
+    <bean id="pdfPageOverallService" class="extremesaving.service.pdf.PdfPageOverallService">
+        <property name="dataService" ref="dataService"/>
+    </bean>
+    <bean id="pdfPageYearService" class="extremesaving.service.pdf.PdfPageYearService">
+        <property name="dataService" ref="dataService"/>
+    </bean>
+    <bean id="pdfPageMonthService" class="extremesaving.service.pdf.PdfPageMonthService">
         <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
@@ -64,7 +70,9 @@
         <property name="accountService" ref="accountService"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
-        <property name="pdfPageSummaryService" ref="pdfPageSummaryService"/>
+        <property name="pdfPageOverallService" ref="pdfPageOverallService"/>
+        <property name="pdfPageYearService" ref="pdfPageYearService"/>
+        <property name="pdfPageMonthService" ref="pdfPageMonthService"/>
         <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
         <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
         <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
