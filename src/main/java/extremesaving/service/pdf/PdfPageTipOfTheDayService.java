@@ -8,8 +8,10 @@ import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import extremesaving.dto.AccountDto;
 import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
+import extremesaving.service.AccountService;
 import extremesaving.service.CalculationService;
 import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
@@ -19,19 +21,23 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
-    public static float CHART_WIDTH = 770;
-    public static float CHART_HEIGHT = 370;
+    public static float CHART_WIDTH = 550;
+    public static float CHART_HEIGHT = 240;
 
     private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
+    private AccountService accountService;
 
     @Override
     public void generate(Document document) {
@@ -41,24 +47,94 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
 
-            Table table = new Table(3);
+            Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
-            table.addCell(getBalanceCell());
             table.addCell(getGoalAndAwardsCell(resultDto));
-            table.addCell(getTipOfTheDayCell());
-
+            table.addCell(getAccountsCell());
             document.add(table);
 
             Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
             futureLineChartImage.setWidth(CHART_WIDTH);
             futureLineChartImage.setHeight(CHART_HEIGHT);
             document.add(futureLineChartImage);
+
+            Table table2 = new Table(2);
+            table2.setWidth(UnitValue.createPercentValue(100));
+            table2.addCell(getStatisticsCell());
+            table2.addCell(getTipOfTheDayCell());
+            document.add(table2);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
     }
 
-    private Cell getBalanceCell() {
+    private Cell getAccountsCell() {
+        Cell accountsCell = new Cell();
+        accountsCell.setBorder(Border.NO_BORDER);
+        accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        accountsCell.setTextAlignment(TextAlignment.CENTER);
+        accountsCell.setWidth(300);
+        accountsCell.add(ChartUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
+        accountsCell.add(ChartUtils.getItemParagraph("\n"));
+
+        Table alignmentTable = new Table(3);
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setTextAlignment(TextAlignment.RIGHT);
+
+        Cell alignmentTableCenter = new Cell();
+        alignmentTableCenter.setWidth(10);
+        alignmentTableCenter.setBorder(Border.NO_BORDER);
+        alignmentTableCenter.setTextAlignment(TextAlignment.LEFT);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight.setPaddingRight(20);
+
+        List<AccountDto> accounts = accountService.getAccounts();
+
+        // Sort by name
+        Collections.sort(accounts, Comparator.comparing(AccountDto::getName));
+
+        // Add positive accounts
+        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList())) {
+            alignmentTableLeft.add(ChartUtils.getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(ChartUtils.getItemParagraph(" : "));
+            alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+        }
+
+//        // Add zero accounts
+//        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
+//            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
+//            alignmentTableCenter.add(getItemParagraph(" : "));
+//            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+//        }
+
+        // Add negative accounts
+        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
+            alignmentTableLeft.add(ChartUtils.getItemParagraph(accountDto.getName()));
+            alignmentTableCenter.add(ChartUtils.getItemParagraph(" : "));
+            alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
+        }
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableLeft.add(ChartUtils.getItemParagraph("Total result", true));
+
+        alignmentTableCenter.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableCenter.add(ChartUtils.getItemParagraph(":", true));
+
+        alignmentTableRight.add(ChartUtils.getItemParagraph("\n"));
+        alignmentTableRight.add(ChartUtils.getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
+
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableCenter);
+        alignmentTable.addCell(alignmentTableRight);
+        accountsCell.add(alignmentTable);
+
+        return accountsCell;
+    }
+
+    private Cell getStatisticsCell() {
         Cell balanceCell = new Cell();
         balanceCell.setWidth(UnitValue.createPercentValue(25));
         balanceCell.setBorder(Border.NO_BORDER);
@@ -133,8 +209,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setTextAlignment(TextAlignment.CENTER);
         chartCell.setWidth(UnitValue.createPercentValue(40));
 
-        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
-        chartCell.add(ChartUtils.getItemParagraph("\n"));
+//        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
+//        chartCell.add(ChartUtils.getItemParagraph("\n"));
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
@@ -150,13 +226,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 chartCell.add(ChartUtils.getItemParagraph("\n"));
             }
 
-            chartCell.add(ChartUtils.getItemParagraph("Survive 3 years without incomes.", true));
-            chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
-            chartCell.add(ChartUtils.getItemParagraph("\n"));
-
-            chartCell.add(ChartUtils.getItemParagraph("Spend less than € 6000 this year.", true));
-            chartCell.add(ChartUtils.getItemParagraph("Current expenses: € 5692 "));
-            chartCell.add(ChartUtils.getItemParagraph("\n"));
+//            chartCell.add(ChartUtils.getItemParagraph("Survive 3 years without incomes.", true));
+//            chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
+//            chartCell.add(ChartUtils.getItemParagraph("\n"));
+//
+//            chartCell.add(ChartUtils.getItemParagraph("Spend less than € 6000 this year.", true));
+//            chartCell.add(ChartUtils.getItemParagraph("Current expenses: € 5692 "));
+//            chartCell.add(ChartUtils.getItemParagraph("\n"));
         }
         return chartCell;
     }
@@ -206,8 +282,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        trophyIcon.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        trophyIcon.setTextAlignment(TextAlignment.RIGHT);
+        trophyIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        trophyIcon.setTextAlignment(TextAlignment.CENTER);
         trophyIcon.setWidth(72);
         trophyIcon.setHeight(72);
         return trophyIcon;
@@ -239,5 +315,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public void setPredictionService(PredictionService predictionService) {
         this.predictionService = predictionService;
+    }
+
+    public void setAccountService(AccountService accountService) {
+        this.accountService = accountService;
     }
 }

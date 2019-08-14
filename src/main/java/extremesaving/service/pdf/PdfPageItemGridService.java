@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 22;
-    private static final int TEXT_MAX_CHARACTERS = 24;
+    private static final int TEXT_MAX_CHARACTERS = 15;
 
     private DataService dataService;
 

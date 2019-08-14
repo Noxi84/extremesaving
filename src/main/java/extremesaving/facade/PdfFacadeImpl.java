@@ -25,7 +25,7 @@ public class PdfFacadeImpl implements PdfFacade {
             PdfDocument pdf = new PdfDocument(writer);
 
             Document document = new Document(pdf, PageSize.A4);
-            document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
+//            document.getPdfDocument().setDefaultPageSize(PageSize.A4.rotate());
 
             pdfPageSummaryService.generate(document);
             pdfPageCategoryGridService.generate(document);

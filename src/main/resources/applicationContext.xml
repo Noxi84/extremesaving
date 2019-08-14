@@ -48,7 +48,6 @@
 
     <!--Pdf-->
     <bean id="pdfPageSummaryService" class="extremesaving.service.pdf.PdfPageSummaryService">
-        <property name="accountService" ref="accountService"/>
         <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
@@ -62,6 +61,7 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
+        <property name="accountService" ref="accountService"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
         <property name="pdfPageSummaryService" ref="pdfPageSummaryService"/>
