@@ -174,7 +174,7 @@ public class PdfPageMonthService implements PdfPageService {
 
         cell.add(getSavingRatioImage(savingRatio));
         cell.add(PdfUtils.getItemParagraph("\n"));
-        cell.add(PdfUtils.getItemParagraph("Result: € - 392.57 " + NumberUtils.formatPercentage(savingRatio), true));
+        cell.add(PdfUtils.getItemParagraph("Result: € -392.57", true));
         cell.add(PdfUtils.getItemParagraph("Saving ratio " + NumberUtils.formatPercentage(savingRatio)));
 
         return cell;
