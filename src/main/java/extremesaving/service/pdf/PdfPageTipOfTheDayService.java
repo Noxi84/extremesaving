@@ -13,10 +13,7 @@ import extremesaving.model.DataModel;
 import extremesaving.service.CalculationService;
 import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
-import extremesaving.util.ChartUtils;
-import extremesaving.util.DateUtils;
-import extremesaving.util.NumberUtils;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.util.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -146,6 +143,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 BigDecimal goalAmount = predictionService.getCurrentGoal();
 
                 BigDecimal goalPercentage = resultDto.getResult().divide(goalAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+                chartCell.add(getGoalTropheeImage(goalAmount));
                 chartCell.add(ChartUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
                 chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
                 chartCell.add(ChartUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
@@ -161,6 +159,58 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             chartCell.add(ChartUtils.getItemParagraph("\n"));
         }
         return chartCell;
+    }
+
+    private Image getGoalTropheeImage(BigDecimal goal) {
+        int goalIndex = predictionService.getGoalIndex(goal);
+        Image trophyIcon = null;
+        try {
+            if (goalIndex == 0) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON1)));
+            } else if (goalIndex == 1) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON2)));
+            } else if (goalIndex == 2) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON3)));
+            } else if (goalIndex == 3) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON4)));
+            } else if (goalIndex == 4) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON5)));
+            } else if (goalIndex == 5) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON6)));
+            } else if (goalIndex == 6) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON7)));
+            } else if (goalIndex == 7) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON8)));
+            } else if (goalIndex == 8) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON9)));
+            } else if (goalIndex == 9) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON10)));
+            } else if (goalIndex == 10) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON11)));
+            } else if (goalIndex == 11) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON12)));
+            } else if (goalIndex == 12) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON13)));
+            } else if (goalIndex == 13) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON14)));
+            } else if (goalIndex == 14) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON15)));
+            } else if (goalIndex == 15) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON16)));
+            } else if (goalIndex == 16) {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON17)));
+            } else {
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TROPHY_ICON18)));
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        trophyIcon.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+        trophyIcon.setTextAlignment(TextAlignment.RIGHT);
+        trophyIcon.setWidth(72);
+        trophyIcon.setHeight(72);
+        return trophyIcon;
     }
 
     private Cell getTipOfTheDayCell() {
