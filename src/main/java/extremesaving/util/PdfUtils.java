@@ -9,13 +9,21 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
+import extremesaving.service.pdf.enums.PdfGridTimeEnum;
+import extremesaving.service.pdf.enums.PdfGridTypeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.jfree.chart.JFreeChart;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -72,6 +80,59 @@ public final class PdfUtils {
             e.printStackTrace();
         }
         return titleParagraph;
+    }
+
+    public static Cell getCategoryCell(String title, List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTimeEnum, PdfGridTypeEnum pdfGridTypeEnum) {
+        Cell cell = new Cell();
+
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
+            Paragraph cellTitle = PdfUtils.getItemParagraph(title);
+            cellTitle.setTextAlignment(TextAlignment.CENTER);
+            cellTitle.setBold();
+            cell.add(cellTitle);
+        }
+
+        Table alignmentTable = new Table(2);
+
+        // Create left cell
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setWidth(300);
+
+        // Create right cell
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight.setWidth(100);
+
+        // Add categoryDtos
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
+            for (CategoryDto categoryDto : categoryDtos) {
+                alignmentTableLeft.add(PdfUtils.getItemParagraph(categoryDto.getName()));
+                alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+            }
+        }
+
+        // Add total amount
+        Paragraph totalTitle = PdfUtils.getItemParagraph("Total");
+        totalTitle.setBold();
+        alignmentTableLeft.add(totalTitle);
+        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        Paragraph totalAmountParagraph = PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount));
+        totalAmountParagraph.setBold();
+        alignmentTableRight.add(totalAmountParagraph);
+
+//        if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
+//            addSavingRatio(alignmentTableLeft, alignmentTableRight, pdfGridTimeEnum);
+//        }
+
+        // Add left and right cell
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableRight);
+
+        cell.add(alignmentTable);
+
+        return cell;
     }
 
     public static Cell getItemCell(String title, List<ResultDto> results) {

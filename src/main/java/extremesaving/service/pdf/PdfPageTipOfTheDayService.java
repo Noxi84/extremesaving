@@ -50,7 +50,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             Table table = new Table(2);
             table.setWidth(UnitValue.createPercentValue(100));
             table.addCell(getGoalAndAwardsCell(resultDto));
-            table.addCell(getAccountsCell());
+            table.addCell(getStatisticsCell());
             document.add(table);
 
             Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
@@ -62,7 +62,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
             Table table2 = new Table(2);
             table2.setWidth(UnitValue.createPercentValue(100));
-            table2.addCell(getStatisticsCell());
+            table2.addCell(getAccountsCell());
             table2.addCell(getTipOfTheDayCell());
             document.add(table2);
         } catch (MalformedURLException e) {

@@ -3,21 +3,25 @@ package extremesaving.service.pdf;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.*;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.CategoryDto;
-import extremesaving.dto.ResultDto;
 import extremesaving.service.CategoryService;
 import extremesaving.service.DataService;
+import extremesaving.service.pdf.enums.PdfGridTimeEnum;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,60 +40,120 @@ public class PdfPageMonthService implements PdfPageService {
     @Override
     public void generate(Document document) {
         document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-        addSavingRatio(document);
-
-        Table table = new Table(1);
+        Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(getMonthChartCell());
+        table.addCell(getSavingRatioCell());
+        table.addCell(getStatisticsCell());
         document.add(table);
 
-        document.add(getItemsSection(document, PdfGridTypeEnum.PROFITS));
-        document.add(getItemsSection(document, PdfGridTypeEnum.EXPENSES));
+        document.add(getMonthChart());
+
+        document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
+        document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
     }
 
-    public Cell getMonthChartCell() {
+    private Cell getStatisticsCell() {
+        Cell cell = new Cell();
+        cell.setWidth(UnitValue.createPercentValue(50));
+        cell.setBorder(Border.NO_BORDER);
+        cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        cell.setTextAlignment(TextAlignment.CENTER);
+
+        Table alignmentTable = new Table(3);
+
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
+        alignmentTableLeft.setPaddingLeft(20);
+
+        Cell alignmentTableCenter = new Cell();
+        alignmentTableCenter.setBorder(Border.NO_BORDER);
+        alignmentTableCenter.setTextAlignment(TextAlignment.CENTER);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Items added"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(String.valueOf(dataService.getTotalItems())));
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
+
+        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best day"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst day"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+
+
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableCenter);
+        alignmentTable.addCell(alignmentTableRight);
+
+        cell.add(alignmentTable);
+        return cell;
+    }
+
+    public Image getMonthChart() {
         try {
-            Cell chartCell1 = new Cell();
-            chartCell1.setBorder(Border.NO_BORDER);
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
             monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
-            chartCell1.add(monthlyBarChartImage);
-            return chartCell1;
+            return monthlyBarChartImage;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
     }
 
-    private Table getItemsSection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
-        String title = "";
+    private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            title = "Most profitable items";
+            document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            title = "Most expensive items";
-        }
-
-        document.add(PdfUtils.getTitleParagraph(title, TextAlignment.LEFT));
-
-        List<ResultDto> monthResults = new ArrayList<>();
-
-        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            monthResults = dataService.getMostProfitableItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            monthResults = dataService.getMostExpensiveItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
+        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
+            document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
         }
 
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(PdfUtils.getItemCell("This month", monthResults));
+
+        List<CategoryDto> monthResults = new ArrayList<>();
+
+        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
+            monthResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
+            monthResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
+            monthResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+        }
+
+        table.addCell(PdfUtils.getCategoryCell("This month", monthResults, PdfGridTimeEnum.MONTH, pdfGridTypeEnum));
         return table;
     }
 
-    private void addSavingRatio(Document document) {
-        Paragraph savingRatioTitle = PdfUtils.getItemParagraph("Saving ratio");
-        savingRatioTitle.setBold();
-        document.add(savingRatioTitle);
+
+    private Cell getSavingRatioCell() {
+        Cell cell = new Cell();
+        cell.setBorder(Border.NO_BORDER);
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setWidth(UnitValue.createPercentValue(50));
 
         // Calculate saving ratio
         List<CategoryDto> profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
@@ -108,44 +172,12 @@ public class PdfPageMonthService implements PdfPageService {
             savingRatio = BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
 
-        // Create saving ratio table
-        Table savingRatiotable = new Table(2);
-        savingRatiotable.setBorder(Border.NO_BORDER);
-        savingRatiotable.setTextAlignment(TextAlignment.RIGHT);
-        savingRatiotable.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+        cell.add(getSavingRatioImage(savingRatio));
+        cell.add(PdfUtils.getItemParagraph("\n"));
+        cell.add(PdfUtils.getItemParagraph("Result: € - 392.57 " + NumberUtils.formatPercentage(savingRatio), true));
+        cell.add(PdfUtils.getItemParagraph("Saving ratio " + NumberUtils.formatPercentage(savingRatio)));
 
-        // Saving rate image
-        Cell savingRateLeftCell = new Cell();
-        savingRateLeftCell.setWidth(20);
-        savingRateLeftCell.setBorder(Border.NO_BORDER);
-        savingRateLeftCell.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        savingRateLeftCell.setTextAlignment(TextAlignment.RIGHT);
-        savingRateLeftCell.setPaddingLeft(0);
-        savingRateLeftCell.setPaddingRight(10);
-        savingRateLeftCell.setMarginLeft(0);
-        savingRateLeftCell.setMarginRight(0);
-        savingRateLeftCell.add(getSavingRatioImage(savingRatio));
-
-        // Saving rate percentage
-        Cell savingRateRightCell = new Cell();
-        savingRateRightCell.setBorder(Border.NO_BORDER);
-        savingRateLeftCell.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        savingRateLeftCell.setTextAlignment(TextAlignment.RIGHT);
-        savingRateRightCell.setWidth(10);
-        savingRateRightCell.setPaddingLeft(0);
-        savingRateRightCell.setPaddingRight(0);
-        savingRateRightCell.setMarginLeft(0);
-        savingRateRightCell.setMarginRight(0);
-
-        Paragraph savingRatioParagraph = PdfUtils.getItemParagraph(NumberUtils.formatPercentage(savingRatio));
-        savingRatioParagraph.setBold();
-        savingRateRightCell.add(savingRatioParagraph);
-
-        // Add cells to table
-        savingRatiotable.addCell(savingRateLeftCell);
-        savingRatiotable.addCell(savingRateRightCell);
-
-        document.add(savingRatiotable);
+        return cell;
     }
 
     private Image getSavingRatioImage(BigDecimal savingRatio) {
@@ -176,10 +208,10 @@ public class PdfPageMonthService implements PdfPageService {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        savingRateIcon.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-        savingRateIcon.setTextAlignment(TextAlignment.RIGHT);
-        savingRateIcon.setWidth(72);
-        savingRateIcon.setHeight(72);
+        savingRateIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        savingRateIcon.setTextAlignment(TextAlignment.CENTER);
+        savingRateIcon.setWidth(30);
+        savingRateIcon.setHeight(30);
         return savingRateIcon;
     }
 
