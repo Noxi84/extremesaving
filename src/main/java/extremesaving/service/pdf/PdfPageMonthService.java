@@ -3,11 +3,9 @@ package extremesaving.service.pdf;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -28,28 +26,32 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static extremesaving.util.PropertyValueENum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.MONTH_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageMonthService implements PdfPageService {
 
     public static float MONTHCHART_WIDTH = 525;
     public static float MONTHCHART_HEIGHT = 350;
 
+    public static float MONTHLINECHART_WIDTH = 525;
+    public static float MONTHLINECHART_HEIGHT = 200;
+
     private DataService dataService;
     private CategoryService categoryService;
 
     @Override
     public void generate(Document document) {
-        document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getSavingRatioCell());
         table.addCell(getStatisticsCell());
         document.add(table);
 
-        document.add(getMonthChart());
+        document.add(getMonthLineChart());
+        document.add(getMonthBarChart());
 
-        document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
-        document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
+//        document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
+//        document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
     }
 
     private Cell getStatisticsCell() {
@@ -59,7 +61,11 @@ public class PdfPageMonthService implements PdfPageService {
         cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         cell.setTextAlignment(TextAlignment.CENTER);
 
+        cell.add(PdfUtils.getTitleParagraph("Month Report", TextAlignment.RIGHT));
+        cell.add(PdfUtils.getItemParagraph("\n"));
+
         Table alignmentTable = new Table(3);
+        alignmentTable.setHorizontalAlignment(HorizontalAlignment.RIGHT);
 
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
@@ -74,6 +80,13 @@ public class PdfPageMonthService implements PdfPageService {
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
 
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Start of month"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("€ 17300"));
+
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Current result"));
+        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("€ 17000.23"));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Items added"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
@@ -87,11 +100,11 @@ public class PdfPageMonthService implements PdfPageService {
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best day"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("Tuesday"));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst day"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph("Monday"));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
@@ -110,11 +123,23 @@ public class PdfPageMonthService implements PdfPageService {
         return cell;
     }
 
-    public Image getMonthChart() {
+    public Image getMonthBarChart() {
         try {
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
             monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
+            return monthlyBarChartImage;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public Image getMonthLineChart() {
+        try {
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE)));
+            monthlyBarChartImage.setWidth(MONTHLINECHART_WIDTH);
+            monthlyBarChartImage.setHeight(MONTHLINECHART_HEIGHT);
             return monthlyBarChartImage;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -176,6 +201,7 @@ public class PdfPageMonthService implements PdfPageService {
         cell.add(PdfUtils.getItemParagraph("\n"));
         cell.add(PdfUtils.getItemParagraph("Result: € -392.57", true));
         cell.add(PdfUtils.getItemParagraph("Saving ratio " + NumberUtils.formatPercentage(savingRatio)));
+        cell.add(PdfUtils.getItemParagraph("Estimated result: € 982"));
 
         return cell;
     }
@@ -210,8 +236,8 @@ public class PdfPageMonthService implements PdfPageService {
         }
         savingRateIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
         savingRateIcon.setTextAlignment(TextAlignment.CENTER);
-        savingRateIcon.setWidth(30);
-        savingRateIcon.setHeight(30);
+        savingRateIcon.setWidth(45);
+        savingRateIcon.setHeight(45);
         return savingRateIcon;
     }
 

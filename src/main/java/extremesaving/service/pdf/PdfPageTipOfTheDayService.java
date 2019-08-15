@@ -42,8 +42,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     @Override
     public void generate(Document document) {
         try {
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
             List<DataModel> dataModels = dataService.findAll();
             ResultDto resultDto = calculationService.getResults(dataModels);
 

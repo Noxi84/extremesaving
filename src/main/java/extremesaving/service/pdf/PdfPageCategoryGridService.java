@@ -3,12 +3,10 @@ package extremesaving.service.pdf;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -34,9 +32,10 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
         document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
     }
 
@@ -91,13 +90,13 @@ public class PdfPageCategoryGridService implements PdfPageService {
         // Create left cell
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setWidth(300);
+        alignmentTableLeft.setWidth(290);
 
         // Create right cell
         Cell alignmentTableRight = new Cell();
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight.setWidth(100);
+        alignmentTableRight.setWidth(110);
 
         // Add categoryDtos
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {

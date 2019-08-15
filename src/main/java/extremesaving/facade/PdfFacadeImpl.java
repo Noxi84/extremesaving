@@ -4,6 +4,8 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
+import com.itextpdf.layout.property.AreaBreakType;
 import extremesaving.service.pdf.PdfPageService;
 import extremesaving.util.PropertiesValueHolder;
 
@@ -28,12 +30,22 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            pdfPageOverallService.generate(document);
-            pdfPageMonthService.generate(document);
-            pdfPageYearService.generate(document);
-            pdfPageCategoryGridService.generate(document);
-            pdfPageItemGridService.generate(document);
             pdfPagePredictionsService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+//            pdfPageOverallService.generate(document);
+//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            pdfPageMonthService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            pdfPageYearService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            pdfPageCategoryGridService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            pdfPageItemGridService.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {

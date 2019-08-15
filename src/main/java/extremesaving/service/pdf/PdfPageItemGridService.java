@@ -2,22 +2,19 @@ package extremesaving.service.pdf;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.AreaBreakType;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
 import extremesaving.service.DataService;
 import extremesaving.service.pdf.enums.PdfGridTypeEnum;
-import extremesaving.util.PdfUtils;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
+import extremesaving.util.PdfUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +29,6 @@ public class PdfPageItemGridService implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
         document.add(getItemsSection(document, PdfGridTypeEnum.PROFITS));
         document.add(getItemsSection(document, PdfGridTypeEnum.EXPENSES));
     }
