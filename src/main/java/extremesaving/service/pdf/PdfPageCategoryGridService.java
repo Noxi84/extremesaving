@@ -5,7 +5,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
@@ -25,7 +24,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+
 public class PdfPageCategoryGridService implements PdfPageService {
+
+    public static float CHART_WIDTH = 530;
+    public static float CHART_HEIGHT = 150;
 
     private DataService dataService;
     private CategoryService categoryService;
@@ -34,9 +38,23 @@ public class PdfPageCategoryGridService implements PdfPageService {
     public void generate(Document document) {
         document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
         document.add(PdfUtils.getItemParagraph("\n"));
+        document.add(getLineChartImage());
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
+    }
+
+    public Image getLineChartImage() {
+        try {
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            image.setWidth(CHART_WIDTH);
+            image.setHeight(CHART_HEIGHT);
+            return image;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
@@ -79,10 +97,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         Cell cell = new Cell();
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            Paragraph cellTitle = PdfUtils.getItemParagraph(title);
-            cellTitle.setTextAlignment(TextAlignment.CENTER);
-            cellTitle.setBold();
-            cell.add(cellTitle);
+            cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
         }
 
         Table alignmentTable = new Table(2);
@@ -90,13 +105,13 @@ public class PdfPageCategoryGridService implements PdfPageService {
         // Create left cell
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setWidth(290);
+        alignmentTableLeft.setWidth(280);
 
         // Create right cell
         Cell alignmentTableRight = new Cell();
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight.setWidth(110);
+        alignmentTableRight.setWidth(120);
 
         // Add categoryDtos
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum) || PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
@@ -107,16 +122,20 @@ public class PdfPageCategoryGridService implements PdfPageService {
         }
 
         // Add total amount
-        Paragraph totalTitle = PdfUtils.getItemParagraph("Total");
-        totalTitle.setBold();
-        alignmentTableLeft.add(totalTitle);
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
         BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        Paragraph totalAmountParagraph = PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount));
-        totalAmountParagraph.setBold();
-        alignmentTableRight.add(totalAmountParagraph);
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount), true));
 
         if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
             addSavingRatio(alignmentTableLeft, alignmentTableRight, pdfGridTimeEnum);
+
+            // Add total items
+            alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
+            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
+
+            // Add estimated result
+            alignmentTableLeft.add(PdfUtils.getItemParagraph("Estimated result"));
+            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
         }
 
         // Add left and right cell
@@ -129,9 +148,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
     }
 
     private void addSavingRatio(Cell alignmentTableLeft, Cell alignmentTableRight, PdfGridTimeEnum pdfGridTimeEnum) {
-        Paragraph savingRatioTitle = PdfUtils.getItemParagraph("Saving ratio");
-        savingRatioTitle.setBold();
-        alignmentTableLeft.add(savingRatioTitle);
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Saving ratio", true));
 
         // Calculate saving ratio
         List<CategoryDto> profitResults = new ArrayList<>();
@@ -192,9 +209,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         savingRateRightCell.setMarginLeft(0);
         savingRateRightCell.setMarginRight(0);
 
-        Paragraph savingRatioParagraph = PdfUtils.getItemParagraph(NumberUtils.formatPercentage(savingRatio));
-        savingRatioParagraph.setBold();
-        savingRateRightCell.add(savingRatioParagraph);
+        savingRateRightCell.add(PdfUtils.getItemParagraph(NumberUtils.formatPercentage(savingRatio), true));
 
         // Add cells to table
         savingRatiotable.addCell(savingRateLeftCell);

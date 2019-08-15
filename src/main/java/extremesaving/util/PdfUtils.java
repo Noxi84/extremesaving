@@ -18,11 +18,7 @@ import org.jfree.chart.JFreeChart;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -55,6 +51,10 @@ public final class PdfUtils {
     }
 
     public static Paragraph getItemParagraph(String text, boolean bold) {
+        return getItemParagraph(text, bold, null);
+    }
+
+    public static Paragraph getItemParagraph(String text, boolean bold, TextAlignment textAlignment) {
         Paragraph paragraph = new Paragraph(text);
         paragraph.setFontSize(8);
         if (bold) {
@@ -65,6 +65,9 @@ public final class PdfUtils {
             paragraph.setFont(regular);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if (textAlignment != null) {
+            paragraph.setTextAlignment(textAlignment);
         }
         return paragraph;
     }

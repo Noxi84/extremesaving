@@ -59,10 +59,10 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             table.addCell(getStatisticsCell());
             document.add(table);
 
-            Image futureLineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-            futureLineChartImage.setWidth(CHART_WIDTH);
-            futureLineChartImage.setHeight(CHART_HEIGHT);
-            document.add(futureLineChartImage);
+            Image lineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE)));
+            lineChartImage.setWidth(CHART_WIDTH);
+            lineChartImage.setHeight(CHART_HEIGHT);
+            document.add(lineChartImage);
 
             document.add(PdfUtils.getItemParagraph("\n"));
 
@@ -113,6 +113,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         accountsCell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
+        alignmentTable.setWidth(UnitValue.createPercentValue(100));
+        alignmentTable.setHorizontalAlignment(HorizontalAlignment.CENTER);
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
         alignmentTableLeft.setTextAlignment(TextAlignment.RIGHT);
@@ -202,10 +204,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Last item added"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
         alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(dataService.getLastItemAdded())));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(String.valueOf(dataService.getTotalItems())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));

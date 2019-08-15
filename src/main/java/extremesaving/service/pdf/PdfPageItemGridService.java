@@ -69,10 +69,7 @@ public class PdfPageItemGridService implements PdfPageService {
         Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(33));
 
-        Paragraph cell1Title = PdfUtils.getItemParagraph(title);
-        cell1Title.setTextAlignment(TextAlignment.CENTER);
-        cell1Title.setBold();
-        cell.add(cell1Title);
+        cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
 
         Table alignmentTable1 = new Table(2);
         Cell alignmentTableLeft1 = new Cell();

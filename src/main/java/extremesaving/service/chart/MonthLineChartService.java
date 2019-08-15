@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
 import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageMonthService;
+import extremesaving.service.pdf.PdfPageCategoryGridService;
 import extremesaving.util.DateUtils;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
@@ -25,7 +25,7 @@ public class MonthLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE), (int) PdfPageMonthService.MONTHLINECHART_WIDTH * 2, (int) PdfPageMonthService.MONTHLINECHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE), (int) PdfPageCategoryGridService.CHART_WIDTH * 2, (int) PdfPageCategoryGridService.CHART_HEIGHT * 2);
     }
 
     private TimeSeriesCollection createDataset() {
@@ -37,7 +37,7 @@ public class MonthLineChartService implements ChartService {
 
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : goalLineResults.entrySet()) {
-            if (DateUtils.equalMonths(result.getKey(), today) && DateUtils.equalYears(result.getKey(), today)) {
+            if (DateUtils.equalYears(result.getKey(), today)) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(result.getKey());
                 series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());

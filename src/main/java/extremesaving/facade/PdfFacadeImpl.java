@@ -36,8 +36,8 @@ public class PdfFacadeImpl implements PdfFacade {
 //            pdfPageOverallService.generate(document);
 //            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            pdfPageMonthService.generate(document);
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+//            pdfPageMonthService.generate(document);
+//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
 //            pdfPageYearService.generate(document);
 //            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
