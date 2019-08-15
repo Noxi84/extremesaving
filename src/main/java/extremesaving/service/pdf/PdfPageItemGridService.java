@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 34;
-    private static final int TEXT_MAX_CHARACTERS = 14;
+    private static final int TEXT_MAX_CHARACTERS = 18;
 
     private DataService dataService;
 
@@ -74,12 +74,20 @@ public class PdfPageItemGridService implements PdfPageService {
         Table alignmentTable1 = new Table(2);
         Cell alignmentTableLeft1 = new Cell();
         alignmentTableLeft1.setBorder(Border.NO_BORDER);
-        alignmentTableLeft1.setWidth(290);
+        alignmentTableLeft1.setWidth(400);
+        alignmentTableLeft1.setPaddingLeft(0);
+        alignmentTableLeft1.setMarginLeft(0);
+        alignmentTableLeft1.setPaddingRight(0);
+        alignmentTableLeft1.setMarginRight(0);
 
         Cell alignmentTableRight1 = new Cell();
         alignmentTableRight1.setBorder(Border.NO_BORDER);
         alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight1.setWidth(120);
+        alignmentTableRight1.setPaddingLeft(0);
+        alignmentTableRight1.setMarginLeft(0);
+        alignmentTableRight1.setPaddingRight(0);
+        alignmentTableRight1.setMarginRight(0);
 
         int counter = 0;
         for (ResultDto resultDto : results) {
