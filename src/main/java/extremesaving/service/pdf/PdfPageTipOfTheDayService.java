@@ -3,8 +3,10 @@ package extremesaving.service.pdf;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.property.AreaBreakType;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
@@ -27,12 +29,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.*;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
-    public static float CHART_WIDTH = 525;
-    public static float CHART_HEIGHT = 350;
+    public static float CHART_WIDTH = 530;
+    public static float CHART_HEIGHT = 160;
+
+    public static float MONTHCHART_WIDTH = 530;
+    public static float MONTHCHART_HEIGHT = 160;
+
+    public static float YEARCHART_WIDTH = 530;
+    public static float YEARCHART_HEIGHT = 160;
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -63,9 +71,36 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             table2.addCell(getAccountsCell());
             table2.addCell(getTipOfTheDayCell());
             document.add(table2);
+
+            document.add(getMonthBarChart());
+            document.add(getYearChart());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Image getMonthBarChart() {
+        try {
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
+            monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
+            monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
+            return monthlyBarChartImage;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public Image getYearChart() {
+        try {
+            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
+            yearlyBarChartImage.setWidth(YEARCHART_WIDTH);
+            yearlyBarChartImage.setHeight(YEARCHART_HEIGHT);
+            return yearlyBarChartImage;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private Cell getAccountsCell() {

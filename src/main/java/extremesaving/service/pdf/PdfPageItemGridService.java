@@ -82,7 +82,7 @@ public class PdfPageItemGridService implements PdfPageService {
         Cell alignmentTableRight1 = new Cell();
         alignmentTableRight1.setBorder(Border.NO_BORDER);
         alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight1.setWidth(100);
+        alignmentTableRight1.setWidth(110);
 
         int counter = 0;
         for (ResultDto resultDto : results) {

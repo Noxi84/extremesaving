@@ -3,6 +3,7 @@ package extremesaving.service.chart;
 import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
 import extremesaving.service.pdf.PdfPageOverallService;
+import extremesaving.service.pdf.PdfPageTipOfTheDayService;
 import extremesaving.service.pdf.PdfPageYearService;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
@@ -25,7 +26,7 @@ public class YearlyBarChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, true, false, false);
-        PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE), (int) PdfPageYearService.YEARCHART_WIDTH * 2, (int) PdfPageYearService.YEARCHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEARCHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEARCHART_HEIGHT * 2);
     }
 
     private CategoryDataset createDataset() {
