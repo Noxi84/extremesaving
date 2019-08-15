@@ -33,14 +33,14 @@ import static extremesaving.util.PropertyValueENum.*;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
-    public static float CHART_WIDTH = 530;
-    public static float CHART_HEIGHT = 160;
+    public static float GOAL_LINE_CHART_WIDTH = 530;
+    public static float GOAL_LINE_CHART_HEIGHT = 170;
+
+    public static float YEAR_LINE_CHART_WIDTH = 530;
+    public static float YEAR_LINE_CHART_HEIGHT = 170;
 
     public static float MONTHCHART_WIDTH = 530;
-    public static float MONTHCHART_HEIGHT = 160;
-
-    public static float YEARCHART_WIDTH = 530;
-    public static float YEARCHART_HEIGHT = 160;
+    public static float MONTHCHART_HEIGHT = 170;
 
     private DataService dataService;
     private CalculationService calculationService;
@@ -49,37 +49,41 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        try {
-            List<DataModel> dataModels = dataService.findAll();
-            ResultDto resultDto = calculationService.getResults(dataModels);
+        List<DataModel> dataModels = dataService.findAll();
+        ResultDto resultDto = calculationService.getResults(dataModels);
 
-            Table table = new Table(2);
-            table.setWidth(UnitValue.createPercentValue(100));
-            table.addCell(getGoalAndAwardsCell(resultDto));
-            table.addCell(getStatisticsCell());
-            document.add(table);
+        Table table = new Table(2);
+        table.setWidth(UnitValue.createPercentValue(100));
+        table.addCell(getGoalAndAwardsCell(resultDto));
+        table.addCell(getStatisticsCell());
+        document.add(table);
 
-            Image lineChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE)));
-            lineChartImage.setWidth(CHART_WIDTH);
-            lineChartImage.setHeight(CHART_HEIGHT);
-            document.add(lineChartImage);
+        document.add(getGoalLineChartImage());
+        document.add(PdfUtils.getItemParagraph("\n"));
 
-            document.add(PdfUtils.getItemParagraph("\n"));
+        Table table2 = new Table(2);
+        table2.setWidth(UnitValue.createPercentValue(100));
+        table2.addCell(getAccountsCell());
+        table2.addCell(getTipOfTheDayCell());
+        document.add(table2);
 
-            Table table2 = new Table(2);
-            table2.setWidth(UnitValue.createPercentValue(100));
-            table2.addCell(getAccountsCell());
-            table2.addCell(getTipOfTheDayCell());
-            document.add(table2);
-
-            document.add(getMonthBarChart());
-            document.add(getYearChart());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        document.add(getMonthBarChartImage());
+        document.add(getYearLineChartImage());
     }
 
-    public Image getMonthBarChart() {
+    public Image getGoalLineChartImage() {
+        try {
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            image.setWidth(GOAL_LINE_CHART_WIDTH);
+            image.setHeight(GOAL_LINE_CHART_HEIGHT);
+            return image;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public Image getMonthBarChartImage() {
         try {
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
@@ -91,14 +95,14 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return null;
     }
 
-    public Image getYearChart() {
+    public Image getYearLineChartImage() {
         try {
-            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
-            yearlyBarChartImage.setWidth(YEARCHART_WIDTH);
-            yearlyBarChartImage.setHeight(YEARCHART_HEIGHT);
-            return yearlyBarChartImage;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE)));
+            image.setWidth(YEAR_LINE_CHART_WIDTH);
+            image.setHeight(YEAR_LINE_CHART_HEIGHT);
+            return image;
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return null;
     }

@@ -1,7 +1,7 @@
 package extremesaving.service.chart;
 
 import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageCategoryGridService;
+import extremesaving.service.pdf.PdfPageTipOfTheDayService;
 import extremesaving.util.DateUtils;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
@@ -25,7 +25,7 @@ public class MonthLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE), (int) PdfPageCategoryGridService.CHART_WIDTH * 2, (int) PdfPageCategoryGridService.CHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
     private TimeSeriesCollection createDataset() {

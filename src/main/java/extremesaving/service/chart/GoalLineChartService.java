@@ -24,7 +24,7 @@ public class GoalLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.CHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.GOAL_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.GOAL_LINE_CHART_HEIGHT * 2);
     }
 
     private TimeSeriesCollection createDataset() {

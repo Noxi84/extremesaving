@@ -24,38 +24,39 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageCategoryGridService implements PdfPageService {
 
     public static float CHART_WIDTH = 530;
-    public static float CHART_HEIGHT = 150;
+    public static float CHART_HEIGHT = 250;
 
     private DataService dataService;
     private CategoryService categoryService;
 
     @Override
     public void generate(Document document) {
-        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
+        document.add(getYearChart());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(getLineChartImage());
+        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
     }
 
-    public Image getLineChartImage() {
+    public Image getYearChart() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
-            image.setWidth(CHART_WIDTH);
-            image.setHeight(CHART_HEIGHT);
-            return image;
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
+            yearlyBarChartImage.setWidth(CHART_WIDTH);
+            yearlyBarChartImage.setHeight(CHART_HEIGHT);
+            return yearlyBarChartImage;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
         return null;
     }
+
 
     private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
@@ -129,13 +130,13 @@ public class PdfPageCategoryGridService implements PdfPageService {
         if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
             addSavingRatio(alignmentTableLeft, alignmentTableRight, pdfGridTimeEnum);
 
-            // Add total items
-            alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
-            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
-
-            // Add estimated result
-            alignmentTableLeft.add(PdfUtils.getItemParagraph("Estimated result"));
-            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
+//            // Add total items
+//            alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
+//            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
+//
+//            // Add estimated result
+//            alignmentTableLeft.add(PdfUtils.getItemParagraph("Estimated result"));
+//            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
         }
 
         // Add left and right cell

@@ -2,9 +2,7 @@ package extremesaving.service.chart;
 
 import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageOverallService;
-import extremesaving.service.pdf.PdfPageTipOfTheDayService;
-import extremesaving.service.pdf.PdfPageYearService;
+import extremesaving.service.pdf.PdfPageCategoryGridService;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
@@ -25,16 +23,16 @@ public class YearlyBarChartService implements ChartService {
 
     @Override
     public void generateChartPng() {
-        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, true, false, false);
-        PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEARCHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEARCHART_HEIGHT * 2);
+        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
+        PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE), (int) PdfPageCategoryGridService.CHART_WIDTH * 2, (int) PdfPageCategoryGridService.CHART_HEIGHT * 2);
     }
 
     private CategoryDataset createDataset() {
         Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
 
-        final String incomes = "Incomes";
+//        final String incomes = "Incomes";
         final String result = "Result";
-        final String expenses = "Expenses";
+//        final String expenses = "Expenses";
 
         Calendar cal = Calendar.getInstance();
         int currentYear = cal.get(Calendar.YEAR);
@@ -60,15 +58,15 @@ public class YearlyBarChartService implements ChartService {
         MiniResultDto year2Results = yearlyResults.get(Integer.valueOf(year2));
         MiniResultDto year1Results = yearlyResults.get(Integer.valueOf(year1));
 
-        dataset.addValue(year9Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year9);
-        dataset.addValue(year8Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year8);
-        dataset.addValue(year7Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year7);
-        dataset.addValue(year6Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year6);
-        dataset.addValue(year5Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year5);
-        dataset.addValue(year4Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year4);
-        dataset.addValue(year3Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year3);
-        dataset.addValue(year2Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year2);
-        dataset.addValue(year1Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year1);
+//        dataset.addValue(year9Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year9);
+//        dataset.addValue(year8Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year8);
+//        dataset.addValue(year7Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year7);
+//        dataset.addValue(year6Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year6);
+//        dataset.addValue(year5Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year5);
+//        dataset.addValue(year4Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year4);
+//        dataset.addValue(year3Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year3);
+//        dataset.addValue(year2Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year2);
+//        dataset.addValue(year1Results.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, year1);
 
         dataset.addValue(year9Results.getResult(), result, year9);
         dataset.addValue(year8Results.getResult(), result, year8);
@@ -80,15 +78,15 @@ public class YearlyBarChartService implements ChartService {
         dataset.addValue(year2Results.getResult(), result, year2);
         dataset.addValue(year1Results.getResult(), result, year1);
 
-        dataset.addValue(year9Results.getIncomes(), incomes, year9);
-        dataset.addValue(year8Results.getIncomes(), incomes, year8);
-        dataset.addValue(year7Results.getIncomes(), incomes, year7);
-        dataset.addValue(year6Results.getIncomes(), incomes, year6);
-        dataset.addValue(year5Results.getIncomes(), incomes, year5);
-        dataset.addValue(year4Results.getIncomes(), incomes, year4);
-        dataset.addValue(year3Results.getIncomes(), incomes, year3);
-        dataset.addValue(year2Results.getIncomes(), incomes, year2);
-        dataset.addValue(year1Results.getIncomes(), incomes, year1);
+//        dataset.addValue(year9Results.getIncomes(), incomes, year9);
+//        dataset.addValue(year8Results.getIncomes(), incomes, year8);
+//        dataset.addValue(year7Results.getIncomes(), incomes, year7);
+//        dataset.addValue(year6Results.getIncomes(), incomes, year6);
+//        dataset.addValue(year5Results.getIncomes(), incomes, year5);
+//        dataset.addValue(year4Results.getIncomes(), incomes, year4);
+//        dataset.addValue(year3Results.getIncomes(), incomes, year3);
+//        dataset.addValue(year2Results.getIncomes(), incomes, year2);
+//        dataset.addValue(year1Results.getIncomes(), incomes, year1);
 
         return dataset;
     }
