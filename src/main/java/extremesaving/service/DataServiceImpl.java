@@ -140,7 +140,7 @@ public class DataServiceImpl implements DataService {
         Map<String, List<DataModel>> categoryDescriptionModels = new HashMap<>();
         for (DataModel dataModel : filteredDataModels) {
             if (StringUtils.isNotBlank(dataModel.getDescription())) {
-                String categoryDescription = dataModel.getCategory() + "_" + dataModel.getDescription();
+                String categoryDescription = dataModel.getCategory().toLowerCase() + "_" + dataModel.getDescription().toLowerCase();
                 List<DataModel> dataModelsForCategoryDescription = categoryDescriptionModels.get(categoryDescription);
                 if (dataModelsForCategoryDescription == null) {
                     dataModelsForCategoryDescription = new ArrayList<>();
