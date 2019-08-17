@@ -246,16 +246,16 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.setTextAlignment(TextAlignment.CENTER);
         chartCell.setWidth(UnitValue.createPercentValue(50));
 
-//        chartCell.add(ChartUtils.getTitleParagraph("Goals & Awards", TextAlignment.CENTER));
-//        chartCell.add(ChartUtils.getItemParagraph("\n"));
-
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
                 BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
                 Date goalReachedDate = predictionService.getGoalReachedDate(previousGoalAmount);
                 BigDecimal goalAmount = predictionService.getCurrentGoal();
 
-                BigDecimal goalPercentage = resultDto.getResult().divide(goalAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+                BigDecimal goalPercentageAmount = goalAmount.subtract(previousGoalAmount);
+                BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoalAmount);
+                BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+
                 chartCell.add(getGoalTropheeImage(goalAmount));
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
                 chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
