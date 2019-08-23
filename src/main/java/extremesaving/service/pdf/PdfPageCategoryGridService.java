@@ -132,8 +132,9 @@ public class PdfPageCategoryGridService implements PdfPageService {
             addSavingRatio(alignmentTableLeft, alignmentTableRight, pdfGridTimeEnum);
 
             // Add total items
+            long totalItems = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getNumberOfItems()).mapToLong(i -> i).sum();
             alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
-            alignmentTableRight.add(PdfUtils.getItemParagraph("2560"));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(String.valueOf(totalItems)));
         }
 
         // Add left and right cell
