@@ -202,7 +202,7 @@ public class PdfPageMonthService implements PdfPageService {
         } else if (profitAmount.compareTo(expensesAmountReversed) < 0) {
             savingRatio = BigDecimal.ZERO;
         } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
-            savingRatio = BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
+            savingRatio = BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
         return savingRatio;
     }

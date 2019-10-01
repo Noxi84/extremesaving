@@ -80,7 +80,7 @@ public class CalculationServiceImpl implements CalculationService {
                 }
 
                 long daysBetween = DateUtils.daysBetween(new Date(), resultDto.getFirstDate());
-                return amount.divide(BigDecimal.valueOf(daysBetween), RoundingMode.HALF_DOWN);
+                return amount.divide(BigDecimal.valueOf(daysBetween), 2, RoundingMode.HALF_DOWN);
             }
             return BigDecimal.ZERO;
         } catch (ArithmeticException ex) {

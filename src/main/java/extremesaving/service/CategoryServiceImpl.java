@@ -6,6 +6,7 @@ import extremesaving.model.DataModel;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -77,7 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .collect(Collectors.toSet());
         ResultDto resultDto = calculationService.getResults(categoryData);
         BigDecimal averageDailyResult = resultDto.getAverageDailyResult();
-        BigDecimal averageDailyPredictionResult = averageDailyResult.multiply(percentage).divide(BigDecimal.valueOf(100));
+        BigDecimal averageDailyPredictionResult = averageDailyResult.multiply(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_DOWN);
         BigDecimal predictionResult = averageDailyPredictionResult.multiply(BigDecimal.valueOf(numberOfDays));
         if (predictionResult.compareTo(BigDecimal.ZERO) < 0) {
             return predictionResult.multiply(BigDecimal.valueOf(-1));

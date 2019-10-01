@@ -31,7 +31,7 @@ public class PredictionServiceImpl implements PredictionService {
         BigDecimal amountLeft = resultDto.getResult();
 
         BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
-        BigDecimal inflation = resultDtoWithoutOutliners.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100));
+        BigDecimal inflation = resultDtoWithoutOutliners.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_DOWN);
         BigDecimal avgDailyExpenseWithInflation = resultDtoWithoutOutliners.getAverageDailyExpense().add(inflation);
 
         long dayCounter = 0;

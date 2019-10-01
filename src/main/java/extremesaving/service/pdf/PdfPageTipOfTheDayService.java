@@ -17,7 +17,11 @@ import extremesaving.service.AccountService;
 import extremesaving.service.CalculationService;
 import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
-import extremesaving.util.*;
+import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
+import extremesaving.util.PdfUtils;
+import extremesaving.util.PropertiesValueHolder;
+import extremesaving.util.PropertyValueENum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -29,7 +33,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueENum.*;
+import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.MONTH_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
@@ -254,7 +260,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
                 BigDecimal goalPercentageAmount = goalAmount.subtract(previousGoalAmount);
                 BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoalAmount);
-                BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+                BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
                 chartCell.add(getGoalTropheeImage(goalAmount));
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
