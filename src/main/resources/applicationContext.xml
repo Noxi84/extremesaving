@@ -9,7 +9,7 @@
     </bean>
 
     <!--Service-->
-    <bean id="dataService" class="extremesaving.service.DataServiceImpl">
+    <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
         <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
         <property name="calculationService" ref="calculationService"/>
@@ -43,8 +43,8 @@
     </bean>
 
     <!--Dao-->
-    <bean id="dataDao" class="extremesaving.dao.DataDaoImpl"/>
-    <bean id="tipOfTheDayDao" class="extremesaving.dao.TipOfTheDayDaoImpl"/>
+    <bean id="dataDao" class="extremesaving.data.dao.DataDaoImpl"/>
+    <bean id="tipOfTheDayDao" class="extremesaving.data.dao.TipOfTheDayDaoImpl"/>
 
     <!--Pdf-->
     <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">

@@ -1,9 +1,9 @@
-package extremesaving.service;
+package extremesaving.data.service;
 
 import extremesaving.dto.MiniResultDto;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
-import extremesaving.model.TipOfTheDayModel;
+import extremesaving.data.model.DataModel;
+import extremesaving.data.model.TipOfTheDayModel;
 
 import java.math.BigDecimal;
 import java.util.Collection;

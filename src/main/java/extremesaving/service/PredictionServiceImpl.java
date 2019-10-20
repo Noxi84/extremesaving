@@ -1,8 +1,9 @@
 package extremesaving.service;
 
+import extremesaving.data.service.DataService;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
-import extremesaving.model.TipOfTheDayModel;
+import extremesaving.data.model.DataModel;
+import extremesaving.data.model.TipOfTheDayModel;
 import extremesaving.util.NumberUtils;
 import extremesaving.property.PropertiesValueHolder;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,6 @@
 package extremesaving.dto;
 
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 
 import java.math.BigDecimal;
 import java.util.Date;

@@ -3,10 +3,10 @@ package extremesaving.charts.service;
 import extremesaving.dto.AccountDto;
 import extremesaving.dto.MiniResultDto;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 import extremesaving.service.AccountService;
 import extremesaving.service.CalculationService;
-import extremesaving.service.DataService;
+import extremesaving.data.service.DataService;
 import extremesaving.service.PredictionService;
 import extremesaving.util.DateUtils;
 

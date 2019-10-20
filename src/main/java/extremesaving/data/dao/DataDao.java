@@ -1,6 +1,6 @@
-package extremesaving.dao;
+package extremesaving.data.dao;
 
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 
 import java.util.List;
 

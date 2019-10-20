@@ -1,6 +1,6 @@
-package extremesaving.dao;
+package extremesaving.data.dao;
 
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
 import org.apache.commons.lang3.StringUtils;

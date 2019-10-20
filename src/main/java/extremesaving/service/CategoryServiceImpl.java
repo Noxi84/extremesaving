@@ -1,8 +1,9 @@
 package extremesaving.service;
 
+import extremesaving.data.service.DataService;
 import extremesaving.dto.CategoryDto;
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;

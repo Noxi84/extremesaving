@@ -1,4 +1,4 @@
-package extremesaving.model;
+package extremesaving.data.model;
 
 public class TipOfTheDayModel {
 

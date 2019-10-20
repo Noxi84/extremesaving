@@ -1,6 +1,6 @@
-package extremesaving.dao;
+package extremesaving.data.dao;
 
-import extremesaving.model.TipOfTheDayModel;
+import extremesaving.data.model.TipOfTheDayModel;
 
 import java.util.List;
 

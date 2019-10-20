@@ -1,7 +1,7 @@
 package extremesaving.service;
 
 import extremesaving.dto.ResultDto;
-import extremesaving.model.DataModel;
+import extremesaving.data.model.DataModel;
 
 import java.util.Collection;
 import java.util.List;
