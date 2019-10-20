@@ -19,7 +19,7 @@ public class PropertiesValueHolder {
         return instance;
     }
 
-    public String getPropValue(PropertyValueENum propertyValueENum) {
+    public String getPropValue(PropertyValueEnum propertyValueENum) {
         try {
             return getPropValues().get(propertyValueENum.getValue());
         } catch (Exception ex) {

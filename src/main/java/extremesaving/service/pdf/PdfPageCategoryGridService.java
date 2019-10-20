@@ -18,7 +18,7 @@ import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueENum;
+import extremesaving.util.PropertyValueEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageCategoryGridService implements PdfPageService {
 
@@ -224,25 +224,25 @@ public class PdfPageCategoryGridService implements PdfPageService {
         Image savingRateIcon = null;
         try {
             if (savingRatio.compareTo(BigDecimal.valueOf(90)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON9)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON9)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(80)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON9)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON9)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(70)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON8)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON8)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(60)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON7)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON7)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(50)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON6)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON6)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(40)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON5)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON5)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(30)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON4)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON4)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(20)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON3)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON3)));
             } else if (savingRatio.compareTo(BigDecimal.valueOf(10)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON2)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON2)));
             } else {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.SAVING_RATE_ICON1)));
+                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON1)));
             }
 
         } catch (MalformedURLException e) {

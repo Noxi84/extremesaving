@@ -15,7 +15,7 @@ import extremesaving.util.PropertiesValueHolder;
 
 import java.net.MalformedURLException;
 
-import static extremesaving.util.PropertyValueENum.ACCOUNT_PIE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.ACCOUNT_PIE_CHART_IMAGE_FILE;
 
 public class PdfPageOverallService implements PdfPageService {
 

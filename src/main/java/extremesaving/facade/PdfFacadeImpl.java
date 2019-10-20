@@ -11,7 +11,7 @@ import extremesaving.util.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;
 
-import static extremesaving.util.PropertyValueENum.PDF_FILE_NAME;
+import static extremesaving.util.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 

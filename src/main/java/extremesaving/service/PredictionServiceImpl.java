@@ -13,8 +13,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import static extremesaving.util.PropertyValueENum.CHART_GOALS_SAVINGS;
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
+import static extremesaving.util.PropertyValueEnum.CHART_GOALS_SAVINGS;
+import static extremesaving.util.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 
 public class PredictionServiceImpl implements PredictionService {
 
@@ -25,14 +25,15 @@ public class PredictionServiceImpl implements PredictionService {
     public Long getSurvivalDays() {
         Collection<DataModel> dataModels = dataService.findAll();
         Collection<DataModel> dataModelsWithoutOutliners = calculationService.removeOutliners(dataModels);
+        Collection<DataModel> filteredDateRangeModelsWithoutOutliners = calculationService.filterEstimatedDateRange(dataModelsWithoutOutliners);
         ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto resultDtoWithoutOutliners = calculationService.getResults(dataModelsWithoutOutliners);
+        ResultDto filteredResultDto = calculationService.getResults(filteredDateRangeModelsWithoutOutliners);
 
         BigDecimal amountLeft = resultDto.getResult();
 
         BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
-        BigDecimal inflation = resultDtoWithoutOutliners.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_DOWN);
-        BigDecimal avgDailyExpenseWithInflation = resultDtoWithoutOutliners.getAverageDailyExpense().add(inflation);
+        BigDecimal inflation = filteredResultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_DOWN);
+        BigDecimal avgDailyExpenseWithInflation = filteredResultDto.getAverageDailyExpense().add(inflation);
 
         long dayCounter = 0;
         while (BigDecimal.ZERO.compareTo(amountLeft) <= 0) {
@@ -110,15 +111,17 @@ public class PredictionServiceImpl implements PredictionService {
     @Override
     public Long getGoalTime(BigDecimal goal) {
         List<DataModel> dataModels = dataService.findAll();
+        List<DataModel> filteredDataModels = calculationService.removeOutliners(dataModels);
+        filteredDataModels = calculationService.filterEstimatedDateRange(filteredDataModels);
         ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto resultDtoWithoutOutliners = calculationService.getResults(calculationService.removeOutliners(dataModels));
+        ResultDto filteredResultDto = calculationService.getResults(filteredDataModels);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
             long dayCounter = 0;
             while (goal.compareTo(amount) >= 0) {
                 dayCounter++;
-                amount = amount.add(resultDtoWithoutOutliners.getAverageDailyResult());
+                amount = amount.add(filteredResultDto.getAverageDailyResult());
             }
             return dayCounter - 1;
         }
@@ -132,7 +135,7 @@ public class PredictionServiceImpl implements PredictionService {
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) < 0) {
-            Date lastDate = null;
+            Date lastDate;
             for (int i = dataModels.size() - 1; i > 0; i--) {
                 DataModel dataModel = dataModels.get(i);
                 amount = amount.subtract(dataModel.getValue());

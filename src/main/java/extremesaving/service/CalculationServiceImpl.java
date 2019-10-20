@@ -4,11 +4,23 @@ import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
+import extremesaving.util.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_RANGE;
+import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_RANGE;
 
 public class CalculationServiceImpl implements CalculationService {
 
@@ -96,12 +108,13 @@ public class CalculationServiceImpl implements CalculationService {
     }
 
     private List<DataModel> filterOutliners(Collection<DataModel> dataModels) {
+        int outlinerRangeValue = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_OUTLINER_RANGE));
         List<DataModel> sortedDataModels = dataModels.stream()
                 .sorted(Comparator.comparing(DataModel::getValue))
                 .collect(Collectors.toList());
         if (sortedDataModels.size() > 0) {
             int meridianIndex = sortedDataModels.size() / 2;
-            int outlineValue = (sortedDataModels.size() - meridianIndex) / 7;
+            int outlineValue = (sortedDataModels.size() - meridianIndex) / outlinerRangeValue;
             int belowOutlineIndex = outlineValue;
             int aboveOutlineIndex = sortedDataModels.size() - outlineValue;
 
@@ -119,5 +132,15 @@ public class CalculationServiceImpl implements CalculationService {
             return results;
         }
         return dataModels.stream().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels) {
+        ResultDto resultDto = getResultDto(dataModels);
+        long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
+        long pieceValue = rangeValue / 10;
+        long estimationRangeValue = Long.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_DATE_RANGE)) * pieceValue;
+        Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
+        return dataModels.stream().filter(dataModel -> dataModel.getDate().after(startDate)).collect(Collectors.toList());
     }
 }

@@ -74,7 +74,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Date, BigDecimal> getGoalLineResults() {
         Map<Date, BigDecimal> predictions = new HashMap<>();
 
-        List<DataModel> dataModels = dataService.findAll();
+        List<DataModel> dataModels =  dataService.findAll();
 
         // Add existing results
         for (DataModel existingDataModel : dataModels) {
@@ -85,14 +85,16 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future results
         ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto resultDtoWithoutOutliners = calculationService.getResults(calculationService.removeOutliners(dataModels));
+        List<DataModel> filteredDataModels = calculationService.removeOutliners(dataModels);
+        filteredDataModels = calculationService.filterEstimatedDateRange(filteredDataModels);
+        ResultDto filteredResultDto = calculationService.getResults(filteredDataModels);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
         BigDecimal goal = predictionService.getNextGoal();
         while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(resultDtoWithoutOutliners.getAverageDailyResult());
+            currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 predictions.put(cal.getTime(), currentValue);
             } else {

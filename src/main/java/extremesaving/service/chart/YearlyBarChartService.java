@@ -11,11 +11,10 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class YearlyBarChartService implements ChartService {
 

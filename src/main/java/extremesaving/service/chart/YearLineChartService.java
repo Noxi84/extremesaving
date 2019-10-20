@@ -16,7 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueENum.YEAR_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
 
 public class YearLineChartService implements ChartService {
 

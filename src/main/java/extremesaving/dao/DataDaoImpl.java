@@ -2,7 +2,7 @@ package extremesaving.dao;
 
 import extremesaving.model.DataModel;
 import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueENum;
+import extremesaving.util.PropertyValueEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static extremesaving.util.PropertyValueENum.CSV_SPLIT_BY;
-import static extremesaving.util.PropertyValueENum.DATA_CSV_DATE_FORMAT1;
-import static extremesaving.util.PropertyValueENum.DATA_CSV_DATE_FORMAT2;
-import static extremesaving.util.PropertyValueENum.DATA_CSV_FOLDER;
+import static extremesaving.util.PropertyValueEnum.CSV_SPLIT_BY;
+import static extremesaving.util.PropertyValueEnum.DATA_CSV_DATE_FORMAT1;
+import static extremesaving.util.PropertyValueEnum.DATA_CSV_DATE_FORMAT2;
+import static extremesaving.util.PropertyValueEnum.DATA_CSV_FOLDER;
 
 public class DataDaoImpl implements DataDao {
 
@@ -91,11 +91,11 @@ public class DataDaoImpl implements DataDao {
         try {
             br = new BufferedReader(new FileReader(csvFile));
 
-            int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_HEADER_DATE));
-            int account = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_HEADER_ACCOUNT));
-            int value = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_HEADER_VALUE));
-            int category = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_HEADER_CATEGORY));
-            int description = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.DATA_CSV_HEADER_DESCRIPTION));
+            int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_DATE));
+            int account = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_ACCOUNT));
+            int value = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_VALUE));
+            int category = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_CATEGORY));
+            int description = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_DESCRIPTION));
 
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {

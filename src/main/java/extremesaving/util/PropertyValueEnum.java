@@ -1,6 +1,6 @@
 package extremesaving.util;
 
-public enum PropertyValueENum {
+public enum PropertyValueEnum {
 
     TIPOFTHEDAY_CSV_LOCATION("tipOfTheDay.csv.location"),
 
@@ -55,11 +55,13 @@ public enum PropertyValueENum {
     CHART_GOALS_SURVIVAL("chart.goals.survival"),
     CHART_GOALS_YEAR_SPENDINGS("chart.goals.yearSpendings"),
     CHART_GOALS_SAVINGS("chart.goals.savings"),
-    GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage");
+    GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage"),
+    CHART_GOALS_ESTIMATION_OUTLINER_RANGE("chart.goalLine.estimationOutlinerRange"),
+    CHART_GOALS_ESTIMATION_DATE_RANGE("chart.goalLine.estimationDateRange");
 
     private String value;
 
-    PropertyValueENum(String value) {
+    PropertyValueEnum(String value) {
         this.value = value;
     }
 

@@ -2,8 +2,6 @@ package extremesaving.service.chart;
 
 import extremesaving.dto.MiniResultDto;
 import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageMonthService;
-import extremesaving.service.pdf.PdfPageOverallService;
 import extremesaving.service.pdf.PdfPageTipOfTheDayService;
 import extremesaving.util.PdfUtils;
 import extremesaving.util.PropertiesValueHolder;
@@ -17,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueENum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
 
 public class MonthlyBarChartService implements ChartService {
 

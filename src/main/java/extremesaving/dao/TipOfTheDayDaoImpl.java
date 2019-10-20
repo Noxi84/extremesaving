@@ -2,7 +2,7 @@ package extremesaving.dao;
 
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueENum;
+import extremesaving.util.PropertyValueEnum;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
 
         try {
 
-            br = new BufferedReader(new FileReader(PropertiesValueHolder.getInstance().getPropValue(PropertyValueENum.TIPOFTHEDAY_CSV_LOCATION)));
+            br = new BufferedReader(new FileReader(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TIPOFTHEDAY_CSV_LOCATION)));
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("#")) {
                     continue;

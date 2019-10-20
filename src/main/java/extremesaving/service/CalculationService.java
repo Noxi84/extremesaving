@@ -11,4 +11,6 @@ public interface CalculationService {
     ResultDto getResults(Collection<DataModel> dataModels);
 
     List<DataModel> removeOutliners(Collection<DataModel> dataModels);
+
+    List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels);
 }

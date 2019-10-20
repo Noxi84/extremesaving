@@ -1,18 +1,7 @@
 package extremesaving.service.pdf;
 
-import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.UnitValue;
 import extremesaving.service.DataService;
-import extremesaving.util.PropertiesValueHolder;
-
-import java.net.MalformedURLException;
-
-import static extremesaving.util.PropertyValueENum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageYearService implements PdfPageService {
 

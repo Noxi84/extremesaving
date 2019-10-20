@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
 
 public class GoalLineChartService implements ChartService {
 
