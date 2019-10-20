@@ -5,6 +5,7 @@
     <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>

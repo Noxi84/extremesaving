@@ -3,6 +3,7 @@ package extremesaving.charts.service;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
+import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
@@ -28,6 +29,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
+    private CalculationService calculationService;
 
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
@@ -84,8 +86,8 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future results
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        List<DataDto> filteredDataDtos = dataFacade.removeOutliners(dataDtos);
-        filteredDataDtos = dataFacade.filterEstimatedDateRange(filteredDataDtos);
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
         ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
@@ -132,5 +134,9 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
+    }
+
+    public void setCalculationService(CalculationService calculationService) {
+        this.calculationService = calculationService;
     }
 }

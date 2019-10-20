@@ -51,8 +51,8 @@ public class CalculationFacadeImpl implements CalculationFacade {
     @Override
     public Long getSurvivalDays() {
         Collection<DataDto> dataDtos = dataFacade.findAll();
-        Collection<DataDto> filteredDataDtos = dataFacade.removeOutliners(dataDtos);
-        filteredDataDtos = dataFacade.filterEstimatedDateRange(filteredDataDtos);
+        Collection<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
         ResultDto resultDto = getResults(dataDtos);
         ResultDto filteredResultDto = getResults(filteredDataDtos);
 
@@ -136,8 +136,8 @@ public class CalculationFacadeImpl implements CalculationFacade {
     @Override
     public Long getGoalTime(BigDecimal goal) {
         List<DataDto> dataDtos = dataFacade.findAll();
-        List<DataDto> filteredDataDtos = dataFacade.removeOutliners(dataDtos);
-        filteredDataDtos = dataFacade.filterEstimatedDateRange(filteredDataDtos);
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
         ResultDto resultDto = getResults(dataDtos);
         ResultDto filteredResultDto = getResults(filteredDataDtos);
 
