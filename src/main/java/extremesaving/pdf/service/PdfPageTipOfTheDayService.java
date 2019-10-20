@@ -14,7 +14,6 @@ import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
-import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.util.PdfUtils;
@@ -50,7 +49,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
-    private PredictionService predictionService;
     private AccountFacade accountFacade;
 
     @Override
@@ -247,9 +245,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-                BigDecimal previousGoalAmount = predictionService.getPreviousGoal();
-                Date goalReachedDate = predictionService.getGoalReachedDate(previousGoalAmount);
-                BigDecimal goalAmount = predictionService.getCurrentGoal();
+                BigDecimal previousGoalAmount = calculationFacade.getPreviousGoal();
+                Date goalReachedDate = calculationFacade.getGoalReachedDate(previousGoalAmount);
+                BigDecimal goalAmount = calculationFacade.getCurrentGoal();
 
                 BigDecimal goalPercentageAmount = goalAmount.subtract(previousGoalAmount);
                 BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoalAmount);
@@ -257,17 +255,17 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
                 chartCell.add(getGoalTropheeImage(goalAmount));
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
-                chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
+                chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(calculationFacade.getGoalTime(goalAmount)), false));
                 chartCell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
             }
-            chartCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
+            chartCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(calculationFacade.getSurvivalDays()), false));
             chartCell.add(PdfUtils.getItemParagraph("\n"));
         }
         return chartCell;
     }
 
     private Image getGoalTropheeImage(BigDecimal goal) {
-        int goalIndex = predictionService.getGoalIndex(goal);
+        int goalIndex = calculationFacade.getGoalIndex(goal);
         Image trophyIcon = null;
         try {
             if (goalIndex == 0) {
@@ -325,7 +323,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         chartCell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
         chartCell.add(PdfUtils.getItemParagraph("\n"));
-        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(predictionService.getTipOfTheDay());
+        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(dataFacade.getTipOfTheDay());
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
 
         chartCell.add(tipOfTheDay);
@@ -336,10 +334,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {
         this.calculationFacade = calculationFacade;
-    }
-
-    public void setPredictionService(PredictionService predictionService) {
-        this.predictionService = predictionService;
     }
 
     public void setAccountFacade(AccountFacade accountFacade) {

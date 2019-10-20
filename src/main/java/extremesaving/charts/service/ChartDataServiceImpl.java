@@ -3,7 +3,6 @@ package extremesaving.charts.service;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
-import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
@@ -21,7 +20,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
-    private PredictionService predictionService;
 
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
@@ -78,13 +76,13 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future results
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        List<DataDto> filteredDataDtos = calculationFacade.removeOutliners(dataDtos);
-        filteredDataDtos = calculationFacade.filterEstimatedDateRange(filteredDataDtos);
+        List<DataDto> filteredDataDtos = dataFacade.removeOutliners(dataDtos);
+        filteredDataDtos = dataFacade.filterEstimatedDateRange(filteredDataDtos);
         ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
-        BigDecimal goal = predictionService.getNextGoal(2);
+        BigDecimal goal = calculationFacade.getNextGoal(2);
         while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
@@ -106,10 +104,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {
         this.calculationFacade = calculationFacade;
-    }
-
-    public void setPredictionService(PredictionService predictionService) {
-        this.predictionService = predictionService;
     }
 
     public void setDataFacade(DataFacade dataFacade) {

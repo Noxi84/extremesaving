@@ -5,6 +5,7 @@
 
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
+        <property name="dataFacade" ref="dataFacade"/>
     </bean>
 
     <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
@@ -15,10 +16,6 @@
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
     <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
-        <property name="calculationFacade" ref="calculationFacade"/>
-    </bean>
-    <bean id="predictionService" class="extremesaving.calculation.service.PredictionServiceImpl">
-        <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
 

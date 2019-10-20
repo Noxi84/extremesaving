@@ -36,4 +36,10 @@ public interface DataFacade {
     List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos);
 
     List<TipOfTheDayModel> getTipOfTheDays();
+
+    String getTipOfTheDay();
+
+    List<DataDto> removeOutliners(Collection<DataDto> dataDtos);
+
+    List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos);
 }
