@@ -23,7 +23,7 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
         return results;
     }
 
-    private List<TipOfTheDayModel> getResultFromCSV() {
+    protected List<TipOfTheDayModel> getResultFromCSV() {
         BufferedReader br = null;
         String line = "";
         List<TipOfTheDayModel> dataModels = new ArrayList<>();
@@ -55,7 +55,7 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
         return dataModels;
     }
 
-    private TipOfTheDayModel handeLines(String line) {
+    protected TipOfTheDayModel handeLines(String line) {
         TipOfTheDayModel dataModel = new TipOfTheDayModel();
         dataModel.setText(line);
         return dataModel;

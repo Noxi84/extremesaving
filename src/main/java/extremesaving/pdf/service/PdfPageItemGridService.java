@@ -32,7 +32,7 @@ public class PdfPageItemGridService implements PdfPageService {
         document.add(getItemsSection(document, PdfGridTypeEnum.EXPENSES));
     }
 
-    private Table getItemsSection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
+    protected Table getItemsSection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         String title = "";
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
             title = "Most profitable items";
@@ -64,7 +64,7 @@ public class PdfPageItemGridService implements PdfPageService {
         return table;
     }
 
-    private Cell getItemCell(String title, List<ResultDto> results) {
+    protected Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(33));
 

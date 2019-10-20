@@ -75,7 +75,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         document.add(getYearLineChartImage());
     }
 
-    public Image getGoalLineChartImage() {
+    protected Image getGoalLineChartImage() {
         try {
             Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
             image.setWidth(GOAL_LINE_CHART_WIDTH);
@@ -87,7 +87,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return null;
     }
 
-    public Image getMonthBarChartImage() {
+    protected Image getMonthBarChartImage() {
         try {
             Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
@@ -99,7 +99,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return null;
     }
 
-    public Image getYearLineChartImage() {
+    protected Image getYearLineChartImage() {
         try {
             Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE)));
             image.setWidth(YEAR_LINE_CHART_WIDTH);
@@ -111,7 +111,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return null;
     }
 
-    private Cell getAccountsCell() {
+    protected Cell getAccountsCell() {
         Cell accountsCell = new Cell();
         accountsCell.setBorder(Border.NO_BORDER);
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -172,7 +172,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return accountsCell;
     }
 
-    private Cell getStatisticsCell() {
+    protected Cell getStatisticsCell() {
         Cell balanceCell = new Cell();
         balanceCell.setWidth(UnitValue.createPercentValue(25));
         balanceCell.setBorder(Border.NO_BORDER);
@@ -237,7 +237,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return balanceCell;
     }
 
-    private Cell getGoalAndAwardsCell(ResultDto resultDto) {
+    protected Cell getGoalAndAwardsCell(ResultDto resultDto) {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setTextAlignment(TextAlignment.CENTER);
@@ -264,7 +264,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return chartCell;
     }
 
-    private Image getGoalTropheeImage(BigDecimal goal) {
+    protected Image getGoalTropheeImage(BigDecimal goal) {
         int goalIndex = calculationFacade.getGoalIndex(goal);
         Image trophyIcon = null;
         try {
@@ -316,7 +316,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return trophyIcon;
     }
 
-    private Cell getTipOfTheDayCell() {
+    protected Cell getTipOfTheDayCell() {
         Cell chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setWidth(UnitValue.createPercentValue(35));

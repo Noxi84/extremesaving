@@ -49,7 +49,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
     }
 
-    public Image getYearChart() {
+    protected Image getYearChart() {
         try {
             Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
             yearlyBarChartImage.setWidth(CHART_WIDTH);
@@ -61,8 +61,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return null;
     }
 
-
-    private Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
+    protected Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
             document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
@@ -104,7 +103,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return table;
     }
 
-    private Cell getCategoryCell(String title, List<CategoryDto> categoryDtos) {
+    protected Cell getCategoryCell(String title, List<CategoryDto> categoryDtos) {
         Cell cell = new Cell();
 
         cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
@@ -143,7 +142,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return cell;
     }
 
-    private Cell getResultCategoryCell(List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTimeEnum) {
+    protected Cell getResultCategoryCell(List<CategoryDto> categoryDtos, PdfGridTimeEnum pdfGridTimeEnum) {
         Cell cell = new Cell();
 
         BigDecimal savingRatio = getSavingRatio(pdfGridTimeEnum);
@@ -187,7 +186,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return cell;
     }
 
-    private BigDecimal getSavingRatio(PdfGridTimeEnum pdfGridTimeEnum) {
+    protected BigDecimal getSavingRatio(PdfGridTimeEnum pdfGridTimeEnum) {
         // Calculate saving ratio
         List<CategoryDto> profitResults = new ArrayList<>();
         List<CategoryDto> expensesResults = new ArrayList<>();
@@ -220,7 +219,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return savingRatio;
     }
 
-    private Image getSavingRatioImage(BigDecimal savingRatio) {
+    protected Image getSavingRatioImage(BigDecimal savingRatio) {
         Image savingRateIcon = null;
         try {
             if (savingRatio.compareTo(BigDecimal.valueOf(90)) >= 0) {

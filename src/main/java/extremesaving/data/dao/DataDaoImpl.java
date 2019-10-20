@@ -45,7 +45,7 @@ public class DataDaoImpl implements DataDao {
         return results;
     }
 
-    private int getColumnNumber(String csvFile, String columnName) {
+    protected int getColumnNumber(String csvFile, String columnName) {
         BufferedReader br = null;
         String line;
         try {
@@ -82,7 +82,7 @@ public class DataDaoImpl implements DataDao {
         return 0;
     }
 
-    private List<DataModel> getResultFromCSV(String csvFile) {
+    protected List<DataModel> getResultFromCSV(String csvFile) {
         BufferedReader br = null;
         String line;
         List<DataModel> dataModels = new ArrayList<>();
@@ -124,7 +124,7 @@ public class DataDaoImpl implements DataDao {
         return dataModels;
     }
 
-    private DataModel handleLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
+    protected DataModel handleLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
         try {
             DataModel dataModel = new DataModel();
 
@@ -189,13 +189,13 @@ public class DataDaoImpl implements DataDao {
         }
     }
 
-    private String[] splitCsvLine(String line) {
+    protected String[] splitCsvLine(String line) {
         String csvSpliyBy = PropertiesValueHolder.getString(CSV_SPLIT_BY);
         String[] lineSplit = line.split(csvSpliyBy + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         return lineSplit;
     }
 
-    private String getQuoteSafeValue(String[] lineSplit, int columnNumber) {
+    protected String getQuoteSafeValue(String[] lineSplit, int columnNumber) {
         String fieldValue = lineSplit.length > columnNumber ? lineSplit[columnNumber] : "";
         fieldValue = StringUtils.remove(fieldValue, "\"");
         return StringUtils.trim(fieldValue);

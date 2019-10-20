@@ -52,7 +52,7 @@ public class DataFacadeImpl implements DataFacade {
         return resultDto.getResult();
     }
 
-    private Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
+    protected Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
         Integer highestMonth = null;
         MiniResultDto highestResultDto = null;
 
@@ -139,7 +139,7 @@ public class DataFacadeImpl implements DataFacade {
                 .collect(Collectors.toList());
     }
 
-    private List<ResultDto> createCategoryDescriptionMap(Collection<DataDto> dataDtos) {
+    protected List<ResultDto> createCategoryDescriptionMap(Collection<DataDto> dataDtos) {
         // Group datamodels for each category + description
         Map<String, List<DataDto>> categoryDescriptionDtos = new HashMap<>();
         for (DataDto dataDto : dataDtos) {

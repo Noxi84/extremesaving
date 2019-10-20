@@ -1,7 +1,6 @@
 package extremesaving.charts.service;
 
 import extremesaving.pdf.service.PdfPageTipOfTheDayService;
-import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import org.jfree.chart.ChartFactory;
@@ -24,7 +23,7 @@ public class YearLineChartService implements ChartService {
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
+        chartDataService.writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
     protected TimeSeriesCollection createDataset() {
