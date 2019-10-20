@@ -17,7 +17,6 @@ import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.service.DataService;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
@@ -50,7 +49,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     public static float MONTHCHART_HEIGHT = 170;
 
     private DataFacade dataFacade;
-    private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
     private AccountFacade accountFacade;
@@ -334,10 +332,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         chartCell.add(PdfUtils.getItemParagraph("\n"));
 
         return chartCell;
-    }
-
-    public void setDataService(DataService dataService) {
-        this.dataService = dataService;
     }
 
     public void setCalculationService(CalculationService calculationService) {

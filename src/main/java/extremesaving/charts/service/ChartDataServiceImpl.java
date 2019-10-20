@@ -6,7 +6,6 @@ import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.service.DataService;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
-    private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
 
@@ -104,10 +102,6 @@ public class ChartDataServiceImpl implements ChartDataService {
         if (results.get(key) == null) {
             results.put(key, new MiniResultDto());
         }
-    }
-
-    public void setDataService(DataService dataService) {
-        this.dataService = dataService;
     }
 
     public void setCalculationService(CalculationService calculationService) {

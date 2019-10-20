@@ -4,7 +4,6 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.TipOfTheDayModel;
-import extremesaving.data.service.DataService;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +19,6 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLA
 
 public class PredictionServiceImpl implements PredictionService {
 
-    private DataService dataService;
     private CalculationService calculationService;
     private DataFacade dataFacade;
 
@@ -153,10 +151,6 @@ public class PredictionServiceImpl implements PredictionService {
     public String getTipOfTheDay() {
         List<TipOfTheDayModel> tipOfTheDayModels = dataFacade.getTipOfTheDays();
         return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
-    }
-
-    public void setDataService(DataService dataService) {
-        this.dataService = dataService;
     }
 
     public void setCalculationService(CalculationService calculationService) {

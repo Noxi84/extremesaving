@@ -14,7 +14,6 @@
     </bean>
     <bean id="predictionService" class="extremesaving.calculation.service.PredictionServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
-        <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
 

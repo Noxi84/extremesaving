@@ -11,7 +11,6 @@
     </bean>
     <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
         <property name="dataFacade" ref="dataFacade"/>
-        <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
         <property name="accountFacade" ref="accountFacade"/>
