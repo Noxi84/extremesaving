@@ -2,13 +2,14 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-    <!--Main-->
+    <import resource="classpath:/applicationContext/data.xml"/>
+    <import resource="classpath:/applicationContext/calculation.xml"/>
+    <import resource="classpath:/applicationContext/charts.xml"/>
+    <import resource="classpath:/applicationContext/pdf.xml"/>
+
     <bean id="main" class="extremesaving.Main">
         <property name="pdfFacade" ref="pdfFacade"/>
         <property name="chartFacade" ref="chartFacade"/>
     </bean>
-
-    <import resource="classpath:/applicationContext/calculation.xml"/>
-
 
 </beans>
