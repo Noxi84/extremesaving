@@ -6,14 +6,14 @@ public class ChartFacadeImpl implements ChartFacade {
 
     private ChartService monthlyBarChartService;
     private ChartService yearlyBarChartService;
-    private ChartService monthLineChartService;
+    private ChartService yearLineChartService;
     private ChartService goalLineChartService;
 
     @Override
     public void generateCharts() {
         monthlyBarChartService.generateChartPng();
         yearlyBarChartService.generateChartPng();
-        monthLineChartService.generateChartPng();
+        yearLineChartService.generateChartPng();
         goalLineChartService.generateChartPng();
     }
 
@@ -25,8 +25,8 @@ public class ChartFacadeImpl implements ChartFacade {
         this.yearlyBarChartService = yearlyBarChartService;
     }
 
-    public void setMonthLineChartService(ChartService monthLineChartService) {
-        this.monthLineChartService = monthLineChartService;
+    public void setYearLineChartService(ChartService yearLineChartService) {
+        this.yearLineChartService = yearLineChartService;
     }
 
     public void setGoalLineChartService(ChartService goalLineChartService) {

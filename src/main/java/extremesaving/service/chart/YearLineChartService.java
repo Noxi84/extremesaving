@@ -16,22 +16,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueENum.MONTH_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.YEAR_LINE_CHART_IMAGE_FILE;
 
-public class MonthLineChartService implements ChartService {
+public class YearLineChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
     public void generateChartPng() {
         JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
+        PdfUtils.writeChartPng(chart, PropertiesValueHolder.getInstance().getPropValue(YEAR_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
     private TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-        TimeSeries series1 = new TimeSeries("");
+        TimeSeries series1 = new TimeSeries("Balance history");
+        TimeSeries series2 = new TimeSeries("Estimated redult");
 
         Map<Date, BigDecimal> goalLineResults = chartDataService.getGoalLineResults();
 
@@ -40,11 +41,16 @@ public class MonthLineChartService implements ChartService {
             if (DateUtils.equalYears(result.getKey(), today)) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(result.getKey());
-                series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+                if (cal.getTime().before(today)) {
+                    series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+                } else {
+                    series2.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+                }
             }
         }
 
         dataset.addSeries(series1);
+        dataset.addSeries(series2);
 
         return dataset;
     }

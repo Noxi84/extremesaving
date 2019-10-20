@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 
 import static extremesaving.util.PropertyValueENum.GOAL_LINE_CHART_IMAGE_FILE;
 import static extremesaving.util.PropertyValueENum.MONTHLY_BAR_CHART_IMAGE_FILE;
-import static extremesaving.util.PropertyValueENum.MONTH_LINE_CHART_IMAGE_FILE;
+import static extremesaving.util.PropertyValueENum.YEAR_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 
@@ -103,7 +103,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public Image getYearLineChartImage() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTH_LINE_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEAR_LINE_CHART_IMAGE_FILE)));
             image.setWidth(YEAR_LINE_CHART_WIDTH);
             image.setHeight(YEAR_LINE_CHART_HEIGHT);
             return image;

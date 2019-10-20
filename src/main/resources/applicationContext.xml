@@ -34,7 +34,7 @@
     <bean id="chartFacade" class="extremesaving.facade.ChartFacadeImpl">
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
         <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
-        <property name="monthLineChartService" ref="monthLineChartService"/>
+        <property name="yearLineChartService" ref="yearLineChartService"/>
         <property name="goalLineChartService" ref="goalLineChartService"/>
     </bean>
     <bean id="predictionService" class="extremesaving.service.PredictionServiceImpl">
@@ -89,7 +89,7 @@
     <bean id="goalLineChartService" class="extremesaving.service.chart.GoalLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="monthLineChartService" class="extremesaving.service.chart.MonthLineChartService">
+    <bean id="yearLineChartService" class="extremesaving.service.chart.YearLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
 
