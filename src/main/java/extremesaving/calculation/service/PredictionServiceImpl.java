@@ -1,5 +1,6 @@
 package extremesaving.calculation.service;
 
+import extremesaving.data.facade.DataFacade;
 import extremesaving.data.service.DataService;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
@@ -21,6 +22,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     private DataService dataService;
     private CalculationService calculationService;
+    private DataFacade dataFacade;
 
     @Override
     public Long getSurvivalDays() {
@@ -151,7 +153,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public String getTipOfTheDay() {
-        List<TipOfTheDayModel> tipOfTheDayModels = dataService.getTipOfTheDays();
+        List<TipOfTheDayModel> tipOfTheDayModels = dataFacade.getTipOfTheDays();
         return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
     }
 
@@ -161,5 +163,9 @@ public class PredictionServiceImpl implements PredictionService {
 
     public void setCalculationService(CalculationService calculationService) {
         this.calculationService = calculationService;
+    }
+
+    public void setDataFacade(DataFacade dataFacade) {
+        this.dataFacade = dataFacade;
     }
 }

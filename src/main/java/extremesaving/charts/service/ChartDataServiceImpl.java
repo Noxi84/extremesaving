@@ -3,6 +3,7 @@ package extremesaving.charts.service;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.DataModel;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
 
+    private DataFacade dataFacade;
     private DataService dataService;
     private CalculationService calculationService;
     private AccountFacade accountFacade;
@@ -37,7 +39,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
         List<DataModel> dataModels = dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date())).collect(Collectors.toList());
-        Map<Integer, MiniResultDto> results = dataService.getMonthlyResults(dataModels);
+        Map<Integer, MiniResultDto> results = dataFacade.getMonthlyResults(dataModels);
         for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -50,7 +52,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Integer, MiniResultDto> getYearlyResults() {
         List<DataModel> dataModels = dataService.findAll();
 
-        Map<Integer, MiniResultDto> yearlyResults = dataService.getYearlyResults(dataModels);
+        Map<Integer, MiniResultDto> yearlyResults = dataFacade.getYearlyResults(dataModels);
         for (Map.Entry<Integer, MiniResultDto> result : yearlyResults.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -129,5 +131,9 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setPredictionService(PredictionService predictionService) {
         this.predictionService = predictionService;
+    }
+
+    public void setDataFacade(DataFacade dataFacade) {
+        this.dataFacade = dataFacade;
     }
 }

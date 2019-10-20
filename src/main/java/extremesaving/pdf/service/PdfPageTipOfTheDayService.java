@@ -12,6 +12,7 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.DataModel;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
@@ -48,6 +49,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     public static float MONTHCHART_WIDTH = 530;
     public static float MONTHCHART_HEIGHT = 170;
 
+    private DataFacade dataFacade;
     private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
@@ -164,7 +166,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
 
         alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(dataService.getTotalBalance()), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(dataFacade.getTotalBalance()), true));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -206,7 +208,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Last item added"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(dataService.getLastItemAdded())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(dataFacade.getLastItemAdded())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
@@ -216,20 +218,20 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getBestMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataFacade.getBestMonth())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataService.getWorstMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataFacade.getWorstMonth())));
 
         SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best year"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataService.getBestYear())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataFacade.getBestYear())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst year"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataService.getWorstYear())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataFacade.getWorstYear())));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -348,5 +350,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public void setAccountFacade(AccountFacade accountFacade) {
         this.accountFacade = accountFacade;
+    }
+
+    public void setDataFacade(DataFacade dataFacade) {
+        this.dataFacade = dataFacade;
     }
 }

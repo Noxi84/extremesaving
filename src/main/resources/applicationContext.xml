@@ -8,77 +8,7 @@
         <property name="chartFacade" ref="chartFacade"/>
     </bean>
 
-    <!--Service-->
-    <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">
-        <property name="dataDao" ref="dataDao"/>
-        <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
-        <property name="calculationService" ref="calculationService"/>
-    </bean>
-    <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
-    </bean>
-    <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
-        <property name="dataService" ref="dataService"/>
-        <property name="calculationService" ref="calculationService"/>
-        <property name="accountFacade" ref="accountFacade"/>
-        <property name="predictionService" ref="predictionService"/>
-    </bean>
-
-    <bean id="accountFacade" class="extremesaving.calculation.facade.AccountFacadeImpl">
-        <property name="dataService" ref="dataService"/>
-        <property name="calculationService" ref="calculationService"/>
-    </bean>
-    <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
-        <property name="dataService" ref="dataService"/>
-        <property name="calculationService" ref="calculationService"/>
-    </bean>
-    <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
-        <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
-        <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
-        <property name="yearLineChartService" ref="yearLineChartService"/>
-        <property name="goalLineChartService" ref="goalLineChartService"/>
-    </bean>
-    <bean id="predictionService" class="extremesaving.calculation.service.PredictionServiceImpl">
-        <property name="dataService" ref="dataService"/>
-        <property name="calculationService" ref="calculationService"/>
-    </bean>
-
-    <!--Dao-->
-    <bean id="dataDao" class="extremesaving.data.dao.DataDaoImpl"/>
-    <bean id="tipOfTheDayDao" class="extremesaving.data.dao.TipOfTheDayDaoImpl"/>
-
-    <!--Pdf-->
-    <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
-        <property name="dataService" ref="dataService"/>
-        <property name="categoryFacade" ref="categoryFacade"/>
-    </bean>
-    <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
-        <property name="dataService" ref="dataService"/>
-    </bean>
-    <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
-        <property name="dataService" ref="dataService"/>
-        <property name="calculationService" ref="calculationService"/>
-        <property name="predictionService" ref="predictionService"/>
-        <property name="accountFacade" ref="accountFacade"/>
-    </bean>
-    <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
-        <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
-        <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
-    </bean>
-
-    <!--Chart-->
-    <bean id="monthlyBarChartService" class="extremesaving.charts.service.MonthlyBarChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="yearlyBarChartService" class="extremesaving.charts.service.YearlyBarChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="goalLineChartService" class="extremesaving.charts.service.GoalLineChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="yearLineChartService" class="extremesaving.charts.service.YearLineChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
+    <import resource="classpath:/applicationContext/calculation.xml"/>
 
 
 </beans>
