@@ -17,7 +17,6 @@ public enum PropertyValueEnum {
     CSV_SPLIT_BY("data.csv.splitBy"),
     PDF_FILE_NAME("pdf.location"),
 
-    ACCOUNT_PIE_CHART_IMAGE_FILE("chart.accountPie.location"),
     MONTHLY_BAR_CHART_IMAGE_FILE("chart.monthlyBar.location"),
     YEAR_LINE_CHART_IMAGE_FILE("chart.monthLine.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
@@ -52,12 +51,12 @@ public enum PropertyValueEnum {
     TROPHY_ICON17("trophy.icon17"),
     TROPHY_ICON18("trophy.icon18"),
 
-    CHART_GOALS_SURVIVAL("chart.goals.survival"),
-    CHART_GOALS_YEAR_SPENDINGS("chart.goals.yearSpendings"),
     CHART_GOALS_SAVINGS("chart.goals.savings"),
     GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage"),
-    CHART_GOALS_ESTIMATION_OUTLINER_RANGE("chart.goalLine.estimationOutlinerRange"),
-    CHART_GOALS_ESTIMATION_DATE_RANGE("chart.goalLine.estimationDateRange");
+    CHART_GOALS_ESTIMATION_OUTLINER_ENABLED("chart.goalLine.estimation.filterDates.enabled"),
+    CHART_GOALS_ESTIMATION_OUTLINER_RANGE("chart.goalLine.estimation.filterDates.range"),
+    CHART_GOALS_ESTIMATION_DATE_ENABLED("chart.goalLine.estimation.filterDates.enabled"),
+    CHART_GOALS_ESTIMATION_DATE_RANGE("chart.goalLine.estimation.filterDates.range");
 
     private String value;
 

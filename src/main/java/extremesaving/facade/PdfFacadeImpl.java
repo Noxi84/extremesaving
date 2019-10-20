@@ -15,9 +15,6 @@ import static extremesaving.util.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageService pdfPageOverallService;
-    private PdfPageService pdfPageMonthService;
-    private PdfPageService pdfPageYearService;
     private PdfPageService pdfPageCategoryGridService;
     private PdfPageService pdfPageItemGridService;
     private PdfPageService pdfPagePredictionsService;
@@ -33,15 +30,6 @@ public class PdfFacadeImpl implements PdfFacade {
             pdfPagePredictionsService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-//            pdfPageOverallService.generate(document);
-//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
-//            pdfPageMonthService.generate(document);
-//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
-//            pdfPageYearService.generate(document);
-//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
             pdfPageCategoryGridService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
@@ -51,18 +39,6 @@ public class PdfFacadeImpl implements PdfFacade {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setPdfPageOverallService(PdfPageService pdfPageOverallService) {
-        this.pdfPageOverallService = pdfPageOverallService;
-    }
-
-    public void setPdfPageMonthService(PdfPageService pdfPageMonthService) {
-        this.pdfPageMonthService = pdfPageMonthService;
-    }
-
-    public void setPdfPageYearService(PdfPageService pdfPageYearService) {
-        this.pdfPageYearService = pdfPageYearService;
     }
 
     public void setPdfPageCategoryGridService(PdfPageService pdfPageCategoryGridService) {

@@ -19,14 +19,16 @@ public class PropertiesValueHolder {
         return instance;
     }
 
+    public Boolean getBoolean(PropertyValueEnum propertyValueENum) {
+        return Boolean.valueOf(getPropValue(propertyValueENum));
+    }
+
     public String getPropValue(PropertyValueEnum propertyValueENum) {
         try {
             return getPropValues().get(propertyValueENum.getValue());
         } catch (Exception ex) {
-            System.out.println("Error retrieving property " + propertyValueENum.getValue() + " from config.properties");
-            ex.printStackTrace();
+            throw new IllegalStateException("Error retrieving property " + propertyValueENum.getValue() + " from config.properties");
         }
-        return null;
     }
 
     public Map<String, String> getPropValues() throws IOException {
@@ -52,7 +54,7 @@ public class PropertiesValueHolder {
                 results.put((String) property.getKey(), (String) property.getValue());
             }
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            throw new IllegalStateException("Unable to read properties. Exception: " + e.getMessage(), e);
         } finally {
             inputStream.close();
         }

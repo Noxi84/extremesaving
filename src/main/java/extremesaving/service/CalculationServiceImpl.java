@@ -19,7 +19,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_ENABLED;
 import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_RANGE;
+import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_ENABLED;
 import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_RANGE;
 
 public class CalculationServiceImpl implements CalculationService {
@@ -102,9 +104,12 @@ public class CalculationServiceImpl implements CalculationService {
 
     @Override
     public List<DataModel> removeOutliners(Collection<DataModel> dataModels) {
-        List<DataModel> expenses = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isExpense(dataModel.getValue())).collect(Collectors.toList()));
-        List<DataModel> incomes = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isIncome(dataModel.getValue())).collect(Collectors.toList()));
-        return dataModels.stream().filter(dataModel -> expenses.contains(dataModel) || incomes.contains(dataModel)).collect(Collectors.toList());
+        if (Boolean.TRUE.equals(PropertiesValueHolder.getInstance().getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
+            List<DataModel> expenses = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isExpense(dataModel.getValue())).collect(Collectors.toList()));
+            List<DataModel> incomes = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isIncome(dataModel.getValue())).collect(Collectors.toList()));
+            return dataModels.stream().filter(dataModel -> expenses.contains(dataModel) || incomes.contains(dataModel)).collect(Collectors.toList());
+        }
+        return new ArrayList<>(dataModels);
     }
 
     private List<DataModel> filterOutliners(Collection<DataModel> dataModels) {
@@ -136,11 +141,14 @@ public class CalculationServiceImpl implements CalculationService {
 
     @Override
     public List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels) {
-        ResultDto resultDto = getResultDto(dataModels);
-        long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
-        long pieceValue = rangeValue / 10;
-        long estimationRangeValue = Long.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_DATE_RANGE)) * pieceValue;
-        Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
-        return dataModels.stream().filter(dataModel -> dataModel.getDate().after(startDate)).collect(Collectors.toList());
+        if (Boolean.TRUE.equals(PropertiesValueHolder.getInstance().getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
+            ResultDto resultDto = getResultDto(dataModels);
+            long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
+            long pieceValue = rangeValue / 10;
+            long estimationRangeValue = Long.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_DATE_RANGE)) * pieceValue;
+            Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
+            return dataModels.stream().filter(dataModel -> dataModel.getDate().after(startDate)).collect(Collectors.toList());
+        }
+        return new ArrayList<>(dataModels);
     }
 }
