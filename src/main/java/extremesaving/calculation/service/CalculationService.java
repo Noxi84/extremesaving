@@ -10,8 +10,6 @@ public interface CalculationService {
 
     ResultDto getResultDto(Collection<DataDto> dataDtos);
 
-    List<DataDto> filterOutliners(Collection<DataDto> dataDtos);
-
     List<DataDto> removeOutliners(Collection<DataDto> dataDtos);
 
     List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos);

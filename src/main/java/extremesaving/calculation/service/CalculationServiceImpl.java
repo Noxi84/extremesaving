@@ -98,22 +98,7 @@ public class CalculationServiceImpl implements CalculationService {
         return new ArrayList<>(dataDtos);
     }
 
-    @Override
-    public List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
-            ResultDto resultDto = getResultDto(dataDtos);
-            long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
-            long pieceValue = rangeValue / 10;
-            long estimationRangeValue = PropertiesValueHolder.getLong(CHART_GOALS_ESTIMATION_DATE_RANGE) * pieceValue;
-            Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
-            return dataDtos.stream().filter(dataDto -> dataDto.getDate().after(startDate)).collect(Collectors.toList());
-        }
-        return new ArrayList<>(dataDtos);
-    }
-
-
-    @Override
-    public List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
+    protected List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
         int outlinerRangeValue = PropertiesValueHolder.getInteger(CHART_GOALS_ESTIMATION_OUTLINER_RANGE);
         List<DataDto> sortedDataDtos = dataDtos.stream()
                 .sorted(Comparator.comparing(DataDto::getValue))
@@ -138,5 +123,18 @@ public class CalculationServiceImpl implements CalculationService {
             return results;
         }
         return dataDtos.stream().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos) {
+        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
+            ResultDto resultDto = getResultDto(dataDtos);
+            long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
+            long pieceValue = rangeValue / 10;
+            long estimationRangeValue = PropertiesValueHolder.getLong(CHART_GOALS_ESTIMATION_DATE_RANGE) * pieceValue;
+            Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
+            return dataDtos.stream().filter(dataDto -> dataDto.getDate().after(startDate)).collect(Collectors.toList());
+        }
+        return new ArrayList<>(dataDtos);
     }
 }
