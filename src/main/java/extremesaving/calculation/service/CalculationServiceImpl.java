@@ -1,11 +1,11 @@
 package extremesaving.calculation.service;
 
-import extremesaving.calculation.enums.CalculationEnum;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.enums.CalculationEnum;
 import extremesaving.data.model.DataModel;
+import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
-import extremesaving.property.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -105,7 +105,7 @@ public class CalculationServiceImpl implements CalculationService {
 
     @Override
     public List<DataModel> removeOutliners(Collection<DataModel> dataModels) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getInstance().getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
+        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
             List<DataModel> expenses = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isExpense(dataModel.getValue())).collect(Collectors.toList()));
             List<DataModel> incomes = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isIncome(dataModel.getValue())).collect(Collectors.toList()));
             return dataModels.stream().filter(dataModel -> expenses.contains(dataModel) || incomes.contains(dataModel)).collect(Collectors.toList());
@@ -114,7 +114,7 @@ public class CalculationServiceImpl implements CalculationService {
     }
 
     private List<DataModel> filterOutliners(Collection<DataModel> dataModels) {
-        int outlinerRangeValue = Integer.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_OUTLINER_RANGE));
+        int outlinerRangeValue = PropertiesValueHolder.getInteger(CHART_GOALS_ESTIMATION_OUTLINER_RANGE);
         List<DataModel> sortedDataModels = dataModels.stream()
                 .sorted(Comparator.comparing(DataModel::getValue))
                 .collect(Collectors.toList());
@@ -142,11 +142,11 @@ public class CalculationServiceImpl implements CalculationService {
 
     @Override
     public List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getInstance().getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
+        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
             ResultDto resultDto = getResultDto(dataModels);
             long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
             long pieceValue = rangeValue / 10;
-            long estimationRangeValue = Long.valueOf(PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_ESTIMATION_DATE_RANGE)) * pieceValue;
+            long estimationRangeValue = PropertiesValueHolder.getLong(CHART_GOALS_ESTIMATION_DATE_RANGE) * pieceValue;
             Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
             return dataModels.stream().filter(dataModel -> dataModel.getDate().after(startDate)).collect(Collectors.toList());
         }

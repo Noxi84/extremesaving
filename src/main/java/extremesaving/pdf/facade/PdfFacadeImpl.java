@@ -22,7 +22,7 @@ public class PdfFacadeImpl implements PdfFacade {
     @Override
     public void generatePdf() {
         try {
-            PdfWriter writer = new PdfWriter(PropertiesValueHolder.getInstance().getPropValue(PDF_FILE_NAME));
+            PdfWriter writer = new PdfWriter(PropertiesValueHolder.getString(PDF_FILE_NAME));
             PdfDocument pdf = new PdfDocument(writer);
 
             Document document = new Document(pdf, PageSize.A4);

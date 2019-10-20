@@ -12,7 +12,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +28,7 @@ public class DataDaoImpl implements DataDao {
     @Override
     public List<DataModel> findAll() {
         if (results == null) {
-            File f = new File(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_FOLDER));
+            File f = new File(PropertiesValueHolder.getString(DATA_CSV_FOLDER));
             if (f.isFile()) {
                 results = getResultFromCSV(f.getAbsolutePath());
             } else if (f.isDirectory()) {
@@ -91,11 +90,11 @@ public class DataDaoImpl implements DataDao {
         try {
             br = new BufferedReader(new FileReader(csvFile));
 
-            int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_DATE));
-            int account = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_ACCOUNT));
-            int value = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_VALUE));
-            int category = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_CATEGORY));
-            int description = getColumnNumber(csvFile, PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.DATA_CSV_HEADER_DESCRIPTION));
+            int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DATE));
+            int account = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_ACCOUNT));
+            int value = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_VALUE));
+            int category = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_CATEGORY));
+            int description = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DESCRIPTION));
 
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
@@ -138,17 +137,17 @@ public class DataDaoImpl implements DataDao {
             // Date
             Date dateResult = null;
             try {
-                dateResult = new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT1)).parse(date);
+                dateResult = PropertiesValueHolder.getDateFormat(DATA_CSV_DATE_FORMAT1).parse(date);
             } catch (ParseException e) {
                 // Ignore
             }
             try {
-                dateResult = new SimpleDateFormat(PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT2)).parse(date);
+                dateResult = PropertiesValueHolder.getDateFormat(DATA_CSV_DATE_FORMAT2).parse(date);
             } catch (ParseException e) {
                 // Ignore
             }
             if (dateResult == null) {
-                throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getInstance().getPropValue(DATA_CSV_DATE_FORMAT1) + "'.");
+                throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getString(DATA_CSV_DATE_FORMAT1) + "'.");
             }
             dataModel.setDate(dateResult);
 
@@ -191,7 +190,7 @@ public class DataDaoImpl implements DataDao {
     }
 
     private String[] splitCsvLine(String line) {
-        String csvSpliyBy = PropertiesValueHolder.getInstance().getPropValue(CSV_SPLIT_BY);
+        String csvSpliyBy = PropertiesValueHolder.getString(CSV_SPLIT_BY);
         String[] lineSplit = line.split(csvSpliyBy + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
         return lineSplit;
     }

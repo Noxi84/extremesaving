@@ -8,8 +8,6 @@ import java.util.Map;
 
 public interface ChartDataService {
 
-    Map<String, BigDecimal> getAccountResults();
-
     Map<Integer, MiniResultDto> getMonthlyResults();
 
     Map<Integer, MiniResultDto> getYearlyResults();

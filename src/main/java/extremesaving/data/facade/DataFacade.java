@@ -15,8 +15,6 @@ public interface DataFacade {
 
     Date getLastItemAdded();
 
-    long getTotalItems();
-
     BigDecimal getTotalBalance();
 
     Date getBestMonth();

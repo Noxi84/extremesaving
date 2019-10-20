@@ -36,13 +36,6 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public long getTotalItems() {
-        List<DataModel> dataModels = dataService.findAll();
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        return resultDto.getNumberOfItems();
-    }
-
-    @Override
     public BigDecimal getTotalBalance() {
         List<DataModel> dataModels = dataService.findAll();
         ResultDto resultDto = calculationService.getResults(dataModels);

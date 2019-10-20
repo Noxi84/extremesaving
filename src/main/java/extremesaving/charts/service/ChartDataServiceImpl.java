@@ -1,18 +1,21 @@
 package extremesaving.charts.service;
 
-import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.DataModel;
-import extremesaving.calculation.facade.AccountFacade;
-import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.service.DataService;
-import extremesaving.calculation.service.PredictionService;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ChartDataServiceImpl implements ChartDataService {
@@ -20,21 +23,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     private DataFacade dataFacade;
     private DataService dataService;
     private CalculationService calculationService;
-    private AccountFacade accountFacade;
     private PredictionService predictionService;
-
-    @Override
-    public Map<String, BigDecimal> getAccountResults() {
-        Map<String, BigDecimal> results = new HashMap<>();
-        List<AccountDto> accounts = accountFacade.getAccounts().stream()
-                .filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
-                .collect(Collectors.toList());
-
-        for (AccountDto accountDto : accounts) {
-            results.put(accountDto.getName(), accountDto.getTotalResults().getResult());
-        }
-        return results;
-    }
 
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
@@ -80,7 +69,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Date, BigDecimal> getGoalLineResults() {
         Map<Date, BigDecimal> predictions = new HashMap<>();
 
-        List<DataModel> dataModels =  dataService.findAll();
+        List<DataModel> dataModels = dataService.findAll();
 
         // Add existing results
         for (DataModel existingDataModel : dataModels) {
@@ -123,10 +112,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setCalculationService(CalculationService calculationService) {
         this.calculationService = calculationService;
-    }
-
-    public void setAccountFacade(AccountFacade accountFacade) {
-        this.accountFacade = accountFacade;
     }
 
     public void setPredictionService(PredictionService predictionService) {

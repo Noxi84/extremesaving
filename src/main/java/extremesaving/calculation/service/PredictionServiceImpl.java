@@ -1,12 +1,12 @@
 package extremesaving.calculation.service;
 
-import extremesaving.data.facade.DataFacade;
-import extremesaving.data.service.DataService;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
-import extremesaving.util.NumberUtils;
+import extremesaving.data.service.DataService;
 import extremesaving.property.PropertiesValueHolder;
+import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -34,7 +34,7 @@ public class PredictionServiceImpl implements PredictionService {
 
         BigDecimal amountLeft = resultDto.getResult();
 
-        BigDecimal inflationPercentage = new BigDecimal(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE));
+        BigDecimal inflationPercentage = PropertiesValueHolder.getBigDecimal(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE);
         BigDecimal inflation = filteredResultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_DOWN);
         BigDecimal avgDailyExpenseWithInflation = filteredResultDto.getAverageDailyExpense().add(inflation);
 
@@ -48,7 +48,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public BigDecimal getPreviousGoal() {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
+        String goalsList = PropertiesValueHolder.getString(CHART_GOALS_SAVINGS);
         String[] goals = StringUtils.split(goalsList, ",");
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
@@ -62,8 +62,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public BigDecimal getCurrentGoal() {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
-        String[] goals = StringUtils.split(goalsList, ",");
+        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
@@ -80,8 +79,7 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public int getGoalIndex(BigDecimal goalAmount) {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
-        String[] goals = StringUtils.split(goalsList, ",");
+        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
 
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {

@@ -12,17 +12,17 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.data.facade.DataFacade;
-import extremesaving.data.model.DataModel;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
-import extremesaving.data.service.DataService;
 import extremesaving.calculation.service.PredictionService;
-import extremesaving.util.DateUtils;
-import extremesaving.util.NumberUtils;
+import extremesaving.data.facade.DataFacade;
+import extremesaving.data.model.DataModel;
+import extremesaving.data.service.DataService;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
+import extremesaving.util.DateUtils;
+import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -81,7 +81,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public Image getGoalLineChartImage() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(GOAL_LINE_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
             image.setWidth(GOAL_LINE_CHART_WIDTH);
             image.setHeight(GOAL_LINE_CHART_HEIGHT);
             return image;
@@ -93,7 +93,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public Image getMonthBarChartImage() {
         try {
-            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(MONTHLY_BAR_CHART_IMAGE_FILE)));
+            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
             monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
             monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
             return monthlyBarChartImage;
@@ -105,7 +105,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public Image getYearLineChartImage() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEAR_LINE_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE)));
             image.setWidth(YEAR_LINE_CHART_WIDTH);
             image.setHeight(YEAR_LINE_CHART_HEIGHT);
             return image;
@@ -273,41 +273,41 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         Image trophyIcon = null;
         try {
             if (goalIndex == 0) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON1)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON1)));
             } else if (goalIndex == 1) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON2)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON2)));
             } else if (goalIndex == 2) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON3)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON3)));
             } else if (goalIndex == 3) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON4)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON4)));
             } else if (goalIndex == 4) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON5)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON5)));
             } else if (goalIndex == 5) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON6)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON6)));
             } else if (goalIndex == 6) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON7)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON7)));
             } else if (goalIndex == 7) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON8)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON8)));
             } else if (goalIndex == 8) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON9)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON9)));
             } else if (goalIndex == 9) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON10)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON10)));
             } else if (goalIndex == 10) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON11)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON11)));
             } else if (goalIndex == 11) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON12)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON12)));
             } else if (goalIndex == 12) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON13)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON13)));
             } else if (goalIndex == 13) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON14)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON14)));
             } else if (goalIndex == 14) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON15)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON15)));
             } else if (goalIndex == 15) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON16)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON16)));
             } else if (goalIndex == 16) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON17)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON17)));
             } else {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TROPHY_ICON18)));
+                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON18)));
             }
 
         } catch (MalformedURLException e) {

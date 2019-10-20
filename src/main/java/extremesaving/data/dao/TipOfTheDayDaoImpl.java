@@ -30,7 +30,7 @@ public class TipOfTheDayDaoImpl implements TipOfTheDayDao {
 
         try {
 
-            br = new BufferedReader(new FileReader(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.TIPOFTHEDAY_CSV_LOCATION)));
+            br = new BufferedReader(new FileReader(PropertiesValueHolder.getString(PropertyValueEnum.TIPOFTHEDAY_CSV_LOCATION)));
             while ((line = br.readLine()) != null) {
                 if (line.startsWith("#")) {
                     continue;
