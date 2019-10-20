@@ -1,6 +1,7 @@
 package extremesaving.calculation.service;
 
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.data.model.TipOfTheDayModel;
@@ -19,16 +20,16 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLA
 
 public class PredictionServiceImpl implements PredictionService {
 
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
     private DataFacade dataFacade;
 
     @Override
     public Long getSurvivalDays() {
         Collection<DataDto> dataDtos = dataFacade.findAll();
-        Collection<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-        ResultDto resultDto = calculationService.getResults(dataDtos);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
+        Collection<DataDto> filteredDataDtos = calculationFacade.removeOutliners(dataDtos);
+        filteredDataDtos = calculationFacade.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
 
         BigDecimal amountLeft = resultDto.getResult();
 
@@ -66,7 +67,7 @@ public class PredictionServiceImpl implements PredictionService {
             goalAmounts.add(new BigDecimal(goal));
         }
 
-        ResultDto resultDto = calculationService.getResults(dataFacade.findAll());
+        ResultDto resultDto = calculationFacade.getResults(dataFacade.findAll());
         for (BigDecimal goalAmount : goalAmounts) {
             if (resultDto.getResult().compareTo(goalAmount) < 0) {
                 return goalAmount;
@@ -110,10 +111,10 @@ public class PredictionServiceImpl implements PredictionService {
     @Override
     public Long getGoalTime(BigDecimal goal) {
         List<DataDto> dataDtos = dataFacade.findAll();
-        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-        ResultDto resultDto = calculationService.getResults(dataDtos);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
+        List<DataDto> filteredDataDtos = calculationFacade.removeOutliners(dataDtos);
+        filteredDataDtos = calculationFacade.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
@@ -130,7 +131,7 @@ public class PredictionServiceImpl implements PredictionService {
     @Override
     public Date getGoalReachedDate(BigDecimal goal) {
         List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) < 0) {
@@ -153,8 +154,8 @@ public class PredictionServiceImpl implements PredictionService {
         return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 
     public void setDataFacade(DataFacade dataFacade) {

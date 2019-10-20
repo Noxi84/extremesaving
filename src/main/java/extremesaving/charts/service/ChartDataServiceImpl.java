@@ -2,7 +2,7 @@ package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
     private PredictionService predictionService;
 
     @Override
@@ -72,15 +72,15 @@ public class ChartDataServiceImpl implements ChartDataService {
         // Add existing results
         for (DataDto existingDataDto : dataDtos) {
             Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.equalDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
-            ResultDto resultDto = calculationService.getResults(filteredDataDtos);
+            ResultDto resultDto = calculationFacade.getResults(filteredDataDtos);
             predictions.put(existingDataDto.getDate(), resultDto.getResult());
         }
 
         // Add future results
-        ResultDto resultDto = calculationService.getResults(dataDtos);
-        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        List<DataDto> filteredDataDtos = calculationFacade.removeOutliners(dataDtos);
+        filteredDataDtos = calculationFacade.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
@@ -104,8 +104,8 @@ public class ChartDataServiceImpl implements ChartDataService {
         }
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 
     public void setPredictionService(PredictionService predictionService) {

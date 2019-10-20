@@ -2,7 +2,7 @@ package extremesaving.data.facade;
 
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.dao.TipOfTheDayDao;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.DataModel;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class DataFacadeImpl implements DataFacade {
 
     private TipOfTheDayDao tipOfTheDayDao;
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
     private DataService dataService;
 
     @Override
@@ -38,14 +38,14 @@ public class DataFacadeImpl implements DataFacade {
     @Override
     public Date getLastItemAdded() {
         List<DataDto> dataDtos = findAll();
-        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
         return resultDto.getLastDate();
     }
 
     @Override
     public BigDecimal getTotalBalance() {
         List<DataDto> dataDtos = findAll();
-        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
         return resultDto.getResult();
     }
 
@@ -154,7 +154,7 @@ public class DataFacadeImpl implements DataFacade {
         // Create ResultDto map
         List<ResultDto> results = new ArrayList<>();
         for (Map.Entry<String, List<DataDto>> categoryDescriptionEntry : categoryDescriptionDtos.entrySet()) {
-            results.add(calculationService.getResults(categoryDescriptionEntry.getValue()));
+            results.add(calculationFacade.getResults(categoryDescriptionEntry.getValue()));
         }
         return results;
     }
@@ -236,7 +236,7 @@ public class DataFacadeImpl implements DataFacade {
         this.tipOfTheDayDao = tipOfTheDayDao;
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 }

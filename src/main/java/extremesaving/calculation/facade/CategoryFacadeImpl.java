@@ -1,7 +1,6 @@
 package extremesaving.calculation.facade;
 
 import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.util.NumberUtils;
 
@@ -14,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class CategoryFacadeImpl implements CategoryFacade {
 
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
 
     @Override
     public List<CategoryDto> getCategories(Collection<DataDto> dataDtos) {
@@ -24,7 +23,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
-            categoryDto.setTotalResults(calculationService.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
+            categoryDto.setTotalResults(calculationFacade.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
             categoryDtos.add(categoryDto);
         }
 
@@ -40,7 +39,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
-            categoryDto.setTotalResults(calculationService.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
+            categoryDto.setTotalResults(calculationFacade.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
             if (NumberUtils.isIncome(categoryDto.getTotalResults().getResult())) {
                 categoryDtos.add(categoryDto);
             }
@@ -58,7 +57,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setName(category);
-            categoryDto.setTotalResults(calculationService.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
+            categoryDto.setTotalResults(calculationFacade.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
             if (NumberUtils.isExpense(categoryDto.getTotalResults().getResult())) {
                 categoryDtos.add(categoryDto);
             }
@@ -67,7 +66,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
         return categoryDtos;
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 }

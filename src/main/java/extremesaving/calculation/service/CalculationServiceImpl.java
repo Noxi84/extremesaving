@@ -13,34 +13,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_ENABLED;
-import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_RANGE;
-import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_ENABLED;
 import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_RANGE;
 
 public class CalculationServiceImpl implements CalculationService {
 
-    private static Map<Integer, ResultDto> calculationCash = new HashMap<>();
-
     @Override
-    public ResultDto getResults(Collection<DataDto> dataDtos) {
-        int hashCode = Objects.hash(dataDtos.toArray());
-        ResultDto result = calculationCash.get(hashCode);
-        if (result == null) {
-            result = getResultDto(dataDtos);
-            calculationCash.put(hashCode, result);
-        }
-        return result;
-    }
-
-    protected ResultDto getResultDto(Collection<DataDto> dataDtos) {
+    public ResultDto getResultDto(Collection<DataDto> dataDtos) {
         ResultDto resultDto = new ResultDto();
         resultDto.setData(new HashSet<>(dataDtos));
 
@@ -104,16 +86,7 @@ public class CalculationServiceImpl implements CalculationService {
     }
 
     @Override
-    public List<DataDto> removeOutliners(Collection<DataDto> dataDtos) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
-            List<DataDto> expenses = filterOutliners(dataDtos.stream().filter(dataDto -> NumberUtils.isExpense(dataDto.getValue())).collect(Collectors.toList()));
-            List<DataDto> incomes = filterOutliners(dataDtos.stream().filter(dataDto -> NumberUtils.isIncome(dataDto.getValue())).collect(Collectors.toList()));
-            return dataDtos.stream().filter(dataDto -> expenses.contains(dataDto) || incomes.contains(dataDto)).collect(Collectors.toList());
-        }
-        return new ArrayList<>(dataDtos);
-    }
-
-    protected List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
+    public List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
         int outlinerRangeValue = PropertiesValueHolder.getInteger(CHART_GOALS_ESTIMATION_OUTLINER_RANGE);
         List<DataDto> sortedDataDtos = dataDtos.stream()
                 .sorted(Comparator.comparing(DataDto::getValue))
@@ -138,18 +111,5 @@ public class CalculationServiceImpl implements CalculationService {
             return results;
         }
         return dataDtos.stream().collect(Collectors.toList());
-    }
-
-    @Override
-    public List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
-            ResultDto resultDto = getResultDto(dataDtos);
-            long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
-            long pieceValue = rangeValue / 10;
-            long estimationRangeValue = PropertiesValueHolder.getLong(CHART_GOALS_ESTIMATION_DATE_RANGE) * pieceValue;
-            Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
-            return dataDtos.stream().filter(dataDto -> dataDto.getDate().after(startDate)).collect(Collectors.toList());
-        }
-        return new ArrayList<>(dataDtos);
     }
 }

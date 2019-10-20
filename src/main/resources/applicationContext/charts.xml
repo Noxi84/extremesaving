@@ -4,7 +4,7 @@
 <beans>
     <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
-        <property name="calculationService" ref="calculationService"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
         <property name="predictionService" ref="predictionService"/>
     </bean>
     <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">

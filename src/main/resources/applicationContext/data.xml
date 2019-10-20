@@ -4,7 +4,7 @@
 <beans>
     <bean id="dataFacade" class="extremesaving.data.facade.DataFacadeImpl">
         <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
-        <property name="calculationService" ref="calculationService"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
         <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">

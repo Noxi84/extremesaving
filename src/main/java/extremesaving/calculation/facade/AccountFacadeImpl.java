@@ -1,7 +1,6 @@
 package extremesaving.calculation.facade;
 
 import extremesaving.calculation.dto.AccountDto;
-import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 public class AccountFacadeImpl implements AccountFacade {
 
     private DataFacade dataFacade;
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
 
     @Override
     public List<AccountDto> getAccounts() {
@@ -26,7 +25,7 @@ public class AccountFacadeImpl implements AccountFacade {
         for (String account : accounts) {
             AccountDto accountDto = new AccountDto();
             accountDto.setName(account);
-            accountDto.setTotalResults(calculationService.getResults(dataDtos.stream().filter(dataDto -> dataDto.getAccount().equals(account)).collect(Collectors.toList())));
+            accountDto.setTotalResults(calculationFacade.getResults(dataDtos.stream().filter(dataDto -> dataDto.getAccount().equals(account)).collect(Collectors.toList())));
             accountDtos.add(accountDto);
         }
         return accountDtos;
@@ -36,7 +35,7 @@ public class AccountFacadeImpl implements AccountFacade {
         this.dataFacade = dataFacade;
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 }

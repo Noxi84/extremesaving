@@ -13,7 +13,7 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
-import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.service.PredictionService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
@@ -49,14 +49,14 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     public static float MONTHCHART_HEIGHT = 170;
 
     private DataFacade dataFacade;
-    private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
     private PredictionService predictionService;
     private AccountFacade accountFacade;
 
     @Override
     public void generate(Document document) {
         List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
 
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
@@ -334,8 +334,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return chartCell;
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 
     public void setPredictionService(PredictionService predictionService) {
