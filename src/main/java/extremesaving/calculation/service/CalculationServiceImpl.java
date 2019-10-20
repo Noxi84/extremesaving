@@ -113,7 +113,7 @@ public class CalculationServiceImpl implements CalculationService {
         return new ArrayList<>(dataDtos);
     }
 
-    private List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
+    protected List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
         int outlinerRangeValue = PropertiesValueHolder.getInteger(CHART_GOALS_ESTIMATION_OUTLINER_RANGE);
         List<DataDto> sortedDataDtos = dataDtos.stream()
                 .sorted(Comparator.comparing(DataDto::getValue))

@@ -26,7 +26,7 @@ public class GoalLineChartService implements ChartService {
         PdfUtils.writeChartPng(chart, PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.GOAL_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.GOAL_LINE_CHART_HEIGHT * 2);
     }
 
-    private TimeSeriesCollection createDataset() {
+    protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
 
         TimeSeries series1 = new TimeSeries("Balance history");

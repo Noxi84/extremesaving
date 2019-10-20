@@ -26,7 +26,7 @@ public class MonthlyBarChartService implements ChartService {
         PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.MONTHCHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.MONTHCHART_HEIGHT * 2);
     }
 
-    private CategoryDataset createDataset() {
+    protected CategoryDataset createDataset() {
         Map<Integer, MiniResultDto> monthlyResults = chartDataService.getMonthlyResults();
 
         final String incomes = "Incomes";

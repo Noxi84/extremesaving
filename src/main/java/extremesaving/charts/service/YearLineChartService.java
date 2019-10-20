@@ -27,7 +27,7 @@ public class YearLineChartService implements ChartService {
         PdfUtils.writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_WIDTH * 2, (int) PdfPageTipOfTheDayService.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
-    private TimeSeriesCollection createDataset() {
+    protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
 
         TimeSeries series1 = new TimeSeries("Balance history");

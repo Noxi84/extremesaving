@@ -25,7 +25,7 @@ public class YearlyBarChartService implements ChartService {
         PdfUtils.writeChartPng(barChart, PropertiesValueHolder.getString(YEARLY_BAR_CHART_IMAGE_FILE), (int) PdfPageCategoryGridService.CHART_WIDTH * 2, (int) PdfPageCategoryGridService.CHART_HEIGHT * 2);
     }
 
-    private CategoryDataset createDataset() {
+    protected CategoryDataset createDataset() {
         Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
 
         final String result = "Result";
