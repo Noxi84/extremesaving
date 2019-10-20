@@ -3,12 +3,12 @@
 
 <beans>
     <bean id="dataFacade" class="extremesaving.data.facade.DataFacadeImpl">
-        <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
+        <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
     </bean>
     <bean id="dataDao" class="extremesaving.data.dao.DataDaoImpl"/>
     <bean id="tipOfTheDayDao" class="extremesaving.data.dao.TipOfTheDayDaoImpl"/>

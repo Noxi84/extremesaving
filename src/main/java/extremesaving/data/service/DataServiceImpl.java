@@ -1,8 +1,10 @@
 package extremesaving.data.service;
 
 import extremesaving.data.dao.DataDao;
+import extremesaving.data.dao.TipOfTheDayDao;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.DataModel;
+import extremesaving.data.model.TipOfTheDayModel;
 import extremesaving.property.PropertiesValueHolder;
 
 import java.math.BigDecimal;
@@ -18,6 +20,7 @@ import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OU
 public class DataServiceImpl implements DataService {
 
     private DataDao dataDao;
+    private TipOfTheDayDao tipOfTheDayDao;
 
     @Override
     public List<DataModel> findAll() {
@@ -54,7 +57,16 @@ public class DataServiceImpl implements DataService {
         return dataDtos.stream().collect(Collectors.toList());
     }
 
+    @Override
+    public List<TipOfTheDayModel> findTypeOfTheDays() {
+        return tipOfTheDayDao.findAll();
+    }
+
     public void setDataDao(DataDao dataDao) {
         this.dataDao = dataDao;
+    }
+
+    public void setTipOfTheDayDao(TipOfTheDayDao tipOfTheDayDao) {
+        this.tipOfTheDayDao = tipOfTheDayDao;
     }
 }

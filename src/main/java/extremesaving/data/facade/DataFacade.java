@@ -3,7 +3,6 @@ package extremesaving.data.facade;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
-import extremesaving.data.model.TipOfTheDayModel;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -34,8 +33,6 @@ public interface DataFacade {
     List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos);
 
     List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos);
-
-    List<TipOfTheDayModel> getTipOfTheDays();
 
     String getTipOfTheDay();
 

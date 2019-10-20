@@ -3,7 +3,6 @@ package extremesaving.data.facade;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
-import extremesaving.data.dao.TipOfTheDayDao;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
@@ -30,7 +29,6 @@ import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OU
 
 public class DataFacadeImpl implements DataFacade {
 
-    private TipOfTheDayDao tipOfTheDayDao;
     private CalculationFacade calculationFacade;
     private DataService dataService;
 
@@ -230,7 +228,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public String getTipOfTheDay() {
-        List<TipOfTheDayModel> tipOfTheDayModels = getTipOfTheDays();
+        List<TipOfTheDayModel> tipOfTheDayModels = dataService.findTypeOfTheDays();
         return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
     }
 
@@ -257,17 +255,8 @@ public class DataFacadeImpl implements DataFacade {
         return new ArrayList<>(dataDtos);
     }
 
-    @Override
-    public List<TipOfTheDayModel> getTipOfTheDays() {
-        return tipOfTheDayDao.findAll();
-    }
-
     public void setDataService(DataService dataService) {
         this.dataService = dataService;
-    }
-
-    public void setTipOfTheDayDao(TipOfTheDayDao tipOfTheDayDao) {
-        this.tipOfTheDayDao = tipOfTheDayDao;
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {
