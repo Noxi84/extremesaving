@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
-public interface CategoryService {
+public interface CategoryFacade {
 
     List<CategoryDto> getCategories(Collection<DataModel> dataModels);
 

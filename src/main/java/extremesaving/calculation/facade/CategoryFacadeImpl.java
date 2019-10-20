@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryFacadeImpl implements CategoryFacade {
 
     private CalculationService calculationService;
     private DataService dataService;

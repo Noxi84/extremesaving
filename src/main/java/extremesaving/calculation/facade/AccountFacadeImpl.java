@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AccountServiceImpl implements AccountService {
+public class AccountFacadeImpl implements AccountFacade {
 
     private DataService dataService;
     private CalculationService calculationService;

@@ -4,7 +4,7 @@ import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
-import extremesaving.calculation.facade.AccountService;
+import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.service.DataService;
 import extremesaving.calculation.service.PredictionService;
@@ -18,13 +18,13 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     private DataService dataService;
     private CalculationService calculationService;
-    private AccountService accountService;
+    private AccountFacade accountFacade;
     private PredictionService predictionService;
 
     @Override
     public Map<String, BigDecimal> getAccountResults() {
         Map<String, BigDecimal> results = new HashMap<>();
-        List<AccountDto> accounts = accountService.getAccounts().stream()
+        List<AccountDto> accounts = accountFacade.getAccounts().stream()
                 .filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0)
                 .collect(Collectors.toList());
 
@@ -123,8 +123,8 @@ public class ChartDataServiceImpl implements ChartDataService {
         this.calculationService = calculationService;
     }
 
-    public void setAccountService(AccountService accountService) {
-        this.accountService = accountService;
+    public void setAccountFacade(AccountFacade accountFacade) {
+        this.accountFacade = accountFacade;
     }
 
     public void setPredictionService(PredictionService predictionService) {

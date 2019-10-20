@@ -13,7 +13,7 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
-import extremesaving.calculation.facade.AccountService;
+import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.service.DataService;
 import extremesaving.calculation.service.PredictionService;
@@ -51,7 +51,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     private DataService dataService;
     private CalculationService calculationService;
     private PredictionService predictionService;
-    private AccountService accountService;
+    private AccountFacade accountFacade;
 
     @Override
     public void generate(Document document) {
@@ -139,7 +139,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight.setPaddingRight(20);
 
-        List<AccountDto> accounts = accountService.getAccounts();
+        List<AccountDto> accounts = accountFacade.getAccounts();
 
         // Sort by name
         Collections.sort(accounts, Comparator.comparing(AccountDto::getName));
@@ -346,7 +346,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         this.predictionService = predictionService;
     }
 
-    public void setAccountService(AccountService accountService) {
-        this.accountService = accountService;
+    public void setAccountFacade(AccountFacade accountFacade) {
+        this.accountFacade = accountFacade;
     }
 }

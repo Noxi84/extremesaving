@@ -10,7 +10,7 @@ import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.facade.CategoryService;
+import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.service.DataService;
 import extremesaving.pdf.enums.PdfGridTimeEnum;
 import extremesaving.pdf.enums.PdfGridTypeEnum;
@@ -36,7 +36,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
     public static float CHART_HEIGHT = 250;
 
     private DataService dataService;
-    private CategoryService categoryService;
+    private CategoryFacade categoryFacade;
 
     @Override
     public void generate(Document document) {
@@ -79,17 +79,17 @@ public class PdfPageCategoryGridService implements PdfPageService {
         List<CategoryDto> monthResults = new ArrayList<>();
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            overallResults = categoryService.getMostProfitableCategories(dataService.findAll());
-            yearResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            monthResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            overallResults = categoryFacade.getMostProfitableCategories(dataService.findAll());
+            yearResults = categoryFacade.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            monthResults = categoryFacade.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            overallResults = categoryService.getMostExpensiveCategories(dataService.findAll());
-            yearResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            monthResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            overallResults = categoryFacade.getMostExpensiveCategories(dataService.findAll());
+            yearResults = categoryFacade.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            monthResults = categoryFacade.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            overallResults = categoryService.getCategories(dataService.findAll());
-            yearResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            monthResults = categoryService.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            overallResults = categoryFacade.getCategories(dataService.findAll());
+            yearResults = categoryFacade.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            monthResults = categoryFacade.getCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         }
 
         if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
@@ -193,16 +193,16 @@ public class PdfPageCategoryGridService implements PdfPageService {
         List<CategoryDto> expensesResults = new ArrayList<>();
 
         if (pdfGridTimeEnum.equals(PdfGridTimeEnum.OVERALL)) {
-            profitResults = categoryService.getMostProfitableCategories(dataService.findAll());
-            expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll());
+            profitResults = categoryFacade.getMostProfitableCategories(dataService.findAll());
+            expensesResults = categoryFacade.getMostExpensiveCategories(dataService.findAll());
         }
         if (pdfGridTimeEnum.equals(PdfGridTimeEnum.YEAR)) {
-            profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            profitResults = categoryFacade.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            expensesResults = categoryFacade.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         }
         if (pdfGridTimeEnum.equals(PdfGridTimeEnum.MONTH)) {
-            profitResults = categoryService.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            expensesResults = categoryService.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            profitResults = categoryFacade.getMostProfitableCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            expensesResults = categoryFacade.getMostExpensiveCategories(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
         }
 
         BigDecimal savingRatio = BigDecimal.ZERO;
@@ -259,7 +259,7 @@ public class PdfPageCategoryGridService implements PdfPageService {
         this.dataService = dataService;
     }
 
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
+    public void setCategoryFacade(CategoryFacade categoryFacade) {
+        this.categoryFacade = categoryFacade;
     }
 }

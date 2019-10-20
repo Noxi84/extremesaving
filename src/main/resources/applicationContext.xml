@@ -19,15 +19,15 @@
     <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
-        <property name="accountService" ref="accountService"/>
+        <property name="accountFacade" ref="accountFacade"/>
         <property name="predictionService" ref="predictionService"/>
     </bean>
 
-    <bean id="accountService" class="extremesaving.calculation.facade.AccountServiceImpl">
+    <bean id="accountFacade" class="extremesaving.calculation.facade.AccountFacadeImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="categoryService" class="extremesaving.calculation.facade.CategoryServiceImpl">
+    <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
@@ -49,7 +49,7 @@
     <!--Pdf-->
     <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
-        <property name="categoryService" ref="categoryService"/>
+        <property name="categoryFacade" ref="categoryFacade"/>
     </bean>
     <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
         <property name="dataService" ref="dataService"/>
@@ -58,7 +58,7 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
-        <property name="accountService" ref="accountService"/>
+        <property name="accountFacade" ref="accountFacade"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
         <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
