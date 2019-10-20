@@ -4,7 +4,7 @@ import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.property.PropertiesValueHolder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -19,10 +19,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_ENABLED;
-import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_RANGE;
-import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_ENABLED;
-import static extremesaving.util.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_RANGE;
+import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_ENABLED;
+import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_RANGE;
+import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_ENABLED;
+import static extremesaving.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_RANGE;
 
 public class CalculationServiceImpl implements CalculationService {
 

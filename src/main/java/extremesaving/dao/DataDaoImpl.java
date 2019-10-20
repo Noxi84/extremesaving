@@ -1,8 +1,8 @@
 package extremesaving.dao;
 
 import extremesaving.model.DataModel;
-import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueEnum;
+import extremesaving.property.PropertiesValueHolder;
+import extremesaving.property.PropertyValueEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static extremesaving.util.PropertyValueEnum.CSV_SPLIT_BY;
-import static extremesaving.util.PropertyValueEnum.DATA_CSV_DATE_FORMAT1;
-import static extremesaving.util.PropertyValueEnum.DATA_CSV_DATE_FORMAT2;
-import static extremesaving.util.PropertyValueEnum.DATA_CSV_FOLDER;
+import static extremesaving.property.PropertyValueEnum.CSV_SPLIT_BY;
+import static extremesaving.property.PropertyValueEnum.DATA_CSV_DATE_FORMAT1;
+import static extremesaving.property.PropertyValueEnum.DATA_CSV_DATE_FORMAT2;
+import static extremesaving.property.PropertyValueEnum.DATA_CSV_FOLDER;
 
 public class DataDaoImpl implements DataDao {
 

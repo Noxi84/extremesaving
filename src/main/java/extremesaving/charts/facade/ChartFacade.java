@@ -1,4 +1,4 @@
-package extremesaving.facade;
+package extremesaving.charts.facade;
 
 public interface ChartFacade {
 

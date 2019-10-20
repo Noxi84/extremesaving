@@ -1,18 +1,17 @@
-package extremesaving.service.pdf;
+package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.ResultDto;
 import extremesaving.service.DataService;
-import extremesaving.service.pdf.enums.PdfGridTypeEnum;
+import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
-import extremesaving.util.PdfUtils;
+import extremesaving.pdf.util.PdfUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package extremesaving.util;
+package extremesaving.property;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -16,7 +16,7 @@
     </bean>
     <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
     </bean>
-    <bean id="chartDataService" class="extremesaving.service.ChartDataServiceImpl">
+    <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="accountService" ref="accountService"/>
@@ -31,7 +31,7 @@
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="chartFacade" class="extremesaving.facade.ChartFacadeImpl">
+    <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
         <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
         <property name="yearLineChartService" ref="yearLineChartService"/>
@@ -47,36 +47,36 @@
     <bean id="tipOfTheDayDao" class="extremesaving.dao.TipOfTheDayDaoImpl"/>
 
     <!--Pdf-->
-    <bean id="pdfPageCategoryGridService" class="extremesaving.service.pdf.PdfPageCategoryGridService">
+    <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
         <property name="dataService" ref="dataService"/>
         <property name="categoryService" ref="categoryService"/>
     </bean>
-    <bean id="pdfPageItemGridService" class="extremesaving.service.pdf.PdfPageItemGridService">
+    <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
         <property name="dataService" ref="dataService"/>
     </bean>
-    <bean id="pdfPagePredictionsService" class="extremesaving.service.pdf.PdfPageTipOfTheDayService">
+    <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="predictionService" ref="predictionService"/>
         <property name="accountService" ref="accountService"/>
     </bean>
-    <bean id="pdfFacade" class="extremesaving.facade.PdfFacadeImpl">
+    <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
         <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
         <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
         <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
     </bean>
 
     <!--Chart-->
-    <bean id="monthlyBarChartService" class="extremesaving.service.chart.MonthlyBarChartService">
+    <bean id="monthlyBarChartService" class="extremesaving.charts.service.MonthlyBarChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="yearlyBarChartService" class="extremesaving.service.chart.YearlyBarChartService">
+    <bean id="yearlyBarChartService" class="extremesaving.charts.service.YearlyBarChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="goalLineChartService" class="extremesaving.service.chart.GoalLineChartService">
+    <bean id="goalLineChartService" class="extremesaving.charts.service.GoalLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
-    <bean id="yearLineChartService" class="extremesaving.service.chart.YearLineChartService">
+    <bean id="yearLineChartService" class="extremesaving.charts.service.YearLineChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>
 

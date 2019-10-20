@@ -1,4 +1,4 @@
-package extremesaving.service.pdf;
+package extremesaving.pdf.service;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -19,9 +19,9 @@ import extremesaving.service.DataService;
 import extremesaving.service.PredictionService;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
-import extremesaving.util.PdfUtils;
-import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueEnum;
+import extremesaving.pdf.util.PdfUtils;
+import extremesaving.property.PropertiesValueHolder;
+import extremesaving.property.PropertyValueEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -33,9 +33,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
-import static extremesaving.util.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
-import static extremesaving.util.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
 
 public class PdfPageTipOfTheDayService implements PdfPageService {
 

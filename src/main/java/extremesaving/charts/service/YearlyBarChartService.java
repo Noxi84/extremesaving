@@ -1,10 +1,9 @@
-package extremesaving.service.chart;
+package extremesaving.charts.service;
 
 import extremesaving.dto.MiniResultDto;
-import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageCategoryGridService;
-import extremesaving.util.PdfUtils;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.pdf.service.PdfPageCategoryGridService;
+import extremesaving.pdf.util.PdfUtils;
+import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -14,7 +13,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.util.Calendar;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class YearlyBarChartService implements ChartService {
 

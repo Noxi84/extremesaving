@@ -1,4 +1,4 @@
-package extremesaving.service.pdf.enums;
+package extremesaving.pdf.enums;
 
 public enum PdfGridTimeEnum {
 

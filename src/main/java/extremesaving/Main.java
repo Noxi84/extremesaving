@@ -1,7 +1,7 @@
 package extremesaving;
 
-import extremesaving.facade.ChartFacade;
-import extremesaving.facade.PdfFacade;
+import extremesaving.charts.facade.ChartFacade;
+import extremesaving.pdf.facade.PdfFacade;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

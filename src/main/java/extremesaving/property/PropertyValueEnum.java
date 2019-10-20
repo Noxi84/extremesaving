@@ -1,4 +1,4 @@
-package extremesaving.util;
+package extremesaving.property;
 
 public enum PropertyValueEnum {
 

@@ -1,6 +1,6 @@
-package extremesaving.facade;
+package extremesaving.charts.facade;
 
-import extremesaving.service.chart.ChartService;
+import extremesaving.charts.service.ChartService;
 
 public class ChartFacadeImpl implements ChartFacade {
 

@@ -4,7 +4,7 @@ import extremesaving.dto.ResultDto;
 import extremesaving.model.DataModel;
 import extremesaving.model.TipOfTheDayModel;
 import extremesaving.util.NumberUtils;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.property.PropertiesValueHolder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
@@ -13,8 +13,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import static extremesaving.util.PropertyValueEnum.CHART_GOALS_SAVINGS;
-import static extremesaving.util.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
+import static extremesaving.property.PropertyValueEnum.CHART_GOALS_SAVINGS;
+import static extremesaving.property.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 
 public class PredictionServiceImpl implements PredictionService {
 

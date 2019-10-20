@@ -1,4 +1,4 @@
-package extremesaving.service;
+package extremesaving.charts.service;
 
 import extremesaving.dto.MiniResultDto;
 

@@ -1,4 +1,4 @@
-package extremesaving.facade;
+package extremesaving.pdf.facade;
 
 public interface PdfFacade {
 

@@ -1,10 +1,9 @@
-package extremesaving.service.chart;
+package extremesaving.charts.service;
 
-import extremesaving.service.ChartDataService;
-import extremesaving.service.pdf.PdfPageTipOfTheDayService;
+import extremesaving.pdf.service.PdfPageTipOfTheDayService;
 import extremesaving.util.DateUtils;
-import extremesaving.util.PdfUtils;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.pdf.util.PdfUtils;
+import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.time.Day;
@@ -16,7 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.util.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
 
 public class YearLineChartService implements ChartService {
 

@@ -1,4 +1,4 @@
-package extremesaving.facade;
+package extremesaving.pdf.facade;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -6,12 +6,12 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
-import extremesaving.service.pdf.PdfPageService;
-import extremesaving.util.PropertiesValueHolder;
+import extremesaving.pdf.service.PdfPageService;
+import extremesaving.property.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;
 
-import static extremesaving.util.PropertyValueEnum.PDF_FILE_NAME;
+import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 

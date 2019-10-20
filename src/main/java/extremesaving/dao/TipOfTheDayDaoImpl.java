@@ -1,8 +1,8 @@
 package extremesaving.dao;
 
 import extremesaving.model.TipOfTheDayModel;
-import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueEnum;
+import extremesaving.property.PropertiesValueHolder;
+import extremesaving.property.PropertyValueEnum;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

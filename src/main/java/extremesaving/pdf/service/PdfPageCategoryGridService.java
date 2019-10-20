@@ -1,4 +1,4 @@
-package extremesaving.service.pdf;
+package extremesaving.pdf.service;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -12,13 +12,13 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.dto.CategoryDto;
 import extremesaving.service.CategoryService;
 import extremesaving.service.DataService;
-import extremesaving.service.pdf.enums.PdfGridTimeEnum;
-import extremesaving.service.pdf.enums.PdfGridTypeEnum;
+import extremesaving.pdf.enums.PdfGridTimeEnum;
+import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
-import extremesaving.util.PdfUtils;
-import extremesaving.util.PropertiesValueHolder;
-import extremesaving.util.PropertyValueEnum;
+import extremesaving.pdf.util.PdfUtils;
+import extremesaving.property.PropertiesValueHolder;
+import extremesaving.property.PropertyValueEnum;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static extremesaving.util.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageCategoryGridService implements PdfPageService {
 
