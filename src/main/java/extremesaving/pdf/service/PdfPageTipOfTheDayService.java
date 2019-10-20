@@ -162,7 +162,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
 
         alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(dataFacade.getTotalBalance()), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(calculationFacade.getTotalBalance()), true));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
@@ -204,7 +204,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Last item added"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(dataFacade.getLastItemAdded())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(calculationFacade.getLastItemAdded())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
@@ -214,20 +214,20 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataFacade.getBestMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(calculationFacade.getBestMonth())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(dataFacade.getWorstMonth())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(calculationFacade.getWorstMonth())));
 
         SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Best year"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataFacade.getBestYear())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(calculationFacade.getBestYear())));
 
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst year"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(dataFacade.getWorstYear())));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(calculationFacade.getWorstYear())));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);

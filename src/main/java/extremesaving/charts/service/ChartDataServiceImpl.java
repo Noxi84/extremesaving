@@ -32,7 +32,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
         List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(dataDto.getDate(), new Date())).collect(Collectors.toList());
-        Map<Integer, MiniResultDto> results = dataFacade.getMonthlyResults(dataDtos);
+        Map<Integer, MiniResultDto> results = calculationFacade.getMonthlyResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -45,7 +45,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Integer, MiniResultDto> getYearlyResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
 
-        Map<Integer, MiniResultDto> yearlyResults = dataFacade.getYearlyResults(dataDtos);
+        Map<Integer, MiniResultDto> yearlyResults = calculationFacade.getYearlyResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : yearlyResults.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);

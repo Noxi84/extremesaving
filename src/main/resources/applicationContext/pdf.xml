@@ -8,6 +8,7 @@
     </bean>
     <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
         <property name="dataFacade" ref="dataFacade"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
     <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
         <property name="dataFacade" ref="dataFacade"/>
