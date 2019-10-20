@@ -14,7 +14,7 @@
         <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="calculationService" class="extremesaving.service.CalculationServiceImpl">
+    <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
     </bean>
     <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataService" ref="dataService"/>
@@ -23,11 +23,11 @@
         <property name="predictionService" ref="predictionService"/>
     </bean>
 
-    <bean id="accountService" class="extremesaving.service.AccountServiceImpl">
+    <bean id="accountService" class="extremesaving.calculation.facade.AccountServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="categoryService" class="extremesaving.service.CategoryServiceImpl">
+    <bean id="categoryService" class="extremesaving.calculation.facade.CategoryServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>
@@ -37,7 +37,7 @@
         <property name="yearLineChartService" ref="yearLineChartService"/>
         <property name="goalLineChartService" ref="goalLineChartService"/>
     </bean>
-    <bean id="predictionService" class="extremesaving.service.PredictionServiceImpl">
+    <bean id="predictionService" class="extremesaving.calculation.service.PredictionServiceImpl">
         <property name="dataService" ref="dataService"/>
         <property name="calculationService" ref="calculationService"/>
     </bean>

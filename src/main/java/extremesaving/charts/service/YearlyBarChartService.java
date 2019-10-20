@@ -1,6 +1,6 @@
 package extremesaving.charts.service;
 
-import extremesaving.dto.MiniResultDto;
+import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.pdf.service.PdfPageCategoryGridService;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;

@@ -1,6 +1,6 @@
 package extremesaving.charts.service;
 
-import extremesaving.dto.MiniResultDto;
+import extremesaving.calculation.dto.MiniResultDto;
 
 import java.math.BigDecimal;
 import java.util.Date;

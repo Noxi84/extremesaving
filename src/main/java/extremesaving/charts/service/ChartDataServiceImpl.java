@@ -1,13 +1,13 @@
 package extremesaving.charts.service;
 
-import extremesaving.dto.AccountDto;
-import extremesaving.dto.MiniResultDto;
-import extremesaving.dto.ResultDto;
+import extremesaving.calculation.dto.AccountDto;
+import extremesaving.calculation.dto.MiniResultDto;
+import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
-import extremesaving.service.AccountService;
-import extremesaving.service.CalculationService;
+import extremesaving.calculation.facade.AccountService;
+import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.service.DataService;
-import extremesaving.service.PredictionService;
+import extremesaving.calculation.service.PredictionService;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;

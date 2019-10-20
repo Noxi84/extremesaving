@@ -1,4 +1,4 @@
-package extremesaving.service;
+package extremesaving.calculation.enums;
 
 public enum CalculationEnum {
 

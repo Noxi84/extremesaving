@@ -1,4 +1,4 @@
-package extremesaving.service;
+package extremesaving.calculation.service;
 
 import java.math.BigDecimal;
 import java.util.Date;

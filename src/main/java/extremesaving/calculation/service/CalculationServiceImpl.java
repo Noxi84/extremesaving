@@ -1,6 +1,7 @@
-package extremesaving.service;
+package extremesaving.calculation.service;
 
-import extremesaving.dto.ResultDto;
+import extremesaving.calculation.enums.CalculationEnum;
+import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;

@@ -1,7 +1,7 @@
 package extremesaving.data.service;
 
-import extremesaving.dto.MiniResultDto;
-import extremesaving.dto.ResultDto;
+import extremesaving.calculation.dto.MiniResultDto;
+import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
 

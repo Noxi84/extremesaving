@@ -2,11 +2,11 @@ package extremesaving.data.service;
 
 import extremesaving.data.dao.DataDao;
 import extremesaving.data.dao.TipOfTheDayDao;
-import extremesaving.dto.MiniResultDto;
-import extremesaving.dto.ResultDto;
+import extremesaving.calculation.dto.MiniResultDto;
+import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
-import extremesaving.service.CalculationService;
+import extremesaving.calculation.service.CalculationService;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;

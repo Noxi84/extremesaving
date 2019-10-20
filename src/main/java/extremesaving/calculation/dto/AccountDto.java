@@ -1,4 +1,4 @@
-package extremesaving.dto;
+package extremesaving.calculation.dto;
 
 public class AccountDto {
 

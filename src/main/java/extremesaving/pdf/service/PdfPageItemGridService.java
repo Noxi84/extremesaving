@@ -6,7 +6,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.dto.ResultDto;
+import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.service.DataService;
 import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.util.DateUtils;
