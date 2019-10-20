@@ -2,7 +2,7 @@ package extremesaving.calculation.service;
 
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.enums.CalculationEnum;
-import extremesaving.data.model.DataModel;
+import extremesaving.data.dto.DataDto;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
@@ -30,45 +30,45 @@ public class CalculationServiceImpl implements CalculationService {
     private static Map<Integer, ResultDto> calculationCash = new HashMap<>();
 
     @Override
-    public ResultDto getResults(Collection<DataModel> dataModels) {
-        int hashCode = Objects.hash(dataModels.toArray());
+    public ResultDto getResults(Collection<DataDto> dataDtos) {
+        int hashCode = Objects.hash(dataDtos.toArray());
         ResultDto result = calculationCash.get(hashCode);
         if (result == null) {
-            result = getResultDto(dataModels);
+            result = getResultDto(dataDtos);
             calculationCash.put(hashCode, result);
         }
         return result;
     }
 
-    protected ResultDto getResultDto(Collection<DataModel> dataModels) {
+    protected ResultDto getResultDto(Collection<DataDto> dataDtos) {
         ResultDto resultDto = new ResultDto();
-        resultDto.setData(new HashSet<>(dataModels));
+        resultDto.setData(new HashSet<>(dataDtos));
 
-        for (DataModel dataModel : dataModels) {
-            resultDto.setResult(resultDto.getResult().add(dataModel.getValue()));
+        for (DataDto dataDto : dataDtos) {
+            resultDto.setResult(resultDto.getResult().add(dataDto.getValue()));
             resultDto.setNumberOfItems(resultDto.getNumberOfItems() + 1);
-            if (resultDto.getHighestResult().compareTo(dataModel.getValue()) > 0) {
-                resultDto.setHighestResult(dataModel.getValue());
+            if (resultDto.getHighestResult().compareTo(dataDto.getValue()) > 0) {
+                resultDto.setHighestResult(dataDto.getValue());
             }
-            if (NumberUtils.isExpense(dataModel.getValue())) {
+            if (NumberUtils.isExpense(dataDto.getValue())) {
                 resultDto.setNumberOfExpenses(resultDto.getNumberOfExpenses() + 1);
-                resultDto.setExpenses(resultDto.getExpenses().add(dataModel.getValue()));
-                if (resultDto.getHighestExpense().compareTo(dataModel.getValue()) > 0) {
-                    resultDto.setHighestExpense(dataModel.getValue());
+                resultDto.setExpenses(resultDto.getExpenses().add(dataDto.getValue()));
+                if (resultDto.getHighestExpense().compareTo(dataDto.getValue()) > 0) {
+                    resultDto.setHighestExpense(dataDto.getValue());
                 }
             } else {
                 resultDto.setNumberOfIncomes(resultDto.getNumberOfIncomes() + 1);
-                resultDto.setIncomes(resultDto.getIncomes().add(dataModel.getValue()));
-                if (resultDto.getHighestIncome().compareTo(dataModel.getValue()) < 0) {
-                    resultDto.setHighestIncome(dataModel.getValue());
+                resultDto.setIncomes(resultDto.getIncomes().add(dataDto.getValue()));
+                if (resultDto.getHighestIncome().compareTo(dataDto.getValue()) < 0) {
+                    resultDto.setHighestIncome(dataDto.getValue());
                 }
             }
 
-            if (resultDto.getFirstDate() == null || dataModel.getDate().before(resultDto.getFirstDate())) {
-                resultDto.setFirstDate(dataModel.getDate());
+            if (resultDto.getFirstDate() == null || dataDto.getDate().before(resultDto.getFirstDate())) {
+                resultDto.setFirstDate(dataDto.getDate());
             }
-            if (resultDto.getLastDate() == null || dataModel.getDate().after(resultDto.getLastDate())) {
-                resultDto.setLastDate(dataModel.getDate());
+            if (resultDto.getLastDate() == null || dataDto.getDate().after(resultDto.getLastDate())) {
+                resultDto.setLastDate(dataDto.getDate());
             }
         }
         if (resultDto.getFirstDate() != null) {
@@ -104,52 +104,52 @@ public class CalculationServiceImpl implements CalculationService {
     }
 
     @Override
-    public List<DataModel> removeOutliners(Collection<DataModel> dataModels) {
+    public List<DataDto> removeOutliners(Collection<DataDto> dataDtos) {
         if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
-            List<DataModel> expenses = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isExpense(dataModel.getValue())).collect(Collectors.toList()));
-            List<DataModel> incomes = filterOutliners(dataModels.stream().filter(dataModel -> NumberUtils.isIncome(dataModel.getValue())).collect(Collectors.toList()));
-            return dataModels.stream().filter(dataModel -> expenses.contains(dataModel) || incomes.contains(dataModel)).collect(Collectors.toList());
+            List<DataDto> expenses = filterOutliners(dataDtos.stream().filter(dataDto -> NumberUtils.isExpense(dataDto.getValue())).collect(Collectors.toList()));
+            List<DataDto> incomes = filterOutliners(dataDtos.stream().filter(dataDto -> NumberUtils.isIncome(dataDto.getValue())).collect(Collectors.toList()));
+            return dataDtos.stream().filter(dataDto -> expenses.contains(dataDto) || incomes.contains(dataDto)).collect(Collectors.toList());
         }
-        return new ArrayList<>(dataModels);
+        return new ArrayList<>(dataDtos);
     }
 
-    private List<DataModel> filterOutliners(Collection<DataModel> dataModels) {
+    private List<DataDto> filterOutliners(Collection<DataDto> dataDtos) {
         int outlinerRangeValue = PropertiesValueHolder.getInteger(CHART_GOALS_ESTIMATION_OUTLINER_RANGE);
-        List<DataModel> sortedDataModels = dataModels.stream()
-                .sorted(Comparator.comparing(DataModel::getValue))
+        List<DataDto> sortedDataDtos = dataDtos.stream()
+                .sorted(Comparator.comparing(DataDto::getValue))
                 .collect(Collectors.toList());
-        if (sortedDataModels.size() > 0) {
-            int meridianIndex = sortedDataModels.size() / 2;
-            int outlineValue = (sortedDataModels.size() - meridianIndex) / outlinerRangeValue;
+        if (sortedDataDtos.size() > 0) {
+            int meridianIndex = sortedDataDtos.size() / 2;
+            int outlineValue = (sortedDataDtos.size() - meridianIndex) / outlinerRangeValue;
             int belowOutlineIndex = outlineValue;
-            int aboveOutlineIndex = sortedDataModels.size() - outlineValue;
+            int aboveOutlineIndex = sortedDataDtos.size() - outlineValue;
 
-            BigDecimal belowOutlineValue = sortedDataModels.get(belowOutlineIndex).getValue();
-            BigDecimal aboveOutlineValue = sortedDataModels.get(aboveOutlineIndex).getValue();
+            BigDecimal belowOutlineValue = sortedDataDtos.get(belowOutlineIndex).getValue();
+            BigDecimal aboveOutlineValue = sortedDataDtos.get(aboveOutlineIndex).getValue();
 
-            List<DataModel> results = new ArrayList<>();
-            for (DataModel dataModel : dataModels) {
-                if ((belowOutlineValue.compareTo(dataModel.getValue()) <= 0) && aboveOutlineValue.compareTo(dataModel.getValue()) >= 0) {
-                    results.add(dataModel);
+            List<DataDto> results = new ArrayList<>();
+            for (DataDto dataDto : dataDtos) {
+                if ((belowOutlineValue.compareTo(dataDto.getValue()) <= 0) && aboveOutlineValue.compareTo(dataDto.getValue()) >= 0) {
+                    results.add(dataDto);
                 } else {
                     //System.out.println("Removing outliner: " + dataModel.getDate() + " " + dataModel.getCategory() + " " + dataModel.getDescription() + " " + dataModel.getAccount() + " " + dataModel.getValue() + " (min: " + belowOutlineValue + ", max: " + aboveOutlineValue + ")");
                 }
             }
             return results;
         }
-        return dataModels.stream().collect(Collectors.toList());
+        return dataDtos.stream().collect(Collectors.toList());
     }
 
     @Override
-    public List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels) {
+    public List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos) {
         if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
-            ResultDto resultDto = getResultDto(dataModels);
+            ResultDto resultDto = getResultDto(dataDtos);
             long rangeValue = resultDto.getLastDate().getTime() - resultDto.getFirstDate().getTime();
             long pieceValue = rangeValue / 10;
             long estimationRangeValue = PropertiesValueHolder.getLong(CHART_GOALS_ESTIMATION_DATE_RANGE) * pieceValue;
             Date startDate = new Date(resultDto.getLastDate().getTime() - estimationRangeValue);
-            return dataModels.stream().filter(dataModel -> dataModel.getDate().after(startDate)).collect(Collectors.toList());
+            return dataDtos.stream().filter(dataDto -> dataDto.getDate().after(startDate)).collect(Collectors.toList());
         }
-        return new ArrayList<>(dataModels);
+        return new ArrayList<>(dataDtos);
     }
 }

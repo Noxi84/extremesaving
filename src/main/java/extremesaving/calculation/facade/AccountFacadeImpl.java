@@ -1,9 +1,9 @@
 package extremesaving.calculation.facade;
 
-import extremesaving.calculation.service.CalculationService;
-import extremesaving.data.service.DataService;
 import extremesaving.calculation.dto.AccountDto;
-import extremesaving.data.model.DataModel;
+import extremesaving.calculation.service.CalculationService;
+import extremesaving.data.dto.DataDto;
+import extremesaving.data.facade.DataFacade;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,28 +12,28 @@ import java.util.stream.Collectors;
 
 public class AccountFacadeImpl implements AccountFacade {
 
-    private DataService dataService;
+    private DataFacade dataFacade;
     private CalculationService calculationService;
 
     @Override
     public List<AccountDto> getAccounts() {
-        List<DataModel> dataModels = dataService.findAll();
+        List<DataDto> dataDtos = dataFacade.findAll();
 
-        List<String> accounts = new ArrayList<>(dataModels.stream().map(dataModel -> dataModel.getAccount()).collect(Collectors.toSet()));
+        List<String> accounts = new ArrayList<>(dataDtos.stream().map(dataDto -> dataDto.getAccount()).collect(Collectors.toSet()));
         Collections.sort(accounts);
 
         List<AccountDto> accountDtos = new ArrayList<>();
         for (String account : accounts) {
             AccountDto accountDto = new AccountDto();
             accountDto.setName(account);
-            accountDto.setTotalResults(calculationService.getResults(dataModels.stream().filter(dataModel -> dataModel.getAccount().equals(account)).collect(Collectors.toList())));
+            accountDto.setTotalResults(calculationService.getResults(dataDtos.stream().filter(dataDto -> dataDto.getAccount().equals(account)).collect(Collectors.toList())));
             accountDtos.add(accountDto);
         }
         return accountDtos;
     }
 
-    public void setDataService(DataService dataService) {
-        this.dataService = dataService;
+    public void setDataFacade(DataFacade dataFacade) {
+        this.dataFacade = dataFacade;
     }
 
     public void setCalculationService(CalculationService calculationService) {

@@ -1,8 +1,8 @@
 package extremesaving.calculation.service;
 
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
 import extremesaving.data.service.DataService;
 import extremesaving.property.PropertiesValueHolder;
@@ -26,11 +26,11 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public Long getSurvivalDays() {
-        Collection<DataModel> dataModels = dataService.findAll();
-        Collection<DataModel> dataModelsWithoutOutliners = calculationService.removeOutliners(dataModels);
-        Collection<DataModel> filteredDateRangeModelsWithoutOutliners = calculationService.filterEstimatedDateRange(dataModelsWithoutOutliners);
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDateRangeModelsWithoutOutliners);
+        Collection<DataDto> dataDtos = dataFacade.findAll();
+        Collection<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
 
         BigDecimal amountLeft = resultDto.getResult();
 
@@ -68,7 +68,7 @@ public class PredictionServiceImpl implements PredictionService {
             goalAmounts.add(new BigDecimal(goal));
         }
 
-        ResultDto resultDto = calculationService.getResults(dataService.findAll());
+        ResultDto resultDto = calculationService.getResults(dataFacade.findAll());
         for (BigDecimal goalAmount : goalAmounts) {
             if (resultDto.getResult().compareTo(goalAmount) < 0) {
                 return goalAmount;
@@ -111,11 +111,11 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public Long getGoalTime(BigDecimal goal) {
-        List<DataModel> dataModels = dataService.findAll();
-        List<DataModel> filteredDataModels = calculationService.removeOutliners(dataModels);
-        filteredDataModels = calculationService.filterEstimatedDateRange(filteredDataModels);
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDataModels);
+        List<DataDto> dataDtos = dataFacade.findAll();
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto resultDto = calculationService.getResults(dataDtos);
+        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
@@ -131,16 +131,16 @@ public class PredictionServiceImpl implements PredictionService {
 
     @Override
     public Date getGoalReachedDate(BigDecimal goal) {
-        List<DataModel> dataModels = dataService.findAll();
-        ResultDto resultDto = calculationService.getResults(dataModels);
+        List<DataDto> dataDtos = dataFacade.findAll();
+        ResultDto resultDto = calculationService.getResults(dataDtos);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) < 0) {
             Date lastDate;
-            for (int i = dataModels.size() - 1; i > 0; i--) {
-                DataModel dataModel = dataModels.get(i);
-                amount = amount.subtract(dataModel.getValue());
-                lastDate = dataModel.getDate();
+            for (int i = dataDtos.size() - 1; i > 0; i--) {
+                DataDto dataDto = dataDtos.get(i);
+                amount = amount.subtract(dataDto.getValue());
+                lastDate = dataDto.getDate();
                 if (amount.compareTo(goal) <= 0) {
                     return lastDate;
                 }

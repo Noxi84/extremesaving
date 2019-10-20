@@ -15,8 +15,8 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.service.PredictionService;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.model.DataModel;
 import extremesaving.data.service.DataService;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
@@ -57,8 +57,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        List<DataModel> dataModels = dataService.findAll();
-        ResultDto resultDto = calculationService.getResults(dataModels);
+        List<DataDto> dataDtos = dataFacade.findAll();
+        ResultDto resultDto = calculationService.getResults(dataDtos);
 
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));

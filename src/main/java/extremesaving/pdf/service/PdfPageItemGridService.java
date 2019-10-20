@@ -8,7 +8,6 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.service.DataService;
 import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
@@ -26,7 +25,6 @@ public class PdfPageItemGridService implements PdfPageService {
     private static final int TEXT_MAX_CHARACTERS = 18;
 
     private DataFacade dataFacade;
-    private DataService dataService;
 
     @Override
     public void generate(Document document) {
@@ -49,13 +47,13 @@ public class PdfPageItemGridService implements PdfPageService {
         List<ResultDto> monthResults = new ArrayList<>();
 
         if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            overallResults = dataFacade.getMostProfitableItems(dataService.findAll());
-            yearResults = dataFacade.getMostProfitableItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            monthResults = dataFacade.getMostProfitableItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            overallResults = dataFacade.getMostProfitableItems(dataFacade.findAll());
+            yearResults = dataFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+            monthResults = dataFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            overallResults = dataFacade.getMostExpensiveItems(dataService.findAll());
-            yearResults = dataFacade.getMostExpensiveItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(new Date(), dataModel.getDate())).collect(Collectors.toList()));
-            monthResults = dataFacade.getMostExpensiveItems(dataService.findAll().stream().filter(dataModel -> DateUtils.equalYearAndMonths(new Date(), dataModel.getDate())).collect(Collectors.toList()));
+            overallResults = dataFacade.getMostExpensiveItems(dataFacade.findAll());
+            yearResults = dataFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+            monthResults = dataFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         }
 
         Table table = new Table(3);
@@ -110,9 +108,5 @@ public class PdfPageItemGridService implements PdfPageService {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
-    }
-
-    public void setDataService(DataService dataService) {
-        this.dataService = dataService;
     }
 }

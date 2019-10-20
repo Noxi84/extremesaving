@@ -4,6 +4,7 @@ import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dao.TipOfTheDayDao;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
 import extremesaving.data.service.DataService;
@@ -29,16 +30,22 @@ public class DataFacadeImpl implements DataFacade {
     private DataService dataService;
 
     @Override
-    public Date getLastItemAdded() {
+    public List<DataDto> findAll() {
         List<DataModel> dataModels = dataService.findAll();
-        ResultDto resultDto = calculationService.getResults(dataModels);
+        return dataModels.stream().map(dataModel -> new DataDto(dataModel)).collect(Collectors.toList());
+    }
+
+    @Override
+    public Date getLastItemAdded() {
+        List<DataDto> dataDtos = findAll();
+        ResultDto resultDto = calculationService.getResults(dataDtos);
         return resultDto.getLastDate();
     }
 
     @Override
     public BigDecimal getTotalBalance() {
-        List<DataModel> dataModels = dataService.findAll();
-        ResultDto resultDto = calculationService.getResults(dataModels);
+        List<DataDto> dataDtos = findAll();
+        ResultDto resultDto = calculationService.getResults(dataDtos);
         return resultDto.getResult();
     }
 
@@ -59,7 +66,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Date getBestMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(dataService.findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, false));
@@ -72,7 +79,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Date getWorstMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(dataService.findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, true));
@@ -85,7 +92,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Date getBestYear() {
-        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(dataService.findAll());
+        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
@@ -99,7 +106,7 @@ public class DataFacadeImpl implements DataFacade {
 
     @Override
     public Date getWorstYear() {
-        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(dataService.findAll());
+        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
@@ -112,8 +119,8 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public List<ResultDto> getMostProfitableItems(Collection<DataModel> dataModels) {
-        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
+    public List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos) {
+        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataDtos);
         return categoryDescriptionGrouped.stream()
                 .filter(resultDto -> NumberUtils.isIncome(resultDto.getResult()))
                 .sorted((o1, o2) -> o2.getResult().compareTo(o1.getResult()))
@@ -121,39 +128,39 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels) {
-        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataModels);
+    public List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos) {
+        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataDtos);
         return categoryDescriptionGrouped.stream()
                 .filter(resultDto -> NumberUtils.isExpense(resultDto.getResult()))
                 .sorted(Comparator.comparing(ResultDto::getResult))
                 .collect(Collectors.toList());
     }
 
-    private List<ResultDto> createCategoryDescriptionMap(Collection<DataModel> filteredDataModels) {
+    private List<ResultDto> createCategoryDescriptionMap(Collection<DataDto> dataDtos) {
         // Group datamodels for each category + description
-        Map<String, List<DataModel>> categoryDescriptionModels = new HashMap<>();
-        for (DataModel dataModel : filteredDataModels) {
-            if (StringUtils.isNotBlank(dataModel.getDescription())) {
-                String categoryDescription = dataModel.getCategory().toLowerCase() + "_" + dataModel.getDescription().toLowerCase();
-                List<DataModel> dataModelsForCategoryDescription = categoryDescriptionModels.get(categoryDescription);
-                if (dataModelsForCategoryDescription == null) {
-                    dataModelsForCategoryDescription = new ArrayList<>();
+        Map<String, List<DataDto>> categoryDescriptionDtos = new HashMap<>();
+        for (DataDto dataDto : dataDtos) {
+            if (StringUtils.isNotBlank(dataDto.getDescription())) {
+                String categoryDescription = dataDto.getCategory().toLowerCase() + "_" + dataDto.getDescription().toLowerCase();
+                List<DataDto> dataDtosForCategoryDescription = categoryDescriptionDtos.get(categoryDescription);
+                if (dataDtosForCategoryDescription == null) {
+                    dataDtosForCategoryDescription = new ArrayList<>();
                 }
-                dataModelsForCategoryDescription.add(dataModel);
-                categoryDescriptionModels.put(categoryDescription, dataModelsForCategoryDescription);
+                dataDtosForCategoryDescription.add(dataDto);
+                categoryDescriptionDtos.put(categoryDescription, dataDtosForCategoryDescription);
             }
         }
 
         // Create ResultDto map
         List<ResultDto> results = new ArrayList<>();
-        for (Map.Entry<String, List<DataModel>> categoryDescriptionEntry : categoryDescriptionModels.entrySet()) {
+        for (Map.Entry<String, List<DataDto>> categoryDescriptionEntry : categoryDescriptionDtos.entrySet()) {
             results.add(calculationService.getResults(categoryDescriptionEntry.getValue()));
         }
         return results;
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataModel> dataModels) {
+    public Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataDto> dataDtos) {
         Map<Integer, MiniResultDto> monthlyResults = new HashMap<>();
         monthlyResults.put(Calendar.JANUARY, new MiniResultDto());
         monthlyResults.put(Calendar.FEBRUARY, new MiniResultDto());
@@ -168,22 +175,22 @@ public class DataFacadeImpl implements DataFacade {
         monthlyResults.put(Calendar.NOVEMBER, new MiniResultDto());
         monthlyResults.put(Calendar.DECEMBER, new MiniResultDto());
 
-        List<DataModel> filteredDataModels = dataModels.stream()
+        List<DataDto> filteredDataDtos = dataDtos.stream()
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
                 .filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("..."))
                 .collect(Collectors.toList());
 
-        for (DataModel dataModel : filteredDataModels) {
+        for (DataDto dataDto : filteredDataDtos) {
             Calendar cal = Calendar.getInstance();
-            cal.setTime(dataModel.getDate());
+            cal.setTime(dataDto.getDate());
 
             MiniResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
-            resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataModel.getValue()));
+            resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataDto.getValue()));
 
-            if (NumberUtils.isExpense(dataModel.getValue())) {
-                resultDtoForThisMonth.setExpenses(resultDtoForThisMonth.getExpenses().add(dataModel.getValue()));
+            if (NumberUtils.isExpense(dataDto.getValue())) {
+                resultDtoForThisMonth.setExpenses(resultDtoForThisMonth.getExpenses().add(dataDto.getValue()));
             } else {
-                resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataModel.getValue()));
+                resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataDto.getValue()));
             }
         }
 
@@ -191,25 +198,25 @@ public class DataFacadeImpl implements DataFacade {
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels) {
+    public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataDto> dataDtos) {
         Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
-        List<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("...")).collect(Collectors.toList());
+        List<DataDto> filteredDataDtos = dataDtos.stream().filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("...")).collect(Collectors.toList());
 
-        for (DataModel dataModel : filteredDataModels) {
+        for (DataDto dataDto : filteredDataDtos) {
             Calendar cal = Calendar.getInstance();
-            cal.setTime(dataModel.getDate());
+            cal.setTime(dataDto.getDate());
             int year = cal.get(Calendar.YEAR);
 
             MiniResultDto resultDtoForThisYear = yearlyResults.get(year);
             if (resultDtoForThisYear == null) {
                 resultDtoForThisYear = new MiniResultDto();
             }
-            resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataModel.getValue()));
+            resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataDto.getValue()));
 
-            if (NumberUtils.isExpense(dataModel.getValue())) {
-                resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataModel.getValue()));
+            if (NumberUtils.isExpense(dataDto.getValue())) {
+                resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataDto.getValue()));
             } else {
-                resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataModel.getValue()));
+                resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataDto.getValue()));
             }
             yearlyResults.put(year, resultDtoForThisYear);
         }

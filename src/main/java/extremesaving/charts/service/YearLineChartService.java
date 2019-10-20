@@ -31,7 +31,7 @@ public class YearLineChartService implements ChartService {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
 
         TimeSeries series1 = new TimeSeries("Balance history");
-        TimeSeries series2 = new TimeSeries("Estimated redult");
+        TimeSeries series2 = new TimeSeries("Estimated result");
 
         Map<Date, BigDecimal> goalLineResults = chartDataService.getGoalLineResults();
 

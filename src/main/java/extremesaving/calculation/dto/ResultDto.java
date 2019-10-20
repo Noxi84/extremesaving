@@ -1,6 +1,6 @@
 package extremesaving.calculation.dto;
 
-import extremesaving.data.model.DataModel;
+import extremesaving.data.dto.DataDto;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class ResultDto {
 
-    private Set<DataModel> data = new HashSet<>();
+    private Set<DataDto> data = new HashSet<>();
     private BigDecimal incomes = BigDecimal.ZERO;
     private BigDecimal expenses = BigDecimal.ZERO;
     private BigDecimal result = BigDecimal.ZERO;
@@ -26,11 +26,11 @@ public class ResultDto {
     private BigDecimal averageDailyExpense = BigDecimal.ZERO;
     private BigDecimal averageDailyResult = BigDecimal.ZERO;
 
-    public Set<DataModel> getData() {
+    public Set<DataDto> getData() {
         return data;
     }
 
-    public void setData(Set<DataModel> data) {
+    public void setData(Set<DataDto> data) {
         this.data = data;
     }
 

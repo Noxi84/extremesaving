@@ -2,7 +2,7 @@ package extremesaving.data.facade;
 
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.data.model.DataModel;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.TipOfTheDayModel;
 
 import java.math.BigDecimal;
@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface DataFacade {
+
+    List<DataDto> findAll();
 
     Date getLastItemAdded();
 
@@ -25,13 +27,13 @@ public interface DataFacade {
 
     Date getWorstYear();
 
-    Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataModel> dataModels);
+    Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataDto> dataDtos);
 
-    Map<Integer, MiniResultDto> getYearlyResults(Collection<DataModel> dataModels);
+    Map<Integer, MiniResultDto> getYearlyResults(Collection<DataDto> dataDtos);
 
-    List<ResultDto> getMostProfitableItems(Collection<DataModel> dataModels);
+    List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos);
 
-    List<ResultDto> getMostExpensiveItems(Collection<DataModel> dataModels);
+    List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos);
 
     List<TipOfTheDayModel> getTipOfTheDays();
 }

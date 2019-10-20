@@ -1,19 +1,16 @@
 package extremesaving.calculation.facade;
 
 import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.data.model.DataModel;
+import extremesaving.data.dto.DataDto;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
 public interface CategoryFacade {
 
-    List<CategoryDto> getCategories(Collection<DataModel> dataModels);
+    List<CategoryDto> getCategories(Collection<DataDto> dataDtos);
 
-    List<CategoryDto> getMostProfitableCategories(Collection<DataModel> dataModels);
+    List<CategoryDto> getMostProfitableCategories(Collection<DataDto> dataDtos);
 
-    List<CategoryDto> getMostExpensiveCategories(Collection<DataModel> dataModels);
-
-    BigDecimal calculateSavings(String categoryName, BigDecimal percentage, long numberOfDays);
+    List<CategoryDto> getMostExpensiveCategories(Collection<DataDto> dataDtos);
 }

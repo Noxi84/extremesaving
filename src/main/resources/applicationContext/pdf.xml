@@ -3,12 +3,11 @@
 
 <beans>
     <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
-        <property name="dataService" ref="dataService"/>
+        <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
     </bean>
     <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
         <property name="dataFacade" ref="dataFacade"/>
-        <property name="dataService" ref="dataService"/>
     </bean>
     <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
         <property name="dataFacade" ref="dataFacade"/>

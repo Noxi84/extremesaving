@@ -4,8 +4,8 @@ import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.service.PredictionService;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.data.model.DataModel;
 import extremesaving.data.service.DataService;
 import extremesaving.util.DateUtils;
 
@@ -27,8 +27,8 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Integer, MiniResultDto> getMonthlyResults() {
-        List<DataModel> dataModels = dataService.findAll().stream().filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date())).collect(Collectors.toList());
-        Map<Integer, MiniResultDto> results = dataFacade.getMonthlyResults(dataModels);
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(dataDto.getDate(), new Date())).collect(Collectors.toList());
+        Map<Integer, MiniResultDto> results = dataFacade.getMonthlyResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -39,9 +39,9 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     @Override
     public Map<Integer, MiniResultDto> getYearlyResults() {
-        List<DataModel> dataModels = dataService.findAll();
+        List<DataDto> dataDtos = dataFacade.findAll();
 
-        Map<Integer, MiniResultDto> yearlyResults = dataFacade.getYearlyResults(dataModels);
+        Map<Integer, MiniResultDto> yearlyResults = dataFacade.getYearlyResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : yearlyResults.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -69,20 +69,20 @@ public class ChartDataServiceImpl implements ChartDataService {
     public Map<Date, BigDecimal> getGoalLineResults() {
         Map<Date, BigDecimal> predictions = new HashMap<>();
 
-        List<DataModel> dataModels = dataService.findAll();
+        List<DataDto> dataDtos = dataFacade.findAll();
 
         // Add existing results
-        for (DataModel existingDataModel : dataModels) {
-            Set<DataModel> filteredDataModels = dataModels.stream().filter(dataModel -> DateUtils.equalDates(dataModel.getDate(), existingDataModel.getDate()) || dataModel.getDate().before(existingDataModel.getDate())).collect(Collectors.toSet());
-            ResultDto resultDto = calculationService.getResults(filteredDataModels);
-            predictions.put(existingDataModel.getDate(), resultDto.getResult());
+        for (DataDto existingDataDto : dataDtos) {
+            Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.equalDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
+            ResultDto resultDto = calculationService.getResults(filteredDataDtos);
+            predictions.put(existingDataDto.getDate(), resultDto.getResult());
         }
 
         // Add future results
-        ResultDto resultDto = calculationService.getResults(dataModels);
-        List<DataModel> filteredDataModels = calculationService.removeOutliners(dataModels);
-        filteredDataModels = calculationService.filterEstimatedDateRange(filteredDataModels);
-        ResultDto filteredResultDto = calculationService.getResults(filteredDataModels);
+        ResultDto resultDto = calculationService.getResults(dataDtos);
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto filteredResultDto = calculationService.getResults(filteredDataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 

@@ -1,16 +1,16 @@
 package extremesaving.calculation.service;
 
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.data.model.DataModel;
+import extremesaving.data.dto.DataDto;
 
 import java.util.Collection;
 import java.util.List;
 
 public interface CalculationService {
 
-    ResultDto getResults(Collection<DataModel> dataModels);
+    ResultDto getResults(Collection<DataDto> dataDtos);
 
-    List<DataModel> removeOutliners(Collection<DataModel> dataModels);
+    List<DataDto> removeOutliners(Collection<DataDto> dataDtos);
 
-    List<DataModel> filterEstimatedDateRange(Collection<DataModel> dataModels);
+    List<DataDto> filterEstimatedDateRange(Collection<DataDto> dataDtos);
 }
