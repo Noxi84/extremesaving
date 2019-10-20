@@ -13,7 +13,10 @@ public interface PredictionService {
 
     int getGoalIndex(BigDecimal goalAmount);
 
-    BigDecimal getNextGoal();
+    /**
+     * @return The next goal based on the index. Default index use should be 1 for the next upcoming goal.
+     */
+    BigDecimal getNextGoal(int index);
 
     Long getGoalTime(BigDecimal goal);
 

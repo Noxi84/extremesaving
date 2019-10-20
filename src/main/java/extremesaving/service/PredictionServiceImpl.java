@@ -95,7 +95,7 @@ public class PredictionServiceImpl implements PredictionService {
     }
 
     @Override
-    public BigDecimal getNextGoal() {
+    public BigDecimal getNextGoal(int index) {
         String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
         String[] goals = StringUtils.split(goalsList, ",");
         List<BigDecimal> goalAmounts = new ArrayList<>();
@@ -105,7 +105,7 @@ public class PredictionServiceImpl implements PredictionService {
 
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(nextGoalIndex + 1);
+        return goalAmounts.get(nextGoalIndex + index);
     }
 
     @Override

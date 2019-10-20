@@ -91,7 +91,7 @@ public class ChartDataServiceImpl implements ChartDataService {
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
-        BigDecimal goal = predictionService.getNextGoal();
+        BigDecimal goal = predictionService.getNextGoal(2);
         while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
