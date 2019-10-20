@@ -14,6 +14,7 @@ import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
+import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.util.PdfUtils;
@@ -49,6 +50,7 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
+    private EstimationFacade estimationFacade;
     private AccountFacade accountFacade;
 
     @Override
@@ -245,9 +247,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
             if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-                BigDecimal previousGoalAmount = calculationFacade.getPreviousGoal();
-                Date goalReachedDate = calculationFacade.getGoalReachedDate(previousGoalAmount);
-                BigDecimal goalAmount = calculationFacade.getCurrentGoal();
+                BigDecimal previousGoalAmount = estimationFacade.getPreviousGoal();
+                Date goalReachedDate = estimationFacade.getGoalReachedDate(previousGoalAmount);
+                BigDecimal goalAmount = estimationFacade.getCurrentGoal();
 
                 BigDecimal goalPercentageAmount = goalAmount.subtract(previousGoalAmount);
                 BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoalAmount);
@@ -255,17 +257,17 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
                 chartCell.add(getGoalTropheeImage(goalAmount));
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
-                chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(calculationFacade.getGoalTime(goalAmount)), false));
+                chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(estimationFacade.getGoalTime(goalAmount)), false));
                 chartCell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
             }
-            chartCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(calculationFacade.getSurvivalDays()), false));
+            chartCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(estimationFacade.getSurvivalDays()), false));
             chartCell.add(PdfUtils.getItemParagraph("\n"));
         }
         return chartCell;
     }
 
     protected Image getGoalTropheeImage(BigDecimal goal) {
-        int goalIndex = calculationFacade.getGoalIndex(goal);
+        int goalIndex = estimationFacade.getGoalIndex(goal);
         Image trophyIcon = null;
         try {
             if (goalIndex == 0) {
@@ -342,5 +344,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
+    }
+
+    public void setEstimationFacade(EstimationFacade estimationFacade) {
+        this.estimationFacade = estimationFacade;
     }
 }

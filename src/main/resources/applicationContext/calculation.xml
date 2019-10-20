@@ -3,6 +3,12 @@
 
 <beans>
 
+    <bean id="estimationFacade" class="extremesaving.calculation.facade.EstimationFacadeImpl">
+        <property name="calculationService" ref="calculationService"/>
+        <property name="dataFacade" ref="dataFacade"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
+    </bean>
+
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
         <property name="dataFacade" ref="dataFacade"/>

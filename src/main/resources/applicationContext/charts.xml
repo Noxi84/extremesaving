@@ -6,6 +6,7 @@
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="calculationService" ref="calculationService"/>
+        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
     <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>

@@ -14,6 +14,7 @@
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="accountFacade" ref="accountFacade"/>
+        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
         <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
