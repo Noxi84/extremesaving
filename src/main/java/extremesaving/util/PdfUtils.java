@@ -9,12 +9,13 @@ import org.jfree.chart.JFreeChart;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 public final class PdfUtils {
-
-    private static final int DISPLAY_MAX_ITEMS = 22;
-    private static final int TEXT_MAX_CHARACTERS = 10;
 
     private PdfUtils() {
     }

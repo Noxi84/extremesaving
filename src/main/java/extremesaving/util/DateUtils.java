@@ -18,19 +18,6 @@ public final class DateUtils {
         return TimeUnit.DAYS.convert(d1.getTime() - d2.getTime(), TimeUnit.MILLISECONDS);
     }
 
-    public static long monthsBetween(Date d1, Date d2) {
-        Calendar cal1 = Calendar.getInstance();
-        cal1.setTime(d1);
-        Calendar cal2 = Calendar.getInstance();
-        cal2.setTime(d2);
-
-        LocalDate bday = LocalDate.of(cal1.get(Calendar.YEAR), cal1.get(Calendar.MONTH), 1);
-        LocalDate today = LocalDate.now();
-
-        Period age = Period.between(bday, today);
-        return age.getMonths();
-    }
-
     public static boolean equalDates(Date d1, Date d2) {
         SimpleDateFormat sf = new SimpleDateFormat("DD/MM/YYYY");
         return sf.format(d1).equals(sf.format(d2));

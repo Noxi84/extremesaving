@@ -151,13 +151,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
 
-//        // Add zero accounts
-//        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) == 0).collect(Collectors.toList())) {
-//            alignmentTableLeft.add(getItemParagraph(accountDto.getName()));
-//            alignmentTableCenter.add(getItemParagraph(" : "));
-//            alignmentTableRight.add(getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
-//        }
-
         // Add negative accounts
         for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
             alignmentTableLeft.add(PdfUtils.getItemParagraph(accountDto.getName()));
@@ -266,16 +259,9 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
                 chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getGoalTime(goalAmount)), false));
                 chartCell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
-                chartCell.add(PdfUtils.getItemParagraph("\n"));
             }
-
-//            chartCell.add(ChartUtils.getItemParagraph("Survive 3 years without incomes.", true));
-//            chartCell.add(ChartUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
-//            chartCell.add(ChartUtils.getItemParagraph("\n"));
-//
-//            chartCell.add(ChartUtils.getItemParagraph("Spend less than € 6000 this year.", true));
-//            chartCell.add(ChartUtils.getItemParagraph("Current expenses: € 5692 "));
-//            chartCell.add(ChartUtils.getItemParagraph("\n"));
+            chartCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(predictionService.getSurvivalDays()), false));
+            chartCell.add(PdfUtils.getItemParagraph("\n"));
         }
         return chartCell;
     }
