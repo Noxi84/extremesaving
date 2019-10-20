@@ -32,7 +32,6 @@
         <property name="calculationService" ref="calculationService"/>
     </bean>
     <bean id="chartFacade" class="extremesaving.facade.ChartFacadeImpl">
-        <property name="accountPieChartService" ref="accountPieChartService"/>
         <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
         <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
         <property name="monthLineChartService" ref="monthLineChartService"/>
@@ -81,9 +80,6 @@
     </bean>
 
     <!--Chart-->
-    <bean id="accountPieChartService" class="extremesaving.service.chart.AccountPieChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
     <bean id="monthlyBarChartService" class="extremesaving.service.chart.MonthlyBarChartService">
         <property name="chartDataService" ref="chartDataService"/>
     </bean>

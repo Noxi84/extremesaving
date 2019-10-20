@@ -4,7 +4,6 @@ import extremesaving.service.chart.ChartService;
 
 public class ChartFacadeImpl implements ChartFacade {
 
-    private ChartService accountPieChartService;
     private ChartService monthlyBarChartService;
     private ChartService yearlyBarChartService;
     private ChartService monthLineChartService;
@@ -12,15 +11,10 @@ public class ChartFacadeImpl implements ChartFacade {
 
     @Override
     public void generateCharts() {
-        accountPieChartService.generateChartPng();
         monthlyBarChartService.generateChartPng();
         yearlyBarChartService.generateChartPng();
         monthLineChartService.generateChartPng();
         goalLineChartService.generateChartPng();
-    }
-
-    public void setAccountPieChartService(ChartService accountPieChartService) {
-        this.accountPieChartService = accountPieChartService;
     }
 
     public void setMonthlyBarChartService(ChartService monthlyBarChartService) {

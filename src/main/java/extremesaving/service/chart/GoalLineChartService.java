@@ -30,17 +30,24 @@ public class GoalLineChartService implements ChartService {
     private TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-        TimeSeries series1 = new TimeSeries("");
+        TimeSeries series1 = new TimeSeries("Balance history");
+        TimeSeries series2 = new TimeSeries("Estimated result");
 
         Map<Date, BigDecimal> goalLineResults = chartDataService.getGoalLineResults();
 
+        final Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : goalLineResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
-            series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            if (cal.getTime().before(today)) {
+                series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            } else {
+                series2.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            }
         }
 
         dataset.addSeries(series1);
+        dataset.addSeries(series2);
 
         return dataset;
     }
