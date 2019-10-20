@@ -53,8 +53,8 @@ public enum PropertyValueEnum {
 
     CHART_GOALS_SAVINGS("chart.goals.savings"),
     GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE("chart.goalLine.inflationPercentage"),
-    CHART_GOALS_ESTIMATION_OUTLINER_ENABLED("chart.goalLine.estimation.filterDates.enabled"),
-    CHART_GOALS_ESTIMATION_OUTLINER_RANGE("chart.goalLine.estimation.filterDates.range"),
+    CHART_GOALS_ESTIMATION_OUTLINER_ENABLED("chart.goalLine.estimation.removeOutliners.enabled"),
+    CHART_GOALS_ESTIMATION_OUTLINER_RANGE("chart.goalLine.estimation.removeOutliners.range"),
     CHART_GOALS_ESTIMATION_DATE_ENABLED("chart.goalLine.estimation.filterDates.enabled"),
     CHART_GOALS_ESTIMATION_DATE_RANGE("chart.goalLine.estimation.filterDates.range");
 
