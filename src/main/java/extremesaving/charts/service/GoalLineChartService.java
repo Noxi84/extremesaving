@@ -1,6 +1,5 @@
 package extremesaving.charts.service;
 
-import extremesaving.charts.GoalLineResultEnum;
 import extremesaving.pdf.page.tipoftheday.section.GoalLineChartPdfSectionCreator;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
@@ -36,7 +35,7 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getBalanceHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
-        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineResults(GoalLineResultEnum.HISTORY);
+        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineHistoryResults();
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
@@ -47,7 +46,7 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getSurvivalSeries() {
         TimeSeries series = new TimeSeries("Without incomes");
-        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineResults(GoalLineResultEnum.SURVIVAL_ESTIMATION);
+        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineSurvivalEstimationResults();
         for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
@@ -58,7 +57,7 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getEstimationSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
-        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineResults(GoalLineResultEnum.FUTURE_ESTIMATION);
+        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineFutureEstimationResults();
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());

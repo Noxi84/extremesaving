@@ -5,7 +5,6 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.calculation.service.CalculationService;
-import extremesaving.charts.GoalLineResultEnum;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
@@ -75,60 +74,67 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Date, BigDecimal> getGoalLineResults(GoalLineResultEnum goalLineResultEnum) {
+    public Map<Date, BigDecimal> getGoalLineHistoryResults() {
         Map<Date, BigDecimal> predictions = new HashMap<>();
         List<DataDto> dataDtos = dataFacade.findAll();
 
-        if (GoalLineResultEnum.HISTORY.equals(goalLineResultEnum)) {
-            // Add existing results
-            for (DataDto existingDataDto : dataDtos) {
-                Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.equalDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
-                ResultDto resultDto = calculationFacade.getResults(filteredDataDtos);
-                predictions.put(existingDataDto.getDate(), resultDto.getResult());
+        // Add existing results
+        for (DataDto existingDataDto : dataDtos) {
+            Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.equalDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
+            ResultDto resultDto = calculationFacade.getResults(filteredDataDtos);
+            predictions.put(existingDataDto.getDate(), resultDto.getResult());
+        }
+        return predictions;
+    }
+
+    @Override
+    public Map<Date, BigDecimal> getGoalLineFutureEstimationResults() {
+        Map<Date, BigDecimal> predictions = new HashMap<>();
+        List<DataDto> dataDtos = dataFacade.findAll();
+
+        // Add future estimation results with incomes
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+
+        BigDecimal goal = estimationFacade.getNextGoal(2);
+        while (currentValue.compareTo(goal) <= 0) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
+            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                predictions.put(cal.getTime(), currentValue);
+            } else {
+                break;
             }
         }
+        return predictions;
+    }
 
-        if (GoalLineResultEnum.FUTURE_ESTIMATION.equals(goalLineResultEnum)) {
-            // Add future estimation results with incomes
-            ResultDto resultDto = calculationFacade.getResults(dataDtos);
-            List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-            filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-            ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
-            BigDecimal currentValue = resultDto.getResult();
-            Calendar cal = Calendar.getInstance();
+    @Override
+    public Map<Date, BigDecimal> getGoalLineSurvivalEstimationResults() {
+        Map<Date, BigDecimal> predictions = new HashMap<>();
+        List<DataDto> dataDtos = dataFacade.findAll();
 
-            BigDecimal goal = estimationFacade.getNextGoal(2);
-            while (currentValue.compareTo(goal) <= 0) {
-                cal.add(Calendar.DAY_OF_MONTH, 1);
-                currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
-                if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                    predictions.put(cal.getTime(), currentValue);
-                } else {
-                    break;
-                }
+        // Add future estimation results without incomes
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
+        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+
+        while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            currentValue = currentValue.add(filteredResultDto.getAverageDailyExpense());
+            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                predictions.put(cal.getTime(), currentValue);
+            } else {
+                break;
             }
         }
-
-        if (GoalLineResultEnum.SURVIVAL_ESTIMATION.equals(goalLineResultEnum)) {
-            // Add future estimation results without incomes
-            ResultDto resultDto = calculationFacade.getResults(dataDtos);
-            List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-            filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-            ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
-            BigDecimal currentValue = resultDto.getResult();
-            Calendar cal = Calendar.getInstance();
-
-            while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                cal.add(Calendar.DAY_OF_MONTH, 1);
-                currentValue = currentValue.add(filteredResultDto.getAverageDailyExpense());
-                if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                    predictions.put(cal.getTime(), currentValue);
-                } else {
-                    break;
-                }
-            }
-        }
-
         return predictions;
     }
 

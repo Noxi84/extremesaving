@@ -1,6 +1,5 @@
 package extremesaving.charts.service;
 
-import extremesaving.charts.GoalLineResultEnum;
 import extremesaving.pdf.page.tipoftheday.section.YearLineChartPdfSectionCreator;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
@@ -37,7 +36,7 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getBalanceHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
-        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineResults(GoalLineResultEnum.HISTORY);
+        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineHistoryResults();
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
@@ -51,7 +50,7 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getSurvivalSeries() {
         TimeSeries series = new TimeSeries("Without incomes");
-        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineResults(GoalLineResultEnum.SURVIVAL_ESTIMATION);
+        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineSurvivalEstimationResults();
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
@@ -65,7 +64,7 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getEstimationSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
-        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineResults(GoalLineResultEnum.FUTURE_ESTIMATION);
+        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineFutureEstimationResults();
 
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
