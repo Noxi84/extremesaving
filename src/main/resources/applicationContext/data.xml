@@ -4,7 +4,6 @@
 <beans>
     <!--Facade-->
     <bean id="dataFacade" class="extremesaving.data.facade.DataFacadeImpl">
-        <property name="calculationFacade" ref="calculationFacade"/>
         <property name="dataService" ref="dataService"/>
     </bean>
 

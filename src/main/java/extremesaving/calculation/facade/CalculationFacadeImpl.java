@@ -3,10 +3,10 @@ package extremesaving.calculation.facade;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
-import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;

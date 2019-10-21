@@ -7,7 +7,6 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.pdf.util.PdfUtils;
-import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -82,12 +81,12 @@ public class CategoryExpensesTableComponent {
         // Add categoryDtos
         for (CategoryDto categoryDto : categoryDtos) {
             alignmentTableLeft.add(PdfUtils.getItemParagraph(categoryDto.getName()));
-            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));
         }
 
         // Add total amount
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(getTotalAmount(categoryDtos)), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(getTotalAmount(categoryDtos)), true));
 
         // Add cells to table
         alignmentTable.addCell(alignmentTableLeft);

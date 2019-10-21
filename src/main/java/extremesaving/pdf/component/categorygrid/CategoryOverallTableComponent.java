@@ -7,7 +7,6 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.pdf.util.PdfUtils;
-import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -99,12 +98,12 @@ public class CategoryOverallTableComponent {
         // Add total amount
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
         BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(totalAmount), true));
 
 
         // Add saving ratio
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Saving ratio", true));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatPercentage(savingRatio), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(savingRatio), true));
 
         // Add total items
         long totalItems = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getNumberOfItems()).mapToLong(i -> i).sum();

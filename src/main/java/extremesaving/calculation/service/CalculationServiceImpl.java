@@ -4,7 +4,7 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
-import extremesaving.util.NumberUtils;
+import extremesaving.calculation.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

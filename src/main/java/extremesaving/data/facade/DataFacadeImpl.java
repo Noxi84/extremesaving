@@ -1,18 +1,16 @@
 package extremesaving.data.facade;
 
-import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.model.DataModel;
 import extremesaving.data.model.TipOfTheDayModel;
 import extremesaving.data.service.DataService;
-import extremesaving.util.NumberUtils;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class DataFacadeImpl implements DataFacade {
 
-    private CalculationFacade calculationFacade;
     private DataService dataService;
 
     @Override
@@ -24,14 +22,14 @@ public class DataFacadeImpl implements DataFacade {
     @Override
     public String getTipOfTheDay() {
         List<TipOfTheDayModel> tipOfTheDayModels = dataService.findTypeOfTheDays();
-        return tipOfTheDayModels.get(NumberUtils.getRandom(0, tipOfTheDayModels.size() - 1)).getText();
+        return tipOfTheDayModels.get(getRandom(0, tipOfTheDayModels.size() - 1)).getText();
+    }
+
+    protected int getRandom(int min, int max) {
+        return new Random().nextInt(max - min + 1) + min;
     }
 
     public void setDataService(DataService dataService) {
         this.dataService = dataService;
-    }
-
-    public void setCalculationFacade(CalculationFacade calculationFacade) {
-        this.calculationFacade = calculationFacade;
     }
 }

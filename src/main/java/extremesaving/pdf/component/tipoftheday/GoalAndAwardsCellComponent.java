@@ -7,7 +7,6 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
-import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -71,9 +70,9 @@ public class GoalAndAwardsCellComponent {
             BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
             cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build());
-            cell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(currentGoal, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
+            cell.add(PdfUtils.getItemParagraph("Save " + PdfUtils.formatNumber(resultDto.getResult(), false) + " / " + PdfUtils.formatNumber(currentGoal, false) + " (" + PdfUtils.formatPercentage(goalPercentage) + ")", true));
             cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
-            cell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));
+            cell.add(PdfUtils.getItemParagraph("Previous goal " + PdfUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));
             cell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(survivalDays), false));
             cell.add(PdfUtils.getItemParagraph("\n"));
         }

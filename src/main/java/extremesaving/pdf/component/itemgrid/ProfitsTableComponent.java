@@ -7,7 +7,6 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.pdf.util.PdfUtils;
-import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -105,7 +104,7 @@ public class ProfitsTableComponent {
             if (counter >= displayMaxItems) {
                 break;
             }
-            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(resultDto.getResult())));
         }
         return alignmentTableRight;
     }
