@@ -4,7 +4,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
@@ -17,6 +16,7 @@ import extremesaving.pdf.page.PdfPageCreator;
 import extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.GoalLineChartPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.MonthBarChartPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.StatisticsPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.TrophyPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.YearLineChartPdfSectionCreator;
@@ -45,7 +45,14 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getGoalAndAwardsCell(resultDto));
-        table.addCell(getStatisticsCell());
+        table.addCell(new StatisticsPdfSectionCreator()
+                .withLastItemAdded(calculationFacade.getLastItemAdded())
+                .withBestMonth(calculationFacade.getBestMonth())
+                .withBestYear(calculationFacade.getBestYear())
+                .withWorstMonth(calculationFacade.getWorstMonth())
+                .withWorstYear(calculationFacade.getWorstYear())
+                .build()
+                .getBalanceCell());
         document.add(table);
 
         document.add(new GoalLineChartPdfSectionCreator().build().getChartImage());
@@ -59,71 +66,6 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
 
         document.add(new MonthBarChartPdfSectionCreator().build().getChartImage());
         document.add(new YearLineChartPdfSectionCreator().build().getChartImage());
-    }
-
-    protected Cell getStatisticsCell() {
-        Cell balanceCell = new Cell();
-        balanceCell.setWidth(UnitValue.createPercentValue(25));
-        balanceCell.setBorder(Border.NO_BORDER);
-        balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        balanceCell.setTextAlignment(TextAlignment.CENTER);
-        balanceCell.setWidth(500);
-        balanceCell.add(PdfUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
-        balanceCell.add(PdfUtils.getItemParagraph("\n"));
-
-        Table alignmentTable = new Table(3);
-
-        Cell alignmentTableLeft = new Cell();
-        alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setTextAlignment(TextAlignment.LEFT);
-        alignmentTableLeft.setPaddingLeft(20);
-
-        Cell alignmentTableCenter = new Cell();
-        alignmentTableCenter.setBorder(Border.NO_BORDER);
-        alignmentTableCenter.setTextAlignment(TextAlignment.CENTER);
-
-        Cell alignmentTableRight = new Cell();
-        alignmentTableRight.setBorder(Border.NO_BORDER);
-        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-
-        SimpleDateFormat sf = new SimpleDateFormat(" d MMMM yyyy");
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Last update"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(new Date())));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Last item added"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(sf.format(calculationFacade.getLastItemAdded())));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-
-        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(calculationFacade.getBestMonth())));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(calculationFacade.getWorstMonth())));
-
-        SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best year"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(calculationFacade.getBestYear())));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst year"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(calculationFacade.getWorstYear())));
-
-        alignmentTable.addCell(alignmentTableLeft);
-        alignmentTable.addCell(alignmentTableCenter);
-        alignmentTable.addCell(alignmentTableRight);
-
-        balanceCell.add(alignmentTable);
-        return balanceCell;
     }
 
     protected Cell getGoalAndAwardsCell(ResultDto resultDto) {
