@@ -25,6 +25,8 @@ public class ItemGridPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
+        System.out.println("Generating ItemGridPage");
+
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildProfitsTable());
         document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));

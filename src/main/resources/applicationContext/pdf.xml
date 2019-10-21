@@ -19,7 +19,7 @@
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayServiceImpl">
+    <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayPageServiceImpl">
         <property name="chartFacade" ref="chartFacade"/>
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>

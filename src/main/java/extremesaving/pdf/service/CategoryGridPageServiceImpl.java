@@ -30,6 +30,8 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
+        System.out.println("Generating CategoryGridPage");
+
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
 

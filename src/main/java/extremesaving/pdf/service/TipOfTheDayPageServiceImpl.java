@@ -24,7 +24,7 @@ import extremesaving.pdf.util.PdfUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class TipOfTheDayServiceImpl implements PdfPageService {
+public class TipOfTheDayPageServiceImpl implements PdfPageService {
 
     private ChartFacade chartFacade;
     private DataFacade dataFacade;
@@ -34,6 +34,8 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
+        System.out.println("Generating TipOfTheDayPage");
+
         Table table = new Table(2);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(buildGoalAndAwardsCell());
