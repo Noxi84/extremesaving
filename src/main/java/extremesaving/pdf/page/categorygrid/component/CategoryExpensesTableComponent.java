@@ -13,29 +13,29 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
-public class CategoryExpensesTableCreator {
+public class CategoryExpensesTableComponent {
 
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
     private List<CategoryDto> monthResults;
     private Table table;
 
-    public CategoryExpensesTableCreator withOverallResults(List<CategoryDto> overallResults) {
+    public CategoryExpensesTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public CategoryExpensesTableCreator withYearResults(List<CategoryDto> yearResults) {
+    public CategoryExpensesTableComponent withYearResults(List<CategoryDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public CategoryExpensesTableCreator withMontResults(List<CategoryDto> monthResults) {
+    public CategoryExpensesTableComponent withMontResults(List<CategoryDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public CategoryExpensesTableCreator build() {
+    public CategoryExpensesTableComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallCategoryCell());

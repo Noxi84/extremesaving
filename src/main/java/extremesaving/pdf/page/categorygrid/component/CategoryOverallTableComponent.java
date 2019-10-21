@@ -12,7 +12,7 @@ import extremesaving.util.NumberUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CategoryOverallTableCreator {
+public class CategoryOverallTableComponent {
 
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
@@ -22,37 +22,37 @@ public class CategoryOverallTableCreator {
     private BigDecimal monthSavingRatio;
     private Table table;
 
-    public CategoryOverallTableCreator withOverallResults(List<CategoryDto> overallResults) {
+    public CategoryOverallTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public CategoryOverallTableCreator withYearResults(List<CategoryDto> yearResults) {
+    public CategoryOverallTableComponent withYearResults(List<CategoryDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public CategoryOverallTableCreator withMontResults(List<CategoryDto> monthResults) {
+    public CategoryOverallTableComponent withMontResults(List<CategoryDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public CategoryOverallTableCreator withOverallSavingRatio(BigDecimal overallSavingRatio) {
+    public CategoryOverallTableComponent withOverallSavingRatio(BigDecimal overallSavingRatio) {
         this.overallSavingRatio = overallSavingRatio;
         return this;
     }
 
-    public CategoryOverallTableCreator withYearSavingRatio(BigDecimal yearSavingRatio) {
+    public CategoryOverallTableComponent withYearSavingRatio(BigDecimal yearSavingRatio) {
         this.yearSavingRatio = yearSavingRatio;
         return this;
     }
 
-    public CategoryOverallTableCreator withMonthSavingRatio(BigDecimal monthSavingRatio) {
+    public CategoryOverallTableComponent withMonthSavingRatio(BigDecimal monthSavingRatio) {
         this.monthSavingRatio = monthSavingRatio;
         return this;
     }
 
-    public CategoryOverallTableCreator build() {
+    public CategoryOverallTableComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallResultsCell());
@@ -63,21 +63,21 @@ public class CategoryOverallTableCreator {
 
     protected Cell createOverallResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageCreator().withSavingRatio(overallSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(overallSavingRatio).build().getImage());
         cell.add(createResultCategoryTable(overallResults, overallSavingRatio));
         return cell;
     }
 
     protected Cell createYearResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageCreator().withSavingRatio(yearSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(yearSavingRatio).build().getImage());
         cell.add(createResultCategoryTable(yearResults, yearSavingRatio));
         return cell;
     }
 
     protected Cell createMonthResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageCreator().withSavingRatio(monthSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(monthSavingRatio).build().getImage());
         cell.add(createResultCategoryTable(monthResults, monthSavingRatio));
         return cell;
     }

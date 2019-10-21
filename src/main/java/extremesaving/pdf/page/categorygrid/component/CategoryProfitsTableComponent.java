@@ -12,29 +12,29 @@ import extremesaving.util.NumberUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CategoryProfitsTableCreator {
+public class CategoryProfitsTableComponent {
 
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
     private List<CategoryDto> monthResults;
     private Table table;
 
-    public CategoryProfitsTableCreator withOverallResults(List<CategoryDto> overallResults) {
+    public CategoryProfitsTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public CategoryProfitsTableCreator withYearResults(List<CategoryDto> yearResults) {
+    public CategoryProfitsTableComponent withYearResults(List<CategoryDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public CategoryProfitsTableCreator withMonthResults(List<CategoryDto> monthResults) {
+    public CategoryProfitsTableComponent withMonthResults(List<CategoryDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public CategoryProfitsTableCreator build() {
+    public CategoryProfitsTableComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallCategory());

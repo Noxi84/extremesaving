@@ -7,8 +7,8 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.itemgrid.component.ExpensesTablePdfSectionCreator;
-import extremesaving.pdf.page.itemgrid.component.ProfitsTablePdfSectionCreator;
+import extremesaving.pdf.page.itemgrid.component.ExpensesTablePdfSectionComponent;
+import extremesaving.pdf.page.itemgrid.component.ProfitsTablePdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -36,7 +36,7 @@ public class PdfPageItemGridCreator implements PdfPageCreator {
         List<ResultDto> overallResults = calculationFacade.getMostProfitableItems(dataFacade.findAll());
         List<ResultDto> yearResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<ResultDto> monthResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new ProfitsTablePdfSectionCreator()
+        return new ProfitsTablePdfSectionComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)
@@ -50,7 +50,7 @@ public class PdfPageItemGridCreator implements PdfPageCreator {
         List<ResultDto> overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
         List<ResultDto> yearResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<ResultDto> monthResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new ExpensesTablePdfSectionCreator()
+        return new ExpensesTablePdfSectionComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)

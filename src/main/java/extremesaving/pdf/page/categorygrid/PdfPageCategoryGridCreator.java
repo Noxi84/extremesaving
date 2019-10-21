@@ -9,10 +9,10 @@ import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.categorygrid.component.CategoryExpensesTableCreator;
-import extremesaving.pdf.page.categorygrid.component.CategoryOverallTableCreator;
-import extremesaving.pdf.page.categorygrid.component.CategoryProfitsTableCreator;
-import extremesaving.pdf.page.categorygrid.component.YearBarChartPdfSectionCreator;
+import extremesaving.pdf.page.categorygrid.component.CategoryExpensesTableComponent;
+import extremesaving.pdf.page.categorygrid.component.CategoryOverallTableComponent;
+import extremesaving.pdf.page.categorygrid.component.CategoryProfitsTableComponent;
+import extremesaving.pdf.page.categorygrid.component.YearBarChartPdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -44,7 +44,7 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
     }
 
     protected Image buildYearBarChartImage() {
-        return new YearBarChartPdfSectionCreator()
+        return new YearBarChartPdfSectionComponent()
                 .build()
                 .getChartImage();
     }
@@ -53,7 +53,7 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
         List<CategoryDto> overallResults = categoryFacade.getCategories(dataFacade.findAll());
         List<CategoryDto> yearResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<CategoryDto> monthResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new CategoryOverallTableCreator()
+        return new CategoryOverallTableComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(monthResults)
                 .withMontResults(yearResults)
@@ -68,7 +68,7 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
         List<CategoryDto> overallResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
         List<CategoryDto> yearResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<CategoryDto> monthResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new CategoryProfitsTableCreator()
+        return new CategoryProfitsTableComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)
@@ -80,7 +80,7 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
         List<CategoryDto> overallResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
         List<CategoryDto> yearResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<CategoryDto> monthResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new CategoryExpensesTableCreator()
+        return new CategoryExpensesTableComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMontResults(monthResults)

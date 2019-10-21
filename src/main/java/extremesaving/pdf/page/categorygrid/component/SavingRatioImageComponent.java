@@ -12,17 +12,17 @@ import java.net.MalformedURLException;
 
 import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
 
-public class SavingRatioImageCreator {
+public class SavingRatioImageComponent {
 
     private BigDecimal savingRatio;
     private Image image;
 
-    public SavingRatioImageCreator withSavingRatio(BigDecimal savingRatio) {
+    public SavingRatioImageComponent withSavingRatio(BigDecimal savingRatio) {
         this.savingRatio = savingRatio;
         return this;
     }
 
-    public SavingRatioImageCreator build() {
+    public SavingRatioImageComponent build() {
         PropertyValueEnum savingRatioImage = getSavingRatioImage();
         try {
             image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(savingRatioImage)));

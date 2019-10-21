@@ -12,13 +12,13 @@ import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.tipoftheday.component.AccountsPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.GoalAndAwardsPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.GoalLineChartPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.MonthBarChartPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.StatisticsPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.TipOfTheDayPdfSectionCreator;
-import extremesaving.pdf.page.tipoftheday.component.YearLineChartPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.component.AccountsPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.GoalAndAwardsPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.GoalLineChartPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.MonthBarChartPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.StatisticsPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.TipOfTheDayPdfSectionComponent;
+import extremesaving.pdf.page.tipoftheday.component.YearLineChartPdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;
@@ -59,7 +59,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
         BigDecimal previousGoal = estimationFacade.getPreviousGoal();
         BigDecimal currentGoal = estimationFacade.getCurrentGoal();
 
-        return new GoalAndAwardsPdfSectionCreator()
+        return new GoalAndAwardsPdfSectionComponent()
                 .withResultDto(resultDto)
                 .withPreviousGoal(previousGoal)
                 .withPreviousGoalReachDate(estimationFacade.getGoalReachedDate(previousGoal))
@@ -72,7 +72,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
     }
 
     protected Cell buildStatisticsCell() {
-        return new StatisticsPdfSectionCreator()
+        return new StatisticsPdfSectionComponent()
                 .withLastItemAdded(calculationFacade.getLastItemAdded())
                 .withBestMonth(calculationFacade.getBestMonth())
                 .withBestYear(calculationFacade.getBestYear())
@@ -83,13 +83,13 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
     }
 
     protected Image buildGoalLineChartImage() {
-        return new GoalLineChartPdfSectionCreator()
+        return new GoalLineChartPdfSectionComponent()
                 .build()
                 .getChartImage();
     }
 
     protected Cell buildAccountsCell() {
-        return new AccountsPdfSectionCreator()
+        return new AccountsPdfSectionComponent()
                 .withAccounts(accountFacade.getAccounts())
                 .withTotalBalance(calculationFacade.getTotalBalance())
                 .build()
@@ -97,20 +97,20 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
     }
 
     protected Cell buildTipOfTheDayCell() {
-        return new TipOfTheDayPdfSectionCreator()
+        return new TipOfTheDayPdfSectionComponent()
                 .withMessage(dataFacade.getTipOfTheDay())
                 .build()
                 .getCell();
     }
 
     protected Image buildMonthBarChartImage() {
-        return new MonthBarChartPdfSectionCreator()
+        return new MonthBarChartPdfSectionComponent()
                 .build()
                 .getChartImage();
     }
 
     protected Image buildYearLineChartImage() {
-        return new YearLineChartPdfSectionCreator()
+        return new YearLineChartPdfSectionComponent()
                 .build()
                 .getChartImage();
     }

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ExpensesTablePdfSectionCreator {
+public class ProfitsTablePdfSectionComponent {
 
     private List<ResultDto> overallResults;
     private List<ResultDto> yearResults;
@@ -21,32 +21,32 @@ public class ExpensesTablePdfSectionCreator {
     private int displayMaxTextCharacters;
     private Table table;
 
-    public ExpensesTablePdfSectionCreator withOverallResults(List<ResultDto> overallResults) {
+    public ProfitsTablePdfSectionComponent withOverallResults(List<ResultDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withYearResults(List<ResultDto> yearResults) {
+    public ProfitsTablePdfSectionComponent withYearResults(List<ResultDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withMonthResults(List<ResultDto> monthResults) {
+    public ProfitsTablePdfSectionComponent withMonthResults(List<ResultDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withDisplayMaxItems(int displayMaxItems) {
+    public ProfitsTablePdfSectionComponent withDisplayMaxItems(int displayMaxItems) {
         this.displayMaxItems = displayMaxItems;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
+    public ProfitsTablePdfSectionComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
         this.displayMaxTextCharacters = displayMaxTextCharacters;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator build() {
+    public ProfitsTablePdfSectionComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getItemCell("Overall", overallResults));

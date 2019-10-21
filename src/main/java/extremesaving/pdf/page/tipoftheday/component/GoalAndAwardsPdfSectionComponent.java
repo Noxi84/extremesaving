@@ -14,7 +14,7 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GoalAndAwardsPdfSectionCreator {
+public class GoalAndAwardsPdfSectionComponent {
 
     private ResultDto resultDto;
     private BigDecimal previousGoal;
@@ -25,42 +25,42 @@ public class GoalAndAwardsPdfSectionCreator {
     private Long survivalDays;
     private Cell cell;
 
-    public GoalAndAwardsPdfSectionCreator withResultDto(ResultDto resultDto) {
+    public GoalAndAwardsPdfSectionComponent withResultDto(ResultDto resultDto) {
         this.resultDto = resultDto;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withPreviousGoal(BigDecimal previousGoal) {
+    public GoalAndAwardsPdfSectionComponent withPreviousGoal(BigDecimal previousGoal) {
         this.previousGoal = previousGoal;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withPreviousGoalReachDate(Date previousGoalReachDate) {
+    public GoalAndAwardsPdfSectionComponent withPreviousGoalReachDate(Date previousGoalReachDate) {
         this.previousGoalReachDate = previousGoalReachDate;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withCurrentGoal(BigDecimal currentGoal) {
+    public GoalAndAwardsPdfSectionComponent withCurrentGoal(BigDecimal currentGoal) {
         this.currentGoal = currentGoal;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withGoalIndex(int goalIndex) {
+    public GoalAndAwardsPdfSectionComponent withGoalIndex(int goalIndex) {
         this.goalIndex = goalIndex;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withGoalTime(Long goalTime) {
+    public GoalAndAwardsPdfSectionComponent withGoalTime(Long goalTime) {
         this.goalTime = goalTime;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator withSurvivalDays(Long survivalDays) {
+    public GoalAndAwardsPdfSectionComponent withSurvivalDays(Long survivalDays) {
         this.survivalDays = survivalDays;
         return this;
     }
 
-    public GoalAndAwardsPdfSectionCreator build() {
+    public GoalAndAwardsPdfSectionComponent build() {
         cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setTextAlignment(TextAlignment.CENTER);
@@ -71,7 +71,7 @@ public class GoalAndAwardsPdfSectionCreator {
             BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoal);
             BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
-            cell.add(new TrophyPdfSectionCreator().withGoalIndex(goalIndex).build().getTrophyImage());
+            cell.add(new TrophyPdfSectionComponent().withGoalIndex(goalIndex).build().getTrophyImage());
             cell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(currentGoal, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
             cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
             cell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));

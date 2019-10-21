@@ -7,17 +7,17 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.pdf.util.PdfUtils;
 
-public class TipOfTheDayPdfSectionCreator {
+public class TipOfTheDayPdfSectionComponent {
 
     private Cell cell;
     private String tipOfTheDayMessage;
 
-    public TipOfTheDayPdfSectionCreator withMessage(String message) {
+    public TipOfTheDayPdfSectionComponent withMessage(String message) {
         this.tipOfTheDayMessage = message;
         return this;
     }
 
-    public TipOfTheDayPdfSectionCreator build() {
+    public TipOfTheDayPdfSectionComponent build() {
         cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setWidth(UnitValue.createPercentValue(35));
