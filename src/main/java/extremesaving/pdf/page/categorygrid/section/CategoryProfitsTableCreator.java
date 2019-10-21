@@ -37,17 +37,34 @@ public class CategoryProfitsTableCreator {
     public CategoryProfitsTableCreator build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(getCategoryCell("Overall", overallResults));
-        table.addCell(getCategoryCell("This year", yearResults));
-        table.addCell(getCategoryCell("This month", monthResults));
+        table.addCell(createOverallCategory());
+        table.addCell(createYearCategory());
+        table.addCell(createMonthCategory());
         return this;
     }
 
-    protected Cell getCategoryCell(String title, List<CategoryDto> categoryDtos) {
+    protected Cell createOverallCategory() {
         Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph("Overall", true, TextAlignment.CENTER));
+        cell.add(getCategoryTable(overallResults));
+        return cell;
+    }
 
-        cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
+    protected Cell createYearCategory() {
+        Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph("This year", true, TextAlignment.CENTER));
+        cell.add(getCategoryTable(yearResults));
+        return cell;
+    }
 
+    protected Cell createMonthCategory() {
+        Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph("This month", true, TextAlignment.CENTER));
+        cell.add(getCategoryTable(monthResults));
+        return cell;
+    }
+
+    protected Table getCategoryTable(List<CategoryDto> categoryDtos) {
         Table alignmentTable = new Table(2);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
 
@@ -77,9 +94,7 @@ public class CategoryProfitsTableCreator {
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableRight);
 
-        cell.add(alignmentTable);
-
-        return cell;
+        return alignmentTable;
     }
 
     public Table getTable() {

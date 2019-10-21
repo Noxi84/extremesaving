@@ -64,25 +64,25 @@ public class CategoryOverallTableCreator {
     protected Cell createOverallResultsCell() {
         Cell cell = new Cell();
         cell.add(new SavingRatioImageCreator().withSavingRatio(overallSavingRatio).build().getImage());
-        addResultCategoryCell(cell, overallResults, overallSavingRatio);
+        cell.add(createResultCategoryTable(overallResults, overallSavingRatio));
         return cell;
     }
 
     protected Cell createYearResultsCell() {
         Cell cell = new Cell();
         cell.add(new SavingRatioImageCreator().withSavingRatio(yearSavingRatio).build().getImage());
-        addResultCategoryCell(cell, yearResults, yearSavingRatio);
+        cell.add(createResultCategoryTable(yearResults, yearSavingRatio));
         return cell;
     }
 
     protected Cell createMonthResultsCell() {
         Cell cell = new Cell();
         cell.add(new SavingRatioImageCreator().withSavingRatio(monthSavingRatio).build().getImage());
-        addResultCategoryCell(cell, monthResults, monthSavingRatio);
+        cell.add(createResultCategoryTable(monthResults, monthSavingRatio));
         return cell;
     }
 
-    protected void addResultCategoryCell(Cell cell, List<CategoryDto> categoryDtos, BigDecimal savingRatio) {
+    protected Table createResultCategoryTable(List<CategoryDto> categoryDtos, BigDecimal savingRatio) {
         Table alignmentTable = new Table(2);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
 
@@ -116,7 +116,7 @@ public class CategoryOverallTableCreator {
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableRight);
 
-        cell.add(alignmentTable);
+        return alignmentTable;
     }
 
     public Table getTable() {

@@ -10,6 +10,7 @@ import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
 public class CategoryExpensesTableCreator {
@@ -37,16 +38,34 @@ public class CategoryExpensesTableCreator {
     public CategoryExpensesTableCreator build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(getCategoryCell("Overall", overallResults));
-        table.addCell(getCategoryCell("This year", yearResults));
-        table.addCell(getCategoryCell("This month", monthResults));
+        table.addCell(createOverallCategoryCell());
+        table.addCell(createYearCategoryCell());
+        table.addCell(createMonthCategoryCell());
         return this;
     }
 
-    protected Cell getCategoryCell(String title, List<CategoryDto> categoryDtos) {
+    protected Cell createOverallCategoryCell() {
         Cell cell = new Cell();
-        cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
+        cell.add(PdfUtils.getItemParagraph("Overall", true, TextAlignment.CENTER));
+        cell.add(getTable(overallResults));
+        return cell;
+    }
 
+    protected Cell createYearCategoryCell() {
+        Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph("This year", true, TextAlignment.CENTER));
+        cell.add(getTable(yearResults));
+        return cell;
+    }
+
+    protected Cell createMonthCategoryCell() {
+        Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph("This month", true, TextAlignment.CENTER));
+        cell.add(getTable(monthResults));
+        return cell;
+    }
+
+    protected Table getTable(List<CategoryDto> categoryDtos) {
         Table alignmentTable = new Table(2);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
 
@@ -69,16 +88,16 @@ public class CategoryExpensesTableCreator {
 
         // Add total amount
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
-        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(getTotalAmount(categoryDtos)), true));
 
         // Add cells to table
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableRight);
+        return alignmentTable;
+    }
 
-        cell.add(alignmentTable);
-
-        return cell;
+    protected BigDecimal getTotalAmount(Collection<CategoryDto> categoryDtos) {
+        return categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Table getTable() {
