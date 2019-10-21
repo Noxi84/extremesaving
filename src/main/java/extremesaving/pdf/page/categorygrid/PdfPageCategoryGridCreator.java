@@ -6,8 +6,8 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.enums.PdfGridTimeEnum;
 import extremesaving.pdf.page.PdfPageCreator;
 import extremesaving.pdf.page.categorygrid.section.CategoryExpensesTableCreator;
 import extremesaving.pdf.page.categorygrid.section.CategoryOverallTableCreator;
@@ -18,7 +18,6 @@ import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,9 +57,9 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
                 .withOverallResults(overallResults)
                 .withYearResults(monthResults)
                 .withMontResults(yearResults)
-                .withOverallSavingRatio(getSavingRatio(PdfGridTimeEnum.OVERALL))
-                .withYearSavingRatio(getSavingRatio(PdfGridTimeEnum.YEAR))
-                .withMonthSavingRatio(getSavingRatio(PdfGridTimeEnum.MONTH))
+                .withOverallSavingRatio(getOverallSavingRatio())
+                .withYearSavingRatio(getYearSavingRatio())
+                .withMonthSavingRatio(getMonthSavingRatio())
                 .build()
                 .getTable();
     }
@@ -89,39 +88,37 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
                 .getTable();
     }
 
-    /**
-     * Calculate saving ratio
-     */
-    protected BigDecimal getSavingRatio(PdfGridTimeEnum pdfGridTimeEnum) {
-        List<CategoryDto> profitResults = new ArrayList<>();
-        List<CategoryDto> expensesResults = new ArrayList<>();
+    protected BigDecimal getOverallSavingRatio() {
+        List<DataDto> dataDtos = dataFacade.findAll();
+        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+        return calculateSavingRatio(profitResults, expensesResults);
+    }
 
-        if (pdfGridTimeEnum.equals(PdfGridTimeEnum.OVERALL)) {
-            profitResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
-            expensesResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
-        }
-        if (pdfGridTimeEnum.equals(PdfGridTimeEnum.YEAR)) {
-            profitResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            expensesResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        }
-        if (pdfGridTimeEnum.equals(PdfGridTimeEnum.MONTH)) {
-            profitResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            expensesResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        }
+    protected BigDecimal getYearSavingRatio() {
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+        return calculateSavingRatio(profitResults, expensesResults);
+    }
 
-        BigDecimal savingRatio = BigDecimal.ZERO;
+    protected BigDecimal getMonthSavingRatio() {
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+        return calculateSavingRatio(profitResults, expensesResults);
+    }
+
+    protected BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults) {
         BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal expensesAmount = expensesResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
         BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
-
         if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
-            savingRatio = BigDecimal.valueOf(100);
-        } else if (profitAmount.compareTo(expensesAmountReversed) < 0) {
-            savingRatio = BigDecimal.ZERO;
+            return BigDecimal.valueOf(100);
         } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
-            savingRatio = BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
+            return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
-        return savingRatio;
+        return BigDecimal.ZERO;
     }
 
     public void setCategoryFacade(CategoryFacade categoryFacade) {
