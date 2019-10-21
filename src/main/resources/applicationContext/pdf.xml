@@ -2,9 +2,18 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+    <!-- Facade-->
+    <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
+        <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
+        <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
+        <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
+    </bean>
+
+    <!-- Pdf page Services -->
     <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
+        <property name="yearBarChartPdfSectionCreator" ref="yearBarChartPdfSectionCreator"/>
     </bean>
     <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
         <property name="dataFacade" ref="dataFacade"/>
@@ -13,13 +22,21 @@
     <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
-        <property name="accountFacade" ref="accountFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>
+        <property name="tipOfTheDayPdfSectionCreator" ref="tipOfTheDayPdfSectionCreator"/>
+        <property name="accountsPdfSectionCreator" ref="accountsPdfSectionCreator"/>
     </bean>
-    <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
-        <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
-        <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
+
+    <!-- Section creators -->
+    <bean id="tipOfTheDayPdfSectionCreator" class="extremesaving.pdf.section.TipOfTheDayPdfSectionCreatorImpl">
+        <property name="dataFacade" ref="dataFacade"/>
+    </bean>
+    <bean id="yearBarChartPdfSectionCreator" class="extremesaving.pdf.section.YearBarChartPdfSectionCreatorImpl">
+        <property name="dataFacade" ref="dataFacade"/>
+    </bean>
+    <bean id="accountsPdfSectionCreator" class="extremesaving.pdf.section.AccountsPdfSectionCreatorImpl">
+        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="accountFacade" ref="accountFacade"/>
     </bean>
 
 </beans>

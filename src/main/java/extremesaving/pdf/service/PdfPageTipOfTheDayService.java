@@ -5,18 +5,17 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
+import extremesaving.pdf.section.AccountsPdfSectionCreator;
+import extremesaving.pdf.section.TipOfTheDayPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
@@ -27,11 +26,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
 import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
@@ -51,7 +47,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
     private EstimationFacade estimationFacade;
-    private AccountFacade accountFacade;
+    private TipOfTheDayPdfSectionCreator tipOfTheDayPdfSectionCreator;
+    private AccountsPdfSectionCreator accountsPdfSectionCreator;
 
     @Override
     public void generate(Document document) {
@@ -69,8 +66,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
         Table table2 = new Table(2);
         table2.setWidth(UnitValue.createPercentValue(100));
-        table2.addCell(getAccountsCell());
-        table2.addCell(getTipOfTheDayCell());
+        table2.addCell(accountsPdfSectionCreator.getAccountsCell());
+        table2.addCell(tipOfTheDayPdfSectionCreator.getTipOfTheDayCell());
         document.add(table2);
 
         document.add(getMonthBarChartImage());
@@ -111,67 +108,6 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
             ex.printStackTrace();
         }
         return null;
-    }
-
-    protected Cell getAccountsCell() {
-        Cell accountsCell = new Cell();
-        accountsCell.setBorder(Border.NO_BORDER);
-        accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        accountsCell.setTextAlignment(TextAlignment.CENTER);
-        accountsCell.setWidth(UnitValue.createPercentValue(50));
-        accountsCell.add(PdfUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
-        accountsCell.add(PdfUtils.getItemParagraph("\n"));
-
-        Table alignmentTable = new Table(3);
-        alignmentTable.setWidth(UnitValue.createPercentValue(100));
-        alignmentTable.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        Cell alignmentTableLeft = new Cell();
-        alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setTextAlignment(TextAlignment.RIGHT);
-
-        Cell alignmentTableCenter = new Cell();
-        alignmentTableCenter.setWidth(10);
-        alignmentTableCenter.setBorder(Border.NO_BORDER);
-        alignmentTableCenter.setTextAlignment(TextAlignment.LEFT);
-
-        Cell alignmentTableRight = new Cell();
-        alignmentTableRight.setBorder(Border.NO_BORDER);
-        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight.setPaddingRight(20);
-
-        List<AccountDto> accounts = accountFacade.getAccounts();
-
-        // Sort by name
-        Collections.sort(accounts, Comparator.comparing(AccountDto::getName));
-
-        // Add positive accounts
-        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList())) {
-            alignmentTableLeft.add(PdfUtils.getItemParagraph(accountDto.getName()));
-            alignmentTableCenter.add(PdfUtils.getItemParagraph(" : "));
-            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
-        }
-
-        // Add negative accounts
-        for (AccountDto accountDto : accounts.stream().filter(accountDto -> accountDto.getTotalResults().getResult().compareTo(BigDecimal.ZERO) < 0).collect(Collectors.toList())) {
-            alignmentTableLeft.add(PdfUtils.getItemParagraph(accountDto.getName()));
-            alignmentTableCenter.add(PdfUtils.getItemParagraph(" : "));
-            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(accountDto.getTotalResults().getResult())));
-        }
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total result", true));
-
-        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
-
-        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(calculationFacade.getTotalBalance()), true));
-
-        alignmentTable.addCell(alignmentTableLeft);
-        alignmentTable.addCell(alignmentTableCenter);
-        alignmentTable.addCell(alignmentTableRight);
-        accountsCell.add(alignmentTable);
-
-        return accountsCell;
     }
 
     protected Cell getStatisticsCell() {
@@ -318,28 +254,8 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
         return trophyIcon;
     }
 
-    protected Cell getTipOfTheDayCell() {
-        Cell chartCell = new Cell();
-        chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setWidth(UnitValue.createPercentValue(35));
-
-        chartCell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
-        chartCell.add(PdfUtils.getItemParagraph("\n"));
-        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(dataFacade.getTipOfTheDay());
-        tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
-
-        chartCell.add(tipOfTheDay);
-        chartCell.add(PdfUtils.getItemParagraph("\n"));
-
-        return chartCell;
-    }
-
     public void setCalculationFacade(CalculationFacade calculationFacade) {
         this.calculationFacade = calculationFacade;
-    }
-
-    public void setAccountFacade(AccountFacade accountFacade) {
-        this.accountFacade = accountFacade;
     }
 
     public void setDataFacade(DataFacade dataFacade) {
@@ -348,5 +264,13 @@ public class PdfPageTipOfTheDayService implements PdfPageService {
 
     public void setEstimationFacade(EstimationFacade estimationFacade) {
         this.estimationFacade = estimationFacade;
+    }
+
+    public void setTipOfTheDayPdfSectionCreator(TipOfTheDayPdfSectionCreator tipOfTheDayPdfSectionCreator) {
+        this.tipOfTheDayPdfSectionCreator = tipOfTheDayPdfSectionCreator;
+    }
+
+    public void setAccountsPdfSectionCreator(AccountsPdfSectionCreator accountsPdfSectionCreator) {
+        this.accountsPdfSectionCreator = accountsPdfSectionCreator;
     }
 }

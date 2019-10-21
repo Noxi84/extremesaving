@@ -13,6 +13,7 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.enums.PdfGridTimeEnum;
+import extremesaving.pdf.section.YearBarChartPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
@@ -28,19 +29,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
-import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageCategoryGridService implements PdfPageService {
 
-    public static float CHART_WIDTH = 530;
-    public static float CHART_HEIGHT = 250;
-
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
+    private YearBarChartPdfSectionCreator yearBarChartPdfSectionCreator;
 
     @Override
     public void generate(Document document) {
-        document.add(getYearChart());
+        document.add(yearBarChartPdfSectionCreator.getYearChart());
         document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
@@ -53,18 +51,6 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
         document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
         document.add(getExpensesTable());
-    }
-
-    protected Image getYearChart() {
-        try {
-            Image yearlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
-            yearlyBarChartImage.setWidth(CHART_WIDTH);
-            yearlyBarChartImage.setHeight(CHART_HEIGHT);
-            return yearlyBarChartImage;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     protected Table getOverallCategoryTable() {
@@ -259,5 +245,9 @@ public class PdfPageCategoryGridService implements PdfPageService {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
+    }
+
+    public void setYearBarChartPdfSectionCreator(YearBarChartPdfSectionCreator yearBarChartPdfSectionCreator) {
+        this.yearBarChartPdfSectionCreator = yearBarChartPdfSectionCreator;
     }
 }
