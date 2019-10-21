@@ -6,7 +6,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
-import extremesaving.pdf.service.PdfPageCreator;
+import extremesaving.pdf.service.PdfPageService;
 import extremesaving.property.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;
@@ -15,9 +15,9 @@ import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageCreator pdfPageCategoryGridCreator;
-    private PdfPageCreator pdfPageItemGridCreator;
-    private PdfPageCreator pdfPageTipOfTheDayCreator;
+    private PdfPageService categoryGridPageService;
+    private PdfPageService itemGridPageService;
+    private PdfPageService tipOfTheDayPageService;
 
     @Override
     public void generatePdf() {
@@ -27,13 +27,13 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            pdfPageTipOfTheDayCreator.generate(document);
+            tipOfTheDayPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            pdfPageCategoryGridCreator.generate(document);
+            categoryGridPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            pdfPageItemGridCreator.generate(document);
+            itemGridPageService.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {
@@ -41,15 +41,15 @@ public class PdfFacadeImpl implements PdfFacade {
         }
     }
 
-    public void setPdfPageCategoryGridCreator(PdfPageCreator pdfPageCategoryGridCreator) {
-        this.pdfPageCategoryGridCreator = pdfPageCategoryGridCreator;
+    public void setCategoryGridPageService(PdfPageService categoryGridPageService) {
+        this.categoryGridPageService = categoryGridPageService;
     }
 
-    public void setPdfPageItemGridCreator(PdfPageCreator pdfPageItemGridCreator) {
-        this.pdfPageItemGridCreator = pdfPageItemGridCreator;
+    public void setItemGridPageService(PdfPageService itemGridPageService) {
+        this.itemGridPageService = itemGridPageService;
     }
 
-    public void setPdfPageTipOfTheDayCreator(PdfPageCreator pdfPageTipOfTheDayCreator) {
-        this.pdfPageTipOfTheDayCreator = pdfPageTipOfTheDayCreator;
+    public void setTipOfTheDayPageService(PdfPageService tipOfTheDayPageService) {
+        this.tipOfTheDayPageService = tipOfTheDayPageService;
     }
 }

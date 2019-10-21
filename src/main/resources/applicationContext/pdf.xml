@@ -2,23 +2,23 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-    <!-- Facade-->
+    <!--Facade-->
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="pdfPageCategoryGridCreator" ref="pdfPageCategoryGridCreator"/>
-        <property name="pdfPageItemGridCreator" ref="pdfPageItemGridCreator"/>
-        <property name="pdfPageTipOfTheDayCreator" ref="pdfPageTipOfTheDayCreator"/>
+        <property name="categoryGridPageService" ref="categoryGridPageService"/>
+        <property name="itemGridPageService" ref="itemGridPageService"/>
+        <property name="tipOfTheDayPageService" ref="tipOfTheDayPageService"/>
     </bean>
 
-    <!-- Pdf page creators -->
-    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.service.PdfPageCategoryGridCreator">
+    <!--Services-->
+    <bean id="categoryGridPageService" class="extremesaving.pdf.service.CategoryGridPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
     </bean>
-    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.service.PdfPageItemGridCreator">
+    <bean id="itemGridPageService" class="extremesaving.pdf.service.ItemGridPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="pdfPageTipOfTheDayCreator" class="extremesaving.pdf.service.PdfPageTipOfTheDayCreator">
+    <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>

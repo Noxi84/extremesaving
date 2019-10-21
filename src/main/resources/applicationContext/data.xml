@@ -2,14 +2,19 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+    <!--Facade-->
     <bean id="dataFacade" class="extremesaving.data.facade.DataFacadeImpl">
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="dataService" ref="dataService"/>
     </bean>
+
+    <!--Services-->
     <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">
         <property name="dataDao" ref="dataDao"/>
         <property name="tipOfTheDayDao" ref="tipOfTheDayDao"/>
     </bean>
+
+    <!--Dao-->
     <bean id="dataDao" class="extremesaving.data.dao.DataDaoImpl"/>
     <bean id="tipOfTheDayDao" class="extremesaving.data.dao.TipOfTheDayDaoImpl"/>
 </beans>

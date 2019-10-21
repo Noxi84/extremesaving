@@ -2,21 +2,16 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
+    <!--Facade-->
     <bean id="estimationFacade" class="extremesaving.calculation.facade.EstimationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
         <property name="dataFacade" ref="dataFacade"/>
     </bean>
-
-    <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
-    </bean>
-
     <bean id="accountFacade" class="extremesaving.calculation.facade.AccountFacadeImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
@@ -25,4 +20,7 @@
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
 
+    <!--Services-->
+    <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
+    </bean>
 </beans>

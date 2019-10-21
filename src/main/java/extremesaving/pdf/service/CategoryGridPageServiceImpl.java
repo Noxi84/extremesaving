@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageCategoryGridCreator implements PdfPageCreator {
+public class CategoryGridPageServiceImpl implements PdfPageService {
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;

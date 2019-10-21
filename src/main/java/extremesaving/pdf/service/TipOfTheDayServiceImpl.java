@@ -23,7 +23,7 @@ import extremesaving.pdf.util.PdfUtils;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
+public class TipOfTheDayServiceImpl implements PdfPageService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;

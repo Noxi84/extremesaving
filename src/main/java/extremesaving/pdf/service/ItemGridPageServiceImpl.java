@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageItemGridCreator implements PdfPageCreator {
+public class ItemGridPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 39;
     private static final int TEXT_MAX_CHARACTERS = 26;
