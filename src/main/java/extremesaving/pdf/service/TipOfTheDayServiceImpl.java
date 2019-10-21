@@ -9,6 +9,7 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
+import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
@@ -25,6 +26,7 @@ import java.util.List;
 
 public class TipOfTheDayServiceImpl implements PdfPageService {
 
+    private ChartFacade chartFacade;
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
     private EstimationFacade estimationFacade;
@@ -82,6 +84,7 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
     }
 
     protected Image buildGoalLineChartImage() {
+        chartFacade.generateGoalLineChart();
         return new GoalLineChartImageComponent()
                 .build()
                 .getImage();
@@ -103,15 +106,21 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
     }
 
     protected Image buildMonthBarChartImage() {
+        chartFacade.generateMonthlyBarChart();
         return new MonthBarChartImageComponent()
                 .build()
                 .getImage();
     }
 
     protected Image buildYearLineChartImage() {
+        chartFacade.generateYearLineChart();
         return new YearLineChartImageComponent()
                 .build()
                 .getImage();
+    }
+
+    public void setChartFacade(ChartFacade chartFacade) {
+        this.chartFacade = chartFacade;
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {

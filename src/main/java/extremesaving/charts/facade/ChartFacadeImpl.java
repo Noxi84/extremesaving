@@ -10,10 +10,26 @@ public class ChartFacadeImpl implements ChartFacade {
     private ChartService goalLineChartService;
 
     @Override
-    public void generateCharts() {
+    public void generateMonthlyBarChart() {
+        System.out.println("Generating MonthlyBarChart...");
         monthlyBarChartService.generateChartPng();
+    }
+
+    @Override
+    public void generateYearlyBarChart() {
+        System.out.println("Generating YearlyBarChart...");
         yearlyBarChartService.generateChartPng();
+    }
+
+    @Override
+    public void generateYearLineChart() {
+        System.out.println("Generating YearLineChart...");
         yearLineChartService.generateChartPng();
+    }
+
+    @Override
+    public void generateGoalLineChart() {
+        System.out.println("Generating GoalLineChart...");
         goalLineChartService.generateChartPng();
     }
 

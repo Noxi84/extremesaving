@@ -13,12 +13,14 @@
     <bean id="categoryGridPageService" class="extremesaving.pdf.service.CategoryGridPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
+        <property name="chartFacade" ref="chartFacade"/>
     </bean>
     <bean id="itemGridPageService" class="extremesaving.pdf.service.ItemGridPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
     <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayServiceImpl">
+        <property name="chartFacade" ref="chartFacade"/>
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>

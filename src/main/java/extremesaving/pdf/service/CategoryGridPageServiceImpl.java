@@ -6,6 +6,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
+import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.categorygrid.CategoryExpensesTableComponent;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 public class CategoryGridPageServiceImpl implements PdfPageService {
 
+    private ChartFacade chartFacade;
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
 
@@ -43,6 +45,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
     }
 
     protected Image buildYearBarChartImage() {
+        chartFacade.generateYearlyBarChart();
         return new YearBarChartImageComponent()
                 .build()
                 .getImage();
@@ -118,6 +121,10 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
             return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
         return BigDecimal.ZERO;
+    }
+
+    public void setChartFacade(ChartFacade chartFacade) {
+        this.chartFacade = chartFacade;
     }
 
     public void setCategoryFacade(CategoryFacade categoryFacade) {

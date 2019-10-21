@@ -9,7 +9,6 @@
 
     <bean id="main" class="extremesaving.Main">
         <property name="pdfFacade" ref="pdfFacade"/>
-        <property name="chartFacade" ref="chartFacade"/>
     </bean>
 
 </beans>
