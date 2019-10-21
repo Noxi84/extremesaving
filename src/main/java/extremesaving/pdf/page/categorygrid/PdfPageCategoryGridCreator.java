@@ -35,11 +35,10 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
-    private YearBarChartPdfSectionCreator yearBarChartPdfSectionCreator;
 
     @Override
     public void generate(Document document) {
-        document.add(yearBarChartPdfSectionCreator.getYearChart());
+        document.add(new YearBarChartPdfSectionCreator().build().getChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
@@ -246,9 +245,5 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
-    }
-
-    public void setYearBarChartPdfSectionCreator(YearBarChartPdfSectionCreator yearBarChartPdfSectionCreator) {
-        this.yearBarChartPdfSectionCreator = yearBarChartPdfSectionCreator;
     }
 }

@@ -7,8 +7,6 @@ import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.AccountDto;
-import extremesaving.calculation.facade.AccountFacade;
-import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.NumberUtils;
 
@@ -18,14 +16,24 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AccountsPdfSectionCreatorImpl implements AccountsPdfSectionCreator {
+public class AccountsPdfSectionCreator {
 
-    private AccountFacade accountFacade;
-    private CalculationFacade calculationFacade;
+    private List<AccountDto> accounts;
+    private BigDecimal totalBalance;
+    private Cell accountsCell;
 
-    @Override
-    public Cell getAccountsCell() {
-        Cell accountsCell = new Cell();
+    public AccountsPdfSectionCreator withAccounts(List<AccountDto> accounts) {
+        this.accounts = accounts;
+        return this;
+    }
+
+    public AccountsPdfSectionCreator withTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
+        return this;
+    }
+
+    public AccountsPdfSectionCreator build() {
+        accountsCell = new Cell();
         accountsCell.setBorder(Border.NO_BORDER);
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         accountsCell.setTextAlignment(TextAlignment.CENTER);
@@ -50,8 +58,6 @@ public class AccountsPdfSectionCreatorImpl implements AccountsPdfSectionCreator 
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight.setPaddingRight(20);
 
-        List<AccountDto> accounts = accountFacade.getAccounts();
-
         // Sort by name
         Collections.sort(accounts, Comparator.comparing(AccountDto::getName));
 
@@ -75,21 +81,16 @@ public class AccountsPdfSectionCreatorImpl implements AccountsPdfSectionCreator 
         alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
 
         alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(calculationFacade.getTotalBalance()), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalBalance), true));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
         accountsCell.add(alignmentTable);
+        return this;
+    }
 
+    public Cell getAccountsCell() {
         return accountsCell;
-    }
-
-    public void setAccountFacade(AccountFacade accountFacade) {
-        this.accountFacade = accountFacade;
-    }
-
-    public void setCalculationFacade(CalculationFacade calculationFacade) {
-        this.calculationFacade = calculationFacade;
     }
 }

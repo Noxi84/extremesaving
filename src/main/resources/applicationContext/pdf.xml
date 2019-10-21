@@ -6,7 +6,7 @@
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
         <property name="pdfPageCategoryGridCreator" ref="pdfPageCategoryGridCreator"/>
         <property name="pdfPageItemGridCreator" ref="pdfPageItemGridCreator"/>
-        <property name="pdfPagePredictionsCreator" ref="pdfPagePredictionsCreator"/>
+        <property name="pdfPageTipOfTheDayCreator" ref="pdfPageTipOfTheDayCreator"/>
     </bean>
 
     <!-- Pdf page creators -->
@@ -18,10 +18,11 @@
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="pdfPagePredictionsCreator" class="extremesaving.pdf.page.tipoftheday.PdfPageTipOfTheDayCreator">
+    <bean id="pdfPageTipOfTheDayCreator" class="extremesaving.pdf.page.tipoftheday.PdfPageTipOfTheDayCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>
+        <property name="accountFacade" ref="accountFacade"/>
     </bean>
 
 </beans>

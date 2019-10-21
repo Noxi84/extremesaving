@@ -5,31 +5,34 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.util.PdfUtils;
 
-public class TipOfTheDayPdfSectionCreatorImpl implements TipOfTheDayPdfSectionCreator{
+public class TipOfTheDayPdfSectionCreator {
 
-    private DataFacade dataFacade;
+    private Cell chartCell;
+    private String tipOfTheDayMessage;
 
-    @Override
-    public Cell getTipOfTheDayCell() {
-        Cell chartCell = new Cell();
+    public TipOfTheDayPdfSectionCreator withMessage(String message) {
+        this.tipOfTheDayMessage = message;
+        return this;
+    }
+
+    public TipOfTheDayPdfSectionCreator build() {
+        chartCell = new Cell();
         chartCell.setBorder(Border.NO_BORDER);
         chartCell.setWidth(UnitValue.createPercentValue(35));
 
         chartCell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
         chartCell.add(PdfUtils.getItemParagraph("\n"));
-        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(dataFacade.getTipOfTheDay());
+        Paragraph tipOfTheDay = PdfUtils.getItemParagraph(tipOfTheDayMessage);
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
 
         chartCell.add(tipOfTheDay);
         chartCell.add(PdfUtils.getItemParagraph("\n"));
-
-        return chartCell;
+        return this;
     }
 
-    public void setDataFacade(DataFacade dataFacade) {
-        this.dataFacade = dataFacade;
+    public Cell getChartCell() {
+        return chartCell;
     }
 }

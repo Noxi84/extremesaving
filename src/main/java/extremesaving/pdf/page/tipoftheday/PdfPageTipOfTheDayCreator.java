@@ -10,6 +10,7 @@ import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
@@ -48,8 +49,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
     private EstimationFacade estimationFacade;
-    private TipOfTheDayPdfSectionCreator tipOfTheDayPdfSectionCreator;
-    private AccountsPdfSectionCreator accountsPdfSectionCreator;
+    private AccountFacade accountFacade;
 
     @Override
     public void generate(Document document) {
@@ -67,8 +67,8 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
 
         Table table2 = new Table(2);
         table2.setWidth(UnitValue.createPercentValue(100));
-        table2.addCell(accountsPdfSectionCreator.getAccountsCell());
-        table2.addCell(tipOfTheDayPdfSectionCreator.getTipOfTheDayCell());
+        table2.addCell(new AccountsPdfSectionCreator().withAccounts(accountFacade.getAccounts()).withTotalBalance(calculationFacade.getTotalBalance()).build().getAccountsCell());
+        table2.addCell(new TipOfTheDayPdfSectionCreator().withMessage(dataFacade.getTipOfTheDay()).build().getChartCell());
         document.add(table2);
 
         document.add(getMonthBarChartImage());
@@ -267,11 +267,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
         this.estimationFacade = estimationFacade;
     }
 
-    public void setTipOfTheDayPdfSectionCreator(TipOfTheDayPdfSectionCreator tipOfTheDayPdfSectionCreator) {
-        this.tipOfTheDayPdfSectionCreator = tipOfTheDayPdfSectionCreator;
-    }
-
-    public void setAccountsPdfSectionCreator(AccountsPdfSectionCreator accountsPdfSectionCreator) {
-        this.accountsPdfSectionCreator = accountsPdfSectionCreator;
+    public void setAccountFacade(AccountFacade accountFacade) {
+        this.accountFacade = accountFacade;
     }
 }

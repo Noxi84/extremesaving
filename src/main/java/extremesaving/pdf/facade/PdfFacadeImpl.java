@@ -17,7 +17,7 @@ public class PdfFacadeImpl implements PdfFacade {
 
     private PdfPageCreator pdfPageCategoryGridCreator;
     private PdfPageCreator pdfPageItemGridCreator;
-    private PdfPageCreator pdfPagePredictionsCreator;
+    private PdfPageCreator pdfPageTipOfTheDayCreator;
 
     @Override
     public void generatePdf() {
@@ -27,7 +27,7 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            pdfPagePredictionsCreator.generate(document);
+            pdfPageTipOfTheDayCreator.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
             pdfPageCategoryGridCreator.generate(document);
@@ -49,7 +49,7 @@ public class PdfFacadeImpl implements PdfFacade {
         this.pdfPageItemGridCreator = pdfPageItemGridCreator;
     }
 
-    public void setPdfPagePredictionsCreator(PdfPageCreator pdfPagePredictionsCreator) {
-        this.pdfPagePredictionsCreator = pdfPagePredictionsCreator;
+    public void setPdfPageTipOfTheDayCreator(PdfPageCreator pdfPageTipOfTheDayCreator) {
+        this.pdfPageTipOfTheDayCreator = pdfPageTipOfTheDayCreator;
     }
 }
