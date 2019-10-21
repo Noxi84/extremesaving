@@ -48,9 +48,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
 
     protected Image buildYearBarChartImage() {
         chartFacade.generateYearlyBarChart();
-        return new YearBarChartImageComponent()
-                .build()
-                .getImage();
+        return new YearBarChartImageComponent().build();
     }
 
     protected Table buildCategoryOverallTable() {
@@ -64,8 +62,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
                 .withOverallSavingRatio(getOverallSavingRatio())
                 .withYearSavingRatio(getYearSavingRatio())
                 .withMonthSavingRatio(getMonthSavingRatio())
-                .build()
-                .getTable();
+                .build();
     }
 
     protected Table buildCategoryProfitsTable() {
@@ -76,8 +73,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)
-                .build()
-                .getTable();
+                .build();
     }
 
     protected Table buildCategoryExpensesTable() {
@@ -88,8 +84,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMontResults(monthResults)
-                .build()
-                .getTable();
+                .build();
     }
 
     protected BigDecimal getOverallSavingRatio() {

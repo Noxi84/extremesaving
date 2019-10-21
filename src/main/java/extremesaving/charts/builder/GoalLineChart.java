@@ -1,4 +1,4 @@
-package extremesaving.charts.service;
+package extremesaving.charts.builder;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -11,12 +11,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-public class GoalLineChartService implements ChartService {
+public class GoalLineChart {
 
-    private ChartDataService chartDataService;
+    private Map<Date, BigDecimal> historyResults;
+    private Map<Date, BigDecimal> survivalResults;
+    private Map<Date, BigDecimal> futureResults;
 
-    @Override
-    public JFreeChart generateChartPng() {
+    public GoalLineChart withHistoryResults(Map<Date, BigDecimal> historyResults) {
+        this.historyResults = historyResults;
+        return this;
+    }
+
+    public GoalLineChart withSurvivalResults(Map<Date, BigDecimal> survivalResults) {
+        this.survivalResults = survivalResults;
+        return this;
+    }
+
+    public GoalLineChart withFutureResults(Map<Date, BigDecimal> futureResults) {
+        this.futureResults = futureResults;
+        return this;
+    }
+
+    public JFreeChart build() {
         return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
     }
 
@@ -30,7 +46,6 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getBalanceHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
-        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineHistoryResults();
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
@@ -41,7 +56,6 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getSurvivalSeries() {
         TimeSeries series = new TimeSeries("Without incomes");
-        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineSurvivalEstimationResults();
         for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
@@ -52,16 +66,11 @@ public class GoalLineChartService implements ChartService {
 
     protected TimeSeries getEstimationSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
-        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineFutureEstimationResults();
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
             series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
         }
         return series;
-    }
-
-    public void setChartDataService(ChartDataService chartDataService) {
-        this.chartDataService = chartDataService;
     }
 }

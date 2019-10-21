@@ -19,7 +19,6 @@ public class ProfitsTableComponent {
     private List<ResultDto> monthResults;
     private int displayMaxItems;
     private int displayMaxTextCharacters;
-    private Table table;
 
     public ProfitsTableComponent withOverallResults(List<ResultDto> overallResults) {
         this.overallResults = overallResults;
@@ -46,13 +45,13 @@ public class ProfitsTableComponent {
         return this;
     }
 
-    public ProfitsTableComponent build() {
-        table = new Table(3);
+    public Table build() {
+        Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getItemCell("Overall", overallResults));
         table.addCell(getItemCell("This year", yearResults));
         table.addCell(getItemCell("This month", monthResults));
-        return this;
+        return table;
     }
 
     protected Cell getItemCell(String title, List<ResultDto> results) {
@@ -109,9 +108,5 @@ public class ProfitsTableComponent {
             alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
         return alignmentTableRight;
-    }
-
-    public Table getTable() {
-        return table;
     }
 }

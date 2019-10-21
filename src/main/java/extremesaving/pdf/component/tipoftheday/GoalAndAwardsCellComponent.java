@@ -23,7 +23,6 @@ public class GoalAndAwardsCellComponent {
     private int goalIndex;
     private Long goalTime;
     private Long survivalDays;
-    private Cell cell;
 
     public GoalAndAwardsCellComponent withResultDto(ResultDto resultDto) {
         this.resultDto = resultDto;
@@ -60,8 +59,8 @@ public class GoalAndAwardsCellComponent {
         return this;
     }
 
-    public GoalAndAwardsCellComponent build() {
-        cell = new Cell();
+    public Cell build() {
+        Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setTextAlignment(TextAlignment.CENTER);
         cell.setWidth(UnitValue.createPercentValue(50));
@@ -71,17 +70,13 @@ public class GoalAndAwardsCellComponent {
             BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoal);
             BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
-            cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build().getImage());
+            cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build());
             cell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(currentGoal, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
             cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
             cell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));
             cell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(survivalDays), false));
             cell.add(PdfUtils.getItemParagraph("\n"));
         }
-        return this;
-    }
-
-    public Cell getCell() {
         return cell;
     }
 }

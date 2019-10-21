@@ -11,20 +11,14 @@ public class MonthBarChartImageComponent {
     public static float MONTHCHART_WIDTH = 530;
     public static float MONTHCHART_HEIGHT = 240;
 
-    private Image image;
-
-    public MonthBarChartImageComponent build() {
+    public Image build() {
         try {
-            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
             image.setWidth(MONTHCHART_WIDTH);
             image.setHeight(MONTHCHART_HEIGHT);
+            return image;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new IllegalStateException("Unable to create MonthBarChartImageComponent.", ex);
         }
-        return this;
-    }
-
-    public Image getImage() {
-        return image;
     }
 }

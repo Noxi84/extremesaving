@@ -20,7 +20,6 @@ public class CategoryOverallTableComponent {
     private BigDecimal overallSavingRatio;
     private BigDecimal yearSavingRatio;
     private BigDecimal monthSavingRatio;
-    private Table table;
 
     public CategoryOverallTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
@@ -52,32 +51,32 @@ public class CategoryOverallTableComponent {
         return this;
     }
 
-    public CategoryOverallTableComponent build() {
-        table = new Table(3);
+    public Table build() {
+        Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallResultsCell());
         table.addCell(createYearResultsCell());
         table.addCell(createMonthResultsCell());
-        return this;
+        return table;
     }
 
     protected Cell createOverallResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageComponent().withSavingRatio(overallSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(overallSavingRatio).build());
         cell.add(createResultCategoryTable(overallResults, overallSavingRatio));
         return cell;
     }
 
     protected Cell createYearResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageComponent().withSavingRatio(yearSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(yearSavingRatio).build());
         cell.add(createResultCategoryTable(yearResults, yearSavingRatio));
         return cell;
     }
 
     protected Cell createMonthResultsCell() {
         Cell cell = new Cell();
-        cell.add(new SavingRatioImageComponent().withSavingRatio(monthSavingRatio).build().getImage());
+        cell.add(new SavingRatioImageComponent().withSavingRatio(monthSavingRatio).build());
         cell.add(createResultCategoryTable(monthResults, monthSavingRatio));
         return cell;
     }
@@ -117,9 +116,5 @@ public class CategoryOverallTableComponent {
         alignmentTable.addCell(alignmentTableRight);
 
         return alignmentTable;
-    }
-
-    public Table getTable() {
-        return table;
     }
 }

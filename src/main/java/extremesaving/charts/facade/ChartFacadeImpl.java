@@ -1,6 +1,10 @@
 package extremesaving.charts.facade;
 
-import extremesaving.charts.service.ChartService;
+import extremesaving.charts.builder.GoalLineChart;
+import extremesaving.charts.builder.MonthlyBarChart;
+import extremesaving.charts.builder.YearLineChart;
+import extremesaving.charts.builder.YearlyBarChart;
+import extremesaving.charts.service.ChartDataService;
 import extremesaving.pdf.component.categorygrid.YearBarChartImageComponent;
 import extremesaving.pdf.component.tipoftheday.GoalLineChartImageComponent;
 import extremesaving.pdf.component.tipoftheday.MonthBarChartImageComponent;
@@ -23,36 +27,45 @@ import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FIL
 
 public class ChartFacadeImpl implements ChartFacade {
 
-    private ChartService monthlyBarChartService;
-    private ChartService yearlyBarChartService;
-    private ChartService yearLineChartService;
-    private ChartService goalLineChartService;
+    private ChartDataService chartDataService;
 
     @Override
     public void generateMonthlyBarChart() {
         System.out.println("Generating MonthlyBarChart...");
-        JFreeChart chart = monthlyBarChartService.generateChartPng();
+        JFreeChart chart = new MonthlyBarChart()
+                .withMonthlyResults(chartDataService.getMonthlyResults())
+                .build();
         writeChartPng(chart, PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE), (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
     }
 
     @Override
     public void generateYearlyBarChart() {
         System.out.println("Generating YearlyBarChart...");
-        JFreeChart chart = yearlyBarChartService.generateChartPng();
+        JFreeChart chart = new YearlyBarChart()
+                .withYearResults(chartDataService.getYearlyResults())
+                .build();
         writeChartPng(chart, PropertiesValueHolder.getString(YEARLY_BAR_CHART_IMAGE_FILE), (int) YearBarChartImageComponent.CHART_WIDTH * 2, (int) YearBarChartImageComponent.CHART_HEIGHT * 2);
     }
 
     @Override
     public void generateYearLineChart() {
         System.out.println("Generating YearLineChart...");
-        JFreeChart chart = yearLineChartService.generateChartPng();
+        JFreeChart chart = new YearLineChart()
+                .withHistoryResults(chartDataService.getGoalLineHistoryResults())
+                .withFutureResults(chartDataService.getGoalLineFutureEstimationResults())
+                .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
+                .build();
         writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) YearLineChartImageComponent.YEAR_LINE_CHART_WIDTH * 2, (int) YearLineChartImageComponent.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
     @Override
     public void generateGoalLineChart() {
         System.out.println("Generating GoalLineChart...");
-        JFreeChart chart = goalLineChartService.generateChartPng();
+        JFreeChart chart = new GoalLineChart()
+                .withFutureResults(chartDataService.getGoalLineFutureEstimationResults())
+                .withHistoryResults(chartDataService.getGoalLineHistoryResults())
+                .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
+                .build();
         writeChartPng(chart, PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE), (int) GoalLineChartImageComponent.GOAL_LINE_CHART_WIDTH * 2, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_HEIGHT * 2);
     }
 
@@ -71,19 +84,7 @@ public class ChartFacadeImpl implements ChartFacade {
         }
     }
 
-    public void setMonthlyBarChartService(ChartService monthlyBarChartService) {
-        this.monthlyBarChartService = monthlyBarChartService;
-    }
-
-    public void setYearlyBarChartService(ChartService yearlyBarChartService) {
-        this.yearlyBarChartService = yearlyBarChartService;
-    }
-
-    public void setYearLineChartService(ChartService yearLineChartService) {
-        this.yearLineChartService = yearLineChartService;
-    }
-
-    public void setGoalLineChartService(ChartService goalLineChartService) {
-        this.goalLineChartService = goalLineChartService;
+    public void setChartDataService(ChartDataService chartDataService) {
+        this.chartDataService = chartDataService;
     }
 }

@@ -11,20 +11,14 @@ public class GoalLineChartImageComponent {
     public static float GOAL_LINE_CHART_WIDTH = 530;
     public static float GOAL_LINE_CHART_HEIGHT = 240;
 
-    private Image image;
-
-    public GoalLineChartImageComponent build() {
+    public Image build() {
         try {
-            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
             image.setWidth(GOAL_LINE_CHART_WIDTH);
             image.setHeight(GOAL_LINE_CHART_HEIGHT);
+            return image;
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new IllegalStateException("Unable to create GoalLineChartImageComponent.", ex);
         }
-        return this;
-    }
-
-    public Image getImage() {
-        return image;
     }
 }

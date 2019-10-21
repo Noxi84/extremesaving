@@ -43,8 +43,7 @@ public class ItemGridPageServiceImpl implements PdfPageService {
                 .withMonthResults(monthResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build()
-                .getTable();
+                .build();
     }
 
     protected Table buildExpensesTable() {
@@ -57,8 +56,7 @@ public class ItemGridPageServiceImpl implements PdfPageService {
                 .withMonthResults(monthResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build()
-                .getTable();
+                .build();
     }
 
     public void setDataFacade(DataFacade dataFacade) {

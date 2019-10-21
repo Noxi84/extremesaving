@@ -1,4 +1,4 @@
-package extremesaving.charts.service;
+package extremesaving.charts.builder;
 
 import extremesaving.calculation.dto.MiniResultDto;
 import org.jfree.chart.ChartFactory;
@@ -11,18 +11,20 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-public class MonthlyBarChartService implements ChartService {
+public class MonthlyBarChart {
 
-    private ChartDataService chartDataService;
+    private Map<Integer, MiniResultDto> monthlyResults;
 
-    @Override
-    public JFreeChart generateChartPng() {
+    public MonthlyBarChart withMonthlyResults(Map<Integer, MiniResultDto> monthlyResults) {
+        this.monthlyResults = monthlyResults;
+        return this;
+    }
+
+    public JFreeChart build() {
         return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
     }
 
     protected CategoryDataset createDataset() {
-        Map<Integer, MiniResultDto> monthlyResults = chartDataService.getMonthlyResults();
-
         final String incomes = "Incomes";
         final String result = "Result";
         final String expenses = "Expenses";
@@ -93,9 +95,5 @@ public class MonthlyBarChartService implements ChartService {
         dataset.addValue(decemberResults.getIncomes(), incomes, december);
 
         return dataset;
-    }
-
-    public void setChartDataService(ChartDataService chartDataService) {
-        this.chartDataService = chartDataService;
     }
 }

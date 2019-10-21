@@ -20,7 +20,6 @@ public class AccountsCellComponent {
 
     private List<AccountDto> accounts;
     private BigDecimal totalBalance;
-    private Cell cell;
 
     public AccountsCellComponent withAccounts(List<AccountDto> accounts) {
         this.accounts = accounts;
@@ -32,8 +31,8 @@ public class AccountsCellComponent {
         return this;
     }
 
-    public AccountsCellComponent build() {
-        cell = new Cell();
+    public Cell build() {
+        Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         cell.setTextAlignment(TextAlignment.CENTER);
@@ -87,10 +86,6 @@ public class AccountsCellComponent {
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
         cell.add(alignmentTable);
-        return this;
-    }
-
-    public Cell getCell() {
         return cell;
     }
 }

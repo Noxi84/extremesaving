@@ -1,4 +1,4 @@
-package extremesaving.charts.service;
+package extremesaving.charts.builder;
 
 import extremesaving.util.DateUtils;
 import org.jfree.chart.ChartFactory;
@@ -12,12 +12,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-public class YearLineChartService implements ChartService {
+public class YearLineChart {
 
-    private ChartDataService chartDataService;
+    private Map<Date, BigDecimal> historyResults;
+    private Map<Date, BigDecimal> survivalResults;
+    private Map<Date, BigDecimal> futureResults;
 
-    @Override
-    public JFreeChart generateChartPng() {
+    public YearLineChart withHistoryResults(Map<Date, BigDecimal> historyResults) {
+        this.historyResults = historyResults;
+        return this;
+    }
+
+    public YearLineChart withSurvivalResults(Map<Date, BigDecimal> survivalResults) {
+        this.survivalResults = survivalResults;
+        return this;
+    }
+
+    public YearLineChart withFutureResults(Map<Date, BigDecimal> futureResults) {
+        this.futureResults = futureResults;
+        return this;
+    }
+
+    public JFreeChart build() {
         return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
     }
 
@@ -31,7 +47,6 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getBalanceHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
-        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineHistoryResults();
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
@@ -45,7 +60,6 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getSurvivalSeries() {
         TimeSeries series = new TimeSeries("Without incomes");
-        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineSurvivalEstimationResults();
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
@@ -59,8 +73,6 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeries getEstimationSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
-        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineFutureEstimationResults();
-
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
@@ -70,9 +82,5 @@ public class YearLineChartService implements ChartService {
             }
         }
         return series;
-    }
-
-    public void setChartDataService(ChartDataService chartDataService) {
-        this.chartDataService = chartDataService;
     }
 }

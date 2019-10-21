@@ -70,8 +70,7 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
                 .withGoalIndex(estimationFacade.getGoalIndex(currentGoal))
                 .withGoalTime(estimationFacade.getGoalTime(currentGoal))
                 .withSurvivalDays(estimationFacade.getSurvivalDays())
-                .build()
-                .getCell();
+                .build();
     }
 
     protected Cell buildStatisticsCell() {
@@ -81,44 +80,35 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
                 .withBestYear(calculationFacade.getBestYear())
                 .withWorstMonth(calculationFacade.getWorstMonth())
                 .withWorstYear(calculationFacade.getWorstYear())
-                .build()
-                .getCell();
+                .build();
     }
 
     protected Image buildGoalLineChartImage() {
         chartFacade.generateGoalLineChart();
-        return new GoalLineChartImageComponent()
-                .build()
-                .getImage();
+        return new GoalLineChartImageComponent().build();
     }
 
     protected Cell buildAccountsCell() {
         return new AccountsCellComponent()
                 .withAccounts(accountFacade.getAccounts())
                 .withTotalBalance(calculationFacade.getTotalBalance())
-                .build()
-                .getCell();
+                .build();
     }
 
     protected Cell buildTipOfTheDayCell() {
         return new TipOfTheDayCellComponent()
                 .withMessage(dataFacade.getTipOfTheDay())
-                .build()
-                .getCell();
+                .build();
     }
 
     protected Image buildMonthBarChartImage() {
         chartFacade.generateMonthlyBarChart();
-        return new MonthBarChartImageComponent()
-                .build()
-                .getImage();
+        return new MonthBarChartImageComponent().build();
     }
 
     protected Image buildYearLineChartImage() {
         chartFacade.generateYearLineChart();
-        return new YearLineChartImageComponent()
-                .build()
-                .getImage();
+        return new YearLineChartImageComponent().build();
     }
 
     public void setChartFacade(ChartFacade chartFacade) {

@@ -4,10 +4,7 @@
 <beans>
     <!--Facade-->
     <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
-        <property name="monthlyBarChartService" ref="monthlyBarChartService"/>
-        <property name="yearlyBarChartService" ref="yearlyBarChartService"/>
-        <property name="yearLineChartService" ref="yearLineChartService"/>
-        <property name="goalLineChartService" ref="goalLineChartService"/>
+        <property name="chartDataService" ref="chartDataService"/>
     </bean>
 
     <!--Services-->
@@ -16,17 +13,5 @@
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="calculationService" ref="calculationService"/>
         <property name="estimationFacade" ref="estimationFacade"/>
-    </bean>
-    <bean id="monthlyBarChartService" class="extremesaving.charts.service.MonthlyBarChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="yearlyBarChartService" class="extremesaving.charts.service.YearlyBarChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="goalLineChartService" class="extremesaving.charts.service.GoalLineChartService">
-        <property name="chartDataService" ref="chartDataService"/>
-    </bean>
-    <bean id="yearLineChartService" class="extremesaving.charts.service.YearLineChartService">
-        <property name="chartDataService" ref="chartDataService"/>
     </bean>
 </beans>

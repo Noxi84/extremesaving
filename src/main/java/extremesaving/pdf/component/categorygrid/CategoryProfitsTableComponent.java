@@ -17,7 +17,6 @@ public class CategoryProfitsTableComponent {
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
     private List<CategoryDto> monthResults;
-    private Table table;
 
     public CategoryProfitsTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
@@ -34,13 +33,13 @@ public class CategoryProfitsTableComponent {
         return this;
     }
 
-    public CategoryProfitsTableComponent build() {
-        table = new Table(3);
+    public Table build() {
+        Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallCategory());
         table.addCell(createYearCategory());
         table.addCell(createMonthCategory());
-        return this;
+        return table;
     }
 
     protected Cell createOverallCategory() {
@@ -95,9 +94,5 @@ public class CategoryProfitsTableComponent {
         alignmentTable.addCell(alignmentTableRight);
 
         return alignmentTable;
-    }
-
-    public Table getTable() {
-        return table;
     }
 }

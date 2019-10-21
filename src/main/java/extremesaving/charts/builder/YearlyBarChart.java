@@ -1,4 +1,4 @@
-package extremesaving.charts.service;
+package extremesaving.charts.builder;
 
 import extremesaving.calculation.dto.MiniResultDto;
 import org.jfree.chart.ChartFactory;
@@ -10,18 +10,20 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.util.Calendar;
 import java.util.Map;
 
-public class YearlyBarChartService implements ChartService {
+public class YearlyBarChart {
 
-    private ChartDataService chartDataService;
+    private Map<Integer, MiniResultDto> yearResults;
 
-    @Override
-    public JFreeChart generateChartPng() {
+    public YearlyBarChart withYearResults(Map<Integer, MiniResultDto> yearResults) {
+        this.yearResults = yearResults;
+        return this;
+    }
+
+    public JFreeChart build() {
         return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
     }
 
     protected CategoryDataset createDataset() {
-        Map<Integer, MiniResultDto> yearlyResults = chartDataService.getYearlyResults();
-
         final String result = "Result";
 
         Calendar cal = Calendar.getInstance();
@@ -38,15 +40,15 @@ public class YearlyBarChartService implements ChartService {
         final String year9 = String.valueOf(currentYear - 8);
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        MiniResultDto year9Results = yearlyResults.get(Integer.valueOf(year9));
-        MiniResultDto year8Results = yearlyResults.get(Integer.valueOf(year8));
-        MiniResultDto year7Results = yearlyResults.get(Integer.valueOf(year7));
-        MiniResultDto year6Results = yearlyResults.get(Integer.valueOf(year6));
-        MiniResultDto year5Results = yearlyResults.get(Integer.valueOf(year5));
-        MiniResultDto year4Results = yearlyResults.get(Integer.valueOf(year4));
-        MiniResultDto year3Results = yearlyResults.get(Integer.valueOf(year3));
-        MiniResultDto year2Results = yearlyResults.get(Integer.valueOf(year2));
-        MiniResultDto year1Results = yearlyResults.get(Integer.valueOf(year1));
+        MiniResultDto year9Results = yearResults.get(Integer.valueOf(year9));
+        MiniResultDto year8Results = yearResults.get(Integer.valueOf(year8));
+        MiniResultDto year7Results = yearResults.get(Integer.valueOf(year7));
+        MiniResultDto year6Results = yearResults.get(Integer.valueOf(year6));
+        MiniResultDto year5Results = yearResults.get(Integer.valueOf(year5));
+        MiniResultDto year4Results = yearResults.get(Integer.valueOf(year4));
+        MiniResultDto year3Results = yearResults.get(Integer.valueOf(year3));
+        MiniResultDto year2Results = yearResults.get(Integer.valueOf(year2));
+        MiniResultDto year1Results = yearResults.get(Integer.valueOf(year1));
 
         dataset.addValue(year9Results.getResult(), result, year9);
         dataset.addValue(year8Results.getResult(), result, year8);
@@ -59,9 +61,5 @@ public class YearlyBarChartService implements ChartService {
         dataset.addValue(year1Results.getResult(), result, year1);
 
         return dataset;
-    }
-
-    public void setChartDataService(ChartDataService chartDataService) {
-        this.chartDataService = chartDataService;
     }
 }

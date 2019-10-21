@@ -15,25 +15,24 @@ import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
 public class SavingRatioImageComponent {
 
     private BigDecimal savingRatio;
-    private Image image;
 
     public SavingRatioImageComponent withSavingRatio(BigDecimal savingRatio) {
         this.savingRatio = savingRatio;
         return this;
     }
 
-    public SavingRatioImageComponent build() {
+    public Image build() {
         PropertyValueEnum savingRatioImage = getSavingRatioImage();
         try {
-            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(savingRatioImage)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(savingRatioImage)));
             image.setHorizontalAlignment(HorizontalAlignment.CENTER);
             image.setTextAlignment(TextAlignment.CENTER);
             image.setWidth(45);
             image.setHeight(45);
+            return image;
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Unable to create SavingRatioImageComponent.", e);
         }
-        return this;
     }
 
     protected PropertyValueEnum getSavingRatioImage() {
@@ -57,9 +56,5 @@ public class SavingRatioImageComponent {
             return PropertyValueEnum.SAVING_RATE_ICON2;
         }
         return SAVING_RATE_ICON1;
-    }
-
-    public Image getImage() {
-        return image;
     }
 }

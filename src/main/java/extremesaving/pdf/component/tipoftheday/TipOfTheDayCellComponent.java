@@ -10,15 +10,14 @@ import extremesaving.pdf.util.PdfUtils;
 public class TipOfTheDayCellComponent {
 
     private String tipOfTheDayMessage;
-    private Cell cell;
 
     public TipOfTheDayCellComponent withMessage(String message) {
         this.tipOfTheDayMessage = message;
         return this;
     }
 
-    public TipOfTheDayCellComponent build() {
-        cell = new Cell();
+    public Cell build() {
+        Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setWidth(UnitValue.createPercentValue(35));
 
@@ -29,10 +28,6 @@ public class TipOfTheDayCellComponent {
 
         cell.add(tipOfTheDay);
         cell.add(PdfUtils.getItemParagraph("\n"));
-        return this;
-    }
-
-    public Cell getCell() {
         return cell;
     }
 }

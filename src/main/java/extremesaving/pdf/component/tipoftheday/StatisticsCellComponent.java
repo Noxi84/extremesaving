@@ -18,7 +18,6 @@ public class StatisticsCellComponent {
     private Date bestYear;
     private Date worstMonth;
     private Date worstYear;
-    private Cell cell;
 
     public StatisticsCellComponent withLastItemAdded(Date lastItemAdded) {
         this.lastItemAdded = lastItemAdded;
@@ -45,8 +44,8 @@ public class StatisticsCellComponent {
         return this;
     }
 
-    public StatisticsCellComponent build() {
-        cell = new Cell();
+    public Cell build() {
+        Cell cell = new Cell();
         cell.setWidth(UnitValue.createPercentValue(25));
         cell.setBorder(Border.NO_BORDER);
         cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -108,10 +107,6 @@ public class StatisticsCellComponent {
 
         cell.add(alignmentTable);
 
-        return this;
-    }
-
-    public Cell getCell() {
         return cell;
     }
 }

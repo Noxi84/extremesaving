@@ -18,7 +18,6 @@ public class CategoryExpensesTableComponent {
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
     private List<CategoryDto> monthResults;
-    private Table table;
 
     public CategoryExpensesTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
@@ -35,13 +34,13 @@ public class CategoryExpensesTableComponent {
         return this;
     }
 
-    public CategoryExpensesTableComponent build() {
-        table = new Table(3);
+    public Table build() {
+        Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(createOverallCategoryCell());
         table.addCell(createYearCategoryCell());
         table.addCell(createMonthCategoryCell());
-        return this;
+        return table;
     }
 
     protected Cell createOverallCategoryCell() {
@@ -98,9 +97,5 @@ public class CategoryExpensesTableComponent {
 
     protected BigDecimal getTotalAmount(Collection<CategoryDto> categoryDtos) {
         return categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public Table getTable() {
-        return table;
     }
 }

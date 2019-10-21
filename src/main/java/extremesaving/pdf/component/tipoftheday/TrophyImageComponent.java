@@ -15,24 +15,23 @@ public class TrophyImageComponent {
     private static float IMAGE_HEIGHT = 72;
 
     private int goalIndex;
-    private Image image;
 
     public TrophyImageComponent withGoalIndex(int goalIndex) {
         this.goalIndex = goalIndex;
         return this;
     }
 
-    public TrophyImageComponent build() {
+    public Image build() {
         try {
-            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(getTrophyLocation())));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(getTrophyLocation())));
+            image.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            image.setTextAlignment(TextAlignment.CENTER);
+            image.setWidth(IMAGE_WIDTH);
+            image.setHeight(IMAGE_HEIGHT);
+            return image;
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("Unable to create TophyImageComponent.", e);
         }
-        image.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        image.setTextAlignment(TextAlignment.CENTER);
-        image.setWidth(IMAGE_WIDTH);
-        image.setHeight(IMAGE_HEIGHT);
-        return this;
     }
 
     protected PropertyValueEnum getTrophyLocation() {
@@ -72,9 +71,5 @@ public class TrophyImageComponent {
             return PropertyValueEnum.TROPHY_ICON17;
         }
         return PropertyValueEnum.TROPHY_ICON18;
-    }
-
-    public Image getImage() {
-        return image;
     }
 }
