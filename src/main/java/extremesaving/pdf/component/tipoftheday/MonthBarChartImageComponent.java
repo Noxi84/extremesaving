@@ -4,7 +4,7 @@ import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
 import extremesaving.property.PropertiesValueHolder;
 
-import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FILE;
 
 public class MonthBarChartImageComponent {
 
@@ -13,7 +13,7 @@ public class MonthBarChartImageComponent {
 
     public Image build() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTH_BAR_CHART_IMAGE_FILE)));
             image.setWidth(MONTHCHART_WIDTH);
             image.setHeight(MONTHCHART_HEIGHT);
             return image;

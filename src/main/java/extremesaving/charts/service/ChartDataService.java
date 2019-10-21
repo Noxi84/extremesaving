@@ -8,9 +8,9 @@ import java.util.Map;
 
 public interface ChartDataService {
 
-    Map<Integer, MiniResultDto> getMonthlyResults();
+    Map<Integer, MiniResultDto> getMonthResults();
 
-    Map<Integer, MiniResultDto> getYearlyResults();
+    Map<Integer, MiniResultDto> getYearResults();
 
     Map<Date, BigDecimal> getGoalLineHistoryResults();
 

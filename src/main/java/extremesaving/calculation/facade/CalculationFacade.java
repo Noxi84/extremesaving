@@ -14,9 +14,9 @@ public interface CalculationFacade {
 
     ResultDto getResults(Collection<DataDto> dataDtos);
 
-    Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataDto> dataDtos);
+    Map<Integer, MiniResultDto> getMonthResults(Collection<DataDto> dataDtos);
 
-    Map<Integer, MiniResultDto> getYearlyResults(Collection<DataDto> dataDtos);
+    Map<Integer, MiniResultDto> getYearResults(Collection<DataDto> dataDtos);
 
     List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos);
 

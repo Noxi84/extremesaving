@@ -81,20 +81,20 @@ public class CalculationFacadeImpl implements CalculationFacade {
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getMonthlyResults(Collection<DataDto> dataDtos) {
-        Map<Integer, MiniResultDto> monthlyResults = new HashMap<>();
-        monthlyResults.put(Calendar.JANUARY, new MiniResultDto());
-        monthlyResults.put(Calendar.FEBRUARY, new MiniResultDto());
-        monthlyResults.put(Calendar.MARCH, new MiniResultDto());
-        monthlyResults.put(Calendar.APRIL, new MiniResultDto());
-        monthlyResults.put(Calendar.MAY, new MiniResultDto());
-        monthlyResults.put(Calendar.JUNE, new MiniResultDto());
-        monthlyResults.put(Calendar.JULY, new MiniResultDto());
-        monthlyResults.put(Calendar.AUGUST, new MiniResultDto());
-        monthlyResults.put(Calendar.SEPTEMBER, new MiniResultDto());
-        monthlyResults.put(Calendar.OCTOBER, new MiniResultDto());
-        monthlyResults.put(Calendar.NOVEMBER, new MiniResultDto());
-        monthlyResults.put(Calendar.DECEMBER, new MiniResultDto());
+    public Map<Integer, MiniResultDto> getMonthResults(Collection<DataDto> dataDtos) {
+        Map<Integer, MiniResultDto> monthResults = new HashMap<>();
+        monthResults.put(Calendar.JANUARY, new MiniResultDto());
+        monthResults.put(Calendar.FEBRUARY, new MiniResultDto());
+        monthResults.put(Calendar.MARCH, new MiniResultDto());
+        monthResults.put(Calendar.APRIL, new MiniResultDto());
+        monthResults.put(Calendar.MAY, new MiniResultDto());
+        monthResults.put(Calendar.JUNE, new MiniResultDto());
+        monthResults.put(Calendar.JULY, new MiniResultDto());
+        monthResults.put(Calendar.AUGUST, new MiniResultDto());
+        monthResults.put(Calendar.SEPTEMBER, new MiniResultDto());
+        monthResults.put(Calendar.OCTOBER, new MiniResultDto());
+        monthResults.put(Calendar.NOVEMBER, new MiniResultDto());
+        monthResults.put(Calendar.DECEMBER, new MiniResultDto());
 
         List<DataDto> filteredDataDtos = dataDtos.stream()
                 .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
@@ -105,7 +105,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataDto.getDate());
 
-            MiniResultDto resultDtoForThisMonth = monthlyResults.get(cal.get(Calendar.MONTH));
+            MiniResultDto resultDtoForThisMonth = monthResults.get(cal.get(Calendar.MONTH));
             resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataDto.getValue()));
 
             if (NumberUtils.isExpense(dataDto.getValue())) {
@@ -114,12 +114,12 @@ public class CalculationFacadeImpl implements CalculationFacade {
                 resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataDto.getValue()));
             }
         }
-        return monthlyResults;
+        return monthResults;
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getYearlyResults(Collection<DataDto> dataDtos) {
-        Map<Integer, MiniResultDto> yearlyResults = new HashMap<>();
+    public Map<Integer, MiniResultDto> getYearResults(Collection<DataDto> dataDtos) {
+        Map<Integer, MiniResultDto> yearResults = new HashMap<>();
         List<DataDto> filteredDataDtos = dataDtos.stream().filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("...")).collect(Collectors.toList());
 
         for (DataDto dataDto : filteredDataDtos) {
@@ -127,7 +127,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
             cal.setTime(dataDto.getDate());
             int year = cal.get(Calendar.YEAR);
 
-            MiniResultDto resultDtoForThisYear = yearlyResults.get(year);
+            MiniResultDto resultDtoForThisYear = yearResults.get(year);
             if (resultDtoForThisYear == null) {
                 resultDtoForThisYear = new MiniResultDto();
             }
@@ -138,9 +138,9 @@ public class CalculationFacadeImpl implements CalculationFacade {
             } else {
                 resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataDto.getValue()));
             }
-            yearlyResults.put(year, resultDtoForThisYear);
+            yearResults.put(year, resultDtoForThisYear);
         }
-        return yearlyResults;
+        return yearResults;
     }
 
     @Override
@@ -172,7 +172,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     @Override
     public Date getBestMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(dataFacade.findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthResults(dataFacade.findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, false));
@@ -185,7 +185,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     @Override
     public Date getWorstMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthlyResults(dataFacade.findAll());
+        Map<Integer, MiniResultDto> monthResults = getMonthResults(dataFacade.findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, getResult(monthResults, true));
@@ -198,11 +198,11 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     @Override
     public Date getBestYear() {
-        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(dataFacade.findAll());
+        Map<Integer, MiniResultDto> yearResults = getYearResults(dataFacade.findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.YEAR, getResult(yearlyResults, false));
+        cal.set(Calendar.YEAR, getResult(yearResults, false));
         cal.set(Calendar.HOUR, 0);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
@@ -212,11 +212,11 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     @Override
     public Date getWorstYear() {
-        Map<Integer, MiniResultDto> yearlyResults = getYearlyResults(dataFacade.findAll());
+        Map<Integer, MiniResultDto> yearResults = getYearResults(dataFacade.findAll());
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.YEAR, getResult(yearlyResults, true));
+        cal.set(Calendar.YEAR, getResult(yearResults, true));
         cal.set(Calendar.HOUR, 0);
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);

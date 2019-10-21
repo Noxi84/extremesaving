@@ -10,11 +10,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.util.Calendar;
 import java.util.Map;
 
-public class YearlyBarChart {
+public class YearBarChart {
 
     private Map<Integer, MiniResultDto> yearResults;
 
-    public YearlyBarChart withYearResults(Map<Integer, MiniResultDto> yearResults) {
+    public YearBarChart withYearResults(Map<Integer, MiniResultDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }

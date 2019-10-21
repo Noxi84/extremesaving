@@ -24,9 +24,11 @@ public class ChartDataServiceImpl implements ChartDataService {
     private EstimationFacade estimationFacade;
 
     @Override
-    public Map<Integer, MiniResultDto> getMonthlyResults() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(dataDto.getDate(), new Date())).collect(Collectors.toList());
-        Map<Integer, MiniResultDto> results = calculationFacade.getMonthlyResults(dataDtos);
+    public Map<Integer, MiniResultDto> getMonthResults() {
+        List<DataDto> dataDtos = dataFacade.findAll().stream()
+                .filter(dataDto -> DateUtils.equalYears(dataDto.getDate(), new Date()))
+                .collect(Collectors.toList());
+        Map<Integer, MiniResultDto> results = calculationFacade.getMonthResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
@@ -36,31 +38,31 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getYearlyResults() {
+    public Map<Integer, MiniResultDto> getYearResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
 
-        Map<Integer, MiniResultDto> yearlyResults = calculationFacade.getYearlyResults(dataDtos);
-        for (Map.Entry<Integer, MiniResultDto> result : yearlyResults.entrySet()) {
+        Map<Integer, MiniResultDto> yearResults = calculationFacade.getYearResults(dataDtos);
+        for (Map.Entry<Integer, MiniResultDto> result : yearResults.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
             }
         }
 
         Calendar calendar = Calendar.getInstance();
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 11);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 10);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 9);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 8);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 7);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 6);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 5);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 4);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 3);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 2);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR) - 1);
-        addResultDtoIfEmpty(yearlyResults, calendar.get(Calendar.YEAR));
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 11);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 10);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 9);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 8);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 7);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 6);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 5);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 4);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 3);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 2);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 1);
+        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR));
 
-        return yearlyResults;
+        return yearResults;
     }
 
     @Override

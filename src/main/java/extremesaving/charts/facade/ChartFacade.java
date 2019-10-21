@@ -2,9 +2,9 @@ package extremesaving.charts.facade;
 
 public interface ChartFacade {
 
-    void generateMonthlyBarChart();
+    void generateMonthBarChart();
 
-    void generateYearlyBarChart();
+    void generateYearBarChart();
 
     void generateYearLineChart();
 

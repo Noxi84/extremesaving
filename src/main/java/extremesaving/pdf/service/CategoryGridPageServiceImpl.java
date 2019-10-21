@@ -47,7 +47,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
     }
 
     protected Image buildYearBarChartImage() {
-        chartFacade.generateYearlyBarChart();
+        chartFacade.generateYearBarChart();
         return new YearBarChartImageComponent().build();
     }
 

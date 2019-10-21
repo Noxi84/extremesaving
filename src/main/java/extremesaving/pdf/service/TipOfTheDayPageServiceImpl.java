@@ -102,7 +102,7 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
     }
 
     protected Image buildMonthBarChartImage() {
-        chartFacade.generateMonthlyBarChart();
+        chartFacade.generateMonthBarChart();
         return new MonthBarChartImageComponent().build();
     }
 

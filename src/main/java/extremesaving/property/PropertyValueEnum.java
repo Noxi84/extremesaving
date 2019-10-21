@@ -17,10 +17,10 @@ public enum PropertyValueEnum {
     CSV_SPLIT_BY("data.csv.splitBy"),
     PDF_FILE_NAME("pdf.location"),
 
-    MONTHLY_BAR_CHART_IMAGE_FILE("chart.monthlyBar.location"),
+    MONTH_BAR_CHART_IMAGE_FILE("chart.monthBar.location"),
     YEAR_LINE_CHART_IMAGE_FILE("chart.monthLine.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
-    YEARLY_BAR_CHART_IMAGE_FILE("chart.yearlyBar.location"),
+    YEAR_BAR_CHART_IMAGE_FILE("chart.yearBar.location"),
 
     SAVING_RATE_ICON1("savingRate.icon1"),
     SAVING_RATE_ICON2("savingRate.icon2"),

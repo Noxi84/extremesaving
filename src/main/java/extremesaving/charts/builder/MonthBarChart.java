@@ -11,12 +11,12 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-public class MonthlyBarChart {
+public class MonthBarChart {
 
-    private Map<Integer, MiniResultDto> monthlyResults;
+    private Map<Integer, MiniResultDto> monthResults;
 
-    public MonthlyBarChart withMonthlyResults(Map<Integer, MiniResultDto> monthlyResults) {
-        this.monthlyResults = monthlyResults;
+    public MonthBarChart withMonthResults(Map<Integer, MiniResultDto> monthResults) {
+        this.monthResults = monthResults;
         return this;
     }
 
@@ -42,18 +42,18 @@ public class MonthlyBarChart {
         final String december = "Dec";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        MiniResultDto januaryResults = monthlyResults.get(Calendar.JANUARY);
-        MiniResultDto februaryResults = monthlyResults.get(Calendar.FEBRUARY);
-        MiniResultDto marchResults = monthlyResults.get(Calendar.MARCH);
-        MiniResultDto aprilResults = monthlyResults.get(Calendar.APRIL);
-        MiniResultDto mayResults = monthlyResults.get(Calendar.MAY);
-        MiniResultDto juneResults = monthlyResults.get(Calendar.JUNE);
-        MiniResultDto julyResults = monthlyResults.get(Calendar.JULY);
-        MiniResultDto augustResults = monthlyResults.get(Calendar.AUGUST);
-        MiniResultDto septemberResults = monthlyResults.get(Calendar.SEPTEMBER);
-        MiniResultDto octoberResults = monthlyResults.get(Calendar.OCTOBER);
-        MiniResultDto novemberResults = monthlyResults.get(Calendar.NOVEMBER);
-        MiniResultDto decemberResults = monthlyResults.get(Calendar.DECEMBER);
+        MiniResultDto januaryResults = monthResults.get(Calendar.JANUARY);
+        MiniResultDto februaryResults = monthResults.get(Calendar.FEBRUARY);
+        MiniResultDto marchResults = monthResults.get(Calendar.MARCH);
+        MiniResultDto aprilResults = monthResults.get(Calendar.APRIL);
+        MiniResultDto mayResults = monthResults.get(Calendar.MAY);
+        MiniResultDto juneResults = monthResults.get(Calendar.JUNE);
+        MiniResultDto julyResults = monthResults.get(Calendar.JULY);
+        MiniResultDto augustResults = monthResults.get(Calendar.AUGUST);
+        MiniResultDto septemberResults = monthResults.get(Calendar.SEPTEMBER);
+        MiniResultDto octoberResults = monthResults.get(Calendar.OCTOBER);
+        MiniResultDto novemberResults = monthResults.get(Calendar.NOVEMBER);
+        MiniResultDto decemberResults = monthResults.get(Calendar.DECEMBER);
 
         dataset.addValue(januaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, january);
         dataset.addValue(februaryResults.getExpenses().multiply(BigDecimal.valueOf(-1)), expenses, february);
