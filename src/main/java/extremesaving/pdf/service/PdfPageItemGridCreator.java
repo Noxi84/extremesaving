@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.itemgrid;
+package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Table;
@@ -6,9 +6,8 @@ import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.itemgrid.component.ExpensesTablePdfSectionComponent;
-import extremesaving.pdf.page.itemgrid.component.ProfitsTablePdfSectionComponent;
+import extremesaving.pdf.page.component.itemgrid.ExpensesTablePdfSectionComponent;
+import extremesaving.pdf.page.component.itemgrid.ProfitsTablePdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 

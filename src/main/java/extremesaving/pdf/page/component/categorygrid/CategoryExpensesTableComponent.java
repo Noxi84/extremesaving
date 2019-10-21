@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.categorygrid.component;
+package extremesaving.pdf.page.component.categorygrid;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -10,61 +10,62 @@ import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 
-public class CategoryProfitsTableComponent {
+public class CategoryExpensesTableComponent {
 
     private List<CategoryDto> overallResults;
     private List<CategoryDto> yearResults;
     private List<CategoryDto> monthResults;
     private Table table;
 
-    public CategoryProfitsTableComponent withOverallResults(List<CategoryDto> overallResults) {
+    public CategoryExpensesTableComponent withOverallResults(List<CategoryDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public CategoryProfitsTableComponent withYearResults(List<CategoryDto> yearResults) {
+    public CategoryExpensesTableComponent withYearResults(List<CategoryDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public CategoryProfitsTableComponent withMonthResults(List<CategoryDto> monthResults) {
+    public CategoryExpensesTableComponent withMontResults(List<CategoryDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public CategoryProfitsTableComponent build() {
+    public CategoryExpensesTableComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
-        table.addCell(createOverallCategory());
-        table.addCell(createYearCategory());
-        table.addCell(createMonthCategory());
+        table.addCell(createOverallCategoryCell());
+        table.addCell(createYearCategoryCell());
+        table.addCell(createMonthCategoryCell());
         return this;
     }
 
-    protected Cell createOverallCategory() {
+    protected Cell createOverallCategoryCell() {
         Cell cell = new Cell();
         cell.add(PdfUtils.getItemParagraph("Overall", true, TextAlignment.CENTER));
-        cell.add(getCategoryTable(overallResults));
+        cell.add(getTable(overallResults));
         return cell;
     }
 
-    protected Cell createYearCategory() {
+    protected Cell createYearCategoryCell() {
         Cell cell = new Cell();
         cell.add(PdfUtils.getItemParagraph("This year", true, TextAlignment.CENTER));
-        cell.add(getCategoryTable(yearResults));
+        cell.add(getTable(yearResults));
         return cell;
     }
 
-    protected Cell createMonthCategory() {
+    protected Cell createMonthCategoryCell() {
         Cell cell = new Cell();
         cell.add(PdfUtils.getItemParagraph("This month", true, TextAlignment.CENTER));
-        cell.add(getCategoryTable(monthResults));
+        cell.add(getTable(monthResults));
         return cell;
     }
 
-    protected Table getCategoryTable(List<CategoryDto> categoryDtos) {
+    protected Table getTable(List<CategoryDto> categoryDtos) {
         Table alignmentTable = new Table(2);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
 
@@ -87,14 +88,16 @@ public class CategoryProfitsTableComponent {
 
         // Add total amount
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
-        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalAmount), true));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(getTotalAmount(categoryDtos)), true));
 
         // Add cells to table
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableRight);
-
         return alignmentTable;
+    }
+
+    protected BigDecimal getTotalAmount(Collection<CategoryDto> categoryDtos) {
+        return categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Table getTable() {

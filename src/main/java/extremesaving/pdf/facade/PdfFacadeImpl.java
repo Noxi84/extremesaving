@@ -6,7 +6,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
-import extremesaving.pdf.page.PdfPageCreator;
+import extremesaving.pdf.service.PdfPageCreator;
 import extremesaving.property.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;

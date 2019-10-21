@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.itemgrid.component;
+package extremesaving.pdf.page.component.itemgrid;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;

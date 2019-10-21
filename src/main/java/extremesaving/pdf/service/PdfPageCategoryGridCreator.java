@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.categorygrid;
+package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
@@ -8,11 +8,10 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.categorygrid.component.CategoryExpensesTableComponent;
-import extremesaving.pdf.page.categorygrid.component.CategoryOverallTableComponent;
-import extremesaving.pdf.page.categorygrid.component.CategoryProfitsTableComponent;
-import extremesaving.pdf.page.categorygrid.component.YearBarChartPdfSectionComponent;
+import extremesaving.pdf.page.component.categorygrid.CategoryExpensesTableComponent;
+import extremesaving.pdf.page.component.categorygrid.CategoryOverallTableComponent;
+import extremesaving.pdf.page.component.categorygrid.CategoryProfitsTableComponent;
+import extremesaving.pdf.page.component.categorygrid.YearBarChartPdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 

@@ -10,15 +10,15 @@
     </bean>
 
     <!-- Pdf page creators -->
-    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.page.categorygrid.PdfPageCategoryGridCreator">
+    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.service.PdfPageCategoryGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
     </bean>
-    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.page.itemgrid.PdfPageItemGridCreator">
+    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.service.PdfPageItemGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="pdfPageTipOfTheDayCreator" class="extremesaving.pdf.page.tipoftheday.PdfPageTipOfTheDayCreator">
+    <bean id="pdfPageTipOfTheDayCreator" class="extremesaving.pdf.service.PdfPageTipOfTheDayCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>

@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.tipoftheday;
+package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
@@ -11,14 +11,13 @@ import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.tipoftheday.component.AccountsPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.GoalAndAwardsPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.GoalLineChartPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.MonthBarChartPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.StatisticsPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.TipOfTheDayPdfSectionComponent;
-import extremesaving.pdf.page.tipoftheday.component.YearLineChartPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.AccountsPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.GoalAndAwardsPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.GoalLineChartPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.MonthBarChartPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.StatisticsPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.TipOfTheDayPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.YearLineChartPdfSectionComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;

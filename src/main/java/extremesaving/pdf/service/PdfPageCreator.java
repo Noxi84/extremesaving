@@ -1,4 +1,4 @@
-package extremesaving.pdf.page;
+package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 

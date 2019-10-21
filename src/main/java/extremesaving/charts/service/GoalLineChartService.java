@@ -1,6 +1,6 @@
 package extremesaving.charts.service;
 
-import extremesaving.pdf.page.tipoftheday.component.GoalLineChartPdfSectionComponent;
+import extremesaving.pdf.page.component.tipoftheday.GoalLineChartPdfSectionComponent;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
