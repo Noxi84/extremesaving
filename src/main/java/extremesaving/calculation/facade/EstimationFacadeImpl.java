@@ -23,12 +23,17 @@ public class EstimationFacadeImpl implements EstimationFacade {
     private CalculationFacade calculationFacade;
 
     @Override
-    public Long getSurvivalDays() {
-        Collection<DataDto> dataDtos = dataFacade.findAll();
+    public ResultDto getEstimationResultDto(Collection<DataDto> dataDtos) {
         Collection<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
         filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
+        return calculationFacade.getResults(filteredDataDtos);
+    }
+
+    @Override
+    public Long getSurvivalDays() {
+        Collection<DataDto> dataDtos = dataFacade.findAll();
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        ResultDto filteredResultDto = getEstimationResultDto(dataDtos);
 
         BigDecimal amountLeft = resultDto.getResult();
 
@@ -105,10 +110,8 @@ public class EstimationFacadeImpl implements EstimationFacade {
     @Override
     public Long getGoalTime(BigDecimal goal) {
         List<DataDto> dataDtos = dataFacade.findAll();
-        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        ResultDto filteredResultDto = getEstimationResultDto(dataDtos);
 
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {

@@ -11,7 +11,6 @@
     <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
-        <property name="calculationService" ref="calculationService"/>
         <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
 </beans>

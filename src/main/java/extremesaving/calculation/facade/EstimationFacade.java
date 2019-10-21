@@ -1,6 +1,10 @@
 package extremesaving.calculation.facade;
 
+import extremesaving.calculation.dto.ResultDto;
+import extremesaving.data.dto.DataDto;
+
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 public interface EstimationFacade {
@@ -21,4 +25,6 @@ public interface EstimationFacade {
     Long getGoalTime(BigDecimal goal);
 
     Date getGoalReachedDate(BigDecimal goal);
+
+    ResultDto getEstimationResultDto(Collection<DataDto> dataDtos);
 }

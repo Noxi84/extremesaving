@@ -4,7 +4,6 @@ import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
-import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
@@ -22,7 +21,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
-    private CalculationService calculationService;
     private EstimationFacade estimationFacade;
 
     @Override
@@ -86,9 +84,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future estimation results with incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        ResultDto filteredResultDto = estimationFacade.getEstimationResultDto(dataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
@@ -112,9 +108,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future estimation results without incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        List<DataDto> filteredDataDtos = calculationService.removeOutliners(dataDtos);
-        filteredDataDtos = calculationService.filterEstimatedDateRange(filteredDataDtos);
-        ResultDto filteredResultDto = calculationFacade.getResults(filteredDataDtos);
+        ResultDto filteredResultDto = estimationFacade.getEstimationResultDto(dataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
@@ -142,10 +136,6 @@ public class ChartDataServiceImpl implements ChartDataService {
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;
-    }
-
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
     }
 
     public void setEstimationFacade(EstimationFacade estimationFacade) {
