@@ -9,7 +9,7 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FIL
 public class GoalLineChartPdfSectionCreator {
 
     public static float GOAL_LINE_CHART_WIDTH = 530;
-    public static float GOAL_LINE_CHART_HEIGHT = 170;
+    public static float GOAL_LINE_CHART_HEIGHT = 240;
 
     private Image chartImage;
 

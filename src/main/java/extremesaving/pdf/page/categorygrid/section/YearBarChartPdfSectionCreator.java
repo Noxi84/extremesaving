@@ -11,7 +11,7 @@ import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FI
 public class YearBarChartPdfSectionCreator {
 
     public static float CHART_WIDTH = 530;
-    public static float CHART_HEIGHT = 250;
+    public static float CHART_HEIGHT = 240;
 
     private Image chartImage;
 

@@ -9,7 +9,7 @@ import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FIL
 public class YearLineChartPdfSectionCreator {
 
     public static float YEAR_LINE_CHART_WIDTH = 530;
-    public static float YEAR_LINE_CHART_HEIGHT = 170;
+    public static float YEAR_LINE_CHART_HEIGHT = 240;
 
     private Image chartImage;
 
