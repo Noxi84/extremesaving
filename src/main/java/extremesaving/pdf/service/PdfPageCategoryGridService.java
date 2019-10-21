@@ -13,7 +13,6 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.enums.PdfGridTimeEnum;
-import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
@@ -43,11 +42,17 @@ public class PdfPageCategoryGridService implements PdfPageService {
     public void generate(Document document) {
         document.add(getYearChart());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(getCategorySection(document, PdfGridTypeEnum.RESULT));
+
+        document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
+        document.add(getOverallCategoryTable());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(getCategorySection(document, PdfGridTypeEnum.PROFITS));
+
+        document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
+        document.add(getProfitsTable());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(getCategorySection(document, PdfGridTypeEnum.EXPENSES));
+
+        document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
+        document.add(getExpensesTable());
     }
 
     protected Image getYearChart() {
@@ -62,45 +67,39 @@ public class PdfPageCategoryGridService implements PdfPageService {
         return null;
     }
 
-    protected Table getCategorySection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
-        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
-        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
-        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
-        }
-
+    protected Table getOverallCategoryTable() {
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
+        List<CategoryDto> overallResults = categoryFacade.getCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        table.addCell(getResultCategoryCell(overallResults, PdfGridTimeEnum.OVERALL));
+        table.addCell(getResultCategoryCell(yearResults, PdfGridTimeEnum.YEAR));
+        table.addCell(getResultCategoryCell(monthResults, PdfGridTimeEnum.MONTH));
+        return table;
+    }
 
-        List<CategoryDto> overallResults = new ArrayList<>();
-        List<CategoryDto> yearResults = new ArrayList<>();
-        List<CategoryDto> monthResults = new ArrayList<>();
+    protected Table getProfitsTable() {
+        Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
+        List<CategoryDto> overallResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        table.addCell(getCategoryCell("Overall", overallResults));
+        table.addCell(getCategoryCell("This year", yearResults));
+        table.addCell(getCategoryCell("This month", monthResults));
+        return table;
+    }
 
-        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            overallResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
-            yearResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            monthResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            overallResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
-            yearResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            monthResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        } else if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            overallResults = categoryFacade.getCategories(dataFacade.findAll());
-            yearResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            monthResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        }
-
-        if (PdfGridTypeEnum.RESULT.equals(pdfGridTypeEnum)) {
-            table.addCell(getResultCategoryCell(overallResults, PdfGridTimeEnum.OVERALL));
-            table.addCell(getResultCategoryCell(yearResults, PdfGridTimeEnum.YEAR));
-            table.addCell(getResultCategoryCell(monthResults, PdfGridTimeEnum.MONTH));
-        } else {
-            table.addCell(getCategoryCell("Overall", overallResults));
-            table.addCell(getCategoryCell("This year", yearResults));
-            table.addCell(getCategoryCell("This month", monthResults));
-        }
+    protected Table getExpensesTable() {
+        Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
+        List<CategoryDto> overallResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        table.addCell(getCategoryCell("Overall", overallResults));
+        table.addCell(getCategoryCell("This year", yearResults));
+        table.addCell(getCategoryCell("This month", monthResults));
         return table;
     }
 
