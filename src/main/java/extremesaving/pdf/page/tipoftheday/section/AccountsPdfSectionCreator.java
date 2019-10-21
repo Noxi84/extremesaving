@@ -1,4 +1,4 @@
-package extremesaving.pdf.section;
+package extremesaving.pdf.page.tipoftheday.section;
 
 import com.itextpdf.layout.element.Cell;
 

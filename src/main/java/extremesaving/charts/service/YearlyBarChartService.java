@@ -1,7 +1,7 @@
 package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
-import extremesaving.pdf.section.YearBarChartPdfSectionCreatorImpl;
+import extremesaving.pdf.page.categorygrid.section.YearBarChartPdfSectionCreatorImpl;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;

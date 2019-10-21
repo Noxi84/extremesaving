@@ -1,4 +1,4 @@
-package extremesaving.pdf.page;
+package extremesaving.pdf.page.tipoftheday;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -14,8 +14,9 @@ import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.section.AccountsPdfSectionCreator;
-import extremesaving.pdf.section.TipOfTheDayPdfSectionCreator;
+import extremesaving.pdf.page.PdfPageCreator;
+import extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;

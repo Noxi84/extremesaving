@@ -1,7 +1,7 @@
 package extremesaving.charts.service;
 
 import extremesaving.charts.GoalLineResultEnum;
-import extremesaving.pdf.page.PdfPageTipOfTheDayCreator;
+import extremesaving.pdf.page.tipoftheday.PdfPageTipOfTheDayCreator;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import org.jfree.chart.ChartFactory;

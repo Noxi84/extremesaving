@@ -10,16 +10,16 @@
     </bean>
 
     <!-- Pdf page creators -->
-    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.page.PdfPageCategoryGridCreator">
+    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.page.categorygrid.PdfPageCategoryGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
         <property name="yearBarChartPdfSectionCreator" ref="yearBarChartPdfSectionCreator"/>
     </bean>
-    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.page.PdfPageItemGridCreator">
+    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.page.itemgrid.PdfPageItemGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="pdfPagePredictionsCreator" class="extremesaving.pdf.page.PdfPageTipOfTheDayCreator">
+    <bean id="pdfPagePredictionsCreator" class="extremesaving.pdf.page.tipoftheday.PdfPageTipOfTheDayCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>
@@ -28,13 +28,13 @@
     </bean>
 
     <!-- Section creators -->
-    <bean id="tipOfTheDayPdfSectionCreator" class="extremesaving.pdf.section.TipOfTheDayPdfSectionCreatorImpl">
+    <bean id="tipOfTheDayPdfSectionCreator" class="extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreatorImpl">
         <property name="dataFacade" ref="dataFacade"/>
     </bean>
-    <bean id="yearBarChartPdfSectionCreator" class="extremesaving.pdf.section.YearBarChartPdfSectionCreatorImpl">
+    <bean id="yearBarChartPdfSectionCreator" class="extremesaving.pdf.page.categorygrid.section.YearBarChartPdfSectionCreatorImpl">
         <property name="dataFacade" ref="dataFacade"/>
     </bean>
-    <bean id="accountsPdfSectionCreator" class="extremesaving.pdf.section.AccountsPdfSectionCreatorImpl">
+    <bean id="accountsPdfSectionCreator" class="extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreatorImpl">
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="accountFacade" ref="accountFacade"/>
     </bean>

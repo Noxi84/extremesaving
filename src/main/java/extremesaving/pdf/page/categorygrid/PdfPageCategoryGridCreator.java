@@ -1,4 +1,4 @@
-package extremesaving.pdf.page;
+package extremesaving.pdf.page.categorygrid;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -13,7 +13,8 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.enums.PdfGridTimeEnum;
-import extremesaving.pdf.section.YearBarChartPdfSectionCreator;
+import extremesaving.pdf.page.PdfPageCreator;
+import extremesaving.pdf.page.categorygrid.section.YearBarChartPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;

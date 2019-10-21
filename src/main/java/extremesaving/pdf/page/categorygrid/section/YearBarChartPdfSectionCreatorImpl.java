@@ -1,4 +1,4 @@
-package extremesaving.pdf.section;
+package extremesaving.pdf.page.categorygrid.section;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
