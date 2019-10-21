@@ -9,13 +9,11 @@ import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.enums.PdfGridTypeEnum;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,33 +28,29 @@ public class PdfPageItemGridService implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        document.add(getItemsSection(document, PdfGridTypeEnum.PROFITS));
-        document.add(getItemsSection(document, PdfGridTypeEnum.EXPENSES));
+        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
+        document.add(getProfitsTable());
+        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
+        document.add(getExpensesTable());
     }
 
-    protected Table getItemsSection(Document document, PdfGridTypeEnum pdfGridTypeEnum) {
-        String title = "";
-        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            title = "Most profitable items";
-        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            title = "Most expensive items";
-        }
+    protected Table getProfitsTable() {
+        List<ResultDto> overallResults = calculationFacade.getMostProfitableItems(dataFacade.findAll());
+        List<ResultDto> yearResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<ResultDto> monthResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
 
-        document.add(PdfUtils.getTitleParagraph(title, TextAlignment.LEFT));
+        Table table = new Table(3);
+        table.setWidth(UnitValue.createPercentValue(100));
+        table.addCell(getItemCell("Overall", overallResults));
+        table.addCell(getItemCell("This year", yearResults));
+        table.addCell(getItemCell("This month", monthResults));
+        return table;
+    }
 
-        List<ResultDto> overallResults = new ArrayList<>();
-        List<ResultDto> yearResults = new ArrayList<>();
-        List<ResultDto> monthResults = new ArrayList<>();
-
-        if (PdfGridTypeEnum.PROFITS.equals(pdfGridTypeEnum)) {
-            overallResults = calculationFacade.getMostProfitableItems(dataFacade.findAll());
-            yearResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            monthResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        } else if (PdfGridTypeEnum.EXPENSES.equals(pdfGridTypeEnum)) {
-            overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
-            yearResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-            monthResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        }
+    protected Table getExpensesTable() {
+        List<ResultDto> overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
+        List<ResultDto> yearResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<ResultDto> monthResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
 
         Table table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
@@ -67,15 +61,21 @@ public class PdfPageItemGridService implements PdfPageService {
     }
 
     protected Cell getItemCell(String title, List<ResultDto> results) {
-        Cell cell = new Cell();
-        cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
-
         Table alignmentTable = new Table(2);
         alignmentTable.setPaddingLeft(0);
         alignmentTable.setMarginLeft(0);
         alignmentTable.setPaddingRight(0);
         alignmentTable.setMarginRight(0);
+        alignmentTable.addCell(getLeftCell(results));
+        alignmentTable.addCell(getRightCell(results));
 
+        Cell cell = new Cell();
+        cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
+        cell.add(alignmentTable);
+        return cell;
+    }
+
+    protected Cell getLeftCell(List<ResultDto> results) {
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setBorder(Border.NO_BORDER);
         alignmentTableLeft.setWidth(400);
@@ -84,6 +84,18 @@ public class PdfPageItemGridService implements PdfPageService {
         alignmentTableLeft.setPaddingRight(0);
         alignmentTableLeft.setMarginRight(0);
 
+        int counter = 0;
+        for (ResultDto resultDto : results) {
+            counter++;
+            if (counter >= DISPLAY_MAX_ITEMS) {
+                break;
+            }
+            alignmentTableLeft.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+        }
+        return alignmentTableLeft;
+    }
+
+    protected Cell getRightCell(List<ResultDto> results) {
         Cell alignmentTableRight = new Cell();
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
@@ -99,16 +111,9 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
             alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
-
-        alignmentTable.addCell(alignmentTableLeft);
-        alignmentTable.addCell(alignmentTableRight);
-
-        cell.add(alignmentTable);
-
-        return cell;
+        return alignmentTableRight;
     }
 
     public void setDataFacade(DataFacade dataFacade) {
