@@ -1,6 +1,6 @@
 package extremesaving.charts.service;
 
-import extremesaving.pdf.page.component.tipoftheday.YearLineChartPdfSectionComponent;
+import extremesaving.pdf.component.tipoftheday.YearLineChartPdfSectionComponent;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import org.jfree.chart.ChartFactory;

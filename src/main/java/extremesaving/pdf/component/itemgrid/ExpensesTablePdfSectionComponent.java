@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.component.itemgrid;
+package extremesaving.pdf.component.itemgrid;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ProfitsTablePdfSectionComponent {
+public class ExpensesTablePdfSectionComponent {
 
     private List<ResultDto> overallResults;
     private List<ResultDto> yearResults;
@@ -21,32 +21,32 @@ public class ProfitsTablePdfSectionComponent {
     private int displayMaxTextCharacters;
     private Table table;
 
-    public ProfitsTablePdfSectionComponent withOverallResults(List<ResultDto> overallResults) {
+    public ExpensesTablePdfSectionComponent withOverallResults(List<ResultDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public ProfitsTablePdfSectionComponent withYearResults(List<ResultDto> yearResults) {
+    public ExpensesTablePdfSectionComponent withYearResults(List<ResultDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public ProfitsTablePdfSectionComponent withMonthResults(List<ResultDto> monthResults) {
+    public ExpensesTablePdfSectionComponent withMonthResults(List<ResultDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public ProfitsTablePdfSectionComponent withDisplayMaxItems(int displayMaxItems) {
+    public ExpensesTablePdfSectionComponent withDisplayMaxItems(int displayMaxItems) {
         this.displayMaxItems = displayMaxItems;
         return this;
     }
 
-    public ProfitsTablePdfSectionComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
+    public ExpensesTablePdfSectionComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
         this.displayMaxTextCharacters = displayMaxTextCharacters;
         return this;
     }
 
-    public ProfitsTablePdfSectionComponent build() {
+    public ExpensesTablePdfSectionComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getItemCell("Overall", overallResults));

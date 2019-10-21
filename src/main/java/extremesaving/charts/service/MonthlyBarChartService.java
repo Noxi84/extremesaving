@@ -1,7 +1,7 @@
 package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
-import extremesaving.pdf.page.component.tipoftheday.MonthBarChartPdfSectionComponent;
+import extremesaving.pdf.component.tipoftheday.MonthBarChartPdfSectionComponent;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
