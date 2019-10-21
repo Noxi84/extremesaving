@@ -52,7 +52,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
         }
-
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
         return goalAmounts.get(nextGoalIndex - 1);
@@ -65,7 +64,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
         }
-
         ResultDto resultDto = calculationFacade.getResults(dataFacade.findAll());
         for (BigDecimal goalAmount : goalAmounts) {
             if (resultDto.getResult().compareTo(goalAmount) < 0) {
@@ -78,12 +76,10 @@ public class EstimationFacadeImpl implements EstimationFacade {
     @Override
     public int getGoalIndex(BigDecimal goalAmount) {
         String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
-
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
         }
-
         for (int i = 0; i < goalAmounts.size(); i++) {
             BigDecimal goal = goalAmounts.get(i);
             if (goalAmount.compareTo(goal) < 0 || goalAmount.compareTo(goal) == 0) {
@@ -101,7 +97,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
         }
-
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
         return goalAmounts.get(nextGoalIndex + index);
@@ -131,7 +126,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
     public Date getGoalReachedDate(BigDecimal goal) {
         List<DataDto> dataDtos = dataFacade.findAll();
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) < 0) {
             Date lastDate;

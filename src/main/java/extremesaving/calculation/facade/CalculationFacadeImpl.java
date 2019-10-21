@@ -114,7 +114,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
                 resultDtoForThisMonth.setIncomes(resultDtoForThisMonth.getIncomes().add(dataDto.getValue()));
             }
         }
-
         return monthlyResults;
     }
 
@@ -161,10 +160,8 @@ public class CalculationFacadeImpl implements CalculationFacade {
     protected Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
         Integer highestMonth = null;
         MiniResultDto highestResultDto = null;
-
         Map<Integer, MiniResultDto> monthResults = results;
         for (Map.Entry<Integer, MiniResultDto> resultEntry : monthResults.entrySet()) {
-
             if (highestMonth == null || (!reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) > 0) || (reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) < 0)) {
                 highestMonth = resultEntry.getKey();
                 highestResultDto = resultEntry.getValue();

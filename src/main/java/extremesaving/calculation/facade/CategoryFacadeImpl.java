@@ -18,7 +18,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @Override
     public List<CategoryDto> getCategories(Collection<DataDto> dataDtos) {
         List<String> categories = new ArrayList<>(dataDtos.stream().map(dataDto -> dataDto.getCategory()).collect(Collectors.toSet()));
-
         List<CategoryDto> categoryDtos = new ArrayList<>();
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
@@ -26,7 +25,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
             categoryDto.setTotalResults(calculationFacade.getResults(dataDtos.stream().filter(dataDto -> dataDto.getCategory().equals(category)).collect(Collectors.toList())));
             categoryDtos.add(categoryDto);
         }
-
         Collections.sort(categoryDtos, (o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()));
         return categoryDtos;
     }
@@ -34,7 +32,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @Override
     public List<CategoryDto> getMostProfitableCategories(Collection<DataDto> dataDtos) {
         List<String> categories = new ArrayList<>(dataDtos.stream().map(dataDto -> dataDto.getCategory()).collect(Collectors.toSet()));
-
         List<CategoryDto> categoryDtos = new ArrayList<>();
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
@@ -44,7 +41,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
                 categoryDtos.add(categoryDto);
             }
         }
-
         Collections.sort(categoryDtos, (o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()));
         return categoryDtos;
     }
@@ -52,7 +48,6 @@ public class CategoryFacadeImpl implements CategoryFacade {
     @Override
     public List<CategoryDto> getMostExpensiveCategories(Collection<DataDto> dataDtos) {
         List<String> categories = new ArrayList<>(dataDtos.stream().map(dataDto -> dataDto.getCategory()).collect(Collectors.toSet()));
-
         List<CategoryDto> categoryDtos = new ArrayList<>();
         for (String category : categories) {
             CategoryDto categoryDto = new CategoryDto();
