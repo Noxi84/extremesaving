@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.tipoftheday.section;
+package extremesaving.pdf.page.tipoftheday.component;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;

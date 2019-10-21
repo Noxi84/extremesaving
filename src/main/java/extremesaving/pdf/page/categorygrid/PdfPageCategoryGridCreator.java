@@ -9,10 +9,10 @@ import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.categorygrid.section.CategoryExpensesTableCreator;
-import extremesaving.pdf.page.categorygrid.section.CategoryOverallTableCreator;
-import extremesaving.pdf.page.categorygrid.section.CategoryProfitsTableCreator;
-import extremesaving.pdf.page.categorygrid.section.YearBarChartPdfSectionCreator;
+import extremesaving.pdf.page.categorygrid.component.CategoryExpensesTableCreator;
+import extremesaving.pdf.page.categorygrid.component.CategoryOverallTableCreator;
+import extremesaving.pdf.page.categorygrid.component.CategoryProfitsTableCreator;
+import extremesaving.pdf.page.categorygrid.component.YearBarChartPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 

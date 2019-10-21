@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.itemgrid.section;
+package extremesaving.pdf.page.itemgrid.component;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ExpensesTablePdfSectionCreator {
+public class ProfitsTablePdfSectionCreator {
 
     private List<ResultDto> overallResults;
     private List<ResultDto> yearResults;
@@ -21,32 +21,32 @@ public class ExpensesTablePdfSectionCreator {
     private int displayMaxTextCharacters;
     private Table table;
 
-    public ExpensesTablePdfSectionCreator withOverallResults(List<ResultDto> overallResults) {
+    public ProfitsTablePdfSectionCreator withOverallResults(List<ResultDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withYearResults(List<ResultDto> yearResults) {
+    public ProfitsTablePdfSectionCreator withYearResults(List<ResultDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withMonthResults(List<ResultDto> monthResults) {
+    public ProfitsTablePdfSectionCreator withMonthResults(List<ResultDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withDisplayMaxItems(int displayMaxItems) {
+    public ProfitsTablePdfSectionCreator withDisplayMaxItems(int displayMaxItems) {
         this.displayMaxItems = displayMaxItems;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
+    public ProfitsTablePdfSectionCreator withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
         this.displayMaxTextCharacters = displayMaxTextCharacters;
         return this;
     }
 
-    public ExpensesTablePdfSectionCreator build() {
+    public ProfitsTablePdfSectionCreator build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getItemCell("Overall", overallResults));

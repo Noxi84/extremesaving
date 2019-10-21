@@ -7,8 +7,8 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
-import extremesaving.pdf.page.itemgrid.section.ExpensesTablePdfSectionCreator;
-import extremesaving.pdf.page.itemgrid.section.ProfitsTablePdfSectionCreator;
+import extremesaving.pdf.page.itemgrid.component.ExpensesTablePdfSectionCreator;
+import extremesaving.pdf.page.itemgrid.component.ProfitsTablePdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 

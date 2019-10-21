@@ -1,4 +1,4 @@
-package extremesaving.pdf.page.categorygrid.section;
+package extremesaving.pdf.page.categorygrid.component;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
