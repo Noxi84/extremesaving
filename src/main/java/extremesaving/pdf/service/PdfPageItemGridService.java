@@ -23,7 +23,8 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 39;
-    private static final int TEXT_MAX_CHARACTERS = 18;
+//    private static final int TEXT_MAX_CHARACTERS = 18;
+    private static final int TEXT_MAX_CHARACTERS = 26;
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
@@ -68,27 +69,34 @@ public class PdfPageItemGridService implements PdfPageService {
 
     protected Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell = new Cell();
-        cell.setWidth(UnitValue.createPercentValue(33));
+//        cell.setWidth(UnitValue.createPercentValue(33));
+//        cell.setWidth(UnitValue.createPercentValue(33));
 
         cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
 
-        Table alignmentTable1 = new Table(2);
-        Cell alignmentTableLeft1 = new Cell();
-        alignmentTableLeft1.setBorder(Border.NO_BORDER);
-        alignmentTableLeft1.setWidth(400);
-        alignmentTableLeft1.setPaddingLeft(0);
-        alignmentTableLeft1.setMarginLeft(0);
-        alignmentTableLeft1.setPaddingRight(0);
-        alignmentTableLeft1.setMarginRight(0);
+        Table alignmentTable = new Table(2);
+//        alignmentTable.setWidth(540);
+        alignmentTable.setPaddingLeft(0);
+        alignmentTable.setMarginLeft(0);
+        alignmentTable.setPaddingRight(0);
+        alignmentTable.setMarginRight(0);
 
-        Cell alignmentTableRight1 = new Cell();
-        alignmentTableRight1.setBorder(Border.NO_BORDER);
-        alignmentTableRight1.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight1.setWidth(120);
-        alignmentTableRight1.setPaddingLeft(0);
-        alignmentTableRight1.setMarginLeft(0);
-        alignmentTableRight1.setPaddingRight(0);
-        alignmentTableRight1.setMarginRight(0);
+        Cell alignmentTableLeft = new Cell();
+        alignmentTableLeft.setBorder(Border.NO_BORDER);
+        alignmentTableLeft.setWidth(400);
+        alignmentTableLeft.setPaddingLeft(0);
+        alignmentTableLeft.setMarginLeft(0);
+        alignmentTableLeft.setPaddingRight(0);
+        alignmentTableLeft.setMarginRight(0);
+
+        Cell alignmentTableRight = new Cell();
+        alignmentTableRight.setBorder(Border.NO_BORDER);
+        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
+        alignmentTableRight.setWidth(130);
+        alignmentTableRight.setPaddingLeft(0);
+        alignmentTableRight.setMarginLeft(0);
+        alignmentTableRight.setPaddingRight(0);
+        alignmentTableRight.setMarginRight(0);
 
         int counter = 0;
         for (ResultDto resultDto : results) {
@@ -96,14 +104,14 @@ public class PdfPageItemGridService implements PdfPageService {
             if (counter >= DISPLAY_MAX_ITEMS) {
                 break;
             }
-            alignmentTableLeft1.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
-            alignmentTableRight1.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
+            alignmentTableLeft.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(resultDto.getData().iterator().next().getDescription(), TEXT_MAX_CHARACTERS)));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(resultDto.getResult())));
         }
 
-        alignmentTable1.addCell(alignmentTableLeft1);
-        alignmentTable1.addCell(alignmentTableRight1);
+        alignmentTable.addCell(alignmentTableLeft);
+        alignmentTable.addCell(alignmentTableRight);
 
-        cell.add(alignmentTable1);
+        cell.add(alignmentTable);
 
         return cell;
     }
