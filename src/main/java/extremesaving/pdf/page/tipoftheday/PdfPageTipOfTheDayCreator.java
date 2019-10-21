@@ -1,10 +1,8 @@
 package extremesaving.pdf.page.tipoftheday;
 
-import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
@@ -20,16 +18,14 @@ import extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.GoalLineChartPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.MonthBarChartPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.TrophyPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.YearLineChartPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
-import extremesaving.property.PropertiesValueHolder;
-import extremesaving.property.PropertyValueEnum;
 import extremesaving.util.DateUtils;
 import extremesaving.util.NumberUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -146,7 +142,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
                 BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoalAmount);
                 BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
-                chartCell.add(getGoalTropheeImage(goalAmount));
+                chartCell.add(new TrophyPdfSectionCreator().withGoalIndex(estimationFacade.getGoalIndex(goalAmount)).build().getTrophyImage());
                 chartCell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(goalAmount, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
                 chartCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(estimationFacade.getGoalTime(goalAmount)), false));
                 chartCell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoalAmount, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(goalReachedDate)));
@@ -155,58 +151,6 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
             chartCell.add(PdfUtils.getItemParagraph("\n"));
         }
         return chartCell;
-    }
-
-    protected Image getGoalTropheeImage(BigDecimal goal) {
-        int goalIndex = estimationFacade.getGoalIndex(goal);
-        Image trophyIcon = null;
-        try {
-            if (goalIndex == 0) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON1)));
-            } else if (goalIndex == 1) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON2)));
-            } else if (goalIndex == 2) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON3)));
-            } else if (goalIndex == 3) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON4)));
-            } else if (goalIndex == 4) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON5)));
-            } else if (goalIndex == 5) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON6)));
-            } else if (goalIndex == 6) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON7)));
-            } else if (goalIndex == 7) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON8)));
-            } else if (goalIndex == 8) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON9)));
-            } else if (goalIndex == 9) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON10)));
-            } else if (goalIndex == 10) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON11)));
-            } else if (goalIndex == 11) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON12)));
-            } else if (goalIndex == 12) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON13)));
-            } else if (goalIndex == 13) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON14)));
-            } else if (goalIndex == 14) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON15)));
-            } else if (goalIndex == 15) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON16)));
-            } else if (goalIndex == 16) {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON17)));
-            } else {
-                trophyIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(PropertyValueEnum.TROPHY_ICON18)));
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        trophyIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        trophyIcon.setTextAlignment(TextAlignment.CENTER);
-        trophyIcon.setWidth(72);
-        trophyIcon.setHeight(72);
-        return trophyIcon;
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {
