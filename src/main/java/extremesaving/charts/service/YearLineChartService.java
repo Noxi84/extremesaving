@@ -1,5 +1,6 @@
 package extremesaving.charts.service;
 
+import extremesaving.charts.GoalLineResultEnum;
 import extremesaving.pdf.service.PdfPageTipOfTheDayService;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
@@ -28,32 +29,53 @@ public class YearLineChartService implements ChartService {
 
     protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
+        dataset.addSeries(getEstimationSeries());
+        dataset.addSeries(getBalanceHistorySeries());
+        dataset.addSeries(getSurvivalSeries());
+        return dataset;
+    }
 
-        TimeSeries series1 = new TimeSeries("Estimated result");
-        TimeSeries series2 = new TimeSeries("Balance history");
-        TimeSeries series3 = new TimeSeries("Without incomes");
-
-        Map<Date, BigDecimal> goalLineResults = chartDataService.getGoalLineResults();
-
+    protected TimeSeries getBalanceHistorySeries() {
+        TimeSeries series = new TimeSeries("Balance history");
+        Map<Date, BigDecimal> historyResults = chartDataService.getGoalLineResults(GoalLineResultEnum.HISTORY);
         Date today = new Date();
-        for (Map.Entry<Date, BigDecimal> result : goalLineResults.entrySet()) {
+        for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             if (DateUtils.equalYears(result.getKey(), today)) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(result.getKey());
-                if (cal.getTime().before(today)) {
-                    series2.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
-                } else {
-                    series1.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
-                    series3.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
-                }
+                series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
             }
         }
+        return series;
+    }
 
-        dataset.addSeries(series1);
-        dataset.addSeries(series2);
-        dataset.addSeries(series3);
+    protected TimeSeries getSurvivalSeries() {
+        TimeSeries series = new TimeSeries("Without incomes");
+        Map<Date, BigDecimal> survivalResults = chartDataService.getGoalLineResults(GoalLineResultEnum.SURVIVAL_ESTIMATION);
+        Date today = new Date();
+        for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
+            if (DateUtils.equalYears(result.getKey(), today)) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(result.getKey());
+                series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            }
+        }
+        return series;
+    }
 
-        return dataset;
+    protected TimeSeries getEstimationSeries() {
+        TimeSeries series = new TimeSeries("Estimated result");
+        Map<Date, BigDecimal> futureResults = chartDataService.getGoalLineResults(GoalLineResultEnum.FUTURE_ESTIMATION);
+
+        Date today = new Date();
+        for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
+            if (DateUtils.equalYears(result.getKey(), today)) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(result.getKey());
+                series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            }
+        }
+        return series;
     }
 
     public void setChartDataService(ChartDataService chartDataService) {

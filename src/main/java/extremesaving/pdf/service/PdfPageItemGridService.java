@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class PdfPageItemGridService implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 39;
-//    private static final int TEXT_MAX_CHARACTERS = 18;
     private static final int TEXT_MAX_CHARACTERS = 26;
 
     private DataFacade dataFacade;
@@ -69,13 +68,9 @@ public class PdfPageItemGridService implements PdfPageService {
 
     protected Cell getItemCell(String title, List<ResultDto> results) {
         Cell cell = new Cell();
-//        cell.setWidth(UnitValue.createPercentValue(33));
-//        cell.setWidth(UnitValue.createPercentValue(33));
-
         cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
 
         Table alignmentTable = new Table(2);
-//        alignmentTable.setWidth(540);
         alignmentTable.setPaddingLeft(0);
         alignmentTable.setMarginLeft(0);
         alignmentTable.setPaddingRight(0);
