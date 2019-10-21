@@ -13,7 +13,6 @@
     <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.page.categorygrid.PdfPageCategoryGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
-        <property name="yearBarChartPdfSectionCreator" ref="yearBarChartPdfSectionCreator"/>
     </bean>
     <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.page.itemgrid.PdfPageItemGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
@@ -23,20 +22,6 @@
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>
-        <property name="tipOfTheDayPdfSectionCreator" ref="tipOfTheDayPdfSectionCreator"/>
-        <property name="accountsPdfSectionCreator" ref="accountsPdfSectionCreator"/>
-    </bean>
-
-    <!-- Section creators -->
-    <bean id="tipOfTheDayPdfSectionCreator" class="extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreatorImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-    </bean>
-    <bean id="yearBarChartPdfSectionCreator" class="extremesaving.pdf.page.categorygrid.section.YearBarChartPdfSectionCreatorImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-    </bean>
-    <bean id="accountsPdfSectionCreator" class="extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreatorImpl">
-        <property name="calculationFacade" ref="calculationFacade"/>
-        <property name="accountFacade" ref="accountFacade"/>
     </bean>
 
 </beans>

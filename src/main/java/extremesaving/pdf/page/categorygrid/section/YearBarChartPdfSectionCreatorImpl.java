@@ -2,7 +2,6 @@ package extremesaving.pdf.page.categorygrid.section;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
-import extremesaving.data.facade.DataFacade;
 import extremesaving.property.PropertiesValueHolder;
 
 import java.net.MalformedURLException;
@@ -13,8 +12,6 @@ public class YearBarChartPdfSectionCreatorImpl implements YearBarChartPdfSection
 
     public static float CHART_WIDTH = 530;
     public static float CHART_HEIGHT = 250;
-
-    private DataFacade dataFacade;
 
     @Override
     public Image getYearChart() {
@@ -27,9 +24,5 @@ public class YearBarChartPdfSectionCreatorImpl implements YearBarChartPdfSection
             e.printStackTrace();
         }
         return null;
-    }
-
-    public void setDataFacade(DataFacade dataFacade) {
-        this.dataFacade = dataFacade;
     }
 }
