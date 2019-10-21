@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
 import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
 public class PdfPageCategoryGridService implements PdfPageService {
@@ -220,38 +221,37 @@ public class PdfPageCategoryGridService implements PdfPageService {
     }
 
     protected Image getSavingRatioImage(BigDecimal savingRatio) {
-        Image savingRateIcon = null;
+        PropertyValueEnum savingRatioImage = SAVING_RATE_ICON1;
+        if (savingRatio.compareTo(BigDecimal.valueOf(90)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON9;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(80)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON9;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(70)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON8;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(60)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON7;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(50)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON6;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(40)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON5;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(30)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON4;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(20)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON3;
+        } else if (savingRatio.compareTo(BigDecimal.valueOf(10)) >= 0) {
+            savingRatioImage = PropertyValueEnum.SAVING_RATE_ICON2;
+        }
         try {
-            if (savingRatio.compareTo(BigDecimal.valueOf(90)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON9)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(80)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON9)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(70)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON8)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(60)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON7)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(50)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON6)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(40)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON5)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(30)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON4)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(20)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON3)));
-            } else if (savingRatio.compareTo(BigDecimal.valueOf(10)) >= 0) {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON2)));
-            } else {
-                savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(PropertyValueEnum.SAVING_RATE_ICON1)));
-            }
-
+            Image savingRateIcon = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(savingRatioImage)));
+            savingRateIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            savingRateIcon.setTextAlignment(TextAlignment.CENTER);
+            savingRateIcon.setWidth(45);
+            savingRateIcon.setHeight(45);
+            return savingRateIcon;
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        savingRateIcon.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        savingRateIcon.setTextAlignment(TextAlignment.CENTER);
-        savingRateIcon.setWidth(45);
-        savingRateIcon.setHeight(45);
-        return savingRateIcon;
+        return null;
     }
 
     public void setCategoryFacade(CategoryFacade categoryFacade) {
