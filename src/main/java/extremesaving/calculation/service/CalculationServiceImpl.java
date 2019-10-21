@@ -1,7 +1,6 @@
 package extremesaving.calculation.service;
 
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.enums.CalculationEnum;
 import extremesaving.data.dto.DataDto;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
@@ -60,27 +59,42 @@ public class CalculationServiceImpl implements CalculationService {
             resultDto.setDaysSinceLastUpdate(DateUtils.daysBetween(new Date(), resultDto.getFirstDate()));
         }
 
-        resultDto.setAverageDailyIncome(calculateAverageDaily(resultDto, CalculationEnum.INCOME));
-        resultDto.setAverageDailyExpense(calculateAverageDaily(resultDto, CalculationEnum.EXPENSE));
-        resultDto.setAverageDailyResult(calculateAverageDaily(resultDto, CalculationEnum.RESULT));
+        resultDto.setAverageDailyIncome(calculateAverageDailyIncome(resultDto));
+        resultDto.setAverageDailyExpense(calculateAverageDailyExpense(resultDto));
+        resultDto.setAverageDailyResult(calculateAverageDailyResult(resultDto));
 
         return resultDto;
     }
 
-    protected BigDecimal calculateAverageDaily(ResultDto resultDto, CalculationEnum calculationEnum) {
+    protected BigDecimal calculateAverageDailyIncome(ResultDto resultDto) {
         try {
             if (resultDto.getFirstDate() != null) {
-                BigDecimal amount = null;
-                if (CalculationEnum.INCOME.equals(calculationEnum)) {
-                    amount = resultDto.getIncomes();
-                } else if (CalculationEnum.EXPENSE.equals(calculationEnum)) {
-                    amount = resultDto.getExpenses();
-                } else if (CalculationEnum.RESULT.equals(calculationEnum)) {
-                    amount = resultDto.getResult();
-                }
-
                 long daysBetween = DateUtils.daysBetween(new Date(), resultDto.getFirstDate());
-                return amount.divide(BigDecimal.valueOf(daysBetween), 2, RoundingMode.HALF_DOWN);
+                return resultDto.getIncomes().divide(BigDecimal.valueOf(daysBetween), 2, RoundingMode.HALF_DOWN);
+            }
+            return BigDecimal.ZERO;
+        } catch (ArithmeticException ex) {
+            return null;
+        }
+    }
+
+    protected BigDecimal calculateAverageDailyExpense(ResultDto resultDto) {
+        try {
+            if (resultDto.getFirstDate() != null) {
+                long daysBetween = DateUtils.daysBetween(new Date(), resultDto.getFirstDate());
+                return resultDto.getExpenses().divide(BigDecimal.valueOf(daysBetween), 2, RoundingMode.HALF_DOWN);
+            }
+            return BigDecimal.ZERO;
+        } catch (ArithmeticException ex) {
+            return null;
+        }
+    }
+
+    protected BigDecimal calculateAverageDailyResult(ResultDto resultDto) {
+        try {
+            if (resultDto.getFirstDate() != null) {
+                long daysBetween = DateUtils.daysBetween(new Date(), resultDto.getFirstDate());
+                return resultDto.getResult().divide(BigDecimal.valueOf(daysBetween), 2, RoundingMode.HALF_DOWN);
             }
             return BigDecimal.ZERO;
         } catch (ArithmeticException ex) {
