@@ -1,6 +1,8 @@
 package extremesaving.pdf.page.tipoftheday;
 
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
@@ -31,15 +33,33 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
 
     @Override
     public void generate(Document document) {
+        Table table = new Table(2);
+        table.setWidth(UnitValue.createPercentValue(100));
+        table.addCell(buildGoalAndAwardsCell());
+        table.addCell(buildStatisticsCell());
+        document.add(table);
+
+        document.add(buildGoalLineChartImage());
+        document.add(PdfUtils.getItemParagraph("\n"));
+
+        Table table2 = new Table(2);
+        table2.setWidth(UnitValue.createPercentValue(100));
+        table2.addCell(buildAccountsCell());
+        table2.addCell(buildTipOfTheDayCell());
+        document.add(table2);
+
+        document.add(buildMonthBarChartImage());
+        document.add(buildYearLineChartImage());
+    }
+
+    protected Cell buildGoalAndAwardsCell() {
         List<DataDto> dataDtos = dataFacade.findAll();
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
 
-        Table table = new Table(2);
-        table.setWidth(UnitValue.createPercentValue(100));
-
         BigDecimal previousGoal = estimationFacade.getPreviousGoal();
         BigDecimal currentGoal = estimationFacade.getCurrentGoal();
-        table.addCell(new GoalAndAwardsPdfSectionCreator()
+
+        return new GoalAndAwardsPdfSectionCreator()
                 .withResultDto(resultDto)
                 .withPreviousGoal(previousGoal)
                 .withPreviousGoalReachDate(estimationFacade.getGoalReachedDate(previousGoal))
@@ -48,28 +68,51 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
                 .withGoalTime(estimationFacade.getGoalTime(currentGoal))
                 .withSurvivalDays(estimationFacade.getSurvivalDays())
                 .build()
-                .getCell());
-        table.addCell(new StatisticsPdfSectionCreator()
+                .getCell();
+    }
+
+    protected Cell buildStatisticsCell() {
+        return new StatisticsPdfSectionCreator()
                 .withLastItemAdded(calculationFacade.getLastItemAdded())
                 .withBestMonth(calculationFacade.getBestMonth())
                 .withBestYear(calculationFacade.getBestYear())
                 .withWorstMonth(calculationFacade.getWorstMonth())
                 .withWorstYear(calculationFacade.getWorstYear())
                 .build()
-                .getBalanceCell());
-        document.add(table);
+                .getBalanceCell();
+    }
 
-        document.add(new GoalLineChartPdfSectionCreator().build().getChartImage());
-        document.add(PdfUtils.getItemParagraph("\n"));
+    protected Image buildGoalLineChartImage() {
+        return new GoalLineChartPdfSectionCreator()
+                .build()
+                .getChartImage();
+    }
 
-        Table table2 = new Table(2);
-        table2.setWidth(UnitValue.createPercentValue(100));
-        table2.addCell(new AccountsPdfSectionCreator().withAccounts(accountFacade.getAccounts()).withTotalBalance(calculationFacade.getTotalBalance()).build().getAccountsCell());
-        table2.addCell(new TipOfTheDayPdfSectionCreator().withMessage(dataFacade.getTipOfTheDay()).build().getChartCell());
-        document.add(table2);
+    protected Cell buildAccountsCell() {
+        return new AccountsPdfSectionCreator()
+                .withAccounts(accountFacade.getAccounts())
+                .withTotalBalance(calculationFacade.getTotalBalance())
+                .build()
+                .getAccountsCell();
+    }
 
-        document.add(new MonthBarChartPdfSectionCreator().build().getChartImage());
-        document.add(new YearLineChartPdfSectionCreator().build().getChartImage());
+    protected Cell buildTipOfTheDayCell() {
+        return new TipOfTheDayPdfSectionCreator()
+                .withMessage(dataFacade.getTipOfTheDay())
+                .build()
+                .getCell();
+    }
+
+    protected Image buildMonthBarChartImage() {
+        return new MonthBarChartPdfSectionCreator()
+                .build()
+                .getChartImage();
+    }
+
+    protected Image buildYearLineChartImage() {
+        return new YearLineChartPdfSectionCreator()
+                .build()
+                .getChartImage();
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {

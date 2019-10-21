@@ -9,7 +9,7 @@ import extremesaving.pdf.util.PdfUtils;
 
 public class TipOfTheDayPdfSectionCreator {
 
-    private Cell chartCell;
+    private Cell cell;
     private String tipOfTheDayMessage;
 
     public TipOfTheDayPdfSectionCreator withMessage(String message) {
@@ -18,21 +18,21 @@ public class TipOfTheDayPdfSectionCreator {
     }
 
     public TipOfTheDayPdfSectionCreator build() {
-        chartCell = new Cell();
-        chartCell.setBorder(Border.NO_BORDER);
-        chartCell.setWidth(UnitValue.createPercentValue(35));
+        cell = new Cell();
+        cell.setBorder(Border.NO_BORDER);
+        cell.setWidth(UnitValue.createPercentValue(35));
 
-        chartCell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
-        chartCell.add(PdfUtils.getItemParagraph("\n"));
+        cell.add(PdfUtils.getTitleParagraph("Tip of the day", TextAlignment.CENTER));
+        cell.add(PdfUtils.getItemParagraph("\n"));
         Paragraph tipOfTheDay = PdfUtils.getItemParagraph(tipOfTheDayMessage);
         tipOfTheDay.setTextAlignment(TextAlignment.CENTER);
 
-        chartCell.add(tipOfTheDay);
-        chartCell.add(PdfUtils.getItemParagraph("\n"));
+        cell.add(tipOfTheDay);
+        cell.add(PdfUtils.getItemParagraph("\n"));
         return this;
     }
 
-    public Cell getChartCell() {
-        return chartCell;
+    public Cell getCell() {
+        return cell;
     }
 }
