@@ -53,7 +53,7 @@ public class PropertiesValueHolder {
         return new SimpleDateFormat(getInstance().getPropValue(propertyValueENum));
     }
 
-    public String getPropValue(PropertyValueEnum propertyValueENum) {
+    protected String getPropValue(PropertyValueEnum propertyValueENum) {
         try {
             return getPropValues().get(propertyValueENum.getValue());
         } catch (Exception ex) {
@@ -61,7 +61,7 @@ public class PropertiesValueHolder {
         }
     }
 
-    public Map<String, String> getPropValues() throws IOException {
+    protected Map<String, String> getPropValues() throws IOException {
         if (results != null) {
             return results;
         }

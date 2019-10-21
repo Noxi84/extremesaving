@@ -24,7 +24,7 @@ public class SavingRatioImageComponent {
     public Image build() {
         PropertyValueEnum savingRatioImage = getSavingRatioImage();
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(savingRatioImage)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(savingRatioImage)));
             image.setHorizontalAlignment(HorizontalAlignment.CENTER);
             image.setTextAlignment(TextAlignment.CENTER);
             image.setWidth(45);

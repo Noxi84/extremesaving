@@ -15,7 +15,7 @@ public class YearBarChartImageComponent {
 
     public Image build() {
         try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEAR_BAR_CHART_IMAGE_FILE)));
+            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_BAR_CHART_IMAGE_FILE)));
             image.setWidth(CHART_WIDTH);
             image.setHeight(CHART_HEIGHT);
             return image;

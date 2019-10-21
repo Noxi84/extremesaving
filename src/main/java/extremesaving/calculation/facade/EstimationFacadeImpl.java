@@ -96,8 +96,7 @@ public class EstimationFacadeImpl implements EstimationFacade {
 
     @Override
     public BigDecimal getNextGoal(int index) {
-        String goalsList = PropertiesValueHolder.getInstance().getPropValue(CHART_GOALS_SAVINGS);
-        String[] goals = StringUtils.split(goalsList, ",");
+        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(goal));
