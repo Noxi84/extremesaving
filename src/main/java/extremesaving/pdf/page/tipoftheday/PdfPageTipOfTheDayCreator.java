@@ -17,7 +17,10 @@ import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.page.PdfPageCreator;
 import extremesaving.pdf.page.tipoftheday.section.AccountsPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.GoalLineChartPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.MonthBarChartPdfSectionCreator;
 import extremesaving.pdf.page.tipoftheday.section.TipOfTheDayPdfSectionCreator;
+import extremesaving.pdf.page.tipoftheday.section.YearLineChartPdfSectionCreator;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.property.PropertiesValueHolder;
 import extremesaving.property.PropertyValueEnum;
@@ -31,20 +34,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
-import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
-import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
-
 public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
-
-    public static float GOAL_LINE_CHART_WIDTH = 530;
-    public static float GOAL_LINE_CHART_HEIGHT = 170;
-
-    public static float YEAR_LINE_CHART_WIDTH = 530;
-    public static float YEAR_LINE_CHART_HEIGHT = 170;
-
-    public static float MONTHCHART_WIDTH = 530;
-    public static float MONTHCHART_HEIGHT = 170;
 
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
@@ -62,7 +52,7 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
         table.addCell(getStatisticsCell());
         document.add(table);
 
-        document.add(getGoalLineChartImage());
+        document.add(new GoalLineChartPdfSectionCreator().build().getChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
 
         Table table2 = new Table(2);
@@ -71,44 +61,8 @@ public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
         table2.addCell(new TipOfTheDayPdfSectionCreator().withMessage(dataFacade.getTipOfTheDay()).build().getChartCell());
         document.add(table2);
 
-        document.add(getMonthBarChartImage());
-        document.add(getYearLineChartImage());
-    }
-
-    protected Image getGoalLineChartImage() {
-        try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
-            image.setWidth(GOAL_LINE_CHART_WIDTH);
-            image.setHeight(GOAL_LINE_CHART_HEIGHT);
-            return image;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
-    protected Image getMonthBarChartImage() {
-        try {
-            Image monthlyBarChartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE)));
-            monthlyBarChartImage.setWidth(MONTHCHART_WIDTH);
-            monthlyBarChartImage.setHeight(MONTHCHART_HEIGHT);
-            return monthlyBarChartImage;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
-    protected Image getYearLineChartImage() {
-        try {
-            Image image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE)));
-            image.setWidth(YEAR_LINE_CHART_WIDTH);
-            image.setHeight(YEAR_LINE_CHART_HEIGHT);
-            return image;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        document.add(new MonthBarChartPdfSectionCreator().build().getChartImage());
+        document.add(new YearLineChartPdfSectionCreator().build().getChartImage());
     }
 
     protected Cell getStatisticsCell() {
