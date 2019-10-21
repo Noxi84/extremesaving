@@ -1,6 +1,8 @@
 package extremesaving.pdf.page.categorygrid;
 
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
@@ -28,37 +30,63 @@ public class PdfPageCategoryGridCreator implements PdfPageCreator {
 
     @Override
     public void generate(Document document) {
-        document.add(new YearBarChartPdfSectionCreator().build().getChartImage());
+        document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
-        document.add(new CategoryOverallTableCreator()
-                .withOverallResults(categoryFacade.getCategories(dataFacade.findAll()))
-                .withYearResults(categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList())))
-                .withMontResults(categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList())))
+        document.add(buildCategoryOverallTable());
+        document.add(PdfUtils.getItemParagraph("\n"));
+
+        document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
+        document.add(buildCategoryProfitsTable());
+        document.add(PdfUtils.getItemParagraph("\n"));
+        document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
+        document.add(buildCategoryExpensesTable());
+    }
+
+    protected Image buildYearBarChartImage() {
+        return new YearBarChartPdfSectionCreator()
+                .build()
+                .getChartImage();
+    }
+
+    protected Table buildCategoryOverallTable() {
+        List<CategoryDto> overallResults = categoryFacade.getCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        return new CategoryOverallTableCreator()
+                .withOverallResults(overallResults)
+                .withYearResults(monthResults)
+                .withMontResults(yearResults)
                 .withOverallSavingRatio(getSavingRatio(PdfGridTimeEnum.OVERALL))
                 .withYearSavingRatio(getSavingRatio(PdfGridTimeEnum.YEAR))
                 .withMonthSavingRatio(getSavingRatio(PdfGridTimeEnum.MONTH))
                 .build()
-                .getTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
+                .getTable();
+    }
 
-        document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
-        document.add(new CategoryProfitsTableCreator()
-                .withOverallResults(categoryFacade.getMostProfitableCategories(dataFacade.findAll()))
-                .withYearResults(categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList())))
-                .withMontResults(categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList())))
+    protected Table buildCategoryProfitsTable() {
+        List<CategoryDto> overallResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        return new CategoryProfitsTableCreator()
+                .withOverallResults(overallResults)
+                .withYearResults(yearResults)
+                .withMonthResults(monthResults)
                 .build()
-                .getTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
+                .getTable();
+    }
 
-        document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
-        document.add(new CategoryExpensesTableCreator()
-                .withOverallResults(categoryFacade.getMostExpensiveCategories(dataFacade.findAll()))
-                .withYearResults(categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList())))
-                .withMontResults(categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList())))
+    protected Table buildCategoryExpensesTable() {
+        List<CategoryDto> overallResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
+        List<CategoryDto> yearResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> monthResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        return new CategoryExpensesTableCreator()
+                .withOverallResults(overallResults)
+                .withYearResults(yearResults)
+                .withMontResults(monthResults)
                 .build()
-                .getTable());
+                .getTable();
     }
 
     /**

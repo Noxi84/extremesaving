@@ -45,7 +45,6 @@ public class CategoryExpensesTableCreator {
 
     protected Cell getCategoryCell(String title, List<CategoryDto> categoryDtos) {
         Cell cell = new Cell();
-
         cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
 
         Table alignmentTable = new Table(2);

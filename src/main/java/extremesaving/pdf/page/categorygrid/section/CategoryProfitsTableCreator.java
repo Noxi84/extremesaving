@@ -29,7 +29,7 @@ public class CategoryProfitsTableCreator {
         return this;
     }
 
-    public CategoryProfitsTableCreator withMontResults(List<CategoryDto> monthResults) {
+    public CategoryProfitsTableCreator withMonthResults(List<CategoryDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
