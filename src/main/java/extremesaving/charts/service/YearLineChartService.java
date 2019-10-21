@@ -1,7 +1,5 @@
 package extremesaving.charts.service;
 
-import extremesaving.pdf.component.tipoftheday.YearLineChartImageComponent;
-import extremesaving.property.PropertiesValueHolder;
 import extremesaving.util.DateUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -14,16 +12,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
-
 public class YearLineChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
-    public void generateChartPng() {
-        JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        chartDataService.writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) YearLineChartImageComponent.YEAR_LINE_CHART_WIDTH * 2, (int) YearLineChartImageComponent.YEAR_LINE_CHART_HEIGHT * 2);
+    public JFreeChart generateChartPng() {
+        return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
     }
 
     protected TimeSeriesCollection createDataset() {

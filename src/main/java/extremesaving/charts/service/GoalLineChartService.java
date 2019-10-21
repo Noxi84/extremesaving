@@ -1,7 +1,5 @@
 package extremesaving.charts.service;
 
-import extremesaving.pdf.component.tipoftheday.GoalLineChartImageComponent;
-import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.time.Day;
@@ -13,16 +11,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
-import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
-
 public class GoalLineChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
-    public void generateChartPng() {
-        JFreeChart chart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
-        chartDataService.writeChartPng(chart, PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE), (int) GoalLineChartImageComponent.GOAL_LINE_CHART_WIDTH * 2, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_HEIGHT * 2);
+    public JFreeChart generateChartPng() {
+        return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
     }
 
     protected TimeSeriesCollection createDataset() {

@@ -8,15 +8,7 @@ import extremesaving.calculation.service.CalculationService;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
-import org.jfree.chart.JFreeChart;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -141,22 +133,6 @@ public class ChartDataServiceImpl implements ChartDataService {
     protected void addResultDtoIfEmpty(Map<Integer, MiniResultDto> results, Integer key) {
         if (results.get(key) == null) {
             results.put(key, new MiniResultDto());
-        }
-    }
-
-    @Override
-    public void writeChartPng(JFreeChart chart, String file, int width, int height) {
-        try {
-            BufferedImage objBufferedImage = chart.createBufferedImage(width, height);
-            ByteArrayOutputStream bas = new ByteArrayOutputStream();
-            ImageIO.write(objBufferedImage, "png", bas);
-            byte[] byteArray = bas.toByteArray();
-            InputStream in = new ByteArrayInputStream(byteArray);
-            BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(file);
-            ImageIO.write(image, "png", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

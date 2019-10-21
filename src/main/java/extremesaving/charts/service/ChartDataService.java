@@ -1,7 +1,6 @@
 package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
-import org.jfree.chart.JFreeChart;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,6 +17,4 @@ public interface ChartDataService {
     Map<Date, BigDecimal> getGoalLineFutureEstimationResults();
 
     Map<Date, BigDecimal> getGoalLineSurvivalEstimationResults();
-
-    void writeChartPng(JFreeChart chart, String file, int width, int height);
 }

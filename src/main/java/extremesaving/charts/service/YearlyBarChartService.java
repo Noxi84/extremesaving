@@ -1,8 +1,6 @@
 package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
-import extremesaving.pdf.component.categorygrid.YearBarChartImageComponent;
-import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -12,16 +10,13 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import java.util.Calendar;
 import java.util.Map;
 
-import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
-
 public class YearlyBarChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
-    public void generateChartPng() {
-        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
-        chartDataService.writeChartPng(barChart, PropertiesValueHolder.getString(YEARLY_BAR_CHART_IMAGE_FILE), (int) YearBarChartImageComponent.CHART_WIDTH * 2, (int) YearBarChartImageComponent.CHART_HEIGHT * 2);
+    public JFreeChart generateChartPng() {
+        return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
     }
 
     protected CategoryDataset createDataset() {

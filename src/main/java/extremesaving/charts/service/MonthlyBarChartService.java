@@ -1,8 +1,6 @@
 package extremesaving.charts.service;
 
 import extremesaving.calculation.dto.MiniResultDto;
-import extremesaving.pdf.component.tipoftheday.MonthBarChartImageComponent;
-import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -13,16 +11,13 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Map;
 
-import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
-
 public class MonthlyBarChartService implements ChartService {
 
     private ChartDataService chartDataService;
 
     @Override
-    public void generateChartPng() {
-        JFreeChart barChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
-        chartDataService.writeChartPng(barChart, PropertiesValueHolder.getString(MONTHLY_BAR_CHART_IMAGE_FILE), (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
+    public JFreeChart generateChartPng() {
+        return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
     }
 
     protected CategoryDataset createDataset() {
