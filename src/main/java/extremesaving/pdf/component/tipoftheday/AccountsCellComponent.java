@@ -16,23 +16,23 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AccountsPdfSectionComponent {
+public class AccountsCellComponent {
 
     private List<AccountDto> accounts;
     private BigDecimal totalBalance;
     private Cell accountsCell;
 
-    public AccountsPdfSectionComponent withAccounts(List<AccountDto> accounts) {
+    public AccountsCellComponent withAccounts(List<AccountDto> accounts) {
         this.accounts = accounts;
         return this;
     }
 
-    public AccountsPdfSectionComponent withTotalBalance(BigDecimal totalBalance) {
+    public AccountsCellComponent withTotalBalance(BigDecimal totalBalance) {
         this.totalBalance = totalBalance;
         return this;
     }
 
-    public AccountsPdfSectionComponent build() {
+    public AccountsCellComponent build() {
         accountsCell = new Cell();
         accountsCell.setBorder(Border.NO_BORDER);
         accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);

@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class ExpensesTablePdfSectionComponent {
+public class ExpensesTableComponent {
 
     private List<ResultDto> overallResults;
     private List<ResultDto> yearResults;
@@ -21,32 +21,32 @@ public class ExpensesTablePdfSectionComponent {
     private int displayMaxTextCharacters;
     private Table table;
 
-    public ExpensesTablePdfSectionComponent withOverallResults(List<ResultDto> overallResults) {
+    public ExpensesTableComponent withOverallResults(List<ResultDto> overallResults) {
         this.overallResults = overallResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionComponent withYearResults(List<ResultDto> yearResults) {
+    public ExpensesTableComponent withYearResults(List<ResultDto> yearResults) {
         this.yearResults = yearResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionComponent withMonthResults(List<ResultDto> monthResults) {
+    public ExpensesTableComponent withMonthResults(List<ResultDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
-    public ExpensesTablePdfSectionComponent withDisplayMaxItems(int displayMaxItems) {
+    public ExpensesTableComponent withDisplayMaxItems(int displayMaxItems) {
         this.displayMaxItems = displayMaxItems;
         return this;
     }
 
-    public ExpensesTablePdfSectionComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
+    public ExpensesTableComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
         this.displayMaxTextCharacters = displayMaxTextCharacters;
         return this;
     }
 
-    public ExpensesTablePdfSectionComponent build() {
+    public ExpensesTableComponent build() {
         table = new Table(3);
         table.setWidth(UnitValue.createPercentValue(100));
         table.addCell(getItemCell("Overall", overallResults));

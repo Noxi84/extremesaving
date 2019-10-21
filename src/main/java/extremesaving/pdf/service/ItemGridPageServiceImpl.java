@@ -6,8 +6,8 @@ import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.itemgrid.ExpensesTablePdfSectionComponent;
-import extremesaving.pdf.component.itemgrid.ProfitsTablePdfSectionComponent;
+import extremesaving.pdf.component.itemgrid.ExpensesTableComponent;
+import extremesaving.pdf.component.itemgrid.ProfitsTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -35,7 +35,7 @@ public class ItemGridPageServiceImpl implements PdfPageService {
         List<ResultDto> overallResults = calculationFacade.getMostProfitableItems(dataFacade.findAll());
         List<ResultDto> yearResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<ResultDto> monthResults = calculationFacade.getMostProfitableItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new ProfitsTablePdfSectionComponent()
+        return new ProfitsTableComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)
@@ -49,7 +49,7 @@ public class ItemGridPageServiceImpl implements PdfPageService {
         List<ResultDto> overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
         List<ResultDto> yearResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         List<ResultDto> monthResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new ExpensesTablePdfSectionComponent()
+        return new ExpensesTableComponent()
                 .withOverallResults(overallResults)
                 .withYearResults(yearResults)
                 .withMonthResults(monthResults)

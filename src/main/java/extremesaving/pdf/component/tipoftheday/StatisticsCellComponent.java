@@ -11,7 +11,7 @@ import extremesaving.pdf.util.PdfUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class StatisticsPdfSectionComponent {
+public class StatisticsCellComponent {
 
     private Cell balanceCell;
     private Date lastItemAdded;
@@ -20,32 +20,32 @@ public class StatisticsPdfSectionComponent {
     private Date worstMonth;
     private Date worstYear;
 
-    public StatisticsPdfSectionComponent withLastItemAdded(Date lastItemAdded) {
+    public StatisticsCellComponent withLastItemAdded(Date lastItemAdded) {
         this.lastItemAdded = lastItemAdded;
         return this;
     }
 
-    public StatisticsPdfSectionComponent withBestMonth(Date bestMonth) {
+    public StatisticsCellComponent withBestMonth(Date bestMonth) {
         this.bestMonth = bestMonth;
         return this;
     }
 
-    public StatisticsPdfSectionComponent withBestYear(Date bestYear) {
+    public StatisticsCellComponent withBestYear(Date bestYear) {
         this.bestYear = bestYear;
         return this;
     }
 
-    public StatisticsPdfSectionComponent withWorstMonth(Date worstMonth) {
+    public StatisticsCellComponent withWorstMonth(Date worstMonth) {
         this.worstMonth = worstMonth;
         return this;
     }
 
-    public StatisticsPdfSectionComponent withWorstYear(Date worstYear) {
+    public StatisticsCellComponent withWorstYear(Date worstYear) {
         this.worstYear = worstYear;
         return this;
     }
 
-    public StatisticsPdfSectionComponent build() {
+    public StatisticsCellComponent build() {
         balanceCell = new Cell();
         balanceCell.setWidth(UnitValue.createPercentValue(25));
         balanceCell.setBorder(Border.NO_BORDER);

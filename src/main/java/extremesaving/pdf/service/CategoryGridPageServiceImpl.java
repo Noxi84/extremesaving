@@ -11,7 +11,7 @@ import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.categorygrid.CategoryExpensesTableComponent;
 import extremesaving.pdf.component.categorygrid.CategoryOverallTableComponent;
 import extremesaving.pdf.component.categorygrid.CategoryProfitsTableComponent;
-import extremesaving.pdf.component.categorygrid.YearBarChartPdfSectionComponent;
+import extremesaving.pdf.component.categorygrid.YearBarChartImageComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -43,7 +43,7 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
     }
 
     protected Image buildYearBarChartImage() {
-        return new YearBarChartPdfSectionComponent()
+        return new YearBarChartImageComponent()
                 .build()
                 .getChartImage();
     }

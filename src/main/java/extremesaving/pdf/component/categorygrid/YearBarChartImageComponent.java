@@ -8,14 +8,14 @@ import java.net.MalformedURLException;
 
 import static extremesaving.property.PropertyValueEnum.YEARLY_BAR_CHART_IMAGE_FILE;
 
-public class YearBarChartPdfSectionComponent {
+public class YearBarChartImageComponent {
 
     public static float CHART_WIDTH = 530;
     public static float CHART_HEIGHT = 240;
 
     private Image chartImage;
 
-    public YearBarChartPdfSectionComponent build() {
+    public YearBarChartImageComponent build() {
         try {
             chartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
             chartImage.setWidth(CHART_WIDTH);

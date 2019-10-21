@@ -6,14 +6,14 @@ import extremesaving.property.PropertiesValueHolder;
 
 import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
 
-public class GoalLineChartPdfSectionComponent {
+public class GoalLineChartImageComponent {
 
     public static float GOAL_LINE_CHART_WIDTH = 530;
     public static float GOAL_LINE_CHART_HEIGHT = 240;
 
     private Image chartImage;
 
-    public GoalLineChartPdfSectionComponent build() {
+    public GoalLineChartImageComponent build() {
         try {
             chartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
             chartImage.setWidth(GOAL_LINE_CHART_WIDTH);

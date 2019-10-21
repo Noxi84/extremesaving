@@ -9,7 +9,7 @@ import extremesaving.property.PropertyValueEnum;
 
 import java.net.MalformedURLException;
 
-public class TrophyPdfSectionComponent {
+public class TrophyImageComponent {
 
     private static float IMAGE_WIDTH = 72;
     private static float IMAGE_HEIGHT = 72;
@@ -17,12 +17,12 @@ public class TrophyPdfSectionComponent {
     private Image trophyImage;
     private int goalIndex;
 
-    public TrophyPdfSectionComponent withGoalIndex(int goalIndex) {
+    public TrophyImageComponent withGoalIndex(int goalIndex) {
         this.goalIndex = goalIndex;
         return this;
     }
 
-    public TrophyPdfSectionComponent build() {
+    public TrophyImageComponent build() {
         try {
             trophyImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(getTrophyLocation())));
         } catch (MalformedURLException e) {
