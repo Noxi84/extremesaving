@@ -78,13 +78,13 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
                 .withWorstMonth(calculationFacade.getWorstMonth())
                 .withWorstYear(calculationFacade.getWorstYear())
                 .build()
-                .getBalanceCell();
+                .getCell();
     }
 
     protected Image buildGoalLineChartImage() {
         return new GoalLineChartImageComponent()
                 .build()
-                .getChartImage();
+                .getImage();
     }
 
     protected Cell buildAccountsCell() {
@@ -92,7 +92,7 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
                 .withAccounts(accountFacade.getAccounts())
                 .withTotalBalance(calculationFacade.getTotalBalance())
                 .build()
-                .getAccountsCell();
+                .getCell();
     }
 
     protected Cell buildTipOfTheDayCell() {
@@ -105,13 +105,13 @@ public class TipOfTheDayServiceImpl implements PdfPageService {
     protected Image buildMonthBarChartImage() {
         return new MonthBarChartImageComponent()
                 .build()
-                .getChartImage();
+                .getImage();
     }
 
     protected Image buildYearLineChartImage() {
         return new YearLineChartImageComponent()
                 .build()
-                .getChartImage();
+                .getImage();
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {

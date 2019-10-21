@@ -11,20 +11,20 @@ public class YearLineChartImageComponent {
     public static float YEAR_LINE_CHART_WIDTH = 530;
     public static float YEAR_LINE_CHART_HEIGHT = 240;
 
-    private Image chartImage;
+    private Image image;
 
     public YearLineChartImageComponent build() {
         try {
-            chartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE)));
-            chartImage.setWidth(YEAR_LINE_CHART_WIDTH);
-            chartImage.setHeight(YEAR_LINE_CHART_HEIGHT);
+            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE)));
+            image.setWidth(YEAR_LINE_CHART_WIDTH);
+            image.setHeight(YEAR_LINE_CHART_HEIGHT);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return this;
     }
 
-    public Image getChartImage() {
-        return chartImage;
+    public Image getImage() {
+        return image;
     }
 }

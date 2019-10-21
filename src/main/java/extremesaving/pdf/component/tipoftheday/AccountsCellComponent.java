@@ -20,7 +20,7 @@ public class AccountsCellComponent {
 
     private List<AccountDto> accounts;
     private BigDecimal totalBalance;
-    private Cell accountsCell;
+    private Cell cell;
 
     public AccountsCellComponent withAccounts(List<AccountDto> accounts) {
         this.accounts = accounts;
@@ -33,13 +33,13 @@ public class AccountsCellComponent {
     }
 
     public AccountsCellComponent build() {
-        accountsCell = new Cell();
-        accountsCell.setBorder(Border.NO_BORDER);
-        accountsCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        accountsCell.setTextAlignment(TextAlignment.CENTER);
-        accountsCell.setWidth(UnitValue.createPercentValue(50));
-        accountsCell.add(PdfUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
-        accountsCell.add(PdfUtils.getItemParagraph("\n"));
+        cell = new Cell();
+        cell.setBorder(Border.NO_BORDER);
+        cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setWidth(UnitValue.createPercentValue(50));
+        cell.add(PdfUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
+        cell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
@@ -86,11 +86,11 @@ public class AccountsCellComponent {
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
-        accountsCell.add(alignmentTable);
+        cell.add(alignmentTable);
         return this;
     }
 
-    public Cell getAccountsCell() {
-        return accountsCell;
+    public Cell getCell() {
+        return cell;
     }
 }

@@ -13,12 +13,12 @@ import java.util.Date;
 
 public class StatisticsCellComponent {
 
-    private Cell balanceCell;
     private Date lastItemAdded;
     private Date bestMonth;
     private Date bestYear;
     private Date worstMonth;
     private Date worstYear;
+    private Cell cell;
 
     public StatisticsCellComponent withLastItemAdded(Date lastItemAdded) {
         this.lastItemAdded = lastItemAdded;
@@ -46,14 +46,14 @@ public class StatisticsCellComponent {
     }
 
     public StatisticsCellComponent build() {
-        balanceCell = new Cell();
-        balanceCell.setWidth(UnitValue.createPercentValue(25));
-        balanceCell.setBorder(Border.NO_BORDER);
-        balanceCell.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        balanceCell.setTextAlignment(TextAlignment.CENTER);
-        balanceCell.setWidth(500);
-        balanceCell.add(PdfUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
-        balanceCell.add(PdfUtils.getItemParagraph("\n"));
+        cell = new Cell();
+        cell.setWidth(UnitValue.createPercentValue(25));
+        cell.setBorder(Border.NO_BORDER);
+        cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setWidth(500);
+        cell.add(PdfUtils.getTitleParagraph("Statistics", TextAlignment.CENTER));
+        cell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
 
@@ -106,12 +106,12 @@ public class StatisticsCellComponent {
         alignmentTable.addCell(alignmentTableCenter);
         alignmentTable.addCell(alignmentTableRight);
 
-        balanceCell.add(alignmentTable);
+        cell.add(alignmentTable);
 
         return this;
     }
 
-    public Cell getBalanceCell() {
-        return balanceCell;
+    public Cell getCell() {
+        return cell;
     }
 }

@@ -71,7 +71,7 @@ public class GoalAndAwardsCellComponent {
             BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoal);
             BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
 
-            cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build().getTrophyImage());
+            cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build().getImage());
             cell.add(PdfUtils.getItemParagraph("Save " + NumberUtils.formatNumber(resultDto.getResult(), false) + " / " + NumberUtils.formatNumber(currentGoal, false) + " (" + NumberUtils.formatPercentage(goalPercentage) + ")", true));
             cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
             cell.add(PdfUtils.getItemParagraph("Previous goal " + NumberUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));

@@ -14,8 +14,8 @@ public class TrophyImageComponent {
     private static float IMAGE_WIDTH = 72;
     private static float IMAGE_HEIGHT = 72;
 
-    private Image trophyImage;
     private int goalIndex;
+    private Image image;
 
     public TrophyImageComponent withGoalIndex(int goalIndex) {
         this.goalIndex = goalIndex;
@@ -24,14 +24,14 @@ public class TrophyImageComponent {
 
     public TrophyImageComponent build() {
         try {
-            trophyImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(getTrophyLocation())));
+            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(getTrophyLocation())));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        trophyImage.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        trophyImage.setTextAlignment(TextAlignment.CENTER);
-        trophyImage.setWidth(IMAGE_WIDTH);
-        trophyImage.setHeight(IMAGE_HEIGHT);
+        image.setHorizontalAlignment(HorizontalAlignment.CENTER);
+        image.setTextAlignment(TextAlignment.CENTER);
+        image.setWidth(IMAGE_WIDTH);
+        image.setHeight(IMAGE_HEIGHT);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class TrophyImageComponent {
         return PropertyValueEnum.TROPHY_ICON18;
     }
 
-    public Image getTrophyImage() {
-        return trophyImage;
+    public Image getImage() {
+        return image;
     }
 }

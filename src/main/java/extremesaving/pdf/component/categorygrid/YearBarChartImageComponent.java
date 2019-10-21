@@ -13,20 +13,20 @@ public class YearBarChartImageComponent {
     public static float CHART_WIDTH = 530;
     public static float CHART_HEIGHT = 240;
 
-    private Image chartImage;
+    private Image image;
 
     public YearBarChartImageComponent build() {
         try {
-            chartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
-            chartImage.setWidth(CHART_WIDTH);
-            chartImage.setHeight(CHART_HEIGHT);
+            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getInstance().getPropValue(YEARLY_BAR_CHART_IMAGE_FILE)));
+            image.setWidth(CHART_WIDTH);
+            image.setHeight(CHART_HEIGHT);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return this;
     }
 
-    public Image getChartImage() {
-        return chartImage;
+    public Image getImage() {
+        return image;
     }
 }

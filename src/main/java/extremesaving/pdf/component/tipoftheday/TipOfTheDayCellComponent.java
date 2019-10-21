@@ -9,8 +9,8 @@ import extremesaving.pdf.util.PdfUtils;
 
 public class TipOfTheDayCellComponent {
 
-    private Cell cell;
     private String tipOfTheDayMessage;
+    private Cell cell;
 
     public TipOfTheDayCellComponent withMessage(String message) {
         this.tipOfTheDayMessage = message;

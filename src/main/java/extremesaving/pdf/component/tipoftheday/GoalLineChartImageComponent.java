@@ -11,20 +11,20 @@ public class GoalLineChartImageComponent {
     public static float GOAL_LINE_CHART_WIDTH = 530;
     public static float GOAL_LINE_CHART_HEIGHT = 240;
 
-    private Image chartImage;
+    private Image image;
 
     public GoalLineChartImageComponent build() {
         try {
-            chartImage = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
-            chartImage.setWidth(GOAL_LINE_CHART_WIDTH);
-            chartImage.setHeight(GOAL_LINE_CHART_HEIGHT);
+            image = new Image(ImageDataFactory.create(PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE)));
+            image.setWidth(GOAL_LINE_CHART_WIDTH);
+            image.setHeight(GOAL_LINE_CHART_HEIGHT);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return this;
     }
 
-    public Image getChartImage() {
-        return chartImage;
+    public Image getImage() {
+        return image;
     }
 }
