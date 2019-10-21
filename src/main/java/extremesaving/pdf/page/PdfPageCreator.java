@@ -1,8 +1,8 @@
-package extremesaving.pdf.service;
+package extremesaving.pdf.page;
 
 import com.itextpdf.layout.Document;
 
-public interface PdfPageService {
+public interface PdfPageCreator {
 
     void generate(Document document);
 }

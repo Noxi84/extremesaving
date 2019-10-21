@@ -1,4 +1,4 @@
-package extremesaving.pdf.service;
+package extremesaving.pdf.page;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -33,7 +33,7 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FIL
 import static extremesaving.property.PropertyValueEnum.MONTHLY_BAR_CHART_IMAGE_FILE;
 import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
 
-public class PdfPageTipOfTheDayService implements PdfPageService {
+public class PdfPageTipOfTheDayCreator implements PdfPageCreator {
 
     public static float GOAL_LINE_CHART_WIDTH = 530;
     public static float GOAL_LINE_CHART_HEIGHT = 170;

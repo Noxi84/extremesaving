@@ -4,22 +4,22 @@
 <beans>
     <!-- Facade-->
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="pdfPageCategoryGridService" ref="pdfPageCategoryGridService"/>
-        <property name="pdfPageItemGridService" ref="pdfPageItemGridService"/>
-        <property name="pdfPagePredictionsService" ref="pdfPagePredictionsService"/>
+        <property name="pdfPageCategoryGridCreator" ref="pdfPageCategoryGridCreator"/>
+        <property name="pdfPageItemGridCreator" ref="pdfPageItemGridCreator"/>
+        <property name="pdfPagePredictionsCreator" ref="pdfPagePredictionsCreator"/>
     </bean>
 
-    <!-- Pdf page Services -->
-    <bean id="pdfPageCategoryGridService" class="extremesaving.pdf.service.PdfPageCategoryGridService">
+    <!-- Pdf page creators -->
+    <bean id="pdfPageCategoryGridCreator" class="extremesaving.pdf.page.PdfPageCategoryGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
         <property name="yearBarChartPdfSectionCreator" ref="yearBarChartPdfSectionCreator"/>
     </bean>
-    <bean id="pdfPageItemGridService" class="extremesaving.pdf.service.PdfPageItemGridService">
+    <bean id="pdfPageItemGridCreator" class="extremesaving.pdf.page.PdfPageItemGridCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
-    <bean id="pdfPagePredictionsService" class="extremesaving.pdf.service.PdfPageTipOfTheDayService">
+    <bean id="pdfPagePredictionsCreator" class="extremesaving.pdf.page.PdfPageTipOfTheDayCreator">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>

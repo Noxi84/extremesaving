@@ -1,4 +1,4 @@
-package extremesaving.pdf.service;
+package extremesaving.pdf.page;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PdfPageItemGridService implements PdfPageService {
+public class PdfPageItemGridCreator implements PdfPageCreator {
 
     private static final int DISPLAY_MAX_ITEMS = 39;
     private static final int TEXT_MAX_CHARACTERS = 26;

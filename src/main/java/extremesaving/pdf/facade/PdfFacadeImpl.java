@@ -6,7 +6,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
-import extremesaving.pdf.service.PdfPageService;
+import extremesaving.pdf.page.PdfPageCreator;
 import extremesaving.property.PropertiesValueHolder;
 
 import java.io.FileNotFoundException;
@@ -15,9 +15,9 @@ import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageService pdfPageCategoryGridService;
-    private PdfPageService pdfPageItemGridService;
-    private PdfPageService pdfPagePredictionsService;
+    private PdfPageCreator pdfPageCategoryGridCreator;
+    private PdfPageCreator pdfPageItemGridCreator;
+    private PdfPageCreator pdfPagePredictionsCreator;
 
     @Override
     public void generatePdf() {
@@ -27,13 +27,13 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            pdfPagePredictionsService.generate(document);
+            pdfPagePredictionsCreator.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            pdfPageCategoryGridService.generate(document);
+            pdfPageCategoryGridCreator.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            pdfPageItemGridService.generate(document);
+            pdfPageItemGridCreator.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {
@@ -41,15 +41,15 @@ public class PdfFacadeImpl implements PdfFacade {
         }
     }
 
-    public void setPdfPageCategoryGridService(PdfPageService pdfPageCategoryGridService) {
-        this.pdfPageCategoryGridService = pdfPageCategoryGridService;
+    public void setPdfPageCategoryGridCreator(PdfPageCreator pdfPageCategoryGridCreator) {
+        this.pdfPageCategoryGridCreator = pdfPageCategoryGridCreator;
     }
 
-    public void setPdfPageItemGridService(PdfPageService pdfPageItemGridService) {
-        this.pdfPageItemGridService = pdfPageItemGridService;
+    public void setPdfPageItemGridCreator(PdfPageCreator pdfPageItemGridCreator) {
+        this.pdfPageItemGridCreator = pdfPageItemGridCreator;
     }
 
-    public void setPdfPagePredictionsService(PdfPageService pdfPagePredictionsService) {
-        this.pdfPagePredictionsService = pdfPagePredictionsService;
+    public void setPdfPagePredictionsCreator(PdfPageCreator pdfPagePredictionsCreator) {
+        this.pdfPagePredictionsCreator = pdfPagePredictionsCreator;
     }
 }

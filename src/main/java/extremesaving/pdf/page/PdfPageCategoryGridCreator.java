@@ -1,4 +1,4 @@
-package extremesaving.pdf.service;
+package extremesaving.pdf.page;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.Document;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
 
-public class PdfPageCategoryGridService implements PdfPageService {
+public class PdfPageCategoryGridCreator implements PdfPageCreator {
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
