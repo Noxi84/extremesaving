@@ -38,13 +38,13 @@ public class GoalLineChart {
 
     protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(getEstimationSeries());
-        dataset.addSeries(getBalanceHistorySeries());
+        dataset.addSeries(getFutureSeries());
+        dataset.addSeries(getHistorySeries());
         dataset.addSeries(getSurvivalSeries());
         return dataset;
     }
 
-    protected TimeSeries getBalanceHistorySeries() {
+    protected TimeSeries getHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
@@ -64,7 +64,7 @@ public class GoalLineChart {
         return series;
     }
 
-    protected TimeSeries getEstimationSeries() {
+    protected TimeSeries getFutureSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
             Calendar cal = Calendar.getInstance();

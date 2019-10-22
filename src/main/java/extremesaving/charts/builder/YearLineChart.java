@@ -39,13 +39,13 @@ public class YearLineChart {
 
     protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(getEstimationSeries());
-        dataset.addSeries(getBalanceHistorySeries());
+        dataset.addSeries(getFutureSeries());
+        dataset.addSeries(getHistorySeries());
         dataset.addSeries(getSurvivalSeries());
         return dataset;
     }
 
-    protected TimeSeries getBalanceHistorySeries() {
+    protected TimeSeries getHistorySeries() {
         TimeSeries series = new TimeSeries("Balance history");
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : historyResults.entrySet()) {
@@ -71,7 +71,7 @@ public class YearLineChart {
         return series;
     }
 
-    protected TimeSeries getEstimationSeries() {
+    protected TimeSeries getFutureSeries() {
         TimeSeries series = new TimeSeries("Estimated result");
         Date today = new Date();
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
