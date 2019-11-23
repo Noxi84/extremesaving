@@ -129,24 +129,15 @@ public class EstimationFacadeImpl implements EstimationFacade {
 
     @Override
     public BigDecimal getPreviousGoal() {
-        String goalsList = PropertiesValueHolder.getString(CHART_GOALS_SAVINGS);
-        String[] goals = StringUtils.split(goalsList, ",");
-        List<BigDecimal> goalAmounts = new ArrayList<>();
-        for (String goal : goals) {
-            goalAmounts.add(new BigDecimal(goal));
-        }
+        List<BigDecimal> goalAmounts = getGoalAmounts();
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(nextGoalIndex - 1);
+        return goalAmounts.get(Math.max(0, nextGoalIndex - 1));
     }
 
     @Override
     public BigDecimal getCurrentGoal() {
-        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
-        List<BigDecimal> goalAmounts = new ArrayList<>();
-        for (String goal : goals) {
-            goalAmounts.add(new BigDecimal(goal));
-        }
+        List<BigDecimal> goalAmounts = getGoalAmounts();
         ResultDto resultDto = calculationFacade.getResults(dataFacade.findAll());
         for (BigDecimal goalAmount : goalAmounts) {
             if (resultDto.getResult().compareTo(goalAmount) < 0) {
@@ -158,11 +149,7 @@ public class EstimationFacadeImpl implements EstimationFacade {
 
     @Override
     public int getGoalIndex(BigDecimal goalAmount) {
-        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
-        List<BigDecimal> goalAmounts = new ArrayList<>();
-        for (String goal : goals) {
-            goalAmounts.add(new BigDecimal(goal));
-        }
+        List<BigDecimal> goalAmounts = getGoalAmounts();
         for (int i = 0; i < goalAmounts.size(); i++) {
             BigDecimal goal = goalAmounts.get(i);
             if (goalAmount.compareTo(goal) < 0 || goalAmount.compareTo(goal) == 0) {
@@ -174,14 +161,19 @@ public class EstimationFacadeImpl implements EstimationFacade {
 
     @Override
     public BigDecimal getNextGoal(int index) {
-        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
-        List<BigDecimal> goalAmounts = new ArrayList<>();
-        for (String goal : goals) {
-            goalAmounts.add(new BigDecimal(goal));
-        }
+        List<BigDecimal> goalAmounts = getGoalAmounts();
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
         return goalAmounts.get(nextGoalIndex + index);
+    }
+
+    protected List<BigDecimal> getGoalAmounts() {
+        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
+        List<BigDecimal> goalAmounts = new ArrayList<>();
+        for (String goal : goals) {
+            goalAmounts.add(new BigDecimal(StringUtils.trim(goal)));
+        }
+        return goalAmounts;
     }
 
     @Override
@@ -190,6 +182,9 @@ public class EstimationFacadeImpl implements EstimationFacade {
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
         EstimationResultDto estimationResultDto = getEstimationResultDto(dataDtos);
 
+        if (!NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
+            return -1L;
+        }
         BigDecimal amount = resultDto.getResult();
         if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
             long dayCounter = 0;
