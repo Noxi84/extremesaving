@@ -76,7 +76,7 @@ public class EstimationFacadeImpl implements EstimationFacade {
         for (Map.Entry<Integer, BigDecimal> data : dataMapWithfactor.entrySet()) {
             if (NumberUtils.isExpense(data.getValue())) {
                 totalNumberOfDays += data.getKey();
-                totalExpenses = totalExpenses.add(data.getValue().multiply(BigDecimal.valueOf(totalNumberOfDays)));
+                totalExpenses = totalExpenses.add(data.getValue().multiply(BigDecimal.valueOf(data.getKey())));
             }
         }
 
