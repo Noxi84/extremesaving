@@ -14,6 +14,8 @@ public interface CalculationFacade {
 
     ResultDto getResults(Collection<DataDto> dataDtos);
 
+    ResultDto getResults(Map<Date, BigDecimal> dataMap);
+
     Map<Integer, MiniResultDto> getMonthResults(Collection<DataDto> dataDtos);
 
     Map<Integer, MiniResultDto> getYearResults(Collection<DataDto> dataDtos);

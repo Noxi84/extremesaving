@@ -1,5 +1,6 @@
 package extremesaving.calculation.facade;
 
+import extremesaving.calculation.dto.EstimationResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
 
@@ -26,5 +27,5 @@ public interface EstimationFacade {
 
     Date getGoalReachedDate(BigDecimal goal);
 
-    ResultDto getEstimationResultDto(Collection<DataDto> dataDtos);
+    EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos);
 }

@@ -1,5 +1,6 @@
 package extremesaving.charts.service;
 
+import extremesaving.calculation.dto.EstimationResultDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
@@ -86,14 +87,14 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future estimation results with incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        ResultDto filteredResultDto = estimationFacade.getEstimationResultDto(dataDtos);
+        EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
         BigDecimal goal = estimationFacade.getNextGoal(2);
         while (currentValue.compareTo(goal) <= 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(filteredResultDto.getAverageDailyResult());
+            currentValue = currentValue.add(estimationResultDto.getAverageDailyResult());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 predictions.put(cal.getTime(), currentValue);
             } else {
@@ -110,13 +111,13 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add future estimation results without incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        ResultDto filteredResultDto = estimationFacade.getEstimationResultDto(dataDtos);
+        EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
         BigDecimal currentValue = resultDto.getResult();
         Calendar cal = Calendar.getInstance();
 
         while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
             cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(filteredResultDto.getAverageDailyExpense());
+            currentValue = currentValue.add(estimationResultDto.getAverageDailyExpense());
             if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 predictions.put(cal.getTime(), currentValue);
             } else {
