@@ -164,7 +164,7 @@ public class CalculationServiceImpl implements CalculationService {
             if ((minValue.compareTo(data.getValue()) <= 0) && maxValue.compareTo(data.getValue()) >= 0) {
                 results.put(data.getKey(), data.getValue());
             } else {
-//                System.out.println("Removing outliner: " + data.getKey() + " " + data.getValue() + " (min: " + minValue + ", max: " + maxValue + ")");
+//                System.out.println("Removing outliner: " + new SimpleDateFormat("dd/MM/yyyy").format(data.getKey()) + " " + data.getValue() + " (min: " + minValue + ", max: " + maxValue + ")");
             }
         }
         return dataMap;

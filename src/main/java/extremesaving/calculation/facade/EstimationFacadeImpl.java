@@ -31,8 +31,8 @@ public class EstimationFacadeImpl implements EstimationFacade {
     @Override
     public EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos) {
         Map<Date, BigDecimal> combineDays = calculationService.combineDays(dataDtos);
-        combineDays = calculationService.filterEstimatedDateRange(combineDays);
         combineDays = calculationService.removeOutliners(combineDays);
+        combineDays = calculationService.filterEstimatedDateRange(combineDays);
 
         EstimationResultDto estimationResultDto = new EstimationResultDto();
         estimationResultDto.setAverageDailyExpense(calculateAverageDailyExpenseWithFactor(combineDays));
