@@ -4,9 +4,9 @@
 <beans>
     <!--Facade-->
     <bean id="estimationFacade" class="extremesaving.calculation.facade.EstimationFacadeImpl">
-        <property name="calculationService" ref="calculationService"/>
         <property name="dataFacade" ref="dataFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="estimationService" ref="estimationService"/>
     </bean>
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
@@ -22,5 +22,9 @@
 
     <!--Services-->
     <bean id="calculationService" class="extremesaving.calculation.service.CalculationServiceImpl">
+
+    </bean>
+    <bean id="estimationService" class="extremesaving.calculation.service.EstimationServiceImpl">
+        <property name="calculationService" ref="calculationService"/>
     </bean>
 </beans>

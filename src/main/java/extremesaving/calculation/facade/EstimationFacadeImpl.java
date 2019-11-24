@@ -3,6 +3,7 @@ package extremesaving.calculation.facade;
 import extremesaving.calculation.dto.EstimationResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.service.EstimationService;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
@@ -25,14 +26,14 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLA
 public class EstimationFacadeImpl implements EstimationFacade {
 
     private DataFacade dataFacade;
-    private CalculationService calculationService;
     private CalculationFacade calculationFacade;
+    private EstimationService estimationService;
 
     @Override
     public EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos) {
-        Map<Date, BigDecimal> combineDays = calculationService.combineDays(dataDtos);
-        combineDays = calculationService.removeOutliners(combineDays);
-        combineDays = calculationService.filterEstimatedDateRange(combineDays);
+        Map<Date, BigDecimal> combineDays = estimationService.combineDays(dataDtos);
+        combineDays = estimationService.removeOutliners(combineDays);
+        combineDays = estimationService.filterEstimatedDateRange(combineDays);
 
         EstimationResultDto estimationResultDto = new EstimationResultDto();
         estimationResultDto.setAverageDailyExpense(calculateAverageDailyExpenseWithFactor(combineDays));
@@ -220,11 +221,11 @@ public class EstimationFacadeImpl implements EstimationFacade {
         this.dataFacade = dataFacade;
     }
 
-    public void setCalculationService(CalculationService calculationService) {
-        this.calculationService = calculationService;
-    }
-
     public void setCalculationFacade(CalculationFacade calculationFacade) {
         this.calculationFacade = calculationFacade;
+    }
+
+    public void setEstimationService(EstimationService estimationService) {
+        this.estimationService = estimationService;
     }
 }
