@@ -63,7 +63,7 @@ public class EstimationServiceImpl implements EstimationService {
 //                System.out.println("Removing outliner: " + new SimpleDateFormat("dd/MM/yyyy").format(data.getKey()) + " " + data.getValue() + " (min: " + minValue + ", max: " + maxValue + ")");
             }
         }
-        return dataMap;
+        return results;
     }
 
     @Override

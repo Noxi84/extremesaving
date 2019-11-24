@@ -2,7 +2,6 @@ package extremesaving.calculation.facade;
 
 import extremesaving.calculation.dto.EstimationResultDto;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.service.EstimationService;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
@@ -40,32 +39,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         estimationResultDto.setAverageDailyResult(calculateAverageDailyResult(estimationDataDtos));
 
         return estimationResultDto;
-    }
-
-    protected Map<Integer, BigDecimal> getDataMapWithFactor(Map<Date, BigDecimal> dataMap) {
-        Date firstDate = dataMap.entrySet().stream().map(entry -> entry.getKey()).min(Date::compareTo).get();
-        Date lastDate = dataMap.entrySet().stream().map(entry -> entry.getKey()).max(Date::compareTo).get();
-
-        Map<Integer, BigDecimal> dataWithFactor = new HashMap<>();
-
-        // Init factors so all possible factors are present
-        long daysBetween = DateUtils.daysBetween(lastDate, firstDate);
-        for (int i = 0; i <= daysBetween; i++) {
-            dataWithFactor.put(i, BigDecimal.ZERO);
-        }
-
-        // Update factors with their value
-        for (Map.Entry<Date, BigDecimal> data : dataMap.entrySet()) {
-            Long factor = daysBetween - DateUtils.daysBetween(data.getKey(), lastDate) * -1;
-            BigDecimal value = dataWithFactor.get(factor.intValue());
-            if (value == null) {
-                throw new IllegalStateException("Should not happen because of init factors above.");
-            }
-            value = value.add(data.getValue());
-            dataWithFactor.put(factor.intValue(), value);
-        }
-
-        return dataWithFactor;
     }
 
     protected BigDecimal calculateAverageDailyExpenseWithFactor(Map<Date, BigDecimal> dataMap) {
@@ -106,6 +79,32 @@ public class EstimationFacadeImpl implements EstimationFacade {
         } catch (ArithmeticException ex) {
             return null;
         }
+    }
+
+    protected Map<Integer, BigDecimal> getDataMapWithFactor(Map<Date, BigDecimal> dataMap) {
+        Date firstDate = dataMap.entrySet().stream().map(entry -> entry.getKey()).min(Date::compareTo).get();
+        Date lastDate = dataMap.entrySet().stream().map(entry -> entry.getKey()).max(Date::compareTo).get();
+
+        Map<Integer, BigDecimal> dataWithFactor = new HashMap<>();
+
+        // Init factors so all possible factors are present
+        long daysBetween = DateUtils.daysBetween(lastDate, firstDate);
+        for (int i = 0; i <= daysBetween; i++) {
+            dataWithFactor.put(i, BigDecimal.ZERO);
+        }
+
+        // Update factors with their value
+        for (Map.Entry<Date, BigDecimal> data : dataMap.entrySet()) {
+            Long factor = daysBetween - DateUtils.daysBetween(data.getKey(), lastDate) * -1;
+            BigDecimal value = dataWithFactor.get(factor.intValue());
+            if (value == null) {
+                throw new IllegalStateException("Should not happen because of init factors above.");
+            }
+            value = value.add(data.getValue());
+            dataWithFactor.put(factor.intValue(), value);
+        }
+
+        return dataWithFactor;
     }
 
     @Override
