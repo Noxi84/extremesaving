@@ -40,11 +40,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
     }
 
     @Override
-    public ResultDto getResults(Map<Date, BigDecimal> dataMap) {
-        return calculationService.getResultDto(dataMap);
-    }
-
-    @Override
     public List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos) {
         List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataDtos);
         return categoryDescriptionGrouped.stream()

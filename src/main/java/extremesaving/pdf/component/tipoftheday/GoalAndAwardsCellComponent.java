@@ -5,6 +5,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.util.NumberUtils;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -65,17 +66,31 @@ public class GoalAndAwardsCellComponent {
         cell.setWidth(UnitValue.createPercentValue(50));
 
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            BigDecimal goalPercentageAmount = currentGoal.subtract(previousGoal);
-            BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoal);
-            BigDecimal goalPercentage = currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
-
             cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build());
+
+            BigDecimal goalPercentage = getGoalPercentage();
             cell.add(PdfUtils.getItemParagraph("Save " + PdfUtils.formatNumber(resultDto.getResult(), false) + " / " + PdfUtils.formatNumber(currentGoal, false) + " (" + PdfUtils.formatPercentage(goalPercentage) + ")", true));
             cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
-            cell.add(PdfUtils.getItemParagraph("Previous goal " + PdfUtils.formatNumber(previousGoal, false) + " reached on " + new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate)));
+            cell.add(PdfUtils.getItemParagraph("Previous goal " + PdfUtils.formatNumber(previousGoal, false) + " reached: " + getPreviousGoalReached()));
             cell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(survivalDays), false));
             cell.add(PdfUtils.getItemParagraph("\n"));
         }
         return cell;
+    }
+
+    protected BigDecimal getGoalPercentage() {
+        BigDecimal goalPercentageAmount = currentGoal.subtract(previousGoal);
+        BigDecimal currentGoalAmount = resultDto.getResult().subtract(previousGoal);
+        if (NumberUtils.isIncome(currentGoalAmount)) {
+            return currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+        }
+        return BigDecimal.ZERO;
+    }
+
+    protected String getPreviousGoalReached() {
+        if (previousGoalReachDate != null) {
+            return new SimpleDateFormat("d MMMM yyyy").format(previousGoalReachDate);
+        }
+        return "Never";
     }
 }

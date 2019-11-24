@@ -18,43 +18,34 @@ public class CalculationServiceImpl implements CalculationService {
     public ResultDto getResultDto(Collection<DataDto> dataDtos) {
         ResultDto resultDto = new ResultDto();
         resultDto.setData(new HashSet<>(dataDtos));
-
         for (DataDto dataDto : dataDtos) {
-            enrichtResultDto(resultDto, dataDto.getDate(), dataDto.getValue());
+            enrichResultDto(resultDto, dataDto.getDate(), dataDto.getValue());
         }
-        if (resultDto.getFirstDate() != null) {
-            resultDto.setDaysSinceLastUpdate(DateUtils.daysBetween(new Date(), resultDto.getFirstDate()));
-        }
-
-        resultDto.setAverageDailyIncome(calculateAverageDailyIncome(resultDto));
-        resultDto.setAverageDailyExpense(calculateAverageDailyExpense(resultDto));
-        resultDto.setAverageDailyResult(calculateAverageDailyResult(resultDto));
-
+        enrichLastUpdate(resultDto);
+        enrichAverageDaily(resultDto);
         return resultDto;
     }
 
     @Override
     public ResultDto getResultDto(Map<Date, BigDecimal> dataMap) {
         ResultDto resultDto = new ResultDto();
-
         for (Map.Entry<Date, BigDecimal> data : dataMap.entrySet()) {
             Date date = data.getKey();
             BigDecimal value = data.getValue();
-
-            enrichtResultDto(resultDto, date, value);
+            enrichResultDto(resultDto, date, value);
         }
-        if (resultDto.getFirstDate() != null) {
-            resultDto.setDaysSinceLastUpdate(DateUtils.daysBetween(new Date(), resultDto.getFirstDate()));
-        }
-
-        resultDto.setAverageDailyIncome(calculateAverageDailyIncome(resultDto));
-        resultDto.setAverageDailyExpense(calculateAverageDailyExpense(resultDto));
-        resultDto.setAverageDailyResult(calculateAverageDailyResult(resultDto));
-
+        enrichLastUpdate(resultDto);
+        enrichAverageDaily(resultDto);
         return resultDto;
     }
 
-    private void enrichtResultDto(ResultDto resultDto, Date date, BigDecimal value) {
+    private void enrichLastUpdate(ResultDto resultDto) {
+        if (resultDto.getFirstDate() != null) {
+            resultDto.setDaysSinceLastUpdate(DateUtils.daysBetween(new Date(), resultDto.getFirstDate()));
+        }
+    }
+
+    private void enrichResultDto(ResultDto resultDto, Date date, BigDecimal value) {
         resultDto.setResult(resultDto.getResult().add(value));
         resultDto.setNumberOfItems(resultDto.getNumberOfItems() + 1);
         if (resultDto.getHighestResult().compareTo(value) > 0) {
@@ -80,6 +71,12 @@ public class CalculationServiceImpl implements CalculationService {
         if (resultDto.getLastDate() == null || date.after(resultDto.getLastDate())) {
             resultDto.setLastDate(date);
         }
+    }
+
+    private void enrichAverageDaily(ResultDto resultDto) {
+        resultDto.setAverageDailyIncome(calculateAverageDailyIncome(resultDto));
+        resultDto.setAverageDailyExpense(calculateAverageDailyExpense(resultDto));
+        resultDto.setAverageDailyResult(calculateAverageDailyResult(resultDto));
     }
 
     protected BigDecimal calculateAverageDailyIncome(ResultDto resultDto) {

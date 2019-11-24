@@ -66,6 +66,9 @@ public final class DateUtils {
             }
             result.append(days).append(days == 1 ? " day" : " days");
         }
-        return result.toString();
+        if (StringUtils.isNotBlank(result.toString())) {
+            return result.toString();
+        }
+        return "Unknown";
     }
 }

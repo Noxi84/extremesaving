@@ -5,6 +5,7 @@ import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
+import extremesaving.calculation.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
@@ -88,17 +89,20 @@ public class ChartDataServiceImpl implements ChartDataService {
         // Add future estimation results with incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
         EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
-        BigDecimal currentValue = resultDto.getResult();
-        Calendar cal = Calendar.getInstance();
 
-        BigDecimal goal = estimationFacade.getNextGoal(2);
-        while (currentValue.compareTo(goal) <= 0) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(estimationResultDto.getAverageDailyResult());
-            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                predictions.put(cal.getTime(), currentValue);
-            } else {
-                break;
+        if (NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
+            BigDecimal currentValue = resultDto.getResult();
+            Calendar cal = Calendar.getInstance();
+
+            BigDecimal goal = estimationFacade.getNextGoal(2);
+            while (currentValue.compareTo(goal) <= 0) {
+                cal.add(Calendar.DAY_OF_MONTH, 1);
+                currentValue = currentValue.add(estimationResultDto.getAverageDailyResult());
+                if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                    predictions.put(cal.getTime(), currentValue);
+                } else {
+                    break;
+                }
             }
         }
         return predictions;
@@ -112,16 +116,18 @@ public class ChartDataServiceImpl implements ChartDataService {
         // Add future estimation results without incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
         EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
-        BigDecimal currentValue = resultDto.getResult();
-        Calendar cal = Calendar.getInstance();
+        if (NumberUtils.isExpense(estimationResultDto.getAverageDailyExpense())) {
+            BigDecimal currentValue = resultDto.getResult();
+            Calendar cal = Calendar.getInstance();
 
-        while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            currentValue = currentValue.add(estimationResultDto.getAverageDailyExpense());
-            if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
-                predictions.put(cal.getTime(), currentValue);
-            } else {
-                break;
+            while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                cal.add(Calendar.DAY_OF_MONTH, 1);
+                currentValue = currentValue.add(estimationResultDto.getAverageDailyExpense());
+                if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
+                    predictions.put(cal.getTime(), currentValue);
+                } else {
+                    break;
+                }
             }
         }
         return predictions;

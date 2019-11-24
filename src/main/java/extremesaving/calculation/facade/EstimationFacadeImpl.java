@@ -31,13 +31,13 @@ public class EstimationFacadeImpl implements EstimationFacade {
 
     @Override
     public EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos) {
-        Map<Date, BigDecimal> combineDays = estimationService.combineDays(dataDtos);
-        combineDays = estimationService.removeOutliners(combineDays);
-        combineDays = estimationService.filterEstimatedDateRange(combineDays);
+        Map<Date, BigDecimal> estimationDataDtos = estimationService.combineDays(dataDtos);
+        estimationDataDtos = estimationService.removeOutliners(estimationDataDtos);
+        estimationDataDtos = estimationService.filterEstimatedDateRange(estimationDataDtos);
 
         EstimationResultDto estimationResultDto = new EstimationResultDto();
-        estimationResultDto.setAverageDailyExpense(calculateAverageDailyExpenseWithFactor(combineDays));
-        estimationResultDto.setAverageDailyResult(calculateAverageDailyResult(combineDays));
+        estimationResultDto.setAverageDailyExpense(calculateAverageDailyExpenseWithFactor(estimationDataDtos));
+        estimationResultDto.setAverageDailyResult(calculateAverageDailyResult(estimationDataDtos));
 
         return estimationResultDto;
     }
