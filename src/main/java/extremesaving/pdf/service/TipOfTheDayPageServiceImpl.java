@@ -15,10 +15,8 @@ import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
 import extremesaving.pdf.component.tipoftheday.GoalLineChartImageComponent;
-import extremesaving.pdf.component.tipoftheday.MonthBarChartImageComponent;
 import extremesaving.pdf.component.tipoftheday.StatisticsCellComponent;
 import extremesaving.pdf.component.tipoftheday.TipOfTheDayCellComponent;
-import extremesaving.pdf.component.tipoftheday.YearLineChartImageComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;
@@ -50,9 +48,6 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
         table2.addCell(buildAccountsCell());
         table2.addCell(buildTipOfTheDayCell());
         document.add(table2);
-
-        document.add(buildMonthBarChartImage());
-        document.add(buildYearLineChartImage());
     }
 
     protected Cell buildGoalAndAwardsCell() {
@@ -99,16 +94,6 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
         return new TipOfTheDayCellComponent()
                 .withMessage(dataFacade.getTipOfTheDay())
                 .build();
-    }
-
-    protected Image buildMonthBarChartImage() {
-        chartFacade.generateMonthBarChart();
-        return new MonthBarChartImageComponent().build();
-    }
-
-    protected Image buildYearLineChartImage() {
-        chartFacade.generateYearLineChart();
-        return new YearLineChartImageComponent().build();
     }
 
     public void setChartFacade(ChartFacade chartFacade) {

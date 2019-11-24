@@ -5,19 +5,16 @@
     <!--Facade-->
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
         <property name="categoryGridPageService" ref="categoryGridPageService"/>
-        <property name="itemGridPageService" ref="itemGridPageService"/>
         <property name="tipOfTheDayPageService" ref="tipOfTheDayPageService"/>
+        <property name="overallItemsPageService" ref="overallItemsPageService"/>
+        <property name="yearItemsPageService" ref="yearItemsPageService"/>
+        <property name="monthItemsPageService" ref="monthItemsPageService"/>
     </bean>
 
     <!--Services-->
     <bean id="categoryGridPageService" class="extremesaving.pdf.service.CategoryGridPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
-        <property name="chartFacade" ref="chartFacade"/>
-    </bean>
-    <bean id="itemGridPageService" class="extremesaving.pdf.service.ItemGridPageServiceImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-        <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
     <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayPageServiceImpl">
         <property name="chartFacade" ref="chartFacade"/>
@@ -25,6 +22,21 @@
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="estimationFacade" ref="estimationFacade"/>
         <property name="accountFacade" ref="accountFacade"/>
+    </bean>
+    <bean id="overallItemsPageService" class="extremesaving.pdf.service.OverallItemsPageServiceImpl">
+        <property name="dataFacade" ref="dataFacade"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="chartFacade" ref="chartFacade"/>
+    </bean>
+    <bean id="yearItemsPageService" class="extremesaving.pdf.service.YearItemsPageServiceImpl">
+        <property name="dataFacade" ref="dataFacade"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="chartFacade" ref="chartFacade"/>
+    </bean>
+    <bean id="monthItemsPageService" class="extremesaving.pdf.service.MonthItemsPageServiceImpl">
+        <property name="dataFacade" ref="dataFacade"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="chartFacade" ref="chartFacade"/>
     </bean>
 
 </beans>

@@ -24,16 +24,12 @@ import java.util.stream.Collectors;
 
 public class CategoryGridPageServiceImpl implements PdfPageService {
 
-    private ChartFacade chartFacade;
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
 
     @Override
     public void generate(Document document) {
         System.out.println("Generating CategoryGridPage");
-
-        document.add(buildYearBarChartImage());
-        document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
         document.add(buildCategoryOverallTable());
@@ -44,11 +40,6 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
         document.add(buildCategoryExpensesTable());
-    }
-
-    protected Image buildYearBarChartImage() {
-        chartFacade.generateYearBarChart();
-        return new YearBarChartImageComponent().build();
     }
 
     protected Table buildCategoryOverallTable() {
@@ -118,10 +109,6 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
             return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
         return BigDecimal.ZERO;
-    }
-
-    public void setChartFacade(ChartFacade chartFacade) {
-        this.chartFacade = chartFacade;
     }
 
     public void setCategoryFacade(CategoryFacade categoryFacade) {

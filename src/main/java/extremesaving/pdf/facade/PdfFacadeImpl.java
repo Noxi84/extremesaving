@@ -16,8 +16,10 @@ import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
 public class PdfFacadeImpl implements PdfFacade {
 
     private PdfPageService categoryGridPageService;
-    private PdfPageService itemGridPageService;
     private PdfPageService tipOfTheDayPageService;
+    private PdfPageService overallItemsPageService;
+    private PdfPageService yearItemsPageService;
+    private PdfPageService monthItemsPageService;
 
     @Override
     public void generatePdf() {
@@ -33,7 +35,13 @@ public class PdfFacadeImpl implements PdfFacade {
             categoryGridPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            itemGridPageService.generate(document);
+            overallItemsPageService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            yearItemsPageService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+
+            monthItemsPageService.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {
@@ -45,11 +53,19 @@ public class PdfFacadeImpl implements PdfFacade {
         this.categoryGridPageService = categoryGridPageService;
     }
 
-    public void setItemGridPageService(PdfPageService itemGridPageService) {
-        this.itemGridPageService = itemGridPageService;
-    }
-
     public void setTipOfTheDayPageService(PdfPageService tipOfTheDayPageService) {
         this.tipOfTheDayPageService = tipOfTheDayPageService;
+    }
+
+    public void setOverallItemsPageService(PdfPageService overallItemsPageService) {
+        this.overallItemsPageService = overallItemsPageService;
+    }
+
+    public void setYearItemsPageService(PdfPageService yearItemsPageService) {
+        this.yearItemsPageService = yearItemsPageService;
+    }
+
+    public void setMonthItemsPageService(PdfPageService monthItemsPageService) {
+        this.monthItemsPageService = monthItemsPageService;
     }
 }
