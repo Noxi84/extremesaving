@@ -14,7 +14,7 @@ import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
-import extremesaving.pdf.component.tipoftheday.GoalLineChartImageComponent;
+import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.tipoftheday.StatisticsCellComponent;
 import extremesaving.pdf.component.tipoftheday.TipOfTheDayCellComponent;
 import extremesaving.pdf.util.PdfUtils;

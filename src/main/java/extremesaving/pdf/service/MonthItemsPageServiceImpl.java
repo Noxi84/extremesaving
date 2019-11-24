@@ -10,7 +10,7 @@ import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.itemgrid.TableComponent;
-import extremesaving.pdf.component.tipoftheday.MonthBarChartImageComponent;
+import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 39;
+    private static final int DISPLAY_MAX_ITEMS = 10;
     private static final int TEXT_MAX_CHARACTERS = 200;
 
     private DataFacade dataFacade;

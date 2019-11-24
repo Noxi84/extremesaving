@@ -8,7 +8,7 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.categorygrid.YearBarChartImageComponent;
+import extremesaving.pdf.component.chart.YearBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.TableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class OverallItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 20;
+    private static final int DISPLAY_MAX_ITEMS = 10;
     private static final int TEXT_MAX_CHARACTERS = 200;
 
     private DataFacade dataFacade;

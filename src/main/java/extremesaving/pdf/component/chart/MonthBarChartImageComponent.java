@@ -1,4 +1,4 @@
-package extremesaving.pdf.component.tipoftheday;
+package extremesaving.pdf.component.chart;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
@@ -9,7 +9,7 @@ import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FIL
 public class MonthBarChartImageComponent {
 
     public static float MONTHCHART_WIDTH = 530;
-    public static float MONTHCHART_HEIGHT = 240;
+    public static float MONTHCHART_HEIGHT = 220;
 
     public Image build() {
         try {

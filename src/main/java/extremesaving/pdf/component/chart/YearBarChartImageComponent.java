@@ -1,4 +1,4 @@
-package extremesaving.pdf.component.categorygrid;
+package extremesaving.pdf.component.chart;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
@@ -11,7 +11,7 @@ import static extremesaving.property.PropertyValueEnum.YEAR_BAR_CHART_IMAGE_FILE
 public class YearBarChartImageComponent {
 
     public static float CHART_WIDTH = 530;
-    public static float CHART_HEIGHT = 240;
+    public static float CHART_HEIGHT = 220;
 
     public Image build() {
         try {

@@ -5,10 +5,10 @@ import extremesaving.charts.builder.MonthBarChart;
 import extremesaving.charts.builder.YearBarChart;
 import extremesaving.charts.builder.YearLineChart;
 import extremesaving.charts.service.ChartDataService;
-import extremesaving.pdf.component.categorygrid.YearBarChartImageComponent;
-import extremesaving.pdf.component.tipoftheday.GoalLineChartImageComponent;
-import extremesaving.pdf.component.tipoftheday.MonthBarChartImageComponent;
-import extremesaving.pdf.component.tipoftheday.YearLineChartImageComponent;
+import extremesaving.pdf.component.chart.YearBarChartImageComponent;
+import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
+import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
+import extremesaving.pdf.component.chart.YearLineChartImageComponent;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.JFreeChart;
 
