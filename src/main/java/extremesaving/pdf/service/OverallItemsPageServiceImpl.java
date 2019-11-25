@@ -10,12 +10,16 @@ import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
+import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
 import extremesaving.pdf.component.chart.YearBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +38,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         System.out.println("Generating OverallItemsPage");
 
         document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
+        document.add(buildSummaryTable());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
@@ -45,13 +50,31 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         document.add(buildItemExpensesTable());
     }
 
+    protected Table buildSummaryTable() {
+        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll());
+        return new SummaryTableComponent()
+                .withResults(results)
+                .withSavingRatio(getSavingRatio())
+                .build();
+    }
+
+    protected BigDecimal getSavingRatio() {
+        List<DataDto> dataDtos = dataFacade.findAll();
+        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+        return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
+    }
+
     protected Image buildYearBarChartImage() {
         chartFacade.generateYearBarChart();
         return new YearBarChartImageComponent().build();
     }
 
     protected Table buildCategoryProfitsTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream().filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult())).collect(Collectors.toList());
+        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
+                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
+                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                .collect(Collectors.toList());
         return new CategoryTableComponent()
                 .withResults(results)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
@@ -69,7 +92,10 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryExpensesTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream().filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult())).collect(Collectors.toList());
+        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
+                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
+                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                .collect(Collectors.toList());
         return new CategoryTableComponent()
                 .withResults(results)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)

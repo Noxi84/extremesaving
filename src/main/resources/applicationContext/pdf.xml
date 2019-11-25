@@ -4,7 +4,6 @@
 <beans>
     <!--Facade-->
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="categoryGridPageService" ref="categoryGridPageService"/>
         <property name="tipOfTheDayPageService" ref="tipOfTheDayPageService"/>
         <property name="overallItemsPageService" ref="overallItemsPageService"/>
         <property name="yearItemsPageService" ref="yearItemsPageService"/>
@@ -12,10 +11,6 @@
     </bean>
 
     <!--Services-->
-    <bean id="categoryGridPageService" class="extremesaving.pdf.service.CategoryGridPageServiceImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-        <property name="categoryFacade" ref="categoryFacade"/>
-    </bean>
     <bean id="tipOfTheDayPageService" class="extremesaving.pdf.service.TipOfTheDayPageServiceImpl">
         <property name="chartFacade" ref="chartFacade"/>
         <property name="dataFacade" ref="dataFacade"/>

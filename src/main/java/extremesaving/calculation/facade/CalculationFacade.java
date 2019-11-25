@@ -1,5 +1,6 @@
 package extremesaving.calculation.facade;
 
+import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
@@ -33,4 +34,6 @@ public interface CalculationFacade {
     Date getBestYear();
 
     Date getWorstYear();
+
+    BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults);
 }

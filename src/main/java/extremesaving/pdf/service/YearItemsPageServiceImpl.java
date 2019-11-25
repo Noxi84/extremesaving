@@ -12,12 +12,15 @@ import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
+import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
 import extremesaving.pdf.component.chart.YearLineChartImageComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,6 +40,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         System.out.println("Generating YearItemsPageServiceImpl");
 
         document.add(PdfUtils.getTitleParagraph("Yearly Analysis Report", TextAlignment.LEFT));
+        document.add(buildSummaryTable());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
@@ -48,6 +52,21 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         document.add(buildItemExpensesTable());
     }
 
+    protected Table buildSummaryTable() {
+        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        return new SummaryTableComponent()
+                .withResults(results)
+                .withSavingRatio(getSavingRatio())
+                .build();
+    }
+
+    protected BigDecimal getSavingRatio() {
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+        return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
+    }
+
     protected Image buildYearLineChartImage() {
         chartFacade.generateYearLineChart();
         return new YearLineChartImageComponent().build();
@@ -56,7 +75,10 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     protected Table buildCategoryProfitsTable() {
         List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
         List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-        List<CategoryDto> results = categoryResults.stream().filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult())).collect(Collectors.toList());
+        List<CategoryDto> results = categoryResults.stream()
+                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
+                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                .collect(Collectors.toList());
         return new CategoryTableComponent()
                 .withResults(results)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
@@ -77,7 +99,10 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     protected Table buildCategoryExpensesTable() {
         List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
         List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-        List<CategoryDto> results = categoryResults.stream().filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult())).collect(Collectors.toList());
+        List<CategoryDto> results = categoryResults.stream()
+                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
+                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                .collect(Collectors.toList());
         return new CategoryTableComponent()
                 .withResults(results)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)

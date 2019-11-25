@@ -15,7 +15,6 @@ import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
 
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageService categoryGridPageService;
     private PdfPageService tipOfTheDayPageService;
     private PdfPageService overallItemsPageService;
     private PdfPageService yearItemsPageService;
@@ -32,9 +31,6 @@ public class PdfFacadeImpl implements PdfFacade {
             tipOfTheDayPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            categoryGridPageService.generate(document);
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
             overallItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
@@ -47,10 +43,6 @@ public class PdfFacadeImpl implements PdfFacade {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setCategoryGridPageService(PdfPageService categoryGridPageService) {
-        this.categoryGridPageService = categoryGridPageService;
     }
 
     public void setTipOfTheDayPageService(PdfPageService tipOfTheDayPageService) {

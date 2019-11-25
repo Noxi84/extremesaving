@@ -1,5 +1,6 @@
 package extremesaving.calculation.facade;
 
+import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.MiniResultDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
@@ -10,6 +11,7 @@ import extremesaving.util.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -222,6 +224,19 @@ public class CalculationFacadeImpl implements CalculationFacade {
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
+    }
+
+    @Override
+    public BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults) {
+        BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal expensesAmount = expensesResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
+        if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
+            return BigDecimal.valueOf(100);
+        } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
+            return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
+        }
+        return BigDecimal.ZERO;
     }
 
     public void setDataFacade(DataFacade dataFacade) {
