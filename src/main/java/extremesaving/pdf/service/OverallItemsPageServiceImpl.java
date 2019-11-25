@@ -27,11 +27,13 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating OverallItemsPage");
 
+        document.add(PdfUtils.getTitleParagraph("Overall Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most profitable items overall", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildProfitsTable());
-        document.add(PdfUtils.getTitleParagraph("Most expensive items overall", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildExpensesTable());
     }
 

@@ -31,11 +31,13 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating YearItemsPageServiceImpl");
 
+        document.add(PdfUtils.getTitleParagraph("Year Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most profitable items this year", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildProfitsTable());
-        document.add(PdfUtils.getTitleParagraph("Most expensive items this year", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildExpensesTable());
     }
 

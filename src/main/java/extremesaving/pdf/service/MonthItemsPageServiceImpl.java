@@ -31,11 +31,13 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating MonthItemsPageServiceImpl");
 
+        document.add(PdfUtils.getTitleParagraph("Month Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most profitable items this month", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildProfitsTable());
-        document.add(PdfUtils.getTitleParagraph("Most expensive items this month", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildExpensesTable());
     }
 
