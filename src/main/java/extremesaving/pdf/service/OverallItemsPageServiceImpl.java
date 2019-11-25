@@ -12,10 +12,10 @@ import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
-import extremesaving.pdf.component.chart.YearBarChartImageComponent;
+import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
+import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;
@@ -38,13 +38,17 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         System.out.println("Generating OverallItemsPage");
 
         document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
+
         document.add(buildSummaryTable());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(buildYearBarChartImage());
+
+        document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
+
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildCategoryProfitsTable());
         document.add(buildItemProfitsTable());
+
         document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildCategoryExpensesTable());
         document.add(buildItemExpensesTable());
@@ -65,9 +69,9 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
     }
 
-    protected Image buildYearBarChartImage() {
-        chartFacade.generateYearBarChart();
-        return new YearBarChartImageComponent().build();
+    protected Image buildGoalLineChartImage() {
+        chartFacade.generateGoalLineChart();
+        return new GoalLineChartImageComponent().build();
     }
 
     protected Table buildCategoryProfitsTable() {

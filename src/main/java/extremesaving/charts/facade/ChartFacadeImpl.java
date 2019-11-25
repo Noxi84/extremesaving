@@ -3,12 +3,10 @@ package extremesaving.charts.facade;
 import extremesaving.charts.builder.GoalLineChart;
 import extremesaving.charts.builder.MonthBarChart;
 import extremesaving.charts.builder.YearBarChart;
-import extremesaving.charts.builder.YearLineChart;
 import extremesaving.charts.service.ChartDataService;
-import extremesaving.pdf.component.chart.YearBarChartImageComponent;
 import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
-import extremesaving.pdf.component.chart.YearLineChartImageComponent;
+import extremesaving.pdf.component.chart.YearBarChartImageComponent;
 import extremesaving.property.PropertiesValueHolder;
 import org.jfree.chart.JFreeChart;
 
@@ -23,7 +21,6 @@ import java.io.InputStream;
 import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
 import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FILE;
 import static extremesaving.property.PropertyValueEnum.YEAR_BAR_CHART_IMAGE_FILE;
-import static extremesaving.property.PropertyValueEnum.YEAR_LINE_CHART_IMAGE_FILE;
 
 public class ChartFacadeImpl implements ChartFacade {
 
@@ -45,17 +42,6 @@ public class ChartFacadeImpl implements ChartFacade {
                 .withYearResults(chartDataService.getYearResults())
                 .build();
         writeChartPng(chart, PropertiesValueHolder.getString(YEAR_BAR_CHART_IMAGE_FILE), (int) YearBarChartImageComponent.CHART_WIDTH * 2, (int) YearBarChartImageComponent.CHART_HEIGHT * 2);
-    }
-
-    @Override
-    public void generateYearLineChart() {
-        System.out.println("Generating YearLineChart...");
-        JFreeChart chart = new YearLineChart()
-                .withHistoryResults(chartDataService.getGoalLineHistoryResults())
-                .withFutureResults(chartDataService.getGoalLineFutureEstimationResults())
-                .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
-                .build();
-        writeChartPng(chart, PropertiesValueHolder.getString(YEAR_LINE_CHART_IMAGE_FILE), (int) YearLineChartImageComponent.YEAR_LINE_CHART_WIDTH * 2, (int) YearLineChartImageComponent.YEAR_LINE_CHART_HEIGHT * 2);
     }
 
     @Override

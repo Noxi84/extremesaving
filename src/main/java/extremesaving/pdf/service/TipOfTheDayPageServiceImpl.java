@@ -2,7 +2,6 @@ package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
@@ -14,7 +13,6 @@ import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
-import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.tipoftheday.StatisticsCellComponent;
 import extremesaving.pdf.component.tipoftheday.TipOfTheDayCellComponent;
 import extremesaving.pdf.util.PdfUtils;
@@ -40,7 +38,6 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
         table.addCell(buildStatisticsCell());
         document.add(table);
 
-        document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
 
         Table table2 = new Table(2);
@@ -76,11 +73,6 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
                 .withWorstMonth(calculationFacade.getWorstMonth())
                 .withWorstYear(calculationFacade.getWorstYear())
                 .build();
-    }
-
-    protected Image buildGoalLineChartImage() {
-        chartFacade.generateGoalLineChart();
-        return new GoalLineChartImageComponent().build();
     }
 
     protected Cell buildAccountsCell() {
