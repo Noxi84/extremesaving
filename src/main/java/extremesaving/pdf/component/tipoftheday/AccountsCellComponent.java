@@ -18,15 +18,9 @@ import java.util.stream.Collectors;
 public class AccountsCellComponent {
 
     private List<AccountDto> accounts;
-    private BigDecimal totalBalance;
 
     public AccountsCellComponent withAccounts(List<AccountDto> accounts) {
         this.accounts = accounts;
-        return this;
-    }
-
-    public AccountsCellComponent withTotalBalance(BigDecimal totalBalance) {
-        this.totalBalance = totalBalance;
         return this;
     }
 
@@ -36,8 +30,6 @@ public class AccountsCellComponent {
         cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
         cell.setTextAlignment(TextAlignment.CENTER);
         cell.setWidth(UnitValue.createPercentValue(50));
-        cell.add(PdfUtils.getTitleParagraph("Accounts", TextAlignment.CENTER));
-        cell.add(PdfUtils.getItemParagraph("\n"));
 
         Table alignmentTable = new Table(3);
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
@@ -72,14 +64,6 @@ public class AccountsCellComponent {
             alignmentTableCenter.add(PdfUtils.getItemParagraph(" : "));
             alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(accountDto.getTotalResults().getResult())));
         }
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total result", true));
-
-        alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":", true));
-
-        alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(totalBalance), true));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);

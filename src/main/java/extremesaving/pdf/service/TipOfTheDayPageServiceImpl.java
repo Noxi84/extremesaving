@@ -5,28 +5,21 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.EstimationFacade;
-import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
 import extremesaving.pdf.component.tipoftheday.StatisticsCellComponent;
-import extremesaving.pdf.component.tipoftheday.TipOfTheDayCellComponent;
-import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class TipOfTheDayPageServiceImpl implements PdfPageService {
 
-    private ChartFacade chartFacade;
     private DataFacade dataFacade;
     private CalculationFacade calculationFacade;
     private EstimationFacade estimationFacade;
-    private AccountFacade accountFacade;
 
     @Override
     public void generate(Document document) {
@@ -38,13 +31,6 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
         table.addCell(buildStatisticsCell());
         document.add(table);
 
-        document.add(PdfUtils.getItemParagraph("\n"));
-
-        Table table2 = new Table(2);
-        table2.setWidth(UnitValue.createPercentValue(100));
-        table2.addCell(buildAccountsCell());
-        table2.addCell(buildTipOfTheDayCell());
-        document.add(table2);
     }
 
     protected Cell buildGoalAndAwardsCell() {
@@ -68,28 +54,7 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
     protected Cell buildStatisticsCell() {
         return new StatisticsCellComponent()
                 .withLastItemAdded(calculationFacade.getLastItemAdded())
-                .withBestMonth(calculationFacade.getBestMonth())
-                .withBestYear(calculationFacade.getBestYear())
-                .withWorstMonth(calculationFacade.getWorstMonth())
-                .withWorstYear(calculationFacade.getWorstYear())
                 .build();
-    }
-
-    protected Cell buildAccountsCell() {
-        return new AccountsCellComponent()
-                .withAccounts(accountFacade.getAccounts())
-                .withTotalBalance(calculationFacade.getTotalBalance())
-                .build();
-    }
-
-    protected Cell buildTipOfTheDayCell() {
-        return new TipOfTheDayCellComponent()
-                .withMessage(dataFacade.getTipOfTheDay())
-                .build();
-    }
-
-    public void setChartFacade(ChartFacade chartFacade) {
-        this.chartFacade = chartFacade;
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {
@@ -102,9 +67,5 @@ public class TipOfTheDayPageServiceImpl implements PdfPageService {
 
     public void setEstimationFacade(EstimationFacade estimationFacade) {
         this.estimationFacade = estimationFacade;
-    }
-
-    public void setAccountFacade(AccountFacade accountFacade) {
-        this.accountFacade = accountFacade;
     }
 }

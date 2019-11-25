@@ -14,33 +14,9 @@ import java.util.Date;
 public class StatisticsCellComponent {
 
     private Date lastItemAdded;
-    private Date bestMonth;
-    private Date bestYear;
-    private Date worstMonth;
-    private Date worstYear;
 
     public StatisticsCellComponent withLastItemAdded(Date lastItemAdded) {
         this.lastItemAdded = lastItemAdded;
-        return this;
-    }
-
-    public StatisticsCellComponent withBestMonth(Date bestMonth) {
-        this.bestMonth = bestMonth;
-        return this;
-    }
-
-    public StatisticsCellComponent withBestYear(Date bestYear) {
-        this.bestYear = bestYear;
-        return this;
-    }
-
-    public StatisticsCellComponent withWorstMonth(Date worstMonth) {
-        this.worstMonth = worstMonth;
-        return this;
-    }
-
-    public StatisticsCellComponent withWorstYear(Date worstYear) {
-        this.worstYear = worstYear;
         return this;
     }
 
@@ -81,25 +57,6 @@ public class StatisticsCellComponent {
         alignmentTableLeft.add(PdfUtils.getItemParagraph("\n"));
         alignmentTableCenter.add(PdfUtils.getItemParagraph("\n"));
         alignmentTableRight.add(PdfUtils.getItemParagraph("\n"));
-
-        SimpleDateFormat monthDateFormat = new SimpleDateFormat("MMMM");
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best month"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(bestMonth)));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst month"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(monthDateFormat.format(worstMonth)));
-
-        SimpleDateFormat yearDateFormat = new SimpleDateFormat("yyyy");
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Best year"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(bestYear)));
-
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Worst year"));
-        alignmentTableCenter.add(PdfUtils.getItemParagraph(":"));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(yearDateFormat.format(worstYear)));
 
         alignmentTable.addCell(alignmentTableLeft);
         alignmentTable.addCell(alignmentTableCenter);

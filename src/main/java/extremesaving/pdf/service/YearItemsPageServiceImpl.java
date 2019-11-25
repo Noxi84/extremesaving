@@ -57,6 +57,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withTipOfTheDay(dataFacade.getTipOfTheDay())
                 .build();
     }
 

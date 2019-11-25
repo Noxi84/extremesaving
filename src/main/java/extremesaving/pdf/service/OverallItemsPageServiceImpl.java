@@ -6,6 +6,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.calculation.util.NumberUtils;
@@ -32,6 +33,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     private CalculationFacade calculationFacade;
     private CategoryFacade categoryFacade;
     private ChartFacade chartFacade;
+    private AccountFacade accountFacade;
 
     @Override
     public void generate(Document document) {
@@ -59,6 +61,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withAccounts(accountFacade.getAccounts())
                 .build();
     }
 
@@ -130,5 +133,9 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
 
     public void setChartFacade(ChartFacade chartFacade) {
         this.chartFacade = chartFacade;
+    }
+
+    public void setAccountFacade(AccountFacade accountFacade) {
+        this.accountFacade = accountFacade;
     }
 }
