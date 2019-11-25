@@ -90,7 +90,7 @@ public class ItemTableComponent {
         cell.setPaddingRight(0);
         cell.setMarginRight(0);
 
-        cell.add(PdfUtils.getItemParagraph("Occurrences", true, TextAlignment.CENTER));
+        cell.add(PdfUtils.getItemParagraph("# Items", true, TextAlignment.CENTER));
         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.CENTER));
 
         int counter = 0;

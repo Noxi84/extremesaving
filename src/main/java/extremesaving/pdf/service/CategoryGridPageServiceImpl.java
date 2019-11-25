@@ -7,9 +7,7 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.categorygrid.CategoryExpensesTableComponent;
 import extremesaving.pdf.component.categorygrid.CategoryOverallTableComponent;
-import extremesaving.pdf.component.categorygrid.CategoryProfitsTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -30,13 +28,6 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
 
         document.add(PdfUtils.getTitleParagraph("Result", TextAlignment.LEFT));
         document.add(buildCategoryOverallTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
-
-        document.add(PdfUtils.getTitleParagraph("Most profitable categories", TextAlignment.LEFT));
-        document.add(buildCategoryProfitsTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most expensive categories", TextAlignment.LEFT));
-        document.add(buildCategoryExpensesTable());
     }
 
     protected Table buildCategoryOverallTable() {
@@ -50,28 +41,6 @@ public class CategoryGridPageServiceImpl implements PdfPageService {
                 .withOverallSavingRatio(getOverallSavingRatio())
                 .withYearSavingRatio(getYearSavingRatio())
                 .withMonthSavingRatio(getMonthSavingRatio())
-                .build();
-    }
-
-    protected Table buildCategoryProfitsTable() {
-        List<CategoryDto> overallResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll());
-        List<CategoryDto> yearResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        List<CategoryDto> monthResults = categoryFacade.getMostProfitableCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new CategoryProfitsTableComponent()
-                .withOverallResults(overallResults)
-                .withYearResults(yearResults)
-                .withMonthResults(monthResults)
-                .build();
-    }
-
-    protected Table buildCategoryExpensesTable() {
-        List<CategoryDto> overallResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll());
-        List<CategoryDto> yearResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        List<CategoryDto> monthResults = categoryFacade.getMostExpensiveCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
-        return new CategoryExpensesTableComponent()
-                .withOverallResults(overallResults)
-                .withYearResults(yearResults)
-                .withMontResults(monthResults)
                 .build();
     }
 
