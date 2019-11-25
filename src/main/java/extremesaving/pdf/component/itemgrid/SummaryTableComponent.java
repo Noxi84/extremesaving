@@ -40,12 +40,14 @@ public class SummaryTableComponent {
         Cell savingRatioCell = new Cell();
         savingRatioCell.setBorder(Border.NO_BORDER);
         savingRatioCell.add(new SavingRatioImageComponent().withSavingRatio(savingRatio).build());
+        savingRatioCell.setPaddingRight(20);
 
         // Create left cell
         Cell alignmentTableLeft = new Cell();
         alignmentTableLeft.setVerticalAlignment(VerticalAlignment.MIDDLE);
         alignmentTableLeft.setBorder(Border.NO_BORDER);
         alignmentTableLeft.setWidth(280);
+        alignmentTableLeft.setPaddingLeft(20);
 
         // Create right cell
         Cell alignmentTableRight = new Cell();
@@ -53,6 +55,7 @@ public class SummaryTableComponent {
         alignmentTableRight.setBorder(Border.NO_BORDER);
         alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
         alignmentTableRight.setWidth(120);
+        alignmentTableRight.setPaddingRight(300);
 
         // Add total amount
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));

@@ -53,7 +53,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildSummaryTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
