@@ -33,7 +33,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating OverallItemsPage");
 
-        document.add(PdfUtils.getTitleParagraph("Overall Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));

@@ -67,7 +67,7 @@ public class ItemTableComponent {
         cell.setPaddingRight(0);
         cell.setMarginRight(0);
 
-        cell.add(PdfUtils.getItemParagraph("Item description", true, TextAlignment.LEFT));
+        cell.add(PdfUtils.getItemParagraph("Description", true, TextAlignment.LEFT));
         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
         int counter = 0;
         for (ResultDto resultDto : results) {
