@@ -2,6 +2,7 @@ package extremesaving.pdf.component.tipoftheday;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import extremesaving.calculation.dto.ResultDto;
@@ -65,16 +66,37 @@ public class GoalAndAwardsCellComponent {
         cell.setTextAlignment(TextAlignment.CENTER);
         cell.setWidth(UnitValue.createPercentValue(50));
 
+
+        Table alignmentTable = new Table(3);
+        alignmentTable.setWidth(UnitValue.createPercentValue(100));
+
+
         if (resultDto.getAverageDailyResult().compareTo(BigDecimal.ZERO) > 0) {
-            cell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build());
+            // Trophy cell
+            Cell trophyCell = new Cell();
+            trophyCell.setBorder(Border.NO_BORDER);
+            trophyCell.setTextAlignment(TextAlignment.CENTER);
+            trophyCell.setWidth(100);
+            trophyCell.add(new TrophyImageComponent().withGoalIndex(goalIndex).build());
+
+            // Text cell
+            Cell textCell = new Cell();
+            textCell.setBorder(Border.NO_BORDER);
+            textCell.setTextAlignment(TextAlignment.LEFT);
+            textCell.setWidth(600);
 
             BigDecimal goalPercentage = getGoalPercentage();
-            cell.add(PdfUtils.getItemParagraph("Save " + PdfUtils.formatNumber(resultDto.getResult(), false) + " / " + PdfUtils.formatNumber(currentGoal, false) + " (" + PdfUtils.formatPercentage(goalPercentage) + ")", true));
-            cell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
-            cell.add(PdfUtils.getItemParagraph("Previous goal " + PdfUtils.formatNumber(previousGoal, false) + " reached: " + getPreviousGoalReached()));
-            cell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(survivalDays), false));
-            cell.add(PdfUtils.getItemParagraph("\n"));
+            textCell.add(PdfUtils.getItemParagraph("Save " + PdfUtils.formatNumber(resultDto.getResult(), false) + " / " + PdfUtils.formatNumber(currentGoal, false) + " (" + PdfUtils.formatPercentage(goalPercentage) + ")", true));
+            textCell.add(PdfUtils.getItemParagraph("Estimated time: " + DateUtils.formatTimeLeft(goalTime), false));
+            textCell.add(PdfUtils.getItemParagraph("Previous goal " + PdfUtils.formatNumber(previousGoal, false) + " reached: " + getPreviousGoalReached()));
+            textCell.add(PdfUtils.getItemParagraph("Estimated survival time without incomes: " + DateUtils.formatTimeLeft(survivalDays), false));
+            textCell.add(PdfUtils.getItemParagraph("\n"));
+
+            alignmentTable.addCell(trophyCell);
+            alignmentTable.addCell(textCell);
         }
+
+        cell.add(alignmentTable);
         return cell;
     }
 

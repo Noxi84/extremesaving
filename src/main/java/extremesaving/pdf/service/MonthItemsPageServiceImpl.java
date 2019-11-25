@@ -1,6 +1,7 @@
 package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
@@ -8,6 +9,7 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
+import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
@@ -16,6 +18,7 @@ import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
+import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -34,6 +37,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     private CategoryFacade categoryFacade;
     private CalculationFacade calculationFacade;
     private ChartFacade chartFacade;
+    private EstimationFacade estimationFacade;
 
     @Override
     public void generate(Document document) {
@@ -56,6 +60,25 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withGoalAndAwardsCell(buildGoalAndAwardsCell())
+                .build();
+    }
+
+    protected Cell buildGoalAndAwardsCell() {
+        List<DataDto> dataDtos = dataFacade.findAll();
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+
+        BigDecimal previousGoal = estimationFacade.getPreviousGoal();
+        BigDecimal currentGoal = estimationFacade.getCurrentGoal();
+
+        return new GoalAndAwardsCellComponent()
+                .withResultDto(resultDto)
+                .withPreviousGoal(previousGoal)
+                .withPreviousGoalReachDate(estimationFacade.getGoalReachedDate(previousGoal))
+                .withCurrentGoal(currentGoal)
+                .withGoalIndex(estimationFacade.getGoalIndex(currentGoal))
+                .withGoalTime(estimationFacade.getGoalTime(currentGoal))
+                .withSurvivalDays(estimationFacade.getSurvivalDays())
                 .build();
     }
 
@@ -133,5 +156,9 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     public void setChartFacade(ChartFacade chartFacade) {
         this.chartFacade = chartFacade;
+    }
+
+    public void setEstimationFacade(EstimationFacade estimationFacade) {
+        this.estimationFacade = estimationFacade;
     }
 }

@@ -21,6 +21,7 @@ public class SummaryTableComponent {
     private BigDecimal savingRatio;
     private String tipOfTheDayMessage;
     private List<AccountDto> accounts;
+    private Cell goalAndAwardsCell;
 
     public SummaryTableComponent withResults(List<CategoryDto> results) {
         this.results = results;
@@ -39,6 +40,11 @@ public class SummaryTableComponent {
 
     public SummaryTableComponent withAccounts(List<AccountDto> accounts) {
         this.accounts = accounts;
+        return this;
+    }
+
+    public SummaryTableComponent withGoalAndAwardsCell(Cell goalAndAwardsCell) {
+        this.goalAndAwardsCell = goalAndAwardsCell;
         return this;
     }
 
@@ -89,9 +95,13 @@ public class SummaryTableComponent {
         if (accountsCell != null) {
             alignmentTable.addCell(accountsCell);
         }
+        if (goalAndAwardsCell != null) {
+            alignmentTable.addCell(goalAndAwardsCell);
+        }
 
         return alignmentTable;
     }
+
 
     protected Cell buildAccountsCell() {
         if (accounts != null) {
