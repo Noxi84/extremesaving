@@ -27,14 +27,13 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            monthItemsPageService.generate(document);
+            overallItemsPageService.generate(document);
+            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
             yearItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
-            overallItemsPageService.generate(document);
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
+            monthItemsPageService.generate(document);
 
             document.close();
         } catch (FileNotFoundException e) {

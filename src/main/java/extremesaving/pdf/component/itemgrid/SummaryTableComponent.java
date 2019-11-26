@@ -8,11 +8,13 @@ import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.layout.property.VerticalAlignment;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.CategoryDto;
+import extremesaving.calculation.util.NumberUtils;
 import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.util.PdfUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class SummaryTableComponent {
@@ -21,7 +23,10 @@ public class SummaryTableComponent {
     private BigDecimal savingRatio;
     private String tipOfTheDayMessage;
     private List<AccountDto> accounts;
-    private Cell goalAndAwardsCell;
+
+    private BigDecimal previousGoal;
+    private BigDecimal currentGoal;
+    private int goalIndex;
 
     public SummaryTableComponent withResults(List<CategoryDto> results) {
         this.results = results;
@@ -43,8 +48,18 @@ public class SummaryTableComponent {
         return this;
     }
 
-    public SummaryTableComponent withGoalAndAwardsCell(Cell goalAndAwardsCell) {
-        this.goalAndAwardsCell = goalAndAwardsCell;
+    public SummaryTableComponent withPreviousGoal(BigDecimal previousGoal) {
+        this.previousGoal = previousGoal;
+        return this;
+    }
+
+    public SummaryTableComponent withCurrentGoal(BigDecimal currentGoal) {
+        this.currentGoal = currentGoal;
+        return this;
+    }
+
+    public SummaryTableComponent withGoalIndex(int goalIndex) {
+        this.goalIndex = goalIndex;
         return this;
     }
 
@@ -67,19 +82,24 @@ public class SummaryTableComponent {
         Cell alignmentTableRight = createRightValuesCell();
 
         // Add total amount
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
         BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
         alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(totalAmount), true));
 
-
         // Add saving ratio
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Saving ratio", true));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(savingRatio), true));
+        alignmentTableLeft.add(PdfUtils.getItemParagraph("Saving ratio", false));
+        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(savingRatio), false));
 
         // Add total items
         long totalItems = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getNumberOfItems()).mapToLong(i -> i).sum();
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Total items"));
         alignmentTableRight.add(PdfUtils.getItemParagraph(String.valueOf(totalItems)));
+
+        // Add goal
+        if (currentGoal != null) {
+            alignmentTableLeft.add(PdfUtils.getItemParagraph("Current goal" + " (" + PdfUtils.formatPercentage(getGoalPercentage()) + ")", false));
+            alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(currentGoal, false), false));
+        }
 
         // Tip of the day cell
         Cell tipOfTheDayCell = createTipOfTheDayCell();
@@ -95,11 +115,18 @@ public class SummaryTableComponent {
         if (accountsCell != null) {
             alignmentTable.addCell(accountsCell);
         }
-        if (goalAndAwardsCell != null) {
-            alignmentTable.addCell(goalAndAwardsCell);
-        }
 
         return alignmentTable;
+    }
+
+    protected BigDecimal getGoalPercentage() {
+        BigDecimal totalAmount = results.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal goalPercentageAmount = currentGoal.subtract(previousGoal);
+        BigDecimal currentGoalAmount = totalAmount.subtract(previousGoal);
+        if (NumberUtils.isIncome(currentGoalAmount)) {
+            return currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
+        }
+        return BigDecimal.ZERO;
     }
 
 

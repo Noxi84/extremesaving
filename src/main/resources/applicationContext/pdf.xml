@@ -16,6 +16,7 @@
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="chartFacade" ref="chartFacade"/>
         <property name="accountFacade" ref="accountFacade"/>
+        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
     <bean id="yearItemsPageService" class="extremesaving.pdf.service.YearItemsPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
@@ -28,7 +29,6 @@
         <property name="categoryFacade" ref="categoryFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="chartFacade" ref="chartFacade"/>
-        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
 
 </beans>

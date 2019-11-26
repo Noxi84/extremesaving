@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import static extremesaving.property.PropertyValueEnum.CHART_GOALS_SAVINGS;
-import static extremesaving.property.PropertyValueEnum.GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE;
 
 public class EstimationFacadeImpl implements EstimationFacade {
 
@@ -108,26 +107,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
     }
 
     @Override
-    public Long getSurvivalDays() {
-        Collection<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        EstimationResultDto estimationResultDto = getEstimationResultDto(dataDtos);
-
-        BigDecimal amountLeft = resultDto.getResult();
-
-        BigDecimal inflationPercentage = PropertiesValueHolder.getBigDecimal(GOAL_LINE_BAR_CHART_INFLATION_PERCENTAGE);
-        BigDecimal inflation = estimationResultDto.getAverageDailyExpense().multiply(inflationPercentage).divide(BigDecimal.valueOf(100), 2, BigDecimal.ROUND_HALF_DOWN);
-        BigDecimal avgDailyExpenseWithInflation = estimationResultDto.getAverageDailyExpense().add(inflation);
-
-        long dayCounter = 0;
-        while (BigDecimal.ZERO.compareTo(amountLeft) <= 0) {
-            dayCounter++;
-            amountLeft = amountLeft.add(avgDailyExpenseWithInflation);
-        }
-        return dayCounter - 1;
-    }
-
-    @Override
     public BigDecimal getPreviousGoal() {
         List<BigDecimal> goalAmounts = getGoalAmounts();
         BigDecimal nextGoal = getCurrentGoal();
@@ -174,46 +153,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
             goalAmounts.add(new BigDecimal(StringUtils.trim(goal)));
         }
         return goalAmounts;
-    }
-
-    @Override
-    public Long getGoalTime(BigDecimal goal) {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        EstimationResultDto estimationResultDto = getEstimationResultDto(dataDtos);
-
-        if (!NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
-            return -1L;
-        }
-        BigDecimal amount = resultDto.getResult();
-        if (goal.compareTo(amount) > 0 || goal.compareTo(amount) == 0) {
-            long dayCounter = 0;
-            while (goal.compareTo(amount) >= 0) {
-                dayCounter++;
-                amount = amount.add(estimationResultDto.getAverageDailyResult());
-            }
-            return dayCounter - 1;
-        }
-        return 1L;
-    }
-
-    @Override
-    public Date getGoalReachedDate(BigDecimal goal) {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        BigDecimal amount = resultDto.getResult();
-        if (goal.compareTo(amount) < 0) {
-            Date lastDate;
-            for (int i = dataDtos.size() - 1; i > 0; i--) {
-                DataDto dataDto = dataDtos.get(i);
-                amount = amount.subtract(dataDto.getValue());
-                lastDate = dataDto.getDate();
-                if (amount.compareTo(goal) <= 0) {
-                    return lastDate;
-                }
-            }
-        }
-        return null;
     }
 
     public void setDataFacade(DataFacade dataFacade) {

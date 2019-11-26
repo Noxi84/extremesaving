@@ -9,6 +9,7 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.AccountFacade;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
+import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
@@ -34,6 +35,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     private CategoryFacade categoryFacade;
     private ChartFacade chartFacade;
     private AccountFacade accountFacade;
+    private EstimationFacade estimationFacade;
 
     @Override
     public void generate(Document document) {
@@ -58,9 +60,15 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
 
     protected Table buildSummaryTable() {
         List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll());
+        BigDecimal previousGoal = estimationFacade.getPreviousGoal();
+        BigDecimal currentGoal = estimationFacade.getCurrentGoal();
+
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withPreviousGoal(previousGoal)
+                .withCurrentGoal(currentGoal)
+                .withGoalIndex(estimationFacade.getGoalIndex(currentGoal))
                 .withAccounts(accountFacade.getAccounts())
                 .build();
     }
@@ -137,5 +145,9 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
 
     public void setAccountFacade(AccountFacade accountFacade) {
         this.accountFacade = accountFacade;
+    }
+
+    public void setEstimationFacade(EstimationFacade estimationFacade) {
+        this.estimationFacade = estimationFacade;
     }
 }

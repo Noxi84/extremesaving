@@ -1,16 +1,12 @@
 package extremesaving.calculation.facade;
 
 import extremesaving.calculation.dto.EstimationResultDto;
-import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Date;
 
 public interface EstimationFacade {
-
-    Long getSurvivalDays();
 
     BigDecimal getPreviousGoal();
 
@@ -22,10 +18,6 @@ public interface EstimationFacade {
      * @return The next goal based on the index. Default index use should be 1 for the next upcoming goal.
      */
     BigDecimal getNextGoal(int index);
-
-    Long getGoalTime(BigDecimal goal);
-
-    Date getGoalReachedDate(BigDecimal goal);
 
     EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos);
 }

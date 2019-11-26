@@ -99,8 +99,7 @@ public class ItemTableComponent {
             if (counter >= displayMaxItems) {
                 break;
             }
-            DataDto dataDto = resultDto.getData().iterator().next();
-            cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("52", displayMaxTextCharacters), false, TextAlignment.CENTER));
+            cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(String.valueOf(resultDto.getNumberOfItems()), displayMaxTextCharacters), false, TextAlignment.CENTER));
         }
         return cell;
     }
