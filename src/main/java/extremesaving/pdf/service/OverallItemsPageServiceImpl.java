@@ -39,7 +39,7 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        System.out.println("Generating OverallItemsPage");
+        System.out.println("Generating Overall Analysis Report");
 
         document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
 

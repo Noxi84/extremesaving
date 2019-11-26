@@ -37,15 +37,20 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        System.out.println("Generating MonthItemsPageServiceImpl");
+        System.out.println("Generating Monthly Analysis Report");
 
         document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report", TextAlignment.LEFT));
+
         document.add(buildSummaryTable());
+        document.add(PdfUtils.getItemParagraph("\n"));
+
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
+
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildCategoryProfitsTable());
         document.add(buildItemProfitsTable());
+
         document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildCategoryExpensesTable());
         document.add(buildItemExpensesTable());

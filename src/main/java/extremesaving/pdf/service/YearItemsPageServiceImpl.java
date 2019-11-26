@@ -37,7 +37,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        System.out.println("Generating YearItemsPageServiceImpl");
+        System.out.println("Generating Yearly Analysis Report");
 
         document.add(PdfUtils.getTitleParagraph("Yearly Analysis Report", TextAlignment.LEFT));
         document.add(buildSummaryTable());
