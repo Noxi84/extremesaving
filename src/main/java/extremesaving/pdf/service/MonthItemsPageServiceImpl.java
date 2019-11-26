@@ -1,7 +1,6 @@
 package extremesaving.pdf.service;
 
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
@@ -9,16 +8,14 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
-import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
-import extremesaving.pdf.component.tipoftheday.GoalAndAwardsCellComponent;
+import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 

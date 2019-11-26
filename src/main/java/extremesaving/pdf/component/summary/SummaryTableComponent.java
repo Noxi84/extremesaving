@@ -1,4 +1,4 @@
-package extremesaving.pdf.component.itemgrid;
+package extremesaving.pdf.component.summary;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
@@ -9,7 +9,6 @@ import com.itextpdf.layout.property.VerticalAlignment;
 import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.util.NumberUtils;
-import extremesaving.pdf.component.tipoftheday.AccountsCellComponent;
 import extremesaving.pdf.util.PdfUtils;
 import org.apache.commons.lang3.StringUtils;
 

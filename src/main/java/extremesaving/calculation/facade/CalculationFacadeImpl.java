@@ -6,7 +6,6 @@ import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.service.CalculationService;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
-import extremesaving.data.facade.DataFacade;
 import extremesaving.util.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,7 +26,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     private static Map<Integer, ResultDto> calculationCash = new HashMap<>();
 
-    private DataFacade dataFacade;
     private CalculationService calculationService;
 
     @Override
@@ -145,20 +143,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
         return yearResults;
     }
 
-    @Override
-    public Date getLastItemAdded() {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = getResults(dataDtos);
-        return resultDto.getLastDate();
-    }
-
-    @Override
-    public BigDecimal getTotalBalance() {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = getResults(dataDtos);
-        return resultDto.getResult();
-    }
-
     protected Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
         Integer highestMonth = null;
         MiniResultDto highestResultDto = null;
@@ -172,59 +156,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
         return highestMonth;
     }
 
-    @Override
-    public Date getBestMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthResults(dataFacade.findAll());
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.MONTH, getResult(monthResults, false));
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
-
-    @Override
-    public Date getWorstMonth() {
-        Map<Integer, MiniResultDto> monthResults = getMonthResults(dataFacade.findAll());
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.MONTH, getResult(monthResults, true));
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
-
-    @Override
-    public Date getBestYear() {
-        Map<Integer, MiniResultDto> yearResults = getYearResults(dataFacade.findAll());
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.YEAR, getResult(yearResults, false));
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
-
-    @Override
-    public Date getWorstYear() {
-        Map<Integer, MiniResultDto> yearResults = getYearResults(dataFacade.findAll());
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.YEAR, getResult(yearResults, true));
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
 
     @Override
     public BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults) {
@@ -237,10 +168,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
             return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
         }
         return BigDecimal.ZERO;
-    }
-
-    public void setDataFacade(DataFacade dataFacade) {
-        this.dataFacade = dataFacade;
     }
 
     public void setCalculationService(CalculationService calculationService) {

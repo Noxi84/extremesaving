@@ -7,7 +7,6 @@ import extremesaving.data.dto.DataDto;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,18 +21,6 @@ public interface CalculationFacade {
     List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos);
 
     List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos);
-
-    Date getLastItemAdded();
-
-    BigDecimal getTotalBalance();
-
-    Date getBestMonth();
-
-    Date getWorstMonth();
-
-    Date getBestYear();
-
-    Date getWorstYear();
 
     BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults);
 }

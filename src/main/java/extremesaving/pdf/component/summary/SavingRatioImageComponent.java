@@ -1,4 +1,4 @@
-package extremesaving.pdf.component.itemgrid;
+package extremesaving.pdf.component.summary;
 
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;

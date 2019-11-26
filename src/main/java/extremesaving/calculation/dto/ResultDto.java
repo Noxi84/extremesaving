@@ -21,10 +21,6 @@ public class ResultDto {
     private BigDecimal highestResult = BigDecimal.ZERO;
     private Date firstDate;
     private Date lastDate;
-    private long daysSinceLastUpdate;
-    private BigDecimal averageDailyIncome = BigDecimal.ZERO;
-    private BigDecimal averageDailyExpense = BigDecimal.ZERO;
-    private BigDecimal averageDailyResult = BigDecimal.ZERO;
 
     public Set<DataDto> getData() {
         return data;
@@ -120,37 +116,5 @@ public class ResultDto {
 
     public void setLastDate(Date lastDate) {
         this.lastDate = lastDate;
-    }
-
-    public long getDaysSinceLastUpdate() {
-        return daysSinceLastUpdate;
-    }
-
-    public void setDaysSinceLastUpdate(long daysSinceLastUpdate) {
-        this.daysSinceLastUpdate = daysSinceLastUpdate;
-    }
-
-    public BigDecimal getAverageDailyIncome() {
-        return averageDailyIncome;
-    }
-
-    public void setAverageDailyIncome(BigDecimal averageDailyIncome) {
-        this.averageDailyIncome = averageDailyIncome;
-    }
-
-    public BigDecimal getAverageDailyExpense() {
-        return averageDailyExpense;
-    }
-
-    public void setAverageDailyExpense(BigDecimal averageDailyExpense) {
-        this.averageDailyExpense = averageDailyExpense;
-    }
-
-    public BigDecimal getAverageDailyResult() {
-        return averageDailyResult;
-    }
-
-    public void setAverageDailyResult(BigDecimal averageDailyResult) {
-        this.averageDailyResult = averageDailyResult;
     }
 }

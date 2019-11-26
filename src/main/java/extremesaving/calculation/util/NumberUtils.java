@@ -1,7 +1,6 @@
 package extremesaving.calculation.util;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 public final class NumberUtils {
 

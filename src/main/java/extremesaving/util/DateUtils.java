@@ -1,7 +1,5 @@
 package extremesaving.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -39,36 +37,5 @@ public final class DateUtils {
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(d2);
         return cal.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
-    }
-
-    public static String formatTimeLeft(Long numberOfDays) {
-        long years = numberOfDays / 365;
-        long months = (numberOfDays - (years * 365)) / 30;
-        long days = (numberOfDays - (years * 365)) - (months * 30);
-
-        StringBuilder result = new StringBuilder();
-        if (years > 0) {
-            result.append(years).append(years == 1 ? " year" : " years");
-        }
-        if (months > 0) {
-            if (StringUtils.isNotBlank(result)) {
-                if (days > 0) {
-                    result.append(", ");
-                } else {
-                    result.append(" and ");
-                }
-            }
-            result.append(months).append(months == 1 ? " month" : " months");
-        }
-        if (days > 0) {
-            if (StringUtils.isNotBlank(result)) {
-                result.append(" and ");
-            }
-            result.append(days).append(days == 1 ? " day" : " days");
-        }
-        if (StringUtils.isNotBlank(result.toString())) {
-            return result.toString();
-        }
-        return "Unknown";
     }
 }

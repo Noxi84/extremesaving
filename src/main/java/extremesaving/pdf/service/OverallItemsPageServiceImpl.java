@@ -17,7 +17,7 @@ import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
-import extremesaving.pdf.component.itemgrid.SummaryTableComponent;
+import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;

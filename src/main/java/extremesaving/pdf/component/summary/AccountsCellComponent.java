@@ -1,4 +1,4 @@
-package extremesaving.pdf.component.tipoftheday;
+package extremesaving.pdf.component.summary;
 
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
