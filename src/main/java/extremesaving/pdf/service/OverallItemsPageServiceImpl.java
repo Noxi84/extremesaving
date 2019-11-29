@@ -42,7 +42,6 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
         document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
 
         document.add(buildSummaryTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));

@@ -41,7 +41,6 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
         document.add(PdfUtils.getTitleParagraph("Yearly Analysis Report", TextAlignment.LEFT));
         document.add(buildSummaryTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));

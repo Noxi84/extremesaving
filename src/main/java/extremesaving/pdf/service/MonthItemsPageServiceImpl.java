@@ -42,7 +42,6 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report", TextAlignment.LEFT));
 
         document.add(buildSummaryTable());
-        document.add(PdfUtils.getItemParagraph("\n"));
 
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
