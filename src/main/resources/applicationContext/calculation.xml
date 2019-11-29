@@ -11,10 +11,6 @@
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
     </bean>
-    <bean id="accountFacade" class="extremesaving.calculation.facade.AccountFacadeImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-        <property name="calculationFacade" ref="calculationFacade"/>
-    </bean>
     <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
         <property name="calculationFacade" ref="calculationFacade"/>
     </bean>

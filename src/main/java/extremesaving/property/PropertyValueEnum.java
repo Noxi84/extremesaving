@@ -10,7 +10,6 @@ public enum PropertyValueEnum {
 
     DATA_CSV_HEADER_DATE("data.csv.header.date"),
     DATA_CSV_HEADER_VALUE("data.csv.header.value"),
-    DATA_CSV_HEADER_ACCOUNT("data.csv.header.account"),
     DATA_CSV_HEADER_CATEGORY("data.csv.header.category"),
     DATA_CSV_HEADER_DESCRIPTION("data.csv.header.description"),
 
@@ -18,7 +17,6 @@ public enum PropertyValueEnum {
     PDF_FILE_NAME("pdf.location"),
 
     MONTH_BAR_CHART_IMAGE_FILE("chart.monthBar.location"),
-    YEAR_LINE_CHART_IMAGE_FILE("chart.monthLine.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
     YEAR_BAR_CHART_IMAGE_FILE("chart.yearBar.location"),
 

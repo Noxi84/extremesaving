@@ -7,7 +7,6 @@ public class DataModel {
 
     private Date date;
     private BigDecimal value;
-    private String account;
     private String category;
     private String description;
 
@@ -25,14 +24,6 @@ public class DataModel {
 
     public void setValue(BigDecimal value) {
         this.value = value;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getCategory() {

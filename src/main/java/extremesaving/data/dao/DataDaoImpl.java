@@ -91,7 +91,6 @@ public class DataDaoImpl implements DataDao {
             br = new BufferedReader(new FileReader(csvFile));
 
             int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DATE));
-            int account = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_ACCOUNT));
             int value = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_VALUE));
             int category = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_CATEGORY));
             int description = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DESCRIPTION));
@@ -101,7 +100,7 @@ public class DataDaoImpl implements DataDao {
                 if (lineCounter > 0) {
                     String[] lineSplit = splitCsvLine(line);
 
-                    DataModel dataModel = handleLines(lineSplit, dateColumn, account, value, category, description);
+                    DataModel dataModel = handleLines(lineSplit, dateColumn, value, category, description);
                     if (dataModel != null) {
                         dataModels.add(dataModel);
                     }
@@ -124,12 +123,11 @@ public class DataDaoImpl implements DataDao {
         return dataModels;
     }
 
-    protected DataModel handleLines(String[] lineSplit, int dateColumn, int accountColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
+    protected DataModel handleLines(String[] lineSplit, int dateColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
         try {
             DataModel dataModel = new DataModel();
 
             String date = getQuoteSafeValue(lineSplit, dateColumn);
-            String account = getQuoteSafeValue(lineSplit, accountColumn);
             String value = getQuoteSafeValue(lineSplit, valueColumn);
             String category = getQuoteSafeValue(lineSplit, categoryColumn);
             String description = getQuoteSafeValue(lineSplit, descriptionColumn);
@@ -150,12 +148,6 @@ public class DataDaoImpl implements DataDao {
                 throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getString(DATA_CSV_DATE_FORMAT1) + "'.");
             }
             dataModel.setDate(dateResult);
-
-            // Account
-            if (StringUtils.isBlank(account)) {
-                account = "...";
-            }
-            dataModel.setAccount(account);
 
             // Value
             try {

@@ -6,7 +6,6 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.layout.property.VerticalAlignment;
-import extremesaving.calculation.dto.AccountDto;
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.pdf.util.PdfUtils;
@@ -21,7 +20,6 @@ public class SummaryTableComponent {
     private List<CategoryDto> results;
     private BigDecimal savingRatio;
     private String tipOfTheDayMessage;
-    private List<AccountDto> accounts;
 
     private BigDecimal previousGoal;
     private BigDecimal currentGoal;
@@ -39,11 +37,6 @@ public class SummaryTableComponent {
 
     public SummaryTableComponent withTipOfTheDay(String tipOfTheDayMessage) {
         this.tipOfTheDayMessage = tipOfTheDayMessage;
-        return this;
-    }
-
-    public SummaryTableComponent withAccounts(List<AccountDto> accounts) {
-        this.accounts = accounts;
         return this;
     }
 
@@ -102,7 +95,6 @@ public class SummaryTableComponent {
 
         // Tip of the day cell
         Cell tipOfTheDayCell = createTipOfTheDayCell();
-        Cell accountsCell = buildAccountsCell();
 
         // Add cells to table
         alignmentTable.addCell(savingRatioCell);
@@ -110,9 +102,6 @@ public class SummaryTableComponent {
         alignmentTable.addCell(alignmentTableRight);
         if (tipOfTheDayCell != null) {
             alignmentTable.addCell(tipOfTheDayCell);
-        }
-        if (accountsCell != null) {
-            alignmentTable.addCell(accountsCell);
         }
 
         return alignmentTable;
@@ -126,16 +115,6 @@ public class SummaryTableComponent {
             return currentGoalAmount.divide(goalPercentageAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
         }
         return BigDecimal.ZERO;
-    }
-
-
-    protected Cell buildAccountsCell() {
-        if (accounts != null) {
-            return new AccountsCellComponent()
-                    .withAccounts(accounts)
-                    .build();
-        }
-        return null;
     }
 
     private Cell createTipOfTheDayCell() {

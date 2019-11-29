@@ -9,14 +9,12 @@ public class DataDto {
 
     private Date date;
     private BigDecimal value;
-    private String account;
     private String category;
     private String description;
 
     public DataDto(DataModel dataModel) {
         this.date = dataModel.getDate();
         this.value = dataModel.getValue();
-        this.account = dataModel.getAccount();
         this.category = dataModel.getCategory();
         this.description = dataModel.getDescription();
     }
@@ -35,14 +33,6 @@ public class DataDto {
 
     public void setValue(BigDecimal value) {
         this.value = value;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
     }
 
     public String getCategory() {
