@@ -65,7 +65,7 @@ public class SummaryTableComponent {
         alignmentTable.setWidth(UnitValue.createPercentValue(100));
 
         // Saving ratio cell
-        Cell savingRatioCell = createSavingRatioCell(savingRatio);
+        Cell savingRatioCell = createTropheeImageCell(savingRatio);
 
         // Create left cell
         Cell alignmentTableLeft = createLeftValuesCell();
@@ -130,29 +130,29 @@ public class SummaryTableComponent {
     }
 
     private Cell createRightValuesCell() {
-        Cell alignmentTableRight = new Cell();
-        alignmentTableRight.setVerticalAlignment(VerticalAlignment.MIDDLE);
-        alignmentTableRight.setBorder(Border.NO_BORDER);
-        alignmentTableRight.setTextAlignment(TextAlignment.RIGHT);
-        alignmentTableRight.setWidth(120);
-        alignmentTableRight.setPaddingRight(20);
-        return alignmentTableRight;
+        Cell cell = new Cell();
+        cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+        cell.setBorder(Border.NO_BORDER);
+        cell.setTextAlignment(TextAlignment.RIGHT);
+        cell.setWidth(120);
+        cell.setPaddingRight(20);
+        return cell;
     }
 
     private Cell createLeftValuesCell() {
-        Cell alignmentTableLeft = new Cell();
-        alignmentTableLeft.setVerticalAlignment(VerticalAlignment.MIDDLE);
-        alignmentTableLeft.setBorder(Border.NO_BORDER);
-        alignmentTableLeft.setWidth(280);
-        alignmentTableLeft.setPaddingLeft(20);
-        return alignmentTableLeft;
+        Cell cell = new Cell();
+        cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+        cell.setBorder(Border.NO_BORDER);
+        cell.setWidth(280);
+        cell.setPaddingLeft(20);
+        return cell;
     }
 
-    private Cell createSavingRatioCell(BigDecimal savingRatio) {
-        Cell savingRatioCell = new Cell();
-        savingRatioCell.setBorder(Border.NO_BORDER);
-        savingRatioCell.add(new SavingRatioImageComponent().withSavingRatio(savingRatio).build());
-        savingRatioCell.setPaddingRight(20);
-        return savingRatioCell;
+    private Cell createTropheeImageCell(BigDecimal savingRatio) {
+        Cell cell = new Cell();
+        cell.setBorder(Border.NO_BORDER);
+        cell.add(new TropheeImageComponent().withSavingRatio(savingRatio).build());
+        cell.setPaddingRight(20);
+        return cell;
     }
 }

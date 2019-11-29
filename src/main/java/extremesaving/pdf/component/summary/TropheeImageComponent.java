@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 
 
-public class SavingRatioImageComponent {
+public class TropheeImageComponent {
 
     private BigDecimal savingRatio;
 
-    public SavingRatioImageComponent withSavingRatio(BigDecimal savingRatio) {
+    public TropheeImageComponent withSavingRatio(BigDecimal savingRatio) {
         this.savingRatio = savingRatio;
         return this;
     }
