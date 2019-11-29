@@ -10,7 +10,6 @@ import extremesaving.property.PropertyValueEnum;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 
-import static extremesaving.property.PropertyValueEnum.SAVING_RATE_ICON1;
 
 public class SavingRatioImageComponent {
 
@@ -31,30 +30,30 @@ public class SavingRatioImageComponent {
             image.setHeight(45);
             return image;
         } catch (MalformedURLException e) {
-            throw new IllegalStateException("Unable to create SavingRatioImageComponent.", e);
+            throw new IllegalStateException("Unable to create TropheeImageComponent.", e);
         }
     }
 
     protected PropertyValueEnum getSavingRatioImage() {
         if (savingRatio.compareTo(BigDecimal.valueOf(90)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON9;
+            return PropertyValueEnum.TROPHY_ICON9;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(80)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON9;
+            return PropertyValueEnum.TROPHY_ICON8;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(70)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON8;
+            return PropertyValueEnum.TROPHY_ICON7;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(60)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON7;
+            return PropertyValueEnum.TROPHY_ICON6;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(50)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON6;
+            return PropertyValueEnum.TROPHY_ICON5;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(40)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON5;
+            return PropertyValueEnum.TROPHY_ICON4;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(30)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON4;
+            return PropertyValueEnum.TROPHY_ICON3;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(20)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON3;
+            return PropertyValueEnum.TROPHY_ICON2;
         } else if (savingRatio.compareTo(BigDecimal.valueOf(10)) >= 0) {
-            return PropertyValueEnum.SAVING_RATE_ICON2;
+            return PropertyValueEnum.TROPHY_ICON1;
         }
-        return SAVING_RATE_ICON1;
+        return PropertyValueEnum.TROPHY_ICON0;
     }
 }
