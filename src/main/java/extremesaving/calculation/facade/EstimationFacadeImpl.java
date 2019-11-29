@@ -143,7 +143,7 @@ public class EstimationFacadeImpl implements EstimationFacade {
         List<BigDecimal> goalAmounts = getGoalAmounts();
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(nextGoalIndex + index);
+        return goalAmounts.get(Math.min(nextGoalIndex + index, goalAmounts.size()-1));
     }
 
     protected List<BigDecimal> getGoalAmounts() {
