@@ -8,6 +8,7 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
+import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
@@ -34,6 +35,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     private CategoryFacade categoryFacade;
     private CalculationFacade calculationFacade;
     private ChartFacade chartFacade;
+    private EstimationFacade estimationFacade;
 
     @Override
     public void generate(Document document) {
@@ -52,10 +54,12 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildSummaryTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList()));
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withGoalRatio(estimationFacade.calculateGoalRatio())
                 .withTipOfTheDay(dataFacade.getTipOfTheDay())
                 .build();
     }
@@ -134,5 +138,9 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
     public void setChartFacade(ChartFacade chartFacade) {
         this.chartFacade = chartFacade;
+    }
+
+    public void setEstimationFacade(EstimationFacade estimationFacade) {
+        this.estimationFacade = estimationFacade;
     }
 }

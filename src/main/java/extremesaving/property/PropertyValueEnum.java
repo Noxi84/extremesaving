@@ -31,7 +31,7 @@ public enum PropertyValueEnum {
     TROPHY_ICON8("trophy.icon8"),
     TROPHY_ICON9("trophy.icon9"),
 
-    CHART_GOALS_SAVINGS("chart.goals.savings"),
+    GOALS("goals"),
     CHART_GOALS_ESTIMATION_OUTLINER_ENABLED("chart.goalLine.estimation.removeOutliners.enabled"),
     CHART_GOALS_ESTIMATION_DATE_ENABLED("chart.goalLine.estimation.filterDates.enabled");
 

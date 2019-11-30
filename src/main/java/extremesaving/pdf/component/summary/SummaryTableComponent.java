@@ -19,19 +19,24 @@ public class SummaryTableComponent {
 
     private List<CategoryDto> results;
     private BigDecimal savingRatio;
+    private BigDecimal goalRatio;
     private String tipOfTheDayMessage;
 
     private BigDecimal previousGoal;
     private BigDecimal currentGoal;
-    private int goalIndex;
 
     public SummaryTableComponent withResults(List<CategoryDto> results) {
         this.results = results;
         return this;
     }
 
-    public SummaryTableComponent withSavingRatio(BigDecimal overallSavingRatio) {
-        this.savingRatio = overallSavingRatio;
+    public SummaryTableComponent withSavingRatio(BigDecimal savingRatio) {
+        this.savingRatio = savingRatio;
+        return this;
+    }
+
+    public SummaryTableComponent withGoalRatio(BigDecimal goalRatio) {
+        this.goalRatio = goalRatio;
         return this;
     }
 
@@ -47,11 +52,6 @@ public class SummaryTableComponent {
 
     public SummaryTableComponent withCurrentGoal(BigDecimal currentGoal) {
         this.currentGoal = currentGoal;
-        return this;
-    }
-
-    public SummaryTableComponent withGoalIndex(int goalIndex) {
-        this.goalIndex = goalIndex;
         return this;
     }
 
@@ -151,7 +151,10 @@ public class SummaryTableComponent {
     private Cell createTropheeImageCell(BigDecimal savingRatio) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
-        cell.add(new TropheeImageComponent().withSavingRatio(savingRatio).build());
+        cell.add(new TropheeImageComponent()
+                .withSavingRatio(savingRatio)
+                .withGoalRatio(goalRatio)
+                .build());
         cell.setPaddingRight(20);
         return cell;
     }

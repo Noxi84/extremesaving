@@ -20,4 +20,6 @@ public interface EstimationFacade {
     BigDecimal getNextGoal(int index);
 
     EstimationResultDto getEstimationResultDto(Collection<DataDto> dataDtos);
+
+    BigDecimal calculateGoalRatio();
 }

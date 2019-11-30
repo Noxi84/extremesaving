@@ -15,8 +15,8 @@ public class DataDto {
     public DataDto(DataModel dataModel) {
         this.date = dataModel.getDate();
         this.value = dataModel.getValue();
-        this.category = dataModel.getCategory();
-        this.description = dataModel.getDescription();
+        this.category = dataModel.getCategory().trim().replaceAll("\\s{2,}", " ");
+        this.description = dataModel.getDescription().trim().replaceAll("\\s{2,}", " ");
     }
 
     public Date getDate() {

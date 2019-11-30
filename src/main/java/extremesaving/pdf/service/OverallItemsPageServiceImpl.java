@@ -56,16 +56,17 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildSummaryTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll());
+        List<DataDto> dataDtos = dataFacade.findAll();
+        List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
         BigDecimal previousGoal = estimationFacade.getPreviousGoal();
         BigDecimal currentGoal = estimationFacade.getCurrentGoal();
 
         return new SummaryTableComponent()
                 .withResults(results)
                 .withSavingRatio(getSavingRatio())
+                .withGoalRatio(estimationFacade.calculateGoalRatio())
                 .withPreviousGoal(previousGoal)
                 .withCurrentGoal(currentGoal)
-                .withGoalIndex(estimationFacade.getGoalIndex(currentGoal))
                 .withTipOfTheDay(dataFacade.getTipOfTheDay())
                 .build();
     }

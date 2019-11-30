@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static extremesaving.property.PropertyValueEnum.CHART_GOALS_SAVINGS;
+import static extremesaving.property.PropertyValueEnum.GOALS;
 
 public class EstimationFacadeImpl implements EstimationFacade {
 
@@ -143,16 +143,29 @@ public class EstimationFacadeImpl implements EstimationFacade {
         List<BigDecimal> goalAmounts = getGoalAmounts();
         BigDecimal nextGoal = getCurrentGoal();
         int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(Math.min(nextGoalIndex + index, goalAmounts.size()-1));
+        return goalAmounts.get(Math.min(nextGoalIndex + index, goalAmounts.size() - 1));
     }
 
     protected List<BigDecimal> getGoalAmounts() {
-        String[] goals = PropertiesValueHolder.getStringList(CHART_GOALS_SAVINGS);
+        String[] goals = PropertiesValueHolder.getStringList(GOALS);
         List<BigDecimal> goalAmounts = new ArrayList<>();
         for (String goal : goals) {
             goalAmounts.add(new BigDecimal(StringUtils.trim(goal)));
         }
         return goalAmounts;
+    }
+
+    @Override
+    public BigDecimal calculateGoalRatio() {
+        List<BigDecimal> goalAmounts = getGoalAmounts();
+        BigDecimal goalAmountsTotal = goalAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal averageGoal = goalAmountsTotal.divide(BigDecimal.valueOf(goalAmounts.size()), RoundingMode.HALF_UP);
+        BigDecimal totalResult = calculationFacade.getResults(dataFacade.findAll()).getResult();
+
+        if (totalResult.compareTo(averageGoal) > 0) {
+            return BigDecimal.valueOf(100);
+        }
+        return totalResult.divide(averageGoal, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
     }
 
     public void setDataFacade(DataFacade dataFacade) {

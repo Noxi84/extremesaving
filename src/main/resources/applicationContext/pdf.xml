@@ -22,12 +22,14 @@
         <property name="categoryFacade" ref="categoryFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="chartFacade" ref="chartFacade"/>
+        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
     <bean id="monthItemsPageService" class="extremesaving.pdf.service.MonthItemsPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>
         <property name="calculationFacade" ref="calculationFacade"/>
         <property name="chartFacade" ref="chartFacade"/>
+        <property name="estimationFacade" ref="estimationFacade"/>
     </bean>
 
 </beans>
