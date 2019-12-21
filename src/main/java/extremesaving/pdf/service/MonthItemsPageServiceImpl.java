@@ -21,6 +21,8 @@ import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +43,9 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
 
-        document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report", TextAlignment.LEFT));
+        String month = new SimpleDateFormat("MMMM").format(new Date());
+        String year = new SimpleDateFormat("yyyy").format(new Date());
+        document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report: " + month + " " + year,   TextAlignment.LEFT));
 
         document.add(buildSummaryTable());
 

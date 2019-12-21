@@ -21,6 +21,7 @@ import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -40,8 +41,8 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Yearly Analysis Report");
-
-        document.add(PdfUtils.getTitleParagraph("Yearly Analysis Report", TextAlignment.LEFT));
+        String year = new SimpleDateFormat("yyyy").format(new Date());
+        document.add(PdfUtils.getTitleParagraph("Yearly Analysis Report " + year, TextAlignment.LEFT));
         document.add(buildSummaryTable());
         document.add(buildYearBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));

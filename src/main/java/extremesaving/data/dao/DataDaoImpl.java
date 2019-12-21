@@ -97,7 +97,7 @@ public class DataDaoImpl implements DataDao {
 
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
-                if (lineCounter > 0) {
+                if (!line.startsWith("#") && lineCounter > 0) {
                     String[] lineSplit = splitCsvLine(line);
 
                     DataModel dataModel = handleLines(lineSplit, dateColumn, value, category, description);
