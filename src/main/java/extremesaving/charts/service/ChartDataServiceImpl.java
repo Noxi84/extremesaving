@@ -92,6 +92,7 @@ public class ChartDataServiceImpl implements ChartDataService {
         if (NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
             BigDecimal currentValue = resultDto.getResult();
             Calendar cal = Calendar.getInstance();
+            cal.setTime(resultDto.getLastDate());
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
@@ -125,6 +126,7 @@ public class ChartDataServiceImpl implements ChartDataService {
         if (NumberUtils.isExpense(estimationResultDto.getAverageDailyExpense())) {
             BigDecimal currentValue = resultDto.getResult();
             Calendar cal = Calendar.getInstance();
+            cal.setTime(resultDto.getLastDate());
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
