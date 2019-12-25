@@ -42,6 +42,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     @Override
     public Map<Integer, MiniResultDto> getYearResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
 
         Map<Integer, MiniResultDto> yearResults = calculationFacade.getYearResults(dataDtos);
         for (Map.Entry<Integer, MiniResultDto> result : yearResults.entrySet()) {
@@ -51,6 +52,7 @@ public class ChartDataServiceImpl implements ChartDataService {
         }
 
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(resultDto.getLastDate());
         addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 11);
         addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 10);
         addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 9);

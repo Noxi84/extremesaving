@@ -8,7 +8,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.math.BigDecimal;
-import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Map;
 
 public class YearBarChart {
@@ -29,18 +29,17 @@ public class YearBarChart {
         final String result = "Result";
         final String incomes = "Incomes";
 
-        Calendar cal = Calendar.getInstance();
-        int currentYear = cal.get(Calendar.YEAR);
+        Integer lastYear = yearResults.entrySet().stream().max(Comparator.comparing(Map.Entry::getKey)).get().getKey();
 
-        final String year1 = String.valueOf(currentYear);
-        final String year2 = String.valueOf(currentYear - 1);
-        final String year3 = String.valueOf(currentYear - 2);
-        final String year4 = String.valueOf(currentYear - 3);
-        final String year5 = String.valueOf(currentYear - 4);
-        final String year6 = String.valueOf(currentYear - 5);
-        final String year7 = String.valueOf(currentYear - 6);
-        final String year8 = String.valueOf(currentYear - 7);
-        final String year9 = String.valueOf(currentYear - 8);
+        final String year1 = String.valueOf(lastYear);
+        final String year2 = String.valueOf(lastYear - 1);
+        final String year3 = String.valueOf(lastYear - 2);
+        final String year4 = String.valueOf(lastYear - 3);
+        final String year5 = String.valueOf(lastYear - 4);
+        final String year6 = String.valueOf(lastYear - 5);
+        final String year7 = String.valueOf(lastYear - 6);
+        final String year8 = String.valueOf(lastYear - 7);
+        final String year9 = String.valueOf(lastYear - 8);
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         MiniResultDto year9Results = yearResults.get(Integer.valueOf(year9));
