@@ -91,19 +91,20 @@ public class ChartDataServiceImpl implements ChartDataService {
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
         EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
 
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(resultDto.getLastDate());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        BigDecimal goal = estimationFacade.getNextGoal(2);
+
+        Map<Date, BigDecimal> predictions = new HashMap<>();
+        predictions.put(cal.getTime(), currentValue);
+
         if (NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
-            BigDecimal currentValue = resultDto.getResult();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(resultDto.getLastDate());
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-
-            BigDecimal goal = estimationFacade.getNextGoal(2);
-
-            Map<Date, BigDecimal> predictions = new HashMap<>();
-            predictions.put(cal.getTime(), currentValue);
             while (currentValue.compareTo(goal) <= 0) {
                 cal.add(Calendar.DAY_OF_MONTH, 1);
                 currentValue = currentValue.add(estimationResultDto.getAverageDailyResult());
@@ -113,9 +114,8 @@ public class ChartDataServiceImpl implements ChartDataService {
                     break;
                 }
             }
-            return predictions;
         }
-        return new HashMap<>();
+        return predictions;
     }
 
     @Override
@@ -125,18 +125,19 @@ public class ChartDataServiceImpl implements ChartDataService {
         // Add future estimation results without incomes
         ResultDto resultDto = calculationFacade.getResults(dataDtos);
         EstimationResultDto estimationResultDto = estimationFacade.getEstimationResultDto(dataDtos);
+
+        BigDecimal currentValue = resultDto.getResult();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(resultDto.getLastDate());
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        Map<Date, BigDecimal> results = new HashMap<>();
+        results.put(cal.getTime(), currentValue);
+
         if (NumberUtils.isExpense(estimationResultDto.getAverageDailyExpense())) {
-            BigDecimal currentValue = resultDto.getResult();
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(resultDto.getLastDate());
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-
-            Map<Date, BigDecimal> results = new HashMap<>();
-            results.put(cal.getTime(), currentValue);
-
             while (currentValue.compareTo(BigDecimal.ZERO) > 0) {
                 cal.add(Calendar.DAY_OF_MONTH, 1);
                 currentValue = currentValue.add(estimationResultDto.getAverageDailyExpense());
@@ -146,9 +147,8 @@ public class ChartDataServiceImpl implements ChartDataService {
                     break;
                 }
             }
-            return results;
         }
-        return new HashMap<>();
+        return results;
     }
 
     protected void addResultDtoIfEmpty(Map<Integer, MiniResultDto> results, Integer key) {
