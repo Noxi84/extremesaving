@@ -71,7 +71,7 @@ public class CategoryTableComponent {
         int counter = 0;
         for (CategoryDto categoryDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(categoryDto.getName(), displayMaxTextCharacters)));
@@ -94,7 +94,7 @@ public class CategoryTableComponent {
         int counter = 0;
         for (CategoryDto categoryDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(String.valueOf(categoryDto.getTotalResults().getNumberOfItems()), displayMaxTextCharacters), false, TextAlignment.CENTER));
@@ -118,7 +118,7 @@ public class CategoryTableComponent {
         int counter = 0;
         for (CategoryDto categoryDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));

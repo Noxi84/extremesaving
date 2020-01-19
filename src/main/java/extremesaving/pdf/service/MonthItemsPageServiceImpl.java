@@ -22,7 +22,6 @@ import extremesaving.util.DateUtils;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +29,7 @@ import java.util.stream.Collectors;
 
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 10;
+    private static final int DISPLAY_MAX_ITEMS = 9;
     private static final int TEXT_MAX_CHARACTERS = 200;
 
     private DataFacade dataFacade;
@@ -45,7 +44,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
         String month = new SimpleDateFormat("MMMM").format(new Date());
         String year = new SimpleDateFormat("yyyy").format(new Date());
-        document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report: " + month + " " + year,   TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report: " + month + " " + year, TextAlignment.LEFT));
 
         document.add(buildSummaryTable());
 

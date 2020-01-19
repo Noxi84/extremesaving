@@ -72,7 +72,7 @@ public class ItemTableComponent {
         int counter = 0;
         for (ResultDto resultDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             DataDto dataDto = resultDto.getData().iterator().next();
@@ -96,7 +96,7 @@ public class ItemTableComponent {
         int counter = 0;
         for (ResultDto resultDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(String.valueOf(resultDto.getNumberOfItems()), displayMaxTextCharacters), false, TextAlignment.CENTER));
@@ -120,7 +120,7 @@ public class ItemTableComponent {
         int counter = 0;
         for (ResultDto resultDto : results) {
             counter++;
-            if (counter >= displayMaxItems) {
+            if (counter > displayMaxItems) {
                 break;
             }
             cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(resultDto.getResult())));
