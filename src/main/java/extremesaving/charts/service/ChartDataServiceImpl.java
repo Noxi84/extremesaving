@@ -26,12 +26,15 @@ public class ChartDataServiceImpl implements ChartDataService {
     private EstimationFacade estimationFacade;
 
     @Override
-    public Map<Integer, MiniResultDto> getMonthResults() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream()
-                .filter(dataDto -> DateUtils.equalYears(dataDto.getDate(), new Date()))
+    public Map<Date, MiniResultDto> getMonthResults() {
+        List<DataDto> dataDtos = dataFacade.findAll();
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        List<Date> lastMonths = DateUtils.getLastMonths(resultDto.getLastDate());
+        List<DataDto> filteredDataDtos = dataDtos.stream()
+                .filter(dataDto -> DateUtils.isEqualYearAndMonth(lastMonths, dataDto.getDate()))
                 .collect(Collectors.toList());
-        Map<Integer, MiniResultDto> results = calculationFacade.getMonthResults(dataDtos);
-        for (Map.Entry<Integer, MiniResultDto> result : results.entrySet()) {
+        Map<Date, MiniResultDto> results = calculationFacade.getMonthResults(filteredDataDtos);
+        for (Map.Entry<Date, MiniResultDto> result : results.entrySet()) {
             if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
                 result.getValue().setResult(BigDecimal.ZERO);
             }

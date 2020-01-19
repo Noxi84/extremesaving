@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface ChartDataService {
 
-    Map<Integer, MiniResultDto> getMonthResults();
+    Map<Date, MiniResultDto> getMonthResults();
 
     Map<Integer, MiniResultDto> getYearResults();
 

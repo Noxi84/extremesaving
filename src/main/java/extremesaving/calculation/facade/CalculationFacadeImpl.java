@@ -27,6 +27,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
     private static Map<Integer, ResultDto> calculationCash = new HashMap<>();
 
     private CalculationService calculationService;
+    private CalculationFacade calculationFacade;
 
     @Override
     public ResultDto getResults(Collection<DataDto> dataDtos) {
@@ -81,31 +82,41 @@ public class CalculationFacadeImpl implements CalculationFacade {
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getMonthResults(Collection<DataDto> dataDtos) {
-        Map<Integer, MiniResultDto> monthResults = new HashMap<>();
-        monthResults.put(Calendar.JANUARY, new MiniResultDto());
-        monthResults.put(Calendar.FEBRUARY, new MiniResultDto());
-        monthResults.put(Calendar.MARCH, new MiniResultDto());
-        monthResults.put(Calendar.APRIL, new MiniResultDto());
-        monthResults.put(Calendar.MAY, new MiniResultDto());
-        monthResults.put(Calendar.JUNE, new MiniResultDto());
-        monthResults.put(Calendar.JULY, new MiniResultDto());
-        monthResults.put(Calendar.AUGUST, new MiniResultDto());
-        monthResults.put(Calendar.SEPTEMBER, new MiniResultDto());
-        monthResults.put(Calendar.OCTOBER, new MiniResultDto());
-        monthResults.put(Calendar.NOVEMBER, new MiniResultDto());
-        monthResults.put(Calendar.DECEMBER, new MiniResultDto());
+    public Map<Date, MiniResultDto> getMonthResults(Collection<DataDto> dataDtos) {
+        Map<Date, MiniResultDto> monthResults = new HashMap<>();
 
+        ResultDto resultDto = calculationFacade.getResults(dataDtos);
+        List<Date> lastMonths = DateUtils.getLastMonths(resultDto.getLastDate());
         List<DataDto> filteredDataDtos = dataDtos.stream()
-                .filter(dataModel -> DateUtils.equalYears(dataModel.getDate(), new Date()))
+                .filter(dataDto -> DateUtils.isEqualYearAndMonth(lastMonths, dataDto.getDate()))
                 .filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("..."))
                 .collect(Collectors.toList());
+
+        monthResults.put(lastMonths.get(0), new MiniResultDto());
+        monthResults.put(lastMonths.get(1), new MiniResultDto());
+        monthResults.put(lastMonths.get(2), new MiniResultDto());
+        monthResults.put(lastMonths.get(3), new MiniResultDto());
+        monthResults.put(lastMonths.get(4), new MiniResultDto());
+        monthResults.put(lastMonths.get(5), new MiniResultDto());
+        monthResults.put(lastMonths.get(6), new MiniResultDto());
+        monthResults.put(lastMonths.get(7), new MiniResultDto());
+        monthResults.put(lastMonths.get(8), new MiniResultDto());
+        monthResults.put(lastMonths.get(9), new MiniResultDto());
+        monthResults.put(lastMonths.get(10), new MiniResultDto());
+        monthResults.put(lastMonths.get(11), new MiniResultDto());
 
         for (DataDto dataDto : filteredDataDtos) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(dataDto.getDate());
 
-            MiniResultDto resultDtoForThisMonth = monthResults.get(cal.get(Calendar.MONTH));
+            MiniResultDto resultDtoForThisMonth = null;
+            for (Map.Entry<Date, MiniResultDto> monthResult : monthResults.entrySet()) {
+                if (DateUtils.equalYearAndMonths(monthResult.getKey(), cal.getTime())) {
+                    resultDtoForThisMonth = monthResult.getValue();
+                    break;
+                }
+            }
+//            MiniResultDto resultDtoForThisMonth =monthResults  monthResults.get(cal.get(Calendar.MONTH));
             resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataDto.getValue()));
 
             if (NumberUtils.isExpense(dataDto.getValue())) {
@@ -172,5 +183,9 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
     public void setCalculationService(CalculationService calculationService) {
         this.calculationService = calculationService;
+    }
+
+    public void setCalculationFacade(CalculationFacade calculationFacade) {
+        this.calculationFacade = calculationFacade;
     }
 }

@@ -10,6 +10,7 @@
     </bean>
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
         <property name="calculationService" ref="calculationService"/>
+        <property name="calculationFacade" ref="calculationFacade"/>
     </bean>
     <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
         <property name="calculationFacade" ref="calculationFacade"/>
