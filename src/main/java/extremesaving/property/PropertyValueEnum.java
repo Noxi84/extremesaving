@@ -18,7 +18,6 @@ public enum PropertyValueEnum {
 
     MONTH_BAR_CHART_IMAGE_FILE("chart.monthBar.location"),
     GOAL_LINE_CHART_IMAGE_FILE("chart.goalLine.location"),
-    YEAR_BAR_CHART_IMAGE_FILE("chart.yearBar.location"),
 
     TROPHY_ICON0("trophy.icon0"),
     TROPHY_ICON1("trophy.icon1"),

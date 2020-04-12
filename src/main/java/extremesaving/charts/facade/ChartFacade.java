@@ -4,7 +4,5 @@ public interface ChartFacade {
 
     void generateMonthBarChart();
 
-    void generateYearBarChart();
-
     void generateGoalLineChart();
 }

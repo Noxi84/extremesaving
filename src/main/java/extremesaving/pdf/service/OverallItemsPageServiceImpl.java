@@ -14,14 +14,18 @@ import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
-import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
+import extremesaving.pdf.component.itemgrid.YearCategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
 import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OverallItemsPageServiceImpl implements PdfPageService {
@@ -37,93 +41,99 @@ public class OverallItemsPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        System.out.println("Generating Overall Analysis Report");
-
-        document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
-
-        document.add(buildSummaryTable());
-
-        document.add(buildGoalLineChartImage());
-        document.add(PdfUtils.getItemParagraph("\n"));
-
-        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
-        document.add(buildCategoryProfitsTable());
-        document.add(buildItemProfitsTable());
-
-        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
-        document.add(buildCategoryExpensesTable());
-        document.add(buildItemExpensesTable());
+//        System.out.println("Generating Overall Analysis Report");
+//
+////        document.add(PdfUtils.getTitleParagraph("Overall Analysis Report", TextAlignment.LEFT));
+//
+//        document.add(buildSummaryTable());
+//
+////        document.add(buildGoalLineChartImage());
+//        document.add(PdfUtils.getItemParagraph("\n"));
+//
+//        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
+//        document.add(buildCategoryProfitsTable());
+//        document.add(buildItemProfitsTable());
+//
+//        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
+//        document.add(buildCategoryExpensesTable());
+//        document.add(buildItemExpensesTable());
     }
 
-    protected Table buildSummaryTable() {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
-        BigDecimal previousGoal = estimationFacade.getPreviousGoal();
-        BigDecimal currentGoal = estimationFacade.getCurrentGoal();
-
-        return new SummaryTableComponent()
-                .withResults(results)
-                .withSavingRatio(getSavingRatio())
-                .withGoalRatio(estimationFacade.calculateGoalRatio())
-                .withPreviousGoal(previousGoal)
-                .withCurrentGoal(currentGoal)
-                .withTipOfTheDay(dataFacade.getTipOfTheDay())
-                .build();
-    }
-
-    protected BigDecimal getSavingRatio() {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
-        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
-        return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
-    }
-
-    protected Image buildGoalLineChartImage() {
-        chartFacade.generateGoalLineChart();
-        return new GoalLineChartImageComponent().build();
-    }
-
-    protected Table buildCategoryProfitsTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
-                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                .collect(Collectors.toList());
-        return new CategoryTableComponent()
-                .withResults(results)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
-
-    protected Table buildItemProfitsTable() {
-        List<ResultDto> results = calculationFacade.getMostProfitableItems(dataFacade.findAll());
-        return new ItemTableComponent()
-                .withResults(results)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
-
-    protected Table buildCategoryExpensesTable() {
-        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
-                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
-                .collect(Collectors.toList());
-        return new CategoryTableComponent()
-                .withResults(results)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
-
-    protected Table buildItemExpensesTable() {
-        List<ResultDto> overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
-        return new ItemTableComponent()
-                .withResults(overallResults)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
+//    protected Table buildSummaryTable() {
+//        List<DataDto> dataDtos = dataFacade.findAll();
+//        List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
+//        BigDecimal previousGoal = estimationFacade.getPreviousGoal();
+//        BigDecimal currentGoal = estimationFacade.getCurrentGoal();
+//
+//        return new SummaryTableComponent()
+//                .withResults(results)
+//                .withSavingRatio(getSavingRatio())
+//                .withGoalRatio(estimationFacade.calculateGoalRatio())
+//                .withPreviousGoal(previousGoal)
+//                .withCurrentGoal(currentGoal)
+////                .withTipOfTheDay(dataFacade.getTipOfTheDay())
+//                .build();
+//    }
+//
+//    protected BigDecimal getSavingRatio() {
+//        List<DataDto> dataDtos = dataFacade.findAll();
+//        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
+//        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
+//        return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
+//    }
+//
+//    protected Image buildGoalLineChartImage() {
+//        chartFacade.generateGoalLineChart();
+//        return new GoalLineChartImageComponent().build();
+//    }
+//
+//    protected Table buildCategoryProfitsTable() {
+//        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
+//                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
+//                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+//                .collect(Collectors.toList());
+//        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
+//        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+//        mapResults.put(currentYear, results);
+//        return new YearCategoryTableComponent()
+//                .withResults(mapResults)
+//                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+//                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+//                .build();
+//    }
+//
+//    protected Table buildItemProfitsTable() {
+//        List<ResultDto> results = calculationFacade.getMostProfitableItems(dataFacade.findAll());
+//        return new ItemTableComponent()
+//                .withResults(results)
+//                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+//                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+//                .build();
+//    }
+//
+//    protected Table buildCategoryExpensesTable() {
+//        List<CategoryDto> results = categoryFacade.getCategories(dataFacade.findAll()).stream()
+//                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
+//                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+//                .collect(Collectors.toList());
+//        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
+//        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+//        mapResults.put(currentYear, results);
+//        return new YearCategoryTableComponent()
+//                .withResults(mapResults)
+//                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+//                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+//                .build();
+//    }
+//
+//    protected Table buildItemExpensesTable() {
+//        List<ResultDto> overallResults = calculationFacade.getMostExpensiveItems(dataFacade.findAll());
+//        return new ItemTableComponent()
+//                .withResults(overallResults)
+//                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+//                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+//                .build();
+//    }
 
     public void setDataFacade(DataFacade dataFacade) {
         this.dataFacade = dataFacade;

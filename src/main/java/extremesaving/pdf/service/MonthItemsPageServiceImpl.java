@@ -1,9 +1,19 @@
 package extremesaving.pdf.service;
 
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
+
 import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
@@ -14,18 +24,11 @@ import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
-import extremesaving.pdf.component.itemgrid.CategoryTableComponent;
 import extremesaving.pdf.component.itemgrid.ItemTableComponent;
+import extremesaving.pdf.component.itemgrid.MonthCategoryTableComponent;
 import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
-
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
@@ -42,9 +45,8 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
 
-        String month = new SimpleDateFormat("MMMM").format(new Date());
         String year = new SimpleDateFormat("yyyy").format(new Date());
-        document.add(PdfUtils.getTitleParagraph("Monthly Analysis Report: " + month + " " + year, TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report " + year, TextAlignment.LEFT));
 
         document.add(buildSummaryTable());
 
@@ -91,8 +93,11 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
                 .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        return new CategoryTableComponent()
-                .withResults(results)
+        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
+        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+        mapResults.put(currentYear, results);
+        return new MonthCategoryTableComponent()
+                .withResults(mapResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .build();
@@ -115,8 +120,11 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
                 .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        return new CategoryTableComponent()
-                .withResults(results)
+        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
+        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+        mapResults.put(currentYear, results);
+        return new MonthCategoryTableComponent()
+                .withResults(mapResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .build();

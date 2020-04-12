@@ -1,16 +1,8 @@
 package extremesaving.charts.facade;
 
-import extremesaving.charts.builder.GoalLineChart;
-import extremesaving.charts.builder.MonthBarChart;
-import extremesaving.charts.builder.YearBarChart;
-import extremesaving.charts.service.ChartDataService;
-import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
-import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
-import extremesaving.pdf.component.chart.YearBarChartImageComponent;
-import extremesaving.property.PropertiesValueHolder;
-import org.jfree.chart.JFreeChart;
+import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
+import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FILE;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,9 +10,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
-import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FILE;
-import static extremesaving.property.PropertyValueEnum.YEAR_BAR_CHART_IMAGE_FILE;
+import javax.imageio.ImageIO;
+
+import org.jfree.chart.JFreeChart;
+
+import extremesaving.charts.builder.GoalLineChart;
+import extremesaving.charts.builder.MonthBarChart;
+import extremesaving.charts.service.ChartDataService;
+import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
+import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
+import extremesaving.property.PropertiesValueHolder;
 
 public class ChartFacadeImpl implements ChartFacade {
 
@@ -33,15 +32,6 @@ public class ChartFacadeImpl implements ChartFacade {
                 .withMonthResults(chartDataService.getMonthResults())
                 .build();
         writeChartPng(chart, PropertiesValueHolder.getString(MONTH_BAR_CHART_IMAGE_FILE), (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
-    }
-
-    @Override
-    public void generateYearBarChart() {
-        System.out.println("Generating YearBarChart...");
-        JFreeChart chart = new YearBarChart()
-                .withYearResults(chartDataService.getYearResults())
-                .build();
-        writeChartPng(chart, PropertiesValueHolder.getString(YEAR_BAR_CHART_IMAGE_FILE), (int) YearBarChartImageComponent.CHART_WIDTH * 2, (int) YearBarChartImageComponent.CHART_HEIGHT * 2);
     }
 
     @Override

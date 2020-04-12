@@ -27,8 +27,8 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-            overallItemsPageService.generate(document);
-            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
+//            overallItemsPageService.generate(document);
+//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
             yearItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));

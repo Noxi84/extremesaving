@@ -1,16 +1,18 @@
 package extremesaving.pdf.component.itemgrid;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+
 import extremesaving.calculation.dto.ResultDto;
 import extremesaving.data.dto.DataDto;
 import extremesaving.pdf.util.PdfUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
 
 public class ItemTableComponent {
 
@@ -42,7 +44,7 @@ public class ItemTableComponent {
     }
 
     protected Cell getItemCell(List<ResultDto> results) {
-        Table alignmentTable = new Table(3);
+        Table alignmentTable = new Table(2);
         alignmentTable.setBorder(Border.NO_BORDER);
         alignmentTable.setPaddingLeft(0);
         alignmentTable.setMarginLeft(0);
@@ -50,7 +52,6 @@ public class ItemTableComponent {
         alignmentTable.setMarginRight(0);
         alignmentTable.addCell(getAmountCell(results));
         alignmentTable.addCell(getDescriptionCell(results));
-        alignmentTable.addCell(getOccurrencesCell(results));
 
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
@@ -77,29 +78,6 @@ public class ItemTableComponent {
             }
             DataDto dataDto = resultDto.getData().iterator().next();
             cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(dataDto.getDescription(), displayMaxTextCharacters)));
-        }
-        return cell;
-    }
-
-    protected Cell getOccurrencesCell(List<ResultDto> results) {
-        Cell cell = new Cell();
-        cell.setBorder(Border.NO_BORDER);
-        cell.setWidth(100);
-        cell.setPaddingLeft(0);
-        cell.setMarginLeft(0);
-        cell.setPaddingRight(0);
-        cell.setMarginRight(0);
-
-        cell.add(PdfUtils.getItemParagraph("# Items", true, TextAlignment.CENTER));
-        cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.CENTER));
-
-        int counter = 0;
-        for (ResultDto resultDto : results) {
-            counter++;
-            if (counter > displayMaxItems) {
-                break;
-            }
-            cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(String.valueOf(resultDto.getNumberOfItems()), displayMaxTextCharacters), false, TextAlignment.CENTER));
         }
         return cell;
     }
