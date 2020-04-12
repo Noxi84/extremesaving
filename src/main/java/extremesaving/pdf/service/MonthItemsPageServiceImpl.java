@@ -1,7 +1,7 @@
 package extremesaving.pdf.service;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -34,6 +34,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 9;
     private static final int TEXT_MAX_CHARACTERS = 200;
+    public static final int NUMBER_OF_MONTHS = 6;
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
@@ -44,19 +45,13 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
-
-        String year = new SimpleDateFormat("yyyy").format(new Date());
-        document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report " + year, TextAlignment.LEFT));
-
+        document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report", TextAlignment.LEFT));
         document.add(buildSummaryTable());
-
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildCategoryProfitsTable());
         document.add(buildItemProfitsTable());
-
         document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildCategoryExpensesTable());
         document.add(buildItemExpensesTable());
@@ -64,7 +59,6 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     protected Table buildSummaryTable() {
         List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-
         List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
         return new SummaryTableComponent()
                 .withResults(results)
@@ -87,17 +81,41 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryProfitsTable() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-        List<CategoryDto> results = categoryResults.stream()
+        Map<String, List<CategoryDto>> monthResults = new HashMap<>();
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        Calendar cal = Calendar.getInstance();
+
+        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
                 .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
-        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
-        mapResults.put(currentYear, results);
+
+        for (int monthCounter = cal.get(Calendar.MONTH); monthCounter > cal.get(Calendar.MONTH) - NUMBER_OF_MONTHS; monthCounter--) {
+            Calendar monthDate = Calendar.getInstance();
+            monthDate.set(Calendar.MONTH, monthCounter);
+            List<DataDto> dataDtos = dataFacade.findAll().stream()
+                    .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
+                    .collect(Collectors.toList());
+            List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
+
+            List<CategoryDto> results;
+            if (monthCounter == currentMonth) {
+                results = categoryResults.stream()
+                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
+                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                        .collect(Collectors.toList());
+            } else {
+                results = categoryResults.stream()
+                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                        .collect(Collectors.toList());
+            }
+            monthResults.put(String.valueOf(monthCounter), results);
+        }
+
+        monthResults.put("Total", overallCategoryResults);
+
         return new MonthCategoryTableComponent()
-                .withResults(mapResults)
+                .withResults(monthResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .build();
@@ -114,17 +132,40 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryExpensesTable() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-        List<CategoryDto> results = categoryResults.stream()
+        Map<String, List<CategoryDto>> monthResults = new HashMap<>();
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        Calendar cal = Calendar.getInstance();
+
+        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
                 .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        Map<Integer, List<CategoryDto>> mapResults = new HashMap<>();
-        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
-        mapResults.put(currentYear, results);
+
+        for (int monthCounter = cal.get(Calendar.MONTH); monthCounter > cal.get(Calendar.MONTH) - NUMBER_OF_MONTHS; monthCounter--) {
+            Calendar monthDate = Calendar.getInstance();
+            monthDate.set(Calendar.MONTH, monthCounter);
+            List<DataDto> dataDtos = dataFacade.findAll().stream()
+                    .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
+                    .collect(Collectors.toList());
+            List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
+            List<CategoryDto> results;
+            if (monthCounter == currentMonth) {
+                results = categoryResults.stream()
+                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
+                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                        .collect(Collectors.toList());
+            } else {
+                results = categoryResults.stream()
+                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                        .collect(Collectors.toList());
+            }
+            monthResults.put(String.valueOf(monthCounter), results);
+        }
+
+        monthResults.put("Total", overallCategoryResults);
+
         return new MonthCategoryTableComponent()
-                .withResults(mapResults)
+                .withResults(monthResults)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .build();

@@ -83,7 +83,7 @@ public class YearCategoryTableComponent {
                     overallSortedCategories.add(null);
                 }
             }
-            table.addCell(getItemCell(getAmountCell( "Overall", overallSortedCategories)));
+            table.addCell(getItemCell(getAmountCell( "Total", overallSortedCategories)));
         }
 
         // Print category names

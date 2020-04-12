@@ -113,7 +113,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
             yearResults.put(String.valueOf(yearCounter), results);
         }
 
-        yearResults.put("Overall", overallCategoryResults);
+        yearResults.put("Total", overallCategoryResults);
 
         return new YearCategoryTableComponent()
                 .withResults(yearResults)
