@@ -89,7 +89,7 @@ public class MonthBarChart {
         dataset.addValue(julyResults.getIncomes(), incomes, titles.get(6));
         dataset.addValue(augustResults.getIncomes(), incomes, titles.get(7));
         dataset.addValue(septemberResults.getIncomes(), incomes, titles.get(8));
-        dataset.addValue(octoberResults.getIncomes(), incomes, titles.get(8));
+        dataset.addValue(octoberResults.getIncomes(), incomes, titles.get(9));
         dataset.addValue(novemberResults.getIncomes(), incomes, titles.get(10));
         dataset.addValue(decemberResults.getIncomes(), incomes, titles.get(11));
 
