@@ -65,7 +65,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected BigDecimal getSavingRatio() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
         List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
         List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
         return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
@@ -77,74 +77,46 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryProfitsTable() {
-        Map<String, List<CategoryDto>> monthResults = new HashMap<>();
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        Calendar cal = Calendar.getInstance();
-
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
                 .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-
-        for (int monthCounter = cal.get(Calendar.MONTH); monthCounter > cal.get(Calendar.MONTH) - NUMBER_OF_MONTHS; monthCounter--) {
-            Calendar monthDate = Calendar.getInstance();
-            monthDate.set(Calendar.MONTH, monthCounter);
-            List<DataDto> dataDtos = dataFacade.findAll().stream()
-                    .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
-                    .collect(Collectors.toList());
-            List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-
-            List<CategoryDto> results;
-            if (monthCounter == currentMonth) {
-                results = categoryResults.stream()
-                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            } else {
-                results = categoryResults.stream()
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            }
-            monthResults.put(String.valueOf(monthCounter), results);
-        }
-
-        monthResults.put("Total", overallCategoryResults);
-
-        return new MonthCategoryTableComponent()
-                .withResults(monthResults)
-                .withNumberOfColumns(6)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .withPrintTotalsColumn(false)
-                .build();
+        return buildCategoryTable(overallCategoryResults);
     }
 
     protected Table buildCategoryExpensesTable() {
-        Map<String, List<CategoryDto>> monthResults = new HashMap<>();
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        Calendar cal = Calendar.getInstance();
-
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
                 .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
                 .collect(Collectors.toList());
+        return buildCategoryTable(overallCategoryResults);
+    }
 
-        for (int monthCounter = cal.get(Calendar.MONTH); monthCounter > cal.get(Calendar.MONTH) - NUMBER_OF_MONTHS; monthCounter--) {
+    protected Table buildCategoryTable(List<CategoryDto> overallCategoryResults) {
+        Map<String, List<CategoryDto>> monthResults = new HashMap<>();
+
+        Date lastDate = overallCategoryResults.stream().map(categoryDto -> categoryDto.getTotalResults().getLastDate()).max(Date::compareTo).get();
+        Calendar lastDateCal = Calendar.getInstance();
+        lastDateCal.setTime(lastDate);
+        int lastMonth = lastDateCal.get(Calendar.MONTH);
+
+        for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
             Calendar monthDate = Calendar.getInstance();
             monthDate.set(Calendar.MONTH, monthCounter);
             List<DataDto> dataDtos = dataFacade.findAll().stream()
                     .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
+
             List<CategoryDto> results;
-            if (monthCounter == currentMonth) {
+            if (monthCounter == lastMonth) {
                 results = categoryResults.stream()
                         .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
-                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                         .collect(Collectors.toList());
             } else {
                 results = categoryResults.stream()
-                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
+                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                         .collect(Collectors.toList());
             }
             monthResults.put(String.valueOf(monthCounter), results);
@@ -154,7 +126,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
         return new MonthCategoryTableComponent()
                 .withResults(monthResults)
-                .withNumberOfColumns(6)
+                .withNumberOfColumns(12)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .withPrintTotalsColumn(false)

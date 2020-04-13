@@ -25,7 +25,7 @@ public class PdfFacadeImpl implements PdfFacade {
             PdfWriter writer = new PdfWriter(PropertiesValueHolder.getString(PDF_FILE_NAME));
             PdfDocument pdf = new PdfDocument(writer);
 
-            Document document = new Document(pdf, PageSize.A4);
+            Document document = new Document(pdf, PageSize.A4.rotate());
 
             yearItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));

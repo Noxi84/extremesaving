@@ -66,7 +66,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     }
 
     protected BigDecimal getSavingRatio() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
+        List<DataDto> dataDtos = dataFacade.findAll();
         List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
         List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
         return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
@@ -78,57 +78,25 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryProfitsTable() {
-        Map<String, List<CategoryDto>> yearResults = new HashMap<>();
-        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
-        Calendar cal = Calendar.getInstance();
-
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
                 .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-
-        for (int yearCounter = cal.get(Calendar.YEAR); yearCounter > cal.get(Calendar.YEAR) - NUMBER_OF_YEARS; yearCounter--) {
-            Calendar yearDate = Calendar.getInstance();
-            yearDate.set(Calendar.YEAR, yearCounter);
-            List<DataDto> dataDtos = dataFacade.findAll().stream()
-                    .filter(dataDto -> DateUtils.equalYears(yearDate.getTime(), dataDto.getDate()))
-                    .collect(Collectors.toList());
-            List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-
-            List<CategoryDto> results;
-            if (yearCounter == currentYear) {
-                results = categoryResults.stream()
-                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            } else {
-                results = categoryResults.stream()
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            }
-            yearResults.put(String.valueOf(yearCounter), results);
-        }
-
-        yearResults.put("Total", overallCategoryResults);
-
-        return new YearCategoryTableComponent()
-                .withResults(yearResults)
-                .withNumberOfColumns(5)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .withPrintTotalsColumn(true)
-                .build();
+        return buildCategoryTable(overallCategoryResults);
     }
 
     protected Table buildCategoryExpensesTable() {
-        Map<String, List<CategoryDto>> yearResults = new HashMap<>();
-        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
-        Calendar cal = Calendar.getInstance();
-
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
                 .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
                 .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
                 .collect(Collectors.toList());
+        return buildCategoryTable(overallCategoryResults);
+    }
+
+    protected Table buildCategoryTable(List<CategoryDto> overallCategoryResults) {
+        Map<String, List<CategoryDto>> yearResults = new HashMap<>();
+        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+        Calendar cal = Calendar.getInstance();
 
         for (int yearCounter = cal.get(Calendar.YEAR); yearCounter > cal.get(Calendar.YEAR) - NUMBER_OF_YEARS; yearCounter--) {
             Calendar yearDate = Calendar.getInstance();
@@ -155,7 +123,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
         return new YearCategoryTableComponent()
                 .withResults(yearResults)
-                .withNumberOfColumns(5)
+                .withNumberOfColumns(11)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .withPrintTotalsColumn(true)
