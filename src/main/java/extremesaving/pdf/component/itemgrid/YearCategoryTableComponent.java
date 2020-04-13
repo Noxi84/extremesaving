@@ -7,12 +7,17 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import extremesaving.calculation.dto.CategoryDto;
+import extremesaving.calculation.util.NumberUtils;
 
 public class YearCategoryTableComponent extends AbstractCategoryTableComponent {
 
     @Override
-    int getCurrentMonthOrYear() {
-        return Calendar.getInstance().get(Calendar.YEAR);
+    int getLastMonthOrYear() {
+        return results.entrySet().stream()
+                .filter(v -> NumberUtils.isNumber(v.getKey()))
+                .map(v -> Integer.valueOf(v.getKey()))
+                .mapToInt(v -> v).max()
+                .orElse(Calendar.getInstance().get(Calendar.YEAR));
     }
 
     @Override

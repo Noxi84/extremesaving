@@ -19,7 +19,6 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.calculation.facade.EstimationFacade;
-import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
@@ -48,10 +47,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         document.add(buildSummaryTable());
         document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
-        document.add(buildCategoryProfitsTable());
-        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
-        document.add(buildCategoryExpensesTable());
+        document.add(buildCategoryTable());
     }
 
     protected Table buildSummaryTable() {
@@ -77,23 +73,11 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         return new GoalLineChartImageComponent().build();
     }
 
-    protected Table buildCategoryProfitsTable() {
+    protected Table buildCategoryTable() {
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        return buildCategoryTable(overallCategoryResults);
-    }
 
-    protected Table buildCategoryExpensesTable() {
-        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
-                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
-                .collect(Collectors.toList());
-        return buildCategoryTable(overallCategoryResults);
-    }
-
-    protected Table buildCategoryTable(List<CategoryDto> overallCategoryResults) {
         Map<String, List<CategoryDto>> yearResults = new HashMap<>();
         int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
         Calendar cal = Calendar.getInstance();
@@ -123,7 +107,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
         return new YearCategoryTableComponent()
                 .withResults(yearResults)
-                .withNumberOfColumns(11)
+                .withNumberOfColumns(10)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
                 .withPrintTotalsColumn(true)

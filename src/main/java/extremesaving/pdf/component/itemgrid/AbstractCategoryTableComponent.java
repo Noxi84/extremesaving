@@ -2,6 +2,7 @@ package extremesaving.pdf.component.itemgrid;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -20,7 +21,7 @@ import extremesaving.pdf.util.PdfUtils;
 
 public abstract class AbstractCategoryTableComponent {
 
-    private Map<String, List<CategoryDto>> results;
+    Map<String, List<CategoryDto>> results;
     private int displayMaxItems;
     private int displayMaxTextCharacters;
     private int numberOfColumns;
@@ -56,7 +57,7 @@ public abstract class AbstractCategoryTableComponent {
         table.setBorder(Border.NO_BORDER);
         table.setWidth(UnitValue.createPercentValue(100));
 
-        int currentMonthOrYear = getCurrentMonthOrYear();
+        int currentMonthOrYear = getLastMonthOrYear();
         List<String> categories = getCategoryNames();
 
         for (int counter = currentMonthOrYear - numberOfColumns; counter <= currentMonthOrYear; counter++) {
@@ -99,7 +100,7 @@ public abstract class AbstractCategoryTableComponent {
         return table;
     }
 
-    abstract int getCurrentMonthOrYear();
+    abstract int getLastMonthOrYear();
 
     abstract String getTitle(final List<CategoryDto> sortedCategories);
 
@@ -108,7 +109,7 @@ public abstract class AbstractCategoryTableComponent {
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
         List<CategoryDto> categoryDtosThisYear = results.get(String.valueOf(currentMonth));
         if (categoryDtosThisYear != null) {
-            categories.addAll(categoryDtosThisYear.stream().map(categoryDto -> categoryDto.getName()).collect(Collectors.toList()));
+            categories.addAll(categoryDtosThisYear.stream().sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult())).map(categoryDto -> categoryDto.getName()).collect(Collectors.toList()));
         }
         List<CategoryDto> categoryDtosOverall = results.get("Total");
         if (categoryDtosOverall != null) {

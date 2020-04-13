@@ -14,4 +14,13 @@ public final class NumberUtils {
     public static boolean isIncome(BigDecimal val) {
         return val != null && BigDecimal.ZERO.compareTo(val) < 0;
     }
+
+    public static boolean isNumber(final String value) {
+        try {
+            Integer.parseInt(value);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
 }

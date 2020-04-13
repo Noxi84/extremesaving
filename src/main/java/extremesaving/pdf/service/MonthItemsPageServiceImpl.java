@@ -2,7 +2,6 @@ package extremesaving.pdf.service;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,6 @@ import extremesaving.calculation.dto.CategoryDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.calculation.facade.EstimationFacade;
-import extremesaving.calculation.util.NumberUtils;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
@@ -47,10 +45,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         document.add(buildSummaryTable());
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
-        document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
-        document.add(buildCategoryProfitsTable());
-        document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
-        document.add(buildCategoryExpensesTable());
+        document.add(buildCategoryTable());
     }
 
     protected Table buildSummaryTable() {
@@ -76,23 +71,11 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         return new MonthBarChartImageComponent().build();
     }
 
-    protected Table buildCategoryProfitsTable() {
+    protected Table buildCategoryTable() {
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
-                .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                 .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
-        return buildCategoryTable(overallCategoryResults);
-    }
 
-    protected Table buildCategoryExpensesTable() {
-        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
-                .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
-                .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
-                .collect(Collectors.toList());
-        return buildCategoryTable(overallCategoryResults);
-    }
-
-    protected Table buildCategoryTable(List<CategoryDto> overallCategoryResults) {
         Map<String, List<CategoryDto>> monthResults = new HashMap<>();
 
         Date lastDate = overallCategoryResults.stream().map(categoryDto -> categoryDto.getTotalResults().getLastDate()).max(Date::compareTo).get();
