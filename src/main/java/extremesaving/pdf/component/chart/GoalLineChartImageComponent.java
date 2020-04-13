@@ -8,8 +8,8 @@ import static extremesaving.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FIL
 
 public class GoalLineChartImageComponent {
 
-    public static float GOAL_LINE_CHART_WIDTH = 530;
-    public static float GOAL_LINE_CHART_HEIGHT = 220;
+    public static float GOAL_LINE_CHART_WIDTH = 750;
+    public static float GOAL_LINE_CHART_HEIGHT = 250;
 
     public Image build() {
         try {

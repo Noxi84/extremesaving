@@ -8,8 +8,8 @@ import static extremesaving.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FIL
 
 public class MonthBarChartImageComponent {
 
-    public static float MONTHCHART_WIDTH = 530;
-    public static float MONTHCHART_HEIGHT = 220;
+    public static float MONTHCHART_WIDTH = 750;
+    public static float MONTHCHART_HEIGHT = 250;
 
     public Image build() {
         try {
