@@ -4,16 +4,16 @@
 <beans>
     <!--Facade-->
     <bean id="estimationFacade" class="extremesaving.calculation.facade.EstimationFacadeImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-        <property name="calculationFacade" ref="calculationFacade"/>
-        <property name="estimationService" ref="estimationService"/>
+        <property name="dataFacade" ref="dataFacade" />
+        <property name="calculationFacade" ref="calculationFacade" />
+        <property name="estimationService" ref="estimationService" />
     </bean>
     <bean id="calculationFacade" class="extremesaving.calculation.facade.CalculationFacadeImpl">
-        <property name="calculationService" ref="calculationService"/>
-        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="calculationService" ref="calculationService" />
+        <property name="calculationFacade" ref="calculationFacade" />
     </bean>
     <bean id="categoryFacade" class="extremesaving.calculation.facade.CategoryFacadeImpl">
-        <property name="calculationFacade" ref="calculationFacade"/>
+        <property name="calculationFacade" ref="calculationFacade" />
     </bean>
 
     <!--Services-->
@@ -21,6 +21,6 @@
 
     </bean>
     <bean id="estimationService" class="extremesaving.calculation.service.EstimationServiceImpl">
-        <property name="calculationService" ref="calculationService"/>
+        <property name="calculationService" ref="calculationService" />
     </bean>
 </beans>

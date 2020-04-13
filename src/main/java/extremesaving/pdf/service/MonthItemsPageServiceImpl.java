@@ -1,6 +1,5 @@
 package extremesaving.pdf.service;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,15 +13,12 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
 import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
-import extremesaving.calculation.facade.EstimationFacade;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.MonthCategoryTableComponent;
-import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 import extremesaving.util.DateUtils;
 
@@ -34,36 +30,15 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
-    private CalculationFacade calculationFacade;
     private ChartFacade chartFacade;
-    private EstimationFacade estimationFacade;
 
     @Override
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
         document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report", TextAlignment.LEFT));
-        document.add(buildSummaryTable());
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());
-    }
-
-    protected Table buildSummaryTable() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<CategoryDto> results = categoryFacade.getCategories(dataDtos);
-        return new SummaryTableComponent()
-                .withResults(results)
-                .withSavingRatio(getSavingRatio())
-                .withGoalRatio(estimationFacade.calculateGoalRatio())
-                .withTipOfTheDay(dataFacade.getTipOfTheDay())
-                .build();
-    }
-
-    protected BigDecimal getSavingRatio() {
-        List<DataDto> dataDtos = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<CategoryDto> profitResults = categoryFacade.getMostProfitableCategories(dataDtos);
-        List<CategoryDto> expensesResults = categoryFacade.getMostExpensiveCategories(dataDtos);
-        return calculationFacade.calculateSavingRatio(profitResults, expensesResults);
     }
 
     protected Image buildMonthBarChartImage() {
@@ -124,15 +99,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         this.categoryFacade = categoryFacade;
     }
 
-    public void setCalculationFacade(CalculationFacade calculationFacade) {
-        this.calculationFacade = calculationFacade;
-    }
-
     public void setChartFacade(ChartFacade chartFacade) {
         this.chartFacade = chartFacade;
-    }
-
-    public void setEstimationFacade(EstimationFacade estimationFacade) {
-        this.estimationFacade = estimationFacade;
     }
 }

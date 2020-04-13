@@ -1,26 +1,20 @@
 package extremesaving.calculation.facade;
 
-import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.dto.MiniResultDto;
-import extremesaving.calculation.dto.ResultDto;
-import extremesaving.calculation.service.CalculationService;
-import extremesaving.calculation.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-import extremesaving.util.DateUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import extremesaving.calculation.dto.MiniResultDto;
+import extremesaving.calculation.dto.ResultDto;
+import extremesaving.calculation.service.CalculationService;
+import extremesaving.calculation.util.NumberUtils;
+import extremesaving.data.dto.DataDto;
+import extremesaving.util.DateUtils;
 
 public class CalculationFacadeImpl implements CalculationFacade {
 
@@ -38,47 +32,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
             calculationCash.put(hashCode, result);
         }
         return result;
-    }
-
-    @Override
-    public List<ResultDto> getMostProfitableItems(Collection<DataDto> dataDtos) {
-        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataDtos);
-        return categoryDescriptionGrouped.stream()
-                .filter(resultDto -> NumberUtils.isIncome(resultDto.getResult()))
-                .sorted((o1, o2) -> o2.getResult().compareTo(o1.getResult()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ResultDto> getMostExpensiveItems(Collection<DataDto> dataDtos) {
-        List<ResultDto> categoryDescriptionGrouped = createCategoryDescriptionMap(dataDtos);
-        return categoryDescriptionGrouped.stream()
-                .filter(resultDto -> NumberUtils.isExpense(resultDto.getResult()))
-                .sorted(Comparator.comparing(ResultDto::getResult))
-                .collect(Collectors.toList());
-    }
-
-    protected List<ResultDto> createCategoryDescriptionMap(Collection<DataDto> dataDtos) {
-        // Group datamodels for each category + description
-        Map<String, List<DataDto>> categoryDescriptionDtos = new HashMap<>();
-        for (DataDto dataDto : dataDtos) {
-            if (StringUtils.isNotBlank(dataDto.getDescription())) {
-                String categoryDescription = dataDto.getCategory().toLowerCase() + "_" + dataDto.getDescription().toLowerCase();
-                List<DataDto> dataDtosForCategoryDescription = categoryDescriptionDtos.get(categoryDescription);
-                if (dataDtosForCategoryDescription == null) {
-                    dataDtosForCategoryDescription = new ArrayList<>();
-                }
-                dataDtosForCategoryDescription.add(dataDto);
-                categoryDescriptionDtos.put(categoryDescription, dataDtosForCategoryDescription);
-            }
-        }
-
-        // Create ResultDto map
-        List<ResultDto> results = new ArrayList<>();
-        for (Map.Entry<String, List<DataDto>> categoryDescriptionEntry : categoryDescriptionDtos.entrySet()) {
-            results.add(getResults(categoryDescriptionEntry.getValue()));
-        }
-        return results;
     }
 
     @Override
@@ -116,7 +69,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
                     break;
                 }
             }
-//            MiniResultDto resultDtoForThisMonth =monthResults  monthResults.get(cal.get(Calendar.MONTH));
             resultDtoForThisMonth.setResult(resultDtoForThisMonth.getResult().add(dataDto.getValue()));
 
             if (NumberUtils.isExpense(dataDto.getValue())) {
@@ -165,20 +117,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
             }
         }
         return highestMonth;
-    }
-
-
-    @Override
-    public BigDecimal calculateSavingRatio(List<CategoryDto> profitResults, List<CategoryDto> expensesResults) {
-        BigDecimal profitAmount = profitResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal expensesAmount = expensesResults.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal expensesAmountReversed = expensesAmount.multiply(BigDecimal.valueOf(-1));
-        if (BigDecimal.ZERO.compareTo(expensesAmountReversed) == 0) {
-            return BigDecimal.valueOf(100);
-        } else if (profitAmount.compareTo(expensesAmountReversed) > 0) {
-            return BigDecimal.valueOf(100).subtract(expensesAmountReversed.divide(profitAmount, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100)));
-        }
-        return BigDecimal.ZERO;
     }
 
     public void setCalculationService(CalculationService calculationService) {

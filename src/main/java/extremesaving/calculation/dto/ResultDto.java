@@ -21,6 +21,7 @@ public class ResultDto {
     private BigDecimal highestResult = BigDecimal.ZERO;
     private Date firstDate;
     private Date lastDate;
+    private BigDecimal savingRatio;
 
     public Set<DataDto> getData() {
         return data;
@@ -116,5 +117,13 @@ public class ResultDto {
 
     public void setLastDate(Date lastDate) {
         this.lastDate = lastDate;
+    }
+
+    public BigDecimal getSavingRatio() {
+        return savingRatio;
+    }
+
+    public void setSavingRatio(final BigDecimal savingRatio) {
+        this.savingRatio = savingRatio;
     }
 }

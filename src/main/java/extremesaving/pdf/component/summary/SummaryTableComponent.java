@@ -73,11 +73,6 @@ public class SummaryTableComponent {
         // Create right cell
         Cell alignmentTableRight = createRightValuesCell();
 
-        // Add total amount
-        BigDecimal totalAmount = categoryDtos.stream().map(categoryDto -> categoryDto.getTotalResults().getResult()).reduce(BigDecimal.ZERO, BigDecimal::add);
-        alignmentTableLeft.add(PdfUtils.getItemParagraph("Total", true));
-        alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(totalAmount), true));
-
         // Add saving ratio
         alignmentTableLeft.add(PdfUtils.getItemParagraph("Saving ratio", false));
         alignmentTableRight.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(savingRatio), false));
