@@ -4,19 +4,11 @@
 <beans>
     <!--Facade-->
     <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
-        <property name="overallItemsPageService" ref="overallItemsPageService"/>
         <property name="yearItemsPageService" ref="yearItemsPageService"/>
         <property name="monthItemsPageService" ref="monthItemsPageService"/>
     </bean>
 
     <!--Services-->
-    <bean id="overallItemsPageService" class="extremesaving.pdf.service.OverallItemsPageServiceImpl">
-        <property name="dataFacade" ref="dataFacade"/>
-        <property name="categoryFacade" ref="categoryFacade"/>
-        <property name="calculationFacade" ref="calculationFacade"/>
-        <property name="chartFacade" ref="chartFacade"/>
-        <property name="estimationFacade" ref="estimationFacade"/>
-    </bean>
     <bean id="yearItemsPageService" class="extremesaving.pdf.service.YearItemsPageServiceImpl">
         <property name="dataFacade" ref="dataFacade"/>
         <property name="categoryFacade" ref="categoryFacade"/>

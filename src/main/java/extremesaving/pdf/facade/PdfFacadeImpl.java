@@ -1,21 +1,21 @@
 package extremesaving.pdf.facade;
 
+import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
+
+import java.io.FileNotFoundException;
+
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
+
 import extremesaving.pdf.service.PdfPageService;
 import extremesaving.property.PropertiesValueHolder;
 
-import java.io.FileNotFoundException;
-
-import static extremesaving.property.PropertyValueEnum.PDF_FILE_NAME;
-
 public class PdfFacadeImpl implements PdfFacade {
 
-    private PdfPageService overallItemsPageService;
     private PdfPageService yearItemsPageService;
     private PdfPageService monthItemsPageService;
 
@@ -27,9 +27,6 @@ public class PdfFacadeImpl implements PdfFacade {
 
             Document document = new Document(pdf, PageSize.A4);
 
-//            overallItemsPageService.generate(document);
-//            document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
             yearItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
 
@@ -39,10 +36,6 @@ public class PdfFacadeImpl implements PdfFacade {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setOverallItemsPageService(PdfPageService overallItemsPageService) {
-        this.overallItemsPageService = overallItemsPageService;
     }
 
     public void setYearItemsPageService(PdfPageService yearItemsPageService) {

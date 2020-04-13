@@ -15,7 +15,6 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
 import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.dto.ResultDto;
 import extremesaving.calculation.facade.CalculationFacade;
 import extremesaving.calculation.facade.CategoryFacade;
 import extremesaving.calculation.facade.EstimationFacade;
@@ -24,7 +23,6 @@ import extremesaving.charts.facade.ChartFacade;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
-import extremesaving.pdf.component.itemgrid.ItemTableComponent;
 import extremesaving.pdf.component.itemgrid.MonthCategoryTableComponent;
 import extremesaving.pdf.component.summary.SummaryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
@@ -32,9 +30,9 @@ import extremesaving.util.DateUtils;
 
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 9;
+    private static final int DISPLAY_MAX_ITEMS = 20;
     private static final int TEXT_MAX_CHARACTERS = 200;
-    public static final int NUMBER_OF_MONTHS = 6;
+    public static final int NUMBER_OF_MONTHS = 12;
 
     private DataFacade dataFacade;
     private CategoryFacade categoryFacade;
@@ -51,10 +49,8 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(PdfUtils.getTitleParagraph("Most profitable items", TextAlignment.LEFT));
         document.add(buildCategoryProfitsTable());
-        document.add(buildItemProfitsTable());
         document.add(PdfUtils.getTitleParagraph("Most expensive items", TextAlignment.LEFT));
         document.add(buildCategoryExpensesTable());
-        document.add(buildItemExpensesTable());
     }
 
     protected Table buildSummaryTable() {
@@ -116,18 +112,10 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
         return new MonthCategoryTableComponent()
                 .withResults(monthResults)
+                .withNumberOfColumns(6)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
-
-    protected Table buildItemProfitsTable() {
-        List<DataDto> monthResults = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<ResultDto> results = calculationFacade.getMostProfitableItems(monthResults);
-        return new ItemTableComponent()
-                .withResults(results)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+                .withPrintTotalsColumn(false)
                 .build();
     }
 
@@ -166,18 +154,10 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
         return new MonthCategoryTableComponent()
                 .withResults(monthResults)
+                .withNumberOfColumns(6)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
                 .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .build();
-    }
-
-    protected Table buildItemExpensesTable() {
-        List<DataDto> monthResults = dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYearAndMonths(new Date(), dataDto.getDate())).collect(Collectors.toList());
-        List<ResultDto> results = calculationFacade.getMostExpensiveItems(monthResults);
-        return new ItemTableComponent()
-                .withResults(results)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+                .withPrintTotalsColumn(false)
                 .build();
     }
 
