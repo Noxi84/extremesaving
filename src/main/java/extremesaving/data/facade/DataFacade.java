@@ -1,12 +1,10 @@
 package extremesaving.data.facade;
 
-import extremesaving.data.dto.DataDto;
-
 import java.util.List;
+
+import extremesaving.data.dto.DataDto;
 
 public interface DataFacade {
 
     List<DataDto> findAll();
-
-    String getTipOfTheDay();
 }
