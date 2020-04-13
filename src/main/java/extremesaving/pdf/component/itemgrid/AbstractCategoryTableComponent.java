@@ -2,7 +2,6 @@ package extremesaving.pdf.component.itemgrid;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -58,19 +57,14 @@ public abstract class AbstractCategoryTableComponent {
         table.setWidth(UnitValue.createPercentValue(100));
 
         int currentMonthOrYear = getLastMonthOrYear();
-        List<String> categories = getCategoryNames();
+        List<String> categoryNames = getCategoryNames();
 
         for (int counter = currentMonthOrYear - numberOfColumns; counter <= currentMonthOrYear; counter++) {
             List<CategoryDto> categoryDtos = results.get(String.valueOf(counter));
             if (categoryDtos != null) {
                 List<CategoryDto> sortedCategories = new ArrayList<>();
-                for (String category : categories) {
-                    Optional<CategoryDto> optCategoryDto = categoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst();
-                    if (optCategoryDto.isPresent()) {
-                        sortedCategories.add(optCategoryDto.get());
-                    } else {
-                        sortedCategories.add(null);
-                    }
+                for (String category : categoryNames) {
+                    sortedCategories.add(categoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst().orElse(null));
                 }
                 String title = getTitle(sortedCategories);
                 table.addCell(getItemCell(getAmountCell(title, sortedCategories)));
@@ -82,7 +76,7 @@ public abstract class AbstractCategoryTableComponent {
             List<CategoryDto> overallCategoryDtos = results.get("Total");
             if (overallCategoryDtos != null) {
                 List<CategoryDto> overallSortedCategories = new ArrayList<>();
-                for (String category : categories) {
+                for (String category : categoryNames) {
                     Optional<CategoryDto> optCategoryDto = overallCategoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst();
                     if (optCategoryDto.isPresent()) {
                         overallSortedCategories.add(optCategoryDto.get());
@@ -95,7 +89,7 @@ public abstract class AbstractCategoryTableComponent {
         }
 
         // Print category names
-        table.addCell(getItemCell(getDescriptionCell(categories)));
+        table.addCell(getItemCell(getDescriptionCell(categoryNames)));
 
         return table;
     }
@@ -104,7 +98,7 @@ public abstract class AbstractCategoryTableComponent {
 
     abstract String getTitle(final List<CategoryDto> sortedCategories);
 
-    private  List<String> getCategoryNames() {
+    private List<String> getCategoryNames() {
         List<String> categories = new ArrayList<>();
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
         List<CategoryDto> categoryDtosThisYear = results.get(String.valueOf(currentMonth));
@@ -119,6 +113,9 @@ public abstract class AbstractCategoryTableComponent {
                 }
             }
         }
+
+        categories.remove("Total");
+        categories.add("Total"); // Make sure total is the last one in the list
         return categories;
     }
 
@@ -154,7 +151,12 @@ public abstract class AbstractCategoryTableComponent {
             if (counter > displayMaxItems) {
                 break;
             }
-            cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters)));
+            if ("Total".equals(category)) {
+                cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
+                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters), true));
+            } else {
+                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters)));
+            }
         }
         return cell;
     }
@@ -181,7 +183,12 @@ public abstract class AbstractCategoryTableComponent {
                 if (categoryDto == null) {
                     cell.add(PdfUtils.getItemParagraph("\n", false, TextAlignment.RIGHT));
                 } else {
-                    cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+                    if ("Total".equals(categoryDto.getName())) {
+                        cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
+                        cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult()), true));
+                    } else {
+                        cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+                    }
                 }
             }
         }

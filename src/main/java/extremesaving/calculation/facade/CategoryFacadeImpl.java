@@ -1,15 +1,15 @@
 package extremesaving.calculation.facade;
 
-import extremesaving.calculation.dto.CategoryDto;
-import extremesaving.calculation.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import extremesaving.calculation.dto.CategoryDto;
+import extremesaving.calculation.util.NumberUtils;
+import extremesaving.data.dto.DataDto;
 
 public class CategoryFacadeImpl implements CategoryFacade {
 
@@ -26,6 +26,10 @@ public class CategoryFacadeImpl implements CategoryFacade {
             categoryDtos.add(categoryDto);
         }
         Collections.sort(categoryDtos, (o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()));
+        CategoryDto total = new CategoryDto();
+        total.setName("Total");
+        total.setTotalResults(calculationFacade.getResults(dataDtos));
+        categoryDtos.add(total);
         return categoryDtos;
     }
 
