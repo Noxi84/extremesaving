@@ -153,9 +153,9 @@ public abstract class AbstractCategoryTableComponent {
             }
             if ("Total".equals(category)) {
                 cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
-                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total Items", displayMaxTextCharacters), true));
+                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total", displayMaxTextCharacters), true));
                 cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Saving Ratio", displayMaxTextCharacters), true));
-                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters), true));
+                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total Items", displayMaxTextCharacters), true));
             } else {
                 cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters)));
             }
@@ -187,9 +187,9 @@ public abstract class AbstractCategoryTableComponent {
                 } else {
                     if ("Total".equals(categoryDto.getName())) {
                         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
-                        cell.add(PdfUtils.getItemParagraph(String.valueOf(categoryDto.getTotalResults().getNumberOfItems())));
-                        cell.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(categoryDto.getTotalResults().getSavingRatio())));
                         cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult()), true));
+                        cell.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(categoryDto.getTotalResults().getSavingRatio())));
+                        cell.add(PdfUtils.getItemParagraph(String.valueOf(categoryDto.getTotalResults().getNumberOfItems())));
                     } else {
                         cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));
                     }

@@ -1,12 +1,5 @@
 package extremesaving.charts.builder;
 
-import extremesaving.calculation.dto.MiniResultDto;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.CategoryDataset;
-import org.jfree.data.category.DefaultCategoryDataset;
-
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +7,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import extremesaving.calculation.dto.MiniResultDto;
 
 public class MonthBarChart {
 
@@ -38,7 +39,7 @@ public class MonthBarChart {
         List<Date> sortedDates = monthResults.entrySet().stream().map(entry -> entry.getKey()).sorted(Date::compareTo).collect(Collectors.toList());
 
         List<String> titles = new ArrayList<>();
-        SimpleDateFormat sf = new SimpleDateFormat("MMM yy");
+        final SimpleDateFormat sf = new SimpleDateFormat("MMM yyyy");
         sortedDates.forEach(date -> titles.add(sf.format(date)));
 
         MiniResultDto januaryResults = monthResults.get(sortedDates.get(0));
