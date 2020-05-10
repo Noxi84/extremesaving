@@ -119,7 +119,7 @@ public abstract class AbstractCategoryTableComponent {
     protected Cell getDescriptionCell(List<String> categories) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
-        cell.setWidth(600);
+        cell.setWidth(300);
         cell.setPaddingLeft(20);
         cell.setMarginLeft(0);
         cell.setPaddingRight(0);
