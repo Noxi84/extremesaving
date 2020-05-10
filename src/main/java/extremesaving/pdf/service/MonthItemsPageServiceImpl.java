@@ -1,5 +1,6 @@
 package extremesaving.pdf.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +37,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
-        document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("dd MMM yyyy").format(new Date()), TextAlignment.RIGHT));
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());
@@ -48,7 +49,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryTable() {
-        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
+        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.isEqualYear(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
                 .collect(Collectors.toList());
 
         Map<String, List<CategoryDto>> monthResults = new HashMap<>();
@@ -84,7 +85,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
             Calendar monthDate = Calendar.getInstance();
             monthDate.set(Calendar.MONTH, monthCounter);
             List<DataDto> dataDtos = dataFacade.findAll().stream()
-                    .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
+                    .filter(dataDto -> DateUtils.isEqualYearAndMonth(monthDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
             categoryResultsPerMonth.put(String.valueOf(monthCounter), categoryResults);

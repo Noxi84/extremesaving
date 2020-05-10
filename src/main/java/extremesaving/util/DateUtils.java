@@ -58,7 +58,7 @@ public final class DateUtils {
 
     public static boolean isEqualYearAndMonth(List<Date> lastMonths, Date date) {
         for (Date month : lastMonths) {
-            if (DateUtils.equalYearAndMonths(date, month)) {
+            if (DateUtils.isEqualYearAndMonth(date, month)) {
                 return true;
             }
         }
@@ -71,16 +71,16 @@ public final class DateUtils {
         return cal.getTime();
     }
 
-    public static long daysBetween(Date d1, Date d2) {
+    public static long getDaysBetween(Date d1, Date d2) {
         return TimeUnit.DAYS.convert(d1.getTime() - d2.getTime(), TimeUnit.MILLISECONDS);
     }
 
-    public static boolean equalDates(Date d1, Date d2) {
+    public static boolean isEqualDates(Date d1, Date d2) {
         SimpleDateFormat sf = new SimpleDateFormat("DD/MM/YYYY");
         return sf.format(d1).equals(sf.format(d2));
     }
 
-    public static boolean equalMonths(Date d1, Date d2) {
+    public static boolean isEqualMonth(Date d1, Date d2) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(d1);
         Calendar cal2 = Calendar.getInstance();
@@ -88,11 +88,11 @@ public final class DateUtils {
         return cal.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
     }
 
-    public static boolean equalYearAndMonths(Date d1, Date d2) {
-        return equalMonths(d1, d2) && equalYears(d1, d2);
+    public static boolean isEqualYearAndMonth(Date d1, Date d2) {
+        return isEqualMonth(d1, d2) && isEqualYear(d1, d2);
     }
 
-    public static boolean equalYears(Date d1, Date d2) {
+    public static boolean isEqualYear(Date d1, Date d2) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(d1);
         Calendar cal2 = Calendar.getInstance();

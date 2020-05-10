@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Facade-->
+    <bean id="pdfFacade" class="extremesaving.pdf.facade.PdfFacadeImpl">
+        <property name="yearItemsPageService" ref="yearItemsPageService" />
+        <property name="monthItemsPageService" ref="monthItemsPageService" />
+    </bean>
+
+    <!--Services-->
+    <bean id="yearItemsPageService" class="extremesaving.pdf.service.YearItemsPageServiceImpl">
+        <property name="dataFacade" ref="dataFacade" />
+        <property name="categoryFacade" ref="categoryFacade" />
+        <property name="chartFacade" ref="chartFacade" />
+    </bean>
+    <bean id="monthItemsPageService" class="extremesaving.pdf.service.MonthItemsPageServiceImpl">
+        <property name="dataFacade" ref="dataFacade" />
+        <property name="categoryFacade" ref="categoryFacade" />
+        <property name="chartFacade" ref="chartFacade" />
+    </bean>
+
+</beans>

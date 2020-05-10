@@ -64,7 +64,7 @@ public class CalculationFacadeImpl implements CalculationFacade {
 
             MiniResultDto resultDtoForThisMonth = null;
             for (Map.Entry<Date, MiniResultDto> monthResult : monthResults.entrySet()) {
-                if (DateUtils.equalYearAndMonths(monthResult.getKey(), cal.getTime())) {
+                if (DateUtils.isEqualYearAndMonth(monthResult.getKey(), cal.getTime())) {
                     resultDtoForThisMonth = monthResult.getValue();
                     break;
                 }

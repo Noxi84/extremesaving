@@ -71,7 +71,7 @@ public class EstimationServiceImpl implements EstimationService {
         if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
             ResultDto resultDto = calculationService.getResultDto(dataMap);
 
-            long daysBetween = DateUtils.daysBetween(resultDto.getLastDate(), resultDto.getFirstDate());
+            long daysBetween = DateUtils.getDaysBetween(resultDto.getLastDate(), resultDto.getFirstDate());
             Double dblEstimationRange = daysBetween - Double.valueOf(daysBetween) / 1.618;
 
             Calendar firstDate = Calendar.getInstance();

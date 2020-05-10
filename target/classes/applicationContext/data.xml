@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Facade-->
+    <bean id="dataFacade" class="extremesaving.data.facade.DataFacadeImpl">
+        <property name="dataService" ref="dataService" />
+    </bean>
+
+    <!--Services-->
+    <bean id="dataService" class="extremesaving.data.service.DataServiceImpl">
+        <property name="dataDao" ref="dataDao" />
+    </bean>
+
+    <!--Dao-->
+    <bean id="dataDao" class="extremesaving.data.dao.DataDaoImpl" />
+</beans>

@@ -87,14 +87,14 @@ public class EstimationFacadeImpl implements EstimationFacade {
         Map<Integer, BigDecimal> dataWithFactor = new HashMap<>();
 
         // Init factors so all possible factors are present
-        long daysBetween = DateUtils.daysBetween(lastDate, firstDate);
+        long daysBetween = DateUtils.getDaysBetween(lastDate, firstDate);
         for (int i = 0; i <= daysBetween; i++) {
             dataWithFactor.put(i, BigDecimal.ZERO);
         }
 
         // Update factors with their value
         for (Map.Entry<Date, BigDecimal> data : dataMap.entrySet()) {
-            Long factor = daysBetween - DateUtils.daysBetween(data.getKey(), lastDate) * -1;
+            Long factor = daysBetween - DateUtils.getDaysBetween(data.getKey(), lastDate) * -1;
             BigDecimal value = dataWithFactor.get(factor.intValue());
             if (value == null) {
                 throw new IllegalStateException("Should not happen because of init factors above.");

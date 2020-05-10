@@ -79,7 +79,7 @@ public class ChartDataServiceImpl implements ChartDataService {
 
         // Add existing results
         for (DataDto existingDataDto : dataDtos) {
-            Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.equalDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
+            Set<DataDto> filteredDataDtos = dataDtos.stream().filter(dataDto -> DateUtils.isEqualDates(dataDto.getDate(), existingDataDto.getDate()) || dataDto.getDate().before(existingDataDto.getDate())).collect(Collectors.toSet());
             ResultDto resultDto = calculationFacade.getResults(filteredDataDtos);
             results.put(existingDataDto.getDate(), resultDto.getResult());
         }

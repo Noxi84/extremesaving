@@ -1,5 +1,6 @@
 package extremesaving.pdf.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,7 +37,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Yearly Analysis Report");
-        document.add(PdfUtils.getTitleParagraph("Extreme-Saving Report", TextAlignment.LEFT));
+        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("dd MMM yyyy").format(new Date()), TextAlignment.RIGHT));
         document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());
@@ -87,7 +88,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
             Calendar yearDate = Calendar.getInstance();
             yearDate.set(Calendar.YEAR, yearCounter);
             List<DataDto> dataDtos = dataFacade.findAll().stream()
-                    .filter(dataDto -> DateUtils.equalYears(yearDate.getTime(), dataDto.getDate()))
+                    .filter(dataDto -> DateUtils.isEqualYear(yearDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
             yearResults.put(String.valueOf(yearCounter), categoryResults);

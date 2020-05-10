@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Facade-->
+    <bean id="chartFacade" class="extremesaving.charts.facade.ChartFacadeImpl">
+        <property name="chartDataService" ref="chartDataService" />
+    </bean>
+
+    <!--Services-->
+    <bean id="chartDataService" class="extremesaving.charts.service.ChartDataServiceImpl">
+        <property name="dataFacade" ref="dataFacade" />
+        <property name="calculationFacade" ref="calculationFacade" />
+        <property name="estimationFacade" ref="estimationFacade" />
+    </bean>
+</beans>

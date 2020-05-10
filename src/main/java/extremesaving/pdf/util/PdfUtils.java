@@ -1,13 +1,13 @@
 package extremesaving.pdf.util;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
-
-import java.io.IOException;
-import java.math.BigDecimal;
 
 public final class PdfUtils {
 
@@ -43,6 +43,7 @@ public final class PdfUtils {
     public static Paragraph getTitleParagraph(String text, TextAlignment textAlignment) {
         Paragraph titleParagraph = new Paragraph(text);
         titleParagraph.setBold();
+        titleParagraph.setFontSize(6);
         titleParagraph.setTextAlignment(textAlignment);
         try {
             PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
