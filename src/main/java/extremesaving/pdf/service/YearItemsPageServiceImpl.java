@@ -1,8 +1,7 @@
 package extremesaving.pdf.service;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -50,12 +49,39 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
     protected Table buildCategoryTable() {
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
 
         Map<String, List<CategoryDto>> yearResults = new HashMap<>();
-        int currentYear = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date()));
+
+        Date lastDate = overallCategoryResults.stream().map(categoryDto -> categoryDto.getTotalResults().getLastDate()).max(Date::compareTo).get();
+        Calendar lastDateCal = Calendar.getInstance();
+        lastDateCal.setTime(lastDate);
+        int lastYear = lastDateCal.get(Calendar.YEAR);
+
+        Map<String, List<CategoryDto>> categoryResultsPerYear = getCategoryResultsPerYear(lastYear);
+        List<String> sortedCategories = getSortedCategories(categoryResultsPerYear, lastYear);
+
+        for (int yearCounter = lastYear; yearCounter > lastYear - NUMBER_OF_YEARS; yearCounter--) {
+            List<CategoryDto> categoryResults = categoryResultsPerYear.get(String.valueOf(yearCounter));
+            yearResults.put(String.valueOf(yearCounter), categoryResults);
+        }
+
+        yearResults.put("Total", overallCategoryResults);
+
+        return new YearCategoryTableComponent()
+                .withCategoryNames(sortedCategories)
+                .withResults(yearResults)
+                .withNumberOfColumns(10)
+                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+                .withPrintTotalsColumn(true)
+                .build();
+    }
+
+    protected Map<String, List<CategoryDto>> getCategoryResultsPerYear(int lastYear) {
+        Map<String, List<CategoryDto>> yearResults = new HashMap<>();
         Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, lastYear);
 
         for (int yearCounter = cal.get(Calendar.YEAR); yearCounter > cal.get(Calendar.YEAR) - NUMBER_OF_YEARS; yearCounter--) {
             Calendar yearDate = Calendar.getInstance();
@@ -64,29 +90,26 @@ public class YearItemsPageServiceImpl implements PdfPageService {
                     .filter(dataDto -> DateUtils.equalYears(yearDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
-            List<CategoryDto> results;
-            if (yearCounter == currentYear) {
-                results = categoryResults.stream()
-                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
-                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            } else {
-                results = categoryResults.stream()
-                        .sorted(Comparator.comparing(o -> o.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            }
-            yearResults.put(String.valueOf(yearCounter), results);
+            yearResults.put(String.valueOf(yearCounter), categoryResults);
+        }
+        return yearResults;
+    }
+
+    protected List<String> getSortedCategories(Map<String, List<CategoryDto>> categoriesPerYear, int lastYear) {
+        List<String> categoryNames = new ArrayList<>();
+        for (int yearCounter = lastYear; yearCounter > lastYear - NUMBER_OF_YEARS; yearCounter--) {
+            List<String> categories = categoriesPerYear.get(String.valueOf(yearCounter))
+                    .stream()
+                    .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                    .map(CategoryDto::getName)
+                    .filter(categoryName -> !categoryNames.contains(categoryName))
+                    .collect(Collectors.toList());
+            categoryNames.addAll(categories);
         }
 
-        yearResults.put("Total", overallCategoryResults);
-
-        return new YearCategoryTableComponent()
-                .withResults(yearResults)
-                .withNumberOfColumns(10)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .withPrintTotalsColumn(true)
-                .build();
+        categoryNames.remove("Total");
+        categoryNames.add("Total"); // Make sure total is the last one in the list
+        return categoryNames;
     }
 
     public void setDataFacade(DataFacade dataFacade) {

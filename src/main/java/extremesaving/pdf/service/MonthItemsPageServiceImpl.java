@@ -1,5 +1,6 @@
 package extremesaving.pdf.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,7 +49,6 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
     protected Table buildCategoryTable() {
         List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.equalYears(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
-                .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                 .collect(Collectors.toList());
 
         Map<String, List<CategoryDto>> monthResults = new HashMap<>();
@@ -58,6 +58,28 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         lastDateCal.setTime(lastDate);
         int lastMonth = lastDateCal.get(Calendar.MONTH);
 
+        Map<String, List<CategoryDto>> categoryResultsPerMonth = getCategoryResultsPerMonth(lastMonth);
+        List<String> sortedCategories = getSortedCategories(categoryResultsPerMonth, lastMonth);
+
+        for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
+            List<CategoryDto> categoryResults = categoryResultsPerMonth.get(String.valueOf(monthCounter));
+            monthResults.put(String.valueOf(monthCounter), categoryResults);
+        }
+
+        monthResults.put("Total", overallCategoryResults);
+
+        return new MonthCategoryTableComponent()
+                .withCategoryNames(sortedCategories)
+                .withResults(monthResults)
+                .withNumberOfColumns(12)
+                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
+                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+                .withPrintTotalsColumn(false)
+                .build();
+    }
+
+    protected Map<String, List<CategoryDto>> getCategoryResultsPerMonth(int lastMonth) {
+        Map<String, List<CategoryDto>> categoryResultsPerMonth = new HashMap<>();
         for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
             Calendar monthDate = Calendar.getInstance();
             monthDate.set(Calendar.MONTH, monthCounter);
@@ -65,30 +87,26 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
                     .filter(dataDto -> DateUtils.equalYearAndMonths(monthDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
+            categoryResultsPerMonth.put(String.valueOf(monthCounter), categoryResults);
+        }
+        return categoryResultsPerMonth;
+    }
 
-            List<CategoryDto> results;
-            if (monthCounter == lastMonth) {
-                results = categoryResults.stream()
-                        .filter(categoryDto -> overallCategoryResults.stream().filter(overallCategory -> overallCategory.getName().equals(categoryDto.getName())).count() > 0)
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            } else {
-                results = categoryResults.stream()
-                        .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
-                        .collect(Collectors.toList());
-            }
-            monthResults.put(String.valueOf(monthCounter), results);
+    protected List<String> getSortedCategories(Map<String, List<CategoryDto>> categoriesPerMonth, int lastMonth) {
+        List<String> categoryNames = new ArrayList<>();
+        for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
+            List<String> categories = categoriesPerMonth.get(String.valueOf(monthCounter))
+                    .stream()
+                    .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
+                    .map(CategoryDto::getName)
+                    .filter(categoryName -> !categoryNames.contains(categoryName))
+                    .collect(Collectors.toList());
+            categoryNames.addAll(categories);
         }
 
-        monthResults.put("Total", overallCategoryResults);
-
-        return new MonthCategoryTableComponent()
-                .withResults(monthResults)
-                .withNumberOfColumns(12)
-                .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
-                .withPrintTotalsColumn(false)
-                .build();
+        categoryNames.remove("Total");
+        categoryNames.add("Total"); // Make sure total is the last one in the list
+        return categoryNames;
     }
 
     public void setDataFacade(DataFacade dataFacade) {

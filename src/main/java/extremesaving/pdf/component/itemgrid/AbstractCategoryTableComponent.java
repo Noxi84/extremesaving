@@ -1,11 +1,9 @@
 package extremesaving.pdf.component.itemgrid;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -25,6 +23,7 @@ public abstract class AbstractCategoryTableComponent {
     private int displayMaxTextCharacters;
     private int numberOfColumns;
     private boolean printTotalsColumn;
+    private List<String> categoryNames;
 
     public AbstractCategoryTableComponent withResults(Map<String, List<CategoryDto>> results) {
         this.results = results;
@@ -51,13 +50,17 @@ public abstract class AbstractCategoryTableComponent {
         return this;
     }
 
+    public AbstractCategoryTableComponent withCategoryNames(List<String> categoryNames) {
+        this.categoryNames = categoryNames;
+        return this;
+    }
+
     public Table build() {
         Table table = new Table(numberOfColumns + 3);
         table.setBorder(Border.NO_BORDER);
         table.setWidth(UnitValue.createPercentValue(100));
 
         int currentMonthOrYear = getLastMonthOrYear();
-        List<String> categoryNames = getCategoryNames();
 
         for (int counter = currentMonthOrYear - numberOfColumns; counter <= currentMonthOrYear; counter++) {
             List<CategoryDto> categoryDtos = results.get(String.valueOf(counter));
@@ -97,27 +100,6 @@ public abstract class AbstractCategoryTableComponent {
     abstract int getLastMonthOrYear();
 
     abstract String getTitle(final List<CategoryDto> sortedCategories);
-
-    private List<String> getCategoryNames() {
-        List<String> categories = new ArrayList<>();
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
-        List<CategoryDto> categoryDtosThisYear = results.get(String.valueOf(currentMonth));
-        if (categoryDtosThisYear != null) {
-            categories.addAll(categoryDtosThisYear.stream().sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult())).map(categoryDto -> categoryDto.getName()).collect(Collectors.toList()));
-        }
-        List<CategoryDto> categoryDtosOverall = results.get("Total");
-        if (categoryDtosOverall != null) {
-            for (CategoryDto categoryDto : categoryDtosOverall) {
-                if (!categories.contains(categoryDto.getName())) {
-                    categories.add(categoryDto.getName());
-                }
-            }
-        }
-
-        categories.remove("Total");
-        categories.add("Total"); // Make sure total is the last one in the list
-        return categories;
-    }
 
     protected Cell getItemCell(Cell amountCell) {
         Table alignmentTable = new Table(1);
