@@ -83,6 +83,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         Map<String, List<CategoryDto>> categoryResultsPerMonth = new HashMap<>();
         for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
             Calendar monthDate = Calendar.getInstance();
+            monthDate.set(Calendar.DAY_OF_MONTH, 1); // day must be set to 1 because setting the month can go 1 month further if current day is 31.
             monthDate.set(Calendar.MONTH, monthCounter);
             List<DataDto> dataDtos = dataFacade.findAll().stream()
                     .filter(dataDto -> DateUtils.isEqualYearAndMonth(monthDate.getTime(), dataDto.getDate()))
