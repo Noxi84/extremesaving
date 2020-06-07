@@ -6,7 +6,16 @@
 
     <groupId>extremesaving</groupId>
     <artifactId>extremesaving</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>main</module>
+        <module>common</module>
+        <module>gui</module>
+        <module>pdf</module>
+        <module>charts</module>
+        <module>data</module>
+    </modules>
 
     <properties>
         <jdk.version>11</jdk.version>
@@ -90,21 +99,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-
-        <!--jfreechart-->
-        <dependency>
-            <groupId>jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>${jfreechart.version}</version>
-        </dependency>
-
-        <!--itext-->
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>itext7-core</artifactId>
-            <version>${itext.version}</version>
-            <type>pom</type>
         </dependency>
     </dependencies>
 

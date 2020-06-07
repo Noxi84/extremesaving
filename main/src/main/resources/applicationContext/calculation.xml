@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <!--Facade-->
+    <bean id="estimationFacade" class="extremesaving.data.facade.EstimationFacadeImpl">
+        <property name="dataFacade" ref="dataFacade" />
+        <property name="calculationFacade" ref="calculationFacade" />
+        <property name="estimationService" ref="estimationService" />
+    </bean>
+    <bean id="calculationFacade" class="extremesaving.data.facade.CalculationFacadeImpl">
+        <property name="calculationService" ref="calculationService" />
+        <property name="calculationFacade" ref="calculationFacade" />
+    </bean>
+    <bean id="categoryFacade" class="extremesaving.data.facade.CategoryFacadeImpl">
+        <property name="calculationFacade" ref="calculationFacade" />
+    </bean>
+
+    <!--Services-->
+    <bean id="calculationService" class="extremesaving.data.service.CalculationServiceImpl">
+
+    </bean>
+    <bean id="estimationService" class="extremesaving.data.service.EstimationServiceImpl">
+        <property name="calculationService" ref="calculationService" />
+    </bean>
+</beans>
