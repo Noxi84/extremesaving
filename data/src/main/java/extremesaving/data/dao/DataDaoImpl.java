@@ -30,12 +30,12 @@ public class DataDaoImpl implements DataDao {
     public List<DataModel> findAll() {
         if (results == null) {
             File f = new File(PropertiesValueHolder.getString(DATA_CSV_FOLDER));
-            if (f.isFile()) {
+            if (f.isFile() && f.getName().endsWith(".csv")) {
                 results = getResultFromCSV(f.getAbsolutePath());
             } else if (f.isDirectory()) {
                 results = new ArrayList<>();
                 for (File file : f.listFiles()) {
-                    if (file.isFile()) {
+                    if (file.isFile() && file.getName().endsWith(".csv")) {
                         results.addAll(getResultFromCSV(file.getAbsolutePath()));
                     }
                 }
@@ -46,42 +46,6 @@ public class DataDaoImpl implements DataDao {
         return results;
     }
 
-    protected int getColumnNumber(String csvFile, String columnName) {
-        BufferedReader br = null;
-        String line;
-        try {
-            br = new BufferedReader(new FileReader(csvFile));
-            int lineCounter = 0;
-            while ((line = br.readLine()) != null) {
-                lineCounter++;
-                if (lineCounter == 1) {
-                    String[] lineSplit = splitCsvLine(line);
-
-                    int columnCounter = 0;
-                    for (String columnHeader : lineSplit) {
-                        if (columnName.equalsIgnoreCase(columnHeader)) {
-                            return columnCounter;
-                        }
-                        columnCounter++;
-                    }
-                    continue;
-                }
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return 0;
-    }
 
     protected List<DataModel> getResultFromCSV(String csvFile) {
         BufferedReader br = null;
@@ -122,6 +86,43 @@ public class DataDaoImpl implements DataDao {
             }
         }
         return dataModels;
+    }
+
+    protected int getColumnNumber(String csvFile, String columnName) {
+        BufferedReader br = null;
+        String line;
+        try {
+            br = new BufferedReader(new FileReader(csvFile));
+            int lineCounter = 0;
+            while ((line = br.readLine()) != null) {
+                lineCounter++;
+                if (lineCounter == 1) {
+                    String[] lineSplit = splitCsvLine(line);
+
+                    int columnCounter = 0;
+                    for (String columnHeader : lineSplit) {
+                        if (columnName.equalsIgnoreCase(columnHeader)) {
+                            return columnCounter;
+                        }
+                        columnCounter++;
+                    }
+                    continue;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return 0;
     }
 
     protected DataModel handleLines(String[] lineSplit, int dateColumn, int valueColumn, int categoryColumn, int descriptionColumn) {

@@ -59,7 +59,9 @@ public class GoalLineChart {
         for (Map.Entry<Date, BigDecimal> result : survivalResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
-            series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            if (cal.get(Calendar.YEAR) <= 9999) {
+                series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            }
         }
         return series;
     }
@@ -69,7 +71,9 @@ public class GoalLineChart {
         for (Map.Entry<Date, BigDecimal> result : futureResults.entrySet()) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(result.getKey());
-            series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            if (cal.get(Calendar.YEAR) <= 9999) {
+                series.add(new Day(cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), result.getValue().doubleValue());
+            }
         }
         return series;
     }
