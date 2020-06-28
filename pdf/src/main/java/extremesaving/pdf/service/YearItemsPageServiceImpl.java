@@ -88,6 +88,10 @@ public class YearItemsPageServiceImpl implements PdfPageService {
                     .filter(dataDto -> DateUtils.isEqualYear(yearDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
             List<CategoryDto> categoryResults = categoryFacade.getCategories(dataDtos);
+            if (categoryResults.size() == 1) {
+                // categoryResults only contains total and no other categories. So we set the lastDate manually for displaying purpose.
+                categoryResults.get(0).getTotalResults().setLastDate(yearDate.getTime());
+            }
             yearResults.put(String.valueOf(yearCounter), categoryResults);
         }
         return yearResults;
