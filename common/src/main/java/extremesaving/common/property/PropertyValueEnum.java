@@ -10,9 +10,7 @@ public enum PropertyValueEnum {
     DATA_CSV_HEADER_DATE("data.csv.header.date"),
     DATA_CSV_HEADER_VALUE("data.csv.header.value"),
     DATA_CSV_HEADER_CATEGORY("data.csv.header.category"),
-    DATA_CSV_HEADER_DESCRIPTION("data.csv.header.description"),
-
-    GOALS("goals");
+    DATA_CSV_HEADER_DESCRIPTION("data.csv.header.description");
 
     private String value;
 

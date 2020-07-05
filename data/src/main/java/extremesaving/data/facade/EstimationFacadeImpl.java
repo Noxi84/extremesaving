@@ -1,25 +1,17 @@
 package extremesaving.data.facade;
 
-import static extremesaving.common.property.PropertyValueEnum.GOALS;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
+import extremesaving.common.util.DateUtils;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.EstimationResultDto;
-import extremesaving.data.dto.ResultDto;
 import extremesaving.data.service.EstimationService;
 import extremesaving.data.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-import extremesaving.common.property.PropertiesValueHolder;
-import extremesaving.common.util.DateUtils;
 
 public class EstimationFacadeImpl implements EstimationFacade {
 
@@ -104,68 +96,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         }
 
         return dataWithFactor;
-    }
-
-    @Override
-    public BigDecimal getPreviousGoal() {
-        List<BigDecimal> goalAmounts = getGoalAmounts();
-        BigDecimal nextGoal = getCurrentGoal();
-        int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(Math.max(0, nextGoalIndex - 1));
-    }
-
-    @Override
-    public BigDecimal getCurrentGoal() {
-        List<BigDecimal> goalAmounts = getGoalAmounts();
-        ResultDto resultDto = calculationFacade.getResults(dataFacade.findAll());
-        for (BigDecimal goalAmount : goalAmounts) {
-            if (resultDto.getResult().compareTo(goalAmount) < 0) {
-                return goalAmount;
-            }
-        }
-        return BigDecimal.valueOf(1000000000);
-    }
-
-    @Override
-    public int getGoalIndex(BigDecimal goalAmount) {
-        List<BigDecimal> goalAmounts = getGoalAmounts();
-        for (int i = 0; i < goalAmounts.size(); i++) {
-            BigDecimal goal = goalAmounts.get(i);
-            if (goalAmount.compareTo(goal) < 0 || goalAmount.compareTo(goal) == 0) {
-                return i + 1;
-            }
-        }
-        return 18;
-    }
-
-    @Override
-    public BigDecimal getNextGoal(int index) {
-        List<BigDecimal> goalAmounts = getGoalAmounts();
-        BigDecimal nextGoal = getCurrentGoal();
-        int nextGoalIndex = goalAmounts.indexOf(nextGoal);
-        return goalAmounts.get(Math.min(nextGoalIndex + index, goalAmounts.size() - 1));
-    }
-
-    protected List<BigDecimal> getGoalAmounts() {
-        String[] goals = PropertiesValueHolder.getStringList(GOALS);
-        List<BigDecimal> goalAmounts = new ArrayList<>();
-        for (String goal : goals) {
-            goalAmounts.add(new BigDecimal(StringUtils.trim(goal)));
-        }
-        return goalAmounts;
-    }
-
-    @Override
-    public BigDecimal calculateGoalRatio() {
-        List<BigDecimal> goalAmounts = getGoalAmounts();
-        BigDecimal goalAmountsTotal = goalAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
-        BigDecimal averageGoal = goalAmountsTotal.divide(BigDecimal.valueOf(goalAmounts.size()), RoundingMode.HALF_UP);
-        BigDecimal totalResult = calculationFacade.getResults(dataFacade.findAll()).getResult();
-
-        if (totalResult.compareTo(averageGoal) > 0) {
-            return BigDecimal.valueOf(100);
-        }
-        return totalResult.divide(averageGoal, 2, RoundingMode.HALF_DOWN).multiply(BigDecimal.valueOf(100));
     }
 
     public void setDataFacade(DataFacade dataFacade) {

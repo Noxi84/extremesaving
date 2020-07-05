@@ -9,15 +9,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import extremesaving.common.util.DateUtils;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.EstimationResultDto;
 import extremesaving.data.dto.MiniResultDto;
 import extremesaving.data.dto.ResultDto;
 import extremesaving.data.facade.CalculationFacade;
+import extremesaving.data.facade.DataFacade;
 import extremesaving.data.facade.EstimationFacade;
 import extremesaving.data.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-import extremesaving.data.facade.DataFacade;
-import extremesaving.common.util.DateUtils;
 
 public class ChartDataServiceImpl implements ChartDataService {
 
@@ -102,13 +102,17 @@ public class ChartDataServiceImpl implements ChartDataService {
         cal.set(Calendar.SECOND, 0);
         cal.set(Calendar.MILLISECOND, 0);
 
-        BigDecimal goal = estimationFacade.getNextGoal(2);
-
         Map<Date, BigDecimal> predictions = new HashMap<>();
         predictions.put(cal.getTime(), currentValue);
 
+        Calendar maxDate = Calendar.getInstance();
+        maxDate.setTime(cal.getTime());
+        maxDate.set(Calendar.DAY_OF_MONTH, 1);
+        maxDate.set(Calendar.MONTH, Calendar.JANUARY);
+        maxDate.add(Calendar.YEAR, 6);
+
         if (NumberUtils.isIncome(estimationResultDto.getAverageDailyResult())) {
-            while (currentValue.compareTo(goal) <= 0) {
+            while (cal.before(maxDate)) {
                 cal.add(Calendar.DAY_OF_MONTH, 1);
                 currentValue = currentValue.add(estimationResultDto.getAverageDailyResult());
                 if (currentValue.compareTo(BigDecimal.ZERO) > 0) {
