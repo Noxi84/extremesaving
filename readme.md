@@ -54,6 +54,6 @@ It is a representation on how long you can survive if all incomes stop and only 
 #### Blue bars on chart
 The blue bars display the final balance of the corresponding month.
 #### Green bars on chart
-The green bars display all incomes of the corresponding month.
+The green bars display the sum of all incomes of the corresponding month.
 #### Red bars on chart
-The red bars display all expenses of the corresponding month.
+The red bars display the sum of all expenses of the corresponding month.
