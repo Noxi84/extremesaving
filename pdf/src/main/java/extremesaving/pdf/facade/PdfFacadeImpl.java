@@ -20,7 +20,7 @@ public class PdfFacadeImpl implements PdfFacade {
     @Override
     public void generatePdf() {
         try {
-            PdfWriter writer = new PdfWriter(ExtremeSavingConstants.DATA_FOLDER + "report.pdf");
+            PdfWriter writer = new PdfWriter(ExtremeSavingConstants.DATA_FOLDER + "FinancialReport.pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf, PageSize.A4.rotate());
             yearItemsPageService.generate(document);

@@ -6,7 +6,7 @@ package extremesaving.pdf.facade;
 public interface PdfFacade {
 
     /**
-     * Generate the PDF and save it as report.pdf.
+     * Generate the PDF and save it as FinancialReport.pdf.
      */
     void generatePdf();
 }
