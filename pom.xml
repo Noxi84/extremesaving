@@ -13,7 +13,6 @@
         <module>data</module>
         <module>charts</module>
         <module>pdf</module>
-        <module>gui</module>
         <module>main</module>
     </modules>
 
