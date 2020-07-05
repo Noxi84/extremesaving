@@ -46,8 +46,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryTable() {
-        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream()
-                .collect(Collectors.toList());
+        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream().collect(Collectors.toList());
 
         Map<String, List<CategoryDto>> yearResults = new HashMap<>();
 

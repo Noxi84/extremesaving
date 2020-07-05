@@ -46,8 +46,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     }
 
     protected Table buildCategoryTable() {
-        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll().stream().filter(dataDto -> DateUtils.isEqualYear(new Date(), dataDto.getDate())).collect(Collectors.toSet())).stream()
-                .collect(Collectors.toList());
+        List<CategoryDto> overallCategoryResults = categoryFacade.getCategories(dataFacade.findAll()).stream().collect(Collectors.toList());
 
         Map<String, List<CategoryDto>> monthResults = new HashMap<>();
 
@@ -55,8 +54,9 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         Calendar lastDateCal = Calendar.getInstance();
         lastDateCal.setTime(lastDate);
         int lastMonth = lastDateCal.get(Calendar.MONTH);
+        int lastYear = lastDateCal.get(Calendar.YEAR);
 
-        Map<String, List<CategoryDto>> categoryResultsPerMonth = getCategoryResultsPerMonth(lastMonth);
+        Map<String, List<CategoryDto>> categoryResultsPerMonth = getCategoryResultsPerMonth(lastMonth, lastYear);
         List<String> sortedCategories = getSortedCategories(categoryResultsPerMonth, lastMonth);
 
         for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
@@ -76,12 +76,13 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
                 .build();
     }
 
-    protected Map<String, List<CategoryDto>> getCategoryResultsPerMonth(int lastMonth) {
+    protected Map<String, List<CategoryDto>> getCategoryResultsPerMonth(int lastMonth, int lastYear) {
         Map<String, List<CategoryDto>> categoryResultsPerMonth = new HashMap<>();
         for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
             Calendar monthDate = Calendar.getInstance();
             monthDate.set(Calendar.DAY_OF_MONTH, 1); // day must be set to 1 because setting the month can go 1 month further if current day is 31.
             monthDate.set(Calendar.MONTH, monthCounter);
+            monthDate.set(Calendar.YEAR, lastYear);
             List<DataDto> dataDtos = dataFacade.findAll().stream()
                     .filter(dataDto -> DateUtils.isEqualYearAndMonth(monthDate.getTime(), dataDto.getDate()))
                     .collect(Collectors.toList());
