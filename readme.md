@@ -51,9 +51,9 @@ The red line is based on a daily average result of all expenses from the input d
 This is a representation on how long you can survive if all incomes stop and only expenses remain.
 
 ### Monthly chart
-#### Blue bar on chart
-The blue line displays the final balance of the corresponding month.
-#### Green bar on chart
-The blue line displays all incomes of the corresponding month.
-#### Red bar on chart
-The blue line displays all expenses of the corresponding month.
+#### Blue bars on chart
+The blue bars display the final balance of the corresponding month.
+#### Green bars on chart
+The green bars display all incomes of the corresponding month.
+#### Red bars on chart
+The red bars display all expenses of the corresponding month.
