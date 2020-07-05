@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import extremesaving.data.dto.CategoryDto;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 
 public class YearCategoryTableComponent extends AbstractCategoryTableComponent {
 

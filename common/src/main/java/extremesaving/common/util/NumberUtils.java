@@ -1,6 +1,7 @@
-package extremesaving.data.util;
+package extremesaving.common.util;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public final class NumberUtils {
 
@@ -22,5 +23,21 @@ public final class NumberUtils {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    public static String formatNumber(BigDecimal val) {
+        return formatNumber(val, true);
+    }
+
+    public static String formatNumber(BigDecimal val, boolean decimals) {
+        if (decimals) {
+            DecimalFormat df = new DecimalFormat("#,###.00");
+            return df.format(val);
+        }
+        return String.valueOf(val.intValue());
+    }
+
+    public static String formatPercentage(BigDecimal val) {
+        return val.intValue() + "%";
     }
 }

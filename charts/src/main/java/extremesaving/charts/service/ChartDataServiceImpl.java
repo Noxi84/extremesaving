@@ -17,7 +17,7 @@ import extremesaving.data.dto.ResultDto;
 import extremesaving.data.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.data.facade.EstimationFacade;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 
 public class ChartDataServiceImpl implements ChartDataService {
 

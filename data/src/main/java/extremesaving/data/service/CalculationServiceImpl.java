@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.data.dto.ResultDto;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
 
 public class CalculationServiceImpl implements CalculationService {

@@ -11,7 +11,7 @@ import extremesaving.common.util.DateUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.EstimationResultDto;
 import extremesaving.data.service.EstimationService;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 
 public class EstimationFacadeImpl implements EstimationFacade {
 

@@ -53,19 +53,4 @@ public final class PdfUtils {
         }
         return titleParagraph;
     }
-
-    public static String formatNumber(BigDecimal val) {
-        return formatNumber(val, true);
-    }
-
-    public static String formatNumber(BigDecimal val, boolean decimals) {
-        if (decimals) {
-            return "€ " +  String.format("%.2f", val);
-        }
-        return "€ " + val.intValue();
-    }
-
-    public static String formatPercentage(BigDecimal val) {
-        return val.intValue() + "%";
-    }
 }

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import extremesaving.common.util.DateUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.ResultDto;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 
 public class EstimationServiceImpl implements EstimationService {
 

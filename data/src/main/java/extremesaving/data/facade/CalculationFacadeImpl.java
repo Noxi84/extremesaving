@@ -14,7 +14,7 @@ import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.MiniResultDto;
 import extremesaving.data.dto.ResultDto;
 import extremesaving.data.service.CalculationService;
-import extremesaving.data.util.NumberUtils;
+import extremesaving.common.util.NumberUtils;
 
 public class CalculationFacadeImpl implements CalculationFacade {
 

@@ -15,6 +15,7 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 
 import extremesaving.common.ExtremeSavingConstants;
+import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.pdf.util.PdfUtils;
 
@@ -172,12 +173,12 @@ public abstract class AbstractCategoryTableComponent {
                 if (categoryDto == null) {
                     cell.add(PdfUtils.getItemParagraph("\n", false, TextAlignment.RIGHT));
                 } else {
-                    cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+                    cell.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult())));
                 }
             }
             cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
-            cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true));
-            cell.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio())));
+            cell.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true));
+            cell.add(PdfUtils.getItemParagraph(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio())));
             cell.add(PdfUtils.getItemParagraph(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems())));
         }
         return cell;
