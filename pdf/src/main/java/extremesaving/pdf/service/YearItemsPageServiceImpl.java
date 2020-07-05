@@ -27,7 +27,7 @@ import extremesaving.pdf.util.PdfUtils;
 public class YearItemsPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 20;
-    private static final int TEXT_MAX_CHARACTERS = 200;
+    private static final int TEXT_MAX_CHARACTERS = 20;
     public static final int NUMBER_OF_YEARS = 12;
 
     private DataFacade dataFacade;
@@ -98,9 +98,13 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
     protected List<String> getSortedCategories(Map<String, List<CategoryDto>> categoriesPerYear, int lastYear) {
         List<String> categoryNames = new ArrayList<>();
-        for (int yearCounter = lastYear; yearCounter > lastYear - NUMBER_OF_YEARS; yearCounter--) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, lastYear);
+
+        for (int yearCounter = cal.get(Calendar.YEAR); yearCounter > cal.get(Calendar.YEAR) - NUMBER_OF_YEARS; yearCounter--) {
             List<String> categories = categoriesPerYear.get(String.valueOf(yearCounter))
                     .stream()
+                    .filter(categoryDto -> !categoryDto.getTotalResults().getData().isEmpty())
                     .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                     .map(CategoryDto::getName)
                     .filter(categoryName -> !categoryNames.contains(categoryName))

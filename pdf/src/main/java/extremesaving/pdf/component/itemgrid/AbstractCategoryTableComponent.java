@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Table;
@@ -72,7 +70,7 @@ public abstract class AbstractCategoryTableComponent {
                 for (String category : categoryNames) {
                     sortedCategories.add(categoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst().orElse(null));
                 }
-                String title = getTitle(sortedCategories);
+                String title = getColumnTitle(sortedCategories);
                 table.addCell(getItemCell(getAmountCell(title, sortedCategories)));
             }
         }
@@ -91,14 +89,14 @@ public abstract class AbstractCategoryTableComponent {
         }
 
         // Print category names
-        table.addCell(getItemCell(getCategoryCell(categoryNames)));
+        table.addCell(getItemCell(getCategoryNamesCell(categoryNames)));
 
         return table;
     }
 
     abstract int getLastMonthOrYear();
 
-    abstract String getTitle(final List<CategoryDto> sortedCategories);
+    abstract String getColumnTitle(final List<CategoryDto> sortedCategories);
 
     protected Cell getItemCell(Cell amountCell) {
         Table alignmentTable = new Table(1);
@@ -115,10 +113,10 @@ public abstract class AbstractCategoryTableComponent {
         return cell;
     }
 
-    protected Cell getCategoryCell(List<String> categories) {
+    protected Cell getCategoryNamesCell(List<String> categories) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
-        cell.setWidth(300);
+        cell.setWidth(650);
         cell.setPaddingLeft(20);
         cell.setMarginLeft(0);
         cell.setPaddingRight(0);
@@ -127,19 +125,20 @@ public abstract class AbstractCategoryTableComponent {
         cell.add(PdfUtils.getItemParagraph("Category", true, TextAlignment.LEFT));
         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
         int counter = 0;
-        for (String category : categories) {
-            counter++;
-            if (!ExtremeSavingConstants.TOTAL_COLUMN.equals(category)) {
+        for (String categoryName : categories) {
+            if (!ExtremeSavingConstants.TOTAL_COLUMN.equals(categoryName)) {
+                counter++;
                 if (counter > displayMaxItems) {
                     break;
                 }
-                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(category, displayMaxTextCharacters)));
+                String trimmedCategoryName = categoryName.length() > displayMaxTextCharacters ? categoryName.substring(0, displayMaxTextCharacters - 3).trim() + "..." : categoryName;
+                cell.add(PdfUtils.getItemParagraph(trimmedCategoryName));
             }
         }
         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.CENTER));
-        cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(ExtremeSavingConstants.TOTAL_COLUMN, displayMaxTextCharacters), true));
-        cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Saving Ratio", displayMaxTextCharacters), true));
-        cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total Items", displayMaxTextCharacters), true));
+        cell.add(PdfUtils.getItemParagraph(ExtremeSavingConstants.TOTAL_COLUMN, true));
+        cell.add(PdfUtils.getItemParagraph("Saving Ratio", true));
+        cell.add(PdfUtils.getItemParagraph("Total Items", true));
         return cell;
     }
 

@@ -21,7 +21,7 @@ public class YearCategoryTableComponent extends AbstractCategoryTableComponent {
     }
 
     @Override
-    String getTitle(final List<CategoryDto> sortedCategories) {
+    String getColumnTitle(final List<CategoryDto> sortedCategories) {
         List<CategoryDto> filteredCategories = sortedCategories.stream().filter(Objects::nonNull).filter(categoryDto -> categoryDto.getTotalResults() != null).collect(Collectors.toList());
         if (filteredCategories.size() > 0) {
             return "" + new SimpleDateFormat("yyyy").format(filteredCategories.get(0).getTotalResults().getLastDate());

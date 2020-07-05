@@ -27,7 +27,7 @@ import extremesaving.pdf.util.PdfUtils;
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 20;
-    private static final int TEXT_MAX_CHARACTERS = 200;
+    private static final int DISPLAY_MAX_TEXT_CHARACTERS = 20;
     public static final int NUMBER_OF_MONTHS = 12;
 
     private DataFacade dataFacade;
@@ -71,7 +71,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
                 .withResults(monthResults)
                 .withNumberOfColumns(12)
                 .withDisplayMaxItems(DISPLAY_MAX_ITEMS)
-                .withDisplayMaxTextCharacters(TEXT_MAX_CHARACTERS)
+                .withDisplayMaxTextCharacters(DISPLAY_MAX_TEXT_CHARACTERS)
                 .withPrintTotalsColumn(false)
                 .build();
     }
@@ -97,6 +97,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
         for (int monthCounter = lastMonth; monthCounter > lastMonth - NUMBER_OF_MONTHS; monthCounter--) {
             List<String> categories = categoriesPerMonth.get(String.valueOf(monthCounter))
                     .stream()
+                    .filter(categoryDto -> !categoryDto.getTotalResults().getData().isEmpty())
                     .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                     .map(CategoryDto::getName)
                     .filter(categoryName -> !categoryNames.contains(categoryName))
