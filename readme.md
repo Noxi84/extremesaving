@@ -42,6 +42,8 @@ The green line predicts the future balance based on your input data.
 #### Red line on chart
 The red line is based on a daily average result of all expenses from the input data.
 This can be a representation on how long you can survive if all incomes stop and only expenses remain.
+___
 ![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-001.jpg)
 ___
 ![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
+___
