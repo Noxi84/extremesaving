@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import extremesaving.common.util.DateUtils;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.MiniResultDto;
 import extremesaving.data.dto.ResultDto;
 import extremesaving.data.service.CalculationService;
 import extremesaving.data.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-import extremesaving.common.util.DateUtils;
 
 public class CalculationFacadeImpl implements CalculationFacade {
 
@@ -78,45 +78,6 @@ public class CalculationFacadeImpl implements CalculationFacade {
             }
         }
         return monthResults;
-    }
-
-    @Override
-    public Map<Integer, MiniResultDto> getYearResults(Collection<DataDto> dataDtos) {
-        Map<Integer, MiniResultDto> yearResults = new HashMap<>();
-        List<DataDto> filteredDataDtos = dataDtos.stream().filter(dataModel -> !dataModel.getCategory().equalsIgnoreCase("...")).collect(Collectors.toList());
-
-        for (DataDto dataDto : filteredDataDtos) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(dataDto.getDate());
-            int year = cal.get(Calendar.YEAR);
-
-            MiniResultDto resultDtoForThisYear = yearResults.get(year);
-            if (resultDtoForThisYear == null) {
-                resultDtoForThisYear = new MiniResultDto();
-            }
-            resultDtoForThisYear.setResult(resultDtoForThisYear.getResult().add(dataDto.getValue()));
-
-            if (NumberUtils.isExpense(dataDto.getValue())) {
-                resultDtoForThisYear.setExpenses(resultDtoForThisYear.getExpenses().add(dataDto.getValue()));
-            } else {
-                resultDtoForThisYear.setIncomes(resultDtoForThisYear.getIncomes().add(dataDto.getValue()));
-            }
-            yearResults.put(year, resultDtoForThisYear);
-        }
-        return yearResults;
-    }
-
-    protected Integer getResult(Map<Integer, MiniResultDto> results, boolean reverse) {
-        Integer highestMonth = null;
-        MiniResultDto highestResultDto = null;
-        Map<Integer, MiniResultDto> monthResults = results;
-        for (Map.Entry<Integer, MiniResultDto> resultEntry : monthResults.entrySet()) {
-            if (highestMonth == null || (!reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) > 0) || (reverse && resultEntry.getValue().getResult().compareTo(highestResultDto.getResult()) < 0)) {
-                highestMonth = resultEntry.getKey();
-                highestResultDto = resultEntry.getValue();
-            }
-        }
-        return highestMonth;
     }
 
     public void setCalculationService(CalculationService calculationService) {

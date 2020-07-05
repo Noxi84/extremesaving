@@ -10,8 +10,6 @@ public interface ChartDataService {
 
     Map<Date, MiniResultDto> getMonthResults();
 
-    Map<Integer, MiniResultDto> getYearResults();
-
     Map<Date, BigDecimal> getGoalLineHistoryResults();
 
     Map<Date, BigDecimal> getGoalLineFutureEstimationResults();

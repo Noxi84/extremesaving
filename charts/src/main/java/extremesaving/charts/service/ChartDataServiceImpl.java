@@ -43,36 +43,6 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Integer, MiniResultDto> getYearResults() {
-        List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationFacade.getResults(dataDtos);
-
-        Map<Integer, MiniResultDto> yearResults = calculationFacade.getYearResults(dataDtos);
-        for (Map.Entry<Integer, MiniResultDto> result : yearResults.entrySet()) {
-            if (result.getValue().getResult().compareTo(BigDecimal.ZERO) < 0) {
-                result.getValue().setResult(BigDecimal.ZERO);
-            }
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(resultDto.getLastDate());
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 11);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 10);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 9);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 8);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 7);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 6);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 5);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 4);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 3);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 2);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR) - 1);
-        addResultDtoIfEmpty(yearResults, calendar.get(Calendar.YEAR));
-
-        return yearResults;
-    }
-
-    @Override
     public Map<Date, BigDecimal> getGoalLineHistoryResults() {
         Map<Date, BigDecimal> results = new HashMap<>();
         List<DataDto> dataDtos = dataFacade.findAll();
@@ -156,12 +126,6 @@ public class ChartDataServiceImpl implements ChartDataService {
             }
         }
         return results;
-    }
-
-    protected void addResultDtoIfEmpty(Map<Integer, MiniResultDto> results, Integer key) {
-        if (results.get(key) == null) {
-            results.put(key, new MiniResultDto());
-        }
     }
 
     public void setCalculationFacade(CalculationFacade calculationFacade) {

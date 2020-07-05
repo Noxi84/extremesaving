@@ -15,8 +15,6 @@ import extremesaving.data.util.NumberUtils;
 
 public class EstimationFacadeImpl implements EstimationFacade {
 
-    private DataFacade dataFacade;
-    private CalculationFacade calculationFacade;
     private EstimationService estimationService;
 
     @Override
@@ -96,14 +94,6 @@ public class EstimationFacadeImpl implements EstimationFacade {
         }
 
         return dataWithFactor;
-    }
-
-    public void setDataFacade(DataFacade dataFacade) {
-        this.dataFacade = dataFacade;
-    }
-
-    public void setCalculationFacade(CalculationFacade calculationFacade) {
-        this.calculationFacade = calculationFacade;
     }
 
     public void setEstimationService(EstimationService estimationService) {

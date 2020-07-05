@@ -17,9 +17,9 @@ public class Main {
     }
 
     private void start() {
+        System.out.println("Generating Financial Report.");
         chartFacade.generateMonthBarChart();
         chartFacade.generateGoalLineChart();
-
         pdfFacade.generatePdf();
         System.out.println("Done.");
     }

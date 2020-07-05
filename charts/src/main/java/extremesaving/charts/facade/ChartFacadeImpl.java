@@ -22,22 +22,24 @@ public class ChartFacadeImpl implements ChartFacade {
 
     @Override
     public void generateMonthBarChart() {
-        System.out.println("Generating MonthBarChart...");
         JFreeChart chart = new MonthBarChart()
                 .withMonthResults(chartDataService.getMonthResults())
                 .build();
-        writeChartPng(chart, ExtremeSavingConstants.MONTHCHART_FILENAME, (int) ExtremeSavingConstants.MONTHCHART_WIDTH * 2, (int) ExtremeSavingConstants.MONTHCHART_HEIGHT * 2);
+        int width = (int) ExtremeSavingConstants.MONTHCHART_WIDTH * 2;
+        int height = (int) ExtremeSavingConstants.MONTHCHART_HEIGHT * 2;
+        writeChartPng(chart, ExtremeSavingConstants.MONTHCHART_FILENAME, width, height);
     }
 
     @Override
     public void generateGoalLineChart() {
-        System.out.println("Generating GoalLineChart...");
         JFreeChart chart = new GoalLineChart()
                 .withFutureResults(chartDataService.getGoalLineFutureEstimationResults())
                 .withHistoryResults(chartDataService.getGoalLineHistoryResults())
                 .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
                 .build();
-        writeChartPng(chart, ExtremeSavingConstants.GOAL_LINE_CHART_FILENAME, (int) ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH * 2, (int) ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT * 2);
+        int width = (int) ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH * 2;
+        int height = (int) ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT * 2;
+        writeChartPng(chart, ExtremeSavingConstants.GOAL_LINE_CHART_FILENAME, width, height);
     }
 
     protected void writeChartPng(JFreeChart chart, String file, int width, int height) {
@@ -48,8 +50,8 @@ public class ChartFacadeImpl implements ChartFacade {
             byte[] byteArray = bas.toByteArray();
             InputStream in = new ByteArrayInputStream(byteArray);
             BufferedImage image = ImageIO.read(in);
-            File outputfile = new File(file);
-            ImageIO.write(image, "png", outputfile);
+            File outputFile = new File(file);
+            ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

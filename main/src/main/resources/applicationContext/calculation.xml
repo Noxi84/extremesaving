@@ -4,8 +4,6 @@
 <beans>
     <!--Facade-->
     <bean id="estimationFacade" class="extremesaving.data.facade.EstimationFacadeImpl">
-        <property name="dataFacade" ref="dataFacade" />
-        <property name="calculationFacade" ref="calculationFacade" />
         <property name="estimationService" ref="estimationService" />
     </bean>
     <bean id="calculationFacade" class="extremesaving.data.facade.CalculationFacadeImpl">

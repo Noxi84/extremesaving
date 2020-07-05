@@ -81,11 +81,7 @@ public abstract class AbstractCategoryTableComponent {
                 List<CategoryDto> overallSortedCategories = new ArrayList<>();
                 for (String category : categoryNames) {
                     Optional<CategoryDto> optCategoryDto = overallCategoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst();
-                    if (optCategoryDto.isPresent()) {
-                        overallSortedCategories.add(optCategoryDto.get());
-                    } else {
-                        overallSortedCategories.add(null);
-                    }
+                    overallSortedCategories.add(optCategoryDto.orElse(null));
                 }
                 table.addCell(getItemCell(getAmountCell("Total", overallSortedCategories)));
             }
