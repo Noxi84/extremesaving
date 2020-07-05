@@ -1,8 +1,5 @@
 package extremesaving.data.dao;
 
-import static extremesaving.common.property.PropertyValueEnum.CSV_SPLIT_BY;
-import static extremesaving.common.property.PropertyValueEnum.DATA_CSV_DATE_FORMAT1;
-import static extremesaving.common.property.PropertyValueEnum.DATA_CSV_DATE_FORMAT2;
 import static extremesaving.common.property.PropertyValueEnum.DATA_CSV_FOLDER;
 
 import java.io.BufferedReader;
@@ -12,15 +9,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import extremesaving.data.model.DataModel;
 import extremesaving.common.property.PropertiesValueHolder;
 import extremesaving.common.property.PropertyValueEnum;
+import extremesaving.data.model.DataModel;
 
 public class DataDaoImpl implements DataDao {
 
@@ -45,7 +43,6 @@ public class DataDaoImpl implements DataDao {
         }
         return results;
     }
-
 
     protected List<DataModel> getResultFromCSV(String csvFile) {
         BufferedReader br = null;
@@ -137,17 +134,12 @@ public class DataDaoImpl implements DataDao {
             // Date
             Date dateResult = null;
             try {
-                dateResult = PropertiesValueHolder.getDateFormat(DATA_CSV_DATE_FORMAT1).parse(date);
-            } catch (ParseException e) {
-                // Ignore
-            }
-            try {
-                dateResult = PropertiesValueHolder.getDateFormat(DATA_CSV_DATE_FORMAT2).parse(date);
+                dateResult = new SimpleDateFormat("d/M/yyyy").parse(date);
             } catch (ParseException e) {
                 // Ignore
             }
             if (dateResult == null) {
-                throw new IllegalStateException("Date " + date + " is invalid. Required format is '" + PropertiesValueHolder.getString(DATA_CSV_DATE_FORMAT1) + "'.");
+                throw new IllegalStateException("Date " + date + " is invalid. Required format is d/M/yyyy.");
             }
             dataModel.setDate(dateResult);
 
@@ -184,9 +176,7 @@ public class DataDaoImpl implements DataDao {
     }
 
     protected String[] splitCsvLine(String line) {
-        String csvSpliyBy = PropertiesValueHolder.getString(CSV_SPLIT_BY);
-        String[] lineSplit = line.split(csvSpliyBy + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-        return lineSplit;
+        return line.split("," + "(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
     }
 
     protected String getQuoteSafeValue(String[] lineSplit, int columnNumber) {

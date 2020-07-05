@@ -1,8 +1,5 @@
 package extremesaving.data.service;
 
-import static extremesaving.common.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_DATE_ENABLED;
-import static extremesaving.common.property.PropertyValueEnum.CHART_GOALS_ESTIMATION_OUTLINER_ENABLED;
-
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Collection;
@@ -13,11 +10,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import extremesaving.common.util.DateUtils;
+import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.ResultDto;
 import extremesaving.data.util.NumberUtils;
-import extremesaving.data.dto.DataDto;
-import extremesaving.common.property.PropertiesValueHolder;
-import extremesaving.common.util.DateUtils;
 
 public class EstimationServiceImpl implements EstimationService {
 
@@ -39,12 +35,9 @@ public class EstimationServiceImpl implements EstimationService {
 
     @Override
     public Map<Date, BigDecimal> removeOutliners(Map<Date, BigDecimal> dataMap) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_OUTLINER_ENABLED))) {
-            Map<Date, BigDecimal> expenses = filterOutliners(dataMap.entrySet().stream().filter(data -> NumberUtils.isExpense(data.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
-            Map<Date, BigDecimal> incomes = filterOutliners(dataMap.entrySet().stream().filter(data -> NumberUtils.isIncome(data.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
-            return Stream.concat(expenses.entrySet().stream(), incomes.entrySet().stream()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        }
-        return dataMap;
+        Map<Date, BigDecimal> expenses = filterOutliners(dataMap.entrySet().stream().filter(data -> NumberUtils.isExpense(data.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+        Map<Date, BigDecimal> incomes = filterOutliners(dataMap.entrySet().stream().filter(data -> NumberUtils.isIncome(data.getValue())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)));
+        return Stream.concat(expenses.entrySet().stream(), incomes.entrySet().stream()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     protected Map<Date, BigDecimal> filterOutliners(Map<Date, BigDecimal> dataMap) {
@@ -59,8 +52,6 @@ public class EstimationServiceImpl implements EstimationService {
         for (Map.Entry<Date, BigDecimal> data : dataMap.entrySet()) {
             if ((minValue.compareTo(data.getValue()) <= 0) && maxValue.compareTo(data.getValue()) >= 0) {
                 results.put(data.getKey(), data.getValue());
-            } else {
-//                System.out.println("Removing outliner: " + new SimpleDateFormat("dd/MM/yyyy").format(data.getKey()) + " " + data.getValue() + " (min: " + minValue + ", max: " + maxValue + ")");
             }
         }
         return results;
@@ -68,19 +59,16 @@ public class EstimationServiceImpl implements EstimationService {
 
     @Override
     public Map<Date, BigDecimal> filterEstimatedDateRange(Map<Date, BigDecimal> dataMap) {
-        if (Boolean.TRUE.equals(PropertiesValueHolder.getBoolean(CHART_GOALS_ESTIMATION_DATE_ENABLED))) {
-            ResultDto resultDto = calculationService.getResultDto(dataMap);
+        ResultDto resultDto = calculationService.getResultDto(dataMap);
 
-            long daysBetween = DateUtils.getDaysBetween(resultDto.getLastDate(), resultDto.getFirstDate());
-            Double dblEstimationRange = daysBetween - Double.valueOf(daysBetween) / 1.618;
+        long daysBetween = DateUtils.getDaysBetween(resultDto.getLastDate(), resultDto.getFirstDate());
+        Double dblEstimationRange = daysBetween - Double.valueOf(daysBetween) / 1.618;
 
-            Calendar firstDate = Calendar.getInstance();
-            firstDate.setTime(resultDto.getLastDate());
-            firstDate.add(Calendar.DAY_OF_MONTH, dblEstimationRange.intValue() * -1);
+        Calendar firstDate = Calendar.getInstance();
+        firstDate.setTime(resultDto.getLastDate());
+        firstDate.add(Calendar.DAY_OF_MONTH, dblEstimationRange.intValue() * -1);
 
-            return dataMap.entrySet().stream().filter(data -> data.getKey().after(firstDate.getTime())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        }
-        return dataMap;
+        return dataMap.entrySet().stream().filter(data -> data.getKey().after(firstDate.getTime())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     public void setCalculationService(CalculationService calculationService) {

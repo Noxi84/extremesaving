@@ -20,7 +20,6 @@ public class Main {
         chartFacade.generateMonthBarChart();
         chartFacade.generateGoalLineChart();
 
-        System.out.println("Generating pdf...");
         pdfFacade.generatePdf();
         System.out.println("Done.");
     }

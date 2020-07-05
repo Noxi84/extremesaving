@@ -14,14 +14,14 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
+import extremesaving.common.util.DateUtils;
 import extremesaving.data.dto.CategoryDto;
-import extremesaving.data.facade.CategoryFacade;
 import extremesaving.data.dto.DataDto;
+import extremesaving.data.facade.CategoryFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.itemgrid.YearCategoryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
-import extremesaving.common.util.DateUtils;
 
 public class YearItemsPageServiceImpl implements PdfPageService {
 
@@ -34,7 +34,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
 
     @Override
     public void generate(Document document) {
-        System.out.println("Generating Yearly Analysis Report");
+        System.out.println("Generating Yearly Analysis PDF Report");
         document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("d MMMM yyyy").format(new Date()), TextAlignment.RIGHT));
         document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
