@@ -47,3 +47,9 @@ ___
 ___
 ![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
 ___
+#### Blue bar on chart
+The blue line displays the final balance of the corresponding month.
+#### Green bar on chart
+The blue line displays all incomes of the corresponding month.
+#### Red bar on chart
+The blue line displays all expenses of the corresponding month.
