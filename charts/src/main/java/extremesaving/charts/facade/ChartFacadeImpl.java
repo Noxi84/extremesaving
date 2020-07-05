@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 import org.jfree.chart.JFreeChart;
 
-import extremesaving.charts.builder.GoalLineChart;
-import extremesaving.charts.builder.MonthBarChart;
+import extremesaving.charts.builder.OverallLineChartBuilder;
+import extremesaving.charts.builder.MonthBarChartBuilder;
 import extremesaving.charts.service.ChartDataService;
 import extremesaving.common.ExtremeSavingConstants;
 
@@ -22,7 +22,7 @@ public class ChartFacadeImpl implements ChartFacade {
 
     @Override
     public void generateMonthBarChart() {
-        JFreeChart chart = new MonthBarChart()
+        JFreeChart chart = new MonthBarChartBuilder()
                 .withMonthResults(chartDataService.getMonthResults())
                 .build();
         int width = (int) ExtremeSavingConstants.MONTHCHART_WIDTH * 2;
@@ -31,11 +31,11 @@ public class ChartFacadeImpl implements ChartFacade {
     }
 
     @Override
-    public void generateGoalLineChart() {
-        JFreeChart chart = new GoalLineChart()
-                .withFutureResults(chartDataService.getGoalLineFutureEstimationResults())
-                .withHistoryResults(chartDataService.getGoalLineHistoryResults())
-                .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
+    public void generateOverallLineChart() {
+        JFreeChart chart = new OverallLineChartBuilder()
+                .withFutureResults(chartDataService.getOverallLineFutureEstimationResults())
+                .withHistoryResults(chartDataService.getOverallLineHistoryResults())
+                .withSurvivalResults(chartDataService.getOverallLineSurvivalEstimationResults())
                 .build();
         int width = (int) ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH * 2;
         int height = (int) ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT * 2;

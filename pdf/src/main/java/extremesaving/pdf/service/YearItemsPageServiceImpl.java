@@ -20,7 +20,7 @@ import extremesaving.data.dto.CategoryDto;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.CategoryFacade;
 import extremesaving.data.facade.DataFacade;
-import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
+import extremesaving.pdf.component.chart.OverallLineChartImageComponent;
 import extremesaving.pdf.component.itemgrid.YearCategoryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
@@ -36,13 +36,13 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("d MMMM yyyy").format(new Date()), TextAlignment.RIGHT));
-        document.add(buildGoalLineChartImage());
+        document.add(buildOverallLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());
     }
 
-    protected Image buildGoalLineChartImage() {
-        return new GoalLineChartImageComponent().build();
+    protected Image buildOverallLineChartImage() {
+        return new OverallLineChartImageComponent().build();
     }
 
     protected Table buildCategoryTable() {

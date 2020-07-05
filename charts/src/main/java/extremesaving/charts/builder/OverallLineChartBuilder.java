@@ -11,27 +11,53 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
-public class GoalLineChart {
+/**
+ * Builder for the goal-line chart.
+ */
+public class OverallLineChartBuilder {
 
     private Map<Date, BigDecimal> historyResults;
     private Map<Date, BigDecimal> survivalResults;
     private Map<Date, BigDecimal> futureResults;
 
-    public GoalLineChart withHistoryResults(Map<Date, BigDecimal> historyResults) {
+    /**
+     * Add the history results line on the chart. This is the blue line.
+     *
+     * @param historyResults Map<Date, BigDecimal> end result for each day.
+     * @return OverallChartBuilder
+     */
+    public OverallLineChartBuilder withHistoryResults(Map<Date, BigDecimal> historyResults) {
         this.historyResults = historyResults;
         return this;
     }
 
-    public GoalLineChart withSurvivalResults(Map<Date, BigDecimal> survivalResults) {
+    /**
+     * Add the survial results on the chart. This is the red line.
+     *
+     * @param survivalResults Map<Date, BigDecimal> end result for each day.
+     * @return OverallLineChartBuilder
+     */
+    public OverallLineChartBuilder withSurvivalResults(Map<Date, BigDecimal> survivalResults) {
         this.survivalResults = survivalResults;
         return this;
     }
 
-    public GoalLineChart withFutureResults(Map<Date, BigDecimal> futureResults) {
+    /**
+     * Add the future results on the chart. This is the green line.
+     *
+     * @param futureResults Map<Date, BigDecimal> end result for each day.
+     * @return OverallLineChartBuilder
+     */
+    public OverallLineChartBuilder withFutureResults(Map<Date, BigDecimal> futureResults) {
         this.futureResults = futureResults;
         return this;
     }
 
+    /**
+     * Build the JFreeChart object.
+     *
+     * @return JFreeChart
+     */
     public JFreeChart build() {
         return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
     }

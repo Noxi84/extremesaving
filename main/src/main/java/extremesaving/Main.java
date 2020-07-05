@@ -5,11 +5,19 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import extremesaving.charts.facade.ChartFacade;
 import extremesaving.pdf.facade.PdfFacade;
 
+/**
+ * Main class.
+ */
 public class Main {
 
     private PdfFacade pdfFacade;
     private ChartFacade chartFacade;
 
+    /**
+     * Main method.
+     *
+     * @param args java args
+     */
     public static void main(String[] args) {
         new ClassPathXmlApplicationContext("classpath*:/applicationContext/applicationContext*.xml")
                 .getBean(Main.class)
@@ -19,7 +27,7 @@ public class Main {
     private void start() {
         System.out.println("Generating Financial Report.");
         chartFacade.generateMonthBarChart();
-        chartFacade.generateGoalLineChart();
+        chartFacade.generateOverallLineChart();
         pdfFacade.generatePdf();
         System.out.println("Done.");
     }

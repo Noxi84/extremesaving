@@ -43,7 +43,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Date, BigDecimal> getGoalLineHistoryResults() {
+    public Map<Date, BigDecimal> getOverallLineHistoryResults() {
         Map<Date, BigDecimal> results = new HashMap<>();
         List<DataDto> dataDtos = dataFacade.findAll();
 
@@ -57,7 +57,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Date, BigDecimal> getGoalLineFutureEstimationResults() {
+    public Map<Date, BigDecimal> getOverallLineFutureEstimationResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
 
         // Add future estimation results with incomes
@@ -96,7 +96,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     }
 
     @Override
-    public Map<Date, BigDecimal> getGoalLineSurvivalEstimationResults() {
+    public Map<Date, BigDecimal> getOverallLineSurvivalEstimationResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
 
         // Add future estimation results without incomes

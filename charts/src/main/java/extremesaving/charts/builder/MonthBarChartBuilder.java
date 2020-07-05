@@ -16,15 +16,29 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import extremesaving.data.dto.MiniResultDto;
 
-public class MonthBarChart {
+/**
+ * Builder for the bar chart.
+ */
+public class MonthBarChartBuilder {
 
     private Map<Date, MiniResultDto> monthResults;
 
-    public MonthBarChart withMonthResults(Map<Date, MiniResultDto> monthResults) {
+    /**
+     * Add the month results to the chart.
+     *
+     * @param monthResults Map<Date, MiniResultDto> monthResults containg the end result for each month.
+     * @return MonthBarChartBuilder
+     */
+    public MonthBarChartBuilder withMonthResults(Map<Date, MiniResultDto> monthResults) {
         this.monthResults = monthResults;
         return this;
     }
 
+    /**
+     * Build the JFreeChart object.
+     *
+     * @return JFreeChart
+     */
     public JFreeChart build() {
         return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
     }

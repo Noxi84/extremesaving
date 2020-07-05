@@ -10,9 +10,9 @@ public interface ChartDataService {
 
     Map<Date, MiniResultDto> getMonthResults();
 
-    Map<Date, BigDecimal> getGoalLineHistoryResults();
+    Map<Date, BigDecimal> getOverallLineHistoryResults();
 
-    Map<Date, BigDecimal> getGoalLineFutureEstimationResults();
+    Map<Date, BigDecimal> getOverallLineFutureEstimationResults();
 
-    Map<Date, BigDecimal> getGoalLineSurvivalEstimationResults();
+    Map<Date, BigDecimal> getOverallLineSurvivalEstimationResults();
 }
