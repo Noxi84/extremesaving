@@ -35,7 +35,7 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Monthly Analysis Report");
-        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("dd MMM yyyy").format(new Date()), TextAlignment.RIGHT));
+        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("d MMMM yyyy").format(new Date()), TextAlignment.RIGHT));
         document.add(buildMonthBarChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());

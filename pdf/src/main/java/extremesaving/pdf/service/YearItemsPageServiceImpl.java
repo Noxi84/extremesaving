@@ -35,7 +35,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
     @Override
     public void generate(Document document) {
         System.out.println("Generating Yearly Analysis Report");
-        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("dd MMM yyyy").format(new Date()), TextAlignment.RIGHT));
+        document.add(PdfUtils.getTitleParagraph("Financial Report generated on " + new SimpleDateFormat("d MMMM yyyy").format(new Date()), TextAlignment.RIGHT));
         document.add(buildGoalLineChartImage());
         document.add(PdfUtils.getItemParagraph("\n"));
         document.add(buildCategoryTable());
