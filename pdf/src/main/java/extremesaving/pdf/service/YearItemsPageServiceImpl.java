@@ -14,6 +14,7 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
+import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.common.util.DateUtils;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.data.dto.DataDto;
@@ -63,7 +64,7 @@ public class YearItemsPageServiceImpl implements PdfPageService {
             yearResults.put(String.valueOf(yearCounter), categoryResults);
         }
 
-        yearResults.put("Total", overallCategoryResults);
+        yearResults.put(ExtremeSavingConstants.TOTAL_COLUMN, overallCategoryResults);
 
         return new YearCategoryTableComponent()
                 .withCategoryNames(sortedCategories)
@@ -108,8 +109,8 @@ public class YearItemsPageServiceImpl implements PdfPageService {
             categoryNames.addAll(categories);
         }
 
-        categoryNames.remove("Total");
-        categoryNames.add("Total"); // Make sure total is the last one in the list
+        categoryNames.remove(ExtremeSavingConstants.TOTAL_COLUMN);
+        categoryNames.add(ExtremeSavingConstants.TOTAL_COLUMN); // Make sure total is the last one in the list
         return categoryNames;
     }
 

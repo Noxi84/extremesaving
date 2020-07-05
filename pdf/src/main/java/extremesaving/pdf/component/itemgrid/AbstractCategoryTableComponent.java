@@ -13,6 +13,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 
+import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.pdf.util.PdfUtils;
 
@@ -76,14 +77,14 @@ public abstract class AbstractCategoryTableComponent {
 
         // Print total cell
         if (printTotalsColumn) {
-            List<CategoryDto> overallCategoryDtos = results.get("Total");
+            List<CategoryDto> overallCategoryDtos = results.get(ExtremeSavingConstants.TOTAL_COLUMN);
             if (overallCategoryDtos != null) {
                 List<CategoryDto> overallSortedCategories = new ArrayList<>();
                 for (String category : categoryNames) {
                     Optional<CategoryDto> optCategoryDto = overallCategoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst();
                     overallSortedCategories.add(optCategoryDto.orElse(null));
                 }
-                table.addCell(getItemCell(getAmountCell("Total", overallSortedCategories)));
+                table.addCell(getItemCell(getAmountCell(ExtremeSavingConstants.TOTAL_COLUMN, overallSortedCategories)));
             }
         }
 
@@ -129,9 +130,9 @@ public abstract class AbstractCategoryTableComponent {
             if (counter > displayMaxItems) {
                 break;
             }
-            if ("Total".equals(category)) {
+            if (ExtremeSavingConstants.TOTAL_COLUMN.equals(category)) {
                 cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
-                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total", displayMaxTextCharacters), true));
+                cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate(ExtremeSavingConstants.TOTAL_COLUMN, displayMaxTextCharacters), true));
                 cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Saving Ratio", displayMaxTextCharacters), true));
                 cell.add(PdfUtils.getItemParagraph(StringUtils.abbreviate("Total Items", displayMaxTextCharacters), true));
             } else {
@@ -163,7 +164,7 @@ public abstract class AbstractCategoryTableComponent {
                 if (categoryDto == null) {
                     cell.add(PdfUtils.getItemParagraph("\n", false, TextAlignment.RIGHT));
                 } else {
-                    if ("Total".equals(categoryDto.getName())) {
+                    if (ExtremeSavingConstants.TOTAL_COLUMN.equals(categoryDto.getName())) {
                         cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
                         cell.add(PdfUtils.getItemParagraph(PdfUtils.formatNumber(categoryDto.getTotalResults().getResult()), true));
                         cell.add(PdfUtils.getItemParagraph(PdfUtils.formatPercentage(categoryDto.getTotalResults().getSavingRatio())));

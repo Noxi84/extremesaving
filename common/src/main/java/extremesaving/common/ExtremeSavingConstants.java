@@ -11,4 +11,6 @@ public interface ExtremeSavingConstants {
     float MONTHCHART_WIDTH = 780;
     float MONTHCHART_HEIGHT = 250;
     String MONTHCHART_FILENAME = "month-barchart.png";
+
+    String TOTAL_COLUMN = "Total";
 }

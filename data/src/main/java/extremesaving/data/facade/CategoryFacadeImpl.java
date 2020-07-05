@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.data.dto.DataDto;
 
@@ -27,7 +28,7 @@ public class CategoryFacadeImpl implements CategoryFacade {
 
         // Add total
         CategoryDto total = new CategoryDto();
-        total.setName("Total");
+        total.setName(ExtremeSavingConstants.TOTAL_COLUMN);
         total.setTotalResults(calculationFacade.getResults(dataDtos));
         categoryDtos.add(total);
 
