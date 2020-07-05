@@ -5,8 +5,17 @@ import com.itextpdf.layout.element.Image;
 
 import extremesaving.common.ExtremeSavingConstants;
 
+/**
+ * Component builder containing the month-bar chart image.
+ * Using .build() will return the component which can be added to the PDF-page..
+ */
 public class MonthBarChartImageComponent {
 
+    /**
+     * Build the image to be added to the PDF-page.
+     *
+     * @return Image
+     */
     public Image build() {
         try {
             Image image = new Image(ImageDataFactory.create(ExtremeSavingConstants.MONTHCHART_FILENAME));
@@ -14,7 +23,7 @@ public class MonthBarChartImageComponent {
             image.setHeight(ExtremeSavingConstants.MONTHCHART_HEIGHT);
             return image;
         } catch (Exception ex) {
-            throw new IllegalStateException("Unable to create MonthBarChartImageComponent.", ex);
+            throw new IllegalStateException("Unable to build MonthBarChartImageComponent.", ex);
         }
     }
 }

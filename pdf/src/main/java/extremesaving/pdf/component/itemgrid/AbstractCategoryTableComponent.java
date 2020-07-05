@@ -17,6 +17,10 @@ import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.pdf.util.PdfUtils;
 
+/**
+ * Abstract Component builder containing the table with category results.
+ * Using .build() will return the component which can be added to the PDF-page..
+ */
 public abstract class AbstractCategoryTableComponent {
 
     Map<String, List<CategoryDto>> results;
@@ -26,36 +30,77 @@ public abstract class AbstractCategoryTableComponent {
     private boolean printTotalsColumn;
     private List<String> categoryNames;
 
+    /**
+     * Add the results to the AbstractCategoryTableComponent Builder.
+     *
+     * @param results Map<String, List<CategoryDto>> containing the CategoryDto's for each key value (month or year).
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withResults(Map<String, List<CategoryDto>> results) {
         this.results = results;
         return this;
     }
 
+    /**
+     * Set the maximum number of rows (category names) that can be displayed.
+     *
+     * @param displayMaxItems The maximum number of category rows.
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withDisplayMaxItems(int displayMaxItems) {
         this.displayMaxItems = displayMaxItems;
         return this;
     }
 
+    /**
+     * Set the number of columns the Table will have.
+     *
+     * @param numberOfColumns Number of columns.
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withNumberOfColumns(int numberOfColumns) {
         this.numberOfColumns = numberOfColumns;
         return this;
     }
 
+    /**
+     * Set the number of max text characters a category can have. Category names exceeding this value will be abbreviated with a "..."-postfix.
+     *
+     * @param displayMaxTextCharacters Number of max characters a category name can have before it is abbreviated.
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withDisplayMaxTextCharacters(int displayMaxTextCharacters) {
         this.displayMaxTextCharacters = displayMaxTextCharacters;
         return this;
     }
 
+    /**
+     * Determines of the totals-column must be added to the table.
+     *
+     * @param printTotalsColumn True of false to determine of the totals-column must be added.
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withPrintTotalsColumn(boolean printTotalsColumn) {
         this.printTotalsColumn = printTotalsColumn;
         return this;
     }
 
+    /**
+     * Add the category names to the AbstractCategoryTableComponent Builder.
+     *
+     * @param categoryNames List of all category names to be displayed.
+     * @return AbstractCategoryTableComponent
+     */
     public AbstractCategoryTableComponent withCategoryNames(List<String> categoryNames) {
         this.categoryNames = categoryNames;
         return this;
     }
 
+    /**
+     * Build the table to be added to the PDF-page.
+     *
+     * @return Table
+     */
     public Table build() {
         Table table = new Table(numberOfColumns + 3);
         table.setBorder(Border.NO_BORDER);

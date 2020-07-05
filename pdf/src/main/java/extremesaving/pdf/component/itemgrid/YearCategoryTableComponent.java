@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.dto.CategoryDto;
 
+/**
+ * Component builder containing the table with yearly category results.
+ * Using .build() will return the component which can be added to the PDF-page..
+ */
 public class YearCategoryTableComponent extends AbstractCategoryTableComponent {
 
     @Override

@@ -24,6 +24,9 @@ import extremesaving.pdf.component.chart.OverallLineChartImageComponent;
 import extremesaving.pdf.component.itemgrid.YearCategoryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
+/**
+ * Implementation of PdfPageService to generate the PDF-page which contains the yearly results.
+ */
 public class YearItemsPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 20;

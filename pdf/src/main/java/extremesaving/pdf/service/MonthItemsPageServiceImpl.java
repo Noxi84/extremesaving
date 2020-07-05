@@ -24,6 +24,9 @@ import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
 import extremesaving.pdf.component.itemgrid.MonthCategoryTableComponent;
 import extremesaving.pdf.util.PdfUtils;
 
+/**
+ * Implementation of PdfPageService to generate the PDF-page which contains the monthly results.
+ */
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
     private static final int DISPLAY_MAX_ITEMS = 20;
