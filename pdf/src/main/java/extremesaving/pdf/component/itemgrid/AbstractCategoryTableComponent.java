@@ -3,6 +3,7 @@ package extremesaving.pdf.component.itemgrid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -89,7 +90,7 @@ public abstract class AbstractCategoryTableComponent {
         }
 
         // Print category names
-        table.addCell(getItemCell(getDescriptionCell(categoryNames)));
+        table.addCell(getItemCell(getCategoryCell(categoryNames)));
 
         return table;
     }
@@ -113,7 +114,7 @@ public abstract class AbstractCategoryTableComponent {
         return cell;
     }
 
-    protected Cell getDescriptionCell(List<String> categories) {
+    protected Cell getCategoryCell(List<String> categories) {
         Cell cell = new Cell();
         cell.setBorder(Border.NO_BORDER);
         cell.setWidth(300);
@@ -151,7 +152,14 @@ public abstract class AbstractCategoryTableComponent {
         cell.setMarginLeft(0);
         cell.setPaddingRight(0);
         cell.setMarginRight(0);
-        if (results.size() > 0) {
+
+        boolean hasData = !results.stream()
+                .filter(Objects::nonNull)
+                .filter(cat -> ExtremeSavingConstants.TOTAL_COLUMN.equals(cat.getName()))
+                .findFirst()
+                .get()
+                .getTotalResults().getData().isEmpty();
+        if (hasData) {
             cell.add(PdfUtils.getItemParagraph(title, true, TextAlignment.RIGHT));
             cell.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
 
