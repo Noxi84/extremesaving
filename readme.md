@@ -1,12 +1,36 @@
 #README template
 
+##Project description
+
 Extreme-saving is a hobby project I created to manage my own financial status.
-All data can be put into one or more CSV-files.
+After running the application a PDF file is generated containing the Financial report.
 
-After running the application a PDF file is generated with the Extreme-Saving report.
+#####Green line on line chart
+The green line on the linechart represents a future prediction based on your input data.
+1) All data is split up into incomes and expenses. For both incomes and expenses all outlines are removed based on the golden ratio.
+2) Calculate the average daily result per day.
+3) This will result in an average daily result which will be added to each future day.
+   The last day has a bigger factor then yesterday. Yesterday has a bigger factor then the day before and so on.
 
-##config.properties
-You can setup properties in config.properties
+#####Red line on line chart
+The redline is based on a daily average result of all expenses from the input data.
+This is some sort of a representation to how long you can survive if all incomes would stop and only expenses would continue.
+Green line on line chart
+The green line on the linechart represents a future prediction based on your input data.
+1) All data is split up into incomes and expenses. For both incomes and expenses all outlines are removed based on the golden ratio.
+2) Calculate the average daily result per day.
+3) This will result in an average daily result which will be added to each future day.
+   The last day has a bigger factor then yesterday. Yesterday has a bigger factor then the day before and so on.
+
+##Red line on line chart
+The redline is based on a daily average result of all expenses from the input data.
+This is some sort of a representation to how long you can survive if all incomes would stop and only expenses would continue.
+
+##Configuration
+All data read from a single CSV-file.
+
+#####You can setup properties in config.properties
+
 | Property name                                     | Description                                                                | Example value
 | ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------
 | data.csv.dataFolder                               | Path where the CSV file(s) are located.                                    | /home/kris/Dropbox/extremesaving/data/
@@ -17,18 +41,4 @@ You can setup properties in config.properties
 | pdf.location                                      | Pdf export location.                                                       | /home/kris/Dropbox/extremesaving/report.pdf
 | chart.monthBar.location                           | Temporary chart file location.                                             | /tmp/month-barchart.png
 | chart.goalLine.location                           | Temporary chart file location.                                             | /tmp/goal-linechart.png
-
-##Green line on line chart
-The green line on the linechart represents a future prediction based on your input data.
-It first splits up all data into incomes and expenses.
-For both incomes and expenses all outlines are removed based on the golden ratio.
-
-After removing the outliners from all data the average daily result is calculated for each day.
-The last day has a bigger factor then yesterday. Yesterday has a bigger factor then the day before and so on.
-
-This will result in an average daily result which will be added to each future day. This is represented in the green line.
-
-##Red line on line chart
-The redline is based on a daily average result of all expenses from the input data.
-This is some sort of a representation to how long you can survive if all incomes would stop and only expenses would continue.
 
