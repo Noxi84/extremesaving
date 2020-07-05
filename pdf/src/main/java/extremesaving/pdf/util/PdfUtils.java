@@ -60,13 +60,9 @@ public final class PdfUtils {
 
     public static String formatNumber(BigDecimal val, boolean decimals) {
         if (decimals) {
-            return "€ " + roundOffTo2DecPlaces(val);
+            return "€ " +  String.format("%.2f", val);
         }
         return "€ " + val.intValue();
-    }
-
-    public static String roundOffTo2DecPlaces(BigDecimal val) {
-        return String.format("%.2f", val);
     }
 
     public static String formatPercentage(BigDecimal val) {

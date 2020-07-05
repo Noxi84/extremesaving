@@ -44,7 +44,7 @@ public class EstimationServiceImpl implements EstimationService {
         List<BigDecimal> sortedValues = dataMap.entrySet().stream().map(entry -> entry.getValue()).sorted(BigDecimal::compareTo).collect(Collectors.toList());
         Double estimationRange = (sortedValues.size() - Double.valueOf(sortedValues.size()) / 1.618) / 2;
         int minIndex = estimationRange.intValue();
-        int maxIndex = sortedValues.size() - estimationRange.intValue();
+        int maxIndex = Math.min(sortedValues.size() - estimationRange.intValue(), sortedValues.size() - 1);
         BigDecimal minValue = sortedValues.get(minIndex);
         BigDecimal maxValue = sortedValues.get(maxIndex);
 

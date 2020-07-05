@@ -22,14 +22,10 @@ public class PdfFacadeImpl implements PdfFacade {
         try {
             PdfWriter writer = new PdfWriter(ExtremeSavingConstants.DATA_FOLDER + "report.pdf");
             PdfDocument pdf = new PdfDocument(writer);
-
             Document document = new Document(pdf, PageSize.A4.rotate());
-
             yearItemsPageService.generate(document);
             document.add(new AreaBreak(AreaBreakType.NEXT_PAGE));
-
             monthItemsPageService.generate(document);
-
             document.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
