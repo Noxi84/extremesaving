@@ -1,2 +1,2 @@
 #!/bin/sh
- exec java -jar /home/kris/Desktop/testkris/ExtremeSaving.jar
+ exec java -jar ExtremeSaving.jar
