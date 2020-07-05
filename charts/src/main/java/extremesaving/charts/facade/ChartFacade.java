@@ -1,5 +1,8 @@
 package extremesaving.charts.facade;
 
+/**
+ * Facade to create chart object and write the PNG files.
+ */
 public interface ChartFacade {
 
     /**

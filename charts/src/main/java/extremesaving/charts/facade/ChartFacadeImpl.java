@@ -11,11 +11,15 @@ import javax.imageio.ImageIO;
 
 import org.jfree.chart.JFreeChart;
 
-import extremesaving.charts.builder.OverallLineChartBuilder;
 import extremesaving.charts.builder.MonthBarChartBuilder;
+import extremesaving.charts.builder.OverallLineChartBuilder;
 import extremesaving.charts.service.ChartDataService;
 import extremesaving.common.ExtremeSavingConstants;
 
+/**
+ * Implementation of ChartFacade.
+ * Facade to create chart object and write the PNG files.
+ */
 public class ChartFacadeImpl implements ChartFacade {
 
     private ChartDataService chartDataService;

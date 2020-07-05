@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import extremesaving.common.util.DateUtils;
+import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.dto.EstimationResultDto;
 import extremesaving.data.dto.MiniResultDto;
@@ -17,8 +18,11 @@ import extremesaving.data.dto.ResultDto;
 import extremesaving.data.facade.CalculationFacade;
 import extremesaving.data.facade.DataFacade;
 import extremesaving.data.facade.EstimationFacade;
-import extremesaving.common.util.NumberUtils;
 
+/**
+ * Implementation of ChartDataService.
+ * Service for handling the chart-image data sets.
+ */
 public class ChartDataServiceImpl implements ChartDataService {
 
     private DataFacade dataFacade;
