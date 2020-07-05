@@ -31,6 +31,13 @@ The following header must be present at the first line of the CSV-file: #date,ca
 
 ## Example FinancialReport.pdf
 [Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport.pdf)
+___
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-001.jpg)
+___
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
+___
+## Charts explanation
+### Overall chart
 #### Blue line on chart
 The blue line displays the balance over a timeline for all data in the CSV-file.
 #### Green line on chart
@@ -42,11 +49,8 @@ The green line predicts the future balance based on your input data.
 #### Red line on chart
 The red line is based on a daily average result of all expenses from the input data.
 This is a representation on how long you can survive if all incomes stop and only expenses remain.
-___
-![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-001.jpg)
-___
-![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
-___
+
+### Monthly chart
 #### Blue bar on chart
 The blue line displays the final balance of the corresponding month.
 #### Green bar on chart
