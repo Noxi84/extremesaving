@@ -44,3 +44,9 @@ The following header must be present at the first line: #date,category,value.
 15/02/2020,Rent,-500.00
 25/02/2020,Electricity,-86.36
 ```
+
+## Example report.pdf
+[link to report.pdf](https://github.com/Noxi84/extremesaving/blob/master/report.pdf)
+
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-001.jpg)
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
