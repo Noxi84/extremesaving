@@ -33,24 +33,20 @@ The following header must be present at the first line: #date,category,value.
 
 #####You can setup properties in config.properties
 
-| Property name                                     | Description                                                                | Example value
-| ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------
-| data.csv.dataFolder                               | Path where the CSV file(s) are located.                                    | /home/kris/Dropbox/extremesaving/data/
-| pdf.location                                      | Pdf export location.                                                       | /home/kris/Dropbox/extremesaving/report.pdf
-| chart.monthBar.location                           | Temporary chart file location.                                             | /tmp/month-barchart.png
-| chart.goalLine.location                           | Temporary chart file location.                                             | /tmp/goal-linechart.png
-
+| Property name       | Description                       | Example value
+| ------------------- | --------------------------------- | ---------------
+| data.csv.dataFolder | Path for data.csv and report.pdf. | /home/kris/Dropbox/extremesaving/
 
 ##Example CSV
 
-#date,category,value
-01/01/2010,Food & Drinks,-17.25
-01/01/2010,Work Salary,1975.40
-05/01/2010,Food & Drinks,-17.25
-17/01/2010,Rent,-500.00
-20/01/2010,Phone & Internet,-125.00
-25/01/2010,Electricity,-86.36
-31/01/2010,Garbage,-12.45
-01/02/2010,Work Salary,1975.40
-15/02/2010,Rent,-500.00
-25/02/2010,Electricity,-86.36
+#######date,category,value
+######01/01/2010,Food & Drinks,-17.25
+######01/01/2010,Work Salary,1975.40
+######05/01/2010,Food & Drinks,-17.25
+######17/01/2010,Rent,-500.00
+######20/01/2010,Phone & Internet,-125.00
+######25/01/2010,Electricity,-86.36
+######31/01/2010,Garbage,-12.45
+######01/02/2010,Work Salary,1975.40
+######15/02/2010,Rent,-500.00
+######25/02/2010,Electricity,-86.36

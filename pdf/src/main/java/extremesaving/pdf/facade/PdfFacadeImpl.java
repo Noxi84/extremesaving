@@ -1,6 +1,6 @@
 package extremesaving.pdf.facade;
 
-import static extremesaving.common.property.PropertyValueEnum.PDF_FILE_NAME;
+import static extremesaving.common.property.PropertyValueEnum.DATA_CSV_FOLDER;
 
 import java.io.FileNotFoundException;
 
@@ -11,8 +11,8 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
 
-import extremesaving.pdf.service.PdfPageService;
 import extremesaving.common.property.PropertiesValueHolder;
+import extremesaving.pdf.service.PdfPageService;
 
 public class PdfFacadeImpl implements PdfFacade {
 
@@ -22,7 +22,7 @@ public class PdfFacadeImpl implements PdfFacade {
     @Override
     public void generatePdf() {
         try {
-            PdfWriter writer = new PdfWriter(PropertiesValueHolder.getString(PDF_FILE_NAME));
+            PdfWriter writer = new PdfWriter(PropertiesValueHolder.getString(DATA_CSV_FOLDER) + "report.pdf");
             PdfDocument pdf = new PdfDocument(writer);
 
             Document document = new Document(pdf, PageSize.A4.rotate());

@@ -2,8 +2,7 @@ package extremesaving.common.property;
 
 public enum PropertyValueEnum {
 
-    DATA_CSV_FOLDER("data.csv.dataFolder"),
-    PDF_FILE_NAME("pdf.location");
+    DATA_CSV_FOLDER("data.csv.dataFolder");
 
     private String value;
 
