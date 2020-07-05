@@ -1,7 +1,5 @@
 package extremesaving.data.dao;
 
-import static extremesaving.common.property.PropertyValueEnum.DATA_CSV_FOLDER;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +14,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import extremesaving.common.property.PropertiesValueHolder;
+import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.model.DataModel;
 
 public class DataDaoImpl implements DataDao {
@@ -26,7 +24,7 @@ public class DataDaoImpl implements DataDao {
     @Override
     public List<DataModel> findAll() {
         if (results == null) {
-            File f = new File(PropertiesValueHolder.getString(DATA_CSV_FOLDER));
+            File f = new File(ExtremeSavingConstants.DATA_FOLDER);
             if (f.isFile() && f.getName().endsWith(".csv")) {
                 results = getResultFromCSV(f.getAbsolutePath());
             } else if (f.isDirectory()) {

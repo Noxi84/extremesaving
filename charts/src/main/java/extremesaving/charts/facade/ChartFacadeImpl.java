@@ -14,8 +14,7 @@ import org.jfree.chart.JFreeChart;
 import extremesaving.charts.builder.GoalLineChart;
 import extremesaving.charts.builder.MonthBarChart;
 import extremesaving.charts.service.ChartDataService;
-import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
-import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
+import extremesaving.common.ExtremeSavingConstants;
 
 public class ChartFacadeImpl implements ChartFacade {
 
@@ -27,7 +26,7 @@ public class ChartFacadeImpl implements ChartFacade {
         JFreeChart chart = new MonthBarChart()
                 .withMonthResults(chartDataService.getMonthResults())
                 .build();
-        writeChartPng(chart, MonthBarChartImageComponent.MONTHCHART_FILENAME, (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
+        writeChartPng(chart, ExtremeSavingConstants.MONTHCHART_FILENAME, (int) ExtremeSavingConstants.MONTHCHART_WIDTH * 2, (int) ExtremeSavingConstants.MONTHCHART_HEIGHT * 2);
     }
 
     @Override
@@ -38,7 +37,7 @@ public class ChartFacadeImpl implements ChartFacade {
                 .withHistoryResults(chartDataService.getGoalLineHistoryResults())
                 .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
                 .build();
-        writeChartPng(chart, GoalLineChartImageComponent.GOAL_LINE_CHART_FILENAME, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_WIDTH * 2, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_HEIGHT * 2);
+        writeChartPng(chart, ExtremeSavingConstants.GOAL_LINE_CHART_FILENAME, (int) ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH * 2, (int) ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT * 2);
     }
 
     protected void writeChartPng(JFreeChart chart, String file, int width, int height) {

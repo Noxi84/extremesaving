@@ -31,13 +31,7 @@ All data read from a single CSV-file.
 The data is split by a comma separator. You can add comments by adding a # before the line.
 The following header must be present at the first line: #date,category,value.
 
-#####You can setup properties in config.properties
-
-| Property name       | Description                       | Example value
-| ------------------- | --------------------------------- | ---------------
-| data.csv.dataFolder | Path for data.csv and report.pdf. | /home/kris/Dropbox/extremesaving/
-
-##Example CSV
+##Example data.csv
 
 #######date,category,value
 ######01/01/2010,Food & Drinks,-17.25
