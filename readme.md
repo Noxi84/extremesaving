@@ -9,7 +9,7 @@ Extreme-saving is program which generates a PDF-report based on your financial d
 4) FinancialReport.pdf containing the financial report is now created in the same folder.
 
 ## Configuration
-All data is read from a CSV-file. The csv-content is separated by a comma-character. You can comment out a line by putting # in front of the line.
+All data is read from a CSV-file. The csv-content is separated by a comma-character. You can comment out a line by placing a # in front of the line.
 The following header must be present at the first line of the CSV-file: #date,category,value.
 
 ## Example data.csv
