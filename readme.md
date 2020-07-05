@@ -33,14 +33,14 @@ The following header must be present at the first line: #date,category,value.
 
 ##Example data.csv
 
-#######date,category,value
-######01/01/2020,Food & Drinks,-17.25
-######01/01/2020,Work Salary,1975.40
-######05/01/2020,Food & Drinks,-17.25
-######17/01/2020,Rent,-500.00
-######20/01/2020,Phone & Internet,-125.00
-######25/01/2020,Electricity,-86.36
-######31/01/2020,Garbage,-12.45
-######01/02/2020,Work Salary,1975.40
-######15/02/2020,Rent,-500.00
-######25/02/2020,Electricity,-86.36
+#date,category,value
+01/01/2020,Food & Drinks,-17.25
+01/01/2020,Work Salary,1975.40
+05/01/2020,Food & Drinks,-17.25
+17/01/2020,Rent,-500.00
+20/01/2020,Phone & Internet,-125.00
+25/01/2020,Electricity,-86.36
+31/01/2020,Garbage,-12.45
+01/02/2020,Work Salary,1975.40
+15/02/2020,Rent,-500.00
+25/02/2020,Electricity,-86.36
