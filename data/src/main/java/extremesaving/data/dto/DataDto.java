@@ -10,13 +10,11 @@ public class DataDto {
     private Date date;
     private BigDecimal value;
     private String category;
-    private String description;
 
     public DataDto(DataModel dataModel) {
         this.date = dataModel.getDate();
         this.value = dataModel.getValue();
         this.category = dataModel.getCategory().trim().replaceAll("\\s{2,}", " ");
-        this.description = dataModel.getDescription().trim().replaceAll("\\s{2,}", " ");
     }
 
     public Date getDate() {
@@ -41,13 +39,5 @@ public class DataDto {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

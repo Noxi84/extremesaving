@@ -8,7 +8,6 @@ public class DataModel {
     private Date date;
     private BigDecimal value;
     private String category;
-    private String description;
 
     public Date getDate() {
         return date;
@@ -32,13 +31,5 @@ public class DataModel {
 
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

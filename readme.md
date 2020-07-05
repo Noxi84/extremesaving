@@ -28,17 +28,29 @@ This is some sort of a representation to how long you can survive if all incomes
 
 ##Configuration
 All data read from a single CSV-file.
+The data is split by a comma separator. You can add comments by adding a # before the line.
+The following header must be present at the first line: #date,category,value.
 
 #####You can setup properties in config.properties
 
 | Property name                                     | Description                                                                | Example value
 | ------------------------------------------------- | -------------------------------------------------------------------------- | ---------------
 | data.csv.dataFolder                               | Path where the CSV file(s) are located.                                    | /home/kris/Dropbox/extremesaving/data/
-| data.csv.header.date                              | Header in csv for date column. Content must match 1 of the 2 date formats. | date
-| data.csv.header.value                             | Header in csv for value column. Content must be a numeric value.           | value 
-| data.csv.header.category                          | Header in csv for category column.                                         | category
-| data.csv.header.description                       | Header in csv for description column. Content won't be used in PDF report. | description
 | pdf.location                                      | Pdf export location.                                                       | /home/kris/Dropbox/extremesaving/report.pdf
 | chart.monthBar.location                           | Temporary chart file location.                                             | /tmp/month-barchart.png
 | chart.goalLine.location                           | Temporary chart file location.                                             | /tmp/goal-linechart.png
 
+
+##Example CSV
+
+#date,category,value
+01/01/2010,Food & Drinks,-17.25
+01/01/2010,Work Salary,1975.40
+05/01/2010,Food & Drinks,-17.25
+17/01/2010,Rent,-500.00
+20/01/2010,Phone & Internet,-125.00
+25/01/2010,Electricity,-86.36
+31/01/2010,Garbage,-12.45
+01/02/2010,Work Salary,1975.40
+15/02/2010,Rent,-500.00
+25/02/2010,Electricity,-86.36

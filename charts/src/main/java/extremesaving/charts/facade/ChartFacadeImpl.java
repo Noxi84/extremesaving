@@ -1,8 +1,5 @@
 package extremesaving.charts.facade;
 
-import static extremesaving.common.property.PropertyValueEnum.GOAL_LINE_CHART_IMAGE_FILE;
-import static extremesaving.common.property.PropertyValueEnum.MONTH_BAR_CHART_IMAGE_FILE;
-
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +16,6 @@ import extremesaving.charts.builder.MonthBarChart;
 import extremesaving.charts.service.ChartDataService;
 import extremesaving.pdf.component.chart.GoalLineChartImageComponent;
 import extremesaving.pdf.component.chart.MonthBarChartImageComponent;
-import extremesaving.common.property.PropertiesValueHolder;
 
 public class ChartFacadeImpl implements ChartFacade {
 
@@ -31,7 +27,7 @@ public class ChartFacadeImpl implements ChartFacade {
         JFreeChart chart = new MonthBarChart()
                 .withMonthResults(chartDataService.getMonthResults())
                 .build();
-        writeChartPng(chart, PropertiesValueHolder.getString(MONTH_BAR_CHART_IMAGE_FILE), (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
+        writeChartPng(chart, MonthBarChartImageComponent.MONTHCHART_FILENAME, (int) MonthBarChartImageComponent.MONTHCHART_WIDTH * 2, (int) MonthBarChartImageComponent.MONTHCHART_HEIGHT * 2);
     }
 
     @Override
@@ -42,7 +38,7 @@ public class ChartFacadeImpl implements ChartFacade {
                 .withHistoryResults(chartDataService.getGoalLineHistoryResults())
                 .withSurvivalResults(chartDataService.getGoalLineSurvivalEstimationResults())
                 .build();
-        writeChartPng(chart, PropertiesValueHolder.getString(GOAL_LINE_CHART_IMAGE_FILE), (int) GoalLineChartImageComponent.GOAL_LINE_CHART_WIDTH * 2, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_HEIGHT * 2);
+        writeChartPng(chart, GoalLineChartImageComponent.GOAL_LINE_CHART_FILENAME, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_WIDTH * 2, (int) GoalLineChartImageComponent.GOAL_LINE_CHART_HEIGHT * 2);
     }
 
     protected void writeChartPng(JFreeChart chart, String file, int width, int height) {

@@ -17,7 +17,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import extremesaving.common.property.PropertiesValueHolder;
-import extremesaving.common.property.PropertyValueEnum;
 import extremesaving.data.model.DataModel;
 
 public class DataDaoImpl implements DataDao {
@@ -52,17 +51,16 @@ public class DataDaoImpl implements DataDao {
         try {
             br = new BufferedReader(new FileReader(csvFile));
 
-            int dateColumn = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DATE));
-            int value = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_VALUE));
-            int category = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_CATEGORY));
-            int description = getColumnNumber(csvFile, PropertiesValueHolder.getString(PropertyValueEnum.DATA_CSV_HEADER_DESCRIPTION));
+            int dateColumn = getColumnNumber(csvFile, "date");
+            int value = getColumnNumber(csvFile, "value");
+            int category = getColumnNumber(csvFile, "category");
 
             int lineCounter = 0;
             while ((line = br.readLine()) != null) {
                 if (StringUtils.isNotBlank(line) && !line.startsWith("#") && lineCounter > 0) {
                     String[] lineSplit = splitCsvLine(line);
 
-                    DataModel dataModel = handleLines(lineSplit, dateColumn, value, category, description);
+                    DataModel dataModel = handleLines(lineSplit, dateColumn, value, category);
                     if (dataModel != null) {
                         dataModels.add(dataModel);
                     }
@@ -122,14 +120,13 @@ public class DataDaoImpl implements DataDao {
         return 0;
     }
 
-    protected DataModel handleLines(String[] lineSplit, int dateColumn, int valueColumn, int categoryColumn, int descriptionColumn) {
+    protected DataModel handleLines(String[] lineSplit, int dateColumn, int valueColumn, int categoryColumn) {
         try {
             DataModel dataModel = new DataModel();
 
             String date = getQuoteSafeValue(lineSplit, dateColumn);
             String value = getQuoteSafeValue(lineSplit, valueColumn);
             String category = getQuoteSafeValue(lineSplit, categoryColumn);
-            String description = getQuoteSafeValue(lineSplit, descriptionColumn);
 
             // Date
             Date dateResult = null;
@@ -159,9 +156,6 @@ public class DataDaoImpl implements DataDao {
                 category = "...";
             }
             dataModel.setCategory(category);
-
-            // Description
-            dataModel.setDescription(description);
 
             return dataModel;
         } catch (Exception ex) {
