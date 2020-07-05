@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class DataDaoImpl implements DataDao {
     @Override
     public List<DataModel> findAll() {
         if (results == null) {
-            File f = new File(ExtremeSavingConstants.DATA_FOLDER);
+//            File f = new File(ExtremeSavingConstants.DATA_FOLDER);
+            File f = new File(Paths.get("").toFile().getAbsolutePath());
             if (f.isFile() && f.getName().endsWith(".csv")) {
                 results = getResultFromCSV(f.getAbsolutePath());
             } else if (f.isDirectory()) {

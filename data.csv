@@ -107,55 +107,7 @@
 01/10/2013,Taxes,-12
 01/11/2013,Taxes,-12
 01/12/2013,Taxes,-12
-01/01/2013,Friends & Family,13000
-01/01/2010,Friends & Family,24.78
-01/02/2010,Friends & Family,24.78
-01/03/2010,Friends & Family,24.78
-01/04/2010,Friends & Family,24.78
-01/05/2010,Friends & Family,24.78
-01/06/2010,Friends & Family,24.78
-01/07/2010,Friends & Family,24.78
-01/08/2010,Friends & Family,24.78
-01/09/2010,Friends & Family,24.78
-01/10/2010,Friends & Family,24.78
-01/11/2010,Friends & Family,24.78
-01/12/2010,Friends & Family,24.78
-01/01/2011,Friends & Family,24.78
-01/02/2011,Friends & Family,24.78
-01/03/2011,Friends & Family,24.78
-01/04/2011,Friends & Family,24.78
-01/05/2011,Friends & Family,24.78
-01/06/2011,Friends & Family,24.78
-01/07/2011,Friends & Family,24.78
-01/08/2011,Friends & Family,24.78
-01/09/2011,Friends & Family,24.78
-01/10/2011,Friends & Family,24.78
-01/11/2011,Friends & Family,24.78
-01/12/2011,Friends & Family,24.78
-01/01/2012,Friends & Family,24.78
-01/02/2012,Friends & Family,24.78
-01/03/2012,Friends & Family,24.78
-01/04/2012,Friends & Family,24.78
-01/05/2012,Friends & Family,24.78
-01/06/2012,Friends & Family,24.78
-01/07/2012,Friends & Family,24.78
-01/08/2012,Friends & Family,24.78
-01/09/2012,Friends & Family,24.78
-01/10/2012,Friends & Family,24.78
-01/11/2012,Friends & Family,24.78
-01/12/2012,Friends & Family,24.78
-01/01/2013,Friends & Family,24.78
-01/02/2013,Friends & Family,24.78
-01/03/2013,Friends & Family,24.78
-01/04/2013,Friends & Family,24.78
-01/05/2013,Friends & Family,24.78
-01/06/2013,Friends & Family,24.78
-01/07/2013,Friends & Family,24.78
-01/08/2013,Friends & Family,24.78
-01/09/2013,Friends & Family,24.78
-01/10/2013,Friends & Family,24.78
-01/11/2013,Friends & Family,24.78
-01/12/2013,Friends & Family,24.78
+01/04/2012,Entertainment,-2000
 01/04/2012,Entertainment,-2000
 01/01/2010,Taxes,1400
 01/01/2011,Taxes,1400
@@ -176,20 +128,8 @@
 05/05/2014,Water,-65.38
 04/08/2014,Water,-65.38
 30/09/2014,Water,-9.7
-03/01/2014,Friends & Family,24.78
-04/02/2014,Friends & Family,24.78
 25/02/2014,Food & Drinks,80
-04/03/2014,Friends & Family,24.78
-02/04/2014,Friends & Family,24.78
-05/05/2014,Friends & Family,24.78
 13/05/2014,Food & Drinks,92
-03/06/2014,Friends & Family,24.78
-02/07/2014,Friends & Family,24.78
-04/08/2014,Friends & Family,24.78
-02/09/2014,Friends & Family,24.78
-02/10/2014,Friends & Family,24.78
-04/11/2014,Friends & Family,24.78
-02/12/2014,Friends & Family,24.78
 16/04/2014,Electricity,-82
 12/05/2014,Electricity,-80.76
 10/06/2014,Electricity,-80.76
@@ -327,18 +267,6 @@
 22/09/2015,Studies,-16.53
 13/10/2015,Studies,-11.02
 16/11/2015,Studies,-22.04
-05/01/2015,Friends & Family,24.78
-03/02/2015,Friends & Family,24.78
-03/03/2015,Friends & Family,24.78
-02/04/2015,Friends & Family,24.78
-05/05/2015,Friends & Family,24.78
-02/06/2015,Friends & Family,24.78
-02/07/2015,Friends & Family,24.78
-04/08/2015,Friends & Family,24.78
-02/09/2015,Friends & Family,24.78
-02/10/2015,Friends & Family,24.78
-03/11/2015,Friends & Family,24.78
-02/12/2015,Friends & Family,24.78
 12/01/2015,Electricity,-107.00
 10/02/2015,Electricity,-107.00
 09/03/2015,Electricity,-328.57
@@ -518,18 +446,6 @@
 12/01/2016,Studies,-11.02
 08/02/2016,Studies,-16.53
 14/03/2016,Studies,-27.55
-05/01/2016,Friends & Family,24.78
-02/02/2016,Friends & Family,24.78
-02/03/2016,Friends & Family,24.78
-04/04/2016,Friends & Family,24.78
-03/05/2016,Friends & Family,24.78
-02/06/2016,Friends & Family,24.78
-04/07/2016,Friends & Family,24.78
-02/08/2016,Friends & Family,24.78
-02/09/2016,Friends & Family,24.78
-04/10/2016,Friends & Family,24.78
-03/11/2016,Friends & Family,24.78
-02/12/2016,Friends & Family,24.78
 11/01/2016,Electricity,-144.00
 10/02/2016,Electricity,-144.00
 14/03/2016,Electricity,-144.00
@@ -757,18 +673,6 @@
 03/04/2017,Water,-109.99
 29/06/2017,Water,-109.99
 02/10/2017,Water,-45.09
-03/01/2017,Friends & Family,24.78
-02/02/2017,Friends & Family,24.78
-02/03/2017,Friends & Family,24.78
-04/04/2017,Friends & Family,24.78
-03/05/2017,Friends & Family,24.78
-02/06/2017,Friends & Family,24.78
-04/07/2017,Friends & Family,24.78
-02/08/2017,Friends & Family,24.78
-04/09/2017,Friends & Family,24.78
-03/10/2017,Friends & Family,24.78
-02/11/2017,Friends & Family,24.78
-04/12/2017,Friends & Family,24.78
 10/01/2017,Electricity,-133.00
 10/02/2017,Electricity,-133.00
 13/03/2017,Electricity,-133.00
@@ -1092,18 +996,6 @@
 05/07/2018,Garbage & Recycling,-42.5
 23/07/2018,Appartment,-150
 24/10/2018,Appartment,-200
-02/03/2018,Friends & Family,24.78
-04/04/2018,Friends & Family,24.78
-03/05/2018,Friends & Family,24.78
-04/06/2018,Friends & Family,24.78
-03/07/2018,Friends & Family,24.78
-02/08/2018,Friends & Family,24.78
-03/09/2018,Friends & Family,24.78
-02/10/2018,Friends & Family,24.78
-02/11/2018,Friends & Family,24.78
-03/12/2018,Friends & Family,24.78
-03/01/2018,Friends & Family,24.78
-02/02/2018,Friends & Family,24.78
 01/06/2018,Appartment,-1250
 03/12/2018,Toys & Electronics,-2110
 15/01/2018,Food & Drinks,-2205.73
@@ -1222,11 +1114,6 @@
 01/04/2019,Appartment,-40
 01/04/2019,Appartment,-50
 02/05/2019,Appartment,-40
-02/01/2019,Friends & Family,24.78
-04/02/2019,Friends & Family,24.78
-04/03/2019,Friends & Family,24.78
-02/04/2019,Friends & Family,24.78
-02/05/2019,Friends & Family,24.78
 27/03/2019,Water,-95.23
 30/01/2019,Appartment,-292.44
 28/02/2019,Appartment,-290.88
@@ -1299,14 +1186,6 @@
 21/05/2019,Medical & Insurances,-44.85
 26/03/2019,Medical & Insurances,-5.99
 07/02/2019,Taxes,-62.5
-01/01/2019,Friends & Family,350
-01/01/2019,Friends & Family,100
-01/02/2019,Friends & Family,350
-01/02/2019,Friends & Family,100
-01/03/2019,Friends & Family,350
-01/03/2019,Friends & Family,100
-01/04/2019,Friends & Family,350
-01/04/2019,Friends & Family,100
 01/01/2019,Food & Drinks,-50
 01/01/2019,Food & Drinks,-100
 01/02/2019,Food & Drinks,-50
@@ -1320,10 +1199,7 @@
 29/05/2019,Appartment,-286.21
 21/05/2019,Medical & Insurances,-101.33
 29/05/2019,Work,1944.03
-01/06/2019,Friends & Family,600
-01/06/2019,Friends & Family,350
 03/06/2019,Appartment,-40
-03/06/2019,Friends & Family,24.78
 06/06/2019,Work,102
 07/06/2019,Food & Drinks,-58
 08/06/2019,Entertainment,-44
@@ -1435,9 +1311,7 @@
 01/08/2019,Appartment,-40
 01/08/2019,Friends & Family,24.78
 01/08/2019,Toys & Electronics,11
-01/08/2019,Friends & Family,350
 02/08/2019,Food & Drinks,-29.16
-03/08/2019,Friends & Family,6.3
 04/08/2019,Food & Drinks,-1.8
 04/08/2019,Entertainment,-5.89
 05/08/2019,Food & Drinks,-8.22
@@ -1447,12 +1321,10 @@
 08/08/2019,Food & Drinks,-8.35
 08/08/2019,Food & Drinks,-1.65
 08/08/2019,Food & Drinks,-1.9
-08/08/2019,Friends & Family,0.1
 09/08/2019,Food & Drinks,-10.53
 09/08/2019,Food & Drinks,-21.03
 09/08/2018,Medical & Insurances,-115
 09/08/2019,Taxes,-465.7
-10/08/2019,Friends & Family,50
 10/08/2019,Food & Drinks,-8.06
 10/08/2019,Entertainment,-48
 10/08/2019,Food & Drinks,-13
@@ -1972,126 +1844,3 @@
 26/06/2020,Food & Drinks,-21.63
 30/06/2020,Appartment,-266.14
 30/06/2020,Taxes,4.60
-01/07/2020,Friends & Family,350
-01/07/2020,Appartment,-40
-01/07/2020,Friends & Family,24.78
-01/07/2020,Toys & Electronics,-137.57
-01/07/2020,Food & Drinks,-5.6
-04/07/2020,Entertainment,-10.50
-
-
-#31/07/2020,Appartment,-264.61
-#31/08/2020,Appartment,-263.08
-#30/09/2020,Appartment,-261.55
-#31/10/2020,Appartment,-260.02
-#30/11/2020,Appartment,-258.50
-#27/12/2020,Taxes,1445.00
-#31/12/2020,Appartment,-256.97
-
-#31/01/2021,Appartment,-255.45
-#28/02/2021,Appartment,-253.93
-#31/03/2021,Appartment,-252.41
-#30/04/2021,Appartment,-250.89
-#31/05/2021,Appartment,-249.38
-#30/06/2021,Appartment,-247.86
-#31/07/2021,Appartment,-246.35
-#31/08/2021,Appartment,-244.84
-#30/09/2021,Appartment,-243.33
-#31/10/2021,Appartment,-241.82
-#30/11/2021,Appartment,-240.31
-#31/12/2021,Appartment,-238.81
-
-#31/01/2022,Appartment,-237.31
-#28/02/2022,Appartment,-235.80
-#31/03/2022,Appartment,-234.30
-#30/04/2022,Appartment,-232.81
-#31/05/2022,Appartment,-231.31
-#30/06/2022,Appartment,-229.81
-#31/07/2022,Appartment,-228.32
-#31/08/2022,Appartment,-226.83
-#30/09/2022,Appartment,-225.34
-#31/10/2022,Appartment,-223.85
-#30/11/2022,Appartment,-222.36
-#31/12/2022,Appartment,-220.88
-
-#31/01/2023,Appartment,-219.39
-#28/02/2023,Appartment,-217.19
-#31/03/2023,Appartment,-216.43
-#30/04/2023,Appartment,-214.95
-#31/05/2023,Appartment,-213.47
-#30/06/2023,Appartment,-212.00
-#31/07/2023,Appartment,-210.52
-#31/08/2023,Appartment,-209.05
-#30/09/2023,Appartment,-207.58
-#31/10/2023,Appartment,-206.11
-#30/11/2023,Appartment,-204.64
-#31/12/2023,Appartment,-203.18
-
-#31/01/2024,Appartment,-201.71
-#29/02/2024,Appartment,-200.25
-#31/03/2024,Appartment,-198.79
-#30/04/2024,Appartment,-197.33
-#31/05/2024,Appartment,-195.87
-#30/06/2024,Appartment,-194.42
-#31/07/2024,Appartment,-192.96
-#31/08/2024,Appartment,-191.51
-#30/09/2024,Appartment,-190.06
-#31/10/2024,Appartment,-188.61
-#30/11/2024,Appartment,-187.16
-#31/12/2024,Appartment,-185.71
-
-#31/01/2025,Appartment,-184.27
-#28/02/2025,Appartment,-182.82
-#31/03/2025,Appartment,-181.38
-#30/04/2025,Appartment,-179.94
-#31/05/2025,Appartment,-178.50
-#30/06/2025,Appartment,-177.07
-#31/07/2025,Appartment,-175.63
-#31/08/2025,Appartment,-174.20
-#30/09/2025,Appartment,-172.77
-#31/10/2025,Appartment,-171.34
-#30/11/2025,Appartment,-169.91
-#31/12/2025,Appartment,-168.91
-
-#31/01/2026,Appartment,-167.05
-#28/02/2026,Appartment,-165.63
-#31/03/2026,Appartment,-164.21
-#30/04/2026,Appartment,-162.79
-#31/05/2026,Appartment,-161.37
-#30/06/2026,Appartment,-159.95
-#31/07/2026,Appartment,-158.53
-#31/08/2026,Appartment,-157.12
-#30/09/2026,Appartment,-155.71
-#31/10/2026,Appartment,-154.30
-#30/11/2026,Appartment,-152.89
-#31/12/2026,Appartment,-151.48
-
-#31/01/2027,Appartment,-150.07
-#28/02/2027,Appartment,-148.67
-#31/03/2027,Appartment,-147.27
-#30/04/2027,Appartment,-145.86
-#31/05/2027,Appartment,-144.47
-#30/06/2027,Appartment,-143.07
-#31/07/2027,Appartment,-141.67
-#31/08/2027,Appartment,-140.28
-#30/09/2027,Appartment,-138.88
-#31/10/2027,Appartment,-137.49
-#30/11/2027,Appartment,-136.10
-#31/12/2027,Appartment,-134.71
-
-#31/01/2028,Appartment,-133.33
-#29/02/2028,Appartment,-131.94
-#31/03/2028,Appartment,-130.56
-#30/04/2028,Appartment,-129.18
-#31/05/2028,Appartment,-127.80
-#30/06/2028,Appartment,-126.42
-#31/07/2028,Appartment,-125.04
-#31/08/2028,Appartment,-123.66
-#30/09/2028,Appartment,-122.29
-#31/10/2028,Appartment,-120.92
-#30/11/2028,Appartment,-119.55
-#31/12/2028,Appartment,-118.18
-
-#31/01/2029,Appartment,-116.81
-#28/02/2029,Appartment,-115.45
-#31/03/2029,Appartment,-114.08

@@ -1,6 +1,8 @@
 package extremesaving.pdf.facade;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Paths;
 
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -9,7 +11,6 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.property.AreaBreakType;
 
-import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.pdf.service.PdfPageService;
 
 public class PdfFacadeImpl implements PdfFacade {
@@ -20,7 +21,7 @@ public class PdfFacadeImpl implements PdfFacade {
     @Override
     public void generatePdf() {
         try {
-            PdfWriter writer = new PdfWriter(ExtremeSavingConstants.DATA_FOLDER + "FinancialReport.pdf");
+            PdfWriter writer = new PdfWriter(Paths.get("").toFile().getAbsolutePath() + File.separator + "FinancialReport.pdf");
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf, PageSize.A4.rotate());
             yearItemsPageService.generate(document);
