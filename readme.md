@@ -48,7 +48,7 @@ The green line predicts the future balance based on your input data.
 3) The result is added to each day in the future for a time period of 6 years.
 #### Red line on chart
 The red line is based on a daily average result of all expenses from the input data.
-This is a representation on how long you can survive if all incomes stop and only expenses remain.
+It is a representation on how long you can survive if all incomes stop and only expenses remain.
 
 ### Monthly chart
 #### Blue bars on chart
