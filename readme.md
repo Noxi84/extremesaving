@@ -8,10 +8,11 @@ All data read from a CSV-file. The csv-content is split by a comma separator. Yo
 The following header must be present at the first line of the CSV-file: #date,category,value.
 
 ## Installation
-1) Copy extremesaving.jar to a folder on your computer.
-2) Create a file data.csv in the same folder. Add the headers and your financial data.
-3) Run ExtremeSaving.jar.
-4) FinancialReport.pdf containing the financial report is now created in the same folder.
+1) [Download ExtremeSaving.jar](https://github.com/Noxi84/extremesaving/blob/master/ExtremeSaving.jar)
+2) Copy ExtremeSaving.jar to a folder on your computer.
+3) Create a new file data.csv in the same folder. Add the headers and your financial data based on the example below.
+4) Start ExtremeSaving.jar.
+5) FinancialReport.pdf containing the financial report is now created in the same folder.
 
 ## Example data.csv
 
@@ -30,7 +31,7 @@ The following header must be present at the first line of the CSV-file: #date,ca
 ```
 
 ## Example FinancialReport.pdf
-[Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/report.pdf)
+[Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport.pdf)
 #### Blue line on chart
 The blue line displays the balance over a timeline for all data in the CSV-file.
 #### Green line on chart
