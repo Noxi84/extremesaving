@@ -2,15 +2,15 @@
 
 Extreme-saving is program which generates a PDF-report based on your financial data. You are free to use this application for your own finances. 
 
-## Configuration
-All data read from a CSV-file. The csv-content is split by a comma separator. You can comment out a line by putting # in front of the line.
-The following header must be present at the first line of the CSV-file: #date,category,value.
-
 ## Installation
 1) Download [ExtremeSaving.jar](https://github.com/Noxi84/extremesaving/blob/master/ExtremeSaving.jar) and copy it to a folder on your computer.
 2) Create a new file data.csv in the same folder. Add the headers and your financial data based on the example below.
 3) Start ExtremeSaving.jar.
 4) FinancialReport.pdf containing the financial report is now created in the same folder.
+
+## Configuration
+All data read from a CSV-file. The csv-content is split by a comma separator. You can comment out a line by putting # in front of the line.
+The following header must be present at the first line of the CSV-file: #date,category,value.
 
 ## Example data.csv
 [Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
