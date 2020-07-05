@@ -14,7 +14,7 @@ The following header must be present at the first line of the CSV-file: #date,ca
 4) FinancialReport.pdf containing the financial report is now created in the same folder.
 
 ## Example data.csv
-
+[Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
 ```
 #date,category,value
 01/01/2020,Food & Drinks,-17.25
