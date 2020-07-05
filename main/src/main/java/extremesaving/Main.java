@@ -1,5 +1,7 @@
 package extremesaving;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import extremesaving.charts.facade.ChartFacade;
@@ -10,6 +12,8 @@ import extremesaving.pdf.facade.PdfFacade;
  */
 public class Main {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
+
     private PdfFacade pdfFacade;
     private ChartFacade chartFacade;
 
@@ -19,19 +23,19 @@ public class Main {
      * @param args java args
      */
     public static void main(String[] args) {
-        new ClassPathXmlApplicationContext("classpath*:/applicationContext/applicationContext*.xml")
+        new ClassPathXmlApplicationContext("classpath*:/applicationContext*.xml")
                 .getBean(Main.class)
                 .start();
     }
 
     private void start() {
-        System.out.println("Generating Financial Report.");
+        LOGGER.info("Generating Financial Report.");
         chartFacade.generateMonthBarChart();
         chartFacade.generateOverallLineChart();
         pdfFacade.generatePdf();
         chartFacade.removeMonthBarChartFile();
         chartFacade.removeOverallLineChartFile();
-        System.out.println("Done.");
+        LOGGER.info("Done.");
     }
 
     public void setPdfFacade(PdfFacade pdfFacade) {

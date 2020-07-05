@@ -2,6 +2,9 @@ package extremesaving.pdf.util;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -12,6 +15,8 @@ import com.itextpdf.layout.property.TextAlignment;
  * Utility class for handling the PDF.
  */
 public final class PdfUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PdfUtils.class);
 
     private PdfUtils() {
     }
@@ -55,7 +60,7 @@ public final class PdfUtils {
             PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
             paragraph.setFont(regular);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Unable to set font on PDF Paragraph.", e);
         }
         if (textAlignment != null) {
             paragraph.setTextAlignment(textAlignment);
@@ -79,7 +84,7 @@ public final class PdfUtils {
             PdfFont regular = PdfFontFactory.createFont(StandardFonts.COURIER);
             titleParagraph.setFont(regular);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Unable to set font on PDF Paragraph", e);
         }
         return titleParagraph;
     }

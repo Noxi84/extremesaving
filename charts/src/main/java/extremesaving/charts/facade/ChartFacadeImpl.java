@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 
 import org.jfree.chart.JFreeChart;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import extremesaving.charts.builder.MonthBarChartBuilder;
 import extremesaving.charts.builder.OverallLineChartBuilder;
@@ -22,6 +24,8 @@ import extremesaving.common.ExtremeSavingConstants;
  * Facade to create chart object and write the PNG files.
  */
 public class ChartFacadeImpl implements ChartFacade {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ChartFacadeImpl.class);
 
     private ChartDataService chartDataService;
 
@@ -68,7 +72,7 @@ public class ChartFacadeImpl implements ChartFacade {
             File outputFile = new File(file);
             ImageIO.write(image, "png", outputFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Unable to write chart PNG '{}'.", file, e);
         }
     }
 

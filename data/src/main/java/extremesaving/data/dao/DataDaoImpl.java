@@ -14,18 +14,20 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.model.DataModel;
 
 public class DataDaoImpl implements DataDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataDaoImpl.class);
 
     private static List<DataModel> results;
 
     @Override
     public List<DataModel> findAll() {
         if (results == null) {
-//            File f = new File(ExtremeSavingConstants.DATA_FOLDER);
             File f = new File(Paths.get("").toFile().getAbsolutePath());
             if (f.isFile() && f.getName().endsWith(".csv")) {
                 results = getResultFromCSV(f.getAbsolutePath());
@@ -37,7 +39,7 @@ public class DataDaoImpl implements DataDao {
                     }
                 }
             } else if (!f.exists()) {
-                System.out.println(f.getAbsolutePath() + " could not be found.");
+                LOGGER.error("{} could not be found.", f.getAbsolutePath());
             }
         }
         return results;
@@ -68,15 +70,15 @@ public class DataDaoImpl implements DataDao {
                 lineCounter++;
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Input CSV file could not be found.", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error reading input CSV file.", e);
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.error("Unable to close CSV file input stream.", e);
                 }
             }
         }
@@ -105,15 +107,15 @@ public class DataDaoImpl implements DataDao {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Input CSV file could not be found.", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error reading input CSV file.", e);
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOGGER.error("Unable to close CSV file input stream.", e);
                 }
             }
         }
@@ -146,8 +148,7 @@ public class DataDaoImpl implements DataDao {
                 BigDecimal newValue = new BigDecimal(value);
                 dataModel.setValue(newValue);
             } catch (Exception ex) {
-                System.out.println("Unable to parse value " + value + ".");
-                ex.printStackTrace();
+                LOGGER.error("Unable to parse value {}.", value, ex);
                 throw ex;
             }
 
@@ -164,7 +165,7 @@ public class DataDaoImpl implements DataDao {
                 line.append(field).append(' ');
             }
 
-            System.out.println("Unable to process line " + line.toString());
+            LOGGER.error("Unable to process line {}", line.toString());
             throw ex;
         }
     }

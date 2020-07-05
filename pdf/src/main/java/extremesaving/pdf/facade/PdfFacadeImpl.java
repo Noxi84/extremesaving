@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -14,6 +17,8 @@ import com.itextpdf.layout.property.AreaBreakType;
 import extremesaving.pdf.service.PdfPageService;
 
 public class PdfFacadeImpl implements PdfFacade {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PdfFacadeImpl.class);
 
     private PdfPageService yearItemsPageService;
     private PdfPageService monthItemsPageService;
@@ -29,7 +34,7 @@ public class PdfFacadeImpl implements PdfFacade {
             monthItemsPageService.generate(document);
             document.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("PDF file could not be found.", e);
         }
     }
 
