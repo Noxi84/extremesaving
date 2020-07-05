@@ -16,25 +16,15 @@ public final class NumberUtils {
         return val != null && BigDecimal.ZERO.compareTo(val) < 0;
     }
 
-    public static boolean isNumber(final String value) {
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
-    }
-
     public static String formatNumber(BigDecimal val) {
-        return formatNumber(val, true);
-    }
-
-    public static String formatNumber(BigDecimal val, boolean decimals) {
-        if (decimals) {
-            DecimalFormat df = new DecimalFormat("#,###.00");
-            return df.format(val);
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        String result = df.format(val);
+        if (result.startsWith(".")) {
+            return "0" + result;
+        } else if (result.startsWith("-.")) {
+            return "-0" + result.substring(1);
         }
-        return String.valueOf(val.intValue());
+        return result;
     }
 
     public static String formatPercentage(BigDecimal val) {

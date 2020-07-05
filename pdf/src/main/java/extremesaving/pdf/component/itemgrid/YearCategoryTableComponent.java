@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.data.dto.CategoryDto;
-import extremesaving.common.util.NumberUtils;
 
 public class YearCategoryTableComponent extends AbstractCategoryTableComponent {
 
     @Override
     int getLastMonthOrYear() {
         return results.entrySet().stream()
-                .filter(v -> NumberUtils.isNumber(v.getKey()))
+                .filter(v -> !ExtremeSavingConstants.TOTAL_COLUMN.equals(v.getKey()))
                 .map(v -> Integer.valueOf(v.getKey()))
                 .mapToInt(v -> v).max()
                 .orElse(Calendar.getInstance().get(Calendar.YEAR));
