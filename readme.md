@@ -1,5 +1,3 @@
-# README template
-
 ## Project description
 
 Extreme-saving is a hobby project I created to manage my own financial status.
