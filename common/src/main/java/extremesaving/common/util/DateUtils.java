@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Utility class for handling dates.
+ */
 public final class DateUtils {
 
     private DateUtils() {

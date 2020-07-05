@@ -61,4 +61,14 @@ public class NumberUtilsTest {
         assertEquals("99%", NumberUtils.formatPercentage(BigDecimal.valueOf(99.99)));
         assertEquals("100%", NumberUtils.formatPercentage(BigDecimal.valueOf(100)));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void formatPercentageWithNegativeAmount() {
+        NumberUtils.formatPercentage(BigDecimal.valueOf(-0.01));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void formatPercentageWithExceedingAmount() {
+        NumberUtils.formatPercentage(BigDecimal.valueOf(100.01));
+    }
 }
