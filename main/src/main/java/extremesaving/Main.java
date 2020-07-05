@@ -29,6 +29,8 @@ public class Main {
         chartFacade.generateMonthBarChart();
         chartFacade.generateOverallLineChart();
         pdfFacade.generatePdf();
+        chartFacade.removeMonthBarChartFile();
+        chartFacade.removeOverallLineChartFile();
         System.out.println("Done.");
     }
 

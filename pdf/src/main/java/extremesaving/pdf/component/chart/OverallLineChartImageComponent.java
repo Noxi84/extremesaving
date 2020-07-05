@@ -18,7 +18,7 @@ public class OverallLineChartImageComponent {
      */
     public Image build() {
         try {
-            Image image = new Image(ImageDataFactory.create(ExtremeSavingConstants.GOAL_LINE_CHART_FILENAME));
+            Image image = new Image(ImageDataFactory.create(ExtremeSavingConstants.OVERALL_LINE_CHART_FILENAME));
             image.setWidth(ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH);
             image.setHeight(ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT);
             return image;

@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 
@@ -43,7 +44,17 @@ public class ChartFacadeImpl implements ChartFacade {
                 .build();
         int width = (int) ExtremeSavingConstants.GOAL_LINE_CHART_WIDTH * 2;
         int height = (int) ExtremeSavingConstants.GOAL_LINE_CHART_HEIGHT * 2;
-        writeChartPng(chart, ExtremeSavingConstants.GOAL_LINE_CHART_FILENAME, width, height);
+        writeChartPng(chart, ExtremeSavingConstants.OVERALL_LINE_CHART_FILENAME, width, height);
+    }
+
+    @Override
+    public void removeMonthBarChartFile() {
+        new File(Paths.get("").toFile().getAbsolutePath() + File.separator + ExtremeSavingConstants.MONTHCHART_FILENAME).delete();
+    }
+
+    @Override
+    public void removeOverallLineChartFile() {
+        new File(Paths.get("").toFile().getAbsolutePath() + File.separator + ExtremeSavingConstants.OVERALL_LINE_CHART_FILENAME).delete();
     }
 
     protected void writeChartPng(JFreeChart chart, String file, int width, int height) {
