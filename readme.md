@@ -1,7 +1,6 @@
 ## Project description
 
-Extreme-saving is a hobby project I created to manage my own financial status.
-After running the application a PDF file is generated containing the Financial report.
+Extreme-saving is program which generates a PDF-report based on your financial data. You are free to use this application for your own finances. 
 
 ## Configuration
 All data read from a CSV-file. The csv-content is split by a comma separator. You can comment out a line by putting # in front of the line.
