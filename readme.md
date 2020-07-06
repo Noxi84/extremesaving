@@ -14,9 +14,9 @@ The header must be present at the first line of the CSV-file: #date,category,val
 
 | CSV Header | Description | Example |
 | ---------- | ----------- | ------- |
-| date       | Date format is 'dd/mm/yyyy' | 01/01/2020 = January 1st 2020 | 
+| date       | Date format is 'd/m/yyyy' | 1/1/2020 = January 1st 2020 | 
 | category   | Category name | Food & Drinks |
-| value      | Value format is '#.##' Decimals are not mandatory | 12.53 |
+| value      | Value format is '#.##'. Decimals are not mandatory | 12.53 |
 
 ## Example data.csv
 [Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
