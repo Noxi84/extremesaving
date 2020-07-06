@@ -12,6 +12,12 @@ Extreme-saving is program which generates a PDF-report based on your financial d
 All data is read from a CSV-file. The csv-content is separated by a comma-character. You can comment out a line by placing a # in front of the line.
 The following header must be present at the first line of the CSV-file: #date,category,value.
 
+| CSV Header | Description |
+| ---------- | ----------- |
+| date       | Date format is dd/mm/yyyy. January = 1 or 01, December = 12.| 
+| category   | A category name.|
+| value      | Value for the category and the date. Decimal separator is a dot. For example: 12.53. Decimals are not mandatory. |
+
 ## Example data.csv
 [Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
 ```
@@ -27,6 +33,9 @@ The following header must be present at the first line of the CSV-file: #date,ca
 15/02/2020,Rent,-500.00
 25/02/2020,Electricity,-86.36
 ```
+
+## Troubleshooting
+If the FinancialReport.pdf is not generated there is probably a mistake in data.csv. Check console.log after executing ExtremeSaving.jar.
 
 ## Example FinancialReport.pdf
 [Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport.pdf)
