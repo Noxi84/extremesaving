@@ -72,9 +72,6 @@ public class OverallLineChartBuilder {
         final XYCardinalSplineRenderer csRenderer = new XYCardinalSplineRenderer();
         csRenderer.setDrawOutlines(true);
 
-        Shape cross = ShapeUtilities.createDiagonalCross(3, 1);
-        csRenderer.setSeriesShape(0, cross);
-
         // Series 1.
         csRenderer.setSeriesShapesVisible(2, false);
         csRenderer.setSeriesPaint(2, Color.red);
