@@ -9,14 +9,14 @@ Extreme-saving is program which generates a PDF-report based on your financial d
 4) FinancialReport.pdf containing the financial report is now created in the same folder.
 
 ## Configuration
-All data is read from a CSV-file. The csv-content is separated by a comma-character. You can comment out a line by placing a # in front of the line.
-The following header must be present at the first line of the CSV-file: #date,category,value.
+All data is read from a data.csv. The csv-content is separated by a comma-character. Lines can be commented out by placing a # in front of the line.
+The header must be present at the first line of the CSV-file: #date,category,value. The order of the columns can be changed by changing the header.
 
-| CSV Header | Description |
-| ---------- | ----------- |
-| date       | Date format is dd/mm/yyyy. January = 1 or 01, December = 12.| 
-| category   | A category name.|
-| value      | Value for the category and the date. Decimal separator is a dot. For example: 12.53. Decimals are not mandatory. |
+| CSV Header | Description | Example |
+| ---------- | ----------- | ------- |
+| date       | Date format is 'dd/mm/yyyy' | 01/01/2020 = January 1st 2020 | 
+| category   | Category name | Food & Drinks |
+| value      | Value format is '#.##' Decimals are not mandatory | 12.53 |
 
 ## Example data.csv
 [Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
