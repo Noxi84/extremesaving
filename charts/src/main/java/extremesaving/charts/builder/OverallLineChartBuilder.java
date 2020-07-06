@@ -1,5 +1,9 @@
 package extremesaving.charts.builder;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Shape;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,9 +11,12 @@ import java.util.Map;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.util.ShapeUtilities;
 
 /**
  * Builder for the goal-line chart.
@@ -59,7 +66,45 @@ public class OverallLineChartBuilder {
      * @return JFreeChart
      */
     public JFreeChart build() {
-        return ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
+        JFreeChart jFreeChart = ChartFactory.createTimeSeriesChart("", "", "", createDataset(), false, false, false);
+
+        // Using the CardinalSplineRenderer.
+        final XYCardinalSplineRenderer csRenderer = new XYCardinalSplineRenderer();
+        csRenderer.setDrawOutlines(true);
+
+        Shape cross = ShapeUtilities.createDiagonalCross(3, 1);
+        csRenderer.setSeriesShape(0, cross);
+
+        // Series 1.
+        csRenderer.setSeriesShapesVisible(2, false);
+        csRenderer.setSeriesPaint(2, Color.red);
+
+        // Series 2.
+        csRenderer.setSeriesShapesVisible(0, false);
+        csRenderer.setSeriesPaint(0, Color.green);
+        // Series 3.
+
+        csRenderer.setSeriesShapesVisible(1, false);
+        csRenderer.setSeriesPaint(1, Color.blue);
+
+        XYPlot plot = (XYPlot) jFreeChart.getPlot();
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setDomainZeroBaselineVisible(true);
+        plot.setRangeZeroBaselineVisible(true);
+        plot.setDomainGridlinesVisible(true);
+        plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
+        plot.setDomainGridlineStroke(new BasicStroke(0.5F, 0, 1));
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
+        plot.setRangeGridlineStroke(new BasicStroke(0.5F, 0, 1));
+        plot.setRenderer(0, csRenderer);
+
+        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setAutoRangeIncludesZero(false);
+        range.setAxisLineVisible(false);
+        range.setLabelFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
+        return jFreeChart;
     }
 
     protected TimeSeriesCollection createDataset() {

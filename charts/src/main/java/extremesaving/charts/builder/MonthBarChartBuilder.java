@@ -1,5 +1,9 @@
 package extremesaving.charts.builder;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Shape;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,9 +14,13 @@ import java.util.stream.Collectors;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.util.ShapeUtilities;
 
 import extremesaving.data.dto.MiniResultDto;
 
@@ -40,7 +48,29 @@ public class MonthBarChartBuilder {
      * @return JFreeChart
      */
     public JFreeChart build() {
-        return ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
+        JFreeChart jFreeChart = ChartFactory.createBarChart("", "", "", createDataset(), PlotOrientation.VERTICAL, false, false, false);
+        final BarRenderer csRenderer = new BarRenderer();
+
+        Shape cross = ShapeUtilities.createDiagonalCross(3, 1);
+        csRenderer.setSeriesShape(0, cross);
+
+        CategoryPlot plot = (CategoryPlot) jFreeChart.getPlot();
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setRangeZeroBaselineVisible(true);
+        plot.setDomainGridlinesVisible(true);
+        plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
+        plot.setDomainGridlineStroke(new BasicStroke(0.5F, 0, 1));
+        plot.setRangeGridlinesVisible(true);
+        plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
+        plot.setRangeGridlineStroke(new BasicStroke(0.5F, 0, 1));
+        plot.setRenderer(0, csRenderer);
+
+        NumberAxis range = (NumberAxis) plot.getRangeAxis();
+        range.setAutoRangeIncludesZero(false);
+        range.setAxisLineVisible(false);
+        range.setLabelFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+
+        return jFreeChart;
     }
 
     protected CategoryDataset createDataset() {
