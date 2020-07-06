@@ -170,15 +170,15 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 String trimmedCategoryName = categoryName.length() > displayMaxTextCharacters ? categoryName.substring(0, displayMaxTextCharacters - 3).trim() + "..." : categoryName;
-                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false,  TextAlignment.RIGHT, false, null, null, 20));
+                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false, TextAlignment.RIGHT, false, null, null, 20));
             }
         }
 
         // Display column total-titles
-        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
-        paragraphs.add(new CategoryParagraphComponent("Total Items", true, TextAlignment.RIGHT,false, null, null, 20));
-        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true,  TextAlignment.RIGHT,false, null, null, 20));
-        paragraphs.add(new CategoryParagraphComponent(ExtremeSavingConstants.TOTAL_COLUMN, true,  TextAlignment.RIGHT,false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, false, null));
+        paragraphs.add(new CategoryParagraphComponent("# Items", true, TextAlignment.RIGHT, false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true, TextAlignment.RIGHT, false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("Result", true, TextAlignment.RIGHT, false, null, null, 20));
 
         return paragraphs;
     }
@@ -214,15 +214,29 @@ public abstract class AbstractCategoryTableComponent {
                 if (categoryDto == null) {
                     paragraphs.add(new CategoryParagraphComponent("\n", false, TextAlignment.RIGHT, true, null));
                 } else {
-                    paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true));
+                    if (NumberUtils.isIncome(categoryDto.getTotalResults().getResult())) {
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, false, null, new DeviceRgb(255, 102, 102)));
+                    } else if (NumberUtils.isExpense(categoryDto.getTotalResults().getResult())) {
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, false, null, new DeviceRgb(0, 153, 76)));
+                    } else {
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), false, null));
+                    }
                 }
             }
 
             // Display column total values
             paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, false, null));
-            paragraphs.add(new CategoryParagraphComponent(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems()), false, new DeviceRgb(204, 229, 255)));
-            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), false, new DeviceRgb(204, 229, 255)));
-            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, false, new DeviceRgb(204, 229, 255)));
+            paragraphs.add(new CategoryParagraphComponent(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems()), true, new DeviceRgb(204, 229, 255)));
+            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), true, new DeviceRgb(204, 229, 255)));
+
+            if (NumberUtils.isIncome(totalsCategory.getTotalResults().getResult())) {
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(204, 229, 255), new DeviceRgb(255, 102, 102)));
+            } else if (NumberUtils.isExpense(totalsCategory.getTotalResults().getResult())) {
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(204, 229, 255), new DeviceRgb(0, 153, 76)));
+            } else {
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), false, new DeviceRgb(204, 229, 255)));
+            }
+//            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, false, new DeviceRgb(204, 229, 255)));
         }
         return paragraphs;
     }

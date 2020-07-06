@@ -54,9 +54,6 @@ public class CategoryTableComponent {
                 CategoryParagraphComponent paragraph;
                 if (paragraphs.size() > rowNumber) {
                     paragraph = paragraphs.get(rowNumber);
-                    if (paragraph.isUseRowColors() && rowColor1 != null && rowColor2 != null) {
-                        cell.setBackgroundColor(rowNumber % 2 > 0 ? rowColor1 : rowColor2);
-                    }
 
                 } else {
                     paragraph = new CategoryParagraphComponent("\n", true);
