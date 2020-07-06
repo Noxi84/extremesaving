@@ -35,7 +35,8 @@ The header must be present at the first line of the CSV-file: #date,category,val
 ```
 
 ## Troubleshooting
-If the FinancialReport.pdf is not generated there is probably a mistake in data.csv. Check console.log after executing ExtremeSaving.jar.
+If FinancialReport.pdf is corrupt or not created there is probably a mistake in data.csv. Check console.log after executing ExtremeSaving.jar.
+If you encounter a bug, you can send a message. Please attach your CSV-file to reproduce the issue.
 
 ## Example FinancialReport.pdf
 [Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport.pdf)
