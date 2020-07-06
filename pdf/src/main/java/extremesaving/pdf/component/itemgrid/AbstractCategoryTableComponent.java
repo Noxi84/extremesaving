@@ -6,17 +6,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
-import com.itextpdf.layout.property.UnitValue;
 
 import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.CategoryDto;
-import extremesaving.pdf.util.PdfUtils;
+import extremesaving.pdf.component.paragraph.CategoryParagraphComponent;
 
 /**
  * Abstract Component builder containing the table with category results.
@@ -103,30 +100,26 @@ public abstract class AbstractCategoryTableComponent {
      * @return Table
      */
     public Table build() {
-        Table table = new Table(numberOfColumns + 3);
-        table.setBorder(Border.NO_BORDER);
-        table.setWidth(UnitValue.createPercentValue(100));
+        List<List<CategoryParagraphComponent>> valuesColumnData = getValuesColumnData();
+        List<CategoryParagraphComponent> totalsColumnData = getTotalsColumnData();
+        List<CategoryParagraphComponent> categoryNamesColumnData = getCategoryNamesColumnData();
 
-        List<List<Paragraph>> valuesColumnData = getValuesColumnData();
-        List<Paragraph> totalsColumnData = getTotalsColumnData();
-        List<Paragraph> categoryNamesColumnData = getCategoryNamesColumnData();
-
-        // Print values column
-        for (List<Paragraph> p1 : valuesColumnData) {
-            table.addCell(getItemCell(getAmountCell(p1)));
+        CategoryTableComponent categoryTableComponent = new CategoryTableComponent();
+        for (List<CategoryParagraphComponent> paragraphs : valuesColumnData) {
+            categoryTableComponent.withColumnData(paragraphs);
         }
-
-        // Print total column
-        table.addCell(getItemCell(getAmountCell(totalsColumnData)));
-
-        // Print category names column
-        table.addCell(getItemCell(getCategoryNamesCell(categoryNamesColumnData)));
-
-        return table;
+        if (printTotalsColumn) {
+            categoryTableComponent.withColumnData(totalsColumnData);
+        }
+        return categoryTableComponent
+                .withColumnData(categoryNamesColumnData)
+                .withRowColor1(new DeviceRgb(224, 224, 224))
+                .withRowColor2(new DeviceRgb(204, 229, 255))
+                .build();
     }
 
-    private List<List<Paragraph>> getValuesColumnData() {
-        List<List<Paragraph>> valuesColumnData = new ArrayList<>();
+    private List<List<CategoryParagraphComponent>> getValuesColumnData() {
+        List<List<CategoryParagraphComponent>> valuesColumnData = new ArrayList<>();
         int currentMonthOrYear = getLastMonthOrYear();
         for (int counter = currentMonthOrYear - numberOfColumns; counter <= currentMonthOrYear; counter++) {
             List<CategoryDto> categoryDtos = results.get(String.valueOf(counter));
@@ -136,15 +129,15 @@ public abstract class AbstractCategoryTableComponent {
                     sortedCategories.add(categoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst().orElse(null));
                 }
                 String title = getColumnTitle(sortedCategories);
-                List<Paragraph> paragraphs = getAmountCellParagraphs(title, sortedCategories);
+                List<CategoryParagraphComponent> paragraphs = getAmountParagraphs(title, sortedCategories);
                 valuesColumnData.add(paragraphs);
             }
         }
         return valuesColumnData;
     }
 
-    private List<Paragraph> getTotalsColumnData() {
-        List<Paragraph> totalsColumnData = new ArrayList<>();
+    private List<CategoryParagraphComponent> getTotalsColumnData() {
+        List<CategoryParagraphComponent> totalsColumnData = new ArrayList<>();
         if (printTotalsColumn) {
             List<CategoryDto> overallCategoryDtos = results.get(ExtremeSavingConstants.TOTAL_COLUMN);
             if (overallCategoryDtos != null) {
@@ -153,18 +146,18 @@ public abstract class AbstractCategoryTableComponent {
                     Optional<CategoryDto> optCategoryDto = overallCategoryDtos.stream().filter(categoryDto -> category.equals(categoryDto.getName())).findFirst();
                     overallSortedCategories.add(optCategoryDto.orElse(null));
                 }
-                totalsColumnData = getAmountCellParagraphs(ExtremeSavingConstants.TOTAL_COLUMN, overallSortedCategories);
+                totalsColumnData = getAmountParagraphs(ExtremeSavingConstants.TOTAL_COLUMN, overallSortedCategories);
             }
         }
         return totalsColumnData;
     }
 
-    private List<Paragraph> getCategoryNamesColumnData() {
-        List<Paragraph> paragraphs = new ArrayList<>();
+    private List<CategoryParagraphComponent> getCategoryNamesColumnData() {
+        List<CategoryParagraphComponent> paragraphs = new ArrayList<>();
 
         // Display column title
-        paragraphs.add(PdfUtils.getItemParagraph("Category", true, TextAlignment.LEFT));
-        paragraphs.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.LEFT));
+        paragraphs.add(new CategoryParagraphComponent("Category", true, TextAlignment.CENTER, false, null));
+        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
 
         // Display column category names
         int counter = 0;
@@ -175,15 +168,15 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 String trimmedCategoryName = categoryName.length() > displayMaxTextCharacters ? categoryName.substring(0, displayMaxTextCharacters - 3).trim() + "..." : categoryName;
-                paragraphs.add(PdfUtils.getItemParagraph(trimmedCategoryName));
+                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false));
             }
         }
 
         // Display column total-titles
-        paragraphs.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.CENTER));
-        paragraphs.add(PdfUtils.getItemParagraph("Total Items", true));
-        paragraphs.add(PdfUtils.getItemParagraph("Saving Ratio", true));
-        paragraphs.add(PdfUtils.getItemParagraph(ExtremeSavingConstants.TOTAL_COLUMN, true));
+        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
+        paragraphs.add(new CategoryParagraphComponent("Total Items", true, false, null));
+        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true, false, null));
+        paragraphs.add(new CategoryParagraphComponent(ExtremeSavingConstants.TOTAL_COLUMN, true, false, null));
 
         return paragraphs;
     }
@@ -192,54 +185,8 @@ public abstract class AbstractCategoryTableComponent {
 
     abstract String getColumnTitle(final List<CategoryDto> sortedCategories);
 
-    protected Cell getItemCell(Cell amountCell) {
-        Table alignmentTable = new Table(1);
-        alignmentTable.setBorder(Border.NO_BORDER);
-        alignmentTable.setPaddingLeft(0);
-        alignmentTable.setMarginLeft(0);
-        alignmentTable.setPaddingRight(0);
-        alignmentTable.setMarginRight(0);
-        alignmentTable.addCell(amountCell);
-
-        Cell cell = new Cell();
-        cell.setBorder(Border.NO_BORDER);
-        cell.add(alignmentTable);
-        return cell;
-    }
-
-    protected Cell getCategoryNamesCell(List<Paragraph> paragraphs) {
-        Cell cell = new Cell();
-        cell.setBorder(Border.NO_BORDER);
-        cell.setWidth(650);
-        cell.setPaddingLeft(20);
-        cell.setMarginLeft(0);
-        cell.setPaddingRight(0);
-        cell.setMarginRight(0);
-
-        for (Paragraph paragraph : paragraphs) {
-            cell.add(paragraph);
-        }
-        return cell;
-    }
-
-    protected Cell getAmountCell(List<Paragraph> paragraphs) {
-        Cell cell = new Cell();
-        cell.setBorder(Border.NO_BORDER);
-        cell.setTextAlignment(TextAlignment.CENTER);
-        cell.setWidth(160);
-        cell.setPaddingLeft(0);
-        cell.setMarginLeft(0);
-        cell.setPaddingRight(0);
-        cell.setMarginRight(0);
-
-        for (Paragraph paragraph : paragraphs) {
-            cell.add(paragraph);
-        }
-        return cell;
-    }
-
-    protected List<Paragraph> getAmountCellParagraphs(String title, List<CategoryDto> results) {
-        List<Paragraph> paragraphs = new ArrayList<>();
+    protected List<CategoryParagraphComponent> getAmountParagraphs(String title, List<CategoryDto> results) {
+        List<CategoryParagraphComponent> paragraphs = new ArrayList<>();
 
         boolean hasData = !results.stream()
                 .filter(Objects::nonNull)
@@ -252,8 +199,8 @@ public abstract class AbstractCategoryTableComponent {
             results.remove(totalsCategory);
 
             // Display column title (usually the month or year)
-            paragraphs.add(PdfUtils.getItemParagraph(title, true, TextAlignment.CENTER));
-            paragraphs.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.CENTER));
+            paragraphs.add(new CategoryParagraphComponent(title, true, TextAlignment.CENTER, false, new DeviceRgb(0, 25, 51), new DeviceRgb(255, 255, 255)));
+            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
 
             // Display column category values
             int counter = 0;
@@ -263,17 +210,17 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 if (categoryDto == null) {
-                    paragraphs.add(PdfUtils.getItemParagraph("\n", false, TextAlignment.RIGHT));
+                    paragraphs.add(new CategoryParagraphComponent("\n", false, TextAlignment.RIGHT, true, null));
                 } else {
-                    paragraphs.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult())));
+                    paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true));
                 }
             }
 
             // Display column total values
-            paragraphs.add(PdfUtils.getItemParagraph("\n", true, TextAlignment.RIGHT));
-            paragraphs.add(PdfUtils.getItemParagraph(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems())));
-            paragraphs.add(PdfUtils.getItemParagraph(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio())));
-            paragraphs.add(PdfUtils.getItemParagraph(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true));
+            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, false, null));
+            paragraphs.add(new CategoryParagraphComponent(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems()), false, new DeviceRgb(204, 229, 255)));
+            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), false, new DeviceRgb(204, 229, 255)));
+            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, false, new DeviceRgb(204, 229, 255)));
         }
         return paragraphs;
     }

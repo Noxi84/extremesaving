@@ -29,7 +29,7 @@ import extremesaving.pdf.util.PdfUtils;
  */
 public class MonthItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 20;
+    private static final int DISPLAY_MAX_ITEMS = 12;
     private static final int DISPLAY_MAX_TEXT_CHARACTERS = 20;
     public static final int NUMBER_OF_MONTHS = 12;
 

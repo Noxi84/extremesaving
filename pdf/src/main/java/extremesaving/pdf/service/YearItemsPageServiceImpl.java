@@ -29,7 +29,7 @@ import extremesaving.pdf.util.PdfUtils;
  */
 public class YearItemsPageServiceImpl implements PdfPageService {
 
-    private static final int DISPLAY_MAX_ITEMS = 20;
+    private static final int DISPLAY_MAX_ITEMS = 12;
     private static final int TEXT_MAX_CHARACTERS = 20;
     public static final int NUMBER_OF_YEARS = 12;
 
