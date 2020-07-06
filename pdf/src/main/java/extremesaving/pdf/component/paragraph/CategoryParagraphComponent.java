@@ -34,8 +34,16 @@ public class CategoryParagraphComponent extends Paragraph {
     public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor) {
         this(text, bold, textAlignment, useRowColors, cellBackgroundColor, null);
     }
+
     public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor, Color textColor) {
+        this(text, bold, textAlignment, useRowColors, cellBackgroundColor, textColor, 0);
+    }
+
+    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor, Color textColor, Integer paddingRight) {
         super(text);
+        if (paddingRight != null) {
+            setPaddingRight(paddingRight);
+        }
         if (cellBackgroundColor != null) {
             setCellBackgroundColor(cellBackgroundColor);
         }

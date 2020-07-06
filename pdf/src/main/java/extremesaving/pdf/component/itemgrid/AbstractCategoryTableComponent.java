@@ -100,19 +100,19 @@ public abstract class AbstractCategoryTableComponent {
      * @return Table
      */
     public Table build() {
-        List<List<CategoryParagraphComponent>> valuesColumnData = getValuesColumnData();
-        List<CategoryParagraphComponent> totalsColumnData = getTotalsColumnData();
         List<CategoryParagraphComponent> categoryNamesColumnData = getCategoryNamesColumnData();
+        List<CategoryParagraphComponent> totalsColumnData = getTotalsColumnData();
+        List<List<CategoryParagraphComponent>> valuesColumnData = getValuesColumnData();
 
-        CategoryTableComponent categoryTableComponent = new CategoryTableComponent();
-        for (List<CategoryParagraphComponent> paragraphs : valuesColumnData) {
-            categoryTableComponent.withColumnData(paragraphs);
-        }
+        CategoryTableComponent categoryTableComponent = new CategoryTableComponent()
+                .addColumnData(categoryNamesColumnData);
         if (printTotalsColumn) {
-            categoryTableComponent.withColumnData(totalsColumnData);
+            categoryTableComponent.addColumnData(totalsColumnData);
+        }
+        for (List<CategoryParagraphComponent> paragraphs : valuesColumnData) {
+            categoryTableComponent.addColumnData(paragraphs);
         }
         return categoryTableComponent
-                .withColumnData(categoryNamesColumnData)
                 .withRowColor1(new DeviceRgb(224, 224, 224))
                 .withRowColor2(new DeviceRgb(204, 229, 255))
                 .build();
@@ -156,7 +156,7 @@ public abstract class AbstractCategoryTableComponent {
         List<CategoryParagraphComponent> paragraphs = new ArrayList<>();
 
         // Display column title
-        paragraphs.add(new CategoryParagraphComponent("Category", true, TextAlignment.CENTER, false, null));
+        paragraphs.add(new CategoryParagraphComponent("", true, TextAlignment.CENTER, false, null));
         paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
 
         // Display column category names
@@ -168,15 +168,15 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 String trimmedCategoryName = categoryName.length() > displayMaxTextCharacters ? categoryName.substring(0, displayMaxTextCharacters - 3).trim() + "..." : categoryName;
-                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false));
+                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false,  TextAlignment.RIGHT, false, null, null, 20));
             }
         }
 
         // Display column total-titles
         paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
-        paragraphs.add(new CategoryParagraphComponent("Total Items", true, false, null));
-        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true, false, null));
-        paragraphs.add(new CategoryParagraphComponent(ExtremeSavingConstants.TOTAL_COLUMN, true, false, null));
+        paragraphs.add(new CategoryParagraphComponent("Total Items", true, TextAlignment.RIGHT,false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true,  TextAlignment.RIGHT,false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent(ExtremeSavingConstants.TOTAL_COLUMN, true,  TextAlignment.RIGHT,false, null, null, 20));
 
         return paragraphs;
     }

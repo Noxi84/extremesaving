@@ -28,7 +28,7 @@ public class CategoryTableComponent {
         return this;
     }
 
-    public CategoryTableComponent withColumnData(List<CategoryParagraphComponent> paragraphs) {
+    public CategoryTableComponent addColumnData(List<CategoryParagraphComponent> paragraphs) {
         columnsData.add(paragraphs);
         return this;
     }
