@@ -1,6 +1,7 @@
 package extremesaving.pdf.component.itemgrid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -133,6 +134,7 @@ public abstract class AbstractCategoryTableComponent {
                 valuesColumnData.add(paragraphs);
             }
         }
+        Collections.reverse(valuesColumnData);
         return valuesColumnData;
     }
 
