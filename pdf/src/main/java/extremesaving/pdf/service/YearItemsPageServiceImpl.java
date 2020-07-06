@@ -3,6 +3,7 @@ package extremesaving.pdf.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import com.itextpdf.layout.property.TextAlignment;
 
 import extremesaving.common.ExtremeSavingConstants;
 import extremesaving.common.util.DateUtils;
+import extremesaving.common.util.NumberUtils;
 import extremesaving.data.dto.CategoryDto;
 import extremesaving.data.dto.DataDto;
 import extremesaving.data.facade.CategoryFacade;
@@ -105,14 +107,26 @@ public class YearItemsPageServiceImpl implements PdfPageService {
         cal.set(Calendar.YEAR, lastYear);
 
         for (int yearCounter = cal.get(Calendar.YEAR); yearCounter > cal.get(Calendar.YEAR) - NUMBER_OF_YEARS; yearCounter--) {
-            List<String> categories = categoriesPerYear.get(String.valueOf(yearCounter))
+            List<String> incomeCategories = categoriesPerYear.get(String.valueOf(yearCounter))
                     .stream()
                     .filter(categoryDto -> !categoryDto.getTotalResults().getData().isEmpty())
+                    .filter(categoryDto -> NumberUtils.isIncome(categoryDto.getTotalResults().getResult()))
                     .sorted((o1, o2) -> o2.getTotalResults().getResult().compareTo(o1.getTotalResults().getResult()))
                     .map(CategoryDto::getName)
                     .filter(categoryName -> !categoryNames.contains(categoryName))
                     .collect(Collectors.toList());
-            categoryNames.addAll(categories);
+
+            List<String> expenseCategories = categoriesPerYear.get(String.valueOf(yearCounter))
+                    .stream()
+                    .filter(categoryDto -> !categoryDto.getTotalResults().getData().isEmpty())
+                    .filter(categoryDto -> NumberUtils.isExpense(categoryDto.getTotalResults().getResult()))
+                    .sorted(Comparator.comparing(o2 -> o2.getTotalResults().getResult()))
+                    .map(CategoryDto::getName)
+                    .filter(categoryName -> !categoryNames.contains(categoryName))
+                    .collect(Collectors.toList());
+
+            categoryNames.addAll(incomeCategories);
+            categoryNames.addAll(expenseCategories);
         }
 
         categoryNames.remove(ExtremeSavingConstants.TOTAL_COLUMN);
