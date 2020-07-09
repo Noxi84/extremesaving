@@ -113,10 +113,7 @@ public abstract class AbstractCategoryTableComponent {
         for (List<CategoryParagraphComponent> paragraphs : valuesColumnData) {
             categoryTableComponent.addColumnData(paragraphs);
         }
-        return categoryTableComponent
-                .withRowColor1(new DeviceRgb(224, 224, 224))
-                .withRowColor2(new DeviceRgb(204, 229, 255))
-                .build();
+        return categoryTableComponent.build();
     }
 
     private List<List<CategoryParagraphComponent>> getValuesColumnData() {

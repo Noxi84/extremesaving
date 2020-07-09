@@ -89,7 +89,6 @@ public class XYCardinalSplineRenderer extends XYLineAndShapeRenderer {
         double tension = 0.5;
         int segments = 16;
 
-        //      List<Point2D> result = Lists.newArrayList();
         List<Point2D> result = new ArrayList<>();
 
         for (int i = 1; i < pts.size() - 2; i++) {

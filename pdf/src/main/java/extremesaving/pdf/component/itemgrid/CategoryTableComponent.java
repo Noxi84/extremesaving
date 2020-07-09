@@ -15,18 +15,6 @@ import extremesaving.pdf.component.paragraph.CategoryParagraphComponent;
 public class CategoryTableComponent {
 
     private List<List<CategoryParagraphComponent>> columnsData = new ArrayList<>();
-    private Color rowColor1;
-    private Color rowColor2;
-
-    public CategoryTableComponent withRowColor1(Color rowColor1) {
-        this.rowColor1 = rowColor1;
-        return this;
-    }
-
-    public CategoryTableComponent withRowColor2(Color rowColor2) {
-        this.rowColor2 = rowColor2;
-        return this;
-    }
 
     public CategoryTableComponent addColumnData(List<CategoryParagraphComponent> paragraphs) {
         columnsData.add(paragraphs);
