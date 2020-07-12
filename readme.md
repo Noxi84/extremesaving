@@ -4,9 +4,10 @@ Extreme-saving is program which generates a PDF-report based on your financial d
 
 ## Installation
 1) Download [ExtremeSaving.jar](https://github.com/Noxi84/extremesaving/blob/master/ExtremeSaving.jar) and copy it to a folder on your computer.
-2) Create a new file data.csv in the same folder. Add the headers and your financial data based on the example below.
-3) Start ExtremeSaving.jar. Linux users can use [startup-wrapper.sh](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.sh). 
-4) FinancialReport.pdf containing the financial report is now created in the same folder.
+2) Download [startup-wrapper.sh](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.sh) (Linux) or [startup-wrapper.bat](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.bat) (Windows) into the sample folder.
+3) Create a new file data.csv in the same folder. Add the headers and your financial data based on the example below.
+4) Run startup-wrapper.sh (Linux) or startup-wrapper.bat (Windows).
+5) FinancialReport.pdf containing the financial report is now created in the same folder.
 
 ## Configuration
 All data is read from a data.csv. The csv-content is separated by a comma-character. Lines can be commented out by placing a # in front of the line.
