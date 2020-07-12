@@ -2,6 +2,7 @@ package extremesaving.data;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -9,47 +10,56 @@ import org.junit.Test;
 
 public class DataGenerator {
 
+    private List<SampleCategory> categories = Arrays.asList(
+            new SampleCategory("Work", false, true, 1800, 2000, 12),
+            new SampleCategory("Taxes", true, false, 100, 500, 3),
+            new SampleCategory("Friends & Family", true, true, 2, 100, 20),
+            new SampleCategory("Garbage & Recycling", true, false, 15, 20, 4),
+            new SampleCategory("Rent", true, false, 500, 600, 12),
+            new SampleCategory("Electronics & Toys", true, false, 2, 500, 6),
+            new SampleCategory("Food & Drinks", true, false, 20, 25, 200),
+            new SampleCategory("Car & Gas", true, false, 25, 50, 30),
+            new SampleCategory("Entertainment", true, false, 2, 50, 20),
+            new SampleCategory("Internet/Phone/Cable", true, false, 60, 70, 12),
+            new SampleCategory("Electricity & Water", true, false, 2, 100, 12)
+    );
+
     @Test
     public void generate() {
         Calendar startDate = Calendar.getInstance();
-        startDate.set(2015, Calendar.JANUARY, 1);
+        startDate.set(2010, Calendar.JANUARY, 1);
         Calendar endDate = Calendar.getInstance();
+
+        int numberOfYears = endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR);
 
         List<String> csvLines = new ArrayList<>();
         csvLines.add("#date,category,value");
 
-        List<String> categories = new ArrayList<>();
-        categories.add("Work");
-        categories.add("Taxes");
-        categories.add("Friends & Family");
-        categories.add("Garbage & Recycling");
-        categories.add("Rent");
-        categories.add("Electronics & Toys");
-        categories.add("Food & Drinks");
-        categories.add("Entertainment");
-        categories.add("Medic & Insurances");
-        categories.add("Internet/Phone/Cable");
-        categories.add("Electricity");
+        for (int startYear = 0; startYear < numberOfYears; startYear++) {
+            for (SampleCategory sampleCategory : categories) {
 
-        while (startDate.before(endDate)) {
+                Calendar randomDateInYear = Calendar.getInstance();
+                randomDateInYear.add(Calendar.YEAR, startYear * -1);
 
-            int categoriesToAdd = (int) getRandom(1, categories.size() - 1);
-            for (int i = 0; i < categoriesToAdd; i++) {
-                int categoryIndex = (int) getRandom(0, categories.size() - 1);
-                String category = categories.get(categoryIndex);
-                boolean income = getRandom(0, 100) > 90;
-                String value;
-                if (income) {
-                    value = (int) getRandom(1800, 2500) + "." + (int) getRandom(0, 99);
-                } else {
-                    value = "-" + (int) getRandom(0, 50) + "." + (int) getRandom(0, 99);
+                for (int i = 0; i < sampleCategory.getOccurrencesPerYear(); i++) {
+                    randomDateInYear.set(Calendar.DAY_OF_MONTH, (int) getRandom(0, 27));
+                    randomDateInYear.set(Calendar.MONTH, (int) getRandom(Calendar.JANUARY, Calendar.DECEMBER));
+
+                    String value = "";
+                    if (sampleCategory.isIncome() && sampleCategory.isExpense()) {
+                        if ((int) getRandom(0, 1) == 1) {
+                            value += "-";
+                        }
+                    } else if (sampleCategory.isExpense()) {
+                        value += "-";
+                    }
+
+                    value += (int) getRandom(sampleCategory.getMinAmount(), sampleCategory.getMaxAmount()) + "." + (int) getRandom(0, 99);
+
+                    String csvLine = new SimpleDateFormat("dd/MM/yyyy").format(randomDateInYear.getTime()) + "," + sampleCategory.getName() + "," + value;
+                    csvLines.add(csvLine);
                 }
-                String csvLine = new SimpleDateFormat("dd/MM/yyyy").format(startDate.getTime()) + "," + category + "," + value;
-                csvLines.add(csvLine);
             }
-
-            int daysToAdd = (int) getRandom(0, 10);
-            startDate.add(Calendar.DAY_OF_MONTH, daysToAdd);
         }
 
         for (String line : csvLines) {

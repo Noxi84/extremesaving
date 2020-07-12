@@ -3,7 +3,6 @@ package extremesaving.charts.builder;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Shape;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +15,6 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.util.ShapeUtilities;
 
 /**
  * Builder for the goal-line chart.
@@ -72,17 +70,21 @@ public class OverallLineChartBuilder {
         final XYCardinalSplineRenderer csRenderer = new XYCardinalSplineRenderer();
         csRenderer.setDrawOutlines(true);
 
-        // Series 1.
-        csRenderer.setSeriesShapesVisible(2, false);
-        csRenderer.setSeriesPaint(2, Color.red);
-
-        // Series 2.
-        csRenderer.setSeriesShapesVisible(0, false);
-        csRenderer.setSeriesPaint(0, Color.green);
-        // Series 3.
-
-        csRenderer.setSeriesShapesVisible(1, false);
-        csRenderer.setSeriesPaint(1, Color.blue);
+        int seriesCounter = 0;
+        if (historyResults.size() > 1) {
+            csRenderer.setSeriesShapesVisible(seriesCounter, false);
+            csRenderer.setSeriesPaint(seriesCounter, Color.blue);
+            seriesCounter++;
+        }
+        if (futureResults.size() > 1) {
+            csRenderer.setSeriesShapesVisible(seriesCounter, false);
+            csRenderer.setSeriesPaint(seriesCounter, Color.green);
+            seriesCounter++;
+        }
+        if (survivalResults.size() > 1) {
+            csRenderer.setSeriesShapesVisible(seriesCounter, false);
+            csRenderer.setSeriesPaint(seriesCounter, Color.red);
+        }
 
         XYPlot plot = (XYPlot) jFreeChart.getPlot();
         plot.setBackgroundPaint(Color.WHITE);
@@ -106,9 +108,15 @@ public class OverallLineChartBuilder {
 
     protected TimeSeriesCollection createDataset() {
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(getFutureSeries());
-        dataset.addSeries(getHistorySeries());
-        dataset.addSeries(getSurvivalSeries());
+        if (historyResults.size() > 1) {
+            dataset.addSeries(getHistorySeries());
+        }
+        if (futureResults.size() > 1) {
+            dataset.addSeries(getFutureSeries());
+        }
+        if (survivalResults.size() > 1) {
+            dataset.addSeries(getSurvivalSeries());
+        }
         return dataset;
     }
 

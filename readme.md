@@ -41,9 +41,9 @@ If you encounter a bug, you can send a message. Please attach your CSV-file to r
 ## Example FinancialReport.pdf
 [Download FinancialReport.pdf](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport.pdf)
 ___
-![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-001.jpg)
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport-1.jpg)
 ___
-![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/report-page-002.jpg)
+![Screenshot](https://github.com/Noxi84/extremesaving/blob/master/FinancialReport-2.jpg)
 ___
 ## Charts explanation
 ### Overall chart
