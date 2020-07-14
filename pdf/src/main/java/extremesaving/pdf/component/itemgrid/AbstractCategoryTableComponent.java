@@ -228,7 +228,7 @@ public abstract class AbstractCategoryTableComponent {
             paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), true, new DeviceRgb(224, 224, 224)));
 
             if (NumberUtils.isExpense(totalsCategory.getTotalResults().getResult())) {
-                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(224, 229, 224), new DeviceRgb(255, 102, 102)));
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(224, 224, 224), new DeviceRgb(255, 102, 102)));
             } else if (NumberUtils.isIncome(totalsCategory.getTotalResults().getResult())) {
                 paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(224, 224, 224), new DeviceRgb(0, 153, 76)));
             } else {
