@@ -4,7 +4,7 @@ Extreme-saving is program which generates a PDF-report based on your financial d
 
 ## Installation
 1) Download [ExtremeSaving.jar](https://github.com/Noxi84/extremesaving/blob/master/ExtremeSaving.jar) and copy it to a folder on your computer.
-2) Download [startup-wrapper.sh](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.sh) (Linux) or [startup-wrapper.bat](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.bat) (Windows) into the sample folder.
+2) Download [startup-wrapper.sh](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.sh) (Linux) or [startup-wrapper.bat](https://github.com/Noxi84/extremesaving/blob/master/startup-wrapper.bat) (Windows) into the same folder.
 3) Create a new file data.csv in the same folder. Add the headers and your financial data based on the example below.
 4) Run startup-wrapper.sh (Linux) or startup-wrapper.bat (Windows).
 5) FinancialReport.pdf containing the financial report is now created in the same folder.
@@ -15,9 +15,9 @@ The header must be present at the first line of the CSV-file: #date,category,val
 
 | CSV Header | Description | Example |
 | ---------- | ----------- | ------- |
-| date       | Date format is 'd/m/yyyy' | 5/1/2020 = 5 January 2020 | 
-| category   | Category name | Food & Drinks |
-| value      | Value format is '#.##'. Decimals are not mandatory | 12.53 |
+| date       | Date format is 'd/m/yyyy'. | 5/1/2020 = 5 January 2020 | 
+| category   | Name of the group or category. | Food & Drinks |
+| value      | Value format is '#.##'. Decimals are not mandatory. | 12.53 |
 
 ## Example data.csv
 [Download data.csv](https://github.com/Noxi84/extremesaving/blob/master/data.csv)
