@@ -16,30 +16,25 @@ public class CategoryParagraphComponent extends Paragraph {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CategoryParagraphComponent.class);
 
-    private boolean useRowColors;
     private Color cellBackgroundColor;
 
-    public CategoryParagraphComponent(String text, boolean useRowColors) {
-        this(text, false, null, useRowColors, null);
+    public CategoryParagraphComponent(String text) {
+        this(text, false, null, null);
     }
 
-    public CategoryParagraphComponent(String text, boolean useRowColors, Color cellBackgroundColor) {
-        this(text, false, null, useRowColors, cellBackgroundColor);
+    public CategoryParagraphComponent(String text, Color cellBackgroundColor) {
+        this(text, false, null, cellBackgroundColor);
     }
 
-    public CategoryParagraphComponent(String text, boolean bold, boolean useRowColors, Color cellBackgroundColor) {
-        this(text, bold, null, useRowColors, cellBackgroundColor);
+    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, Color cellBackgroundColor) {
+        this(text, bold, textAlignment, cellBackgroundColor, null);
     }
 
-    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor) {
-        this(text, bold, textAlignment, useRowColors, cellBackgroundColor, null);
+    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, Color cellBackgroundColor, Color textColor) {
+        this(text, bold, textAlignment, cellBackgroundColor, textColor, 0);
     }
 
-    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor, Color textColor) {
-        this(text, bold, textAlignment, useRowColors, cellBackgroundColor, textColor, 0);
-    }
-
-    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, boolean useRowColors, Color cellBackgroundColor, Color textColor, Integer paddingRight) {
+    public CategoryParagraphComponent(String text, boolean bold, TextAlignment textAlignment, Color cellBackgroundColor, Color textColor, Integer paddingRight) {
         super(text);
         if (paddingRight != null) {
             setPaddingRight(paddingRight);
@@ -63,15 +58,6 @@ public class CategoryParagraphComponent extends Paragraph {
         if (textAlignment != null) {
             setTextAlignment(textAlignment);
         }
-        setUseRowColors(useRowColors);
-    }
-
-    public boolean isUseRowColors() {
-        return useRowColors;
-    }
-
-    public void setUseRowColors(final boolean useRowColors) {
-        this.useRowColors = useRowColors;
     }
 
     public Color getCellBackgroundColor() {

@@ -52,23 +52,6 @@ public class CalculationServiceImpl implements CalculationService {
     private void enrichResultDto(ResultDto resultDto, Date date, BigDecimal value) {
         resultDto.setResult(resultDto.getResult().add(value));
         resultDto.setNumberOfItems(resultDto.getNumberOfItems() + 1);
-        if (resultDto.getHighestResult().compareTo(value) > 0) {
-            resultDto.setHighestResult(value);
-        }
-        if (NumberUtils.isExpense(value)) {
-            resultDto.setNumberOfExpenses(resultDto.getNumberOfExpenses() + 1);
-            resultDto.setExpenses(resultDto.getExpenses().add(value));
-            if (resultDto.getHighestExpense().compareTo(value) > 0) {
-                resultDto.setHighestExpense(value);
-            }
-        } else {
-            resultDto.setNumberOfIncomes(resultDto.getNumberOfIncomes() + 1);
-            resultDto.setIncomes(resultDto.getIncomes().add(value));
-            if (resultDto.getHighestIncome().compareTo(value) < 0) {
-                resultDto.setHighestIncome(value);
-            }
-        }
-
         if (resultDto.getFirstDate() == null || date.before(resultDto.getFirstDate())) {
             resultDto.setFirstDate(date);
         }

@@ -22,6 +22,12 @@ import extremesaving.pdf.component.paragraph.CategoryParagraphComponent;
  */
 public abstract class AbstractCategoryTableComponent {
 
+    private static final DeviceRgb TITLE_BACKGROUND_COLOR = new DeviceRgb(0, 25, 51);
+    private static final DeviceRgb TITLE_TEXT_COLOR = new DeviceRgb(255, 255, 255);
+    private static final DeviceRgb EXPENSE_TEXT_COLOR = new DeviceRgb(255, 102, 102);
+    private static final DeviceRgb INCOME_TEXT_COLOR = new DeviceRgb(0, 153, 76);
+    private static final DeviceRgb RESULT_BACKGROUND_COLOR = new DeviceRgb(224, 224, 224);
+
     Map<String, List<CategoryDto>> results;
     private int displayMaxItems;
     private int displayMaxTextCharacters;
@@ -156,8 +162,8 @@ public abstract class AbstractCategoryTableComponent {
         List<CategoryParagraphComponent> paragraphs = new ArrayList<>();
 
         // Display column title
-        paragraphs.add(new CategoryParagraphComponent("", true, TextAlignment.CENTER, false, null));
-        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
+        paragraphs.add(new CategoryParagraphComponent("", true, TextAlignment.CENTER, null));
+        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, null));
 
         // Display column category names
         int counter = 0;
@@ -168,15 +174,15 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 String trimmedCategoryName = categoryName.length() > displayMaxTextCharacters ? categoryName.substring(0, displayMaxTextCharacters - 3).trim() + "..." : categoryName;
-                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false, TextAlignment.RIGHT, false, null, null, 20));
+                paragraphs.add(new CategoryParagraphComponent(trimmedCategoryName, false, TextAlignment.RIGHT, null, null, 20));
             }
         }
 
         // Display column total-titles
-        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, false, null));
-        paragraphs.add(new CategoryParagraphComponent("# Items", true, TextAlignment.RIGHT, false, null, null, 20));
-        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true, TextAlignment.RIGHT, false, null, null, 20));
-        paragraphs.add(new CategoryParagraphComponent("Result", true, TextAlignment.RIGHT, false, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, null));
+        paragraphs.add(new CategoryParagraphComponent("# Items", true, TextAlignment.RIGHT, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("Saving Ratio", true, TextAlignment.RIGHT, null, null, 20));
+        paragraphs.add(new CategoryParagraphComponent("Result", true, TextAlignment.RIGHT, null, null, 20));
 
         return paragraphs;
     }
@@ -199,8 +205,8 @@ public abstract class AbstractCategoryTableComponent {
             results.remove(totalsCategory);
 
             // Display column title (usually the month or year)
-            paragraphs.add(new CategoryParagraphComponent(title, true, TextAlignment.CENTER, false, new DeviceRgb(0, 25, 51), new DeviceRgb(255, 255, 255)));
-            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, false, null));
+            paragraphs.add(new CategoryParagraphComponent(title, true, TextAlignment.CENTER, TITLE_BACKGROUND_COLOR, TITLE_TEXT_COLOR));
+            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.CENTER, null));
 
             // Display column category values
             int counter = 0;
@@ -210,29 +216,29 @@ public abstract class AbstractCategoryTableComponent {
                     break;
                 }
                 if (categoryDto == null) {
-                    paragraphs.add(new CategoryParagraphComponent("\n", false, TextAlignment.RIGHT, true, null));
+                    paragraphs.add(new CategoryParagraphComponent("\n", false, TextAlignment.RIGHT, null));
                 } else {
                     if (NumberUtils.isExpense(categoryDto.getTotalResults().getResult())) {
-                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, false, null, new DeviceRgb(255, 102, 102)));
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, null, EXPENSE_TEXT_COLOR));
                     } else if (NumberUtils.isIncome(categoryDto.getTotalResults().getResult())) {
-                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, false, null, new DeviceRgb(0, 153, 76)));
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), true, null, null, INCOME_TEXT_COLOR));
                     } else {
-                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), false, null));
+                        paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(categoryDto.getTotalResults().getResult()), null));
                     }
                 }
             }
 
             // Display column total values
-            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, false, null));
-            paragraphs.add(new CategoryParagraphComponent(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems()), true, new DeviceRgb(224, 224, 224)));
-            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), true, new DeviceRgb(224, 224, 224)));
+            paragraphs.add(new CategoryParagraphComponent("\n", true, TextAlignment.RIGHT, null));
+            paragraphs.add(new CategoryParagraphComponent(String.valueOf(totalsCategory.getTotalResults().getNumberOfItems()), RESULT_BACKGROUND_COLOR));
+            paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatPercentage(totalsCategory.getTotalResults().getSavingRatio()), RESULT_BACKGROUND_COLOR));
 
             if (NumberUtils.isExpense(totalsCategory.getTotalResults().getResult())) {
-                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(224, 224, 224), new DeviceRgb(255, 102, 102)));
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, RESULT_BACKGROUND_COLOR, EXPENSE_TEXT_COLOR));
             } else if (NumberUtils.isIncome(totalsCategory.getTotalResults().getResult())) {
-                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, false, new DeviceRgb(224, 224, 224), new DeviceRgb(0, 153, 76)));
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), true, null, RESULT_BACKGROUND_COLOR, INCOME_TEXT_COLOR));
             } else {
-                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), false, new DeviceRgb(224, 224, 224)));
+                paragraphs.add(new CategoryParagraphComponent(NumberUtils.formatNumber(totalsCategory.getTotalResults().getResult()), RESULT_BACKGROUND_COLOR));
             }
         }
         return paragraphs;

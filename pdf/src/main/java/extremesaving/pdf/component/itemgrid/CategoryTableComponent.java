@@ -44,7 +44,7 @@ public class CategoryTableComponent {
                     paragraph = paragraphs.get(rowNumber);
 
                 } else {
-                    paragraph = new CategoryParagraphComponent("\n", true);
+                    paragraph = new CategoryParagraphComponent("\n");
                 }
 
                 if (paragraph.getCellBackgroundColor() != null) {
