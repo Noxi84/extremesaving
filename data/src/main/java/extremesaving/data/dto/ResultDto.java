@@ -9,6 +9,7 @@ public class ResultDto {
 
     private Set<DataDto> data = new HashSet<>();
     private BigDecimal result = BigDecimal.ZERO;
+    private BigDecimal totalIncomes = BigDecimal.ZERO;
     private long numberOfItems = 0;
     private Date firstDate;
     private Date lastDate;
@@ -28,6 +29,14 @@ public class ResultDto {
 
     public void setResult(BigDecimal result) {
         this.result = result;
+    }
+
+    public BigDecimal getTotalIncomes() {
+        return totalIncomes;
+    }
+
+    public void setTotalIncomes(final BigDecimal totalIncomes) {
+        this.totalIncomes = totalIncomes;
     }
 
     public long getNumberOfItems() {
