@@ -55,9 +55,8 @@ public class MonthItemsPageServiceImpl implements PdfPageService {
 
         Map<String, List<CategoryDto>> monthResults = new HashMap<>();
 
-        Date lastDate = overallCategoryResults.stream().map(categoryDto -> categoryDto.getTotalResults().getLastDate()).max(Date::compareTo).get();
         Calendar lastDateCal = Calendar.getInstance();
-        lastDateCal.setTime(lastDate);
+        lastDateCal.setTime(new Date());
         int lastMonth = lastDateCal.get(Calendar.MONTH);
         int lastYear = lastDateCal.get(Calendar.YEAR);
 

@@ -27,7 +27,7 @@ public class MonthCategoryTableComponent extends AbstractCategoryTableComponent 
     @Override
     String getColumnTitle(final List<CategoryDto> sortedCategories) {
         List<CategoryDto> filteredCategories = sortedCategories.stream().filter(Objects::nonNull).filter(categoryDto -> categoryDto.getTotalResults() != null).collect(Collectors.toList());
-        if (filteredCategories.size() > 0) {
+        if (filteredCategories.size() > 1) {
             return "" + new SimpleDateFormat("MMM yyyy").format(filteredCategories.get(0).getTotalResults().getLastDate());
         }
         return "";

@@ -32,8 +32,7 @@ public class ChartDataServiceImpl implements ChartDataService {
     @Override
     public Map<Date, MiniResultDto> getMonthResults() {
         List<DataDto> dataDtos = dataFacade.findAll();
-        ResultDto resultDto = calculationFacade.getResults(dataDtos);
-        List<Date> lastMonths = DateUtils.getLastMonths(resultDto.getLastDate());
+        List<Date> lastMonths = DateUtils.getLastMonths(new Date());
         List<DataDto> filteredDataDtos = dataDtos.stream()
                 .filter(dataDto -> DateUtils.isEqualYearAndMonth(lastMonths, dataDto.getDate()))
                 .collect(Collectors.toList());
