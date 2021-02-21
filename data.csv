@@ -1,3311 +1,2373 @@
 #date,category,value
-02/12/2020,Work,1969.56
-12/05/2020,Work,1847.57
-16/04/2020,Work,1830.39
-24/03/2020,Work,1824.47
-01/04/2020,Work,1854.2
-15/12/2020,Work,1806.76
-17/09/2020,Work,1968.66
-16/07/2020,Work,1993.35
-15/08/2020,Work,1878.9
-12/01/2020,Work,1813.65
-23/12/2020,Work,1910.50
-05/09/2020,Work,1825.30
-06/03/2020,Taxes,-184.91
-25/01/2020,Taxes,-287.18
-25/07/2020,Taxes,-442.39
-10/02/2020,Friends & Family,35.23
-07/07/2020,Friends & Family,43.60
-06/09/2020,Friends & Family,58.49
-08/06/2020,Friends & Family,-65.65
-03/01/2020,Friends & Family,-44.93
-02/04/2020,Friends & Family,65.2
-03/01/2020,Friends & Family,-73.26
-19/12/2020,Friends & Family,38.97
-30/06/2020,Friends & Family,-93.14
-20/10/2020,Friends & Family,5.65
-18/01/2020,Friends & Family,-78.68
-12/04/2020,Friends & Family,72.6
-24/05/2020,Friends & Family,98.64
-25/12/2020,Friends & Family,97.35
-24/12/2020,Friends & Family,99.93
-19/12/2020,Friends & Family,15.20
-08/08/2020,Friends & Family,76.72
-06/08/2020,Friends & Family,-76.45
-23/04/2020,Friends & Family,96.95
-01/01/2020,Friends & Family,-45.82
-20/08/2020,Garbage & Recycling,-15.52
-09/10/2020,Garbage & Recycling,-20.8
-18/05/2020,Garbage & Recycling,-20.53
-23/12/2020,Garbage & Recycling,-16.48
-27/07/2020,Rent,-560.34
-18/06/2020,Rent,-528.20
-06/06/2020,Rent,-565.20
-09/06/2020,Rent,-565.49
-07/01/2020,Rent,-544.50
-27/10/2020,Rent,-595.18
-31/10/2020,Rent,-556.84
-06/06/2020,Rent,-539.33
-12/08/2020,Rent,-541.51
-05/03/2020,Rent,-573.65
-11/04/2020,Rent,-532.67
-02/11/2020,Rent,-505.22
-13/03/2020,Electronics & Toys,-265.31
-02/05/2020,Electronics & Toys,-493.35
-08/08/2020,Electronics & Toys,-445.65
-22/09/2020,Electronics & Toys,-69.89
-05/12/2020,Electronics & Toys,-114.60
-05/04/2020,Electronics & Toys,-436.21
-21/12/2020,Food & Drinks,-23.46
-03/11/2020,Food & Drinks,-25.58
-25/11/2020,Food & Drinks,-25.2
-20/04/2020,Food & Drinks,-22.90
-09/10/2020,Food & Drinks,-25.59
-02/11/2020,Food & Drinks,-25.75
-20/05/2020,Food & Drinks,-23.76
-04/06/2020,Food & Drinks,-23.38
-23/01/2020,Food & Drinks,-20.95
-25/12/2020,Food & Drinks,-20.8
-17/05/2020,Food & Drinks,-21.90
-01/08/2020,Food & Drinks,-21.93
-17/06/2020,Food & Drinks,-23.72
-21/02/2020,Food & Drinks,-21.14
-12/08/2020,Food & Drinks,-23.26
-10/03/2020,Food & Drinks,-22.14
-12/05/2020,Food & Drinks,-24.75
-25/08/2020,Food & Drinks,-25.38
-11/12/2020,Food & Drinks,-23.5
-02/02/2020,Food & Drinks,-25.45
-22/10/2020,Food & Drinks,-22.4
-22/03/2020,Food & Drinks,-24.83
-16/08/2020,Food & Drinks,-24.83
-09/01/2020,Food & Drinks,-20.63
-23/12/2020,Food & Drinks,-20.91
-12/05/2020,Food & Drinks,-20.94
-04/05/2020,Food & Drinks,-20.44
-23/07/2020,Food & Drinks,-22.74
-17/06/2020,Food & Drinks,-21.23
-23/05/2020,Food & Drinks,-22.36
-07/07/2020,Food & Drinks,-21.20
-19/02/2020,Food & Drinks,-23.15
-03/12/2020,Food & Drinks,-20.28
-19/05/2020,Food & Drinks,-23.75
-20/08/2020,Food & Drinks,-20.5
-19/01/2020,Food & Drinks,-20.96
-18/07/2020,Food & Drinks,-24.71
-27/06/2020,Food & Drinks,-25.45
-19/06/2020,Food & Drinks,-20.98
-27/03/2020,Food & Drinks,-20.46
-22/04/2020,Food & Drinks,-21.15
-01/02/2020,Food & Drinks,-25.39
-19/05/2020,Food & Drinks,-25.38
-26/04/2020,Food & Drinks,-24.4
-21/12/2020,Food & Drinks,-24.88
-14/12/2020,Food & Drinks,-23.65
-22/07/2020,Food & Drinks,-25.71
-24/10/2020,Food & Drinks,-25.16
-17/08/2020,Food & Drinks,-22.16
-16/05/2020,Food & Drinks,-21.36
-14/02/2020,Food & Drinks,-24.10
-16/07/2020,Food & Drinks,-25.74
-14/05/2020,Food & Drinks,-23.66
-05/03/2020,Food & Drinks,-21.29
-03/03/2020,Food & Drinks,-22.21
-21/07/2020,Food & Drinks,-22.55
-24/12/2020,Food & Drinks,-25.46
-21/05/2020,Food & Drinks,-20.64
-06/12/2020,Food & Drinks,-23.7
-15/10/2020,Food & Drinks,-20.9
-23/12/2020,Food & Drinks,-25.26
-14/09/2020,Food & Drinks,-24.65
-19/12/2020,Food & Drinks,-22.17
-11/11/2020,Food & Drinks,-23.50
-14/02/2020,Food & Drinks,-25.7
-16/06/2020,Food & Drinks,-22.42
-20/02/2020,Food & Drinks,-22.52
-24/10/2020,Food & Drinks,-21.92
-07/08/2020,Food & Drinks,-25.18
-15/04/2020,Food & Drinks,-22.41
-12/04/2020,Food & Drinks,-25.97
-25/12/2020,Food & Drinks,-24.81
-29/02/2020,Food & Drinks,-21.55
-23/07/2020,Food & Drinks,-24.25
-04/10/2020,Food & Drinks,-25.48
-13/09/2020,Food & Drinks,-20.81
-23/07/2020,Food & Drinks,-23.50
-18/10/2020,Food & Drinks,-24.28
-21/02/2020,Food & Drinks,-23.74
-23/11/2020,Food & Drinks,-23.58
-02/03/2020,Food & Drinks,-25.88
-16/06/2020,Food & Drinks,-21.27
-18/08/2020,Food & Drinks,-25.55
-22/10/2020,Food & Drinks,-25.12
-27/10/2020,Food & Drinks,-22.41
-21/06/2020,Food & Drinks,-21.96
-10/12/2020,Food & Drinks,-22.75
-24/01/2020,Food & Drinks,-24.5
-23/12/2020,Food & Drinks,-25.63
-26/08/2020,Food & Drinks,-24.78
-04/04/2020,Food & Drinks,-23.81
-03/09/2020,Food & Drinks,-20.43
-24/02/2020,Food & Drinks,-25.95
-21/07/2020,Food & Drinks,-21.32
-06/04/2020,Food & Drinks,-21.95
-09/10/2020,Food & Drinks,-20.53
-06/12/2020,Food & Drinks,-21.33
-05/01/2020,Food & Drinks,-24.6
-23/05/2020,Food & Drinks,-22.2
-18/06/2020,Food & Drinks,-25.11
-22/06/2020,Food & Drinks,-25.5
-02/10/2020,Food & Drinks,-25.81
-26/10/2020,Food & Drinks,-23.81
-09/05/2020,Food & Drinks,-24.66
-15/10/2020,Food & Drinks,-21.12
-26/10/2020,Food & Drinks,-24.40
-02/06/2020,Food & Drinks,-24.14
-09/04/2020,Food & Drinks,-24.17
-03/03/2020,Food & Drinks,-23.79
-19/08/2020,Food & Drinks,-24.13
-10/03/2020,Food & Drinks,-21.41
-23/11/2020,Food & Drinks,-20.88
-10/09/2020,Food & Drinks,-20.67
-20/02/2020,Food & Drinks,-24.42
-23/08/2020,Food & Drinks,-25.97
-15/01/2020,Food & Drinks,-23.44
-26/09/2020,Food & Drinks,-22.95
-03/10/2020,Food & Drinks,-20.20
-07/04/2020,Food & Drinks,-24.79
-04/02/2020,Food & Drinks,-22.21
-20/07/2020,Food & Drinks,-24.29
-21/05/2020,Food & Drinks,-20.59
-23/01/2020,Food & Drinks,-23.13
-08/08/2020,Food & Drinks,-24.87
-19/09/2020,Food & Drinks,-21.74
-01/02/2020,Food & Drinks,-22.27
-15/07/2020,Food & Drinks,-23.47
-21/11/2020,Food & Drinks,-24.19
-09/05/2020,Food & Drinks,-20.34
-01/10/2020,Food & Drinks,-24.9
-11/10/2020,Food & Drinks,-21.31
-12/12/2020,Food & Drinks,-23.15
-11/02/2020,Food & Drinks,-22.83
-21/08/2020,Food & Drinks,-20.42
-11/10/2020,Food & Drinks,-20.37
-05/12/2020,Food & Drinks,-23.15
-11/07/2020,Food & Drinks,-20.90
-13/03/2020,Food & Drinks,-21.79
-09/11/2020,Food & Drinks,-24.65
-12/09/2020,Food & Drinks,-23.63
-16/06/2020,Food & Drinks,-23.65
-05/01/2020,Food & Drinks,-21.18
-02/12/2020,Food & Drinks,-22.82
-04/04/2020,Food & Drinks,-22.71
-08/05/2020,Food & Drinks,-23.62
-14/10/2020,Food & Drinks,-23.61
-03/02/2020,Food & Drinks,-25.52
-01/02/2020,Food & Drinks,-21.36
-01/11/2020,Food & Drinks,-23.89
-02/02/2020,Food & Drinks,-25.46
-12/01/2020,Food & Drinks,-20.95
-06/06/2020,Food & Drinks,-20.48
-24/12/2020,Food & Drinks,-23.89
-26/05/2020,Food & Drinks,-23.3
-10/12/2020,Food & Drinks,-24.42
-12/10/2020,Food & Drinks,-22.52
-12/10/2020,Food & Drinks,-23.24
-07/10/2020,Food & Drinks,-25.79
-05/06/2020,Food & Drinks,-23.21
-09/05/2020,Food & Drinks,-23.8
-18/03/2020,Food & Drinks,-21.25
-23/03/2020,Food & Drinks,-24.93
-13/03/2020,Food & Drinks,-22.25
-17/02/2020,Food & Drinks,-23.98
-11/03/2020,Food & Drinks,-20.48
-10/12/2020,Food & Drinks,-21.65
-05/06/2020,Food & Drinks,-23.27
-26/12/2020,Food & Drinks,-25.35
-16/12/2020,Food & Drinks,-21.0
-26/03/2020,Food & Drinks,-23.62
-16/06/2020,Food & Drinks,-23.71
-26/01/2020,Food & Drinks,-24.20
-20/03/2020,Food & Drinks,-21.69
-22/04/2020,Food & Drinks,-21.24
-24/12/2020,Food & Drinks,-22.6
-30/06/2020,Food & Drinks,-25.90
-25/02/2020,Food & Drinks,-20.14
-02/02/2020,Food & Drinks,-20.12
-19/12/2020,Food & Drinks,-21.3
-27/05/2020,Food & Drinks,-24.32
-20/05/2020,Food & Drinks,-22.78
-22/02/2020,Food & Drinks,-23.32
-05/07/2020,Food & Drinks,-25.11
-20/02/2020,Food & Drinks,-25.78
-04/08/2020,Food & Drinks,-21.47
-31/01/2020,Food & Drinks,-25.77
-06/12/2020,Food & Drinks,-22.94
-17/04/2020,Food & Drinks,-23.57
-09/01/2020,Food & Drinks,-22.30
-25/01/2020,Food & Drinks,-25.48
-20/07/2020,Food & Drinks,-25.14
-01/02/2020,Food & Drinks,-25.49
-18/07/2020,Food & Drinks,-21.0
-11/06/2020,Food & Drinks,-24.98
-16/11/2020,Food & Drinks,-25.87
-11/02/2020,Food & Drinks,-21.80
-19/06/2020,Food & Drinks,-23.42
-15/06/2020,Food & Drinks,-20.49
-20/10/2020,Food & Drinks,-24.89
-19/05/2020,Food & Drinks,-25.24
-02/05/2020,Car & Gas,-42.63
-07/03/2020,Car & Gas,-33.30
-06/11/2020,Car & Gas,-26.40
-03/08/2020,Car & Gas,-40.45
-19/02/2020,Car & Gas,-48.20
-01/04/2020,Car & Gas,-43.99
-31/01/2020,Car & Gas,-44.22
-11/12/2020,Car & Gas,-31.44
-12/04/2020,Car & Gas,-48.99
-05/04/2020,Car & Gas,-41.72
-18/01/2020,Car & Gas,-28.96
-15/11/2020,Car & Gas,-32.57
-11/05/2020,Car & Gas,-41.14
-18/06/2020,Car & Gas,-30.45
-15/11/2020,Car & Gas,-40.40
-12/02/2020,Car & Gas,-30.41
-26/09/2020,Car & Gas,-34.63
-12/03/2020,Car & Gas,-49.24
-01/03/2020,Car & Gas,-39.84
-20/01/2020,Car & Gas,-50.23
-19/07/2020,Car & Gas,-34.94
-27/06/2020,Car & Gas,-39.35
-14/03/2020,Car & Gas,-33.74
-04/05/2020,Car & Gas,-47.37
-17/07/2020,Car & Gas,-40.38
-21/09/2020,Car & Gas,-35.62
-23/07/2020,Car & Gas,-34.32
-04/03/2020,Car & Gas,-32.14
-09/01/2020,Car & Gas,-50.49
-22/12/2020,Car & Gas,-28.53
-22/11/2020,Entertainment,-10.39
-03/10/2020,Entertainment,-47.72
-25/01/2020,Entertainment,-42.4
-20/10/2020,Entertainment,-16.50
-16/12/2020,Entertainment,-40.18
-14/02/2020,Entertainment,-50.51
-09/12/2020,Entertainment,-33.19
-18/10/2020,Entertainment,-38.97
-10/08/2020,Entertainment,-43.44
-05/01/2020,Entertainment,-43.50
-11/02/2020,Entertainment,-19.22
-09/05/2020,Entertainment,-6.66
-09/03/2020,Entertainment,-10.42
-08/02/2020,Entertainment,-35.12
-06/06/2020,Entertainment,-40.43
-09/08/2020,Entertainment,-7.63
-03/05/2020,Entertainment,-6.25
-05/11/2020,Entertainment,-29.11
-02/03/2020,Entertainment,-23.54
-18/03/2020,Entertainment,-8.56
-27/01/2020,Internet/Phone/Cable,-60.15
-04/10/2020,Internet/Phone/Cable,-64.77
-26/11/2020,Internet/Phone/Cable,-68.38
-01/12/2020,Internet/Phone/Cable,-63.71
-27/09/2020,Internet/Phone/Cable,-63.2
-09/10/2020,Internet/Phone/Cable,-65.34
-16/06/2020,Internet/Phone/Cable,-64.99
-27/07/2020,Internet/Phone/Cable,-60.20
-22/04/2020,Internet/Phone/Cable,-67.88
-01/06/2020,Internet/Phone/Cable,-70.80
-24/01/2020,Internet/Phone/Cable,-63.1
-05/12/2020,Internet/Phone/Cable,-69.99
-07/10/2020,Electricity & Water,-97.67
-12/07/2020,Electricity & Water,-66.61
-31/12/2019,Electricity & Water,-83.58
-30/04/2019,Electricity & Water,-11.10
-19/11/2019,Electricity & Water,-41.92
-24/10/2019,Electricity & Water,-91.3
-27/07/2019,Electricity & Water,-95.36
-06/12/2019,Electricity & Water,-61.56
-01/10/2019,Electricity & Water,-22.84
-02/01/2019,Electricity & Water,-100.39
-16/03/2019,Electricity & Water,-37.24
-13/01/2019,Electricity & Water,-8.64
-28/02/2019,Work,1967.12
-10/05/2019,Work,1866.82
-07/05/2019,Work,1917.5
-21/03/2019,Work,1819.75
-07/04/2019,Work,1993.30
-25/02/2019,Work,1839.3
-26/01/2019,Work,1864.98
-23/01/2019,Work,1819.63
-07/12/2019,Work,1969.80
-06/03/2019,Work,1885.49
-20/03/2019,Work,1883.6
-02/05/2019,Work,1876.28
-10/01/2019,Taxes,-277.50
-15/07/2019,Taxes,-317.70
-08/10/2019,Taxes,-450.26
-09/08/2019,Friends & Family,-9.77
-22/12/2019,Friends & Family,-26.30
-24/11/2019,Friends & Family,17.45
-20/09/2019,Friends & Family,69.68
-03/12/2019,Friends & Family,41.57
-21/01/2019,Friends & Family,-39.36
-09/08/2019,Friends & Family,56.67
-06/05/2019,Friends & Family,-5.87
-04/10/2019,Friends & Family,-23.61
-13/06/2019,Friends & Family,44.63
-15/01/2019,Friends & Family,-57.27
-15/07/2019,Friends & Family,98.62
-27/12/2019,Friends & Family,-76.43
-01/12/2019,Friends & Family,-99.64
-02/06/2019,Friends & Family,42.13
-08/06/2019,Friends & Family,28.37
-04/05/2019,Friends & Family,81.97
-05/12/2019,Friends & Family,57.52
-10/10/2019,Friends & Family,5.83
-07/03/2019,Friends & Family,-46.5
-17/07/2019,Garbage & Recycling,-18.61
-22/09/2019,Garbage & Recycling,-17.75
-19/02/2019,Garbage & Recycling,-15.60
-19/11/2019,Garbage & Recycling,-17.9
-26/12/2019,Rent,-541.19
-03/05/2019,Rent,-506.40
-06/12/2019,Rent,-571.45
-06/04/2019,Rent,-588.55
-11/01/2019,Rent,-542.22
-25/03/2019,Rent,-550.76
-15/12/2019,Rent,-516.90
-04/07/2019,Rent,-571.3
-19/07/2019,Rent,-554.2
-24/04/2019,Rent,-588.47
-25/09/2019,Rent,-562.78
-23/11/2019,Rent,-549.20
-11/09/2019,Electronics & Toys,-111.64
-14/12/2019,Electronics & Toys,-407.82
-24/08/2019,Electronics & Toys,-35.57
-27/06/2019,Electronics & Toys,-44.47
-14/12/2019,Electronics & Toys,-262.77
-25/11/2019,Electronics & Toys,-476.86
-22/05/2019,Food & Drinks,-21.80
-14/07/2019,Food & Drinks,-25.10
-19/03/2019,Food & Drinks,-23.43
-31/05/2019,Food & Drinks,-23.94
-18/03/2019,Food & Drinks,-22.69
-31/05/2019,Food & Drinks,-21.88
-27/04/2019,Food & Drinks,-20.1
-07/03/2019,Food & Drinks,-22.26
-15/10/2019,Food & Drinks,-25.29
-22/01/2019,Food & Drinks,-24.17
-26/10/2019,Food & Drinks,-24.28
-15/07/2019,Food & Drinks,-21.95
-18/11/2019,Food & Drinks,-25.83
-25/09/2019,Food & Drinks,-25.57
-22/01/2019,Food & Drinks,-23.63
-18/05/2019,Food & Drinks,-23.7
-16/08/2019,Food & Drinks,-24.63
-07/09/2019,Food & Drinks,-23.94
-01/05/2019,Food & Drinks,-22.27
-03/08/2019,Food & Drinks,-22.14
-14/09/2019,Food & Drinks,-21.13
-26/11/2019,Food & Drinks,-25.7
-08/01/2019,Food & Drinks,-23.73
-09/07/2019,Food & Drinks,-22.68
-17/02/2019,Food & Drinks,-22.51
-19/01/2019,Food & Drinks,-22.63
-03/09/2019,Food & Drinks,-24.27
-08/06/2019,Food & Drinks,-21.14
-31/07/2019,Food & Drinks,-24.52
-16/07/2019,Food & Drinks,-23.84
-22/05/2019,Food & Drinks,-22.64
-11/03/2019,Food & Drinks,-20.95
-14/12/2019,Food & Drinks,-22.77
-20/12/2019,Food & Drinks,-23.42
-15/04/2019,Food & Drinks,-23.68
-01/08/2019,Food & Drinks,-23.98
-12/11/2019,Food & Drinks,-22.28
-01/07/2019,Food & Drinks,-23.20
-17/04/2019,Food & Drinks,-24.32
-05/04/2019,Food & Drinks,-20.97
-13/10/2019,Food & Drinks,-22.55
-16/10/2019,Food & Drinks,-23.4
-13/09/2019,Food & Drinks,-25.39
-23/11/2019,Food & Drinks,-20.52
-13/11/2019,Food & Drinks,-20.78
-11/03/2019,Food & Drinks,-23.46
-01/11/2019,Food & Drinks,-25.89
-04/01/2019,Food & Drinks,-25.0
-10/08/2019,Food & Drinks,-22.72
-03/09/2019,Food & Drinks,-25.53
-15/11/2019,Food & Drinks,-21.98
-26/04/2019,Food & Drinks,-22.1
-02/05/2019,Food & Drinks,-22.55
-08/03/2019,Food & Drinks,-21.42
-15/09/2019,Food & Drinks,-23.48
-16/11/2019,Food & Drinks,-25.76
-10/10/2019,Food & Drinks,-20.49
-03/07/2019,Food & Drinks,-25.32
-24/07/2019,Food & Drinks,-20.16
-02/07/2019,Food & Drinks,-21.0
-23/04/2019,Food & Drinks,-24.46
-30/09/2019,Food & Drinks,-25.97
-14/07/2019,Food & Drinks,-22.34
-31/05/2019,Food & Drinks,-20.89
-23/12/2019,Food & Drinks,-21.33
-20/12/2019,Food & Drinks,-23.52
-01/07/2019,Food & Drinks,-20.51
-05/05/2019,Food & Drinks,-23.41
-11/12/2019,Food & Drinks,-22.34
-09/10/2019,Food & Drinks,-23.7
-27/08/2019,Food & Drinks,-20.13
-17/05/2019,Food & Drinks,-20.70
-09/06/2019,Food & Drinks,-22.10
-10/03/2019,Food & Drinks,-21.48
-21/07/2019,Food & Drinks,-21.43
-18/09/2019,Food & Drinks,-23.94
-06/04/2019,Food & Drinks,-20.69
-06/01/2019,Food & Drinks,-20.91
-17/07/2019,Food & Drinks,-23.51
-25/07/2019,Food & Drinks,-23.16
-07/10/2019,Food & Drinks,-20.44
-18/01/2019,Food & Drinks,-23.58
-08/08/2019,Food & Drinks,-24.33
-10/10/2019,Food & Drinks,-25.63
-16/10/2019,Food & Drinks,-21.72
-09/10/2019,Food & Drinks,-23.33
-05/01/2019,Food & Drinks,-23.1
-21/02/2019,Food & Drinks,-25.13
-03/06/2019,Food & Drinks,-24.44
-21/02/2019,Food & Drinks,-25.31
-20/11/2019,Food & Drinks,-24.10
-18/02/2019,Food & Drinks,-20.78
-23/04/2019,Food & Drinks,-23.61
-26/10/2019,Food & Drinks,-23.52
-31/05/2019,Food & Drinks,-21.8
-16/10/2019,Food & Drinks,-21.86
-19/03/2019,Food & Drinks,-20.52
-23/05/2019,Food & Drinks,-21.52
-22/04/2019,Food & Drinks,-23.83
-26/10/2019,Food & Drinks,-25.4
-25/07/2019,Food & Drinks,-24.4
-03/02/2019,Food & Drinks,-25.90
-20/02/2019,Food & Drinks,-21.42
-22/02/2019,Food & Drinks,-21.71
-27/02/2019,Food & Drinks,-25.56
-25/10/2019,Food & Drinks,-22.1
-18/09/2019,Food & Drinks,-21.75
-21/10/2019,Food & Drinks,-20.74
-31/08/2019,Food & Drinks,-23.98
-01/11/2019,Food & Drinks,-23.37
-14/03/2019,Food & Drinks,-24.58
-15/05/2019,Food & Drinks,-20.19
-19/02/2019,Food & Drinks,-25.35
-24/01/2019,Food & Drinks,-23.35
-07/07/2019,Food & Drinks,-22.43
-10/12/2019,Food & Drinks,-25.58
-19/06/2019,Food & Drinks,-22.65
-23/06/2019,Food & Drinks,-20.65
-06/08/2019,Food & Drinks,-21.80
-18/12/2019,Food & Drinks,-24.12
-21/04/2019,Food & Drinks,-23.15
-18/06/2019,Food & Drinks,-22.88
-14/03/2019,Food & Drinks,-25.28
-31/03/2019,Food & Drinks,-23.42
-01/06/2019,Food & Drinks,-23.86
-07/08/2019,Food & Drinks,-22.2
-01/06/2019,Food & Drinks,-25.6
-23/03/2019,Food & Drinks,-20.19
-08/03/2019,Food & Drinks,-24.67
-27/07/2019,Food & Drinks,-23.4
-10/11/2019,Food & Drinks,-25.21
-31/07/2019,Food & Drinks,-25.44
-06/09/2019,Food & Drinks,-24.49
-27/04/2019,Food & Drinks,-21.24
-08/03/2019,Food & Drinks,-20.44
-06/05/2019,Food & Drinks,-23.67
-18/10/2019,Food & Drinks,-21.16
-24/09/2019,Food & Drinks,-23.92
-08/11/2019,Food & Drinks,-24.61
-19/09/2019,Food & Drinks,-24.50
-03/04/2019,Food & Drinks,-22.27
-01/07/2019,Food & Drinks,-24.69
-14/09/2019,Food & Drinks,-22.69
-01/05/2019,Food & Drinks,-24.38
-24/11/2019,Food & Drinks,-24.83
-24/02/2019,Food & Drinks,-20.7
-25/10/2019,Food & Drinks,-21.55
-25/09/2019,Food & Drinks,-24.71
-14/07/2019,Food & Drinks,-22.80
-09/04/2019,Food & Drinks,-23.83
-18/02/2019,Food & Drinks,-20.9
-15/10/2019,Food & Drinks,-23.98
-06/08/2019,Food & Drinks,-25.49
-09/03/2019,Food & Drinks,-23.53
-26/07/2019,Food & Drinks,-24.27
-10/06/2019,Food & Drinks,-23.37
-05/05/2019,Food & Drinks,-25.83
-18/01/2019,Food & Drinks,-21.87
-22/03/2019,Food & Drinks,-22.50
-06/12/2019,Food & Drinks,-22.41
-02/11/2019,Food & Drinks,-20.45
-20/12/2019,Food & Drinks,-21.17
-11/08/2019,Food & Drinks,-22.84
-20/03/2019,Food & Drinks,-24.2
-12/02/2019,Food & Drinks,-21.75
-21/03/2019,Food & Drinks,-25.70
-21/11/2019,Food & Drinks,-25.68
-10/04/2019,Food & Drinks,-23.65
-04/08/2019,Food & Drinks,-23.65
-20/06/2019,Food & Drinks,-25.18
-04/09/2019,Food & Drinks,-25.14
-16/02/2019,Food & Drinks,-25.82
-25/09/2019,Food & Drinks,-22.41
-24/02/2019,Food & Drinks,-25.5
-12/08/2019,Food & Drinks,-24.94
-20/03/2019,Food & Drinks,-20.72
-20/03/2019,Food & Drinks,-22.8
-31/03/2019,Food & Drinks,-24.94
-08/12/2019,Food & Drinks,-20.8
-22/01/2019,Food & Drinks,-23.20
-13/02/2019,Food & Drinks,-25.9
-06/02/2019,Food & Drinks,-20.93
-24/01/2019,Food & Drinks,-23.91
-10/10/2019,Food & Drinks,-25.88
-09/04/2019,Food & Drinks,-22.40
-15/03/2019,Food & Drinks,-23.1
-12/08/2019,Food & Drinks,-20.3
-02/04/2019,Food & Drinks,-24.66
-15/10/2019,Food & Drinks,-22.81
-31/08/2019,Food & Drinks,-21.30
-24/08/2019,Food & Drinks,-25.63
-03/12/2019,Food & Drinks,-25.19
-19/02/2019,Food & Drinks,-23.86
-10/05/2019,Food & Drinks,-23.49
-18/08/2019,Food & Drinks,-20.57
-23/06/2019,Food & Drinks,-20.94
-16/07/2019,Food & Drinks,-24.83
-16/06/2019,Food & Drinks,-21.3
-24/08/2019,Food & Drinks,-22.93
-23/03/2019,Food & Drinks,-21.17
-19/06/2019,Car & Gas,-28.41
-26/03/2019,Car & Gas,-25.54
-26/04/2019,Car & Gas,-37.39
-09/03/2019,Car & Gas,-30.38
-24/10/2019,Car & Gas,-25.42
-21/10/2019,Car & Gas,-28.0
-27/07/2019,Car & Gas,-49.95
-05/08/2019,Car & Gas,-47.83
-25/07/2019,Car & Gas,-40.15
-18/03/2019,Car & Gas,-47.15
-02/02/2019,Car & Gas,-26.54
-26/01/2019,Car & Gas,-47.48
-09/12/2019,Car & Gas,-49.88
-16/09/2019,Car & Gas,-42.62
-07/02/2019,Car & Gas,-39.1
-18/08/2019,Car & Gas,-33.92
-01/08/2019,Car & Gas,-25.91
-18/03/2019,Car & Gas,-31.28
-09/11/2019,Car & Gas,-31.91
-21/02/2019,Car & Gas,-37.83
-01/06/2019,Car & Gas,-28.82
-04/08/2019,Car & Gas,-39.43
-08/01/2019,Car & Gas,-27.71
-20/05/2019,Car & Gas,-25.39
-01/02/2019,Car & Gas,-39.22
-20/11/2019,Car & Gas,-45.7
-22/03/2019,Car & Gas,-26.86
-14/10/2019,Car & Gas,-30.19
-14/11/2019,Car & Gas,-42.69
-22/09/2019,Car & Gas,-37.7
-01/09/2019,Entertainment,-3.20
-07/07/2019,Entertainment,-28.14
-01/01/2019,Entertainment,-17.37
-24/09/2019,Entertainment,-12.44
-21/10/2019,Entertainment,-10.25
-14/04/2019,Entertainment,-17.86
-15/05/2019,Entertainment,-28.52
-12/10/2019,Entertainment,-40.45
-21/09/2019,Entertainment,-49.83
-12/02/2019,Entertainment,-36.4
-21/05/2019,Entertainment,-27.88
-11/06/2019,Entertainment,-39.89
-11/10/2019,Entertainment,-27.61
-03/10/2019,Entertainment,-36.30
-07/07/2019,Entertainment,-11.97
-09/07/2019,Entertainment,-26.17
-14/03/2019,Entertainment,-47.95
-13/11/2019,Entertainment,-33.9
-04/12/2019,Entertainment,-35.11
-06/11/2019,Entertainment,-35.54
-19/07/2019,Internet/Phone/Cable,-68.63
-08/04/2019,Internet/Phone/Cable,-66.99
-05/02/2019,Internet/Phone/Cable,-66.56
-26/07/2019,Internet/Phone/Cable,-62.19
-17/11/2019,Internet/Phone/Cable,-64.99
-31/12/2018,Internet/Phone/Cable,-62.2
-08/10/2018,Internet/Phone/Cable,-63.16
-09/09/2018,Internet/Phone/Cable,-69.43
-20/04/2018,Internet/Phone/Cable,-60.83
-11/06/2018,Internet/Phone/Cable,-68.52
-25/05/2018,Internet/Phone/Cable,-65.25
-01/04/2018,Internet/Phone/Cable,-67.77
-10/09/2019,Electricity & Water,-5.80
-12/03/2019,Electricity & Water,-93.92
-13/12/2019,Electricity & Water,-59.2
-18/01/2019,Electricity & Water,-84.9
-26/06/2019,Electricity & Water,-68.53
-11/03/2019,Electricity & Water,-60.2
-20/06/2019,Electricity & Water,-71.16
-03/09/2019,Electricity & Water,-10.65
-09/02/2019,Electricity & Water,-23.24
-21/06/2019,Electricity & Water,-30.31
-14/04/2019,Electricity & Water,-65.96
-27/06/2019,Electricity & Water,-15.31
-26/11/2018,Work,1953.9
-02/07/2018,Work,1973.71
-22/01/2018,Work,1968.62
-03/05/2018,Work,1856.46
-12/02/2018,Work,1840.2
-14/11/2018,Work,1922.34
-16/06/2018,Work,1941.17
-09/03/2018,Work,1925.23
-11/05/2018,Work,1885.32
-18/08/2018,Work,1873.77
-03/06/2018,Work,1880.43
-07/12/2018,Work,1927.41
-18/02/2018,Taxes,-249.74
-23/12/2018,Taxes,-112.27
-23/10/2018,Taxes,-409.67
-11/08/2018,Friends & Family,63.25
-01/06/2018,Friends & Family,69.92
-01/07/2018,Friends & Family,60.84
-10/03/2018,Friends & Family,-50.20
-19/11/2018,Friends & Family,-29.16
-03/05/2018,Friends & Family,65.70
-10/06/2018,Friends & Family,98.19
-11/02/2018,Friends & Family,-45.93
-02/12/2018,Friends & Family,67.20
-18/01/2018,Friends & Family,-59.9
-20/03/2018,Friends & Family,91.55
-09/10/2018,Friends & Family,-85.31
-31/12/2017,Friends & Family,-91.28
-11/10/2017,Friends & Family,-98.64
-07/12/2017,Friends & Family,-73.27
-30/09/2017,Friends & Family,-17.56
-09/06/2017,Friends & Family,-99.5
-20/09/2017,Friends & Family,96.41
-15/07/2017,Friends & Family,34.99
-09/05/2017,Friends & Family,-29.1
-03/11/2018,Garbage & Recycling,-18.50
-02/04/2018,Garbage & Recycling,-16.38
-18/03/2018,Garbage & Recycling,-16.54
-27/12/2018,Garbage & Recycling,-15.75
-20/12/2018,Rent,-550.24
-24/02/2018,Rent,-556.51
-06/04/2018,Rent,-583.4
-20/06/2018,Rent,-545.10
-08/04/2018,Rent,-506.44
-23/07/2018,Rent,-587.50
-07/03/2018,Rent,-576.84
-16/01/2018,Rent,-589.51
-11/01/2018,Rent,-557.44
-10/06/2018,Rent,-583.35
-22/09/2018,Rent,-531.35
-08/09/2018,Rent,-559.4
-07/11/2018,Electronics & Toys,-431.2
-06/02/2018,Electronics & Toys,-118.59
-25/01/2018,Electronics & Toys,-455.75
-02/10/2018,Electronics & Toys,-28.14
-21/08/2018,Electronics & Toys,-203.75
-14/05/2018,Electronics & Toys,-475.34
-23/08/2018,Food & Drinks,-25.2
-08/01/2018,Food & Drinks,-24.71
-09/01/2018,Food & Drinks,-24.20
-06/09/2018,Food & Drinks,-25.90
-14/10/2018,Food & Drinks,-22.94
-05/06/2018,Food & Drinks,-21.83
-13/12/2018,Food & Drinks,-22.55
-19/04/2018,Food & Drinks,-22.33
-17/03/2018,Food & Drinks,-20.91
-07/01/2018,Food & Drinks,-21.76
-09/03/2018,Food & Drinks,-20.4
-01/10/2018,Food & Drinks,-24.53
-02/12/2018,Food & Drinks,-20.69
-01/04/2018,Food & Drinks,-21.74
-18/11/2018,Food & Drinks,-22.80
-17/05/2018,Food & Drinks,-20.25
-11/02/2018,Food & Drinks,-20.88
-21/05/2018,Food & Drinks,-22.89
-24/01/2018,Food & Drinks,-23.49
-26/03/2018,Food & Drinks,-23.64
-31/03/2018,Food & Drinks,-24.45
-14/09/2018,Food & Drinks,-21.98
-19/07/2018,Food & Drinks,-22.39
-31/07/2018,Food & Drinks,-23.78
-18/03/2018,Food & Drinks,-25.90
-02/01/2018,Food & Drinks,-21.38
-18/04/2018,Food & Drinks,-21.27
-06/04/2018,Food & Drinks,-21.71
-24/02/2018,Food & Drinks,-20.57
-14/09/2018,Food & Drinks,-25.73
-10/11/2018,Food & Drinks,-23.69
-06/12/2018,Food & Drinks,-23.39
-11/11/2018,Food & Drinks,-24.48
-05/03/2018,Food & Drinks,-22.91
-10/03/2018,Food & Drinks,-24.12
-19/02/2018,Food & Drinks,-24.22
-16/02/2018,Food & Drinks,-23.38
-19/04/2018,Food & Drinks,-21.69
-02/10/2018,Food & Drinks,-21.43
-03/11/2018,Food & Drinks,-25.53
-25/04/2018,Food & Drinks,-24.31
-04/05/2018,Food & Drinks,-24.63
-09/03/2018,Food & Drinks,-25.25
-05/12/2018,Food & Drinks,-21.52
-12/07/2018,Food & Drinks,-20.40
-11/04/2018,Food & Drinks,-24.77
-14/08/2018,Food & Drinks,-22.73
-12/06/2018,Food & Drinks,-23.20
-11/07/2018,Food & Drinks,-20.14
-17/10/2018,Food & Drinks,-25.44
-25/12/2018,Food & Drinks,-25.5
-13/05/2018,Food & Drinks,-20.88
-19/12/2018,Food & Drinks,-25.90
-22/10/2018,Food & Drinks,-25.98
-08/03/2018,Food & Drinks,-22.46
-07/04/2018,Food & Drinks,-25.58
-10/05/2018,Food & Drinks,-20.94
-15/04/2018,Food & Drinks,-23.54
-24/01/2018,Food & Drinks,-23.3
-07/11/2018,Food & Drinks,-20.93
-09/01/2018,Food & Drinks,-21.64
-03/12/2018,Food & Drinks,-20.67
-06/11/2018,Food & Drinks,-24.85
-14/07/2018,Food & Drinks,-22.11
-21/01/2018,Food & Drinks,-24.28
-07/04/2018,Food & Drinks,-21.22
-30/09/2018,Food & Drinks,-22.6
-15/06/2018,Food & Drinks,-24.23
-27/12/2018,Food & Drinks,-24.93
-15/05/2018,Food & Drinks,-25.88
-11/06/2018,Food & Drinks,-24.27
-06/03/2018,Food & Drinks,-22.70
-22/11/2018,Food & Drinks,-25.0
-19/12/2018,Food & Drinks,-22.97
-06/07/2018,Food & Drinks,-22.80
-10/12/2018,Food & Drinks,-25.14
-09/08/2018,Food & Drinks,-23.86
-31/12/2017,Food & Drinks,-25.6
-27/06/2017,Food & Drinks,-21.33
-14/05/2017,Food & Drinks,-21.21
-17/10/2017,Food & Drinks,-25.9
-02/06/2017,Food & Drinks,-22.71
-15/12/2017,Food & Drinks,-21.41
-10/01/2017,Food & Drinks,-23.95
-11/10/2017,Food & Drinks,-23.85
-10/01/2017,Food & Drinks,-22.1
-22/09/2017,Food & Drinks,-24.26
-05/03/2017,Food & Drinks,-22.17
-18/01/2017,Food & Drinks,-22.84
-12/04/2017,Food & Drinks,-23.37
-19/08/2017,Food & Drinks,-25.54
-03/01/2017,Food & Drinks,-24.22
-14/05/2017,Food & Drinks,-25.40
-21/10/2017,Food & Drinks,-21.1
-16/11/2017,Food & Drinks,-22.42
-11/02/2017,Food & Drinks,-25.84
-22/03/2017,Food & Drinks,-20.21
-26/07/2017,Food & Drinks,-24.72
-20/12/2017,Food & Drinks,-23.50
-11/06/2017,Food & Drinks,-25.42
-01/02/2017,Food & Drinks,-20.11
-07/07/2017,Food & Drinks,-21.30
-04/11/2017,Food & Drinks,-20.17
-17/03/2017,Food & Drinks,-24.36
-02/10/2017,Food & Drinks,-24.53
-25/08/2017,Food & Drinks,-20.37
-24/05/2017,Food & Drinks,-22.73
-18/03/2017,Food & Drinks,-21.78
-26/12/2017,Food & Drinks,-21.99
-24/03/2017,Food & Drinks,-20.72
-01/08/2017,Food & Drinks,-22.96
-24/10/2017,Food & Drinks,-24.32
-17/07/2017,Food & Drinks,-25.33
-13/06/2017,Food & Drinks,-21.11
-24/08/2017,Food & Drinks,-25.51
-01/10/2017,Food & Drinks,-22.39
-01/06/2017,Food & Drinks,-23.92
-16/08/2017,Food & Drinks,-23.64
-09/11/2017,Food & Drinks,-20.66
-03/07/2017,Food & Drinks,-24.43
-19/02/2017,Food & Drinks,-24.56
-10/05/2017,Food & Drinks,-22.45
-10/05/2017,Food & Drinks,-21.94
-12/11/2017,Food & Drinks,-23.60
-22/03/2017,Food & Drinks,-24.47
-22/08/2017,Food & Drinks,-23.15
-15/11/2017,Food & Drinks,-22.12
-05/06/2017,Food & Drinks,-23.56
-01/11/2017,Food & Drinks,-21.91
-25/12/2017,Food & Drinks,-21.43
-14/03/2017,Food & Drinks,-22.8
-19/12/2017,Food & Drinks,-23.61
-13/06/2017,Food & Drinks,-22.89
-03/01/2017,Food & Drinks,-22.49
-05/05/2017,Food & Drinks,-23.2
-13/04/2017,Food & Drinks,-23.95
-16/03/2017,Food & Drinks,-24.51
-06/06/2017,Food & Drinks,-23.64
-27/09/2017,Food & Drinks,-21.51
-08/09/2017,Food & Drinks,-21.33
-03/02/2017,Food & Drinks,-23.39
-25/03/2017,Food & Drinks,-23.70
-05/12/2017,Food & Drinks,-22.96
-08/06/2017,Food & Drinks,-21.73
-06/12/2017,Food & Drinks,-25.78
-26/12/2017,Food & Drinks,-21.56
-02/08/2017,Food & Drinks,-25.94
-10/11/2017,Food & Drinks,-23.52
-09/12/2017,Food & Drinks,-21.68
-25/02/2017,Food & Drinks,-22.58
-19/05/2017,Food & Drinks,-21.79
-10/06/2017,Food & Drinks,-24.61
-03/06/2017,Food & Drinks,-20.64
-22/06/2017,Food & Drinks,-22.10
-09/01/2017,Food & Drinks,-22.23
-10/03/2017,Food & Drinks,-21.12
-21/01/2017,Food & Drinks,-23.70
-05/12/2017,Food & Drinks,-20.84
-04/06/2017,Food & Drinks,-22.18
-13/07/2017,Food & Drinks,-20.93
-22/06/2017,Food & Drinks,-24.84
-22/05/2017,Food & Drinks,-25.39
-27/07/2017,Food & Drinks,-21.57
-24/10/2017,Food & Drinks,-23.88
-09/05/2017,Food & Drinks,-24.67
-04/07/2017,Food & Drinks,-25.55
-16/02/2017,Food & Drinks,-25.45
-13/11/2017,Food & Drinks,-21.83
-31/08/2017,Food & Drinks,-22.64
-11/07/2017,Food & Drinks,-24.84
-30/11/2017,Food & Drinks,-23.96
-23/07/2017,Food & Drinks,-20.25
-09/10/2017,Food & Drinks,-23.37
-06/12/2017,Food & Drinks,-25.80
-08/06/2017,Food & Drinks,-24.69
-13/01/2017,Food & Drinks,-21.82
-14/01/2017,Food & Drinks,-23.69
-02/08/2017,Food & Drinks,-20.46
-10/06/2017,Food & Drinks,-20.89
-17/02/2017,Food & Drinks,-23.45
-25/07/2017,Food & Drinks,-22.63
-04/05/2017,Food & Drinks,-25.62
-12/05/2017,Food & Drinks,-20.5
-08/07/2017,Food & Drinks,-23.43
-02/07/2017,Food & Drinks,-22.19
-02/11/2017,Food & Drinks,-23.36
-09/04/2017,Food & Drinks,-24.32
-27/11/2017,Food & Drinks,-24.87
-30/11/2017,Food & Drinks,-24.10
-07/07/2017,Food & Drinks,-25.19
-09/06/2017,Food & Drinks,-25.34
-07/01/2017,Food & Drinks,-21.28
-04/08/2017,Food & Drinks,-23.28
-16/05/2017,Food & Drinks,-24.61
-06/04/2017,Food & Drinks,-23.87
-12/12/2017,Food & Drinks,-22.63
-02/02/2017,Food & Drinks,-25.32
-05/11/2017,Food & Drinks,-21.23
-16/07/2017,Food & Drinks,-24.87
-30/09/2017,Food & Drinks,-24.28
-06/03/2018,Car & Gas,-39.69
-19/10/2018,Car & Gas,-26.26
-08/08/2018,Car & Gas,-28.31
-26/04/2018,Car & Gas,-26.54
-16/10/2018,Car & Gas,-33.94
-24/03/2018,Car & Gas,-47.69
-18/07/2018,Car & Gas,-26.52
-26/05/2018,Car & Gas,-37.11
-20/04/2018,Car & Gas,-35.61
-07/03/2018,Car & Gas,-34.66
-01/09/2018,Car & Gas,-40.23
-17/12/2018,Car & Gas,-44.11
-08/08/2018,Car & Gas,-31.23
-12/12/2018,Car & Gas,-39.69
-22/08/2018,Car & Gas,-34.9
-13/05/2018,Car & Gas,-25.99
-07/11/2018,Car & Gas,-39.88
-15/08/2018,Car & Gas,-30.99
-13/03/2018,Car & Gas,-29.1
-23/05/2018,Car & Gas,-33.99
-06/07/2018,Car & Gas,-38.92
-27/03/2018,Car & Gas,-35.67
-01/12/2018,Car & Gas,-44.85
-22/12/2018,Car & Gas,-48.63
-25/12/2018,Car & Gas,-34.34
-06/04/2018,Car & Gas,-46.7
-26/04/2018,Car & Gas,-43.4
-20/08/2018,Car & Gas,-50.55
-13/08/2018,Car & Gas,-38.16
-24/09/2018,Car & Gas,-30.86
-15/11/2018,Entertainment,-14.43
-27/09/2018,Entertainment,-34.50
-25/12/2018,Entertainment,-31.51
-18/05/2018,Entertainment,-31.41
-26/08/2018,Entertainment,-22.17
-14/11/2018,Entertainment,-4.73
-15/09/2018,Entertainment,-13.79
-23/04/2018,Entertainment,-36.89
-27/11/2018,Entertainment,-47.84
-01/12/2018,Entertainment,-26.34
-11/11/2018,Entertainment,-46.46
-13/11/2018,Entertainment,-48.54
-11/10/2018,Entertainment,-30.44
-15/05/2018,Entertainment,-9.20
-23/11/2018,Entertainment,-16.91
-03/05/2018,Entertainment,-46.79
-16/05/2018,Entertainment,-19.83
-11/12/2018,Entertainment,-36.82
-20/11/2018,Entertainment,-40.98
-10/03/2018,Entertainment,-10.51
-03/01/2018,Internet/Phone/Cable,-69.97
-11/03/2018,Internet/Phone/Cable,-63.69
-09/12/2018,Internet/Phone/Cable,-65.59
-22/01/2018,Internet/Phone/Cable,-68.11
-03/05/2018,Internet/Phone/Cable,-65.49
-21/10/2018,Internet/Phone/Cable,-68.62
-16/06/2018,Internet/Phone/Cable,-65.96
-27/04/2018,Internet/Phone/Cable,-68.74
-09/11/2018,Internet/Phone/Cable,-65.25
-01/10/2018,Internet/Phone/Cable,-67.60
-20/08/2018,Internet/Phone/Cable,-65.94
-13/09/2018,Internet/Phone/Cable,-69.38
-02/08/2018,Electricity & Water,-72.7
-25/03/2018,Electricity & Water,-29.61
-24/08/2018,Electricity & Water,-60.2
-09/05/2018,Electricity & Water,-80.4
-22/07/2018,Electricity & Water,-12.55
-17/06/2018,Electricity & Water,-10.90
-15/04/2018,Electricity & Water,-75.35
-07/01/2018,Electricity & Water,-74.77
-13/04/2018,Electricity & Water,-87.4
-25/06/2018,Electricity & Water,-79.36
-11/08/2018,Electricity & Water,-25.45
-10/02/2018,Electricity & Water,-81.92
-24/01/2017,Work,1918.64
-04/11/2017,Work,1892.21
-20/05/2017,Work,1938.2
-21/01/2017,Work,1829.4
-11/05/2017,Work,1801.46
-23/06/2017,Work,1806.88
-03/08/2017,Work,1848.32
-15/08/2017,Work,1923.16
-26/01/2017,Work,1821.77
-20/07/2017,Work,1951.17
-07/07/2017,Work,1848.74
-18/02/2017,Work,1923.67
-06/09/2017,Taxes,-131.54
-03/07/2017,Taxes,-141.60
-12/01/2017,Taxes,-123.89
-02/04/2017,Friends & Family,-59.24
-21/08/2017,Friends & Family,-76.86
-18/01/2017,Friends & Family,60.46
-24/03/2017,Friends & Family,36.35
-27/03/2017,Friends & Family,-49.80
-04/07/2017,Friends & Family,-80.20
-03/03/2017,Friends & Family,97.52
-03/08/2017,Friends & Family,-33.81
-17/07/2017,Friends & Family,71.48
-04/07/2017,Friends & Family,-25.19
-09/08/2017,Friends & Family,-28.45
-15/08/2017,Friends & Family,73.23
-18/12/2017,Friends & Family,16.16
-12/06/2017,Friends & Family,83.76
-24/08/2017,Friends & Family,-71.84
-12/01/2017,Friends & Family,93.88
-08/03/2017,Friends & Family,-70.42
-03/06/2017,Friends & Family,46.11
-18/07/2017,Friends & Family,-36.15
-09/02/2017,Friends & Family,55.90
-25/12/2017,Garbage & Recycling,-16.86
-16/08/2017,Garbage & Recycling,-17.73
-03/07/2017,Garbage & Recycling,-20.20
-02/10/2017,Garbage & Recycling,-17.91
-03/08/2017,Rent,-589.78
-04/08/2017,Rent,-573.58
-13/09/2017,Rent,-527.71
-02/11/2017,Rent,-593.51
-26/01/2017,Rent,-501.21
-01/01/2017,Rent,-538.52
-05/09/2017,Rent,-502.65
-25/10/2017,Rent,-573.92
-04/03/2017,Rent,-542.9
-10/07/2017,Rent,-501.53
-12/03/2017,Rent,-529.18
-20/04/2017,Rent,-519.86
-24/05/2017,Electronics & Toys,-272.75
-01/02/2017,Electronics & Toys,-375.27
-23/01/2017,Electronics & Toys,-251.70
-25/12/2017,Electronics & Toys,-4.40
-19/04/2017,Electronics & Toys,-138.77
-26/07/2017,Electronics & Toys,-313.16
-13/10/2017,Food & Drinks,-20.38
-22/11/2017,Food & Drinks,-21.94
-21/03/2017,Food & Drinks,-21.75
-10/08/2017,Food & Drinks,-20.0
-22/02/2017,Food & Drinks,-25.76
-25/02/2017,Food & Drinks,-22.5
-16/07/2017,Food & Drinks,-25.42
-02/07/2017,Food & Drinks,-22.57
-17/12/2017,Food & Drinks,-24.95
-25/07/2017,Food & Drinks,-25.43
-08/05/2017,Food & Drinks,-20.60
-15/03/2017,Food & Drinks,-20.67
-01/05/2017,Food & Drinks,-21.0
-01/07/2017,Food & Drinks,-25.72
-11/11/2017,Food & Drinks,-25.52
-13/12/2017,Food & Drinks,-24.23
-12/10/2017,Food & Drinks,-24.85
-16/09/2017,Food & Drinks,-25.46
-08/04/2017,Food & Drinks,-24.2
-05/11/2017,Food & Drinks,-20.81
-16/12/2017,Food & Drinks,-24.36
-08/07/2017,Food & Drinks,-24.86
-21/04/2017,Food & Drinks,-23.14
-24/12/2017,Food & Drinks,-20.18
-14/04/2017,Food & Drinks,-25.4
-12/07/2017,Food & Drinks,-23.71
-23/12/2017,Food & Drinks,-23.52
-17/05/2017,Food & Drinks,-25.35
-21/07/2017,Food & Drinks,-24.80
-10/04/2017,Food & Drinks,-21.17
-25/03/2017,Food & Drinks,-25.15
-15/02/2017,Food & Drinks,-24.54
-08/11/2017,Food & Drinks,-20.39
-24/09/2017,Food & Drinks,-20.66
-07/06/2017,Food & Drinks,-21.9
-18/11/2017,Food & Drinks,-21.74
-21/06/2017,Food & Drinks,-21.86
-27/12/2017,Food & Drinks,-22.57
-12/01/2017,Food & Drinks,-21.44
-19/07/2017,Food & Drinks,-21.20
-12/03/2017,Food & Drinks,-23.77
-19/08/2017,Food & Drinks,-25.18
-19/03/2017,Food & Drinks,-24.21
-21/03/2017,Food & Drinks,-20.37
-12/02/2017,Food & Drinks,-25.38
-03/01/2017,Food & Drinks,-24.33
-15/10/2017,Food & Drinks,-23.57
-02/10/2017,Food & Drinks,-24.90
-24/08/2017,Food & Drinks,-22.52
-08/11/2017,Food & Drinks,-23.32
-23/07/2017,Food & Drinks,-20.98
-09/11/2017,Food & Drinks,-21.10
-02/01/2017,Food & Drinks,-20.57
-22/11/2017,Food & Drinks,-22.53
-01/01/2017,Food & Drinks,-24.60
-03/07/2017,Food & Drinks,-22.38
-20/08/2017,Food & Drinks,-20.3
-21/12/2017,Food & Drinks,-21.34
-18/02/2017,Food & Drinks,-25.66
-08/12/2017,Food & Drinks,-25.18
-27/05/2017,Food & Drinks,-22.24
-23/10/2017,Food & Drinks,-25.71
-04/05/2017,Food & Drinks,-25.14
-31/08/2017,Food & Drinks,-20.92
-25/06/2017,Food & Drinks,-25.67
-14/06/2017,Food & Drinks,-24.5
-23/09/2017,Food & Drinks,-20.32
-27/08/2017,Food & Drinks,-20.36
-17/04/2017,Food & Drinks,-23.36
-06/09/2017,Food & Drinks,-20.81
-08/11/2017,Food & Drinks,-20.70
-07/02/2017,Food & Drinks,-21.6
-14/12/2017,Food & Drinks,-20.93
-03/11/2017,Food & Drinks,-20.33
-27/09/2017,Food & Drinks,-20.80
-05/03/2017,Food & Drinks,-22.22
-18/05/2017,Food & Drinks,-20.78
-09/12/2017,Food & Drinks,-25.37
-01/09/2017,Food & Drinks,-25.28
-07/02/2017,Food & Drinks,-23.60
-27/08/2017,Food & Drinks,-23.80
-04/06/2017,Food & Drinks,-24.96
-12/04/2017,Food & Drinks,-21.97
-16/08/2017,Food & Drinks,-20.83
-20/06/2017,Food & Drinks,-23.30
-16/09/2017,Food & Drinks,-24.92
-13/03/2017,Food & Drinks,-22.21
-15/04/2017,Food & Drinks,-25.83
-21/10/2017,Food & Drinks,-24.45
-19/10/2017,Food & Drinks,-24.65
-07/09/2017,Food & Drinks,-25.13
-05/09/2017,Food & Drinks,-23.58
-24/03/2017,Food & Drinks,-20.92
-14/08/2017,Food & Drinks,-24.66
-22/03/2017,Food & Drinks,-25.20
-17/09/2017,Food & Drinks,-24.2
-07/05/2017,Food & Drinks,-23.9
-18/10/2017,Food & Drinks,-24.33
-05/12/2017,Food & Drinks,-21.74
-07/03/2017,Food & Drinks,-21.31
-26/11/2017,Food & Drinks,-21.36
-18/04/2017,Food & Drinks,-22.42
-01/07/2017,Food & Drinks,-23.70
-22/06/2017,Food & Drinks,-24.18
-27/09/2017,Food & Drinks,-22.12
-19/10/2017,Food & Drinks,-24.76
-09/02/2017,Food & Drinks,-23.39
-12/09/2017,Food & Drinks,-22.68
-07/02/2017,Food & Drinks,-24.81
-07/05/2017,Food & Drinks,-21.79
-08/08/2017,Food & Drinks,-21.49
-18/03/2017,Food & Drinks,-23.0
-19/04/2017,Food & Drinks,-24.57
-06/03/2017,Food & Drinks,-24.25
-20/04/2017,Food & Drinks,-24.99
-01/10/2017,Food & Drinks,-22.75
-23/04/2017,Food & Drinks,-22.1
-20/03/2017,Food & Drinks,-23.60
-20/07/2017,Food & Drinks,-22.47
-02/12/2017,Food & Drinks,-23.16
-08/08/2017,Food & Drinks,-22.67
-16/04/2017,Food & Drinks,-23.77
-08/09/2017,Food & Drinks,-23.23
-18/11/2017,Food & Drinks,-21.89
-11/09/2017,Food & Drinks,-22.45
-15/09/2017,Food & Drinks,-22.55
-14/08/2017,Food & Drinks,-22.80
-16/08/2017,Food & Drinks,-24.74
-16/03/2017,Food & Drinks,-22.80
-21/10/2017,Food & Drinks,-21.25
-27/03/2017,Food & Drinks,-22.31
-26/11/2017,Food & Drinks,-21.87
-01/08/2017,Food & Drinks,-20.93
-13/07/2017,Food & Drinks,-23.15
-09/04/2017,Food & Drinks,-21.21
-15/01/2017,Food & Drinks,-20.3
-09/12/2017,Food & Drinks,-23.64
-26/08/2017,Food & Drinks,-23.10
-06/12/2017,Food & Drinks,-25.86
-23/12/2017,Food & Drinks,-23.23
-25/12/2017,Food & Drinks,-22.33
-28/02/2017,Food & Drinks,-25.91
-16/05/2017,Food & Drinks,-24.54
-06/09/2017,Food & Drinks,-23.47
-21/06/2017,Food & Drinks,-24.53
-19/10/2017,Food & Drinks,-24.2
-21/11/2017,Food & Drinks,-20.18
-21/03/2017,Food & Drinks,-22.89
-03/07/2017,Food & Drinks,-20.62
-25/01/2017,Food & Drinks,-25.77
-18/12/2017,Food & Drinks,-20.65
-11/12/2017,Food & Drinks,-22.92
-01/06/2017,Food & Drinks,-25.13
-07/10/2017,Food & Drinks,-21.8
-08/06/2017,Food & Drinks,-23.69
-08/02/2017,Food & Drinks,-21.0
-04/07/2017,Food & Drinks,-20.14
-05/08/2017,Food & Drinks,-21.74
-13/08/2017,Food & Drinks,-21.44
-24/09/2017,Food & Drinks,-24.14
-08/02/2017,Food & Drinks,-20.32
-27/12/2017,Food & Drinks,-20.0
-26/05/2017,Food & Drinks,-22.63
-27/03/2017,Food & Drinks,-23.10
-08/03/2017,Food & Drinks,-20.9
-06/03/2017,Food & Drinks,-25.88
-11/10/2017,Food & Drinks,-23.23
-20/05/2017,Food & Drinks,-20.50
-18/11/2017,Food & Drinks,-20.35
-03/01/2017,Food & Drinks,-23.70
-13/10/2017,Food & Drinks,-23.0
-13/02/2017,Food & Drinks,-22.43
-09/11/2017,Food & Drinks,-22.36
-05/11/2017,Food & Drinks,-25.41
-04/09/2017,Food & Drinks,-24.31
-06/12/2017,Food & Drinks,-25.3
-16/12/2017,Food & Drinks,-24.23
-25/08/2017,Food & Drinks,-23.10
-04/11/2017,Food & Drinks,-20.84
-21/10/2017,Food & Drinks,-23.58
-18/11/2017,Food & Drinks,-25.50
-19/04/2017,Food & Drinks,-25.22
-05/05/2017,Food & Drinks,-24.77
-16/04/2017,Food & Drinks,-20.59
-17/11/2017,Food & Drinks,-25.36
-22/08/2017,Food & Drinks,-21.17
-16/01/2017,Food & Drinks,-22.61
-24/06/2017,Food & Drinks,-24.35
-09/05/2017,Food & Drinks,-22.99
-20/06/2017,Food & Drinks,-25.48
-07/10/2017,Food & Drinks,-24.61
-08/06/2017,Food & Drinks,-24.44
-03/10/2017,Food & Drinks,-23.46
-02/10/2017,Food & Drinks,-25.28
-24/03/2017,Food & Drinks,-20.91
-19/09/2017,Food & Drinks,-21.84
-22/08/2017,Food & Drinks,-25.81
-18/11/2017,Food & Drinks,-23.57
-06/06/2017,Food & Drinks,-23.7
-18/06/2017,Food & Drinks,-22.89
-12/11/2017,Car & Gas,-36.68
-13/04/2017,Car & Gas,-38.66
-04/08/2017,Car & Gas,-49.48
-28/02/2017,Car & Gas,-39.84
-13/05/2017,Car & Gas,-49.14
-25/08/2017,Car & Gas,-46.32
-04/01/2017,Car & Gas,-29.18
-09/07/2017,Car & Gas,-26.35
-11/08/2017,Car & Gas,-33.2
-09/08/2017,Car & Gas,-30.28
-04/06/2017,Car & Gas,-34.39
-26/07/2017,Car & Gas,-43.45
-24/10/2017,Car & Gas,-50.45
-10/06/2017,Car & Gas,-39.36
-14/08/2017,Car & Gas,-48.62
-11/01/2017,Car & Gas,-44.55
-19/11/2017,Car & Gas,-39.96
-23/03/2017,Car & Gas,-26.88
-08/06/2017,Car & Gas,-33.46
-09/12/2017,Car & Gas,-36.91
-20/10/2017,Car & Gas,-32.72
-10/03/2017,Car & Gas,-49.83
-23/10/2017,Car & Gas,-41.82
-17/12/2017,Car & Gas,-30.5
-26/09/2017,Car & Gas,-33.37
-15/04/2017,Car & Gas,-32.24
-18/07/2017,Car & Gas,-35.3
-25/02/2017,Car & Gas,-37.74
-14/01/2017,Car & Gas,-45.99
-24/02/2017,Car & Gas,-43.32
-13/01/2017,Entertainment,-15.26
-21/04/2017,Entertainment,-8.92
-21/12/2017,Entertainment,-33.65
-04/03/2017,Entertainment,-9.79
-18/04/2017,Entertainment,-7.86
-31/12/2016,Entertainment,-42.10
-08/08/2016,Entertainment,-27.10
-24/01/2016,Entertainment,-32.3
-20/09/2016,Entertainment,-35.4
-13/10/2016,Entertainment,-48.80
-02/08/2016,Entertainment,-17.9
-17/12/2016,Entertainment,-27.36
-13/03/2016,Entertainment,-5.38
-07/06/2016,Entertainment,-14.42
-17/06/2016,Entertainment,-25.75
-27/05/2016,Entertainment,-29.18
-01/11/2016,Entertainment,-27.77
-05/07/2016,Entertainment,-12.11
-25/10/2016,Entertainment,-21.61
-07/11/2016,Entertainment,-3.25
-08/01/2017,Internet/Phone/Cable,-68.14
-26/06/2017,Internet/Phone/Cable,-61.21
-22/07/2017,Internet/Phone/Cable,-64.74
-12/03/2017,Internet/Phone/Cable,-65.75
-19/10/2017,Internet/Phone/Cable,-65.61
-07/09/2017,Internet/Phone/Cable,-69.53
-27/09/2017,Internet/Phone/Cable,-67.53
-11/06/2017,Internet/Phone/Cable,-60.55
-04/02/2017,Internet/Phone/Cable,-65.49
-24/12/2017,Internet/Phone/Cable,-65.24
-10/10/2017,Internet/Phone/Cable,-60.51
-04/05/2017,Internet/Phone/Cable,-68.30
-13/01/2017,Electricity & Water,-17.61
-14/03/2017,Electricity & Water,-15.73
-02/12/2017,Electricity & Water,-48.83
-06/11/2017,Electricity & Water,-38.66
-17/03/2017,Electricity & Water,-22.57
-16/04/2017,Electricity & Water,-29.88
-25/12/2017,Electricity & Water,-60.88
-05/12/2017,Electricity & Water,-2.27
-23/09/2017,Electricity & Water,-21.30
-28/02/2017,Electricity & Water,-10.41
-10/01/2017,Electricity & Water,-84.46
-15/02/2017,Electricity & Water,-92.10
-12/02/2016,Work,1850.51
-16/09/2016,Work,1980.69
-01/09/2016,Work,1899.11
-10/04/2016,Work,1909.32
-07/02/2016,Work,1973.52
-23/02/2016,Work,1823.49
-25/07/2016,Work,1950.4
-12/01/2016,Work,1946.60
-08/01/2016,Work,1963.89
-30/09/2016,Work,1809.31
-15/03/2016,Work,1847.16
-06/10/2016,Work,1975.2
-17/01/2016,Taxes,-119.50
-16/09/2016,Taxes,-197.61
-17/08/2016,Taxes,-409.73
-12/12/2016,Friends & Family,-35.31
-14/11/2016,Friends & Family,35.41
-20/08/2016,Friends & Family,70.61
-04/02/2016,Friends & Family,85.82
-04/06/2016,Friends & Family,-22.50
-18/10/2016,Friends & Family,-45.76
-23/05/2016,Friends & Family,-30.88
-14/02/2016,Friends & Family,-24.95
-17/06/2016,Friends & Family,-90.56
-15/03/2016,Friends & Family,62.2
-09/03/2016,Friends & Family,13.18
-24/06/2016,Friends & Family,-29.88
-16/04/2016,Friends & Family,96.6
-20/11/2016,Friends & Family,86.82
-03/08/2016,Friends & Family,-64.29
-21/09/2016,Friends & Family,9.70
-05/11/2016,Friends & Family,99.89
-14/02/2016,Friends & Family,-89.80
-18/11/2016,Friends & Family,8.42
-02/02/2016,Friends & Family,31.43
-25/05/2016,Garbage & Recycling,-18.38
-05/04/2016,Garbage & Recycling,-18.83
-19/06/2016,Garbage & Recycling,-18.78
-03/08/2016,Garbage & Recycling,-18.32
-26/05/2016,Rent,-581.5
-21/05/2016,Rent,-565.21
-14/07/2016,Rent,-565.10
-27/05/2016,Rent,-575.20
-04/05/2016,Rent,-561.62
-13/01/2016,Rent,-526.79
-04/08/2016,Rent,-597.76
-18/04/2016,Rent,-512.26
-06/11/2016,Rent,-518.37
-10/05/2016,Rent,-549.36
-08/02/2016,Rent,-572.7
-25/09/2016,Rent,-546.43
-11/06/2016,Electronics & Toys,-4.22
-19/11/2016,Electronics & Toys,-85.88
-15/11/2016,Electronics & Toys,-99.42
-09/05/2016,Electronics & Toys,-227.16
-13/07/2016,Electronics & Toys,-333.22
-25/05/2016,Electronics & Toys,-389.55
-25/10/2016,Food & Drinks,-23.23
-05/12/2016,Food & Drinks,-21.53
-04/02/2016,Food & Drinks,-20.69
-17/06/2016,Food & Drinks,-20.47
-11/10/2016,Food & Drinks,-21.13
-21/04/2016,Food & Drinks,-21.1
-23/04/2016,Food & Drinks,-21.92
-09/04/2016,Food & Drinks,-24.21
-17/12/2016,Food & Drinks,-24.65
-12/09/2016,Food & Drinks,-22.50
-09/07/2016,Food & Drinks,-25.64
-07/08/2016,Food & Drinks,-23.92
-12/12/2016,Food & Drinks,-23.11
-11/03/2016,Food & Drinks,-21.13
-10/09/2016,Food & Drinks,-22.83
-22/09/2016,Food & Drinks,-22.40
-15/05/2016,Food & Drinks,-20.9
-02/11/2016,Food & Drinks,-23.24
-19/02/2016,Food & Drinks,-23.50
-26/02/2016,Food & Drinks,-24.68
-03/09/2016,Food & Drinks,-25.97
-23/05/2016,Food & Drinks,-21.14
-01/04/2016,Food & Drinks,-22.70
-25/05/2016,Food & Drinks,-24.56
-17/06/2016,Food & Drinks,-20.18
-02/01/2016,Food & Drinks,-24.10
-02/01/2016,Food & Drinks,-21.49
-03/10/2016,Food & Drinks,-22.66
-10/11/2016,Food & Drinks,-25.45
-02/02/2016,Food & Drinks,-25.7
-18/06/2016,Food & Drinks,-20.25
-16/10/2016,Food & Drinks,-21.48
-06/01/2016,Food & Drinks,-24.79
-05/12/2016,Food & Drinks,-20.66
-07/06/2016,Food & Drinks,-22.81
-22/09/2016,Food & Drinks,-21.88
-14/02/2016,Food & Drinks,-24.47
-06/12/2016,Food & Drinks,-23.82
-02/09/2016,Food & Drinks,-24.1
-26/01/2016,Food & Drinks,-24.60
-16/01/2016,Food & Drinks,-25.70
-26/04/2016,Food & Drinks,-25.81
-21/10/2016,Food & Drinks,-23.9
-08/10/2016,Food & Drinks,-20.28
-20/05/2016,Food & Drinks,-21.38
-13/08/2016,Food & Drinks,-23.85
-31/03/2016,Food & Drinks,-23.41
-15/12/2016,Food & Drinks,-25.42
-23/08/2016,Food & Drinks,-24.47
-09/08/2016,Food & Drinks,-22.5
-02/04/2016,Food & Drinks,-20.11
-24/07/2016,Food & Drinks,-20.87
-09/06/2016,Food & Drinks,-24.49
-04/03/2016,Food & Drinks,-21.7
-18/05/2016,Food & Drinks,-25.7
-25/10/2016,Food & Drinks,-23.28
-25/04/2016,Food & Drinks,-21.60
-19/08/2016,Food & Drinks,-23.2
-01/08/2016,Food & Drinks,-23.76
-24/03/2016,Food & Drinks,-21.8
-15/02/2016,Food & Drinks,-24.84
-03/08/2016,Food & Drinks,-24.6
-20/05/2016,Food & Drinks,-23.44
-02/07/2016,Food & Drinks,-24.37
-03/10/2016,Food & Drinks,-20.94
-11/04/2016,Food & Drinks,-22.32
-20/06/2016,Food & Drinks,-20.25
-03/11/2016,Food & Drinks,-21.38
-17/04/2016,Food & Drinks,-24.24
-15/09/2016,Food & Drinks,-25.47
-27/01/2016,Food & Drinks,-20.61
-23/02/2016,Food & Drinks,-20.90
-21/08/2016,Food & Drinks,-20.28
-14/04/2016,Food & Drinks,-23.57
-03/02/2016,Food & Drinks,-21.55
-14/01/2016,Food & Drinks,-21.15
-01/03/2016,Food & Drinks,-20.48
-20/09/2016,Food & Drinks,-21.68
-13/11/2016,Food & Drinks,-25.37
-17/02/2016,Food & Drinks,-20.68
-21/06/2016,Food & Drinks,-20.34
-04/04/2016,Food & Drinks,-24.67
-12/03/2016,Food & Drinks,-22.14
-21/09/2016,Food & Drinks,-21.77
-25/06/2016,Food & Drinks,-20.92
-05/11/2016,Food & Drinks,-22.77
-19/06/2016,Food & Drinks,-22.59
-07/12/2016,Food & Drinks,-23.79
-02/12/2016,Food & Drinks,-21.80
-04/05/2016,Food & Drinks,-22.40
-14/04/2016,Food & Drinks,-23.89
-18/12/2016,Food & Drinks,-23.2
-22/09/2016,Food & Drinks,-22.23
-06/04/2016,Food & Drinks,-24.67
-10/04/2016,Food & Drinks,-23.75
-12/08/2016,Food & Drinks,-24.58
-30/09/2016,Food & Drinks,-22.81
-09/10/2016,Food & Drinks,-24.20
-16/07/2016,Food & Drinks,-22.37
-05/07/2016,Food & Drinks,-20.66
-20/01/2016,Food & Drinks,-24.39
-11/11/2016,Food & Drinks,-20.60
-23/09/2016,Food & Drinks,-24.83
-26/05/2016,Food & Drinks,-23.94
-18/04/2016,Food & Drinks,-24.53
-15/05/2016,Food & Drinks,-22.23
-03/01/2016,Food & Drinks,-24.23
-08/03/2016,Food & Drinks,-25.32
-13/04/2016,Food & Drinks,-23.2
-16/11/2016,Food & Drinks,-20.71
-20/04/2016,Food & Drinks,-25.33
-17/05/2016,Food & Drinks,-20.77
-25/07/2016,Food & Drinks,-22.12
-11/08/2016,Food & Drinks,-22.64
-27/04/2016,Food & Drinks,-20.92
-19/09/2016,Food & Drinks,-22.59
-25/09/2016,Food & Drinks,-20.83
-29/02/2016,Food & Drinks,-22.6
-16/03/2016,Food & Drinks,-24.65
-27/06/2016,Food & Drinks,-25.71
-18/07/2016,Food & Drinks,-21.82
-26/10/2016,Food & Drinks,-20.18
-27/04/2016,Food & Drinks,-23.68
-25/11/2016,Food & Drinks,-25.42
-24/01/2016,Food & Drinks,-21.44
-20/10/2016,Food & Drinks,-20.78
-03/02/2016,Food & Drinks,-21.67
-25/06/2016,Food & Drinks,-20.15
-27/12/2016,Food & Drinks,-25.37
-17/09/2016,Food & Drinks,-23.94
-12/04/2016,Food & Drinks,-23.72
-17/06/2016,Food & Drinks,-23.69
-05/09/2016,Food & Drinks,-24.36
-07/03/2016,Food & Drinks,-25.46
-08/02/2016,Food & Drinks,-21.57
-16/06/2016,Food & Drinks,-24.45
-24/01/2016,Food & Drinks,-21.64
-19/02/2016,Food & Drinks,-24.46
-07/12/2016,Food & Drinks,-20.71
-09/02/2016,Food & Drinks,-24.12
-21/02/2016,Food & Drinks,-23.33
-12/02/2016,Food & Drinks,-21.87
-04/10/2016,Food & Drinks,-22.88
-21/09/2016,Food & Drinks,-25.43
-04/03/2016,Food & Drinks,-23.57
-20/10/2016,Food & Drinks,-21.98
-27/08/2016,Food & Drinks,-22.42
-03/03/2016,Food & Drinks,-20.33
-07/04/2016,Food & Drinks,-22.75
-20/12/2016,Food & Drinks,-21.88
-10/02/2016,Food & Drinks,-20.90
-03/01/2016,Food & Drinks,-24.14
-13/02/2016,Food & Drinks,-24.26
-08/12/2016,Food & Drinks,-25.3
-06/04/2016,Food & Drinks,-24.77
-21/05/2016,Food & Drinks,-24.26
-21/03/2016,Food & Drinks,-25.51
-11/11/2016,Food & Drinks,-24.62
-14/11/2016,Food & Drinks,-24.20
-03/11/2016,Food & Drinks,-20.80
-23/05/2016,Food & Drinks,-24.40
-02/04/2016,Food & Drinks,-20.19
-13/10/2016,Food & Drinks,-23.95
-01/05/2016,Food & Drinks,-23.75
-19/07/2016,Food & Drinks,-21.1
-08/09/2016,Food & Drinks,-25.91
-04/10/2016,Food & Drinks,-22.48
-23/07/2016,Food & Drinks,-23.8
-27/02/2016,Food & Drinks,-24.89
-03/02/2016,Food & Drinks,-24.20
-26/10/2016,Food & Drinks,-25.96
-13/03/2016,Food & Drinks,-20.41
-07/04/2016,Food & Drinks,-20.40
-22/03/2016,Food & Drinks,-23.96
-18/12/2016,Food & Drinks,-25.68
-08/01/2016,Food & Drinks,-22.58
-15/07/2016,Food & Drinks,-24.77
-10/04/2016,Food & Drinks,-21.21
-20/07/2016,Food & Drinks,-21.25
-27/04/2016,Food & Drinks,-24.76
-21/08/2016,Food & Drinks,-20.13
-25/10/2016,Food & Drinks,-21.27
-22/12/2016,Food & Drinks,-25.26
-24/11/2016,Food & Drinks,-24.55
-01/08/2016,Food & Drinks,-20.32
-12/03/2016,Food & Drinks,-24.35
-10/11/2016,Food & Drinks,-21.70
-30/11/2016,Food & Drinks,-22.55
-11/08/2016,Food & Drinks,-25.69
-16/07/2016,Food & Drinks,-20.80
-26/11/2016,Food & Drinks,-23.84
-31/03/2016,Food & Drinks,-22.90
-04/03/2016,Food & Drinks,-23.52
-18/04/2016,Food & Drinks,-21.55
-10/07/2016,Food & Drinks,-22.86
-27/03/2016,Food & Drinks,-20.39
-10/04/2016,Food & Drinks,-20.65
-16/12/2016,Food & Drinks,-22.43
-08/04/2016,Food & Drinks,-23.99
-06/10/2016,Food & Drinks,-20.43
-14/05/2016,Car & Gas,-36.62
-08/01/2016,Car & Gas,-41.57
-06/04/2016,Car & Gas,-27.36
-22/03/2016,Car & Gas,-32.64
-26/07/2016,Car & Gas,-27.96
-03/06/2016,Car & Gas,-33.63
-13/08/2016,Car & Gas,-31.34
-05/05/2016,Car & Gas,-32.32
-12/02/2016,Car & Gas,-37.10
-06/09/2016,Car & Gas,-50.29
-17/02/2016,Car & Gas,-36.64
-18/10/2016,Car & Gas,-27.49
-31/05/2016,Car & Gas,-40.40
-07/04/2016,Car & Gas,-31.36
-07/03/2016,Car & Gas,-25.89
-13/02/2016,Car & Gas,-26.87
-06/10/2016,Car & Gas,-42.76
-12/08/2016,Car & Gas,-28.28
-23/11/2016,Car & Gas,-28.92
-06/10/2016,Car & Gas,-44.36
-31/03/2016,Car & Gas,-31.40
-05/09/2016,Car & Gas,-34.26
-23/08/2016,Car & Gas,-48.61
-26/07/2016,Car & Gas,-34.50
-08/09/2016,Car & Gas,-41.17
-12/07/2016,Car & Gas,-36.64
-10/07/2016,Car & Gas,-37.39
-25/12/2016,Car & Gas,-27.47
-18/10/2016,Car & Gas,-40.6
-23/09/2016,Car & Gas,-50.9
-25/04/2016,Entertainment,-14.27
-25/10/2016,Entertainment,-44.98
-27/11/2016,Entertainment,-18.27
-05/07/2016,Entertainment,-26.95
-02/08/2016,Entertainment,-7.66
-14/02/2016,Entertainment,-11.74
-08/07/2016,Entertainment,-2.41
-24/01/2016,Entertainment,-40.39
-08/11/2016,Entertainment,-50.52
-08/09/2016,Entertainment,-20.89
-10/02/2016,Entertainment,-20.30
-22/01/2016,Entertainment,-37.69
-01/05/2016,Entertainment,-49.49
-29/02/2016,Entertainment,-31.89
-15/08/2016,Entertainment,-44.92
-24/12/2016,Entertainment,-15.41
-24/12/2016,Entertainment,-12.23
-06/02/2016,Entertainment,-35.42
-12/05/2016,Entertainment,-49.91
-08/10/2016,Entertainment,-23.69
-08/07/2016,Internet/Phone/Cable,-62.75
-18/12/2016,Internet/Phone/Cable,-65.80
-22/10/2016,Internet/Phone/Cable,-60.28
-15/10/2016,Internet/Phone/Cable,-61.31
-12/04/2016,Internet/Phone/Cable,-70.5
-12/10/2016,Internet/Phone/Cable,-63.32
-07/04/2016,Internet/Phone/Cable,-60.61
-18/06/2016,Internet/Phone/Cable,-60.2
-10/03/2016,Internet/Phone/Cable,-60.60
-09/09/2016,Internet/Phone/Cable,-64.15
-09/04/2016,Internet/Phone/Cable,-65.45
-17/06/2016,Internet/Phone/Cable,-64.55
-06/05/2016,Electricity & Water,-13.27
-17/12/2016,Electricity & Water,-89.14
-26/01/2016,Electricity & Water,-51.33
-30/04/2016,Electricity & Water,-68.96
-06/01/2016,Electricity & Water,-61.99
-04/03/2016,Electricity & Water,-79.23
-17/09/2016,Electricity & Water,-41.86
-17/08/2016,Electricity & Water,-34.58
-07/05/2016,Electricity & Water,-79.90
-08/10/2016,Electricity & Water,-25.73
-04/05/2016,Electricity & Water,-76.42
-08/07/2016,Electricity & Water,-53.36
-13/04/2015,Work,1941.30
-10/06/2015,Work,1822.13
-20/04/2015,Work,1850.1
-27/01/2015,Work,1947.79
-09/09/2015,Work,1947.98
-15/09/2015,Work,1875.96
-15/10/2015,Work,1930.70
-24/11/2015,Work,1850.18
-22/01/2015,Work,1883.39
-06/05/2015,Work,1865.3
-03/01/2015,Work,1851.18
-15/01/2015,Work,1965.63
-26/11/2015,Taxes,-187.20
-15/11/2015,Taxes,-211.75
-25/07/2015,Taxes,-300.92
-19/04/2015,Friends & Family,28.66
-09/08/2015,Friends & Family,-62.54
-06/11/2015,Friends & Family,-9.12
-13/04/2015,Friends & Family,-88.12
-20/04/2015,Friends & Family,-70.69
-14/01/2015,Friends & Family,90.82
-11/05/2015,Friends & Family,-24.2
-11/03/2015,Friends & Family,64.88
-11/05/2015,Friends & Family,19.64
-22/12/2015,Friends & Family,85.39
-10/06/2015,Friends & Family,-71.31
-04/08/2015,Friends & Family,-40.42
-23/05/2015,Friends & Family,-84.53
-21/02/2015,Friends & Family,-42.84
-03/03/2015,Friends & Family,16.3
-05/10/2015,Friends & Family,-56.93
-05/01/2015,Friends & Family,95.12
-18/01/2015,Friends & Family,92.64
-05/08/2015,Friends & Family,-62.32
-16/11/2015,Friends & Family,4.6
-17/10/2015,Garbage & Recycling,-16.94
-17/11/2015,Garbage & Recycling,-17.24
-13/07/2015,Garbage & Recycling,-19.12
-19/01/2015,Garbage & Recycling,-16.23
-15/03/2015,Rent,-575.63
-15/01/2015,Rent,-555.83
-20/01/2015,Rent,-593.2
-01/03/2015,Rent,-526.91
-05/03/2015,Rent,-594.10
-03/10/2015,Rent,-558.36
-30/11/2015,Rent,-595.28
-22/11/2015,Rent,-507.68
-03/11/2015,Rent,-517.0
-01/04/2015,Rent,-586.58
-09/05/2015,Rent,-508.7
-23/11/2015,Rent,-589.42
-09/04/2015,Electronics & Toys,-343.26
-03/07/2015,Electronics & Toys,-320.14
-22/06/2015,Electronics & Toys,-325.72
-03/06/2015,Electronics & Toys,-243.5
-06/01/2015,Electronics & Toys,-136.94
-19/12/2015,Electronics & Toys,-134.74
-19/04/2015,Food & Drinks,-22.23
-31/05/2015,Food & Drinks,-20.71
-12/11/2015,Food & Drinks,-22.9
-15/06/2015,Food & Drinks,-22.81
-23/11/2015,Food & Drinks,-20.92
-09/01/2015,Food & Drinks,-22.45
-09/06/2015,Food & Drinks,-24.84
-25/02/2015,Food & Drinks,-21.7
-17/12/2015,Food & Drinks,-24.68
-03/06/2015,Food & Drinks,-21.41
-12/05/2015,Food & Drinks,-21.39
-06/01/2015,Food & Drinks,-20.67
-13/05/2015,Food & Drinks,-24.34
-23/07/2015,Food & Drinks,-24.50
-06/11/2015,Food & Drinks,-20.40
-30/11/2015,Food & Drinks,-25.29
-31/07/2015,Food & Drinks,-23.66
-12/11/2015,Food & Drinks,-20.48
-12/07/2015,Food & Drinks,-24.21
-06/09/2015,Food & Drinks,-23.68
-12/08/2015,Food & Drinks,-21.42
-04/02/2015,Food & Drinks,-24.73
-05/12/2015,Food & Drinks,-20.44
-04/11/2015,Food & Drinks,-22.28
-20/04/2015,Food & Drinks,-21.13
-10/02/2015,Food & Drinks,-20.24
-22/09/2015,Food & Drinks,-23.41
-12/02/2015,Food & Drinks,-22.28
-02/03/2015,Food & Drinks,-23.85
-01/06/2015,Food & Drinks,-21.33
-17/11/2015,Food & Drinks,-21.0
-17/08/2015,Food & Drinks,-21.61
-06/09/2015,Food & Drinks,-23.66
-22/08/2015,Food & Drinks,-23.68
-05/02/2015,Food & Drinks,-20.30
-08/01/2015,Food & Drinks,-23.56
-22/05/2015,Food & Drinks,-22.13
-15/01/2015,Food & Drinks,-20.0
-22/06/2015,Food & Drinks,-20.65
-05/05/2015,Food & Drinks,-20.24
-21/01/2015,Food & Drinks,-23.58
-30/11/2015,Food & Drinks,-21.1
-02/09/2015,Food & Drinks,-25.60
-03/03/2015,Food & Drinks,-20.61
-22/11/2015,Food & Drinks,-22.28
-13/04/2015,Food & Drinks,-23.16
-02/05/2015,Food & Drinks,-22.10
-26/09/2015,Food & Drinks,-23.52
-22/03/2015,Food & Drinks,-20.39
-18/11/2015,Food & Drinks,-24.49
-11/05/2015,Food & Drinks,-25.69
-06/10/2015,Food & Drinks,-21.13
-06/05/2015,Food & Drinks,-22.91
-24/08/2015,Food & Drinks,-21.38
-27/06/2015,Food & Drinks,-22.99
-02/08/2015,Food & Drinks,-23.45
-17/06/2015,Food & Drinks,-25.35
-02/09/2015,Food & Drinks,-24.43
-14/02/2015,Food & Drinks,-23.4
-17/12/2015,Food & Drinks,-25.27
-05/09/2015,Food & Drinks,-25.44
-05/09/2015,Food & Drinks,-23.7
-25/10/2015,Food & Drinks,-21.4
-11/04/2015,Food & Drinks,-22.14
-05/01/2015,Food & Drinks,-24.46
-20/10/2015,Food & Drinks,-22.52
-09/06/2015,Food & Drinks,-23.92
-24/06/2015,Food & Drinks,-23.79
-15/05/2015,Food & Drinks,-24.69
-05/02/2015,Food & Drinks,-22.36
-27/06/2015,Food & Drinks,-25.31
-14/11/2015,Food & Drinks,-20.57
-07/12/2015,Food & Drinks,-25.52
-03/11/2015,Food & Drinks,-22.40
-23/09/2015,Food & Drinks,-22.34
-01/10/2015,Food & Drinks,-21.39
-08/02/2015,Food & Drinks,-22.59
-16/05/2015,Food & Drinks,-22.31
-26/11/2015,Food & Drinks,-20.83
-16/12/2015,Food & Drinks,-20.58
-21/09/2015,Food & Drinks,-22.60
-19/09/2015,Food & Drinks,-20.42
-19/06/2015,Food & Drinks,-24.30
-08/08/2015,Food & Drinks,-25.34
-25/06/2015,Food & Drinks,-24.22
-11/07/2015,Food & Drinks,-21.34
-17/05/2015,Food & Drinks,-21.42
-14/06/2015,Food & Drinks,-25.9
-12/05/2015,Food & Drinks,-20.62
-05/08/2015,Food & Drinks,-25.74
-06/12/2015,Food & Drinks,-21.23
-06/12/2015,Food & Drinks,-23.35
-10/07/2015,Food & Drinks,-22.9
-05/02/2015,Food & Drinks,-22.91
-10/10/2015,Food & Drinks,-23.78
-25/10/2015,Food & Drinks,-21.60
-17/03/2015,Food & Drinks,-22.30
-04/07/2015,Food & Drinks,-22.58
-16/05/2015,Food & Drinks,-20.66
-23/06/2015,Food & Drinks,-21.64
-20/06/2015,Food & Drinks,-23.66
-26/04/2015,Food & Drinks,-23.42
-27/10/2015,Food & Drinks,-20.81
-18/07/2015,Food & Drinks,-25.93
-14/06/2015,Food & Drinks,-23.28
-19/02/2015,Food & Drinks,-22.81
-05/07/2015,Food & Drinks,-20.25
-16/10/2015,Food & Drinks,-25.38
-25/08/2015,Food & Drinks,-22.9
-18/11/2015,Food & Drinks,-23.39
-19/06/2015,Food & Drinks,-21.19
-17/10/2015,Food & Drinks,-22.21
-13/05/2015,Food & Drinks,-23.50
-16/06/2015,Food & Drinks,-25.75
-11/08/2015,Food & Drinks,-25.94
-20/08/2015,Food & Drinks,-24.23
-15/10/2015,Food & Drinks,-20.27
-25/08/2015,Food & Drinks,-23.93
-13/10/2015,Food & Drinks,-25.24
-19/02/2015,Food & Drinks,-21.14
-17/08/2015,Food & Drinks,-25.89
-10/08/2015,Food & Drinks,-23.18
-13/05/2015,Food & Drinks,-24.43
-27/09/2015,Food & Drinks,-20.27
-12/04/2015,Food & Drinks,-23.12
-19/04/2015,Food & Drinks,-21.36
-18/05/2015,Food & Drinks,-20.97
-21/10/2015,Food & Drinks,-23.42
-20/11/2015,Food & Drinks,-25.20
-04/09/2015,Food & Drinks,-25.70
-20/08/2015,Food & Drinks,-25.87
-07/08/2015,Food & Drinks,-22.5
-26/01/2015,Food & Drinks,-20.6
-20/02/2015,Food & Drinks,-25.18
-18/05/2015,Food & Drinks,-25.44
-15/04/2015,Food & Drinks,-22.55
-08/05/2015,Food & Drinks,-22.23
-02/11/2015,Food & Drinks,-20.25
-27/09/2015,Food & Drinks,-25.87
-23/04/2015,Food & Drinks,-22.99
-18/04/2015,Food & Drinks,-23.82
-21/03/2015,Food & Drinks,-24.22
-03/01/2015,Food & Drinks,-23.31
-31/08/2015,Food & Drinks,-20.80
-03/06/2015,Food & Drinks,-21.15
-18/01/2015,Food & Drinks,-22.91
-06/05/2015,Food & Drinks,-21.65
-17/09/2015,Food & Drinks,-25.1
-13/11/2015,Food & Drinks,-25.44
-07/02/2015,Food & Drinks,-24.7
-04/08/2015,Food & Drinks,-22.73
-10/01/2015,Food & Drinks,-24.44
-18/04/2015,Food & Drinks,-21.18
-21/09/2015,Food & Drinks,-23.97
-17/03/2015,Food & Drinks,-20.50
-22/10/2015,Food & Drinks,-23.36
-26/08/2015,Food & Drinks,-22.54
-08/06/2015,Food & Drinks,-23.78
-26/01/2015,Food & Drinks,-22.36
-14/11/2015,Food & Drinks,-23.22
-27/02/2015,Food & Drinks,-20.48
-11/07/2015,Food & Drinks,-20.19
-16/07/2015,Food & Drinks,-22.54
-19/03/2015,Food & Drinks,-24.74
-16/02/2015,Food & Drinks,-24.87
-19/06/2015,Food & Drinks,-21.75
-14/10/2015,Food & Drinks,-24.73
-05/02/2015,Food & Drinks,-24.14
-27/05/2015,Food & Drinks,-23.31
-10/11/2015,Food & Drinks,-21.43
-08/07/2015,Food & Drinks,-24.63
-22/01/2015,Food & Drinks,-25.69
-20/07/2015,Food & Drinks,-23.3
-11/09/2015,Food & Drinks,-22.95
-25/03/2015,Food & Drinks,-25.83
-27/10/2015,Food & Drinks,-24.42
-20/04/2015,Food & Drinks,-22.39
-06/03/2015,Food & Drinks,-25.35
-11/08/2015,Food & Drinks,-24.60
-03/07/2015,Food & Drinks,-25.18
-12/02/2015,Food & Drinks,-20.53
-07/05/2015,Food & Drinks,-21.29
-08/03/2015,Food & Drinks,-20.95
-30/04/2015,Food & Drinks,-23.75
-26/11/2015,Food & Drinks,-24.59
-21/09/2015,Food & Drinks,-20.56
-22/01/2015,Food & Drinks,-21.69
-23/06/2015,Food & Drinks,-22.47
-27/01/2015,Food & Drinks,-24.6
-21/08/2015,Food & Drinks,-22.37
-19/10/2015,Food & Drinks,-22.72
-12/09/2015,Food & Drinks,-25.76
-02/11/2015,Food & Drinks,-20.79
-08/06/2015,Food & Drinks,-23.86
-01/10/2015,Food & Drinks,-22.27
-02/10/2015,Food & Drinks,-23.25
-26/10/2015,Food & Drinks,-21.99
-10/11/2015,Food & Drinks,-20.34
-20/01/2015,Food & Drinks,-23.49
-18/08/2015,Food & Drinks,-24.78
-08/11/2015,Car & Gas,-30.3
-17/07/2015,Car & Gas,-44.79
-17/12/2015,Car & Gas,-34.83
-01/08/2015,Car & Gas,-25.99
-10/07/2015,Car & Gas,-26.14
-18/01/2015,Car & Gas,-48.10
-18/06/2015,Car & Gas,-30.90
-05/06/2015,Car & Gas,-45.81
-25/05/2015,Car & Gas,-50.93
-26/05/2015,Car & Gas,-47.48
-18/08/2015,Car & Gas,-32.10
-08/02/2015,Car & Gas,-46.53
-15/09/2015,Car & Gas,-40.83
-09/07/2015,Car & Gas,-48.74
-22/09/2015,Car & Gas,-35.69
-16/02/2015,Car & Gas,-25.78
-26/03/2015,Car & Gas,-36.31
-07/08/2015,Car & Gas,-42.66
-27/11/2015,Car & Gas,-35.62
-12/02/2015,Car & Gas,-31.1
-05/04/2015,Car & Gas,-29.11
-21/04/2015,Car & Gas,-49.21
-25/10/2015,Car & Gas,-42.82
-20/11/2015,Car & Gas,-38.1
-01/06/2015,Car & Gas,-37.10
-21/04/2015,Car & Gas,-27.97
-01/09/2015,Car & Gas,-40.34
-24/08/2015,Car & Gas,-39.89
-05/05/2015,Car & Gas,-28.31
-12/11/2015,Car & Gas,-44.25
-03/09/2015,Entertainment,-8.78
-01/05/2015,Entertainment,-2.0
-17/05/2015,Entertainment,-26.48
-20/08/2015,Entertainment,-9.52
-17/09/2015,Entertainment,-31.67
-25/08/2015,Entertainment,-31.42
-01/07/2015,Entertainment,-13.81
-03/01/2015,Entertainment,-35.54
-27/02/2015,Entertainment,-15.16
-16/08/2015,Entertainment,-39.37
-05/06/2015,Entertainment,-30.27
-12/10/2015,Entertainment,-11.69
-11/02/2015,Entertainment,-21.62
-05/04/2015,Entertainment,-9.16
-05/06/2015,Entertainment,-25.4
-19/09/2015,Entertainment,-26.15
-20/05/2015,Entertainment,-2.53
-19/09/2015,Entertainment,-38.11
-01/05/2015,Entertainment,-41.58
-14/07/2015,Entertainment,-26.18
-24/10/2015,Internet/Phone/Cable,-70.31
-04/07/2015,Internet/Phone/Cable,-68.91
-27/10/2015,Internet/Phone/Cable,-70.78
-31/08/2015,Internet/Phone/Cable,-66.23
-26/10/2015,Internet/Phone/Cable,-70.46
-10/11/2015,Internet/Phone/Cable,-61.8
-31/12/2014,Internet/Phone/Cable,-69.73
-14/02/2014,Internet/Phone/Cable,-69.29
-15/07/2014,Internet/Phone/Cable,-70.63
-26/10/2014,Internet/Phone/Cable,-69.78
-08/08/2014,Internet/Phone/Cable,-60.64
-25/12/2014,Internet/Phone/Cable,-62.92
-06/02/2015,Electricity & Water,-97.92
-18/02/2015,Electricity & Water,-92.75
-18/02/2015,Electricity & Water,-73.33
-16/08/2015,Electricity & Water,-59.53
-10/01/2015,Electricity & Water,-96.23
-13/05/2015,Electricity & Water,-97.59
-07/08/2015,Electricity & Water,-9.86
-24/07/2015,Electricity & Water,-9.50
-08/04/2015,Electricity & Water,-78.81
-13/10/2015,Electricity & Water,-76.18
-21/03/2015,Electricity & Water,-2.76
-14/08/2015,Electricity & Water,-88.36
-13/04/2014,Work,1990.74
-22/03/2014,Work,1845.46
-07/01/2014,Work,1921.35
-12/10/2014,Work,1878.88
-10/07/2014,Work,1824.80
-12/07/2014,Work,1854.27
-18/01/2014,Work,1801.74
-04/04/2014,Work,1828.27
-02/04/2014,Work,1960.16
-21/10/2014,Work,1862.67
-07/03/2014,Work,1959.89
-06/09/2014,Work,1953.21
-19/07/2014,Taxes,-101.45
-05/04/2014,Taxes,-266.24
-11/04/2014,Taxes,-272.29
-21/01/2014,Friends & Family,-9.59
-18/03/2014,Friends & Family,-63.70
-10/10/2014,Friends & Family,34.37
-20/02/2014,Friends & Family,66.86
-07/11/2014,Friends & Family,53.78
-26/02/2014,Friends & Family,77.13
-04/10/2014,Friends & Family,-42.25
-13/03/2014,Friends & Family,89.50
-11/12/2014,Friends & Family,15.56
-07/03/2014,Friends & Family,58.60
-26/07/2014,Friends & Family,85.80
-14/06/2014,Friends & Family,-23.98
-14/06/2014,Friends & Family,57.22
-15/02/2014,Friends & Family,-35.84
-24/03/2014,Friends & Family,2.49
-02/12/2014,Friends & Family,-79.36
-08/11/2014,Friends & Family,-89.11
-17/09/2014,Friends & Family,-60.61
-18/09/2014,Friends & Family,12.83
-05/04/2014,Friends & Family,70.31
-26/08/2014,Garbage & Recycling,-16.98
-05/05/2014,Garbage & Recycling,-16.33
-17/03/2014,Garbage & Recycling,-18.97
-06/11/2014,Garbage & Recycling,-15.79
-09/03/2014,Rent,-549.60
-24/08/2014,Rent,-586.95
-26/07/2014,Rent,-548.74
-13/10/2014,Rent,-573.2
-07/04/2014,Rent,-584.64
-21/05/2014,Rent,-533.71
-14/08/2014,Rent,-567.35
-16/03/2014,Rent,-575.73
-03/04/2014,Rent,-594.40
-23/02/2014,Rent,-542.63
-17/06/2014,Rent,-524.76
-05/05/2014,Rent,-536.70
-18/08/2014,Electronics & Toys,-364.33
-05/06/2014,Electronics & Toys,-339.72
-21/05/2014,Electronics & Toys,-425.49
-09/07/2014,Electronics & Toys,-397.70
-15/07/2014,Electronics & Toys,-491.48
-14/12/2014,Electronics & Toys,-24.18
-03/04/2014,Food & Drinks,-20.66
-18/04/2014,Food & Drinks,-22.49
-26/09/2014,Food & Drinks,-21.80
-26/12/2014,Food & Drinks,-22.4
-19/11/2014,Food & Drinks,-24.15
-23/07/2014,Food & Drinks,-20.71
-15/01/2014,Food & Drinks,-23.78
-12/08/2014,Food & Drinks,-24.77
-31/10/2014,Food & Drinks,-23.40
-07/11/2014,Food & Drinks,-24.94
-16/09/2014,Food & Drinks,-24.93
-19/01/2014,Food & Drinks,-22.46
-04/03/2014,Food & Drinks,-21.22
-20/04/2014,Food & Drinks,-25.46
-15/06/2014,Food & Drinks,-21.74
-25/04/2014,Food & Drinks,-25.83
-15/09/2014,Food & Drinks,-25.37
-06/03/2014,Food & Drinks,-20.35
-21/06/2014,Food & Drinks,-24.35
-16/07/2014,Food & Drinks,-23.95
-27/10/2014,Food & Drinks,-20.13
-02/09/2014,Food & Drinks,-22.25
-10/03/2014,Food & Drinks,-25.70
-07/01/2014,Food & Drinks,-24.74
-15/01/2014,Food & Drinks,-22.55
-03/06/2014,Food & Drinks,-20.35
-21/12/2014,Food & Drinks,-24.47
-31/07/2014,Food & Drinks,-24.8
-18/05/2014,Food & Drinks,-20.74
-23/08/2014,Food & Drinks,-23.18
-02/11/2014,Food & Drinks,-22.43
-25/02/2014,Food & Drinks,-23.87
-27/10/2014,Food & Drinks,-20.88
-01/02/2014,Food & Drinks,-22.61
-24/05/2014,Food & Drinks,-21.63
-06/05/2014,Food & Drinks,-23.57
-14/01/2014,Food & Drinks,-21.25
-10/09/2014,Food & Drinks,-20.55
-12/05/2014,Food & Drinks,-21.96
-26/02/2014,Food & Drinks,-24.76
-14/01/2014,Food & Drinks,-20.92
-30/09/2014,Food & Drinks,-21.98
-31/01/2014,Food & Drinks,-24.59
-17/02/2014,Food & Drinks,-25.17
-20/11/2014,Food & Drinks,-20.55
-15/11/2014,Food & Drinks,-22.58
-13/11/2014,Food & Drinks,-24.71
-17/08/2014,Food & Drinks,-20.68
-08/04/2014,Food & Drinks,-23.77
-06/06/2014,Food & Drinks,-25.75
-05/04/2014,Food & Drinks,-24.24
-23/06/2014,Food & Drinks,-24.83
-31/07/2014,Food & Drinks,-21.71
-21/12/2014,Food & Drinks,-25.28
-06/03/2014,Food & Drinks,-23.79
-19/07/2014,Food & Drinks,-22.32
-06/07/2014,Food & Drinks,-21.15
-28/02/2014,Food & Drinks,-22.23
-21/01/2014,Food & Drinks,-25.56
-20/04/2014,Food & Drinks,-21.99
-07/04/2014,Food & Drinks,-24.73
-07/06/2014,Food & Drinks,-21.66
-22/02/2014,Food & Drinks,-24.57
-07/07/2014,Food & Drinks,-21.79
-07/03/2014,Food & Drinks,-21.86
-25/03/2014,Food & Drinks,-25.50
-05/11/2014,Food & Drinks,-22.78
-21/08/2014,Food & Drinks,-21.23
-18/01/2014,Food & Drinks,-20.62
-01/09/2014,Food & Drinks,-24.18
-21/01/2014,Food & Drinks,-20.54
-14/03/2014,Food & Drinks,-25.86
-31/08/2014,Food & Drinks,-25.40
-20/01/2014,Food & Drinks,-23.52
-27/04/2014,Food & Drinks,-21.91
-15/11/2014,Food & Drinks,-25.15
-19/11/2014,Food & Drinks,-22.59
-16/02/2014,Food & Drinks,-21.36
-17/10/2014,Food & Drinks,-20.38
-04/02/2014,Food & Drinks,-22.46
-17/07/2014,Food & Drinks,-20.87
-09/11/2014,Food & Drinks,-22.39
-23/11/2014,Food & Drinks,-20.40
-19/12/2014,Food & Drinks,-22.43
-26/10/2014,Food & Drinks,-25.64
-26/11/2014,Food & Drinks,-20.77
-17/01/2014,Food & Drinks,-22.31
-21/05/2014,Food & Drinks,-22.39
-26/08/2014,Food & Drinks,-21.10
-06/09/2014,Food & Drinks,-24.93
-03/11/2014,Food & Drinks,-20.12
-25/11/2014,Food & Drinks,-21.26
-18/08/2014,Food & Drinks,-25.31
-09/10/2014,Food & Drinks,-24.17
-24/08/2014,Food & Drinks,-25.64
-15/11/2014,Food & Drinks,-23.37
-24/12/2014,Food & Drinks,-25.6
-19/07/2014,Food & Drinks,-21.46
-15/05/2014,Food & Drinks,-25.54
-10/05/2014,Food & Drinks,-22.90
-20/02/2014,Food & Drinks,-23.67
-19/05/2014,Food & Drinks,-23.97
-18/11/2014,Food & Drinks,-24.65
-07/09/2014,Food & Drinks,-25.19
-25/03/2014,Food & Drinks,-24.52
-31/08/2014,Food & Drinks,-25.87
-31/01/2014,Food & Drinks,-20.23
-09/04/2014,Food & Drinks,-21.59
-02/08/2014,Food & Drinks,-20.64
-16/02/2014,Food & Drinks,-21.86
-25/06/2014,Food & Drinks,-24.60
-14/02/2014,Food & Drinks,-20.28
-04/03/2014,Food & Drinks,-24.92
-01/04/2014,Food & Drinks,-24.91
-27/12/2014,Food & Drinks,-23.54
-22/07/2014,Food & Drinks,-21.62
-27/06/2014,Food & Drinks,-25.46
-07/03/2014,Food & Drinks,-23.78
-02/05/2014,Food & Drinks,-21.16
-04/09/2014,Food & Drinks,-22.42
-11/09/2014,Food & Drinks,-20.51
-26/04/2014,Food & Drinks,-25.74
-20/10/2014,Food & Drinks,-23.56
-23/09/2014,Food & Drinks,-21.73
-27/02/2014,Food & Drinks,-25.51
-08/05/2014,Food & Drinks,-25.7
-08/02/2014,Food & Drinks,-24.90
-31/05/2014,Food & Drinks,-24.69
-10/05/2014,Food & Drinks,-25.78
-05/11/2014,Food & Drinks,-24.74
-03/10/2014,Food & Drinks,-23.33
-22/03/2014,Food & Drinks,-22.71
-22/06/2014,Food & Drinks,-22.30
-27/10/2014,Food & Drinks,-21.91
-10/06/2014,Food & Drinks,-22.20
-23/05/2014,Food & Drinks,-21.79
-14/06/2014,Food & Drinks,-23.8
-26/01/2014,Food & Drinks,-24.57
-14/05/2014,Food & Drinks,-23.29
-26/05/2014,Food & Drinks,-23.25
-14/10/2014,Food & Drinks,-24.73
-12/08/2014,Food & Drinks,-22.1
-20/09/2014,Food & Drinks,-23.26
-16/11/2014,Food & Drinks,-23.46
-22/10/2014,Food & Drinks,-20.51
-15/06/2014,Food & Drinks,-23.44
-31/07/2014,Food & Drinks,-25.3
-06/02/2014,Food & Drinks,-21.8
-05/01/2014,Food & Drinks,-24.64
-18/09/2014,Food & Drinks,-20.48
-27/04/2014,Food & Drinks,-25.51
-21/11/2014,Food & Drinks,-25.26
-22/03/2014,Food & Drinks,-23.9
-06/04/2014,Food & Drinks,-25.70
-20/01/2014,Food & Drinks,-23.19
-13/03/2014,Food & Drinks,-25.33
-17/06/2014,Food & Drinks,-22.58
-23/02/2014,Food & Drinks,-23.8
-30/06/2014,Food & Drinks,-22.11
-09/11/2014,Food & Drinks,-25.51
-04/03/2014,Food & Drinks,-22.14
-05/07/2014,Food & Drinks,-25.60
-19/04/2014,Food & Drinks,-25.69
-19/09/2014,Food & Drinks,-25.11
-05/10/2014,Food & Drinks,-20.80
-08/07/2014,Food & Drinks,-21.61
-12/07/2014,Food & Drinks,-23.87
-13/05/2014,Food & Drinks,-20.62
-04/06/2014,Food & Drinks,-21.92
-26/03/2014,Food & Drinks,-24.40
-18/04/2014,Food & Drinks,-21.21
-17/11/2014,Food & Drinks,-21.43
-06/11/2014,Food & Drinks,-22.56
-01/03/2014,Food & Drinks,-21.58
-25/07/2014,Food & Drinks,-22.26
-26/08/2014,Food & Drinks,-23.46
-16/03/2014,Food & Drinks,-24.54
-18/11/2014,Food & Drinks,-20.61
-07/08/2014,Food & Drinks,-25.86
-15/06/2014,Food & Drinks,-25.27
-14/01/2014,Food & Drinks,-20.59
-06/02/2014,Food & Drinks,-20.14
-05/05/2014,Food & Drinks,-25.78
-12/06/2014,Food & Drinks,-24.21
-23/05/2014,Food & Drinks,-22.10
-03/02/2014,Food & Drinks,-20.57
-14/04/2014,Food & Drinks,-20.19
-16/03/2014,Food & Drinks,-25.97
-26/06/2014,Food & Drinks,-20.95
-08/05/2014,Food & Drinks,-23.29
-27/04/2014,Food & Drinks,-22.54
-11/04/2014,Food & Drinks,-21.27
-09/02/2014,Food & Drinks,-23.7
-21/12/2014,Food & Drinks,-22.26
-15/08/2014,Food & Drinks,-20.32
-21/10/2014,Food & Drinks,-23.83
-18/11/2014,Food & Drinks,-25.97
-23/07/2014,Food & Drinks,-23.26
-13/11/2014,Food & Drinks,-21.9
-27/11/2014,Food & Drinks,-24.54
-05/12/2014,Car & Gas,-41.97
-21/06/2014,Car & Gas,-36.36
-10/12/2014,Car & Gas,-49.48
-21/05/2014,Car & Gas,-40.97
-02/06/2014,Car & Gas,-30.55
-09/11/2014,Car & Gas,-39.20
-18/04/2014,Car & Gas,-47.49
-03/09/2014,Car & Gas,-50.91
-25/04/2014,Car & Gas,-25.24
-21/12/2014,Car & Gas,-41.49
-06/08/2014,Car & Gas,-47.67
-22/09/2014,Car & Gas,-36.45
-19/05/2014,Car & Gas,-37.70
-13/11/2014,Car & Gas,-44.15
-09/12/2014,Car & Gas,-41.67
-04/03/2014,Car & Gas,-45.97
-19/03/2014,Car & Gas,-41.37
-14/01/2014,Car & Gas,-28.84
-25/04/2014,Car & Gas,-34.63
-14/09/2014,Car & Gas,-46.67
-14/07/2014,Car & Gas,-46.27
-12/04/2014,Car & Gas,-36.13
-30/11/2014,Car & Gas,-46.98
-16/04/2014,Car & Gas,-39.4
-21/01/2014,Car & Gas,-26.35
-31/12/2013,Car & Gas,-39.93
-15/09/2013,Car & Gas,-46.5
-16/04/2013,Car & Gas,-30.90
-07/12/2013,Car & Gas,-35.1
-14/04/2013,Car & Gas,-39.67
-09/06/2014,Entertainment,-37.6
-21/07/2014,Entertainment,-49.36
-24/08/2014,Entertainment,-45.24
-19/01/2014,Entertainment,-34.68
-12/02/2014,Entertainment,-50.1
-02/03/2014,Entertainment,-25.25
-15/03/2014,Entertainment,-33.82
-05/05/2014,Entertainment,-46.38
-18/10/2014,Entertainment,-40.89
-12/04/2014,Entertainment,-39.62
-09/02/2014,Entertainment,-18.16
-27/06/2014,Entertainment,-4.67
-10/06/2014,Entertainment,-43.73
-11/08/2014,Entertainment,-15.68
-11/02/2014,Entertainment,-12.27
-02/06/2014,Entertainment,-19.98
-20/09/2014,Entertainment,-9.13
-01/01/2014,Entertainment,-12.69
-02/11/2014,Entertainment,-50.33
-04/07/2014,Entertainment,-8.75
-24/11/2014,Internet/Phone/Cable,-69.49
-12/06/2014,Internet/Phone/Cable,-70.44
-27/08/2014,Internet/Phone/Cable,-66.37
-15/06/2014,Internet/Phone/Cable,-66.41
-22/08/2014,Internet/Phone/Cable,-64.73
-11/11/2014,Internet/Phone/Cable,-60.60
-27/11/2014,Internet/Phone/Cable,-69.55
-05/09/2014,Internet/Phone/Cable,-64.81
-01/03/2014,Internet/Phone/Cable,-64.84
-21/03/2014,Internet/Phone/Cable,-65.66
-14/02/2014,Internet/Phone/Cable,-68.60
-03/06/2014,Internet/Phone/Cable,-60.25
-01/03/2014,Electricity & Water,-74.74
-22/11/2014,Electricity & Water,-69.78
-14/12/2014,Electricity & Water,-91.81
-07/04/2014,Electricity & Water,-75.83
-12/02/2014,Electricity & Water,-10.8
-09/12/2014,Electricity & Water,-96.20
-20/07/2014,Electricity & Water,-24.18
-16/02/2014,Electricity & Water,-68.46
-27/10/2014,Electricity & Water,-92.37
-02/08/2014,Electricity & Water,-66.56
-20/11/2014,Electricity & Water,-33.18
-02/08/2014,Electricity & Water,-48.20
-08/07/2013,Work,1811.95
-09/09/2013,Work,1922.79
-05/08/2013,Work,1981.58
-02/03/2013,Work,1936.25
-09/01/2013,Work,1813.38
-05/04/2013,Work,1841.90
-03/12/2013,Work,1911.97
-20/01/2013,Work,1808.24
-22/05/2013,Work,1976.61
-03/01/2013,Work,1882.36
-02/04/2013,Work,1996.30
-13/04/2013,Work,1984.26
-02/04/2013,Taxes,-227.61
-24/10/2013,Taxes,-207.38
-09/09/2013,Taxes,-247.11
-23/07/2013,Friends & Family,7.6
-30/11/2013,Friends & Family,-84.54
-09/09/2013,Friends & Family,22.36
-24/02/2013,Friends & Family,80.3
-21/12/2013,Friends & Family,-86.66
-27/08/2013,Friends & Family,45.56
-02/11/2013,Friends & Family,-58.49
-14/10/2013,Friends & Family,30.35
-18/05/2013,Friends & Family,32.31
-02/09/2013,Friends & Family,47.22
-11/08/2013,Friends & Family,73.2
-24/01/2013,Friends & Family,-29.88
-02/10/2013,Friends & Family,53.40
-19/11/2013,Friends & Family,-57.57
-04/11/2013,Friends & Family,-84.15
-12/06/2013,Friends & Family,69.86
-18/05/2013,Friends & Family,-64.80
-20/03/2013,Friends & Family,-86.21
-05/07/2013,Friends & Family,-43.39
-24/11/2013,Friends & Family,77.2
-09/11/2013,Garbage & Recycling,-17.72
-04/10/2013,Garbage & Recycling,-20.56
-20/04/2013,Garbage & Recycling,-16.29
-16/09/2013,Garbage & Recycling,-19.20
-11/10/2013,Rent,-515.93
-07/10/2013,Rent,-521.48
-24/10/2013,Rent,-511.27
-11/12/2013,Rent,-537.83
-01/07/2013,Rent,-597.16
-07/07/2013,Rent,-547.97
-16/11/2013,Rent,-529.38
-19/04/2013,Rent,-548.64
-24/12/2013,Rent,-530.87
-14/11/2013,Rent,-512.89
-24/05/2013,Rent,-542.54
-25/03/2013,Rent,-520.66
-15/01/2013,Electronics & Toys,-19.89
-06/09/2013,Electronics & Toys,-98.56
-16/05/2013,Electronics & Toys,-73.96
-22/05/2013,Electronics & Toys,-356.98
-02/02/2013,Electronics & Toys,-458.40
-01/09/2013,Electronics & Toys,-100.88
-22/04/2013,Food & Drinks,-22.68
-30/04/2013,Food & Drinks,-25.95
-23/12/2013,Food & Drinks,-22.70
-02/09/2013,Food & Drinks,-20.3
-09/05/2013,Food & Drinks,-20.28
-10/02/2013,Food & Drinks,-21.94
-13/05/2013,Food & Drinks,-23.40
-09/07/2013,Food & Drinks,-24.9
-10/09/2013,Food & Drinks,-23.12
-27/12/2013,Food & Drinks,-21.50
-12/01/2013,Food & Drinks,-23.46
-20/01/2013,Food & Drinks,-21.20
-26/03/2013,Food & Drinks,-20.79
-21/07/2013,Food & Drinks,-21.10
-09/09/2013,Food & Drinks,-20.54
-05/07/2013,Food & Drinks,-21.68
-10/06/2013,Food & Drinks,-20.9
-20/01/2013,Food & Drinks,-20.26
-03/08/2013,Food & Drinks,-25.31
-13/06/2013,Food & Drinks,-24.64
-03/05/2013,Food & Drinks,-24.15
-27/06/2013,Food & Drinks,-23.31
-25/03/2013,Food & Drinks,-21.5
-01/01/2013,Food & Drinks,-21.60
-03/12/2013,Food & Drinks,-22.23
-04/06/2013,Food & Drinks,-23.43
-22/02/2013,Food & Drinks,-20.13
-16/06/2013,Food & Drinks,-22.55
-14/01/2013,Food & Drinks,-23.50
-18/11/2013,Food & Drinks,-21.41
-04/11/2013,Food & Drinks,-22.87
-25/10/2013,Food & Drinks,-25.5
-09/12/2013,Food & Drinks,-22.54
-15/07/2013,Food & Drinks,-25.69
-24/03/2013,Food & Drinks,-25.23
-02/05/2013,Food & Drinks,-21.82
-01/08/2013,Food & Drinks,-20.96
-27/07/2013,Food & Drinks,-23.10
-09/11/2013,Food & Drinks,-23.93
-01/02/2013,Food & Drinks,-24.25
-09/05/2013,Food & Drinks,-23.50
-12/07/2013,Food & Drinks,-21.82
-09/07/2013,Food & Drinks,-21.34
-23/10/2013,Food & Drinks,-23.48
-21/11/2013,Food & Drinks,-22.45
-09/12/2013,Food & Drinks,-20.16
-08/07/2013,Food & Drinks,-24.79
-17/10/2013,Food & Drinks,-21.41
-12/02/2013,Food & Drinks,-22.46
-17/10/2013,Food & Drinks,-25.47
-23/07/2013,Food & Drinks,-22.77
-26/07/2013,Food & Drinks,-20.23
-22/10/2013,Food & Drinks,-24.67
-21/03/2013,Food & Drinks,-22.88
-16/10/2013,Food & Drinks,-22.41
-16/11/2013,Food & Drinks,-24.95
-11/12/2013,Food & Drinks,-21.29
-12/12/2013,Food & Drinks,-25.21
-08/08/2013,Food & Drinks,-25.92
-10/09/2013,Food & Drinks,-22.36
-17/06/2013,Food & Drinks,-22.39
-30/09/2013,Food & Drinks,-20.68
-04/04/2013,Food & Drinks,-20.28
-31/10/2013,Food & Drinks,-24.4
-14/03/2013,Food & Drinks,-23.28
-09/05/2013,Food & Drinks,-21.82
-10/08/2013,Food & Drinks,-20.95
-18/08/2013,Food & Drinks,-25.83
-15/05/2013,Food & Drinks,-20.97
-17/07/2013,Food & Drinks,-21.11
-02/11/2013,Food & Drinks,-24.74
-13/12/2013,Food & Drinks,-24.29
-15/08/2013,Food & Drinks,-21.28
-14/12/2013,Food & Drinks,-23.89
-16/03/2013,Food & Drinks,-21.75
-02/02/2013,Food & Drinks,-22.66
-13/09/2013,Food & Drinks,-22.9
-07/01/2013,Food & Drinks,-21.98
-19/07/2013,Food & Drinks,-22.54
-23/02/2013,Food & Drinks,-22.78
-08/06/2013,Food & Drinks,-24.11
-03/10/2013,Food & Drinks,-25.57
-10/11/2013,Food & Drinks,-20.18
-31/03/2013,Food & Drinks,-23.53
-24/01/2013,Food & Drinks,-21.85
-17/05/2013,Food & Drinks,-20.80
-22/02/2013,Food & Drinks,-23.72
-02/06/2013,Food & Drinks,-24.26
-27/07/2013,Food & Drinks,-23.18
-11/01/2013,Food & Drinks,-25.63
-17/05/2013,Food & Drinks,-24.46
-13/06/2013,Food & Drinks,-22.65
-02/04/2013,Food & Drinks,-21.97
-26/10/2013,Food & Drinks,-25.44
-09/10/2013,Food & Drinks,-20.64
-20/12/2013,Food & Drinks,-20.66
-09/03/2013,Food & Drinks,-20.40
-10/06/2013,Food & Drinks,-23.81
-04/06/2013,Food & Drinks,-21.93
-01/11/2013,Food & Drinks,-24.87
-18/05/2013,Food & Drinks,-20.33
-15/01/2013,Food & Drinks,-22.12
-02/07/2013,Food & Drinks,-25.35
-05/05/2013,Food & Drinks,-21.84
-17/11/2013,Food & Drinks,-21.33
-11/02/2013,Food & Drinks,-21.31
-02/01/2013,Food & Drinks,-20.0
-24/09/2013,Food & Drinks,-23.3
-11/08/2013,Food & Drinks,-21.77
-28/02/2013,Food & Drinks,-25.48
-23/09/2013,Food & Drinks,-23.17
-11/03/2013,Food & Drinks,-22.57
-26/02/2013,Food & Drinks,-20.57
-10/10/2013,Food & Drinks,-25.61
-12/11/2013,Food & Drinks,-20.35
-27/03/2013,Food & Drinks,-25.63
-30/06/2013,Food & Drinks,-22.7
-24/02/2013,Food & Drinks,-25.11
-17/05/2013,Food & Drinks,-24.51
-27/07/2013,Food & Drinks,-23.74
-02/03/2013,Food & Drinks,-23.42
-31/01/2013,Food & Drinks,-24.56
-03/11/2013,Food & Drinks,-24.37
-31/05/2013,Food & Drinks,-21.61
-17/02/2013,Food & Drinks,-23.23
-14/03/2013,Food & Drinks,-24.18
-08/04/2013,Food & Drinks,-25.94
-06/01/2013,Food & Drinks,-21.90
-02/06/2013,Food & Drinks,-22.72
-06/06/2013,Food & Drinks,-23.61
-03/12/2013,Food & Drinks,-21.93
-26/01/2013,Food & Drinks,-22.54
-03/04/2013,Food & Drinks,-20.2
-12/10/2013,Food & Drinks,-20.34
-09/06/2013,Food & Drinks,-20.57
-22/10/2013,Food & Drinks,-20.97
-17/12/2013,Food & Drinks,-24.9
-02/06/2013,Food & Drinks,-25.43
-26/05/2013,Food & Drinks,-21.25
-07/03/2013,Food & Drinks,-25.94
-27/01/2013,Food & Drinks,-22.72
-13/01/2013,Food & Drinks,-22.95
-26/12/2013,Food & Drinks,-23.57
-09/06/2013,Food & Drinks,-20.23
-05/01/2013,Food & Drinks,-22.23
-20/10/2013,Food & Drinks,-24.68
-08/02/2013,Food & Drinks,-22.19
-03/11/2013,Food & Drinks,-21.90
-05/10/2013,Food & Drinks,-20.14
-17/12/2013,Food & Drinks,-22.49
-08/12/2013,Food & Drinks,-21.8
-08/06/2013,Food & Drinks,-24.55
-25/12/2013,Food & Drinks,-20.62
-17/10/2013,Food & Drinks,-20.6
-27/04/2013,Food & Drinks,-20.65
-07/07/2013,Food & Drinks,-25.98
-18/05/2013,Food & Drinks,-23.91
-22/01/2013,Food & Drinks,-25.22
-04/11/2013,Food & Drinks,-23.21
-12/02/2013,Food & Drinks,-20.93
-07/04/2013,Food & Drinks,-25.42
-05/06/2013,Food & Drinks,-22.63
-04/04/2013,Food & Drinks,-22.31
-13/09/2013,Food & Drinks,-23.26
-12/03/2013,Food & Drinks,-21.97
-02/05/2013,Food & Drinks,-23.11
-16/11/2013,Food & Drinks,-24.43
-02/01/2013,Food & Drinks,-25.15
-04/01/2013,Food & Drinks,-22.58
-16/10/2013,Food & Drinks,-22.32
-18/08/2013,Food & Drinks,-22.57
-31/01/2013,Food & Drinks,-25.76
-21/12/2013,Food & Drinks,-21.39
-04/03/2013,Food & Drinks,-24.4
-05/11/2013,Food & Drinks,-20.14
-24/09/2013,Food & Drinks,-20.87
-14/12/2013,Food & Drinks,-22.26
-16/01/2013,Food & Drinks,-21.80
-22/07/2013,Food & Drinks,-20.78
-20/02/2013,Food & Drinks,-23.4
-23/09/2013,Food & Drinks,-25.35
-22/12/2013,Food & Drinks,-23.20
-07/03/2013,Food & Drinks,-25.50
-21/08/2013,Food & Drinks,-23.75
-20/12/2013,Food & Drinks,-23.47
-30/06/2013,Food & Drinks,-25.47
-07/08/2013,Food & Drinks,-24.68
-20/12/2013,Food & Drinks,-25.3
-05/08/2013,Food & Drinks,-21.41
-25/11/2013,Food & Drinks,-22.78
-10/12/2013,Food & Drinks,-24.48
-07/01/2013,Food & Drinks,-24.5
-15/08/2013,Food & Drinks,-24.96
-04/10/2013,Food & Drinks,-20.78
-06/07/2013,Food & Drinks,-25.9
-06/10/2013,Food & Drinks,-24.22
-03/07/2013,Food & Drinks,-22.4
-20/07/2013,Food & Drinks,-20.89
-05/09/2013,Food & Drinks,-21.27
-23/12/2013,Food & Drinks,-20.29
-08/10/2013,Car & Gas,-43.39
-19/07/2013,Car & Gas,-34.81
-26/04/2013,Car & Gas,-40.92
-18/08/2013,Car & Gas,-50.93
-13/08/2013,Car & Gas,-27.42
-01/06/2013,Car & Gas,-42.76
-18/01/2013,Car & Gas,-29.80
-18/03/2013,Car & Gas,-31.27
-03/02/2013,Car & Gas,-49.69
-16/04/2013,Car & Gas,-44.1
-07/07/2013,Car & Gas,-38.33
-26/07/2013,Car & Gas,-26.99
-18/03/2013,Car & Gas,-50.41
-30/06/2013,Car & Gas,-45.11
-02/07/2013,Car & Gas,-32.58
-16/10/2013,Car & Gas,-28.33
-19/11/2013,Car & Gas,-47.71
-09/12/2013,Car & Gas,-49.33
-18/05/2013,Car & Gas,-41.22
-03/05/2013,Car & Gas,-42.60
-23/06/2013,Car & Gas,-25.85
-31/12/2012,Car & Gas,-45.91
-24/05/2012,Car & Gas,-30.80
-08/09/2012,Car & Gas,-30.77
-31/10/2012,Car & Gas,-37.16
-18/01/2012,Car & Gas,-40.47
-10/09/2012,Car & Gas,-41.91
-07/04/2012,Car & Gas,-47.41
-11/10/2012,Car & Gas,-38.6
-20/09/2012,Car & Gas,-42.22
-07/03/2013,Entertainment,-37.67
-26/09/2013,Entertainment,-21.70
-18/01/2013,Entertainment,-12.70
-05/08/2013,Entertainment,-28.42
-25/04/2013,Entertainment,-7.12
-10/01/2013,Entertainment,-15.91
-24/02/2013,Entertainment,-31.66
-18/11/2013,Entertainment,-18.45
-10/08/2013,Entertainment,-32.97
-17/08/2013,Entertainment,-42.90
-31/08/2013,Entertainment,-2.36
-12/02/2013,Entertainment,-41.31
-18/02/2013,Entertainment,-3.17
-26/03/2013,Entertainment,-40.4
-21/10/2013,Entertainment,-42.51
-20/06/2013,Entertainment,-30.70
-16/08/2013,Entertainment,-35.92
-14/08/2013,Entertainment,-2.17
-31/08/2013,Entertainment,-29.19
-05/07/2013,Entertainment,-13.43
-22/09/2013,Internet/Phone/Cable,-63.44
-11/08/2013,Internet/Phone/Cable,-62.5
-21/05/2013,Internet/Phone/Cable,-62.5
-05/06/2013,Internet/Phone/Cable,-63.52
-01/02/2013,Internet/Phone/Cable,-70.23
-02/11/2013,Internet/Phone/Cable,-63.76
-23/03/2013,Internet/Phone/Cable,-70.14
-25/12/2013,Internet/Phone/Cable,-62.55
-18/11/2013,Internet/Phone/Cable,-67.6
-01/04/2013,Internet/Phone/Cable,-65.62
-13/09/2013,Internet/Phone/Cable,-64.81
-21/02/2013,Internet/Phone/Cable,-66.77
-13/06/2013,Electricity & Water,-13.46
-11/08/2013,Electricity & Water,-74.11
-07/03/2013,Electricity & Water,-66.24
-19/07/2013,Electricity & Water,-64.43
-25/07/2013,Electricity & Water,-97.92
-01/03/2013,Electricity & Water,-69.23
-25/10/2013,Electricity & Water,-26.13
-01/08/2013,Electricity & Water,-58.84
-07/11/2013,Electricity & Water,-60.59
-01/03/2013,Electricity & Water,-51.87
-25/12/2013,Electricity & Water,-16.94
-02/12/2013,Electricity & Water,-8.68
-11/06/2012,Work,1844.79
-23/12/2012,Work,1976.73
-17/10/2012,Work,1841.26
-04/12/2012,Work,1849.6
-19/01/2012,Work,1842.86
-01/06/2012,Work,1914.12
-23/10/2012,Work,1943.80
-13/12/2012,Work,1866.78
-03/10/2012,Work,1925.88
-19/02/2012,Work,1948.29
-25/11/2012,Work,1924.54
-19/09/2012,Work,1889.38
-18/09/2012,Taxes,-350.83
-24/06/2012,Taxes,-454.84
-12/05/2012,Taxes,-406.37
-20/11/2012,Friends & Family,39.20
-22/03/2012,Friends & Family,60.75
-17/06/2012,Friends & Family,47.72
-31/10/2012,Friends & Family,32.28
-08/10/2012,Friends & Family,-76.26
-08/01/2012,Friends & Family,-69.84
-20/05/2012,Friends & Family,-35.28
-23/08/2012,Friends & Family,10.92
-08/01/2012,Friends & Family,-45.56
-12/03/2012,Friends & Family,75.87
-24/12/2012,Friends & Family,62.79
-03/08/2012,Friends & Family,-39.98
-06/05/2012,Friends & Family,94.50
-25/06/2012,Friends & Family,58.34
-21/10/2012,Friends & Family,-98.54
-26/01/2012,Friends & Family,72.73
-06/09/2012,Friends & Family,-89.57
-07/10/2012,Friends & Family,-10.31
-22/11/2012,Friends & Family,97.97
-15/08/2012,Friends & Family,-25.62
-20/01/2012,Garbage & Recycling,-19.48
-08/05/2012,Garbage & Recycling,-19.78
-18/06/2012,Garbage & Recycling,-15.52
-18/01/2012,Garbage & Recycling,-20.11
-25/09/2012,Rent,-517.69
-25/01/2012,Rent,-552.1
-16/10/2012,Rent,-510.63
-17/02/2012,Rent,-539.79
-04/05/2012,Rent,-578.71
-08/03/2012,Rent,-592.22
-27/04/2012,Rent,-538.32
-03/03/2012,Rent,-584.65
-23/04/2012,Rent,-540.91
-18/07/2012,Rent,-563.1
-25/03/2012,Rent,-528.90
-19/06/2012,Rent,-512.40
-26/08/2012,Electronics & Toys,-143.62
-13/02/2012,Electronics & Toys,-269.13
-27/07/2012,Electronics & Toys,-139.0
-23/02/2012,Electronics & Toys,-120.35
-27/07/2012,Electronics & Toys,-224.52
-04/11/2012,Electronics & Toys,-481.68
-05/06/2012,Food & Drinks,-20.65
-25/01/2012,Food & Drinks,-21.50
-19/12/2012,Food & Drinks,-22.98
-14/04/2012,Food & Drinks,-20.76
-08/01/2012,Food & Drinks,-25.46
-19/07/2012,Food & Drinks,-22.45
-13/02/2012,Food & Drinks,-25.76
-06/01/2012,Food & Drinks,-21.17
-20/04/2012,Food & Drinks,-23.45
-09/12/2012,Food & Drinks,-22.43
-18/12/2012,Food & Drinks,-22.57
-22/05/2012,Food & Drinks,-24.53
-03/10/2012,Food & Drinks,-24.92
-09/05/2012,Food & Drinks,-22.20
-12/03/2012,Food & Drinks,-22.92
-03/07/2012,Food & Drinks,-25.44
-04/06/2012,Food & Drinks,-20.2
-19/06/2012,Food & Drinks,-23.9
-22/04/2012,Food & Drinks,-23.96
-02/09/2012,Food & Drinks,-22.14
-30/09/2012,Food & Drinks,-24.38
-05/02/2012,Food & Drinks,-22.83
-22/08/2012,Food & Drinks,-24.58
-24/04/2012,Food & Drinks,-24.5
-14/07/2012,Food & Drinks,-20.37
-27/01/2012,Food & Drinks,-24.56
-06/04/2012,Food & Drinks,-21.43
-15/01/2012,Food & Drinks,-24.97
-12/01/2012,Food & Drinks,-20.47
-25/01/2012,Food & Drinks,-22.68
-09/04/2012,Food & Drinks,-21.26
-31/07/2012,Food & Drinks,-21.11
-20/12/2012,Food & Drinks,-23.24
-17/12/2012,Food & Drinks,-23.84
-26/11/2012,Food & Drinks,-21.19
-09/04/2012,Food & Drinks,-23.68
-24/08/2012,Food & Drinks,-21.42
-01/02/2012,Food & Drinks,-24.68
-26/06/2012,Food & Drinks,-20.24
-16/01/2012,Food & Drinks,-22.51
-03/04/2012,Food & Drinks,-21.67
-21/10/2012,Food & Drinks,-25.92
-20/05/2012,Food & Drinks,-23.84
-27/05/2012,Food & Drinks,-20.6
-27/03/2012,Food & Drinks,-24.35
-25/03/2012,Food & Drinks,-24.99
-09/05/2012,Food & Drinks,-20.61
-09/08/2012,Food & Drinks,-22.48
-09/11/2012,Food & Drinks,-25.97
-19/10/2012,Food & Drinks,-25.10
-10/05/2012,Food & Drinks,-23.6
-06/11/2012,Food & Drinks,-24.16
-04/09/2012,Food & Drinks,-24.76
-20/11/2012,Food & Drinks,-23.92
-19/12/2012,Food & Drinks,-20.64
-04/10/2012,Food & Drinks,-25.24
-14/11/2012,Food & Drinks,-21.82
-20/08/2012,Food & Drinks,-24.53
-31/12/2011,Food & Drinks,-23.61
-09/01/2011,Food & Drinks,-23.65
-08/03/2011,Food & Drinks,-24.36
-03/04/2011,Food & Drinks,-22.14
-24/01/2011,Food & Drinks,-22.35
-22/01/2011,Food & Drinks,-22.6
-13/08/2011,Food & Drinks,-20.67
-03/03/2011,Food & Drinks,-21.1
-26/02/2011,Food & Drinks,-21.48
-02/03/2011,Food & Drinks,-22.42
-20/04/2011,Food & Drinks,-21.3
-17/01/2011,Food & Drinks,-22.10
-16/11/2011,Food & Drinks,-22.34
-26/08/2011,Food & Drinks,-20.43
-17/10/2011,Food & Drinks,-22.41
-12/04/2011,Food & Drinks,-20.2
-14/12/2011,Food & Drinks,-24.39
-21/02/2011,Food & Drinks,-20.48
-13/04/2011,Food & Drinks,-24.13
-19/10/2011,Food & Drinks,-24.66
-30/11/2011,Food & Drinks,-21.89
-06/11/2011,Food & Drinks,-22.63
-15/06/2011,Food & Drinks,-20.25
-03/06/2011,Food & Drinks,-23.8
-05/02/2011,Food & Drinks,-22.50
-16/01/2011,Food & Drinks,-21.4
-23/02/2011,Food & Drinks,-24.99
-23/07/2011,Food & Drinks,-23.10
-17/12/2011,Food & Drinks,-23.25
-25/06/2011,Food & Drinks,-25.41
-10/02/2011,Food & Drinks,-24.85
-03/04/2011,Food & Drinks,-24.23
-05/08/2011,Food & Drinks,-23.33
-05/06/2011,Food & Drinks,-20.89
-31/12/2010,Food & Drinks,-22.72
-02/11/2010,Food & Drinks,-21.22
-06/02/2010,Food & Drinks,-23.28
-13/06/2010,Food & Drinks,-21.0
-24/05/2010,Food & Drinks,-24.74
-31/12/2009,Food & Drinks,-20.90
-27/04/2009,Food & Drinks,-22.1
-18/07/2009,Food & Drinks,-25.0
-03/03/2009,Food & Drinks,-22.17
-11/09/2009,Food & Drinks,-20.80
-07/06/2009,Food & Drinks,-23.24
-15/07/2009,Food & Drinks,-20.33
-11/02/2009,Food & Drinks,-25.95
-09/01/2009,Food & Drinks,-25.91
-11/04/2009,Food & Drinks,-22.72
-08/08/2009,Food & Drinks,-21.42
-16/08/2009,Food & Drinks,-21.29
-25/12/2009,Food & Drinks,-23.28
-12/11/2009,Food & Drinks,-22.89
-08/11/2009,Food & Drinks,-22.57
-13/12/2009,Food & Drinks,-21.93
-27/11/2009,Food & Drinks,-23.79
-18/04/2009,Food & Drinks,-25.38
-11/01/2009,Food & Drinks,-23.33
-12/04/2009,Food & Drinks,-21.55
-23/10/2009,Food & Drinks,-22.68
-10/12/2009,Food & Drinks,-20.84
-18/01/2009,Food & Drinks,-21.80
-03/01/2009,Food & Drinks,-23.66
-03/09/2009,Food & Drinks,-20.33
-25/04/2009,Food & Drinks,-24.65
-09/03/2009,Food & Drinks,-24.48
-05/11/2009,Food & Drinks,-23.78
-26/09/2009,Food & Drinks,-22.77
-24/05/2009,Food & Drinks,-21.7
-08/12/2009,Food & Drinks,-25.6
-01/05/2009,Food & Drinks,-20.6
-02/07/2009,Food & Drinks,-20.41
-22/02/2009,Food & Drinks,-22.10
-26/09/2009,Food & Drinks,-23.75
-21/01/2009,Food & Drinks,-24.17
-06/09/2009,Food & Drinks,-20.52
-31/12/2008,Food & Drinks,-23.85
-10/08/2008,Food & Drinks,-22.55
-14/10/2008,Food & Drinks,-22.65
-20/11/2008,Food & Drinks,-24.99
-17/03/2008,Food & Drinks,-25.69
-01/01/2008,Food & Drinks,-23.4
-22/08/2008,Food & Drinks,-20.53
-24/04/2008,Food & Drinks,-21.75
-26/05/2008,Food & Drinks,-24.77
-23/05/2008,Food & Drinks,-23.14
-26/11/2008,Food & Drinks,-25.43
-31/12/2007,Food & Drinks,-21.47
-06/02/2007,Food & Drinks,-20.46
-10/04/2007,Food & Drinks,-25.37
-04/11/2007,Food & Drinks,-24.84
-06/05/2007,Food & Drinks,-24.5
-13/10/2007,Food & Drinks,-21.7
-26/05/2007,Food & Drinks,-22.9
-06/05/2007,Food & Drinks,-25.3
-18/02/2007,Food & Drinks,-22.22
-18/02/2007,Food & Drinks,-21.51
-17/03/2007,Food & Drinks,-25.24
-15/08/2007,Food & Drinks,-23.99
-10/02/2007,Food & Drinks,-24.1
-06/07/2007,Food & Drinks,-24.25
-24/12/2007,Food & Drinks,-21.6
-26/09/2007,Food & Drinks,-24.9
-05/07/2007,Food & Drinks,-22.38
-21/02/2007,Food & Drinks,-23.19
-19/06/2007,Food & Drinks,-23.28
-17/05/2007,Food & Drinks,-25.79
-20/12/2007,Food & Drinks,-23.59
-31/07/2007,Food & Drinks,-22.87
-22/01/2007,Food & Drinks,-21.35
-04/11/2007,Food & Drinks,-24.94
-10/08/2007,Food & Drinks,-23.89
-04/07/2007,Food & Drinks,-24.57
-15/03/2007,Food & Drinks,-20.8
-08/11/2007,Food & Drinks,-22.29
-25/10/2007,Food & Drinks,-20.82
-08/11/2007,Food & Drinks,-20.68
-27/11/2007,Food & Drinks,-20.36
-04/05/2007,Food & Drinks,-21.48
-15/12/2007,Food & Drinks,-24.85
-09/04/2007,Food & Drinks,-20.12
-19/10/2007,Food & Drinks,-20.29
-02/06/2007,Food & Drinks,-22.27
-26/11/2007,Food & Drinks,-25.73
-31/10/2007,Food & Drinks,-22.91
-10/06/2007,Food & Drinks,-20.36
-18/08/2007,Food & Drinks,-25.29
-13/03/2007,Food & Drinks,-20.3
-06/09/2007,Food & Drinks,-20.74
-15/02/2007,Food & Drinks,-20.4
-25/08/2007,Food & Drinks,-22.99
-17/06/2007,Food & Drinks,-20.50
-19/04/2007,Food & Drinks,-24.86
-05/06/2007,Food & Drinks,-24.47
-03/08/2007,Food & Drinks,-23.9
-12/08/2007,Food & Drinks,-24.64
-20/12/2007,Food & Drinks,-22.86
-21/05/2007,Food & Drinks,-23.51
-03/06/2007,Food & Drinks,-24.26
-06/01/2007,Food & Drinks,-23.95
-18/04/2007,Food & Drinks,-23.75
-26/01/2007,Food & Drinks,-20.89
-09/08/2012,Car & Gas,-41.34
-11/03/2012,Car & Gas,-36.48
-22/09/2012,Car & Gas,-42.99
-16/12/2012,Car & Gas,-37.79
-22/10/2012,Car & Gas,-37.68
-09/06/2012,Car & Gas,-29.13
-19/05/2012,Car & Gas,-26.80
-22/10/2012,Car & Gas,-48.41
-12/01/2012,Car & Gas,-31.13
-17/01/2012,Car & Gas,-32.14
-15/01/2012,Car & Gas,-31.40
-26/04/2012,Car & Gas,-38.3
-03/03/2012,Car & Gas,-45.14
-01/11/2012,Car & Gas,-49.32
-24/02/2012,Car & Gas,-50.55
-19/08/2012,Car & Gas,-50.12
-25/04/2012,Car & Gas,-25.38
-10/01/2012,Car & Gas,-43.60
-19/08/2012,Car & Gas,-33.4
-14/07/2012,Car & Gas,-49.79
-05/10/2012,Car & Gas,-42.63
-11/04/2012,Car & Gas,-35.17
-13/01/2012,Car & Gas,-40.45
-13/09/2012,Car & Gas,-27.42
-26/09/2012,Car & Gas,-26.17
-29/02/2012,Car & Gas,-43.3
-04/11/2012,Car & Gas,-46.82
-23/04/2012,Car & Gas,-49.62
-27/05/2012,Car & Gas,-40.27
-24/09/2012,Car & Gas,-28.13
-11/03/2012,Entertainment,-34.70
-13/03/2012,Entertainment,-14.27
-04/11/2012,Entertainment,-14.41
-09/04/2012,Entertainment,-20.85
-06/10/2012,Entertainment,-8.0
-05/10/2012,Entertainment,-21.98
-19/12/2012,Entertainment,-29.51
-15/09/2012,Entertainment,-6.15
-21/12/2012,Entertainment,-35.31
-30/09/2012,Entertainment,-4.64
-11/06/2012,Entertainment,-44.78
-23/11/2012,Entertainment,-24.0
-13/09/2012,Entertainment,-3.94
-08/11/2012,Entertainment,-50.32
-03/06/2012,Entertainment,-6.73
-31/08/2012,Entertainment,-37.56
-15/02/2012,Entertainment,-24.47
-21/05/2012,Entertainment,-16.29
-25/07/2012,Entertainment,-24.78
-23/07/2012,Entertainment,-30.52
-11/09/2012,Internet/Phone/Cable,-68.4
-10/11/2012,Internet/Phone/Cable,-65.44
-13/07/2012,Internet/Phone/Cable,-70.96
-25/02/2012,Internet/Phone/Cable,-68.29
-23/10/2012,Internet/Phone/Cable,-68.10
-10/09/2012,Internet/Phone/Cable,-60.74
-15/04/2012,Internet/Phone/Cable,-68.23
-07/06/2012,Internet/Phone/Cable,-63.34
-30/06/2012,Internet/Phone/Cable,-64.95
-17/02/2012,Internet/Phone/Cable,-62.13
-09/11/2012,Internet/Phone/Cable,-66.93
-15/04/2012,Internet/Phone/Cable,-70.30
-02/06/2012,Electricity & Water,-52.69
-16/03/2012,Electricity & Water,-70.50
-20/08/2012,Electricity & Water,-37.83
-01/12/2012,Electricity & Water,-59.33
-21/07/2012,Electricity & Water,-76.3
-16/05/2012,Electricity & Water,-95.2
-27/10/2012,Electricity & Water,-34.31
-24/08/2012,Electricity & Water,-31.21
-14/02/2012,Electricity & Water,-86.41
-10/03/2012,Electricity & Water,-40.58
-26/05/2012,Electricity & Water,-76.12
-15/06/2012,Electricity & Water,-74.62
-20/08/2011,Work,1954.7
-06/05/2011,Work,1989.67
-20/07/2011,Work,1866.27
-11/10/2011,Work,1854.27
-06/12/2011,Work,1961.40
-11/06/2011,Work,1954.23
-02/08/2011,Work,1928.57
-12/12/2011,Work,1824.12
-03/12/2011,Work,1821.22
-25/04/2011,Work,1833.0
-25/08/2011,Work,1845.22
-26/12/2011,Work,1900.51
-26/10/2011,Taxes,-478.37
-22/08/2011,Taxes,-415.90
-22/02/2011,Taxes,-404.3
-19/05/2011,Friends & Family,-37.86
-31/03/2011,Friends & Family,76.84
-24/10/2011,Friends & Family,-56.73
-23/12/2011,Friends & Family,64.20
-14/05/2011,Friends & Family,49.5
-02/12/2011,Friends & Family,-9.39
-08/05/2011,Friends & Family,-2.83
-13/08/2011,Friends & Family,-56.88
-04/08/2011,Friends & Family,79.20
-25/08/2011,Friends & Family,73.2
-10/07/2011,Friends & Family,74.40
-08/04/2011,Friends & Family,-74.92
-02/06/2011,Friends & Family,22.63
-27/03/2011,Friends & Family,-100.78
-10/09/2011,Friends & Family,-21.31
-11/06/2011,Friends & Family,90.95
-06/04/2011,Friends & Family,-39.75
-05/03/2011,Friends & Family,63.88
-05/09/2011,Friends & Family,49.7
-11/06/2011,Friends & Family,70.45
-21/08/2011,Garbage & Recycling,-15.95
-14/12/2011,Garbage & Recycling,-17.50
-22/06/2011,Garbage & Recycling,-16.85
-21/09/2011,Garbage & Recycling,-18.81
-21/08/2011,Rent,-539.38
-01/04/2011,Rent,-595.5
-06/01/2011,Rent,-521.15
-25/07/2011,Rent,-503.84
-22/11/2011,Rent,-560.79
-23/06/2011,Rent,-560.78
-20/08/2011,Rent,-599.98
-15/11/2011,Rent,-562.21
-23/03/2011,Rent,-570.54
-09/12/2011,Rent,-532.14
-06/01/2011,Rent,-593.71
-14/06/2011,Rent,-536.10
-25/11/2011,Electronics & Toys,-485.74
-15/01/2011,Electronics & Toys,-257.71
-17/08/2011,Electronics & Toys,-207.41
-14/04/2011,Electronics & Toys,-39.7
-14/10/2011,Electronics & Toys,-117.23
-02/02/2011,Electronics & Toys,-384.51
-05/01/2011,Food & Drinks,-20.37
-19/12/2011,Food & Drinks,-25.19
-31/05/2011,Food & Drinks,-22.43
-10/05/2011,Food & Drinks,-23.61
-21/02/2011,Food & Drinks,-23.87
-18/04/2011,Food & Drinks,-23.94
-19/02/2011,Food & Drinks,-20.52
-13/09/2011,Food & Drinks,-23.86
-06/02/2011,Food & Drinks,-21.49
-08/04/2011,Food & Drinks,-23.28
-17/01/2011,Food & Drinks,-25.52
-06/09/2011,Food & Drinks,-22.3
-13/12/2011,Food & Drinks,-24.50
-05/07/2011,Food & Drinks,-25.55
-10/02/2011,Food & Drinks,-25.71
-21/01/2011,Food & Drinks,-23.1
-06/10/2011,Food & Drinks,-24.97
-19/08/2011,Food & Drinks,-21.53
-12/12/2011,Food & Drinks,-22.91
-14/03/2011,Food & Drinks,-25.39
-23/01/2011,Food & Drinks,-21.86
-13/06/2011,Food & Drinks,-21.28
-06/05/2011,Food & Drinks,-20.16
-09/04/2011,Food & Drinks,-24.16
-08/10/2011,Food & Drinks,-24.87
-02/04/2011,Food & Drinks,-25.20
-09/05/2011,Food & Drinks,-24.22
-17/03/2011,Food & Drinks,-20.80
-31/07/2011,Food & Drinks,-25.24
-19/08/2011,Food & Drinks,-20.82
-27/09/2011,Food & Drinks,-21.42
-26/04/2011,Food & Drinks,-20.38
-23/10/2011,Food & Drinks,-20.31
-31/12/2010,Food & Drinks,-20.89
-17/07/2010,Food & Drinks,-20.47
-27/05/2010,Food & Drinks,-24.20
-24/09/2010,Food & Drinks,-24.13
-04/11/2010,Food & Drinks,-21.9
-06/06/2010,Food & Drinks,-20.50
-03/05/2010,Food & Drinks,-25.33
-15/04/2010,Food & Drinks,-25.62
-01/06/2010,Food & Drinks,-21.13
-09/09/2010,Food & Drinks,-21.7
-26/04/2010,Food & Drinks,-25.73
-14/05/2010,Food & Drinks,-22.1
-15/08/2010,Food & Drinks,-21.43
-18/08/2010,Food & Drinks,-23.48
-23/06/2010,Food & Drinks,-20.27
-21/08/2010,Food & Drinks,-21.71
-30/09/2010,Food & Drinks,-20.17
-27/10/2010,Food & Drinks,-22.99
-05/04/2010,Food & Drinks,-23.32
-14/09/2010,Food & Drinks,-23.41
-22/12/2010,Food & Drinks,-23.0
-05/03/2010,Food & Drinks,-22.36
-19/08/2010,Food & Drinks,-24.27
-06/03/2010,Food & Drinks,-24.75
-02/06/2010,Food & Drinks,-23.3
-16/07/2010,Food & Drinks,-21.27
-11/05/2010,Food & Drinks,-22.57
-25/03/2010,Food & Drinks,-23.12
-20/08/2010,Food & Drinks,-23.51
-16/03/2010,Food & Drinks,-21.12
-24/06/2010,Food & Drinks,-21.74
-22/04/2010,Food & Drinks,-20.5
-10/06/2010,Food & Drinks,-23.81
-17/02/2010,Food & Drinks,-20.66
-26/06/2010,Food & Drinks,-22.87
-25/11/2010,Food & Drinks,-20.74
-13/11/2010,Food & Drinks,-22.10
-08/08/2010,Food & Drinks,-20.4
-21/06/2010,Food & Drinks,-23.14
-19/07/2010,Food & Drinks,-24.19
-22/11/2010,Food & Drinks,-25.24
-20/05/2010,Food & Drinks,-21.64
-04/05/2010,Food & Drinks,-24.76
-15/09/2010,Food & Drinks,-23.44
-19/07/2010,Food & Drinks,-25.51
-13/04/2010,Food & Drinks,-22.34
-16/10/2010,Food & Drinks,-21.98
-20/07/2010,Food & Drinks,-20.44
-25/02/2010,Food & Drinks,-23.45
-05/02/2010,Food & Drinks,-24.59
-12/01/2010,Food & Drinks,-22.53
-19/01/2010,Food & Drinks,-22.0
-05/07/2010,Food & Drinks,-24.55
-08/03/2010,Food & Drinks,-20.93
-14/11/2010,Food & Drinks,-22.6
-02/03/2010,Food & Drinks,-22.41
-10/01/2010,Food & Drinks,-25.9
-31/08/2010,Food & Drinks,-24.27
-04/09/2010,Food & Drinks,-24.9
-07/01/2010,Food & Drinks,-24.7
-02/09/2010,Food & Drinks,-20.76
-15/04/2010,Food & Drinks,-21.59
-18/10/2010,Food & Drinks,-24.94
-04/08/2010,Food & Drinks,-20.90
-10/06/2010,Food & Drinks,-25.55
-26/02/2010,Food & Drinks,-25.50
-03/05/2010,Food & Drinks,-23.12
-23/05/2010,Food & Drinks,-24.68
-18/05/2010,Food & Drinks,-25.31
-12/04/2010,Food & Drinks,-21.20
-19/10/2010,Food & Drinks,-20.72
-15/07/2010,Food & Drinks,-22.12
-13/07/2010,Food & Drinks,-24.59
-01/02/2010,Food & Drinks,-25.17
-02/05/2010,Food & Drinks,-23.35
-06/04/2010,Food & Drinks,-22.2
-26/10/2010,Food & Drinks,-25.21
-15/05/2010,Food & Drinks,-23.41
-17/09/2010,Food & Drinks,-23.98
-16/10/2010,Food & Drinks,-24.1
-16/07/2010,Food & Drinks,-25.7
-11/02/2010,Food & Drinks,-21.38
-19/11/2010,Food & Drinks,-24.29
-18/04/2010,Food & Drinks,-25.46
-07/11/2010,Food & Drinks,-23.72
-09/12/2010,Food & Drinks,-20.42
-13/11/2010,Food & Drinks,-25.6
-24/03/2010,Food & Drinks,-21.93
-06/02/2010,Food & Drinks,-21.8
-24/08/2010,Food & Drinks,-22.96
-08/01/2010,Food & Drinks,-21.99
-22/06/2010,Food & Drinks,-22.82
-07/01/2010,Food & Drinks,-21.3
-13/05/2010,Food & Drinks,-20.10
-25/08/2010,Food & Drinks,-24.53
-05/05/2010,Food & Drinks,-23.54
-04/07/2010,Food & Drinks,-21.15
-14/05/2010,Food & Drinks,-24.12
-23/06/2010,Food & Drinks,-20.21
-15/03/2010,Food & Drinks,-21.89
-27/11/2010,Food & Drinks,-24.20
-25/02/2010,Food & Drinks,-21.28
-09/05/2010,Food & Drinks,-24.93
-15/08/2010,Food & Drinks,-23.96
-30/11/2010,Food & Drinks,-20.88
-21/11/2010,Food & Drinks,-22.48
-19/07/2010,Food & Drinks,-22.76
-13/11/2010,Food & Drinks,-23.21
-06/03/2010,Food & Drinks,-23.31
-17/07/2010,Food & Drinks,-25.36
-23/03/2010,Food & Drinks,-22.75
-19/10/2010,Food & Drinks,-20.13
-12/07/2010,Food & Drinks,-24.71
-11/09/2010,Food & Drinks,-23.19
-08/04/2010,Food & Drinks,-24.16
-02/08/2010,Food & Drinks,-23.6
-07/02/2010,Food & Drinks,-24.90
-07/12/2010,Food & Drinks,-23.15
-27/03/2010,Food & Drinks,-24.72
-16/11/2010,Food & Drinks,-23.52
-10/10/2010,Food & Drinks,-21.96
-05/01/2010,Food & Drinks,-22.48
-15/06/2010,Food & Drinks,-23.41
-23/12/2010,Food & Drinks,-23.78
-22/02/2010,Food & Drinks,-24.66
-11/01/2010,Food & Drinks,-23.95
-05/03/2010,Food & Drinks,-23.20
-11/12/2010,Food & Drinks,-25.95
-14/10/2010,Food & Drinks,-25.15
-09/08/2010,Food & Drinks,-21.28
-21/08/2010,Food & Drinks,-24.23
-21/07/2010,Food & Drinks,-24.24
-27/01/2010,Food & Drinks,-23.34
-17/01/2010,Food & Drinks,-22.85
-05/05/2010,Food & Drinks,-24.4
-14/02/2010,Food & Drinks,-22.78
-02/01/2010,Food & Drinks,-20.56
-19/01/2010,Food & Drinks,-22.26
-17/01/2010,Food & Drinks,-22.30
-07/11/2010,Food & Drinks,-23.64
-25/08/2010,Food & Drinks,-21.93
-08/08/2010,Food & Drinks,-23.35
-15/12/2010,Food & Drinks,-21.47
-28/02/2010,Food & Drinks,-20.32
-27/08/2010,Food & Drinks,-25.0
-17/10/2010,Food & Drinks,-23.98
-18/01/2010,Food & Drinks,-25.97
-31/07/2010,Food & Drinks,-20.53
-07/08/2010,Food & Drinks,-24.9
-05/01/2010,Food & Drinks,-20.20
-23/01/2010,Food & Drinks,-20.38
-06/04/2010,Food & Drinks,-25.43
-24/01/2010,Food & Drinks,-23.90
-22/01/2010,Food & Drinks,-23.35
-22/05/2010,Food & Drinks,-21.7
-05/02/2010,Food & Drinks,-21.7
-06/06/2010,Food & Drinks,-21.83
-22/04/2010,Food & Drinks,-25.43
-22/08/2010,Food & Drinks,-23.84
-16/05/2010,Food & Drinks,-22.43
-25/02/2010,Food & Drinks,-21.57
-13/08/2010,Food & Drinks,-22.39
-04/06/2010,Food & Drinks,-22.5
-01/12/2010,Food & Drinks,-23.55
-14/07/2010,Food & Drinks,-21.41
-04/07/2010,Food & Drinks,-20.75
-20/05/2010,Food & Drinks,-24.76
-23/12/2011,Car & Gas,-47.28
-11/04/2011,Car & Gas,-48.79
-26/02/2011,Car & Gas,-25.13
-05/10/2011,Car & Gas,-39.31
-18/02/2011,Car & Gas,-30.17
-27/01/2011,Car & Gas,-34.57
-04/12/2011,Car & Gas,-36.8
-09/01/2011,Car & Gas,-30.95
-09/06/2011,Car & Gas,-40.93
-23/11/2011,Car & Gas,-27.59
-30/11/2011,Car & Gas,-37.83
-01/08/2011,Car & Gas,-32.88
-22/11/2011,Car & Gas,-48.5
-03/05/2011,Car & Gas,-29.91
-13/09/2011,Car & Gas,-31.40
-15/04/2011,Car & Gas,-46.35
-19/11/2011,Car & Gas,-27.99
-05/03/2011,Car & Gas,-31.32
-08/09/2011,Car & Gas,-25.49
-01/07/2011,Car & Gas,-25.21
-11/04/2011,Car & Gas,-46.52
-02/01/2011,Car & Gas,-50.58
-14/04/2011,Car & Gas,-45.86
-23/01/2011,Car & Gas,-42.47
-19/02/2011,Car & Gas,-29.63
-13/03/2011,Car & Gas,-49.91
-01/01/2011,Car & Gas,-43.48
-19/01/2011,Car & Gas,-37.33
-23/04/2011,Car & Gas,-46.61
-18/10/2011,Car & Gas,-49.20
-24/10/2011,Entertainment,-5.7
-18/12/2011,Entertainment,-42.19
-08/05/2011,Entertainment,-39.69
-13/10/2011,Entertainment,-40.48
-23/08/2011,Entertainment,-32.54
-15/07/2011,Entertainment,-20.20
-22/01/2011,Entertainment,-44.84
-23/10/2011,Entertainment,-32.8
-17/12/2011,Entertainment,-41.72
-05/11/2011,Entertainment,-20.71
-03/05/2011,Entertainment,-13.13
-23/05/2011,Entertainment,-31.10
-02/05/2011,Entertainment,-13.0
-22/12/2011,Entertainment,-36.32
-06/07/2011,Entertainment,-36.25
-12/07/2011,Entertainment,-2.57
-17/11/2011,Entertainment,-9.36
-04/08/2011,Entertainment,-25.81
-01/06/2011,Entertainment,-29.62
-05/05/2011,Entertainment,-49.85
-03/07/2011,Internet/Phone/Cable,-60.20
-19/01/2011,Internet/Phone/Cable,-66.62
-17/01/2011,Internet/Phone/Cable,-69.64
-26/07/2011,Internet/Phone/Cable,-64.81
-24/09/2011,Internet/Phone/Cable,-61.56
-09/09/2011,Internet/Phone/Cable,-69.32
-01/06/2011,Internet/Phone/Cable,-69.50
-26/08/2011,Internet/Phone/Cable,-69.15
-06/05/2011,Internet/Phone/Cable,-64.23
-13/01/2011,Internet/Phone/Cable,-65.53
-13/05/2011,Internet/Phone/Cable,-69.14
-21/01/2011,Internet/Phone/Cable,-60.60
-17/07/2011,Electricity & Water,-9.19
-19/02/2011,Electricity & Water,-36.88
-08/02/2011,Electricity & Water,-30.84
-22/02/2011,Electricity & Water,-81.25
-04/08/2011,Electricity & Water,-81.89
-10/01/2011,Electricity & Water,-37.39
-01/05/2011,Electricity & Water,-51.90
-12/03/2011,Electricity & Water,-50.64
-04/08/2011,Electricity & Water,-44.99
-09/05/2011,Electricity & Water,-7.92
-18/11/2011,Electricity & Water,-20.91
-25/09/2011,Electricity & Water,-86.11
+#31/03/2029,Appartment,-114.08
+#28/02/2029,Appartment,-115.45
+#31/01/2029,Appartment,-116.81
+#31/12/2028,Appartment,-118.18
+#30/11/2028,Appartment,-119.55
+#31/10/2028,Appartment,-120.92
+#30/09/2028,Appartment,-122.29
+#31/08/2028,Appartment,-123.66
+#31/07/2028,Appartment,-125.04
+#30/06/2028,Appartment,-126.42
+#31/05/2028,Appartment,-127.80
+#30/04/2028,Appartment,-129.18
+#31/03/2028,Appartment,-130.56
+#29/02/2028,Appartment,-131.94
+#31/01/2028,Appartment,-133.33
+#31/12/2027,Appartment,-134.71
+#30/11/2027,Appartment,-136.10
+#31/10/2027,Appartment,-137.49
+#30/09/2027,Appartment,-138.88
+#31/08/2027,Appartment,-140.28
+#31/07/2027,Appartment,-141.67
+#30/06/2027,Appartment,-143.07
+#31/05/2027,Appartment,-144.47
+#30/04/2027,Appartment,-145.86
+#31/03/2027,Appartment,-147.27
+#28/02/2027,Appartment,-148.67
+#31/01/2027,Appartment,-150.07
+#31/12/2026,Appartment,-151.48
+#30/11/2026,Appartment,-152.89
+#31/10/2026,Appartment,-154.30
+#30/09/2026,Appartment,-155.71
+#31/08/2026,Appartment,-157.12
+#31/07/2026,Appartment,-158.53
+#30/06/2026,Appartment,-159.95
+#31/05/2026,Appartment,-161.37
+#30/04/2026,Appartment,-162.79
+#31/03/2026,Appartment,-164.21
+#28/02/2026,Appartment,-165.63
+#31/01/2026,Appartment,-167.05
+#31/12/2025,Appartment,-168.91
+#30/11/2025,Appartment,-169.91
+#31/10/2025,Appartment,-171.34
+#30/09/2025,Appartment,-172.77
+#31/08/2025,Appartment,-174.20
+#31/07/2025,Appartment,-175.63
+#30/06/2025,Appartment,-177.07
+#31/05/2025,Appartment,-178.50
+#30/04/2025,Appartment,-179.94
+#31/03/2025,Appartment,-181.38
+#28/02/2025,Appartment,-182.82
+#31/01/2025,Appartment,-184.27
+#31/12/2024,Appartment,-185.71
+#30/11/2024,Appartment,-187.16
+#31/10/2024,Appartment,-188.61
+#30/09/2024,Appartment,-190.06
+#31/08/2024,Appartment,-191.51
+#31/07/2024,Appartment,-192.96
+#30/06/2024,Appartment,-194.42
+#31/05/2024,Appartment,-195.87
+#30/04/2024,Appartment,-197.33
+#31/03/2024,Appartment,-198.79
+#29/02/2024,Appartment,-200.25
+#31/01/2024,Appartment,-201.71
+#31/12/2023,Appartment,-203.18
+#30/11/2023,Appartment,-204.64
+#31/10/2023,Appartment,-206.11
+#30/09/2023,Appartment,-207.58
+#31/08/2023,Appartment,-209.05
+#31/07/2023,Appartment,-210.52
+#30/06/2023,Appartment,-212.00
+#31/05/2023,Appartment,-213.47
+#30/04/2023,Appartment,-214.95
+#31/03/2023,Appartment,-216.43
+#28/02/2023,Appartment,-217.19
+#31/01/2023,Appartment,-219.39
+#31/12/2022,Appartment,-220.88
+#30/11/2022,Appartment,-222.36
+#31/10/2022,Appartment,-223.85
+#30/09/2022,Appartment,-225.34
+#31/08/2022,Appartment,-226.83
+#31/07/2022,Appartment,-228.32
+#30/06/2022,Appartment,-229.81
+#31/05/2022,Appartment,-231.31
+
+#26/05/2021,Work,1900
+#15/05/2021,Internet,-24.95
+#13/05/2021,Electricity,-96
+#06/05/2021,Work,80
+#01/05/2021,Friends & Family,350
+#01/05/2021,Appartment,-40
+#01/05/2021,Friends & Family,24.78
+
+#01/12/2023,Appartement,-1500,Nieuw venster in living
+#01/07/2023,Appartement,-8500,Installatie keuken
+#01/05/2023,Appartement,-3500,Nieuwe deuren
+#01/02/2023,Appartement,-3500,Installatie toilet (met vermaler) + lavabo
+#01/12/2023,Appartement,-2500,Betegelen badkamer
+#01/09/2023,Appartement,-4500,Nieuwe vloer
+#01/06/2023,Appartement,-1500,Nieuw Trapleuning + leuning op trap zelf wegdoen.
+#01/03/2023,Appartement,-2000,Verwarming loskoppelen + waterleiding met afvoer leggen naar keuken + badkamer.
+#01/12/2022,Appartement,-5000,Airco's: 1 op slaapkamer + 1 in living
+#01/09/2021,Appartement,-55000,Nieuw dak met 6 dakkapellen
+#01/07/2021,Appartement,-180000,Uitbetaling maarten: € 30000 notaris € 150000 huis
+#01/05/2021,Appartement,2500,Pensioensparen laten uitbetalen
+#01/05/2021,Appartement,120000,Verkoop appartement
+01/05/2021,Appartement,-15000,Lening afbetalen
+
+#30/04/2022,Appartment,-232.81
+#26/04/2022,Work,1900
+#15/04/2022,Internet,-24.95
+#13/04/2022,Electricity,-96
+#06/04/2022,Work,80
+#01/04/2022,Friends & Family,350
+#01/04/2022,Appartment,-40
+#01/04/2022,Friends & Family,24.78
+
+#31/03/2022,Appartment,-234.30
+#26/03/2022,Work,1900
+#15/03/2022,Internet,-24.95
+#13/03/2022,Electricity,-96
+#06/03/2022,Work,80
+#01/03/2022,Friends & Family,350
+#01/03/2022,Appartment,-40
+#01/03/2022,Friends & Family,24.78
+
+#28/02/2022,Appartment,-235.80
+#26/02/2022,Work,1900
+#15/02/2022,Internet,-24.95
+#13/02/2022,Electricity,-96
+#06/02/2022,Work,80
+#01/02/2022,Friends & Family,350
+#01/02/2022,Appartment,-40
+#01/02/2022,Friends & Family,24.78
+
+#31/01/2022,Appartment,-237.31
+#26/01/2022,Work,1900
+#15/01/2022,Internet,-24.95
+#13/01/2022,Electricity,-96
+#06/01/2022,Work,80
+#01/01/2022,Friends & Family,350
+#01/01/2022,Appartment,-40
+#01/01/2022,Friends & Family,24.78
+
+#31/12/2021,Appartment,-238.81
+#26/12/2021,Work,1900
+#15/12/2021,Internet,-24.95
+#13/12/2021,Electricity,-96
+#06/12/2021,Work,80
+#01/12/2021,Friends & Family,350
+#01/12/2021,Appartment,-40
+#01/12/2021,Friends & Family,24.78
+
+#30/11/2021,Appartment,-240.31
+#26/11/2021,Work,1900
+#15/11/2021,Internet,-24.95
+#13/11/2021,Electricity,-96
+#06/11/2021,Work,80
+#01/11/2021,Friends & Family,350
+#01/11/2021,Appartment,-40
+#01/11/2021,Friends & Family,24.78
+
+#31/10/2021,Appartment,-241.82
+#26/10/2021,Work,1900
+#15/10/2021,Internet,-24.95
+#13/10/2021,Electricity,-96
+#06/10/2021,Work,80
+#01/10/2021,Friends & Family,350
+#01/10/2021,Appartment,-40
+#01/10/2021,Friends & Family,24.78
+
+#30/09/2021,Appartment,-243.33
+#26/09/2021,Work,1900
+#15/09/2021,Internet,-24.95
+#13/09/2021,Electricity,-96
+#06/09/2021,Work,80
+#01/09/2021,Friends & Family,350
+#01/09/2021,Appartment,-40
+#01/09/2021,Friends & Family,24.78
+
+#31/08/2021,Appartment,-244.84
+#26/08/2021,Work,1900
+#15/08/2021,Internet,-24.95
+#13/08/2021,Electricity,-96
+#06/08/2021,Work,80
+#01/08/2021,Friends & Family,350
+#01/08/2021,Appartment,-40
+#01/08/2021,Friends & Family,24.78
+
+#31/07/2021,Appartment,-246.35
+#26/07/2021,Work,1900
+#15/07/2021,Internet,-24.95
+#13/07/2021,Electricity,-96
+#06/07/2021,Work,80
+#01/07/2021,Friends & Family,350
+#01/07/2021,Appartment,-40
+#01/07/2021,Friends & Family,24.78
+
+#30/06/2021,Appartment,-247.86
+#26/06/2021,Work,1900
+#17/06/2021,Water,-72.65
+#15/06/2021,Internet,-24.95
+#13/06/2021,Electricity,-96
+#06/06/2021,Work,80
+#01/06/2021,Friends & Family,350
+#01/06/2021,Appartment,-40
+#01/06/2021,Friends & Family,24.78
+
+#31/05/2021,Appartment,-249.38
+#26/05/2021,Work,1900
+#15/05/2021,Internet,-24.95
+#13/05/2021,Electricity,-96
+#06/05/2021,Work,80
+#01/05/2021,Friends & Family,350
+#01/05/2021,Appartment,-40
+#01/05/2021,Friends & Family,24.78
+
+#30/04/2021,Appartment,-250.89
+#26/04/2021,Work,1900
+#15/04/2021,Internet,-24.95
+#13/04/2021,Electricity,-96
+#06/04/2021,Work,80
+#01/04/2021,Friends & Family,350
+#01/04/2021,Appartment,-40
+#01/04/2021,Friends & Family,24.78
+
+#31/03/2021,Appartment,-252.41
+#26/03/2021,Work,1900
+#17/03/2021,Water,-72.65
+#15/03/2021,Internet,-24.95
+#13/03/2021,Electricity,-96
+#06/03/2021,Work,80
+#01/03/2021,Friends & Family,350
+#01/03/2021,Appartment,-40
+#01/03/2021,Friends & Family,24.78
+
+#28/02/2021,Appartment,-253.93
+#26/02/2021,Work,1900
+#15/02/2021,Internet,-24.95
+#13/02/2021,Electricity,-96
+#06/02/2021,Work,80
+#01/02/2021,Friends & Family,350
+#01/02/2021,Appartment,-40
+#01/02/2021,Friends & Family,24.78
+
+#31/01/2021,Appartment,-255.45
+#26/01/2021,Work,1900
+#15/01/2021,Internet,-24.95
+#13/01/2021,Electricity,-96
+#06/01/2021,Work,80
+#01/01/2021,Friends & Family,350
+#01/01/2021,Appartment,-40
+#01/01/2021,Friends & Family,24.78
+
+#31/12/2020,Appartment,-256.97
+#27/12/2020,Taxes,1445.07
+#26/12/2020,Work,2500
+#17/12/2020,Water,-72.65
+#16/12/2020,Medical & Insurances,-300
+#15/12/2020,Internet,-24.95
+#13/12/2020,Electricity,-96
+#06/12/2020,Work,80
+#04/12/2020,Garbage & Recycling,-79.49
+#01/12/2020,Friends & Family,350
+#01/12/2020,Appartment,-40
+#01/12/2020,Friends & Family,24.78
+
+30/11/2020,Appartment,-258.50
+26/11/2020,Work,1900
+15/11/2020,Internet,-24.95
+13/11/2020,Electricity,-96
+
+14/11/2020,Entertainment,-14
+12/11/2020,Food & Drinks,-4.63
+10/11/2020,Entertainment,-7.10
+10/11/2020,Food & Drinks,-8.20
+06/11/2020,Work,126
+06/11/2020,Food & Drinks,-1.27
+06/11/2020,Toys & Electronics,-82.80
+05/11/2020,Toys & Electronics,105
+04/11/2020,Food & Drinks,-13.52
+03/11/2020,Work,-43.50
+02/11/2020,Appartment,-40
+02/11/2020,Friends & Family,24.78
+01/11/2020,Friends & Family,350
+30/10/2020,Food & Drinks,-31.30
+30/10/2020,Appartment,-260.02
+29/10/2020,Food & Drinks,-17.29
+28/10/2020,Food & Drinks,-29.98
+27/10/2020,Entertainment,-1
+27/10/2020,Food & Drinks,-1.93
+26/10/2020,Work,2264.55
+26/10/2020,Toys & Electronics,12.7
+24/10/2020,Food & Drinks,-3
+22/10/2020,Water,-56.58
+21/10/2020,Friends & Family,0.3
+21/10/2020,Entertainment,-35
+21/10/2020,Entertainment,-5.2
+17/10/2020,Friends & Family,30
+17/10/2020,Entertainment,-2.5
+17/10/2020,Taxes,-708.28
+16/10/2020,Food & Drinks,-29.19
+15/10/2020,Food & Drinks,-9
+15/10/2020,Internet,-24.95
+12/10/2020,Electricity,-96
+12/10/2020,Appartment,5000
+10/10/2020,Entertainment,-85.79
+09/10/2020,Friends & Family,0.11
+07/10/2020,Taxes,-35
+06/10/2020,Work,112
+02/10/2020,Work,-59.89
+02/10/2020,Food & Drinks,-0.74
+01/10/2020,Friends & Family,350
+01/10/2020,Appartment,-40
+01/10/2020,Friends & Family,24.78
+30/06/2020,Taxes,7.10
+30/09/2020,Friends & Family,2.1
+30/09/2020,Appartment,-261.55
+29/09/2020,Medical & Insurances,82.5
+28/09/2020,Food & Drinks,-6.10
+28/09/2020,Medical & Insurances,-98
+25/09/2020,Work,2273.95
+23/09/2020,Entertainment,-11
+22/09/2020,Food & Drinks,-4.33
+21/09/2020,Friends & Family,10.52
+19/09/2020,Friends & Family,10
+18/09/2020,Food & Drinks,-25.80
+16/09/2020,Friends & Family,0.25
+15/09/2020,Food & Drinks,-3
+15/09/2020,Toys & Electronics,22
+14/09/2020,Internet,-24.95
+10/09/2020,Electricity,-96
+11/09/2020,Friends & Family,0.75
+08/09/2020,Friends & Family,8.08
+07/09/2020,Food & Drinks,-3.87
+05/09/2020,Food & Drinks,-14.5
+05/09/2020,Entertainment,-11
+04/09/2020,Work,112
+04/09/2020,Friends & Family,10
+03/09/2020,Food & Drinks,-1.06
+01/09/2020,Toys & Electronics,11.7
+01/09/2020,Friends & Family,24.78
+01/09/2020,Appartment,-40
+01/09/2020,Friends & Family,350
+31/08/2020,Appartment,-263.08
+28/08/2020,Friends & Family,10
+27/08/2020,Toys & Electronics,6
+26/08/2020,Friends & Family,5.12
+25/08/2020,Clothes,-74.99
+24/08/2020,Work,2266.72
+24/08/2020,Toys & Electronics,35.70
+23/08/2020,Toys & Electronics,155
+19/08/2020,Friends & Family,8.42
+18/08/2020,Friends & Family,2.5
+15/08/2020,Friends & Family,5
+14/08/2020,Friends & Family,0.54
+13/08/2020,Internet,-24.95
+11/08/2020,Friends & Family,15
+11/08/2020,Food & Drinks,-10.78
+10/08/2020,Toys & Electronics,-324.27
+10/08/2020,Electricity,-96
+10/08/2020,Toys & Electronics,-70.9
+08/08/2020,Toys & Electronics,25
+07/08/2020,Toys & Electronics,-3200
+06/08/2020,Work,147
+04/08/2020,Friends & Family,10
+03/08/2020,Appartment,-40
+03/08/2020,Friends & Family,24.78
+01/08/2020,Friends & Family,350
+01/08/2020,Friends & Family,-0.63
+31/07/2020,Appartment,-264.61
+30/07/2020,Food & Drinks,-26.68
+30/07/2020,Toys & Electronics,-4.4
+29/07/2020,Toys & Electronics,70
+29/07/2020,Garbage & Recycling,-42.5
+29/07/2020,Friends & Family,10
+28/07/2020,Food & Drinks,-4.2
+27/07/2020,Toys & Electronics,30
+26/07/2020,Entertainment,-10
+24/07/2020,Food & Drinks,-3.74
+23/07/2020,Work,2261.28
+23/07/2020,Toys & Electronics,20
+21/07/2020,Friends & Family,5
+18/07/2020,Toys & Electronics,85
+17/07/2020,Food & Drinks,-36.37
+15/07/2020,Internet,-24.95
+13/07/2020,Electricity,-96
+11/07/2020,Friends & Family,20
+09/07/2020,Entertainment,-43.78
+07/07/2020,Toys & Electronics,45.70
+07/07/2020,Friends & Family,5.10
+06/07/2020,Food & Drinks,-10.37
+06/07/2020,Work,112
+06/07/2020,Water,-78.66
+04/07/2020,Entertainment,-10.50
+01/07/2020,Friends & Family,350
+01/07/2020,Appartment,-40
+01/07/2020,Friends & Family,24.78
+01/07/2020,Toys & Electronics,-137.57
+01/07/2020,Food & Drinks,-5.6
+30/06/2020,Appartment,-266.14
+30/06/2020,Taxes,4.60
+26/06/2020,Food & Drinks,-21.63
+24/06/2020,Friends & Family,1.7
+23/06/2020,Work,3594.31
+19/06/2020,Food & Drinks,-11.32
+15/06/2020,Internet,-24.95
+13/06/2020,Friends & Family,10
+12/06/2020,Food & Drinks,-36.03
+10/06/2020,Electricity,-96
+10/06/2020,Food & Drinks,-13.43
+09/06/2020,Entertainment,-34.99
+08/06/2020,Friends & Family,35
+06/06/2020,Entertainment,-12
+06/06/2020,Food & Drinks,-2
+05/06/2020,Food & Drinks,-16.54
+05/06/2020,Work,133
+04/06/2020,Food & Drinks,-37.65
+02/06/2020,Appartment,-40
+02/06/2020,Friends & Family,24.78
+02/06/2020,Toys & Electronics,-204.81
+01/06/2020,Friends & Family,350
+29/05/2020,Appartment,-267.68
+28/05/2020,Food & Drinks,-6.9
+25/05/2020,Work,2263.45
+23/05/2020,Food & Drinks,-5.2
+23/05/2020,Friends & Family,10
+22/05/2020,Food & Drinks,-3.27
+21/05/2020,Friends & Family,13.7
+20/05/2020,Food & Drinks,-7.31
+20/05/2020,Food & Drinks,-3.15
+20/05/2020,Food & Drinks,-7
+15/05/2020,Food & Drinks,-46.75
+13/05/2020,Internet,-24.95
+12/05/2020,Food & Drinks,-49.02
+11/05/2020,Electricity,-96
+08/05/2020,Toys & Electronics,9.7
+08/05/2020,Food & Drinks,-51.68
+08/05/2020,Entertainment,-12
+08/05/2020,Food & Drinks,-4
+07/05/2020,Work,175
+07/05/2020,Food & Drinks,-28.11
+04/05/2020,Appartment,-40
+04/05/2020,Friends & Family,24.78
+04/05/2020,Food & Drinks,-17.04
+04/05/2020,Garbage & Recycling,-79.49
+03/05/2020,Friends & Family,6.75
+01/05/2020,Friends & Family,350
+30/04/2020,Appartment,-269.21
+30/04/2020,Food & Drinks,-5
+30/04/2020,Food & Drinks,-41.95
+28/04/2020,Food & Drinks,-24.11
+27/04/2020,Appartment,-20.7
+27/04/2020,Work,2268.50
+26/04/2020,Medical & Insurances,-8.98
+25/04/2020,Friends & Family,27.68
+24/04/2020,Food & Drinks,-56
+24/04/2020,Food & Drinks,-3.1
+21/04/2020,Food & Drinks,-44.23
+18/04/2020,Food & Drinks,-6.42
+17/04/2020,Food & Drinks,-24.42
+15/04/2020,Food & Drinks,-29.8
+15/04/2020,Internet,-24.95
+14/04/2020,Electricity,-96
+11/04/2020,Food & Drinks,-49.32
+09/04/2020,Food & Drinks,-19.42
+08/04/2020,Food & Drinks,-5.7
+07/04/2020,Food & Drinks,-13.5
+06/04/2020,Work,325.46
+06/04/2020,Food & Drinks,-21.9
+06/04/2020,Entertainment,-6.8
+06/04/2020,Work,112
+03/04/2020,Entertainment,-7
+03/04/2020,Food & Drinks,-25.82
+03/04/2020,Food & Drinks,-24.30
+03/04/2020,Water,-78.66
+01/04/2020,Friends & Family,350
+01/04/2020,Friends & Family,24.78
+01/04/2020,Appartment,-40
+01/04/2020,Food & Drinks,-28.14
+31/03/2020,Entertainment,-7
+31/03/2020,Work,3362.35
+31/03/2020,Appartment,-270.75
+30/03/2020,Food & Drinks,-30.4
+28/03/2020,Food & Drinks,-6
+26/03/2020,Entertainment,-6.8
+26/03/2020,Food & Drinks,-22.94
+23/03/2020,Food & Drinks,-28.57
+23/03/2020,Entertainment,-6.8
+23/03/2020,Taxes,-53
+20/03/2020,Food & Drinks,-24.60
+20/03/2020,Entertainment,-6.7
+20/03/2020,Food & Drinks,-2.45
+20/03/2020,Entertainment,10
+19/03/2020,Food & Drinks,-25.42
+17/03/2020,Food & Drinks,-29.57
+17/03/2020,Entertainment,-6.8
+16/03/2020,Food & Drinks,-5.25
+14/03/2020,Entertainment,-6.8
+14/03/2020,Food & Drinks,-0.9
+13/03/2020,Food & Drinks,-32.55
+13/03/2020,Food & Drinks,-28
+13/03/2020,Internet,-24.95
+12/03/2020,Electricity,-96
+12/03/2020,Food & Drinks,-15.55
+11/03/2020,Food & Drinks,-9.35
+10/03/2020,Entertainment,-6.8
+10/03/2020,Food & Drinks,-17.6
+09/03/2020,Food & Drinks,-3.75
+09/03/2020,Entertainment,-22
+08/03/2020,Food & Drinks,-3.9
+07/03/2020,Food & Drinks,-3.1
+07/03/2020,Entertainment,-6.8
+07/03/2020,Food & Drinks,-8
+07/03/2020,Friends & Family,50
+06/03/2020,Food & Drinks,-13.8
+05/03/2020,Medical & Insurances,-13.36
+05/03/2020,Friends & Family,-44.72
+05/03/2020,Work,119
+05/03/2020,Food & Drinks,-17.5
+04/03/2020,Entertainment,-6.7
+03/03/2020,Food & Drinks,-22.5
+02/03/2020,Food & Drinks,-9.8
+02/03/2020,Friends & Family,24.78
+02/03/2020,Appartment,-40
+02/03/2020,Entertainment,-16
+02/03/2020,Toys & Electronics,-4
+02/03/2020,Food & Drinks,-6.35
+01/03/2020,Friends & Family,350
+29/02/2020,Food & Drinks,-12.65
+28/02/2020,Appartment,-272.29
+28/02/2020,Food & Drinks,-11.75
+27/02/2020,Food & Drinks,-11.60
+27/02/2020,Work,3431.02
+26/02/2020,Food & Drinks,-16.45
+25/02/2020,Food & Drinks,-2.6
+24/02/2020,Medical & Insurances,20.78
+24/02/2020,Entertainment,-34.99
+23/02/2020,Friends & Family,29
+23/02/2020,Food & Drinks,-1
+22/02/2020,Food & Drinks,-8.9
+22/02/2020,Entertainment,-12
+21/02/2020,Food & Drinks,-45.35
+21/02/2020,Entertainment,-5
+21/02/2020,Food & Drinks,-15.5
+20/02/2020,Food & Drinks,-12
+20/02/2020,Food & Drinks,-3
+19/02/2020,Food & Drinks,-8.5
+18/02/2020,Food & Drinks,-11.5
+17/02/2020,Entertainment,-15
+17/02/2020,Food & Drinks,-3.8
+16/02/2020,Food & Drinks,-3.4
+15/02/2020,Food & Drinks,-12
+14/02/2020,Medical & Insurances,-26.30
+13/02/2020,Food & Drinks,-8.8
+13/02/2020,Internet,-24.95
+11/02/2020,Food & Drinks,-0.95
+11/02/2020,Taxes,-62.5
+10/02/2020,Entertainment,-15
+10/02/2020,Food & Drinks,-9.30
+10/02/2020,Electricity,-96
+08/02/2020,Friends & Family,40
+06/02/2020,Work,155
+06/02/2020,Food & Drinks,-16.85
+05/02/2020,Food & Drinks,-9.75
+04/02/2020,Entertainment,-0.8
+04/02/2020,Food & Drinks,-1.9
+03/02/2020,Friends & Family,24.78
+03/02/2020,Appartment,-40
+03/02/2020,Food & Drinks,-3.75
+02/02/2020,Food & Drinks,-1
+01/02/2020,Food & Drinks,-13.25
+01/02/2020,Friends & Family,350
+31/01/2020,Appartment,-273.83
+31/01/2020,Food & Drinks,-8.9
+31/01/2020,Food & Drinks,-4
+30/01/2020,Work,40
+30/01/2020,Entertainment,-16
+30/01/2020,Entertainment,-5
+30/01/2020,Food & Drinks,-21.4
+29/01/2020,Work,2932.91
+28/01/2020,Food & Drinks,-4.74
+27/01/2020,Food & Drinks,-3.2
+26/01/2020,Food & Drinks,-4
+25/01/2020,Food & Drinks,-8.54
+25/01/2020,Food & Drinks,-15.5
+24/01/2020,Entertainment,-6.7
+24/01/2020,Food & Drinks,-8.2
+23/01/2020,Food & Drinks,-10.70
+23/01/2020,Entertainment,-15
+20/01/2020,Food & Drinks,-16.15
+19/01/2020,Food & Drinks,-4.66
+18/01/2020,Food & Drinks,-4.45
+18/01/2020,Entertainment,-12
+18/01/2020,Food & Drinks,-20.5
+17/01/2020,Toys & Electronics,13
+16/01/2020,Food & Drinks,-11.25
+15/01/2020,Internet,-24.95
+14/01/2020,Food & Drinks,-150
+14/01/2020,Food & Drinks,-2.39
+13/01/2020,Food & Drinks,-7.1
+12/01/2020,Food & Drinks,-4.53
+11/01/2020,Food & Drinks,-31.41
+11/01/2020,Friends & Family,2.64
+10/01/2020,Electricity,-96
+10/01/2020,Food & Drinks,-1.5
+09/01/2020,Food & Drinks,-4.40
+08/01/2020,Clothes,-32
+07/01/2020,Work,98
+06/01/2020,Medical & Insurances,-8.98
+06/01/2020,Medical & Insurances,-22.36
+06/01/2020,Food & Drinks,-8.6
+05/01/2020,Food & Drinks,-2.45
+04/01/2020,Food & Drinks,-21.75
+03/01/2020,Water,-78.66
+03/01/2020,Food & Drinks,-5.65
+02/01/2020,Electricity,840.54
+02/01/2020,Appartment,-40
+02/01/2020,Food & Drinks,-24.25
+02/01/2020,Friends & Family,24.78
+01/01/2020,Friends & Family,350
+31/12/2019,Appartment,-275.37
+31/12/2019,Food & Drinks,-5.1
+31/12/2019,Food & Drinks,-5.2
+31/12/2019,Taxes,-6.25
+30/12/2019,Food & Drinks,-15.85
+30/12/2019,Food & Drinks,-7
+29/12/2019,Food & Drinks,-3.4
+28/12/2019,Food & Drinks,-19.9
+28/12/2019,Food & Drinks,-5.2
+27/12/2019,Taxes,1736.91
+27/12/2019,Food & Drinks,-30.35
+26/12/2019,Food & Drinks,-19.10
+25/12/2019,Food & Drinks,-15.12
+24/12/2019,Food & Drinks,-15.63
+24/12/2019,Work,3483.69
+23/12/2019,Food & Drinks,-33.10
+23/12/2019,Food & Drinks,-15.5
+22/12/2019,Food & Drinks,-10.6
+21/12/2019,Food & Drinks,-18.87
+21/12/2019,Entertainment,10.5
+21/12/2019,Food & Drinks,-10
+21/12/2019,Friends & Family,10
+20/12/2019,Entertainment,-58
+20/12/2019,Food & Drinks,-0.59
+19/12/2019,Food & Drinks,-8.5
+18/12/2019,Food & Drinks,-11.58
+17/12/2019,Food & Drinks,-3.54
+17/12/2019,Food & Drinks,-13.2
+16/12/2019,Food & Drinks,-21.33
+16/12/2019,Garbage & Recycling,-42.5
+15/12/2019,Food & Drinks,-2.48
+15/12/2019,Friends & Family,10
+14/12/2019,Food & Drinks,-16.64
+13/12/2019,Internet,-24.95
+12/12/2019,Food & Drinks,-5.75
+11/12/2019,Electricity,-147
+11/12/2019,Food & Drinks,-11.85
+11/12/2019,Appartment,-119.54
+10/12/2019,Toys & Electronics,-4.7
+10/12/2019,Food & Drinks,-2.25
+09/12/2019,Food & Drinks,-10.95
+09/12/2019,Toys & Electronics,9.7
+08/12/2019,Food & Drinks,-2.48
+07/12/2019,Food & Drinks,-16.22
+06/12/2019,Food & Drinks,-7.41
+05/12/2019,Work,98
+05/12/2019,Food & Drinks,-2.65
+04/12/2019,Work,979.99
+04/12/2019,Food & Drinks,-12.8
+03/12/2019,Food & Drinks,-3.85
+02/12/2019,Appartment,-40
+02/12/2019,Friends & Family,24.78
+02/12/2019,Food & Drinks,-8.95
+01/12/2019,Friends & Family,350
+30/11/2019,Food & Drinks,-27.19
+29/11/2019,Appartment,-276.92
+29/11/2019,Food & Drinks,-17.23
+29/11/2019,Haircuts,-114.99
+29/11/2019,Work,2364.46
+28/11/2019,Food & Drinks,-5.85
+27/11/2019,Food & Drinks,-9.60
+26/11/2019,Food & Drinks,-12.08
+25/11/2019,Food & Drinks,-8.6
+25/11/2019,Toys & Electronics,-1.21
+24/11/2019,Food & Drinks,-1.5
+23/11/2019,Food & Drinks,-3.77
+23/11/2019,Food & Drinks,-15
+23/11/2019,Entertainment,-12
+22/11/2019,Food & Drinks,-17.57
+22/11/2019,Toys & Electronics,8
+21/11/2019,Food & Drinks,-2.85
+20/11/2019,Toys & Electronics,-1.91
+20/11/2019,Toys & Electronics,-1.47
+20/11/2019,Toys & Electronics,-1.21
+20/11/2019,Toys & Electronics,-1.91
+20/11/2019,Toys & Electronics,-1.14
+20/11/2019,Food & Drinks,-12.4
+19/11/2019,Food & Drinks,-17.07
+19/11/2019,Medical & Insurances,20.27
+18/11/2019,Food & Drinks,-4.73
+17/11/2019,Food & Drinks,-2.25
+16/11/2019,Friends & Family,100
+16/11/2019,Food & Drinks,-12.34
+15/11/2019,Food & Drinks,-40.73
+15/11/2019,Medical & Insurances,-26.30
+14/11/2019,Internet,-24.95
+14/11/2019,Food & Drinks,-10.65
+13/11/2019,Food & Drinks,-3.35
+12/11/2019,Electricity,-147
+11/11/2019,Food & Drinks,-3
+10/11/2019,Entertainment,-15.5
+10/11/2019,Entertainment,-7
+10/11/2019,Entertainment,-7
+09/11/2019,Entertainment,-84
+09/11/2019,Entertainment,-7
+09/11/2019,Entertainment,-7
+09/11/2019,Entertainment,-17
+09/11/2019,Entertainment,-15.5
+08/11/2019,Food & Drinks,-40.73
+07/11/2019,Work,142.92
+07/11/2019,Food & Drinks,-5.3
+06/11/2019,Food & Drinks,-3.45
+05/11/2019,Food & Drinks,-11.5
+05/11/2019,Friends & Family,3.5
+04/11/2019,Friends & Family,24.78
+04/11/2019,Appartment,-40
+04/11/2019,Food & Drinks,-7
+02/11/2019,Food & Drinks,-18.65
+02/11/2019,Food & Drinks,-6
+01/11/2019,Friends & Family,350
+01/11/2019,Friends & Family,0.64
+01/11/2019,Food & Drinks,-7.60
+31/10/2019,Appartment,-278.46
+31/10/2019,Work,1914.65
+31/10/2019,Food & Drinks,-5.26
+30/10/2019,Medical & Insurances,-26.19
+30/10/2019,Medical & Insurances,-4.5
+30/10/2019,Food & Drinks,-9.18
+29/10/2019,Food & Drinks,-8.02
+29/10/2019,Medical & Insurances,21.45
+28/10/2019,Food & Drinks,-1.63
+27/10/2019,Food & Drinks,-3.78
+26/10/2019,Food & Drinks,-8.23
+24/10/2019,Food & Drinks,-8.23
+23/10/2019,Food & Drinks,-14.72
+22/10/2019,Toys & Electronics,120
+22/10/2019,Food & Drinks,-11.12
+21/10/2019,Food & Drinks,-12.39
+21/10/2019,Food & Drinks,-1.91
+20/10/2019,Friends & Family,20
+20/10/2019,Entertainment,-12
+20/10/2019,Food & Drinks,-4.29
+19/10/2019,Food & Drinks,-3.85
+19/10/2019,Food & Drinks,-3.62
+19/10/2019,Food & Drinks,-6.7
+18/10/2019,Food & Drinks,-2.09
+18/10/2019,Food & Drinks,-5.24
+17/10/2019,Food & Drinks,-28.65
+17/10/2019,Friends & Family,20
+16/10/2019,Food & Drinks,-9.42
+15/10/2019,Food & Drinks,-1.09
+15/10/2019,Food & Drinks,-2.99
+15/10/2019,Internet,-24.95
+14/10/2019,Toys & Electronics,16.7
+14/10/2019,Food & Drinks,-8.41
+14/10/2019,Friends & Family,15
+13/10/2019,Food & Drinks,-2.29
+12/10/2019,Food & Drinks,-4.95
+11/10/2019,Food & Drinks,-2.81
+11/10/2019,Food & Drinks,-0.17
+11/10/2019,Electricity,-147
+11/10/2019,Food & Drinks,-20.29
+10/10/2019,Food & Drinks,-15.5
+10/10/2019,Friends & Family,15
+09/10/2019,Food & Drinks,-5.68
+08/10/2019,Food & Drinks,-2.45
+08/10/2019,Food & Drinks,-1.58
+07/10/2019,Food & Drinks,-6.04
+06/10/2019,Food & Drinks,-2.00
+06/10/2019,Food & Drinks,-0.25
+06/10/2019,Toys & Electronics,300
+05/10/2019,Food & Drinks,-6.05
+05/10/2019,Food & Drinks,-6.05
+04/10/2019,Work,120.54
+04/10/2019,Entertainment,-180
+04/10/2019,Food & Drinks,-1.24
+04/10/2019,Medical & Insurances,-5
+04/10/2019,Medical & Insurances,-276
+04/10/2019,Food & Drinks,-3.9
+03/10/2019,Food & Drinks,-1.16
+03/10/2019,Food & Drinks,-7.94
+03/10/2019,Water,-22.10
+02/10/2019,Toys & Electronics,109.7
+02/10/2019,Toys & Electronics,-4.7
+02/10/2019,Food & Drinks,-4.82
+02/10/2019,Food & Drinks,-2.07
+01/10/2019,Friends & Family,24.78
+01/10/2019,Appartment,-40
+01/10/2019,Food & Drinks,-2.35
+01/10/2019,Toys & Electronics,-5.99
+01/10/2019,Friends & Family,350
+30/09/2019,Appartment,-280.01
+30/09/2019,Food & Drinks,-5.72
+29/09/2019,Food & Drinks,-2.74
+28/09/2019,Food & Drinks,-4.96
+27/09/2019,Work,1915.74
+27/09/2019,Food & Drinks,-4.45
+27/09/2019,Food & Drinks,-2.84
+26/09/2019,Food & Drinks,-17.72
+26/09/2019,Food & Drinks,-3.39
+26/09/2019,Friends & Family,10
+26/09/2019,Food & Drinks,-5.2
+25/09/2019,Food & Drinks,-5.83
+24/09/2019,Food & Drinks,-0.69
+23/09/2019,Food & Drinks,-4.74
+23/09/2019,Food & Drinks,-1.45
+22/09/2019,Food & Drinks,-3.5
+22/09/2019,Food & Drinks,-6.7
+22/09/2019,Entertainment,-12
+22/09/2019,Food & Drinks,-10
+22/09/2019,Food & Drinks,-5.1
+21/09/2019,Food & Drinks,-4.72
+20/09/2019,Food & Drinks,-4.64
+19/09/2019,Food & Drinks,-5.11
+19/09/2019,Food & Drinks,-25.08
+18/09/2019,Food & Drinks,-2.16
+18/09/2019,Food & Drinks,-1.45
+17/09/2019,Food & Drinks,-2.88
+16/09/2019,Internet,-24.95
+16/09/2019,Food & Drinks,-13.18
+16/09/2019,Garbage & Recycling,-42.5
+15/09/2019,Friends & Family,25
+15/09/2019,Food & Drinks,-12.7
+14/09/2019,Food & Drinks,-4.03
+14/09/2019,Food & Drinks,-1.63
+14/09/2019,Food & Drinks,-3.06
+13/09/2019,Food & Drinks,-5.26
+12/09/2019,Food & Drinks,-3.91
+12/09/2019,Food & Drinks,-9.71
+12/09/2019,Appartment,-2.49
+11/09/2019,Food & Drinks,-3.06
+10/09/2019,Food & Drinks,-3.48
+10/09/2019,Toys & Electronics,60
+10/09/2019,Electricity,-147
+09/09/2019,Food & Drinks,-2.88
+07/09/2019,Appartment,-4.95
+07/09/2019,Food & Drinks,-3.08
+07/09/2019,Food & Drinks,-18.55
+07/09/2019,Friends & Family,35
+07/09/2019,Food & Drinks,-10.4
+07/09/2019,Toys & Electronics,4
+06/09/2019,Work,54
+06/09/2019,Food & Drinks,-1.47
+06/09/2019,Food & Drinks,-4.19
+05/09/2019,Food & Drinks,-7.5
+04/09/2019,Food & Drinks,-2.74
+04/09/2019,Food & Drinks,-2.16
+03/09/2019,Food & Drinks,-10.57
+03/09/2019,Food & Drinks,-2.71
+02/09/2019,Appartment,-40
+02/09/2019,Friends & Family,24.78
+02/09/2019,Food & Drinks,-1.5
+02/09/2019,Food & Drinks,-0.87
+01/09/2019,Friends & Family,350
+01/09/2019,Food & Drinks,-4.44
+31/08/2019,Food & Drinks,-8.84
+31/08/2019,Friends & Family,60
+31/08/2019,Food & Drinks,-12.4
+30/08/2019,Appartment,-281.56
+30/08/2019,Food & Drinks,-7.37
+29/08/2019,Work,1912.75
+29/08/2019,Food & Drinks,-7.65
+28/08/2019,Food & Drinks,-5.63
+27/08/2019,Toys & Electronics,10
+27/08/2019,Garbage & Recycling,-42.5
+27/08/2019,Food & Drinks,-2.72
+27/08/2019,Food & Drinks,-9.94
+26/08/2019,Food & Drinks,-2.07
+25/08/2019,Food & Drinks,-6.64
+24/08/2019,Food & Drinks,-5.34
+24/08/2019,Food & Drinks,-4.84
+24/08/2019,Food & Drinks,-17
+24/08/2019,Food & Drinks,-2.7
+24/08/2019,Friends & Family,10
+23/08/2019,Food & Drinks,-6.02
+23/08/2019,Friends & Family,10
+22/08/2019,Food & Drinks,-6.23
+21/08/2019,Food & Drinks,-5.76
+21/08/2019,Food & Drinks,-8.28
+20/08/2019,Food & Drinks,-14.09
+19/08/2019,Food & Drinks,-1.89
+19/08/2019,Food & Drinks,-10.75
+18/08/2019,Food & Drinks,-7.5
+18/08/2019,Friends & Family,12.5
+17/08/2019,Food & Drinks,-15.7
+16/08/2019,Food & Drinks,-9.28
+16/08/2019,Food & Drinks,-0.97
+16/08/2019,Food & Drinks,-6.7
+15/08/2019,Food & Drinks,-7.58
+14/08/2019,Food & Drinks,-7.4
+14/08/2019,Food & Drinks,-15.45
+14/08/2019,Internet,-24.95
+13/08/2019,Food & Drinks,-12.43
+13/08/2019,Food & Drinks,-0.91
+12/08/2019,Entertainment,-5
+12/08/2019,Food & Drinks,-5.65
+12/08/2019,Electricity,-147
+11/08/2019,Food & Drinks,-4.79
+10/08/2019,Friends & Family,50
+10/08/2019,Food & Drinks,-8.06
+10/08/2019,Entertainment,-48
+10/08/2019,Food & Drinks,-13
+10/08/2019,Friends & Family,13
+10/08/2019,Food & Drinks,-4
+09/08/2019,Food & Drinks,-10.53
+09/08/2019,Food & Drinks,-21.03
+09/08/2019,Taxes,-465.7
+08/08/2019,Food & Drinks,-8.35
+08/08/2019,Food & Drinks,-1.65
+08/08/2019,Food & Drinks,-1.9
+08/08/2019,Friends & Family,0.1
+07/08/2019,Food & Drinks,-4.36
+06/08/2019,Work,102
+06/08/2019,Food & Drinks,-3.57
+05/08/2019,Food & Drinks,-8.22
+04/08/2019,Food & Drinks,-1.8
+04/08/2019,Entertainment,-5.89
+03/08/2019,Friends & Family,6.3
+02/08/2019,Food & Drinks,-29.16
+01/08/2019,Food & Drinks,-1.65
+01/08/2019,Food & Drinks,-8.95
+01/08/2019,Appartment,-40
+01/08/2019,Friends & Family,24.78
+01/08/2019,Toys & Electronics,11
+01/08/2019,Friends & Family,350
+31/07/2019,Appartment,-283.11
+31/07/2019,Work,1904.02
+31/07/2019,Food & Drinks,-7.88
+30/07/2019,Food & Drinks,-5.47
+29/07/2019,Toys & Electronics,50
+29/07/2019,Food & Drinks,-4.42
+29/07/2019,Toys & Electronics,14
+28/07/2019,Entertainment,-5
+28/07/2019,Food & Drinks,-2.18
+27/07/2019,Food & Drinks,-6.8
+27/07/2019,Friends & Family,10
+26/07/2019,Food & Drinks,-43.16
+26/07/2019,Food & Drinks,-2.08
+25/07/2019,Food & Drinks,-1.10
+25/07/2019,Food & Drinks,-21.74
+24/07/2019,Food & Drinks,-14.6
+23/07/2019,Food & Drinks,-6.19
+22/07/2019,Food & Drinks,-5.07
+21/07/2019,Food & Drinks,-6.19
+21/07/2019,Entertainment,-0.89
+20/07/2019,Friends & Family,7.4
+19/07/2019,Food & Drinks,-16.56
+18/07/2019,Garbage & Recycling,-99.49
+18/07/2019,Food & Drinks,-35.53
+17/07/2019,Food & Drinks,-3.74
+17/07/2019,Toys & Electronics,105
+16/07/2019,Entertainment,-9.50
+16/07/2019,Food & Drinks,-7.3
+15/07/2019,Internet,-24.95
+15/07/2019,Food & Drinks,-4.37
+14/07/2019,Food & Drinks,-8.41
+13/07/2019,Food & Drinks,-14.4
+13/07/2019,Food & Drinks,-3.2
+13/07/2019,Entertainment,-25
+13/07/2019,Friends & Family,35
+12/07/2019,Food & Drinks,-44.94
+12/07/2019,Electricity,-147
+11/07/2019,Food & Drinks,-37.62
+11/07/2019,Food & Drinks,-11.7
+10/07/2019,Food & Drinks,-10.26
+10/07/2019,Food & Drinks,-4.2
+09/07/2019,Food & Drinks,-12
+08/07/2019,Food & Drinks,-10.51
+08/07/2019,Food & Drinks,-10.51
+07/07/2019,Food & Drinks,-8.98
+07/07/2019,Food & Drinks,-8.98
+06/07/2019,Food & Drinks,-3.18
+06/07/2019,Entertainment,-6.80
+05/07/2019,Food & Drinks,-38.94
+05/07/2019,Food & Drinks,-3.18
+05/07/2019,Appartment,-2362.16
+05/07/2019,Water,-95.23
+04/07/2019,Food & Drinks,-13.09
+04/07/2019,Entertainment,-53
+04/07/2019,Entertainment,-5
+04/07/2019,Food & Drinks,-1.59
+04/07/2019,Work,90
+03/07/2019,Toys & Electronics,0.2
+03/07/2019,Food & Drinks,-4.78
+03/07/2019,Food & Drinks,-10.5
+02/07/2019,Toys & Electronics,-1.10
+02/07/2019,Food & Drinks,-5.17
+01/07/2019,Friends & Family,350
+01/07/2019,Appartment,-40
+01/07/2019,Friends & Family,24.78
+01/07/2019,Toys & Electronics,2
+01/07/2019,Food & Drinks,-4.26
+01/07/2019,Entertainment,-6.8
+30/06/2019,Food & Drinks,-4.9
+29/06/2019,Food & Drinks,-0.8
+29/06/2019,Toys & Electronics,150
+29/06/2019,Friends & Family,10
+29/06/2019,Entertainment,-6.8
+28/06/2019,Food & Drinks,-38.95
+28/06/2019,Friends & Family,50
+28/06/2019,Friends & Family,-44.72
+28/06/2019,Medical & Insurances,-45.36
+28/06/2019,Appartment,-284.66
+28/06/2019,Work,3277.12
+28/06/2019,Work,-200
+28/06/2019,Taxes,-35
+27/06/2019,Food & Drinks,-3.69
+26/06/2019,Food & Drinks,-7.14
+24/06/2019,Toys & Electronics,5
+23/06/2019,Entertainment,-6.80
+23/06/2019,Entertainment,-8
+21/06/2019,Food & Drinks,-69.59
+19/06/2019,Entertainment,-6.80
+19/06/2019,Food & Drinks,-1.49
+17/06/2019,Internet,-24.95
+16/06/2019,Food & Drinks,-9.38
+16/06/2019,Entertainment,-6.80
+15/06/2019,Food & Drinks,-4
+14/06/2019,Food & Drinks,-22.99
+14/06/2019,Food & Drinks,-42.70
+13/06/2019,Food & Drinks,-1.39
+13/06/2019,Entertainment,-6.80
+13/06/2019,Toys & Electronics,250
+11/06/2019,Food & Drinks,-12.36
+11/06/2019,Electricity,-147
+10/06/2019,Food & Drinks,-11.87
+08/06/2019,Entertainment,-44
+08/06/2019,Food & Drinks,-9.95
+08/06/2019,Food & Drinks,-14.2
+07/06/2019,Food & Drinks,-58
+06/06/2019,Work,102
+03/06/2019,Appartment,-40
+03/06/2019,Friends & Family,24.78
+01/06/2019,Friends & Family,600
+01/06/2019,Friends & Family,350
+29/05/2019,Appartment,-286.21
+29/05/2019,Work,1944.03
+21/05/2019,Medical & Insurances,-44.85
+21/05/2019,Medical & Insurances,-101.33
+15/05/2019,Internet,-24.95
+13/05/2019,Electricity,-147
+04/05/2019,Work,90
+04/05/2019,Food & Drinks,-90
+02/05/2019,Appartment,-40
+02/05/2019,Friends & Family,24.78
+30/04/2019,Appartment,-287.77
+30/04/2019,Work,1951.25
+23/04/2019,Toys & Electronics,19.7
+12/04/2019,Internet,-24.95
+11/04/2019,Toys & Electronics,30
+11/04/2019,Toys & Electronics,-4.7
+10/04/2019,Electricity,-147
+10/04/2019,Toys & Electronics,12
+08/04/2019,Toys & Electronics,17
+08/04/2019,Toys & Electronics,25
+08/04/2019,Toys & Electronics,-4.7
+04/04/2019,Work,90
+04/04/2019,Food & Drinks,-90
+03/04/2019,Food & Drinks,-3.7
+02/04/2019,Friends & Family,24.78
+02/04/2019,Fitness,-69.90
+01/04/2019,Taxes,5
+01/04/2019,Appartment,-40
+01/04/2019,Appartment,-50
+01/04/2019,Appartment,-500
+01/04/2019,Friends & Family,350
+01/04/2019,Friends & Family,100
+01/04/2019,Food & Drinks,-50
+01/04/2019,Food & Drinks,-100
+29/03/2019,Appartment,-289.32
+28/03/2019,Work,1944.02
+27/03/2019,Water,-95.23
+26/03/2019,Medical & Insurances,-5.99
+21/03/2019,Toys & Electronics,17.5
+19/03/2019,Toys & Electronics,30
+19/03/2019,Toys & Electronics,-4.7
+15/03/2019,Internet,-24.95
+13/03/2019,Electricity,-147
+11/03/2019,Toys & Electronics,-10
+08/03/2019,Toys & Electronics,45.4
+06/03/2019,Toys & Electronics,15
+06/03/2019,Toys & Electronics,15.4
+06/03/2019,Toys & Electronics,-4.7
+05/03/2019,Toys & Electronics,15.4
+04/03/2019,Friends & Family,24.78
+04/03/2019,Work,90
+04/03/2019,Food & Drinks,-90
+01/03/2019,Appartment,-40
+01/03/2019,Fitness,-69.90
+01/03/2019,Friends & Family,350
+01/03/2019,Friends & Family,100
+01/03/2019,Food & Drinks,-50
+01/03/2019,Food & Drinks,-100
+28/02/2019,Appartment,-290.88
+28/02/2019,Work,1953.44
+28/02/2019,Toys & Electronics,150
+27/02/2019,Medical & Insurances,-52.00
+14/02/2019,Medical & Insurances,40.00
+14/02/2019,Internet,-24.95
+14/02/2019,Toys & Electronics,-13
+14/02/2019,Toys & Electronics,-29
+12/02/2019,Toys & Electronics,30
+11/02/2019,Electricity,-147
+11/02/2019,Medical & Insurances,-51.16
+07/02/2019,Taxes,-62.5
+04/02/2019,Friends & Family,24.78
+04/02/2019,Work,90
+04/02/2019,Food & Drinks,-90
+04/02/2019,Medical & Insurances,15.00
+01/02/2019,Appartment,-40
+01/02/2019,Fitness,-69.90
+01/02/2019,Friends & Family,350
+01/02/2019,Friends & Family,100
+01/02/2019,Food & Drinks,-50
+01/02/2019,Food & Drinks,-100
+31/01/2019,Work,1944.02
+31/01/2019,Toys & Electronics,40
+31/01/2019,Toys & Electronics,40
+30/01/2019,Appartment,-292.44
+30/01/2019,Toys & Electronics,75
+30/01/2019,Toys & Electronics,-4.7
+29/01/2019,Toys & Electronics,11
+29/01/2019,Toys & Electronics,-4.7
+28/01/2019,Toys & Electronics,27
+24/01/2019,Medical & Insurances,52.27
+23/01/2019,Toys & Electronics,-4.7
+18/01/2019,Toys & Electronics,-162.12
+17/01/2019,Medical & Insurances,-22.92
+15/01/2019,Internet,-24.95
+10/01/2019,Electricity,-147
+08/01/2019,Medical & Insurances,-85.80
+07/01/2019,Electricity,68.24
+04/01/2019,Work,90
+04/01/2019,Food & Drinks,-90
+02/01/2019,Appartment,-40
+02/01/2019,Friends & Family,24.78
+01/01/2019,Friends & Family,350
+01/01/2019,Friends & Family,100
+01/01/2019,Food & Drinks,-50
+01/01/2019,Food & Drinks,-100
+31/12/2018,Appartment,-294.00
+31/12/2018,Water,-95.23
+31/12/2018,Taxes,-0.15
+28/12/2018,Work,3331.53
+27/12/2018,Entertainment,-44
+27/12/2018,Taxes,1753.08
+21/12/2018,Food & Drinks,-284.45
+17/12/2018,Toys & Electronics,14
+13/12/2018,Internet,-24.95
+12/12/2018,Entertainment,-40
+11/12/2018,Electricity,-128
+07/12/2018,Entertainment,-175
+06/12/2018,Appartment,-117.63
+03/12/2018,Fitness,-69.90
+03/12/2018,Appartment,-40
+03/12/2018,Friends & Family,24.78
+03/12/2018,Toys & Electronics,-2110
+30/11/2018,Appartment,-295.57
+30/11/2018,Food & Drinks,-59.14
+29/11/2018,Work,100
+29/11/2018,Work,2174.08
+24/11/2018,Toys & Electronics,-17.5
+23/11/2018,Toys & Electronics,-65.5
+15/11/2018,Internet,-24.95
+12/11/2018,Electricity,-128
+12/11/2018,Toys & Electronics,-100.05
+12/11/2018,Food & Drinks,4.99
+09/11/2018,Food & Drinks,-37.92
+08/11/2018,Medical & Insurances,-59.96
+06/11/2018,Medical & Insurances,-31.55
+02/11/2018,Appartment,-40
+02/11/2018,Friends & Family,24.78
+01/11/2018,Fitness,-69.90
+31/10/2018,Appartment,-297.13
+31/10/2018,Work,2166.44
+30/10/2018,Haircuts,-30
+29/10/2018,Toys & Electronics,15
+28/10/2018,Toys & Electronics,-20
+24/10/2018,Appartment,-200
+21/10/2018,Medical & Insurances,-35.58
+18/10/2018,Toys & Electronics,15
+12/10/2018,Internet,-24.95
+11/10/2018,Electricity,-128
+09/10/2018,Toys & Electronics,25.5
+04/10/2018,Food & Drinks,-79.98
+04/10/2018,Medical & Insurances,-29.95
+03/10/2018,Toys & Electronics,55.5
+02/10/2018,Friends & Family,24.78
+01/10/2018,Water,-92.66
+01/10/2018,Fitness,-69.90
+01/10/2018,Appartment,-40
+01/10/2018,Toys & Electronics,-15.99
+01/10/2018,Taxes,1.70
+28/09/2018,Appartment,-298.70
+28/09/2018,Toys & Electronics,-8.46
+28/09/2018,Work,1887.97
+26/09/2018,Medical & Insurances,-100
+14/09/2018,Medical & Insurances,-91.25
+13/09/2018,Internet,-24.95
+10/09/2018,Electricity,-128
+05/09/2018,Toys & Electronics,-0.79
+05/09/2018,Toys & Electronics,-1.41
+04/09/2018,Food & Drinks,-35.38
+03/09/2018,Fitness,-69.90
+03/09/2018,Appartment,-40
+03/09/2018,Friends & Family,24.78
+31/08/2018,Appartment,-300.27
+31/08/2018,Work,1881.84
+31/08/2018,Medical & Insurances,-66.7
+31/08/2018,Food & Drinks,-73.68
+28/08/2018,Studies,-210
+28/08/2018,Studies,-350
+28/08/2018,Studies,-245
+28/08/2018,Studies,-210
+28/08/2018,Studies,-140
+27/08/2018,Toys & Electronics,-1.21
+23/08/2018,Studies,-280
+22/08/2018,Toys & Electronics,-35
+20/08/2018,Medical & Insurances,-56.27
+20/08/2018,Medical & Insurances,-56.27
+20/08/2018,Haircuts,-120
+15/08/2018,Toys & Electronics,-52.99
+14/08/2018,Internet,-24.95
+13/08/2018,Toys & Electronics,-50.98
+10/08/2018,Electricity,-128
+09/08/2018,Medical & Insurances,-115
+06/08/2018,Food & Drinks,-39.5
+02/08/2018,Toys & Electronics,-451.33
+02/08/2018,Friends & Family,24.78
+01/08/2018,Fitness,-69.90
+01/08/2018,Toys & Electronics,-9.95
+01/08/2018,Appartment,-40
+31/07/2018,Appartment,-301.84
+31/07/2018,Work,1887.29
+25/07/2018,Toys & Electronics,-451.33
+25/07/2018,Medical & Insurances,19.43
+24/07/2018,Taxes,-456.58
+23/07/2018,Appartment,-150
+16/07/2018,Internet,-24.95
+16/07/2018,Toys & Electronics,-22.5
+12/07/2018,Toys & Electronics,-2.29
+11/07/2018,Electricity,-128
+10/07/2018,Food & Drinks,4.99
+10/07/2018,Toys & Electronics,-65
+09/07/2018,Toys & Electronics,-50
+09/07/2018,Food & Drinks,-48.98
+06/07/2018,Toys & Electronics,-246.63
+05/07/2018,Garbage & Recycling,-42.5
+04/07/2018,Toys & Electronics,-36.75
+03/07/2018,Friends & Family,24.78
+03/07/2018,Medical & Insurances,-179.31
+03/07/2018,Entertainment,-196.25
+02/07/2018,Water,-95.48
+02/07/2018,Fitness,-69.90
+02/07/2018,Appartment,-40
+02/07/2018,Clothes,-26.56
+02/07/2018,Toys & Electronics,-35.8
+29/06/2018,Appartment,-303.41
+29/06/2018,Work,3251.03
+29/06/2018,Toys & Electronics,45
+28/06/2018,Toys & Electronics,-317
+27/06/2018,Toys & Electronics,-94
+26/06/2018,Taxes,-35
+19/06/2018,Toys & Electronics,-109
+15/06/2018,Toys & Electronics,-13.9
+14/06/2018,Toys & Electronics,-50
+13/06/2018,Internet,-24.95
+11/06/2018,Electricity,-128
+04/06/2018,Friends & Family,24.78
+01/06/2018,Fitness,-69.90
+01/06/2018,Appartment,-40
+01/06/2018,Appartment,-1250
+31/05/2018,Appartment,-304.98
+31/05/2018,Work,1881.84
+30/05/2018,Toys & Electronics,-38.9
+26/05/2018,Toys & Electronics,-29
+24/05/2018,Food & Drinks,-71.37
+15/05/2018,Toys & Electronics,-50
+14/05/2018,Electricity,-128
+14/05/2018,Internet,-24.95
+14/05/2018,Toys & Electronics,-50
+10/05/2018,Toys & Electronics,-50
+05/05/2018,Toys & Electronics,-372
+04/05/2018,Food & Drinks,8
+03/05/2018,Friends & Family,24.78
+02/05/2018,Fitness,-69.90
+02/05/2018,Appartment,-40
+01/05/2018,Appartment,-659.4
+30/04/2018,Appartment,-306.55
+30/04/2018,Work,1842.62
+29/04/2018,Entertainment,-84.94
+23/04/2018,Toys & Electronics,-182.99
+23/04/2018,Food & Drinks,44
+21/04/2018,Toys & Electronics,-104.31
+20/04/2018,Toys & Electronics,-50
+20/04/2018,Food & Drinks,-109.2
+19/04/2018,Toys & Electronics,-100
+19/04/2018,Toys & Electronics,0.13
+19/04/2018,Toys & Electronics,0.09
+16/04/2018,Internet,-24.95
+15/04/2018,Food & Drinks,-96.2
+15/04/2018,Toys & Electronics,-119.7
+10/04/2018,Electricity,-128
+08/04/2018,Toys & Electronics,-864
+08/04/2018,Entertainment,-161.55
+08/04/2018,Toys & Electronics,-73.55
+07/04/2018,Appartment,-322
+06/04/2018,Appartment,-44.61
+06/04/2018,Toys & Electronics,-349
+06/04/2018,Food & Drinks,144
+04/04/2018,Fitness,-69.90
+04/04/2018,Friends & Family,24.78
+03/04/2018,Appartment,-40
+30/03/2018,Food & Drinks,-91.62
+29/03/2018,Appartment,-308.13
+29/03/2018,Water,-95.48
+29/03/2018,Work,1737.74
+22/03/2018,Food & Drinks,-236
+21/03/2018,Garbage & Recycling,-129.49
+20/03/2018,Food & Drinks,-48.23
+14/03/2018,Food & Drinks,11
+14/03/2018,Toys & Electronics,-39.99
+13/03/2018,Electricity,-128
+11/03/2018,Toys & Electronics,-88.95
+11/03/2018,Toys & Electronics,-89.26
+08/03/2018,Medical & Insurances,-51
+06/03/2018,Food & Drinks,27.5
+06/03/2018,Toys & Electronics,-178.5
+06/03/2018,Toys & Electronics,-44.19
+02/03/2018,Fitness,-69.90
+02/03/2018,Internet,9.86
+02/03/2018,Friends & Family,24.78
+01/03/2018,Internet,-24.95
+01/03/2018,Appartment,-40
+01/03/2018,Food & Drinks,-45.75
+28/02/2018,Medical & Insurances,-105
+28/02/2018,Appartment,-309.71
+28/02/2018,Work,1747.14
+26/02/2018,Taxes,1788.14
+26/02/2018,Appartment,-184
+26/02/2018,Clothes,-99
+22/02/2018,Toys & Electronics,-799
+21/02/2018,Food & Drinks,-58.49
+19/02/2018,Taxes,-53
+15/02/2018,Toys & Electronics,-87.04
+14/02/2018,Internet,-155.58
+12/02/2018,Electricity,-128
+09/02/2018,Internet,-27.8
+08/02/2018,Food & Drinks,-44.96
+07/02/2018,Appartment,-205.5
+05/02/2018,Medical & Insurances,-162.68
+05/02/2018,Taxes,-62.5
+04/02/2018,Appartment,-138
+02/02/2018,Friends & Family,24.78
+02/02/2018,Entertainment,-175
+02/02/2018,Entertainment,-150
+01/02/2018,Medical & Insurances,-130.52
+01/02/2018,Fitness,-69.90
+01/02/2018,Appartment,-40
+31/01/2018,Appartment,-311.29
+30/01/2018,Work,1741.10
+29/01/2018,Food & Drinks,-42.97
+25/01/2018,Toys & Electronics,-17.99
+24/01/2018,Haircuts,-30
+23/01/2018,Toys & Electronics,12
+22/01/2018,Toys & Electronics,44
+21/01/2018,Toys & Electronics,-492.25
+17/01/2018,Medical & Insurances,-76.20
+17/01/2018,Toys & Electronics,-999
+16/01/2018,Toys & Electronics,199.95
+15/01/2018,Food & Drinks,-2205.73
+14/01/2018,Medical & Insurances,-77.32
+12/01/2018,Medical & Insurances,-98.1
+10/01/2018,Electricity,-128
+10/01/2018,Internet,-179
+09/01/2018,Internet,-27.8
+08/01/2018,Toys & Electronics,-69.95
+07/01/2018,Medical & Insurances,-125.33
+06/01/2018,Toys & Electronics,-167.02
+03/01/2018,Friends & Family,24.78
+02/01/2018,Medical & Insurances,-129.52
+02/01/2018,Water,-95.48
+02/01/2018,Fitness,-69.90
+02/01/2018,Appartment,-40
+02/01/2018,Toys & Electronics,-119
+01/01/2018,Toys & Electronics,-287.04
+29/12/2017,Appartment,-312.87
+29/12/2017,Work,77.98
+29/12/2017,Food & Drinks,-37.80
+28/12/2017,Work,2634.23
+28/12/2017,Toys & Electronics,19.00
+21/12/2017,Appartment,-25.40
+20/12/2017,Food & Drinks,-36.47
+19/12/2017,Appartment,-115.30
+19/12/2017,Toys & Electronics,-112.49
+19/12/2017,Toys & Electronics,39.00
+19/12/2017,Toys & Electronics,-199.95
+15/12/2017,Food & Drinks,-54.31
+15/12/2017,Toys & Electronics,12.00
+15/12/2017,Toys & Electronics,3015.37
+15/12/2017,Toys & Electronics,2876.92
+14/12/2017,Toys & Electronics,56.00
+11/12/2017,Electricity,-128.00
+11/12/2017,Internet,-32.80
+08/12/2017,Toys & Electronics,-77.98
+07/12/2017,Toys & Electronics,-83.70
+05/12/2017,Electricity,50.52
+04/12/2017,Friends & Family,24.78
+04/12/2017,Fitness,-69.90
+04/12/2017,Food & Drinks,-48.34
+03/12/2017,Medical & Insurances,-95.34
+01/12/2017,Appartment,-40.00
+01/12/2017,Food & Drinks,-112.34
+30/11/2017,Appartment,-314.45
+29/11/2017,Work,1691.90
+24/11/2017,Food & Drinks,-69.81
+22/11/2017,Toys & Electronics,-102.88
+16/11/2017,Food & Drinks,8.46
+15/11/2017,Food & Drinks,-91.19
+10/11/2017,Electricity,-133.00
+09/11/2017,Medical & Insurances,-127.15
+09/11/2017,Internet,-27.80
+08/11/2017,Toys & Electronics,-30.94
+03/11/2017,Studies,-360.00
+02/11/2017,Friends & Family,24.78
+02/11/2017,Work,1691.90
+02/11/2017,Appartment,-40.00
+02/11/2017,Toys & Electronics,-99.74
+01/11/2017,Fitness,-69.90
+31/10/2017,Appartment,-316.04
+27/10/2017,Food & Drinks,-101.55
+25/10/2017,Medical & Insurances,-37.22
+24/10/2017,Food & Drinks,24.00
+23/10/2017,Medical & Insurances,-41.95
+23/10/2017,Toys & Electronics,-19.00
+20/10/2017,Toys & Electronics,-18.00
+17/10/2017,Entertainment,-175.00
+15/10/2017,Medical & Insurances,-120.73
+15/10/2017,Medical & Insurances,-40.95
+15/10/2017,Food & Drinks,-67.48
+11/10/2017,Electricity,-133.00
+10/10/2017,Internet,-47.80
+10/10/2017,Food & Drinks,-16.74
+03/10/2017,Friends & Family,24.78
+03/10/2017,Fitness,-69.90
+02/10/2017,Water,-45.09
+02/10/2017,Appartment,-40.00
+30/09/2017,Medical & Insurances,-159.48
+29/09/2017,Appartment,-317.62
+29/09/2017,Studies,-80.00
+29/09/2017,Food & Drinks,-55.04
+29/09/2017,Toys & Electronics,-49.99
+29/09/2017,Food & Drinks,-7.10
+28/09/2017,Work,1690.68
+25/09/2017,Studies,-420.00
+23/09/2017,Food & Drinks,-17.98
+22/09/2017,Food & Drinks,-166.05
+15/09/2017,Food & Drinks,-164.42
+11/09/2017,Medical & Insurances,-127.19
+11/09/2017,Electricity,-133.00
+11/09/2017,Internet,-42.80
+10/09/2017,Toys & Electronics,-32.28
+10/09/2017,Toys & Electronics,-38.99
+08/09/2017,Food & Drinks,-151.11
+08/09/2017,Taxes,-447.23
+06/09/2017,Fitness,-69.90
+06/09/2017,Studies,-200.00
+04/09/2017,Friends & Family,24.78
+04/09/2017,Food & Drinks,-0.26
+02/09/2017,Toys & Electronics,-30.00
+01/09/2017,Work,1681.50
+01/09/2017,Appartment,-40.00
+01/09/2017,Food & Drinks,-197.26
+31/08/2017,Appartment,-319.21
+31/08/2017,Food & Drinks,-0.26
+30/08/2017,Toys & Electronics,-137.99
+30/08/2017,Food & Drinks,28.50
+30/08/2017,Food & Drinks,-29.67
+29/08/2017,Work,31.99
+28/08/2017,Toys & Electronics,-112.89
+27/08/2017,Toys & Electronics,-38.85
+25/08/2017,Food & Drinks,-86.00
+25/08/2017,Medical & Insurances,-107.75
+25/08/2017,Toys & Electronics,-39.54
+24/08/2017,Toys & Electronics,-521.57
+23/08/2017,Food & Drinks,-60.59
+19/08/2017,Toys & Electronics,-78.45
+18/08/2017,Food & Drinks,-205.76
+17/08/2017,Food & Drinks,-25.21
+14/08/2017,Medical & Insurances,-190.59
+12/08/2017,Toys & Electronics,-31.99
+10/08/2017,Electricity,-133.00
+09/08/2017,Internet,-27.80
+04/08/2017,Food & Drinks,-93.06
+04/08/2017,Food & Drinks,-2.18
+03/08/2017,Food & Drinks,-11.18
+02/08/2017,Friends & Family,24.78
+02/08/2017,Fitness,-69.90
+01/08/2017,Appartment,-40.00
+01/08/2017,Garbage & Recycling,-42.50
+31/07/2017,Appartment,-320.80
+31/07/2017,Toys & Electronics,-45.00
+28/07/2017,Food & Drinks,-139.55
+27/07/2017,Work,1683.68
+27/07/2017,Haircuts,-120.00
+25/07/2017,Food & Drinks,10.00
+24/07/2017,Toys & Electronics,-120.57
+20/07/2017,Food & Drinks,-98.54
+18/07/2017,Food & Drinks,-14.39
+14/07/2017,Food & Drinks,-273.91
+13/07/2017,Medical & Insurances,-122.16
+13/07/2017,Food & Drinks,-36.49
+13/07/2017,Food & Drinks,-50.73
+12/07/2017,Food & Drinks,-2.64
+11/07/2017,Electricity,-133.00
+11/07/2017,Food & Drinks,-17.46
+10/07/2017,Internet,-52.80
+07/07/2017,Food & Drinks,-23.94
+05/07/2017,Fitness,-69.90
+05/07/2017,Food & Drinks,-8.96
+04/07/2017,Friends & Family,24.78
+03/07/2017,Studies,-75.00
+03/07/2017,Appartment,-40.00
+03/07/2017,Medical & Insurances,27.00
+02/07/2017,Appartment,-18.00
+30/06/2017,Appartment,-322.39
+30/06/2017,Work,2873.25
+30/06/2017,Food & Drinks,-105.71
+29/06/2017,Water,-109.99
+26/06/2017,Taxes,-35.00
+14/06/2017,Medical & Insurances,-122.59
+14/06/2017,Food & Drinks,-89.95
+12/06/2017,Electricity,-133.00
+09/06/2017,Internet,-32.80
+03/06/2017,Food & Drinks,-54.00
+03/06/2017,Toys & Electronics,-56.49
+02/06/2017,Friends & Family,24.78
+02/06/2017,Fitness,-69.90
+02/06/2017,Food & Drinks,-106.85
+01/06/2017,Appartment,-40.00
+31/05/2017,Appartment,-323.98
+31/05/2017,Work,1675.75
+23/05/2017,Food & Drinks,-62.27
+22/05/2017,Food & Drinks,-62.44
+19/05/2017,Food & Drinks,-55.70
+17/05/2017,Food & Drinks,9.50
+13/05/2017,Toys & Electronics,-47.49
+11/05/2017,Electricity,-133.00
+11/05/2017,Food & Drinks,-50.98
+10/05/2017,Internet,-27.80
+07/05/2017,Medical & Insurances,-130.09
+07/05/2017,Medical & Insurances,-81.73
+07/05/2017,Appartment,-49.00
+03/05/2017,Friends & Family,24.78
+03/05/2017,Fitness,-69.90
+03/05/2017,Garbage & Recycling,-129.49
+02/05/2017,Appartment,-40.00
+02/05/2017,Food & Drinks,-105.14
+28/04/2017,Appartment,-325.57
+28/04/2017,Work,1676.84
+25/04/2017,Toys & Electronics,-70.00
+18/04/2017,Appartment,140.00
+18/04/2017,Toys & Electronics,-279.41
+16/04/2017,Toys & Electronics,-45.45
+13/04/2017,Medical & Insurances,-70.02
+11/04/2017,Toys & Electronics,-45.00
+10/04/2017,Electricity,-133.00
+10/04/2017,Internet,-27.80
+07/04/2017,Appartment,-300.00
+06/04/2017,Medical & Insurances,-82.69
+04/04/2017,Friends & Family,24.78
+04/04/2017,Fitness,-69.90
+03/04/2017,Water,-109.99
+03/04/2017,Appartment,-40.00
+03/04/2017,Food & Drinks,9.25
+03/04/2017,Studies,-30.00
+02/04/2017,Toys & Electronics,-9.94
+31/03/2017,Appartment,-327.17
+31/03/2017,Work,1607.46
+30/03/2017,Food & Drinks,-113.95
+30/03/2017,Toys & Electronics,-75.87
+24/03/2017,Medical & Insurances,-27.45
+22/03/2017,Food & Drinks,37.98
+16/03/2017,Food & Drinks,-24.36
+14/03/2017,Haircuts,-30.00
+13/03/2017,Electricity,-133.00
+13/03/2017,Internet,-32.80
+10/03/2017,Food & Drinks,-123.67
+07/03/2017,Entertainment,20.00
+05/03/2017,Toys & Electronics,-532.95
+03/03/2017,Medical & Insurances,-50.00
+03/03/2017,Food & Drinks,16.50
+02/03/2017,Friends & Family,24.78
+02/03/2017,Entertainment,-175.00
+01/03/2017,Fitness,-69.90
+01/03/2017,Work,1626.44
+01/03/2017,Appartment,-40.00
+28/02/2017,Appartment,-328.77
+26/02/2017,Toys & Electronics,-21.85
+23/02/2017,Food & Drinks,-6.45
+23/02/2017,Food & Drinks,-100.00
+23/02/2017,Food & Drinks,23.00
+21/02/2017,Entertainment,-151.79
+20/02/2017,Food & Drinks,-74.24
+14/02/2017,Food & Drinks,7.50
+13/02/2017,Medical & Insurances,21.00
+13/02/2017,Medical & Insurances,21.00
+12/02/2017,Toys & Electronics,-134.99
+10/02/2017,Electricity,-133.00
+09/02/2017,Internet,-27.50
+09/02/2017,Food & Drinks,10.24
+06/02/2017,Toys & Electronics,-12.99
+05/02/2017,Food & Drinks,-129.45
+02/02/2017,Friends & Family,24.78
+02/02/2017,Taxes,-62.50
+01/02/2017,Fitness,-69.90
+01/02/2017,Appartment,-40.00
+31/01/2017,Appartment,-330.37
+31/01/2017,Work,1608.55
+30/01/2017,Medical & Insurances,-60.37
+27/01/2017,Taxes,1462.87
+24/01/2017,Medical & Insurances,-72.60
+22/01/2017,Appartment,-213.04
+22/01/2017,Appartment,-211.75
+20/01/2017,Food & Drinks,-36.85
+11/01/2017,Appartment,-52.67
+10/01/2017,Electricity,-133.00
+09/01/2017,Internet,-27.50
+03/01/2017,Friends & Family,24.78
+03/01/2017,Food & Drinks,-95.92
+02/01/2017,Fitness,-69.90
+02/01/2017,Appartment,-40.00
+30/12/2016,Appartment,-331.97
+30/12/2016,Food & Drinks,-77.06
+30/12/2016,Taxes,-0.14
+30/12/2016,Food & Drinks,-27.21
+29/12/2016,Water,-109.99
+29/12/2016,Work,2680.33
+29/12/2016,Appartment,-1245.76
+23/12/2016,Food & Drinks,-98.02
+21/12/2016,Appartment,-112.82
+20/12/2016,Toys & Electronics,34.00
+19/12/2016,Garbage & Recycling,-42.50
+14/12/2016,Work,59.95
+12/12/2016,Electricity,-133.00
+12/12/2016,Internet,-32.50
+10/12/2016,Toys & Electronics,-74.95
+04/12/2016,Appartment,-935.75
+02/12/2016,Friends & Family,24.78
+01/12/2016,Fitness,-69.90
+01/12/2016,Appartment,-40.00
+30/11/2016,Appartment,-333.57
+30/11/2016,Electricity,244.43
+30/11/2016,Work,1658.54
+28/11/2016,Food & Drinks,-59.95
+24/11/2016,Appartment,-814.99
+21/11/2016,Food & Drinks,-84.75
+18/11/2016,Studies,50.00
+16/11/2016,Work,45.98
+16/11/2016,Work,207.34
+16/11/2016,Work,53.18
+15/11/2016,Medical & Insurances,12.48
+10/11/2016,Electricity,-153.00
+10/11/2016,Work,-33.19
+09/11/2016,Internet,-27.50
+09/11/2016,Taxes,-438.46
+08/11/2016,Haircuts,-30.00
+06/11/2016,Appartment,-470.97
+04/11/2016,Toys & Electronics,-125.64
+03/11/2016,Friends & Family,24.78
+03/11/2016,Food & Drinks,-93.70
+02/11/2016,Appartment,-40.00
+01/11/2016,Fitness,-69.90
+31/10/2016,Appartment,-335.17
+28/10/2016,Work,1659.64
+28/10/2016,Food & Drinks,-52.71
+28/10/2016,Medical & Insurances,-26.16
+27/10/2016,Work,-41.90
+24/10/2016,Food & Drinks,-69.54
+21/10/2016,Food & Drinks,21.49
+20/10/2016,Food & Drinks,38.97
+19/10/2016,Food & Drinks,-114.16
+19/10/2016,Medical & Insurances,-19.95
+12/10/2016,Food & Drinks,-102.96
+12/10/2016,Toys & Electronics,29.00
+11/10/2016,Electricity,-153.00
+10/10/2016,Studies,-1210.00
+10/10/2016,Internet,-27.50
+05/10/2016,Studies,-280.00
+04/10/2016,Friends & Family,24.78
+03/10/2016,Appartment,-40.00
+01/10/2016,Appartment,-573.40
+30/09/2016,Appartment,-336.78
+30/09/2016,Work,1686.83
+29/09/2016,Water,-187.55
+27/09/2016,Food & Drinks,-40.50
+27/09/2016,Work,-45.98
+21/09/2016,Toys & Electronics,24.00
+19/09/2016,Medical & Insurances,18.48
+19/09/2016,Appartment,-569.00
+13/09/2016,Toys & Electronics,8.00
+12/09/2016,Electricity,-153.00
+11/09/2016,Toys & Electronics,-89.95
+09/09/2016,Internet,-32.50
+07/09/2016,Fitness,-69.90
+05/09/2016,Food & Drinks,-51.21
+02/09/2016,Friends & Family,24.78
+02/09/2016,Toys & Electronics,120.00
+01/09/2016,Work,1337.37
+01/09/2016,Appartment,-40.00
+01/09/2016,Toys & Electronics,-492.50
+01/09/2016,Toys & Electronics,325.00
+31/08/2016,Appartment,-338.38
+30/08/2016,Food & Drinks,-37.74
+29/08/2016,Food & Drinks,-74.93
+26/08/2016,Toys & Electronics,50.99
+24/08/2016,Toys & Electronics,-522.60
+24/08/2016,Food & Drinks,12.00
+19/08/2016,Food & Drinks,-37.84
+12/08/2016,Toys & Electronics,-50.99
+12/08/2016,Food & Drinks,5.97
+10/08/2016,Electricity,-153.00
+10/08/2016,Food & Drinks,-54.13
+10/08/2016,Toys & Electronics,-309.46
+09/08/2016,Internet,-37.50
+06/08/2016,Medical & Insurances,-62.85
+02/08/2016,Friends & Family,24.78
+01/08/2016,Appartment,-40.00
+30/07/2016,Food & Drinks,-85.19
+30/07/2016,Toys & Electronics,-286.94
+29/07/2016,Appartment,-339.99
+29/07/2016,Work,1654.19
+22/07/2016,Food & Drinks,-39.46
+14/07/2016,Work,-45.98
+14/07/2016,Medical & Insurances,19.42
+14/07/2016,Toys & Electronics,-134.95
+12/07/2016,Internet,-32.50
+11/07/2016,Electricity,-153.00
+10/07/2016,Food & Drinks,-66.22
+04/07/2016,Friends & Family,24.78
+03/07/2016,Food & Drinks,-147.49
+01/07/2016,Fitness,-83.00
+01/07/2016,Work,2764.17
+01/07/2016,Appartment,-40.00
+01/07/2016,Food & Drinks,-77.39
+01/07/2016,Toys & Electronics,-579.00
+30/06/2016,Appartment,-341.60
+28/06/2016,Garbage & Recycling,-42.50
+28/06/2016,Medical & Insurances,-113.58
+27/06/2016,Studies,-210.00
+27/06/2016,Studies,-50.00
+27/06/2016,Studies,-50.00
+27/06/2016,Studies,-50.00
+27/06/2016,Toys & Electronics,-10.00
+25/06/2016,Clothes,-25.00
+21/06/2016,Water,7.50
+21/06/2016,Toys & Electronics,-19.95
+21/06/2016,Toys & Electronics,-19.95
+15/06/2016,Taxes,-35.00
+13/06/2016,Appartment,-145.00
+12/06/2016,Medical & Insurances,-83.64
+10/06/2016,Electricity,-153.00
+09/06/2016,Internet,-47.50
+07/06/2016,Medical & Insurances,18.48
+03/06/2016,Appartment,-250.00
+02/06/2016,Friends & Family,24.78
+01/06/2016,Water,-99.66
+01/06/2016,Appartment,-40.00
+01/06/2016,Appartment,-500.00
+31/05/2016,Appartment,-343.21
+31/05/2016,Work,1650.96
+27/05/2016,Food & Drinks,-74.64
+11/05/2016,Electricity,-153.00
+11/05/2016,Garbage & Recycling,-134.89
+10/05/2016,Entertainment,-150.00
+09/05/2016,Food & Drinks,-107.95
+09/05/2016,Food & Drinks,-30.08
+03/05/2016,Friends & Family,24.78
+02/05/2016,Internet,7.50
+02/05/2016,Appartment,-40.00
+29/04/2016,Appartment,-344.83
+29/04/2016,Work,1650.97
+28/04/2016,Food & Drinks,-58.63
+25/04/2016,Electricity,30.63
+25/04/2016,Medical & Insurances,20.48
+25/04/2016,Toys & Electronics,10.00
+25/04/2016,Electricity,-81.46
+14/04/2016,Food & Drinks,16.98
+13/04/2016,Appartment,-1000.00
+11/04/2016,Electricity,-163.00
+11/04/2016,Internet,-97.50
+11/04/2016,Food & Drinks,-116.95
+09/04/2016,Medical & Insurances,-63.98
+04/04/2016,Friends & Family,24.78
+04/04/2016,Appartment,-250.00
+03/04/2016,Toys & Electronics,-224.60
+02/04/2016,Food & Drinks,-82.38
+01/04/2016,Appartment,-40.00
+01/04/2016,Appartment,-1049.00
+01/04/2016,Medical & Insurances,19.42
+31/03/2016,Appartment,-359.38
+31/03/2016,Work,1646.61
+29/03/2016,Taxes,1627.71
+29/03/2016,Appartment,-441.82
+28/03/2016,Toys & Electronics,-35.92
+23/03/2016,Appartment,-25.19
+14/03/2016,Studies,-27.55
+14/03/2016,Electricity,-144.00
+11/03/2016,Internet,-0.77
+11/03/2016,Food & Drinks,22.00
+10/03/2016,Food & Drinks,-58.93
+10/03/2016,Toys & Electronics,-398.28
+07/03/2016,Toys & Electronics,-107.90
+06/03/2016,Toys & Electronics,-71.45
+05/03/2016,Toys & Electronics,-119.50
+05/03/2016,Toys & Electronics,-89.95
+04/03/2016,Water,-92.16
+02/03/2016,Friends & Family,24.78
+02/03/2016,Medical & Insurances,-50.00
+02/03/2016,Entertainment,-150.00
+01/03/2016,Appartment,-40.00
+01/03/2016,Toys & Electronics,-119.00
+29/02/2016,Appartment,-361.12
+29/02/2016,Food & Drinks,-27.59
+26/02/2016,Work,1648.78
+25/02/2016,Toys & Electronics,10.00
+25/02/2016,Clothes,-114.00
+24/02/2016,Toys & Electronics,-30.00
+23/02/2016,Toys & Electronics,30.00
+21/02/2016,Food & Drinks,-111.23
+19/02/2016,Haircuts,300.00
+10/02/2016,Electricity,-144.00
+09/02/2016,Internet,-70.79
+08/02/2016,Studies,-16.53
+08/02/2016,Food & Drinks,45.71
+08/02/2016,Toys & Electronics,-24.08
+07/02/2016,Medical & Insurances,-64.95
+05/02/2016,Food & Drinks,21.23
+04/02/2016,Food & Drinks,-190.65
+02/02/2016,Friends & Family,24.78
+01/02/2016,Work,1653.15
+01/02/2016,Appartment,-40.00
+31/01/2016,Food & Drinks,-69.21
+29/01/2016,Appartment,-362.85
+25/01/2016,Food & Drinks,46.73
+22/01/2016,Food & Drinks,-45.72
+22/01/2016,Food & Drinks,-71.43
+21/01/2016,Medical & Insurances,-30.28
+20/01/2016,Taxes,-125.00
+19/01/2016,Toys & Electronics,-12.96
+17/01/2016,Food & Drinks,-95.00
+13/01/2016,Medical & Insurances,-66.60
+12/01/2016,Studies,-11.02
+12/01/2016,Medical & Insurances,18.48
+12/01/2016,Medical & Insurances,40.00
+11/01/2016,Electricity,-144.00
+11/01/2016,Internet,-70.79
+08/01/2016,Taxes,-16.17
+06/01/2016,Haircuts,-1000.00
+06/01/2016,Haircuts,-300.00
+05/01/2016,Friends & Family,24.78
+05/01/2016,Medical & Insurances,18.48
+05/01/2016,Haircuts,-1300.00
+04/01/2016,Appartment,-40.00
+04/01/2016,Entertainment,-150.00
+02/01/2016,Clothes,-99.95
+02/01/2016,Clothes,-35.00
+31/12/2015,Appartment,-364.60
+31/12/2015,Work,2579.79
+29/12/2015,Food & Drinks,-181.71
+23/12/2015,Medical & Insurances,12.48
+21/12/2015,Appartment,-109.90
+18/12/2015,Toys & Electronics,-169.00
+17/12/2015,Toys & Electronics,-90.75
+11/12/2015,Electricity,-156.00
+10/12/2015,Internet,-70.79
+10/12/2015,Garbage & Recycling,-42.50
+07/12/2015,Taxes,-16.17
+07/12/2015,Appartment,-1217.60
+07/12/2015,Medical & Insurances,-25.79
+02/12/2015,Friends & Family,24.78
+01/12/2015,Electricity,172.72
+01/12/2015,Work,1596.41
+01/12/2015,Appartment,-40.00
+30/11/2015,Appartment,-366.34
+30/11/2015,Electricity,-144.20
+27/11/2015,Water,53.06
+27/11/2015,Food & Drinks,-27.78
+16/11/2015,Studies,-22.04
+12/11/2015,Food & Drinks,-29.86
+10/11/2015,Electricity,-118.89
+09/11/2015,Internet,-70.79
+06/11/2015,Medical & Insurances,12.48
+06/11/2015,Toys & Electronics,-46.90
+05/11/2015,Toys & Electronics,-278.10
+04/11/2015,Water,-240.10
+04/11/2015,Medical & Insurances,18.48
+04/11/2015,Medical & Insurances,18.48
+04/11/2015,Taxes,-16.17
+03/11/2015,Friends & Family,24.78
+02/11/2015,Water,-53.06
+02/11/2015,Appartment,-40.00
+30/10/2015,Appartment,-368.08
+30/10/2015,Work,1673.63
+30/10/2015,Toys & Electronics,-5.95
+26/10/2015,Appartment,-33.36
+26/10/2015,Clothes,337.00
+22/10/2015,Medical & Insurances,-24.48
+20/10/2015,Appartment,-304.36
+13/10/2015,Studies,-11.02
+12/10/2015,Electricity,-118.89
+12/10/2015,Internet,-105.46
+07/10/2015,Medical & Insurances,19.42
+07/10/2015,Medical & Insurances,30.00
+03/10/2015,Toys & Electronics,-164.50
+02/10/2015,Friends & Family,24.78
+02/10/2015,Taxes,-16.17
+02/10/2015,Food & Drinks,-75.00
+01/10/2015,Work,159.00
+01/10/2015,Appartment,-40.00
+01/10/2015,Appartment,-453.00
+30/09/2015,Appartment,-369.83
+30/09/2015,Work,1762.39
+28/09/2015,Haircuts,-650.00
+24/09/2015,Toys & Electronics,-159.00
+24/09/2015,Clothes,-224.50
+22/09/2015,Studies,-16.53
+22/09/2015,Medical & Insurances,-113.55
+22/09/2015,Toys & Electronics,-95.90
+17/09/2015,Clothes,-251.00
+14/09/2015,Clothes,-153.50
+14/09/2015,Toys & Electronics,-75.00
+10/09/2015,Electricity,-107.00
+09/09/2015,Internet,-41.99
+08/09/2015,Medical & Insurances,18.48
+07/09/2015,Taxes,-435.82
+06/09/2015,Medical & Insurances,-181.90
+03/09/2015,Toys & Electronics,-189.00
+02/09/2015,Friends & Family,24.78
+02/09/2015,Taxes,-16.17
+01/09/2015,Work,1592.04
+01/09/2015,Appartment,-40.00
+31/08/2015,Appartment,-371.58
+26/08/2015,Toys & Electronics,-52.75
+24/08/2015,Toys & Electronics,-10.00
+21/08/2015,Clothes,-79.00
+18/08/2015,Taxes,-35.00
+12/08/2015,Medical & Insurances,-120.85
+10/08/2015,Electricity,-107.00
+10/08/2015,Internet,-26.99
+10/08/2015,Medical & Insurances,19.42
+10/08/2015,Clothes,-83.00
+05/08/2015,Taxes,-16.17
+05/08/2015,Garbage & Recycling,-42.50
+04/08/2015,Friends & Family,24.78
+03/08/2015,Appartment,-40.00
+03/08/2015,Toys & Electronics,-364.00
+31/07/2015,Appartment,-373.33
+30/07/2015,Work,1607.29
+21/07/2015,Toys & Electronics,-76.65
+20/07/2015,Clothes,-55.50
+20/07/2015,Toys & Electronics,-92.46
+13/07/2015,Water,-53.06
+13/07/2015,Electricity,-107.00
+10/07/2015,Internet,-26.99
+06/07/2015,Food & Drinks,-70.90
+05/07/2015,Medical & Insurances,-161.25
+05/07/2015,Toys & Electronics,-79.95
+03/07/2015,Appartment,-76.70
+02/07/2015,Friends & Family,24.78
+02/07/2015,Taxes,-16.17
+01/07/2015,Work,2627.16
+01/07/2015,Appartment,-40.00
+30/06/2015,Appartment,-375.09
+27/06/2015,Medical & Insurances,-49.74
+26/06/2015,Taxes,273.76
+22/06/2015,Toys & Electronics,-35.90
+19/06/2015,Food & Drinks,-9.85
+11/06/2015,Work,128.89
+10/06/2015,Electricity,-107.00
+09/06/2015,Internet,-31.99
+05/06/2015,Toys & Electronics,-81.85
+03/06/2015,Taxes,-16.17
+02/06/2015,Friends & Family,24.78
+01/06/2015,Appartment,-40.00
+29/05/2015,Appartment,-376.84
+29/05/2015,Work,1607.28
+26/05/2015,Food & Drinks,12.80
+26/05/2015,Toys & Electronics,-36.00
+18/05/2015,Medical & Insurances,-149.25
+18/05/2015,Toys & Electronics,-18.17
+15/05/2015,Toys & Electronics,-109.00
+11/05/2015,Electricity,-107.00
+11/05/2015,Internet,-36.99
+10/05/2015,Toys & Electronics,-216.42
+10/05/2015,Toys & Electronics,-168.99
+06/05/2015,Medical & Insurances,12.48
+06/05/2015,Taxes,-16.17
+05/05/2015,Friends & Family,24.78
+04/05/2015,Appartment,-40.00
+30/04/2015,Appartment,-378.60
+30/04/2015,Work,1607.29
+27/04/2015,Medical & Insurances,-29.42
+25/04/2015,Toys & Electronics,-44.99
+20/04/2015,Studies,-22.04
+15/04/2015,Food & Drinks,12.80
+13/04/2015,Toys & Electronics,-126.00
+11/04/2015,Toys & Electronics,-29.99
+10/04/2015,Electricity,-107.00
+09/04/2015,Internet,-31.99
+08/04/2015,Toys & Electronics,-143.70
+07/04/2015,Appartment,-63.00
+02/04/2015,Friends & Family,24.78
+02/04/2015,Taxes,-16.17
+01/04/2015,Appartment,-40.00
+31/03/2015,Appartment,-380.36
+31/03/2015,Work,1596.72
+30/03/2015,Water,-53.06
+18/03/2015,Medical & Insurances,20.48
+15/03/2015,Toys & Electronics,-59.00
+13/03/2015,Electricity,-107.00
+12/03/2015,Internet,-23.44
+11/03/2015,Clothes,-181.50
+09/03/2015,Electricity,-328.57
+05/03/2015,Medical & Insurances,-50.00
+05/03/2015,Toys & Electronics,-86.97
+04/03/2015,Taxes,-16.17
+03/03/2015,Friends & Family,24.78
+02/03/2015,Appartment,-40.00
+28/02/2015,Toys & Electronics,-147.95
+27/02/2015,Appartment,-382.12
+27/02/2015,Work,1596.71
+27/02/2015,Toys & Electronics,-398.90
+17/02/2015,Garbage & Recycling,-42.50
+14/02/2015,Toys & Electronics,-54.20
+12/02/2015,Toys & Electronics,-20.93
+10/02/2015,Electricity,-107.00
+09/02/2015,Internet,-51.48
+04/02/2015,Taxes,-16.17
+03/02/2015,Friends & Family,24.78
+02/02/2015,Appartment,-40.00
+30/01/2015,Appartment,-383.88
+28/01/2015,Work,1596.72
+14/01/2015,Medical & Insurances,-63.00
+14/01/2015,Toys & Electronics,-87.12
+12/01/2015,Electricity,-107.00
+12/01/2015,Electricity,-181.33
+09/01/2015,Internet,-49.70
+08/01/2015,Taxes,-16.17
+06/01/2015,Toys & Electronics,-399.99
+05/01/2015,Friends & Family,24.78
+05/01/2015,Toys & Electronics,-737.00
+05/01/2015,Toys & Electronics,129.00
+05/01/2015,Toys & Electronics,837.00
+02/01/2015,Water,-53.06
+02/01/2015,Appartment,-40.00
+31/12/2014,Appartment,-385.65
+29/12/2014,Electricity,-68.9
+26/12/2014,Toys & Electronics,-966
+24/12/2014,Work,2297.66
+20/12/2014,Toys & Electronics,-19.3
+11/12/2014,Electricity,-80.76
+10/12/2014,Internet,-49.7
+04/12/2014,Taxes,-16.17
+02/12/2014,Friends & Family,24.78
+01/12/2014,Appartment,-40
+28/11/2014,Appartment,-387.42
+27/11/2014,Work,1581.68
+21/11/2014,Toys & Electronics,-1099
+10/11/2014,Electricity,-80.76
+10/11/2014,Internet,-49.7
+05/11/2014,Toys & Electronics,-139.95
+04/11/2014,Friends & Family,24.78
+04/11/2014,Taxes,-16.17
+03/11/2014,Appartment,-40
+31/10/2014,Appartment,-389.19
+31/10/2014,Toys & Electronics,-94
+31/10/2014,Clothes,-202
+30/10/2014,Work,1581.68
+20/10/2014,Toys & Electronics,-149
+13/10/2014,Electricity,-80.76
+13/10/2014,Clothes,-143
+10/10/2014,Internet,-49.7
+08/10/2014,Appartment,-284.1
+06/10/2014,Taxes,-16.17
+02/10/2014,Friends & Family,24.78
+01/10/2014,Appartment,-40
+01/10/2014,Toys & Electronics,-52.99
+30/09/2014,Appartment,-390.96
+30/09/2014,Water,-9.7
+30/09/2014,Toys & Electronics,-249
+29/09/2014,Work,1581.67
+13/09/2014,Toys & Electronics,-28.9
+10/09/2014,Electricity,-80.76
+10/09/2014,Work,10.95
+10/09/2014,Toys & Electronics,-315.21
+09/09/2014,Internet,-49.7
+05/09/2014,Taxes,-16.17
+02/09/2014,Friends & Family,24.78
+01/09/2014,Appartment,-40
+31/08/2014,Toys & Electronics,-159
+30/08/2014,Toys & Electronics,-43.98
+29/08/2014,Appartment,-392.74
+29/08/2014,Toys & Electronics,-299
+29/08/2014,Toys & Electronics,-89.99
+28/08/2014,Work,1581.68
+20/08/2014,Appartment,-65
+14/08/2014,Toys & Electronics,-869
+11/08/2014,Electricity,-80.76
+11/08/2014,Internet,-49.7
+07/08/2014,Taxes,-16.17
+04/08/2014,Water,-65.38
+04/08/2014,Friends & Family,24.78
+01/08/2014,Appartment,-40
+31/07/2014,Appartment,-394.51
+31/07/2014,Toys & Electronics,-289
+30/07/2014,Work,1581.68
+30/07/2014,Toys & Electronics,-59
+30/07/2014,Toys & Electronics,-69.99
+29/07/2014,Toys & Electronics,1.2
+23/07/2014,Taxes,-42.5
+15/07/2014,Work,50.11
+11/07/2014,Electricity,-80.76
+10/07/2014,Internet,-49.7
+04/07/2014,Appartment,-231.72
+04/07/2014,Taxes,-16.17
+02/07/2014,Friends & Family,24.78
+01/07/2014,Work,52.96
+01/07/2014,Appartment,-40
+30/06/2014,Appartment,-396.29
+27/06/2014,Work,1095.26
+27/06/2014,Toys & Electronics,-75
+14/06/2014,Toys & Electronics,-38.94
+11/06/2014,Toys & Electronics,3.1
+10/06/2014,Electricity,-80.76
+10/06/2014,Internet,-49.7
+10/06/2014,Toys & Electronics,-174.95
+08/06/2014,Toys & Electronics,-99
+05/06/2014,Appartment,23.47
+05/06/2014,Appartment,3.51
+05/06/2014,Taxes,-15.92
+05/06/2014,Appartment,-161.9
+03/06/2014,Friends & Family,24.78
+02/06/2014,Work,1581.68
+02/06/2014,Appartment,-40
+02/06/2014,Toys & Electronics,-23
+02/06/2014,Toys & Electronics,-9.1
+02/06/2014,Toys & Electronics,-10
+28/05/2014,Appartment,-398.07
+27/05/2014,Appartment,-39.01
+27/05/2014,Toys & Electronics,-195
+23/05/2014,Toys & Electronics,-59.99
+13/05/2014,Food & Drinks,92
+13/05/2014,Taxes,-42.5
+13/05/2014,Toys & Electronics,-91.1
+12/05/2014,Electricity,-80.76
+12/05/2014,Internet,-72.95
+06/05/2014,Appartment,-148.14
+05/05/2014,Water,-65.38
+05/05/2014,Friends & Family,24.78
+05/05/2014,Taxes,-15.92
+02/05/2014,Appartment,-40
+30/04/2014,Appartment,-447.73
+29/04/2014,Work,1585.68
+23/04/2014,Toys & Electronics,18
+22/04/2014,Toys & Electronics,6
+16/04/2014,Electricity,-82
+05/04/2014,Toys & Electronics,-473.98
+04/04/2014,Taxes,-15.92
+04/04/2014,Appartment,-76.32
+02/04/2014,Friends & Family,24.78
+01/04/2014,Appartment,-40
+01/04/2014,Appartment,-233.42
+31/03/2014,Internet,-75.04
+31/03/2014,Work,1602.97
+28/03/2014,Appartment,-17.83
+28/03/2014,Appartment,-200
+28/03/2014,Taxes,-42.5
+25/03/2014,Appartment,-91.14
+17/03/2014,Appartment,72.19
+17/03/2014,Appartment,78.1
+13/03/2014,Toys & Electronics,-529.99
+04/03/2014,Friends & Family,24.78
+03/03/2014,Taxes,-15.92
+03/03/2014,Taxes,1742.29
+27/02/2014,Work,1607.66
+25/02/2014,Food & Drinks,80
+24/02/2014,Toys & Electronics,-71.08
+12/02/2014,Toys & Electronics,10
+04/02/2014,Friends & Family,24.78
+03/02/2014,Taxes,-15.92
+30/01/2014,Work,1379.97
+23/01/2014,Appartment,-7000
+23/01/2014,Appartment,-92913.03
+07/01/2014,Taxes,-15.92
+06/01/2014,Toys & Electronics,20
+05/01/2014,Work,256.72
+03/01/2014,Friends & Family,24.78
+02/01/2014,Toys & Electronics,34
+31/12/2013,Work,172.22
+15/12/2013,Work,430.56
+08/12/2013,Work,430.56
+01/12/2013,Taxes,-12
+01/12/2013,Friends & Family,24.78
+30/11/2013,Work,430.56
+24/11/2013,Work,430.56
+17/11/2013,Work,427.07
+03/11/2013,Work,82.63
+01/11/2013,Taxes,-12
+01/11/2013,Friends & Family,24.78
+31/10/2013,Work,344.43
+27/10/2013,Work,430.56
+20/10/2013,Work,344.43
+13/10/2013,Work,349.39
+06/10/2013,Work,344.43
+01/10/2013,Taxes,-12
+01/10/2013,Friends & Family,24.78
+30/09/2013,Work,84.16
+29/09/2013,Work,258.35
+22/09/2013,Work,448.12
+15/09/2013,Work,430.56
+08/09/2013,Work,430.56
+01/09/2013,Taxes,-12
+01/09/2013,Friends & Family,24.78
+31/08/2013,Work,425.26
+18/08/2013,Work,340.95
+11/08/2013,Work,430.56
+04/08/2013,Work,172.22
+01/08/2013,Taxes,-12
+01/08/2013,Friends & Family,24.78
+31/07/2013,Work,246.09
+28/07/2013,Work,430.56
+21/07/2013,Work,430.56
+14/07/2013,Work,430.56
+07/07/2013,Work,430.56
+01/07/2013,Taxes,-12
+01/07/2013,Friends & Family,24.78
+30/06/2013,Work,430.56
+23/06/2013,Work,430.56
+16/06/2013,Work,430.56
+09/06/2013,Work,430.56
+01/06/2013,Taxes,-12
+01/06/2013,Friends & Family,24.78
+30/05/2013,Work,430.56
+01/05/2013,Taxes,-12
+01/05/2013,Friends & Family,24.78
+01/04/2013,Taxes,-12
+01/04/2013,Friends & Family,24.78
+01/03/2013,Taxes,-12
+01/03/2013,Friends & Family,24.78
+01/02/2013,Taxes,-12
+01/02/2013,Friends & Family,24.78
+01/01/2013,Taxes,-12
+01/01/2013,Friends & Family,13000
+01/01/2013,Friends & Family,24.78
+01/01/2013,Taxes,1400
+01/12/2012,Taxes,-12
+01/12/2012,Friends & Family,24.78
+01/11/2012,Taxes,-12
+01/11/2012,Friends & Family,24.78
+01/10/2012,Taxes,-12
+01/10/2012,Friends & Family,24.78
+30/09/2012,Work,3764.88
+01/09/2012,Taxes,-12
+01/09/2012,Friends & Family,24.78
+31/08/2012,Work,2496.05
+01/08/2012,Taxes,-12
+01/08/2012,Friends & Family,24.78
+31/07/2012,Work,283.6
+31/07/2012,Work,2085.57
+01/07/2012,Taxes,-12
+01/07/2012,Friends & Family,24.78
+30/06/2012,Work,3399.81
+01/06/2012,Taxes,-12
+01/06/2012,Friends & Family,24.78
+31/05/2012,Work,2369.17
+01/05/2012,Taxes,-12
+01/05/2012,Friends & Family,24.78
+30/04/2012,Work,2107.97
+01/04/2012,Taxes,-12
+01/04/2012,Friends & Family,24.78
+01/04/2012,Entertainment,-2000
+31/03/2012,Work,2160.21
+01/03/2012,Taxes,-12
+01/03/2012,Friends & Family,24.78
+29/02/2012,Work,2264.69
+01/02/2012,Taxes,-12
+01/02/2012,Friends & Family,24.78
+31/01/2012,Work,2508.22
+01/01/2012,Taxes,-12
+01/01/2012,Friends & Family,24.78
+01/01/2012,Taxes,1400
+31/12/2011,Work,2671.82
+01/12/2011,Taxes,-12
+01/12/2011,Friends & Family,24.78
+30/11/2011,Work,3196.69
+01/11/2011,Taxes,-12
+01/11/2011,Friends & Family,24.78
+31/10/2011,Work,2224.07
+01/10/2011,Taxes,-12
+01/10/2011,Friends & Family,24.78
+30/09/2011,Work,2423.67
+01/09/2011,Taxes,-12
+01/09/2011,Friends & Family,24.78
+31/08/2011,Work,2179.3
+01/08/2011,Taxes,-12
+01/08/2011,Friends & Family,24.78
+31/07/2011,Work,2275.89
+01/07/2011,Taxes,-12
+01/07/2011,Friends & Family,24.78
+30/06/2011,Work,2560.71
+01/06/2011,Taxes,-12
+01/06/2011,Friends & Family,24.78
+31/05/2011,Work,2222.8
+01/05/2011,Taxes,-12
+01/05/2011,Friends & Family,24.78
+30/04/2011,Work,2330.71
+01/04/2011,Taxes,-12
+01/04/2011,Friends & Family,24.78
+31/03/2011,Work,2312.67
+01/03/2011,Taxes,-12
+01/03/2011,Friends & Family,24.78
+28/02/2011,Work,2175.87
+01/02/2011,Taxes,-12
+01/02/2011,Friends & Family,24.78
+31/01/2011,Work,2221.47
+01/01/2011,Taxes,-12
+01/01/2011,Friends & Family,24.78
+01/01/2011,Taxes,1400
+31/12/2010,Work,2261.88
+01/12/2010,Taxes,-12
+01/12/2010,Friends & Family,24.78
+30/11/2010,Work,2170.68
+01/11/2010,Taxes,-12
+01/11/2010,Friends & Family,24.78
+31/10/2010,Work,1504.03
+31/10/2010,Work,1490.78
+31/10/2010,Work,-13.25
+01/10/2010,Taxes,-12
+01/10/2010,Friends & Family,24.78
+01/09/2010,Taxes,-12
+01/09/2010,Friends & Family,24.78
+01/08/2010,Taxes,-12
+01/08/2010,Friends & Family,24.78
+01/07/2010,Taxes,-12
+01/07/2010,Friends & Family,24.78
+01/06/2010,Taxes,-12
+01/06/2010,Friends & Family,24.78
+01/05/2010,Taxes,-12
+01/05/2010,Friends & Family,24.78
+01/04/2010,Taxes,-12
+01/04/2010,Friends & Family,24.78
+01/03/2010,Taxes,-12
+01/03/2010,Friends & Family,24.78
+01/02/2010,Taxes,-12
+01/02/2010,Friends & Family,24.78
+01/01/2010,Taxes,-12
+01/01/2010,Friends & Family,24.78
+01/01/2010,Taxes,1400
+01/01/2009,Taxes,395.1
+01/01/2008,Taxes,1000
+01/01/2007,Taxes,1000
